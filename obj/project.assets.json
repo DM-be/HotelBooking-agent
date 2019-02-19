@@ -12447,9 +12447,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dennis.morent\\source\\hoteltestv2\\BasicBot.csproj",
-      "projectName": "BasicBot",
-      "projectPath": "C:\\Users\\dennis.morent\\source\\hoteltestv2\\BasicBot.csproj",
+      "projectUniqueName": "C:\\Users\\dennis.morent\\source\\hoteltestv2\\HotelBot.csproj",
+      "projectName": "HotelBot",
+      "projectPath": "C:\\Users\\dennis.morent\\source\\hoteltestv2\\HotelBot.csproj",
       "packagesPath": "C:\\Users\\dennis.morent\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\dennis.morent\\source\\hoteltestv2\\obj\\",
       "projectStyle": "PackageReference",

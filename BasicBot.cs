@@ -186,7 +186,7 @@ namespace Microsoft.BotBuilderSamples
 
             if (topIntent.Equals(HelpIntent))
             {
-                await dc.Context.SendActivityAsync("Let me try to testing provide some help.");
+                await dc.Context.SendActivityAsync("Let me try to testing2 provide some help.");
                 await dc.Context.SendActivityAsync("I understand greetings, being asked for help, or being asked to cancel what I am doing.");
                 if (dc.ActiveDialog != null)
                 {
