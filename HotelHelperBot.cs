@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
@@ -187,6 +188,8 @@ namespace HotelBot
             if (topIntent.Equals(HelpIntent))
             {
                 await dc.Context.SendActivityAsync("Let me try to testing54 provide some help.");
+                var culture = CultureInfo.CurrentUICulture;
+                await dc.Context.SendActivityAsync(culture.ToString());
                 await dc.Context.SendActivityAsync("I understand greetings, being asked for help, or being asked to cancel what I am doing.");
                 if (dc.ActiveDialog != null)
                 {

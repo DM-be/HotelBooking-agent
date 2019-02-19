@@ -5,6 +5,7 @@ using System;
 using System.IO;
 using System.Linq;
 using HotelBot;
+using HotelBot.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Bot.Builder;
@@ -125,6 +126,8 @@ namespace Microsoft.BotBuilderSamples
             // var storageContainer = string.IsNullOrWhiteSpace(blobStorageConfig.Container) ? DefaultBotContainer : blobStorageConfig.Container;
             // IStorage dataStore = new Microsoft.Bot.Builder.Azure.AzureBlobStorage(blobStorageConfig.ConnectionString, storageContainer);
 
+
+
             // Create and add conversation state.
             var conversationState = new ConversationState(dataStore);
             services.AddSingleton(conversationState);
@@ -145,6 +148,10 @@ namespace Microsoft.BotBuilderSamples
                     logger.LogError($"Exception caught : {exception}");
                     await context.SendActivityAsync("Sorry, it looks like something went wrong.");
                 };
+
+                // Locale Middleware (sets UI culture based on Activity.Locale)\
+                var defaultLocale = Configuration.GetSection("defaultLocale").Get<string>();
+                options.Middleware.Add(new SetLocaleMiddleware(defaultLocale ?? "en-us"));
             });
         }
 
