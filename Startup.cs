@@ -4,6 +4,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using HotelBot;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Bot.Builder;
@@ -131,14 +132,14 @@ namespace Microsoft.BotBuilderSamples
             var userState = new UserState(dataStore);
             services.AddSingleton(userState);
 
-            services.AddBot<BasicBot>(options =>
+            services.AddBot<HotelHelperBot>(options =>
             {
                 options.CredentialProvider = new SimpleCredentialProvider(endpointService.AppId, endpointService.AppPassword);
                 options.ChannelProvider = new ConfigurationChannelProvider(Configuration);
 
                 // Catches any errors that occur during a conversation turn and logs them to currently
                 // configured ILogger.
-                ILogger logger = _loggerFactory.CreateLogger<BasicBot>();
+                ILogger logger = _loggerFactory.CreateLogger<HotelHelperBot>();
                 options.OnTurnError = async (context, exception) =>
                 {
                     logger.LogError($"Exception caught : {exception}");
