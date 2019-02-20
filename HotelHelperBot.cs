@@ -6,11 +6,14 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Net.Http;
+using System.Resources;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Services;
 using HotelBot.StateAccessors;
 using HotelBot.StateProperties;
+using HotelBot.Welcome.Resources;
+using Microsoft.ApplicationInsights.AspNetCore;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Schema;
@@ -258,7 +261,10 @@ namespace HotelBot
             var userId = turnContext.Activity.From.Id;
             userProfile = await GetUserProfileBasedOnFacebookData(userId, page_acces_token);
             userProfile.Locale = userProfile.Locale.Replace("_", "-");
-            CultureInfo.CurrentUICulture = CultureInfo.CurrentCulture = new CultureInfo(userProfile.Locale);
+             
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(userProfile.Locale);
+            CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo(userProfile.Locale);
+ 
             await _accessors.UserProfileAccessor.SetAsync(turnContext, userProfile);
             }
 
@@ -289,8 +295,10 @@ namespace HotelBot
         private async void SendWelcomeMessage(ITurnContext turnContext)
         {
             var userProfile = await _accessors.UserProfileAccessor.GetAsync(turnContext);
+            
             var firstName = userProfile.First_Name;
-            turnContext.SendActivityAsync($"Welcome {firstName}! functionality explanation here");
+            var welcomeMessage = WelcomeStrings.WelcomeMessage;
+            turnContext.SendActivityAsync(welcomeMessage);
 
         }
 

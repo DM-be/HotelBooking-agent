@@ -34,7 +34,27 @@
     <None Update="*.bot">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup> 
+  </ItemGroup>
+
+ <ItemGroup>
+   <Compile Update="Welcome\Resources\WelcomeStrings.Designer.cs">
+     <DesignTime>True</DesignTime>
+     <AutoGen>True</AutoGen>
+     <DependentUpon>WelcomeStrings.resx</DependentUpon>
+   </Compile>
+ </ItemGroup>
+
+ <ItemGroup>
+   <EmbeddedResource Update="Welcome\Resources\WelcomeStrings.nl.resx">
+     <Generator>PublicResXFileCodeGenerator</Generator>
+     <CustomToolNamespace></CustomToolNamespace>
+   </EmbeddedResource>
+   <EmbeddedResource Update="Welcome\Resources\WelcomeStrings.resx">
+     <Generator>PublicResXFileCodeGenerator</Generator>
+     <LastGenOutput>WelcomeStrings.Designer.cs</LastGenOutput>
+     <CustomToolNamespace></CustomToolNamespace>
+   </EmbeddedResource>
+ </ItemGroup> 
 
   <Import Project="PostDeployScripts\IncludeSources.targets" Condition="Exists('PostDeployScripts\IncludeSources.targets')" />
   <Import Project="..\PostDeployScripts\IncludeSources.targets" Condition="Exists('..\PostDeployScripts\IncludeSources.targets')" />

@@ -168,7 +168,7 @@ namespace HotelBot
 
                 // check if still needed! now manual at start of get started or when user talks
                 var defaultLocale = Configuration.GetSection("defaultLocale").Get<string>();
-                options.Middleware.Add(new SetLocaleMiddleware(defaultLocale ?? "en-us"));
+              //  options.Middleware.Add(new SetLocaleMiddleware(defaultLocale ?? "en-us"));
 
                 // Middleware to automatically call .SaveChanges() at the end of the turn for all BotState class it is managing.
                 options.Middleware

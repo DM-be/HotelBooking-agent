@@ -44,6 +44,11 @@
         "runtime": {
           "HotelBot.dll": {}
         },
+        "resources": {
+          "nl/HotelBot.resources.dll": {
+            "locale": "nl"
+          }
+        },
         "compile": {
           "HotelBot.dll": {}
         }
