@@ -7,10 +7,13 @@ using System.Linq;
 using HotelBot;
 using HotelBot.Middleware;
 using HotelBot.Services;
+using HotelBot.StateAccessors;
+using HotelBot.StateProperties;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.BotFramework;
+using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Integration.AspNet.Core;
 using Microsoft.Bot.Configuration;
 using Microsoft.Bot.Connector.Authentication;
@@ -91,6 +94,7 @@ namespace HotelBot
             // Create the connected services from .bot file.
             services.AddSingleton(sp => new BotServices(botConfig));
 
+
             // Retrieve current endpoint.
             var environment = _isProduction ? "production" : "development";
             var service = botConfig.Services.FirstOrDefault(s => s.Type == "endpoint" && s.Name == environment);
@@ -129,12 +133,22 @@ namespace HotelBot
 
 
 
-            // Create and add conversation state.
+            // Create conversation state.
             var conversationState = new ConversationState(dataStore);
-            services.AddSingleton(conversationState);
-
             var userState = new UserState(dataStore);
-            services.AddSingleton(userState);
+   
+            // add custom singleton with all state attached
+            services.AddSingleton<StateBotAccessors>(sp =>
+            {
+               
+                return new StateBotAccessors(conversationState, userState)
+                {
+                    ConversationDataAccessor = conversationState.CreateProperty<ConversationData>(StateBotAccessors.ConversationDataName),
+                    UserProfileAccessor = userState.CreateProperty<UserProfile>(StateBotAccessors.UserProfileName),
+                    DialogStateAccessor = conversationState.CreateProperty<DialogState>(StateBotAccessors.DialogStateName),
+                    BookARoomAccessor = conversationState.CreateProperty<BookARoom>(StateBotAccessors.BookARoomAName)
+                };
+            });
 
             services.AddBot<HotelHelperBot>(options =>
             {
@@ -153,6 +167,10 @@ namespace HotelBot
                 // Locale Middleware (sets UI culture based on Activity.Locale)\
                 var defaultLocale = Configuration.GetSection("defaultLocale").Get<string>();
                 options.Middleware.Add(new SetLocaleMiddleware(defaultLocale ?? "en-us"));
+
+                // Middleware to automatically call .SaveChanges() at the end of the turn for all BotState class it is managing.
+                options.Middleware
+                    .Add(new AutoSaveStateMiddleware(userState, conversationState));
             });
         }
 

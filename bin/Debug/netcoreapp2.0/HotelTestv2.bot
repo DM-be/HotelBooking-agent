@@ -22,9 +22,9 @@
       "id": "2"
     },
     {
-      "appId": "",
-      "appPassword": "",
-      "endpoint": "http://localhost:3978/api/messages",
+      "appId": "07eecd2c-e40c-41a9-82ac-ce65e0eedece",
+      "appPassword": "WHpvQ6eYBWvEPXO8MEJiAg==!DioJBEOVcFe/T7SsIPpLAMnE6i3UEoU41QrPkiI1bM8=",
+      "endpoint": "http://localhost:80/api/messages",
       "type": "endpoint",
       "name": "development",
       "id": "3"

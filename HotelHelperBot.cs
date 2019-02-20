@@ -5,13 +5,15 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Services;
+using HotelBot.StateAccessors;
+using HotelBot.StateProperties;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Schema;
-using Microsoft.BotBuilderSamples;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
@@ -34,10 +36,10 @@ namespace HotelBot
         /// </summary>
         public static readonly string LuisConfiguration = "BasicBotLuisApplication";
 
-        private readonly IStatePropertyAccessor<GreetingState> _greetingStateAccessor;
-        private readonly IStatePropertyAccessor<DialogState> _dialogStateAccessor;
-        private readonly UserState _userState;
-        private readonly ConversationState _conversationState;
+        // singleton that contains all property accessors
+        private readonly StateBotAccessors _accessors;
+   
+        // services that contain LUIS + QNA
         private readonly BotServices _services;
 
         /// <summary>
@@ -45,14 +47,12 @@ namespace HotelBot
         /// </summary>
         /// <param name="botServices">Bot services.</param>
         /// <param name="accessors">Bot State Accessors.</param>
-        public HotelHelperBot(BotServices services, UserState userState, ConversationState conversationState, ILoggerFactory loggerFactory)
+        public HotelHelperBot(BotServices services, StateBotAccessors accessors, ILoggerFactory loggerFactory)
         {
             _services = services ?? throw new ArgumentNullException(nameof(services));
-            _userState = userState ?? throw new ArgumentNullException(nameof(userState));
-            _conversationState = conversationState ?? throw new ArgumentNullException(nameof(conversationState));
+            _accessors = accessors ?? throw new System.ArgumentNullException(nameof(accessors));
 
-            _greetingStateAccessor = _userState.CreateProperty<GreetingState>(nameof(GreetingState));
-            _dialogStateAccessor = _conversationState.CreateProperty<DialogState>(nameof(DialogState));
+          
 
             // Verify LUIS configuration.
             if (!_services.LuisServices.ContainsKey(LuisConfiguration))
@@ -60,8 +60,9 @@ namespace HotelBot
                 throw new InvalidOperationException($"The bot configuration does not contain a service type of `luis` with the id `{LuisConfiguration}`.");
             }
 
-            Dialogs = new DialogSet(_dialogStateAccessor);
-            Dialogs.Add(new GreetingDialog(_greetingStateAccessor, loggerFactory));
+            // set accessor for dialogstate
+            Dialogs = new DialogSet(_accessors.DialogStateAccessor);
+          
         }
 
         private DialogSet Dialogs { get; set; }
@@ -74,6 +75,27 @@ namespace HotelBot
         /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
         public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken)
         {
+
+            if (turnContext.Activity == null)
+            {
+                throw new System.ArgumentNullException("turnContext is null");
+            }
+
+
+            // get the userprofile or create a new object if null
+            UserProfile userProfile =
+                await _accessors.UserProfileAccessor.GetAsync(turnContext, () => new UserProfile());
+
+            // get conversationData or create a new object if null
+            ConversationData conversationData =
+                await _accessors.ConversationDataAccessor.GetAsync(turnContext, () => new ConversationData());
+
+            if (string.IsNullOrEmpty(conversationData.ChannelId) && string.IsNullOrEmpty(userProfile.Id))
+            {
+                SetConversationData(turnContext, conversationData);
+                SetUserProfile(turnContext, userProfile);
+            }
+
             var activity = turnContext.Activity;
 
             // Create a dialog context
@@ -84,23 +106,16 @@ namespace HotelBot
                 // Perform a call to LUIS to retrieve results for the current activity message.
                 var luisResults = await _services.LuisServices[LuisConfiguration].RecognizeAsync(dc.Context, cancellationToken);
 
-                // If any entities were updated, treat as interruption.
-                // For example, "no my name is tony" will manifest as an update of the name to be "tony".
-                var topScoringIntent = luisResults?.GetTopScoringIntent();
-
+                var topScoringIntent = luisResults?.GetTopScoringIntent(); 
                 var topIntent = topScoringIntent.Value.intent;
 
-                // update greeting state with any entities captured
-                await UpdateGreetingState(luisResults, dc.Context);
 
                 // Handle conversation interrupts first.
                 var interrupted = await IsTurnInterruptedAsync(dc, topIntent);
                 if (interrupted)
                 {
                     // Bypass the dialog.
-                    // Save state before the next turn.
-                    await _conversationState.SaveChangesAsync(turnContext);
-                    await _userState.SaveChangesAsync(turnContext);
+                    // state is always saved between turns because of the autosaving middleware
                     return;
                 }
 
@@ -117,7 +132,7 @@ namespace HotelBot
                             switch (topIntent)
                             {
                                 case GreetingIntent:
-                                    await dc.BeginDialogAsync(nameof(GreetingDialog));
+                                   // await dc.BeginDialogAsync(nameof(GreetingDialog));
                                     break;
 
                                 case NoneIntent:
@@ -155,16 +170,16 @@ namespace HotelBot
                         // To learn more about Adaptive Cards, see https://aka.ms/msbot-adaptivecards for more details.
                         if (member.Id != activity.Recipient.Id)
                         {
-                            var welcomeCard = CreateAdaptiveCardAttachment();
-                            var response = CreateResponse(activity, welcomeCard);
-                            await dc.Context.SendActivityAsync(response);
+                            var reply = turnContext.Activity.CreateReply();
+                            reply.Text = "Welcome to testbot";
+                            await dc.Context.SendActivityAsync(reply);
                         }
                     }
                 }
             }
 
-            await _conversationState.SaveChangesAsync(turnContext);
-            await _userState.SaveChangesAsync(turnContext);
+            await _accessors.UserProfileAccessor.SetAsync(turnContext, userProfile);
+            await _accessors.ConversationDataAccessor.SetAsync(turnContext, conversationData);
         }
 
         // Determine if an interruption has occurred before we dispatch to any active dialog.
@@ -189,8 +204,6 @@ namespace HotelBot
             if (topIntent.Equals(HelpIntent))
             {
                 await dc.Context.SendActivityAsync("Let me try to another test to provide some help.");
-                var culture = CultureInfo.CurrentUICulture;
-                await dc.Context.SendActivityAsync(culture.ToString());
                 await dc.Context.SendActivityAsync("I understand greetings, being asked for help, or being asked to cancel what I am doing.");
                 if (dc.ActiveDialog != null)
                 {
@@ -222,53 +235,53 @@ namespace HotelBot
             };
         }
 
-        /// <summary>
-        /// Helper function to update greeting state with entities returned by LUIS.
-        /// </summary>
-        /// <param name="luisResult">LUIS recognizer <see cref="RecognizerResult"/>.</param>
-        /// <param name="turnContext">A <see cref="ITurnContext"/> containing all the data needed
-        /// for processing this conversation turn.</param>
-        /// <returns>A task that represents the work queued to execute.</returns>
-        private async Task UpdateGreetingState(RecognizerResult luisResult, ITurnContext turnContext)
+
+        private void SetConversationData(ITurnContext turnContext, ConversationData conversationData)
         {
-            if (luisResult.Entities != null && luisResult.Entities.HasValues)
-            {
-                // Get latest GreetingState
-                var greetingState = await _greetingStateAccessor.GetAsync(turnContext, () => new GreetingState());
-                var entities = luisResult.Entities;
-
-                // Supported LUIS Entities
-                string[] userNameEntities = { "userName", "userName_patternAny" };
-                string[] userLocationEntities = { "userLocation", "userLocation_patternAny" };
-
-                // Update any entities
-                // Note: Consider a confirm dialog, instead of just updating.
-                foreach (var name in userNameEntities)
-                {
-                    // Check if we found valid slot values in entities returned from LUIS.
-                    if (entities[name] != null)
-                    {
-                        // Capitalize and set new user name.
-                        var newName = (string)entities[name][0];
-                        greetingState.Name = char.ToUpper(newName[0]) + newName.Substring(1);
-                        break;
-                    }
-                }
-
-                foreach (var city in userLocationEntities)
-                {
-                    if (entities[city] != null)
-                    {
-                        // Capitalize and set new city.
-                        var newCity = (string)entities[city][0];
-                        greetingState.City = char.ToUpper(newCity[0]) + newCity.Substring(1);
-                        break;
-                    }
-                }
-
-                // Set the new values into state.
-                await _greetingStateAccessor.SetAsync(turnContext, greetingState);
-            }
+            conversationData.ChannelId = turnContext.Activity.ChannelId;
+            conversationData.ProfilePageId = turnContext.Activity.Recipient.Id;
+            conversationData.FacebookPageName = turnContext.Activity.Recipient.Name;
         }
+
+
+        private async void SetUserProfile(ITurnContext turnContext, UserProfile userProfile)
+        {
+
+            if (turnContext.Activity.ChannelId == "facebook")
+            {
+            // to do: this is a never expiring test token --> api calls to get non expiring tokens via curl need app review
+            var page_acces_token =
+                "EAAcy8ebJTmsBAFSISvZAz809ZCdo4kNy8lTUDvjfUV5aEZAbDhnGKl58BK1okZAZBiFGM4nZBL2D9LEzoeC4ohgJiJgeLp83jECk6NYal3QZAazU0n9IafhFfnkm28DZCu5KvOZACgsebEmAgRIAoBUTlIW4oEPZBNPK69D9JSEEuNZC4UqmR9cniCm2bMxcbovRz0ZD";
+
+            var userId = turnContext.Activity.From.Id;
+            userProfile = await GetUserProfileBasedOnFacebookData(userId, page_acces_token);
+            userProfile.Locale = userProfile.Locale.Replace("_", "-");
+            CultureInfo.CurrentUICulture = CultureInfo.CurrentCulture = new CultureInfo(userProfile.Locale);
+            }
+
+            
+        }
+
+
+
+        private async Task<UserProfile> GetUserProfileBasedOnFacebookData(string userId, string page_acces_token)
+
+        {
+            // call facebook graph api set userprofile according to result
+            // https://developers.facebook.com/docs/messenger-platform/identity/user-profile/
+            UserProfile userProfile = null;
+            HttpClient client = new HttpClient();
+            var path =
+                $"https://graph.facebook.com/{userId}?fields=name,first_name,last_name,locale&access_token={page_acces_token}";
+            HttpResponseMessage response = await client.GetAsync(path);
+            if (response.IsSuccessStatusCode)
+            {
+                var userProfileAsAString = await response.Content.ReadAsStringAsync();
+                userProfile = JsonConvert.DeserializeObject<UserProfile>(userProfileAsAString);
+            }
+
+            return userProfile;
+        }
+
     }
 }
