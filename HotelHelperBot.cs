@@ -207,7 +207,7 @@ namespace HotelBot
 
             if (topIntent.Equals(HelpIntent))
             {
-                await dc.Context.SendActivityAsync("Let me try to another test to provide some help.");
+                await dc.Context.SendActivityAsync("Let me try to another test2 to provide some help.");
                 await dc.Context.SendActivityAsync("I understand greetings, being asked for help, or being asked to cancel what I am doing.");
                 if (dc.ActiveDialog != null)
                 {
