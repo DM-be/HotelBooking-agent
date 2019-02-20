@@ -165,6 +165,8 @@ namespace HotelBot
                 };
 
                 // Locale Middleware (sets UI culture based on Activity.Locale)\
+
+                // check if still needed! now manual at start of get started or when user talks
                 var defaultLocale = Configuration.GetSection("defaultLocale").Get<string>();
                 options.Middleware.Add(new SetLocaleMiddleware(defaultLocale ?? "en-us"));
 

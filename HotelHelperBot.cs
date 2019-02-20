@@ -92,8 +92,9 @@ namespace HotelBot
 
             if (string.IsNullOrEmpty(conversationData.ChannelId) && string.IsNullOrEmpty(userProfile.Id))
             {
-                SetConversationData(turnContext, conversationData);
-                SetUserProfile(turnContext, userProfile);
+                await SetConversationData(turnContext, conversationData);
+                await SetUserProfile(turnContext, userProfile);
+                SendWelcomeMessage(turnContext);
             }
 
             var activity = turnContext.Activity;
@@ -236,15 +237,16 @@ namespace HotelBot
         }
 
 
-        private void SetConversationData(ITurnContext turnContext, ConversationData conversationData)
+        private async Task SetConversationData(ITurnContext turnContext, ConversationData conversationData)
         {
             conversationData.ChannelId = turnContext.Activity.ChannelId;
             conversationData.ProfilePageId = turnContext.Activity.Recipient.Id;
             conversationData.FacebookPageName = turnContext.Activity.Recipient.Name;
+            await _accessors.ConversationDataAccessor.SetAsync(turnContext, conversationData);
         }
 
 
-        private async void SetUserProfile(ITurnContext turnContext, UserProfile userProfile)
+        private async Task SetUserProfile(ITurnContext turnContext, UserProfile userProfile)
         {
 
             if (turnContext.Activity.ChannelId == "facebook")
@@ -257,6 +259,7 @@ namespace HotelBot
             userProfile = await GetUserProfileBasedOnFacebookData(userId, page_acces_token);
             userProfile.Locale = userProfile.Locale.Replace("_", "-");
             CultureInfo.CurrentUICulture = CultureInfo.CurrentCulture = new CultureInfo(userProfile.Locale);
+            await _accessors.UserProfileAccessor.SetAsync(turnContext, userProfile);
             }
 
             
@@ -281,6 +284,14 @@ namespace HotelBot
             }
 
             return userProfile;
+        }
+
+        private async void SendWelcomeMessage(ITurnContext turnContext)
+        {
+            var userProfile = await _accessors.UserProfileAccessor.GetAsync(turnContext);
+            var firstName = userProfile.First_Name;
+            turnContext.SendActivityAsync($"Welcome {firstName}! functionality explanation here");
+
         }
 
     }
