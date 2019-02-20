@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using HotelBot;
 using HotelBot.Middleware;
+using HotelBot.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Bot.Builder;
@@ -17,7 +18,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace Microsoft.BotBuilderSamples
+namespace HotelBot
 {
     /// <summary>
     /// The Startup class configures services and the app's request pipeline.
