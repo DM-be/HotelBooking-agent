@@ -4,7 +4,6 @@ C:\Users\dennis.morent\source\hoteltestv2\bin\Debug\netcoreapp2.0\HotelBot.runti
 C:\Users\dennis.morent\source\hoteltestv2\bin\Debug\netcoreapp2.0\HotelBot.runtimeconfig.dev.json
 C:\Users\dennis.morent\source\hoteltestv2\bin\Debug\netcoreapp2.0\HotelBot.dll
 C:\Users\dennis.morent\source\hoteltestv2\bin\Debug\netcoreapp2.0\HotelBot.pdb
-C:\Users\dennis.morent\source\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.csprojAssemblyReference.cache
 C:\Users\dennis.morent\source\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.csproj.CoreCompileInputs.cache
 C:\Users\dennis.morent\source\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.AssemblyInfoInputs.cache
 C:\Users\dennis.morent\source\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.AssemblyInfo.cs
