@@ -3,14 +3,11 @@
 
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
-using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Services;
 using HotelBot.Shared.Intents.Help.Resources;
-using HotelBot.Shared.Welcome.Resources;
 using HotelBot.StateAccessors;
 using HotelBot.StateProperties;
 using Microsoft.Bot.Builder;
@@ -26,17 +23,18 @@ namespace HotelBot
     /// </summary>
     public class HotelHelperBot : IBot
     {
-        // Supported LUIS Intents
-        public const string GreetingIntent = "Greeting";
-        public const string CancelIntent = "Cancel";
-        public const string HelpIntent = "Help";
+        // Supported LUIS Intents --> case sensitive
+        public const string GreetingIntent = "greeting";
+        public const string CancelIntent = "cancel";
+        public const string HelpIntent = "help";
         public const string NoneIntent = "None";
+        public const string BookARoomIntent = "book_a_room";
 
         /// <summary>
         ///     Key in the bot config (.bot file) for the LUIS instance.
         ///     In the .bot file, multiple instances of LUIS can be configured.
         /// </summary>
-        public static readonly string LuisConfiguration = "BasicBotLuisApplication";
+        public static readonly string LuisConfiguration = "HotelBot";
 
         // singleton that contains all property accessors
         private readonly StateBotAccessors _accessors;
@@ -107,8 +105,6 @@ namespace HotelBot
                 if (interrupted)
 
                 {
-                    await _accessors.UserState.SaveChangesAsync(turnContext);
-                    await _accessors.ConversationState.SaveChangesAsync(turnContext);
                     // Bypass the dialog.
                     // state is always saved between turns because of the autosaving middleware
                     return;
@@ -132,6 +128,10 @@ namespace HotelBot
                                     await dc.Context.SendActivityAsync(usp.First_Name);
 
                                     break;
+                                case BookARoomIntent:
+                                
+                                    await dc.Context.SendActivityAsync("Book a room intent");
+                                    break;
 
                                 case NoneIntent:
                                 default:
@@ -139,6 +139,7 @@ namespace HotelBot
                                     // to the user
                                     await dc.Context.SendActivityAsync("I didn't understand what you just said to me.");
                                     break;
+                                
                             }
 
                             break;

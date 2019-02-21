@@ -143,7 +143,7 @@ namespace HotelBot
                 ConversationDataAccessor = conversationState.CreateProperty<ConversationData>(StateBotAccessors.ConversationDataName),
                 UserProfileAccessor = userState.CreateProperty<UserProfile>(StateBotAccessors.UserProfileName),
                 DialogStateAccessor = conversationState.CreateProperty<DialogState>(StateBotAccessors.DialogStateName),
-                BookARoomAccessor = conversationState.CreateProperty<BookARoom>(StateBotAccessors.BookARoomAName)
+                BookARoomAccessor = conversationState.CreateProperty<BookARoom>(StateBotAccessors.BookARoomAName),
             };
 
             services.AddSingleton<StateBotAccessors>(stateBotAccessors);
@@ -170,8 +170,7 @@ namespace HotelBot
                options.Middleware.Add(new SetUserProfileMiddleware(stateBotAccessors));
                options.Middleware.Add(new SetLocaleMiddleware(stateBotAccessors));
                options.Middleware.Add(new AutoSaveMiddleware(stateBotAccessors));
-                    
-                
+
             });
         }
 
