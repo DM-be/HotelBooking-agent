@@ -6,14 +6,13 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Net.Http;
-using System.Resources;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Services;
+using HotelBot.Shared.Intents.Help.Resources;
+using HotelBot.Shared.Welcome.Resources;
 using HotelBot.StateAccessors;
 using HotelBot.StateProperties;
-using HotelBot.Welcome.Resources;
-using Microsoft.ApplicationInsights.AspNetCore;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Schema;
@@ -97,8 +96,15 @@ namespace HotelBot
             {
                 await SetConversationData(turnContext, conversationData);
                 await SetUserProfile(turnContext, userProfile);
+                await _accessors.UserState.SaveChangesAsync(turnContext);
+                await _accessors.ConversationState.SaveChangesAsync(turnContext);
+                SetThreadCultureBasedOnUserLocale(turnContext);
                 SendWelcomeMessage(turnContext);
             }
+
+
+            //update the current thread (web api is stateless so new threads keep getting created)
+            SetThreadCultureBasedOnUserLocale(turnContext);
 
             var activity = turnContext.Activity;
 
@@ -115,13 +121,18 @@ namespace HotelBot
 
 
                 // Handle conversation interrupts first.
-                var interrupted = await IsTurnInterruptedAsync(dc, topIntent);
+                var interrupted = await IsTurnInterruptedAsync(dc, topIntent, turnContext);
                 if (interrupted)
+
                 {
+                    await _accessors.UserState.SaveChangesAsync(turnContext);
+                    await _accessors.ConversationState.SaveChangesAsync(turnContext);
                     // Bypass the dialog.
                     // state is always saved between turns because of the autosaving middleware
                     return;
                 }
+
+
 
                 // Continue the current dialog
                 var dialogResult = await dc.ContinueDialogAsync();
@@ -137,6 +148,10 @@ namespace HotelBot
                             {
                                 case GreetingIntent:
                                    // await dc.BeginDialogAsync(nameof(GreetingDialog));
+                                   var usp = await _accessors.UserProfileAccessor.GetAsync(turnContext);
+
+                                   await dc.Context.SendActivityAsync(usp.First_Name);
+
                                     break;
 
                                 case NoneIntent:
@@ -184,10 +199,11 @@ namespace HotelBot
 
             await _accessors.UserProfileAccessor.SetAsync(turnContext, userProfile);
             await _accessors.ConversationDataAccessor.SetAsync(turnContext, conversationData);
+            
         }
 
         // Determine if an interruption has occurred before we dispatch to any active dialog.
-        private async Task<bool> IsTurnInterruptedAsync(DialogContext dc, string topIntent)
+        private async Task<bool> IsTurnInterruptedAsync(DialogContext dc, string topIntent, ITurnContext turnContext)
         {
             // See if there are any conversation interrupts we need to handle.
             if (topIntent.Equals(CancelIntent))
@@ -207,8 +223,11 @@ namespace HotelBot
 
             if (topIntent.Equals(HelpIntent))
             {
-                await dc.Context.SendActivityAsync("Let me try to another test2 to provide some help.");
-                await dc.Context.SendActivityAsync("I understand greetings, being asked for help, or being asked to cancel what I am doing.");
+                
+                await dc.Context.SendActivityAsync(HelpStrings.INTRO);
+                var userProfile = await _accessors.UserProfileAccessor.GetAsync(turnContext);
+                await dc.Context.SendActivityAsync(userProfile.First_Name);
+                await dc.Context.SendActivityAsync(HelpStrings.EXPLANATION);
                 if (dc.ActiveDialog != null)
                 {
                     await dc.RepromptDialogAsync();
@@ -216,7 +235,6 @@ namespace HotelBot
 
                 return true;        // Handled the interrupt.
             }
-
             return false;           // Did not handle the interrupt.
         }
 
@@ -255,25 +273,16 @@ namespace HotelBot
             if (turnContext.Activity.ChannelId == "facebook")
             {
             // to do: this is a never expiring test token --> api calls to get non expiring tokens via curl need app review
-            var page_acces_token =
-                "EAAcy8ebJTmsBAFSISvZAz809ZCdo4kNy8lTUDvjfUV5aEZAbDhnGKl58BK1okZAZBiFGM4nZBL2D9LEzoeC4ohgJiJgeLp83jECk6NYal3QZAazU0n9IafhFfnkm28DZCu5KvOZACgsebEmAgRIAoBUTlIW4oEPZBNPK69D9JSEEuNZC4UqmR9cniCm2bMxcbovRz0ZD";
-
+            var page_access_token = "EAAZAwdCH6kA4BALmrXAxNUYIUfqaH01Lx3bsNDFlQZCgRolXq0yErVZABhdRHuZCkGjTuHGZCZBzhcWDCRVGOIXf6v5Yckz0MidVUJg8EXbWWXeaDhaGVR19CXtZBao64Y09N5IWWZBNMbQOa23Dt222YW8NwgdpNVWZBDjVOh5qXZCAZDZD";
             var userId = turnContext.Activity.From.Id;
-            userProfile = await GetUserProfileBasedOnFacebookData(userId, page_acces_token);
+            userProfile = await GetUserProfileBasedOnFacebookData(userId, page_access_token);
             userProfile.Locale = userProfile.Locale.Replace("_", "-");
-             
-            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(userProfile.Locale);
-            CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo(userProfile.Locale);
- 
             await _accessors.UserProfileAccessor.SetAsync(turnContext, userProfile);
-            }
-
-            
+            }      
         }
 
 
-
-        private async Task<UserProfile> GetUserProfileBasedOnFacebookData(string userId, string page_acces_token)
+        private async Task<UserProfile> GetUserProfileBasedOnFacebookData(string userId, string page_access_token)
 
         {
             // call facebook graph api set userprofile according to result
@@ -281,7 +290,7 @@ namespace HotelBot
             UserProfile userProfile = null;
             HttpClient client = new HttpClient();
             var path =
-                $"https://graph.facebook.com/{userId}?fields=name,first_name,last_name,locale&access_token={page_acces_token}";
+                $"https://graph.facebook.com/{userId}?fields=name,first_name,last_name,locale&access_token={page_access_token}";
             HttpResponseMessage response = await client.GetAsync(path);
             if (response.IsSuccessStatusCode)
             {
@@ -295,11 +304,19 @@ namespace HotelBot
         private async void SendWelcomeMessage(ITurnContext turnContext)
         {
             var userProfile = await _accessors.UserProfileAccessor.GetAsync(turnContext);
-            
             var firstName = userProfile.First_Name;
             var welcomeMessage = WelcomeStrings.WelcomeMessage;
-            turnContext.SendActivityAsync(welcomeMessage);
+            await turnContext.SendActivityAsync(welcomeMessage);
+        }
 
+
+        // TODO refactor into middleware 
+        private async void SetThreadCultureBasedOnUserLocale(ITurnContext turnContext)
+        {
+            var userProfile = await _accessors.UserProfileAccessor.GetAsync(turnContext);
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(userProfile.Locale);
+            CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo(userProfile.Locale);
+           
         }
 
     }

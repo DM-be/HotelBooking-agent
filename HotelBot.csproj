@@ -37,7 +37,12 @@
   </ItemGroup>
 
  <ItemGroup>
-   <Compile Update="Welcome\Resources\WelcomeStrings.Designer.cs">
+   <Compile Update="Shared\Intents\Help\Resources\HelpStrings.Designer.cs">
+     <DesignTime>True</DesignTime>
+     <AutoGen>True</AutoGen>
+     <DependentUpon>HelpStrings.resx</DependentUpon>
+   </Compile>
+   <Compile Update="Shared\Welcome\Resources\WelcomeStrings.Designer.cs">
      <DesignTime>True</DesignTime>
      <AutoGen>True</AutoGen>
      <DependentUpon>WelcomeStrings.resx</DependentUpon>
@@ -45,11 +50,18 @@
  </ItemGroup>
 
  <ItemGroup>
-   <EmbeddedResource Update="Welcome\Resources\WelcomeStrings.nl.resx">
+   <EmbeddedResource Update="Shared\Intents\Help\Resources\HelpStrings.nl.resx">
+     <Generator>PublicResXFileCodeGenerator</Generator>
+   </EmbeddedResource>
+   <EmbeddedResource Update="Shared\Intents\Help\Resources\HelpStrings.resx">
+     <Generator>PublicResXFileCodeGenerator</Generator>
+     <LastGenOutput>HelpStrings.Designer.cs</LastGenOutput>
+   </EmbeddedResource>
+   <EmbeddedResource Update="Shared\Welcome\Resources\WelcomeStrings.nl.resx">
      <Generator>PublicResXFileCodeGenerator</Generator>
      <CustomToolNamespace></CustomToolNamespace>
    </EmbeddedResource>
-   <EmbeddedResource Update="Welcome\Resources\WelcomeStrings.resx">
+   <EmbeddedResource Update="Shared\Welcome\Resources\WelcomeStrings.resx">
      <Generator>PublicResXFileCodeGenerator</Generator>
      <LastGenOutput>WelcomeStrings.Designer.cs</LastGenOutput>
      <CustomToolNamespace></CustomToolNamespace>
