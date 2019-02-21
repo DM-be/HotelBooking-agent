@@ -138,17 +138,15 @@ namespace HotelBot
             var userState = new UserState(dataStore);
    
             // add custom singleton with all state attached
-            services.AddSingleton<StateBotAccessors>(sp =>
+            var stateBotAccessors = new StateBotAccessors(conversationState, userState)
             {
-               
-                return new StateBotAccessors(conversationState, userState)
-                {
-                    ConversationDataAccessor = conversationState.CreateProperty<ConversationData>(StateBotAccessors.ConversationDataName),
-                    UserProfileAccessor = userState.CreateProperty<UserProfile>(StateBotAccessors.UserProfileName),
-                    DialogStateAccessor = conversationState.CreateProperty<DialogState>(StateBotAccessors.DialogStateName),
-                    BookARoomAccessor = conversationState.CreateProperty<BookARoom>(StateBotAccessors.BookARoomAName)
-                };
-            });
+                ConversationDataAccessor = conversationState.CreateProperty<ConversationData>(StateBotAccessors.ConversationDataName),
+                UserProfileAccessor = userState.CreateProperty<UserProfile>(StateBotAccessors.UserProfileName),
+                DialogStateAccessor = conversationState.CreateProperty<DialogState>(StateBotAccessors.DialogStateName),
+                BookARoomAccessor = conversationState.CreateProperty<BookARoom>(StateBotAccessors.BookARoomAName)
+            };
+
+            services.AddSingleton<StateBotAccessors>(stateBotAccessors);
 
             services.AddBot<HotelHelperBot>(options =>
             {
@@ -168,8 +166,11 @@ namespace HotelBot
 
                 // check if still needed! now manual at start of get started or when user talks
                 var defaultLocale = Configuration.GetSection("defaultLocale").Get<string>();
-              //  options.Middleware.Add(new SetLocaleMiddleware(defaultLocale ?? "en-us"));
-
+               options.Middleware.Add(new SetConversationDataMiddleware(stateBotAccessors));
+               options.Middleware.Add(new SetUserProfileMiddleware(stateBotAccessors));
+               options.Middleware.Add(new SetLocaleMiddleware(stateBotAccessors));
+               options.Middleware.Add(new AutoSaveMiddleware(stateBotAccessors));
+                    
                 
             });
         }

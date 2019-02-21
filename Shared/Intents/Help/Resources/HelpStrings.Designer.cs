@@ -70,7 +70,7 @@ namespace HotelBot.Shared.Intents.Help.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Let me try to provide some help..
+        ///   Looks up a localized string similar to Let me try to provide you with some help.
         /// </summary>
         public static string INTRO {
             get {

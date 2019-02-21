@@ -1,0 +1,50 @@
+{
+  "name": "HotelTestv2",
+  "padlock": "0TYLs6DEw8iJDUL6zu+5iw==!rxsmOWArrpuULgXx/nS1A9D19+6eN26w21i08Gcn7zFKbakeJkubndr/nakeUMRE",
+  "version": "2.0",
+  "services": [
+    {
+      "tenantId": "652b8985-7d4e-4e36-85c9-757e1432327b",
+      "subscriptionId": "fa226776-c5d3-4e1d-8f3e-38d2b1111b89",
+      "resourceGroup": "hotelBot-b7d8",
+      "serviceName": "HotelTestv2",
+      "type": "abs",
+      "name": "HotelTestv2",
+      "id": "1"
+    },
+    {
+      "connectionString": "lm2cIryhyAgkiMRcfLS2Jw==!E4NGWLEEcsQNPS1RDFFCfOSpRUJlt1FfINAYkcxZd2IHR1zJeZGTwiZOec8aIl2xLCwcvVvgNFUIZmwq1a5ZxSDgECJHbhfmPMSmnUA18g31Iz7YUFUKeDnEvOq35UjCEwRPcQBX4VEHn9bqIkMmzqMZ/qN7Lt8KDqK/BgBw1P6z2hM6OYE0g0Vk9cPVciRl4/Kfouh8YUlvaD4BaLw3YlqvXYz/Iniw7Zs3DBu/QGA=",
+      "tenantId": "652b8985-7d4e-4e36-85c9-757e1432327b",
+      "subscriptionId": "fa226776-c5d3-4e1d-8f3e-38d2b1111b89",
+      "resourceGroup": "hotelBot-b7d8",
+      "serviceName": "hotelbotb7d8b7d8",
+      "type": "blob",
+      "id": "2"
+    },
+    {
+      "appId": "07eecd2c-e40c-41a9-82ac-ce65e0eedece",
+      "appPassword": "WHpvQ6eYBWvEPXO8MEJiAg==!DioJBEOVcFe/T7SsIPpLAMnE6i3UEoU41QrPkiI1bM8=",
+      "endpoint": "http://localhost:80/api/messages",
+      "type": "endpoint",
+      "name": "development",
+      "id": "3"
+    },
+    {
+      "appId": "07eecd2c-e40c-41a9-82ac-ce65e0eedece",
+      "appPassword": "WHpvQ6eYBWvEPXO8MEJiAg==!DioJBEOVcFe/T7SsIPpLAMnE6i3UEoU41QrPkiI1bM8=",
+      "endpoint": "https://hoteltestv2.azurewebsites.net/api/messages",
+      "type": "endpoint",
+      "name": "production",
+      "id": "4"
+    },
+    {
+      "appId": "e0286049-901a-4dc7-820b-6a4b8b7b87b8",
+      "authoringKey": "/LVGM8ybCAqQ99YbaIGUiQ==!VCwwlsaFDOFZIXpC05MHTIKauZnXqzKgIUX3XDrF41b+BSh2yQ9KuHlP/8oyOY3v",
+      "version": "0.1",
+      "region": "westeurope",
+      "type": "luis",
+      "name": "BasicBotLuisApplication",
+      "id": "5"
+    }
+  ]
+}
