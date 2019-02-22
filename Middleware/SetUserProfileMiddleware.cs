@@ -27,7 +27,7 @@ namespace HotelBot.Middleware
             {
                 if (turnContext.Activity.ChannelId == "facebook")
                 {
-                    // TODO refactor in separate service and check expirations
+                    // TODO token never expires: normal? if so, provide external api to get this according to facebook profile page
                     var page_access_token =
                         "EAAZAwdCH6kA4BALmrXAxNUYIUfqaH01Lx3bsNDFlQZCgRolXq0yErVZABhdRHuZCkGjTuHGZCZBzhcWDCRVGOIXf6v5Yckz0MidVUJg8EXbWWXeaDhaGVR19CXtZBao64Y09N5IWWZBNMbQOa23Dt222YW8NwgdpNVWZBDjVOh5qXZCAZDZD";
                     var userId = turnContext.Activity.From.Id;
