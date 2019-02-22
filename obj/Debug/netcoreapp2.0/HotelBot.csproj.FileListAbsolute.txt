@@ -6,8 +6,10 @@ C:\Users\dennis.morent\source\hoteltestv2\bin\Debug\netcoreapp2.0\HotelBot.dll
 C:\Users\dennis.morent\source\hoteltestv2\bin\Debug\netcoreapp2.0\HotelBot.pdb
 C:\Users\dennis.morent\source\hoteltestv2\bin\Debug\netcoreapp2.0\nl\HotelBot.resources.dll
 C:\Users\dennis.morent\source\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.Shared.Intents.Help.Resources.HelpStrings.resources
+C:\Users\dennis.morent\source\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.Shared.QuickReplies.Resources.QuickReplyStrings.resources
 C:\Users\dennis.morent\source\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.Shared.Welcome.Resources.WelcomeStrings.resources
 C:\Users\dennis.morent\source\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.Shared.Intents.Help.Resources.HelpStrings.nl.resources
+C:\Users\dennis.morent\source\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.Shared.QuickReplies.Resources.QuickReplyStrings.nl.resources
 C:\Users\dennis.morent\source\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.Shared.Welcome.Resources.WelcomeStrings.nl.resources
 C:\Users\dennis.morent\source\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.csproj.GenerateResource.cache
 C:\Users\dennis.morent\source\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.csproj.CoreCompileInputs.cache

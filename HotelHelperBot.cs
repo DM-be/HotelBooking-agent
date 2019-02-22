@@ -6,8 +6,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using HotelBot.Models.Facebook;
 using HotelBot.Services;
 using HotelBot.Shared.Intents.Help.Resources;
+using HotelBot.Shared.QuickReplies.Resources;
 using HotelBot.StateAccessors;
 using HotelBot.StateProperties;
 using Microsoft.Bot.Builder;
@@ -15,6 +17,7 @@ using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Schema;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace HotelBot
 {
@@ -80,10 +83,11 @@ namespace HotelBot
                 await _accessors.UserProfileAccessor.GetAsync(turnContext, () => new UserProfile());
 
             // get conversationData or create a new object if null
+
             var conversationData =
                 await _accessors.ConversationDataAccessor.GetAsync(turnContext, () => new ConversationData());
 
-            
+          
 
             var activity = turnContext.Activity;
 
@@ -92,6 +96,8 @@ namespace HotelBot
 
             if (activity.Type == ActivityTypes.Message)
             {
+
+                ProcessFacebookPayload(turnContext.Activity.ChannelData, turnContext);
                 // Perform a call to LUIS to retrieve results for the current activity message.
                 var luisResults = await _services.LuisServices[LuisConfiguration]
                     .RecognizeAsync(dc.Context, cancellationToken);
@@ -123,9 +129,9 @@ namespace HotelBot
                             {
                                 case GreetingIntent:
                                     // await dc.BeginDialogAsync(nameof(GreetingDialog));
-                                    var usp = await _accessors.UserProfileAccessor.GetAsync(turnContext);
+                                    //var usp = await _accessors.UserProfileAccessor.GetAsync(turnContext);
 
-                                    await dc.Context.SendActivityAsync(usp.First_Name);
+                                    //await dc.Context.SendActivityAsync(usp.First_Name);
 
                                     break;
                                 case BookARoomIntent:
@@ -224,6 +230,117 @@ namespace HotelBot
                 ContentType = "application/vnd.microsoft.card.adaptive",
                 Content = JsonConvert.DeserializeObject(adaptiveCard)
             };
+        }
+
+
+        private async void ProcessFacebookPayload(object channelData, ITurnContext context)
+        {
+            // At this point we know we are on Facebook channel, and can consume the Facebook custom payload
+            // present in channelData.
+            var facebookPayload = (channelData as JObject)?.ToObject<FacebookPayload>();
+         
+          
+           
+            if (facebookPayload != null)
+            {
+                // PostBack
+                if (facebookPayload.PostBack != null)
+                {
+                    OnFacebookPostBack(facebookPayload.PostBack, context);
+                }
+
+                // Optin
+                else if (facebookPayload.Optin != null)
+                {
+                    OnFacebookOptin(facebookPayload.Optin);
+                }
+
+                // Quick reply
+                else if (facebookPayload.Message?.QuickReply != null)
+                {
+                    OnFacebookQuickReply(facebookPayload.Message.QuickReply);
+                }
+
+                else if (facebookPayload.Message.Attachments != null)
+                {
+                    var attachments = facebookPayload.Message.Attachments;
+                    var latCoordinatesLat = attachments[0].FacebookPayload.Coordinates.Lat;
+                    var longCoordinatesLong = attachments[0].FacebookPayload.Coordinates.Long;
+                    var url = $"https://www.google.com/maps/dir/?api=1&origin={latCoordinatesLat},{longCoordinatesLong}&destination=51.228557,3.231737";
+                    var heroCard = new HeroCard
+                    {
+                        Title = "Starhotel Bruges",
+                        Images = new List<CardImage> { new CardImage("https://img.hotelspecials.be/fc2fadf52703ae0181b289f84011bf6a.jpeg?w=250&h=200&c=1&quality=70") },
+                        Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl, "Show direction", value: url) },
+                    };
+
+                    var reply = context.Activity.CreateReply();
+                    reply.Text = "Here it is";
+                    reply.Attachments = new List<Attachment>
+                    {
+                        heroCard.ToAttachment(),
+                    };
+                    await context.SendActivityAsync(reply);
+                }
+
+                // TODO: Handle other events that you're interested in...
+            }
+        }
+
+        private void OnFacebookOptin(FacebookOptin optin)
+        {
+            // TODO: Your optin event handling logic here...
+        }
+
+        private async void OnFacebookPostBack(FacebookPostback postBack, ITurnContext context)
+        {
+
+
+            Activity reply = context.Activity.CreateReply();
+            var heroCard = new HeroCard
+            {
+                Title = "BotFramework Hero Card",
+              Subtitle = "Microsoft Bot Framework",
+                Text = "Build and connect intelligent bots to interact with your users naturally wherever they are," +
+                      " from text/sms to Skype, Slack, Office 365 mail and other popular services.",
+               Images = new List<CardImage> { new CardImage("https://sec.ch9.ms/ch9/7ff5/e07cfef0-aa3b-40bb-9baa-7c9ef8ff7ff5/buildreactionbotframework_960.jpg") },
+                Buttons = new List<CardAction> { new CardAction(ActionTypes.PostBack, "Get Started", value: "https://docs.microsoft.com/bot-framework") },
+            };
+
+            //var heroCard2 = new HeroCard
+            //{
+            //    Title = "BotFramework Hero Card",
+            //    Subtitle = "Microsoft Bot Framework",
+            //    Text = "Build and connect intelligent bots to interact with your users naturally wherever they are," +
+            //           " from text/sms to Skype, Slack, Office 365 mail and other popular services.",
+            //    Images = new List<CardImage> { new CardImage("https://sec.ch9.ms/ch9/7ff5/e07cfef0-aa3b-40bb-9baa-7c9ef8ff7ff5/buildreactionbotframework_960.jpg") },
+            //    Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl, "Get Started", value: "https://docs.microsoft.com/bot-framework") },
+            //};
+
+
+
+
+         
+
+            SendLocationQuickReply(context);
+
+        }
+
+        private void OnFacebookQuickReply(FacebookQuickReply quickReply)
+        {
+            // TODO: Your quick reply event handling logic here...
+        }
+
+        private async void SendLocationQuickReply(ITurnContext context)
+        {
+            Activity reply = context.Activity.CreateReply();
+            reply.Text = QuickReplyStrings.ASK_LOCATION;
+            var channelData = new JObject();
+            var child = new JObject();
+            child.Add("content_type", "location");
+            channelData.Add("quick_replies", new JArray(child));
+            reply.ChannelData = channelData;
+            await context.SendActivityAsync(reply);
         }
     }
 }

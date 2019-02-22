@@ -42,6 +42,11 @@
      <AutoGen>True</AutoGen>
      <DependentUpon>HelpStrings.resx</DependentUpon>
    </Compile>
+   <Compile Update="Shared\QuickReplies\Resources\QuickReplyStrings.Designer.cs">
+     <DesignTime>True</DesignTime>
+     <AutoGen>True</AutoGen>
+     <DependentUpon>QuickReplyStrings.resx</DependentUpon>
+   </Compile>
    <Compile Update="Shared\Welcome\Resources\WelcomeStrings.Designer.cs">
      <DesignTime>True</DesignTime>
      <AutoGen>True</AutoGen>
@@ -56,6 +61,13 @@
    <EmbeddedResource Update="Shared\Intents\Help\Resources\HelpStrings.resx">
      <Generator>PublicResXFileCodeGenerator</Generator>
      <LastGenOutput>HelpStrings.Designer.cs</LastGenOutput>
+   </EmbeddedResource>
+   <EmbeddedResource Update="Shared\QuickReplies\Resources\QuickReplyStrings.nl.resx">
+     <Generator>PublicResXFileCodeGenerator</Generator>
+   </EmbeddedResource>
+   <EmbeddedResource Update="Shared\QuickReplies\Resources\QuickReplyStrings.resx">
+     <Generator>PublicResXFileCodeGenerator</Generator>
+     <LastGenOutput>QuickReplyStrings.Designer.cs</LastGenOutput>
    </EmbeddedResource>
    <EmbeddedResource Update="Shared\Welcome\Resources\WelcomeStrings.nl.resx">
      <Generator>PublicResXFileCodeGenerator</Generator>
