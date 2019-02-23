@@ -168,8 +168,8 @@ namespace HotelBot
                 var defaultLocale = Configuration.GetSection("defaultLocale").Get<string>();
                options.Middleware.Add(new SetConversationDataMiddleware(stateBotAccessors));
                options.Middleware.Add(new SetUserProfileMiddleware(stateBotAccessors));
-             //  options.Middleware.Add(new SetLocaleMiddleware(stateBotAccessors));
-           //    options.Middleware.Add(new AutoSaveStateMiddleware(userState, conversationState));
+                options.Middleware.Add(new SetLocaleMiddleware(stateBotAccessors));
+              options.Middleware.Add(new AutoSaveStateMiddleware(userState, conversationState));
 
             });
         }
