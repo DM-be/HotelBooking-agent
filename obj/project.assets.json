@@ -1539,10 +1539,10 @@
           "lib/netstandard1.4/Microsoft.Azure.KeyVault.WebKey.dll": {}
         }
       },
-      "Microsoft.Bot.Builder/4.1.5": {
+      "Microsoft.Bot.Builder/4.2.2": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Bot.Connector": "4.1.5",
+          "Microsoft.Bot.Connector": "4.2.2",
           "Microsoft.Extensions.Logging": "2.1.1",
           "SourceLink.Create.CommandLine": "2.8.1"
         },
@@ -1553,12 +1553,12 @@
           "lib/netstandard2.0/Microsoft.Bot.Builder.dll": {}
         }
       },
-      "Microsoft.Bot.Builder.AI.Luis/4.1.5": {
+      "Microsoft.Bot.Builder.AI.Luis/4.2.2": {
         "type": "package",
         "dependencies": {
           "Microsoft.Azure.CognitiveServices.Language.LUIS.Runtime": "2.0.0",
-          "Microsoft.Bot.Builder": "4.1.5",
-          "Microsoft.Bot.Configuration": "4.1.5",
+          "Microsoft.Bot.Builder": "4.2.2",
+          "Microsoft.Bot.Configuration": "4.2.2",
           "Microsoft.Rest.ClientRuntime": "2.3.13",
           "Newtonsoft.Json": "10.0.3"
         },
@@ -1569,11 +1569,11 @@
           "lib/netstandard2.0/Microsoft.Bot.Builder.AI.Luis.dll": {}
         }
       },
-      "Microsoft.Bot.Builder.AI.QnA/4.1.5": {
+      "Microsoft.Bot.Builder.AI.QnA/4.2.2": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Bot.Builder": "4.1.5",
-          "Microsoft.Bot.Configuration": "4.1.5",
+          "Microsoft.Bot.Builder": "4.2.2",
+          "Microsoft.Bot.Configuration": "4.2.2",
           "SourceLink.Create.CommandLine": "2.8.1"
         },
         "compile": {
@@ -1583,11 +1583,11 @@
           "lib/netstandard2.0/Microsoft.Bot.Builder.AI.QnA.dll": {}
         }
       },
-      "Microsoft.Bot.Builder.Azure/4.1.5": {
+      "Microsoft.Bot.Builder.Azure/4.2.2": {
         "type": "package",
         "dependencies": {
           "Microsoft.Azure.DocumentDB.Core": "2.1.2",
-          "Microsoft.Bot.Builder": "4.1.5",
+          "Microsoft.Bot.Builder": "4.2.2",
           "Newtonsoft.Json": "10.0.3",
           "SourceLink.Create.CommandLine": "2.8.1",
           "System.Threading.Tasks.Extensions": "4.4.0",
@@ -1600,12 +1600,12 @@
           "lib/netstandard2.0/Microsoft.Bot.Builder.Azure.dll": {}
         }
       },
-      "Microsoft.Bot.Builder.Dialogs/4.1.5": {
+      "Microsoft.Bot.Builder.Dialogs/4.2.2": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Bot.Builder": "4.1.5",
-          "Microsoft.Recognizers.Text.Choice": "1.1.2",
-          "Microsoft.Recognizers.Text.DateTime": "1.1.2",
+          "Microsoft.Bot.Builder": "4.2.2",
+          "Microsoft.Recognizers.Text.Choice": "1.1.3",
+          "Microsoft.Recognizers.Text.DateTime": "1.1.3",
           "SourceLink.Create.CommandLine": "2.8.1"
         },
         "compile": {
@@ -1615,11 +1615,12 @@
           "lib/netstandard2.0/Microsoft.Bot.Builder.Dialogs.dll": {}
         }
       },
-      "Microsoft.Bot.Builder.Integration.AspNet.Core/4.1.5": {
+      "Microsoft.Bot.Builder.Integration.AspNet.Core/4.2.2": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNetCore.Hosting.Abstractions": "2.0.1",
-          "Microsoft.Bot.Builder": "4.1.5",
+          "Microsoft.Bot.Builder": "4.2.2",
+          "Microsoft.Bot.Configuration": "4.2.2",
           "Microsoft.Extensions.Configuration": "2.1.1",
           "Microsoft.Net.Http.Headers": "2.0.1",
           "Newtonsoft.Json": "10.0.3",
@@ -1632,7 +1633,7 @@
           "lib/netstandard2.0/Microsoft.Bot.Builder.Integration.AspNet.Core.dll": {}
         }
       },
-      "Microsoft.Bot.Configuration/4.1.5": {
+      "Microsoft.Bot.Configuration/4.2.2": {
         "type": "package",
         "dependencies": {
           "Newtonsoft.Json": "10.0.3",
@@ -1646,10 +1647,11 @@
           "lib/netstandard2.0/Microsoft.Bot.Configuration.dll": {}
         }
       },
-      "Microsoft.Bot.Connector/4.1.5": {
+      "Microsoft.Bot.Connector/4.2.2": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Bot.Schema": "4.1.5",
+          "Microsoft.Bot.Schema": "4.2.2",
+          "Microsoft.IdentityModel.Clients.ActiveDirectory": "4.5.0",
           "Microsoft.IdentityModel.Protocols.OpenIdConnect": "5.2.1",
           "Microsoft.Rest.ClientRuntime": "2.3.13",
           "Newtonsoft.Json": "10.0.3",
@@ -1662,7 +1664,7 @@
           "lib/netstandard2.0/Microsoft.Bot.Connector.dll": {}
         }
       },
-      "Microsoft.Bot.Schema/4.1.5": {
+      "Microsoft.Bot.Schema/4.2.2": {
         "type": "package",
         "dependencies": {
           "Newtonsoft.Json": "10.0.3",
@@ -2479,19 +2481,20 @@
           "lib/netstandard1.1/Microsoft.Graph.Core.dll": {}
         }
       },
-      "Microsoft.IdentityModel.Clients.ActiveDirectory/3.14.1": {
+      "Microsoft.IdentityModel.Clients.ActiveDirectory/4.5.0": {
         "type": "package",
         "dependencies": {
-          "NETStandard.Library": "1.6.0",
-          "System.Runtime.Serialization.Json": "4.0.2",
-          "System.Runtime.Serialization.Primitives": "4.1.1"
+          "NETStandard.Library": "1.6.1",
+          "System.Runtime.Serialization.Json": "4.3.0",
+          "System.Runtime.Serialization.Primitives": "4.3.0",
+          "System.Security.Cryptography.X509Certificates": "4.3.0",
+          "System.Security.SecureString": "4.3.0",
+          "System.Xml.XDocument": "4.3.0"
         },
         "compile": {
-          "lib/netstandard1.3/Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll": {},
           "lib/netstandard1.3/Microsoft.IdentityModel.Clients.ActiveDirectory.dll": {}
         },
         "runtime": {
-          "lib/netstandard1.3/Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll": {},
           "lib/netstandard1.3/Microsoft.IdentityModel.Clients.ActiveDirectory.dll": {}
         }
       },
@@ -2772,7 +2775,7 @@
           "lib/netstandard1.0/_._": {}
         }
       },
-      "Microsoft.Recognizers.Text/1.1.2": {
+      "Microsoft.Recognizers.Text/1.1.3": {
         "type": "package",
         "dependencies": {
           "System.Collections.Immutable": "1.4.0",
@@ -2787,10 +2790,10 @@
           "lib/netstandard2.0/Microsoft.Recognizers.Text.dll": {}
         }
       },
-      "Microsoft.Recognizers.Text.Choice/1.1.2": {
+      "Microsoft.Recognizers.Text.Choice/1.1.3": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Recognizers.Text": "1.1.2",
+          "Microsoft.Recognizers.Text": "1.1.3",
           "System.Collections.Immutable": "1.4.0"
         },
         "compile": {
@@ -2800,12 +2803,12 @@
           "lib/netstandard2.0/Microsoft.Recognizers.Text.Choice.dll": {}
         }
       },
-      "Microsoft.Recognizers.Text.DateTime/1.1.2": {
+      "Microsoft.Recognizers.Text.DateTime/1.1.3": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Recognizers.Text": "1.1.2",
-          "Microsoft.Recognizers.Text.Number": "1.1.2",
-          "Microsoft.Recognizers.Text.NumberWithUnit": "1.1.2",
+          "Microsoft.Recognizers.Text": "1.1.3",
+          "Microsoft.Recognizers.Text.Number": "1.1.3",
+          "Microsoft.Recognizers.Text.NumberWithUnit": "1.1.3",
           "System.Collections.Immutable": "1.4.0"
         },
         "compile": {
@@ -2815,10 +2818,10 @@
           "lib/netstandard2.0/Microsoft.Recognizers.Text.DateTime.dll": {}
         }
       },
-      "Microsoft.Recognizers.Text.Number/1.1.2": {
+      "Microsoft.Recognizers.Text.Number/1.1.3": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Recognizers.Text": "1.1.2",
+          "Microsoft.Recognizers.Text": "1.1.3",
           "System.Collections.Immutable": "1.4.0"
         },
         "compile": {
@@ -2828,11 +2831,11 @@
           "lib/netstandard2.0/Microsoft.Recognizers.Text.Number.dll": {}
         }
       },
-      "Microsoft.Recognizers.Text.NumberWithUnit/1.1.2": {
+      "Microsoft.Recognizers.Text.NumberWithUnit/1.1.3": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Recognizers.Text": "1.1.2",
-          "Microsoft.Recognizers.Text.Number": "1.1.2",
+          "Microsoft.Recognizers.Text": "1.1.3",
+          "Microsoft.Recognizers.Text.Number": "1.1.3",
           "System.Collections.Immutable": "1.4.0"
         },
         "compile": {
@@ -4443,12 +4446,12 @@
           "lib/netstandard1.4/System.Runtime.Serialization.Formatters.dll": {}
         }
       },
-      "System.Runtime.Serialization.Json/4.0.2": {
+      "System.Runtime.Serialization.Json/4.3.0": {
         "type": "package",
         "dependencies": {
-          "System.IO": "4.1.0",
-          "System.Private.DataContractSerialization": "4.1.1",
-          "System.Runtime": "4.1.0"
+          "System.IO": "4.3.0",
+          "System.Private.DataContractSerialization": "4.3.0",
+          "System.Runtime": "4.3.0"
         },
         "compile": {
           "ref/netstandard1.0/System.Runtime.Serialization.Json.dll": {}
@@ -4788,17 +4791,17 @@
           }
         }
       },
-      "System.Security.SecureString/4.0.0": {
+      "System.Security.SecureString/4.3.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.NETCore.Platforms": "1.0.1",
-          "System.Resources.ResourceManager": "4.0.1",
-          "System.Runtime": "4.1.0",
-          "System.Runtime.Handles": "4.0.1",
-          "System.Runtime.InteropServices": "4.1.0",
-          "System.Security.Cryptography.Primitives": "4.0.0",
-          "System.Text.Encoding": "4.0.11",
-          "System.Threading": "4.0.11"
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Handles": "4.3.0",
+          "System.Runtime.InteropServices": "4.3.0",
+          "System.Security.Cryptography.Primitives": "4.3.0",
+          "System.Text.Encoding": "4.3.0",
+          "System.Threading": "4.3.0"
         },
         "compile": {
           "ref/netstandard1.3/System.Security.SecureString.dll": {}
@@ -6417,128 +6420,128 @@
         "microsoft.azure.keyvault.webkey.nuspec"
       ]
     },
-    "Microsoft.Bot.Builder/4.1.5": {
-      "sha512": "ymHTq/AkkJD+jbYcbbEdkvogusDCtmm15jQqxi+VCjqSfbR+p9MCF7UidhQdoB9VYWdFNouN8N1dLd0UGDE+cw==",
+    "Microsoft.Bot.Builder/4.2.2": {
+      "sha512": "dmnSUoEod3kbkqfSwPkp+gKaqAy9l4RxxhNYlA3XTdGhfeHRr1mNzyCdaPxJ1KX+Vct07sSfeHwnC5aKguH7Iw==",
       "type": "package",
-      "path": "microsoft.bot.builder/4.1.5",
+      "path": "microsoft.bot.builder/4.2.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/netstandard2.0/Microsoft.Bot.Builder.dll",
         "lib/netstandard2.0/Microsoft.Bot.Builder.pdb",
         "lib/netstandard2.0/Microsoft.Bot.Builder.xml",
-        "microsoft.bot.builder.4.1.5.nupkg.sha512",
+        "microsoft.bot.builder.4.2.2.nupkg.sha512",
         "microsoft.bot.builder.nuspec"
       ]
     },
-    "Microsoft.Bot.Builder.AI.Luis/4.1.5": {
-      "sha512": "Dslm0WG5Qqg02NhEceHJfprtHnzYhMWonHE63yEKDT1nYhmKPZjvWhnyUP1TipnUSjiO31217K3Xt+MB53tcHg==",
+    "Microsoft.Bot.Builder.AI.Luis/4.2.2": {
+      "sha512": "lXIHLMAcRmy9tvBwo6d/AHd6ZlCi2KPTHgbEwHUaxmHMNitCsQMAeWrahpwhRmS0ipISrKkwGIfEJljGLwCLsQ==",
       "type": "package",
-      "path": "microsoft.bot.builder.ai.luis/4.1.5",
+      "path": "microsoft.bot.builder.ai.luis/4.2.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/netstandard2.0/Microsoft.Bot.Builder.AI.Luis.dll",
         "lib/netstandard2.0/Microsoft.Bot.Builder.AI.Luis.pdb",
-        "microsoft.bot.builder.ai.luis.4.1.5.nupkg.sha512",
+        "microsoft.bot.builder.ai.luis.4.2.2.nupkg.sha512",
         "microsoft.bot.builder.ai.luis.nuspec"
       ]
     },
-    "Microsoft.Bot.Builder.AI.QnA/4.1.5": {
-      "sha512": "WG1Am9hjvvTNhe/UEt9UNKTujLYAsnIYm3YteHbtCJphxY/1PS91X0nTquIrsswfEK8Cw0WTJXS6Xs3OL/QhcQ==",
+    "Microsoft.Bot.Builder.AI.QnA/4.2.2": {
+      "sha512": "2YuOwv2XWK7Io86LLAl4wtD1ZTJ4n4UKk9J59eKwlecxizRSR/bMoBLeHeL3Dx6OH76QECO26CiZLvfUyLzrtA==",
       "type": "package",
-      "path": "microsoft.bot.builder.ai.qna/4.1.5",
+      "path": "microsoft.bot.builder.ai.qna/4.2.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/netstandard2.0/Microsoft.Bot.Builder.AI.QnA.dll",
         "lib/netstandard2.0/Microsoft.Bot.Builder.AI.QnA.pdb",
         "lib/netstandard2.0/Microsoft.Bot.Builder.AI.QnA.xml",
-        "microsoft.bot.builder.ai.qna.4.1.5.nupkg.sha512",
+        "microsoft.bot.builder.ai.qna.4.2.2.nupkg.sha512",
         "microsoft.bot.builder.ai.qna.nuspec"
       ]
     },
-    "Microsoft.Bot.Builder.Azure/4.1.5": {
-      "sha512": "FapGbsbHIKfEP8kk2ayD2GGMdEpntZzYVHhtje8aJm3guhaRpYooB99M8SjjVbQ9HH53NqlROvcAEGAKxoWjpA==",
+    "Microsoft.Bot.Builder.Azure/4.2.2": {
+      "sha512": "xztW2ASnbV8H0BZBsbzCeXNPdyTC8RXOCMn6Hr/IRK3B6VeA4Ee6NZuLPM3PO00/xodzz+TXu2Jq3mqnd3zdJA==",
       "type": "package",
-      "path": "microsoft.bot.builder.azure/4.1.5",
+      "path": "microsoft.bot.builder.azure/4.2.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/netstandard2.0/Microsoft.Bot.Builder.Azure.dll",
         "lib/netstandard2.0/Microsoft.Bot.Builder.Azure.pdb",
         "lib/netstandard2.0/Microsoft.Bot.Builder.Azure.xml",
-        "microsoft.bot.builder.azure.4.1.5.nupkg.sha512",
+        "microsoft.bot.builder.azure.4.2.2.nupkg.sha512",
         "microsoft.bot.builder.azure.nuspec"
       ]
     },
-    "Microsoft.Bot.Builder.Dialogs/4.1.5": {
-      "sha512": "Xxjb4AdYgFWzMFP+BUkikIavnJfBoQDkttJ0Qj1K4wPptYXkRKWmAgyiJNuCF4J+F3TYqgwPdqnRZeIxE5Nyxw==",
+    "Microsoft.Bot.Builder.Dialogs/4.2.2": {
+      "sha512": "PmU8kMHf6IIq3oZVCK7vTPFf1KNW96KH94A+C5hIlatoF66rpAnhyHP46QL6Urp/gfZe0I3xD4PGf9NjrWjdeg==",
       "type": "package",
-      "path": "microsoft.bot.builder.dialogs/4.1.5",
+      "path": "microsoft.bot.builder.dialogs/4.2.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/netstandard2.0/Microsoft.Bot.Builder.Dialogs.dll",
         "lib/netstandard2.0/Microsoft.Bot.Builder.Dialogs.pdb",
         "lib/netstandard2.0/Microsoft.Bot.Builder.Dialogs.xml",
-        "microsoft.bot.builder.dialogs.4.1.5.nupkg.sha512",
+        "microsoft.bot.builder.dialogs.4.2.2.nupkg.sha512",
         "microsoft.bot.builder.dialogs.nuspec"
       ]
     },
-    "Microsoft.Bot.Builder.Integration.AspNet.Core/4.1.5": {
-      "sha512": "8WuUSdBUwBO3ZPTknbKQ1HL9VWwqN4LuDE2j0h8rBTBeYOxVGkdY2YPlvLdqCJ8g+uapgPl1E3z91SxK7dWf4w==",
+    "Microsoft.Bot.Builder.Integration.AspNet.Core/4.2.2": {
+      "sha512": "4pObX53Xhi6v9AjSgAjIisjmhq52yhX/acce6Msai4wlm5m5uXWAbHms9pt7ABi3JUEkySqXi3zy2CIp+VNTbw==",
       "type": "package",
-      "path": "microsoft.bot.builder.integration.aspnet.core/4.1.5",
+      "path": "microsoft.bot.builder.integration.aspnet.core/4.2.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/netstandard2.0/Microsoft.Bot.Builder.Integration.AspNet.Core.dll",
         "lib/netstandard2.0/Microsoft.Bot.Builder.Integration.AspNet.Core.pdb",
         "lib/netstandard2.0/Microsoft.Bot.Builder.Integration.AspNet.Core.xml",
-        "microsoft.bot.builder.integration.aspnet.core.4.1.5.nupkg.sha512",
+        "microsoft.bot.builder.integration.aspnet.core.4.2.2.nupkg.sha512",
         "microsoft.bot.builder.integration.aspnet.core.nuspec"
       ]
     },
-    "Microsoft.Bot.Configuration/4.1.5": {
-      "sha512": "tv2BB+eiBKpXEslOmdOSTFg3IV79sO7OS85OdI2gIl9QVZMqzxz7AJprr36avQrywzkRbNAMlv55crbRFWebTg==",
+    "Microsoft.Bot.Configuration/4.2.2": {
+      "sha512": "nXkdDAWXnXL0VaQs6JCMXD8LSosZm/7UVutNbuX62xSXgjvbRIH6kConnqYIy4vGT0VWPGEEfNAJ1S9N0CDYeA==",
       "type": "package",
-      "path": "microsoft.bot.configuration/4.1.5",
+      "path": "microsoft.bot.configuration/4.2.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/netstandard2.0/Microsoft.Bot.Configuration.dll",
         "lib/netstandard2.0/Microsoft.Bot.Configuration.pdb",
         "lib/netstandard2.0/Microsoft.Bot.Configuration.xml",
-        "microsoft.bot.configuration.4.1.5.nupkg.sha512",
+        "microsoft.bot.configuration.4.2.2.nupkg.sha512",
         "microsoft.bot.configuration.nuspec"
       ]
     },
-    "Microsoft.Bot.Connector/4.1.5": {
-      "sha512": "7uj2gppMJdeKtcB4LuUUtQyN7MEPk1612tH68JUay9LUaZpGLSR7C8M1Hcs43Tnh09jpkH4jwwieo8AvBKlZ9Q==",
+    "Microsoft.Bot.Connector/4.2.2": {
+      "sha512": "xE7P5Flj/VGwLp8blt9SypvU2vxYWcTBwNRd7SXurb9CrhVz+nkZkPXpnY7EGojGySh48+UUwWLwynWFL22ZyA==",
       "type": "package",
-      "path": "microsoft.bot.connector/4.1.5",
+      "path": "microsoft.bot.connector/4.2.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/netstandard2.0/Microsoft.Bot.Connector.dll",
         "lib/netstandard2.0/Microsoft.Bot.Connector.pdb",
         "lib/netstandard2.0/Microsoft.Bot.Connector.xml",
-        "microsoft.bot.connector.4.1.5.nupkg.sha512",
+        "microsoft.bot.connector.4.2.2.nupkg.sha512",
         "microsoft.bot.connector.nuspec"
       ]
     },
-    "Microsoft.Bot.Schema/4.1.5": {
-      "sha512": "wTuGh6V/2y4nxJx5JSReUgb8rIkbFmfOUWBhrHzyL7kfFk8RM99+SKa+auxwOhKwVzbI7NHP/1+KpfOBO6UPwg==",
+    "Microsoft.Bot.Schema/4.2.2": {
+      "sha512": "4AUYmw14GezMxY03cCO3CzmAFCWQ6wViUZjSdYAG0AkiTR1/45Cn3PhiIbL4depHHdX9WY18FDPIL+et0Shn5g==",
       "type": "package",
-      "path": "microsoft.bot.schema/4.1.5",
+      "path": "microsoft.bot.schema/4.2.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/netstandard2.0/Microsoft.Bot.Schema.dll",
         "lib/netstandard2.0/Microsoft.Bot.Schema.pdb",
         "lib/netstandard2.0/Microsoft.Bot.Schema.xml",
-        "microsoft.bot.schema.4.1.5.nupkg.sha512",
+        "microsoft.bot.schema.4.2.2.nupkg.sha512",
         "microsoft.bot.schema.nuspec"
       ]
     },
@@ -7412,232 +7415,28 @@
         "microsoft.graph.core.nuspec"
       ]
     },
-    "Microsoft.IdentityModel.Clients.ActiveDirectory/3.14.1": {
-      "sha512": "GlyzF4FWsn3LXC6rrzw6Yg2nMbGLx+7JS9a6Z8n7jhqPa5cMiNEX01tBUO1v3A9p1mk+gQzHWJheAsSpOLp/ew==",
+    "Microsoft.IdentityModel.Clients.ActiveDirectory/4.5.0": {
+      "sha512": "YcSLCMaFwhy7EBIndvzjRde2OiT7DoMCLRhgBWzrOUAUrqYEMtyzwm1D6J+nli1GpYQ/+NtujVn1wFiIMC0/Yw==",
       "type": "package",
-      "path": "microsoft.identitymodel.clients.activedirectory/3.14.1",
+      "path": "microsoft.identitymodel.clients.activedirectory/4.5.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "lib/MonoAndroid10/Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.XML",
-        "lib/MonoAndroid10/Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll",
-        "lib/MonoAndroid10/Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.pdb",
-        "lib/MonoAndroid10/Microsoft.IdentityModel.Clients.ActiveDirectory.dll",
-        "lib/MonoAndroid10/Microsoft.IdentityModel.Clients.ActiveDirectory.pdb",
-        "lib/MonoAndroid10/Microsoft.IdentityModel.Clients.ActiveDirectory.xml",
-        "lib/Xamarin.iOS10/Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.XML",
-        "lib/Xamarin.iOS10/Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll",
-        "lib/Xamarin.iOS10/Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.pdb",
-        "lib/Xamarin.iOS10/Microsoft.IdentityModel.Clients.ActiveDirectory.dll",
-        "lib/Xamarin.iOS10/Microsoft.IdentityModel.Clients.ActiveDirectory.pdb",
-        "lib/Xamarin.iOS10/Microsoft.IdentityModel.Clients.ActiveDirectory.xml",
-        "lib/net45/Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.XML",
-        "lib/net45/Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll",
-        "lib/net45/Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.pdb",
+        "lib/monoandroid81/Microsoft.IdentityModel.Clients.ActiveDirectory.dll",
+        "lib/monoandroid81/Microsoft.IdentityModel.Clients.ActiveDirectory.xml",
         "lib/net45/Microsoft.IdentityModel.Clients.ActiveDirectory.dll",
-        "lib/net45/Microsoft.IdentityModel.Clients.ActiveDirectory.pdb",
         "lib/net45/Microsoft.IdentityModel.Clients.ActiveDirectory.xml",
-        "lib/netcore45/Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.XML",
-        "lib/netcore45/Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll",
-        "lib/netcore45/Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.pdb",
-        "lib/netcore45/Microsoft.IdentityModel.Clients.ActiveDirectory.dll",
-        "lib/netcore45/Microsoft.IdentityModel.Clients.ActiveDirectory.pdb",
-        "lib/netcore45/Microsoft.IdentityModel.Clients.ActiveDirectory.xml",
-        "lib/netstandard1.3/Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll",
-        "lib/netstandard1.3/Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.pdb",
+        "lib/netstandard1.1/Microsoft.IdentityModel.Clients.ActiveDirectory.dll",
+        "lib/netstandard1.1/Microsoft.IdentityModel.Clients.ActiveDirectory.xml",
         "lib/netstandard1.3/Microsoft.IdentityModel.Clients.ActiveDirectory.dll",
-        "lib/netstandard1.3/Microsoft.IdentityModel.Clients.ActiveDirectory.pdb",
         "lib/netstandard1.3/Microsoft.IdentityModel.Clients.ActiveDirectory.xml",
-        "lib/portable-net45+win/Microsoft.IdentityModel.Clients.ActiveDirectory.dll",
-        "lib/portable-net45+win/Microsoft.IdentityModel.Clients.ActiveDirectory.pdb",
-        "lib/portable-net45+win/Microsoft.IdentityModel.Clients.ActiveDirectory.xml",
-        "microsoft.identitymodel.clients.activedirectory.3.14.1.nupkg.sha512",
-        "microsoft.identitymodel.clients.activedirectory.nuspec",
-        "src/src/ADAL.Common/AdalEventSource.cs",
-        "src/src/ADAL.Common/AuthenticationContextIntegratedAuthExtensions.cs",
-        "src/src/ADAL.Common/AuthenticationResult.cs",
-        "src/src/ADAL.Common/ClientAssertionCertificate.cs",
-        "src/src/ADAL.Common/CommonAssemblyInfo.cs",
-        "src/src/ADAL.Common/Constants.cs",
-        "src/src/ADAL.Common/CryptographyHelper.cs",
-        "src/src/ADAL.Common/EncodingHelper.cs",
-        "src/src/ADAL.Common/LocalSettingsHelper.cs",
-        "src/src/ADAL.Common/Logger.cs",
-        "src/src/ADAL.Common/PromptBehavior.cs",
-        "src/src/ADAL.Common/TokenCache.cs",
-        "src/src/ADAL.Common/WebProxyProvider.cs",
-        "src/src/ADAL.PCL.Android/ADAL.PCL.Android.csproj",
-        "src/src/ADAL.PCL.Android/AuthenticationAgentActivity.cs",
-        "src/src/ADAL.PCL.Android/AuthenticationAgentContinuationHelper.cs",
-        "src/src/ADAL.PCL.Android/AuthenticationRequest.cs",
-        "src/src/ADAL.PCL.Android/BrokerConstants.cs",
-        "src/src/ADAL.PCL.Android/BrokerHelper.cs",
-        "src/src/ADAL.PCL.Android/BrokerProxy.cs",
-        "src/src/ADAL.PCL.Android/Constants.cs",
-        "src/src/ADAL.PCL.Android/CryptographyHelper.cs",
-        "src/src/ADAL.PCL.Android/DeviceAuthHelper.cs",
-        "src/src/ADAL.PCL.Android/Logger.cs",
-        "src/src/ADAL.PCL.Android/PlatformInformation.cs",
-        "src/src/ADAL.PCL.Android/PlatformParameters.cs",
-        "src/src/ADAL.PCL.Android/Properties/AssemblyInfo.cs",
-        "src/src/ADAL.PCL.Android/Resources/AboutResources.txt",
-        "src/src/ADAL.PCL.Android/Resources/Resource.Designer.cs",
-        "src/src/ADAL.PCL.Android/Resources/Values/Strings.xml",
-        "src/src/ADAL.PCL.Android/Resources/layout/WebAuthenticationBroker.axml",
-        "src/src/ADAL.PCL.Android/TokenCachePlugin.cs",
-        "src/src/ADAL.PCL.Android/WebProxyProvider.cs",
-        "src/src/ADAL.PCL.Android/WebUI.cs",
-        "src/src/ADAL.PCL.Android/WebUIFactory.cs",
-        "src/src/ADAL.PCL.CoreCLR/ADAL.PCL.CoreCLR.csproj",
-        "src/src/ADAL.PCL.CoreCLR/BrokerHelper.cs",
-        "src/src/ADAL.PCL.CoreCLR/ClientAssertionCertificate.cs",
-        "src/src/ADAL.PCL.CoreCLR/CryptographyHelper.cs",
-        "src/src/ADAL.PCL.CoreCLR/DeviceAuthHelper.cs",
-        "src/src/ADAL.PCL.CoreCLR/PlatformInformation.cs",
-        "src/src/ADAL.PCL.CoreCLR/PlatformParameters.cs",
-        "src/src/ADAL.PCL.CoreCLR/Properties/AssemblyInfo.cs",
-        "src/src/ADAL.PCL.CoreCLR/TokenCachePlugin.cs",
-        "src/src/ADAL.PCL.CoreCLR/WebProxyProvider.cs",
-        "src/src/ADAL.PCL.CoreCLR/WebUIFactory.cs",
-        "src/src/ADAL.PCL.Desktop/ADAL.PCL.Desktop.csproj",
-        "src/src/ADAL.PCL.Desktop/BrokerHelper.cs",
-        "src/src/ADAL.PCL.Desktop/CryptographyHelper.cs",
-        "src/src/ADAL.PCL.Desktop/CustomWebBrowser.CustomWebBrowserEvent.cs",
-        "src/src/ADAL.PCL.Desktop/CustomWebBrowser.cs",
-        "src/src/ADAL.PCL.Desktop/DeviceAuthHelper.cs",
-        "src/src/ADAL.PCL.Desktop/InteractiveWebUI.cs",
-        "src/src/ADAL.PCL.Desktop/Native/BCryptNative.cs",
-        "src/src/ADAL.PCL.Desktop/Native/ICngAlgorithm.cs",
-        "src/src/ADAL.PCL.Desktop/Native/ICngAsymmetricAlgorithm.cs",
-        "src/src/ADAL.PCL.Desktop/Native/NCryptNative.cs",
-        "src/src/ADAL.PCL.Desktop/Native/RSACng.cs",
-        "src/src/ADAL.PCL.Desktop/Native/Win32Native.cs",
-        "src/src/ADAL.PCL.Desktop/Native/X509Native.cs",
-        "src/src/ADAL.PCL.Desktop/NavigateErrorStatus.cs",
-        "src/src/ADAL.PCL.Desktop/PlatformInformation.cs",
-        "src/src/ADAL.PCL.Desktop/PlatformParameters.cs",
-        "src/src/ADAL.PCL.Desktop/Properties/AssemblyInfo.cs",
-        "src/src/ADAL.PCL.Desktop/SecureClientSecret.cs",
-        "src/src/ADAL.PCL.Desktop/SilentWebUI.cs",
-        "src/src/ADAL.PCL.Desktop/SilentWebUIDoneEventArgs.cs",
-        "src/src/ADAL.PCL.Desktop/SilentWindowsFormsAuthenticationDialog.cs",
-        "src/src/ADAL.PCL.Desktop/StaTaskScheduler.cs",
-        "src/src/ADAL.PCL.Desktop/TokenCachePlugin.cs",
-        "src/src/ADAL.PCL.Desktop/UserPasswordCredential.cs",
-        "src/src/ADAL.PCL.Desktop/WebBrowserInterfaces.cs",
-        "src/src/ADAL.PCL.Desktop/WebBrowserNavigateErrorEventArgs.cs",
-        "src/src/ADAL.PCL.Desktop/WebUI.cs",
-        "src/src/ADAL.PCL.Desktop/WebUIFactory.cs",
-        "src/src/ADAL.PCL.Desktop/WinFormWebAuthenticationDialog.cs",
-        "src/src/ADAL.PCL.Desktop/WindowsFormsWebAuthenticationDialogBase.cs",
-        "src/src/ADAL.PCL.WinRT/ADAL.PCL.WinRT.csproj",
-        "src/src/ADAL.PCL.WinRT/BrokerHelper.cs",
-        "src/src/ADAL.PCL.WinRT/CryptographyHelper.cs",
-        "src/src/ADAL.PCL.WinRT/DeviceAuthHelper.cs",
-        "src/src/ADAL.PCL.WinRT/PlatformInformation.cs",
-        "src/src/ADAL.PCL.WinRT/PlatformParameters.cs",
-        "src/src/ADAL.PCL.WinRT/Properties/AssemblyInfo.cs",
-        "src/src/ADAL.PCL.WinRT/TokenCachePlugin.cs",
-        "src/src/ADAL.PCL.WinRT/WebUI.cs",
-        "src/src/ADAL.PCL.WinRT/WebUIFactory.cs",
-        "src/src/ADAL.PCL.iOS/ADAL.PCL.iOS.csproj",
-        "src/src/ADAL.PCL.iOS/AdalCustomUrlProtocol.cs",
-        "src/src/ADAL.PCL.iOS/AdalInitializer.cs",
-        "src/src/ADAL.PCL.iOS/AuthenticationAgentUINavigationController.cs",
-        "src/src/ADAL.PCL.iOS/AuthenticationAgentUIViewController.cs",
-        "src/src/ADAL.PCL.iOS/AuthenticationContinuationHelper.cs",
-        "src/src/ADAL.PCL.iOS/BrokerConstants.cs",
-        "src/src/ADAL.PCL.iOS/BrokerHelper.cs",
-        "src/src/ADAL.PCL.iOS/BrokerKeyHelper.cs",
-        "src/src/ADAL.PCL.iOS/Constants.cs",
-        "src/src/ADAL.PCL.iOS/CryptographyHelper.cs",
-        "src/src/ADAL.PCL.iOS/DeviceAuthHelper.cs",
-        "src/src/ADAL.PCL.iOS/GlobalSuppressions.cs",
-        "src/src/ADAL.PCL.iOS/Logger.cs",
-        "src/src/ADAL.PCL.iOS/PlatformInformation.cs",
-        "src/src/ADAL.PCL.iOS/PlatformParameters.cs",
-        "src/src/ADAL.PCL.iOS/Properties/AssemblyInfo.cs",
-        "src/src/ADAL.PCL.iOS/TokenCachePlugin.cs",
-        "src/src/ADAL.PCL.iOS/WebUI.cs",
-        "src/src/ADAL.PCL.iOS/WebUIFactory.cs",
-        "src/src/ADAL.PCL/ADAL.PCL.csproj",
-        "src/src/ADAL.PCL/AdalOption.cs",
-        "src/src/ADAL.PCL/AuthenticationContext.cs",
-        "src/src/ADAL.PCL/AuthenticationParameters.cs",
-        "src/src/ADAL.PCL/AuthenticationResult.cs",
-        "src/src/ADAL.PCL/Authority/Authenticator.cs",
-        "src/src/ADAL.PCL/Authority/AuthenticatorTemplate.cs",
-        "src/src/ADAL.PCL/Authority/AuthenticatorTemplateList.cs",
-        "src/src/ADAL.PCL/Authority/AuthorizationResult.cs",
-        "src/src/ADAL.PCL/Authority/DeviceAuthJWTResponse.cs",
-        "src/src/ADAL.PCL/Authority/IdToken.cs",
-        "src/src/ADAL.PCL/Authority/RequestData.cs",
-        "src/src/ADAL.PCL/Authority/RequestParameters.cs",
-        "src/src/ADAL.PCL/Authority/TokenResponse.cs",
-        "src/src/ADAL.PCL/Cache/CacheQueryData.cs",
-        "src/src/ADAL.PCL/Cache/TokenCacheKey.cs",
-        "src/src/ADAL.PCL/ClientAssertion.cs",
-        "src/src/ADAL.PCL/ClientCredential.cs",
-        "src/src/ADAL.PCL/ClientCreds/ClientKey.cs",
-        "src/src/ADAL.PCL/ClientCreds/JsonWebToken.cs",
-        "src/src/ADAL.PCL/DeviceCodeResult.cs",
-        "src/src/ADAL.PCL/Exceptions/AdalException.cs",
-        "src/src/ADAL.PCL/Exceptions/AdalServiceException.cs",
-        "src/src/ADAL.PCL/Exceptions/AdalSilentTokenAcquisitionException.cs",
-        "src/src/ADAL.PCL/Exceptions/AdalUserMismatchException.cs",
-        "src/src/ADAL.PCL/Exceptions/HttpRequestWrapperException.cs",
-        "src/src/ADAL.PCL/Flows/AcquireTokenByAuthorizationCodeHandler.cs",
-        "src/src/ADAL.PCL/Flows/AcquireTokenForClientHandler.cs",
-        "src/src/ADAL.PCL/Flows/AcquireTokenHandlerBase.cs",
-        "src/src/ADAL.PCL/Flows/AcquireTokenInteractiveHandler.cs",
-        "src/src/ADAL.PCL/Flows/AcquireTokenOnBehalfHandler.cs",
-        "src/src/ADAL.PCL/Flows/AcquireTokenSilentHandler.cs",
-        "src/src/ADAL.PCL/Flows/AuthenticationResultEx.cs",
-        "src/src/ADAL.PCL/Flows/CallState.cs",
-        "src/src/ADAL.PCL/Flows/DeviceCode/AcquireDeviceCodeHandler.cs",
-        "src/src/ADAL.PCL/Flows/DeviceCode/AcquireTokenByDeviceCodeHandler.cs",
-        "src/src/ADAL.PCL/Flows/DeviceCode/DeviceCodeResponse.cs",
-        "src/src/ADAL.PCL/Flows/NonInteractive/AcquireTokenNonInteractiveHandler.cs",
-        "src/src/ADAL.PCL/Flows/NonInteractive/MexParser.cs",
-        "src/src/ADAL.PCL/Flows/NonInteractive/UserRealmDiscoveryResponse.cs",
-        "src/src/ADAL.PCL/Flows/NonInteractive/WsTrustRequest.cs",
-        "src/src/ADAL.PCL/Flows/NonInteractive/WsTrustResponse.cs",
-        "src/src/ADAL.PCL/Http/AdalHttpClient.cs",
-        "src/src/ADAL.PCL/Http/HttpClientFactory.cs",
-        "src/src/ADAL.PCL/Http/HttpClientWrapper.cs",
-        "src/src/ADAL.PCL/Http/HttpMessageHandlerFactory.cs",
-        "src/src/ADAL.PCL/Http/HttpWebResponseWrapper.cs",
-        "src/src/ADAL.PCL/Http/IHttpWebResponse.cs",
-        "src/src/ADAL.PCL/IAdalLogCallback.cs",
-        "src/src/ADAL.PCL/IClientAssertionCertificate.cs",
-        "src/src/ADAL.PCL/IPlatformParameters.cs",
-        "src/src/ADAL.PCL/ISecureClientSecret.cs",
-        "src/src/ADAL.PCL/Platform/IBrokerHelper.cs",
-        "src/src/ADAL.PCL/Platform/ICryptographyHelper.cs",
-        "src/src/ADAL.PCL/Platform/IDeviceAuthHelper.cs",
-        "src/src/ADAL.PCL/Platform/IHttpClient.cs",
-        "src/src/ADAL.PCL/Platform/IHttpClientFactory.cs",
-        "src/src/ADAL.PCL/Platform/ITokenCachePlugin.cs",
-        "src/src/ADAL.PCL/Platform/IWebProxyProvider.cs",
-        "src/src/ADAL.PCL/Platform/IWebUI.cs",
-        "src/src/ADAL.PCL/Platform/IWebUIFactory.cs",
-        "src/src/ADAL.PCL/Platform/LoggerBase.cs",
-        "src/src/ADAL.PCL/Platform/PlatformInformationBase.cs",
-        "src/src/ADAL.PCL/Platform/PlatformPlugin.cs",
-        "src/src/ADAL.PCL/Properties/AssemblyInfo.cs",
-        "src/src/ADAL.PCL/TokenCache.cs",
-        "src/src/ADAL.PCL/TokenCacheItem.cs",
-        "src/src/ADAL.PCL/TokenCacheNotificationArgs.cs",
-        "src/src/ADAL.PCL/UserAssertion.cs",
-        "src/src/ADAL.PCL/UserCredential.cs",
-        "src/src/ADAL.PCL/UserIdentifier.cs",
-        "src/src/ADAL.PCL/UserInfo.cs",
-        "src/src/ADAL.PCL/Utilities/AdalIdHelper.cs",
-        "src/src/ADAL.PCL/Utilities/Base64UrlEncoder.cs",
-        "src/src/ADAL.PCL/Utilities/Constants.cs",
-        "src/src/ADAL.PCL/Utilities/EncodingHelper.cs",
-        "src/src/ADAL.PCL/Utilities/JsonHelper.cs",
-        "src/src/ADAL.PCL/Utilities/OAuthConstants.cs"
+        "lib/uap10.0/Microsoft.IdentityModel.Clients.ActiveDirectory.dll",
+        "lib/uap10.0/Microsoft.IdentityModel.Clients.ActiveDirectory.pri",
+        "lib/uap10.0/Microsoft.IdentityModel.Clients.ActiveDirectory.xml",
+        "lib/xamarinios10/Microsoft.IdentityModel.Clients.ActiveDirectory.dll",
+        "lib/xamarinios10/Microsoft.IdentityModel.Clients.ActiveDirectory.xml",
+        "microsoft.identitymodel.clients.activedirectory.4.5.0.nupkg.sha512",
+        "microsoft.identitymodel.clients.activedirectory.nuspec"
       ]
     },
     "Microsoft.IdentityModel.Logging/5.2.1": {
@@ -8074,10 +7873,10 @@
         "runtime.json"
       ]
     },
-    "Microsoft.Recognizers.Text/1.1.2": {
-      "sha512": "4wz1kwZ5XEBUSdC9oeYpqloPp1sxxHrwjMznAgQNM9u/Oa0vmzDjyL8eCv4DfbiDqjEAV39BUtq2a+XRM0Nk8w==",
+    "Microsoft.Recognizers.Text/1.1.3": {
+      "sha512": "9mkm6MxMe5MplY9wdVzMIFKbRQhZ27Bro2KacqSWeXTc405PM8vqSrTiiQ6H/4VwZrnjTTGKU2WmAhRbQslFKA==",
       "type": "package",
-      "path": "microsoft.recognizers.text/1.1.2",
+      "path": "microsoft.recognizers.text/1.1.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -8089,14 +7888,14 @@
         "lib/net462/Microsoft.Recognizers.Text.dll",
         "lib/netstandard2.0/Microsoft.Recognizers.Definitions.dll",
         "lib/netstandard2.0/Microsoft.Recognizers.Text.dll",
-        "microsoft.recognizers.text.1.1.2.nupkg.sha512",
+        "microsoft.recognizers.text.1.1.3.nupkg.sha512",
         "microsoft.recognizers.text.nuspec"
       ]
     },
-    "Microsoft.Recognizers.Text.Choice/1.1.2": {
-      "sha512": "YpEB9YGhFiviIG2JXG2j3DdCkKUi47taWvy43e1Cz92FnC62MIp4M8vbNyaBwL1hN7jXfM8InrOZTNkvFQzh4A==",
+    "Microsoft.Recognizers.Text.Choice/1.1.3": {
+      "sha512": "pMDAEwYZKhj2ckgagNGBA003aDndokWyVBb8JClgcWE76D7JnOW+wSpkh/3AVd6mGgQcIBFL7KUeMPEXtT6eQQ==",
       "type": "package",
-      "path": "microsoft.recognizers.text.choice/1.1.2",
+      "path": "microsoft.recognizers.text.choice/1.1.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -8104,14 +7903,14 @@
         "lib/net452/Microsoft.Recognizers.Text.Choice.dll",
         "lib/net462/Microsoft.Recognizers.Text.Choice.dll",
         "lib/netstandard2.0/Microsoft.Recognizers.Text.Choice.dll",
-        "microsoft.recognizers.text.choice.1.1.2.nupkg.sha512",
+        "microsoft.recognizers.text.choice.1.1.3.nupkg.sha512",
         "microsoft.recognizers.text.choice.nuspec"
       ]
     },
-    "Microsoft.Recognizers.Text.DateTime/1.1.2": {
-      "sha512": "C5ZKqr+sa7UQV21s8tznjtzaq0HO/hBANYJoyIHE3L8m59arGvGforh/zWpCIjc1y5bL5i0t2ZCwRWFNOWW6gQ==",
+    "Microsoft.Recognizers.Text.DateTime/1.1.3": {
+      "sha512": "IFq8ec1Mm30qey0Ku5cwlkZ/18qlzg9BY+bo6h2mYwXyXfDmuCN3UbWXeyRsXTkPepE72c4rFmO08zWzFxt9lQ==",
       "type": "package",
-      "path": "microsoft.recognizers.text.datetime/1.1.2",
+      "path": "microsoft.recognizers.text.datetime/1.1.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -8119,14 +7918,14 @@
         "lib/net452/Microsoft.Recognizers.Text.DateTime.dll",
         "lib/net462/Microsoft.Recognizers.Text.DateTime.dll",
         "lib/netstandard2.0/Microsoft.Recognizers.Text.DateTime.dll",
-        "microsoft.recognizers.text.datetime.1.1.2.nupkg.sha512",
+        "microsoft.recognizers.text.datetime.1.1.3.nupkg.sha512",
         "microsoft.recognizers.text.datetime.nuspec"
       ]
     },
-    "Microsoft.Recognizers.Text.Number/1.1.2": {
-      "sha512": "5p5kzVaBJ1t7MXWYXjFH9ll7zrZZPNBcvaSCNkD8qdd60IqEaxAjMJx8AdzFu/vcZ+5Yi9chI0yzqPFSvwZjMw==",
+    "Microsoft.Recognizers.Text.Number/1.1.3": {
+      "sha512": "RBJhV5flJMw5UlmhmOpVS7Uk8ug18qDhty4zkGafR+h8g4ZzzeQSk8Fo8O8wu4p5lq/7J31r/muNZq1bL7/F/w==",
       "type": "package",
-      "path": "microsoft.recognizers.text.number/1.1.2",
+      "path": "microsoft.recognizers.text.number/1.1.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -8134,14 +7933,14 @@
         "lib/net452/Microsoft.Recognizers.Text.Number.dll",
         "lib/net462/Microsoft.Recognizers.Text.Number.dll",
         "lib/netstandard2.0/Microsoft.Recognizers.Text.Number.dll",
-        "microsoft.recognizers.text.number.1.1.2.nupkg.sha512",
+        "microsoft.recognizers.text.number.1.1.3.nupkg.sha512",
         "microsoft.recognizers.text.number.nuspec"
       ]
     },
-    "Microsoft.Recognizers.Text.NumberWithUnit/1.1.2": {
-      "sha512": "DOjXbDLckr/t62fNQ2G8/FvCCS04nTciBf/AJBtNPy5j1TkizyatIe/l/xrfCu42mWFOFsu2HyWSUv+Rycolkg==",
+    "Microsoft.Recognizers.Text.NumberWithUnit/1.1.3": {
+      "sha512": "X/Ng7dvy3Fvim7UqdKucLkFF3REbE6lAPLDp8j7xwM+qZAD9LQmW5Y3+KRCd2zxUYRm7tUZIEbHjcv/gz4Myig==",
       "type": "package",
-      "path": "microsoft.recognizers.text.numberwithunit/1.1.2",
+      "path": "microsoft.recognizers.text.numberwithunit/1.1.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -8149,7 +7948,7 @@
         "lib/net452/Microsoft.Recognizers.Text.NumberWithUnit.dll",
         "lib/net462/Microsoft.Recognizers.Text.NumberWithUnit.dll",
         "lib/netstandard2.0/Microsoft.Recognizers.Text.NumberWithUnit.dll",
-        "microsoft.recognizers.text.numberwithunit.1.1.2.nupkg.sha512",
+        "microsoft.recognizers.text.numberwithunit.1.1.3.nupkg.sha512",
         "microsoft.recognizers.text.numberwithunit.nuspec"
       ]
     },
@@ -11193,12 +10992,13 @@
         "system.runtime.serialization.formatters.nuspec"
       ]
     },
-    "System.Runtime.Serialization.Json/4.0.2": {
-      "sha512": "+7DIJhnKYgCzUgcLbVTtRQb2l1M0FP549XFlFkQM5lmNiUBl44AfNbx4bz61xA8PzLtlYwfmif4JJJW7MPPnjg==",
+    "System.Runtime.Serialization.Json/4.3.0": {
+      "sha512": "CpVfOH0M/uZ5PH+M9+Gu56K0j9lJw3M+PKRegTkcrY/stOIvRUeonggxNrfBYLA5WOHL2j15KNJuTuld3x4o9w==",
       "type": "package",
-      "path": "system.runtime.serialization.json/4.0.2",
+      "path": "system.runtime.serialization.json/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -11218,7 +11018,27 @@
         "ref/MonoTouch10/_._",
         "ref/net45/_._",
         "ref/netcore50/System.Runtime.Serialization.Json.dll",
+        "ref/netcore50/System.Runtime.Serialization.Json.xml",
+        "ref/netcore50/de/System.Runtime.Serialization.Json.xml",
+        "ref/netcore50/es/System.Runtime.Serialization.Json.xml",
+        "ref/netcore50/fr/System.Runtime.Serialization.Json.xml",
+        "ref/netcore50/it/System.Runtime.Serialization.Json.xml",
+        "ref/netcore50/ja/System.Runtime.Serialization.Json.xml",
+        "ref/netcore50/ko/System.Runtime.Serialization.Json.xml",
+        "ref/netcore50/ru/System.Runtime.Serialization.Json.xml",
+        "ref/netcore50/zh-hans/System.Runtime.Serialization.Json.xml",
+        "ref/netcore50/zh-hant/System.Runtime.Serialization.Json.xml",
         "ref/netstandard1.0/System.Runtime.Serialization.Json.dll",
+        "ref/netstandard1.0/System.Runtime.Serialization.Json.xml",
+        "ref/netstandard1.0/de/System.Runtime.Serialization.Json.xml",
+        "ref/netstandard1.0/es/System.Runtime.Serialization.Json.xml",
+        "ref/netstandard1.0/fr/System.Runtime.Serialization.Json.xml",
+        "ref/netstandard1.0/it/System.Runtime.Serialization.Json.xml",
+        "ref/netstandard1.0/ja/System.Runtime.Serialization.Json.xml",
+        "ref/netstandard1.0/ko/System.Runtime.Serialization.Json.xml",
+        "ref/netstandard1.0/ru/System.Runtime.Serialization.Json.xml",
+        "ref/netstandard1.0/zh-hans/System.Runtime.Serialization.Json.xml",
+        "ref/netstandard1.0/zh-hant/System.Runtime.Serialization.Json.xml",
         "ref/portable-net45+win8+wp8+wpa81/_._",
         "ref/win8/_._",
         "ref/wp80/_._",
@@ -11227,7 +11047,7 @@
         "ref/xamarinmac20/_._",
         "ref/xamarintvos10/_._",
         "ref/xamarinwatchos10/_._",
-        "system.runtime.serialization.json.4.0.2.nupkg.sha512",
+        "system.runtime.serialization.json.4.3.0.nupkg.sha512",
         "system.runtime.serialization.json.nuspec"
       ]
     },
@@ -11688,10 +11508,10 @@
         "version.txt"
       ]
     },
-    "System.Security.SecureString/4.0.0": {
-      "sha512": "sqzq9GD6/b0yqPuMpgIKBuoLf4VKAj8oAfh4kXSzPaN6eoKY3hRi9C5L27uip25qlU+BGPfb0xh2Rmbwc4jFVA==",
+    "System.Security.SecureString/4.3.0": {
+      "sha512": "PnXp38O9q/2Oe4iZHMH60kinScv6QiiL2XH54Pj2t0Y6c2zKPEiAZsM/M3wBOHLNTBDFP0zfy13WN2M0qFz5jg==",
       "type": "package",
-      "path": "system.security.securestring/4.0.0",
+      "path": "system.security.securestring/4.3.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -11725,7 +11545,7 @@
         "runtimes/unix/lib/netstandard1.3/System.Security.SecureString.dll",
         "runtimes/win/lib/net46/System.Security.SecureString.dll",
         "runtimes/win/lib/netstandard1.3/System.Security.SecureString.dll",
-        "system.security.securestring.4.0.0.nupkg.sha512",
+        "system.security.securestring.4.3.0.nupkg.sha512",
         "system.security.securestring.nuspec"
       ]
     },
@@ -12455,38 +12275,38 @@
       "Microsoft.AspNetCore.All >= 2.0.8",
       "Microsoft.Azure.CognitiveServices.ContentModerator >= 0.12.1-preview",
       "Microsoft.Azure.CognitiveServices.Language >= 1.0.1-preview",
-      "Microsoft.Bot.Builder >= 4.1.5",
-      "Microsoft.Bot.Builder.AI.Luis >= 4.1.5",
-      "Microsoft.Bot.Builder.AI.QnA >= 4.1.5",
-      "Microsoft.Bot.Builder.Azure >= 4.1.5",
-      "Microsoft.Bot.Builder.Dialogs >= 4.1.5",
-      "Microsoft.Bot.Builder.Integration.AspNet.Core >= 4.1.5",
-      "Microsoft.Bot.Configuration >= 4.1.5",
-      "Microsoft.Bot.Connector >= 4.1.5",
-      "Microsoft.Bot.Schema >= 4.1.5",
+      "Microsoft.Bot.Builder >= 4.2.2",
+      "Microsoft.Bot.Builder.AI.Luis >= 4.2.2",
+      "Microsoft.Bot.Builder.AI.QnA >= 4.2.2",
+      "Microsoft.Bot.Builder.Azure >= 4.2.2",
+      "Microsoft.Bot.Builder.Dialogs >= 4.2.2",
+      "Microsoft.Bot.Builder.Integration.AspNet.Core >= 4.2.2",
+      "Microsoft.Bot.Configuration >= 4.2.2",
+      "Microsoft.Bot.Connector >= 4.2.2",
+      "Microsoft.Bot.Schema >= 4.2.2",
       "Microsoft.Graph >= 1.10.0",
       "Microsoft.NETCore.App >= 2.0.0",
       "StyleCop.Analyzers >= 1.1.0-beta008"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\dennis.morent\\.nuget\\packages\\": {},
+    "C:\\Users\\DM\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dennis.morent\\source\\hoteltestv2\\HotelBot.csproj",
+      "projectUniqueName": "C:\\source\\hoteltestv2\\HotelBot.csproj",
       "projectName": "HotelBot",
-      "projectPath": "C:\\Users\\dennis.morent\\source\\hoteltestv2\\HotelBot.csproj",
-      "packagesPath": "C:\\Users\\dennis.morent\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dennis.morent\\source\\hoteltestv2\\obj\\",
+      "projectPath": "C:\\source\\hoteltestv2\\HotelBot.csproj",
+      "packagesPath": "C:\\Users\\DM\\.nuget\\packages\\",
+      "outputPath": "C:\\source\\hoteltestv2\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\dennis.morent\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\DM\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -12528,39 +12348,39 @@
           },
           "Microsoft.Bot.Builder": {
             "target": "Package",
-            "version": "[4.1.5, )"
+            "version": "[4.2.2, )"
           },
           "Microsoft.Bot.Builder.AI.Luis": {
             "target": "Package",
-            "version": "[4.1.5, )"
+            "version": "[4.2.2, )"
           },
           "Microsoft.Bot.Builder.AI.QnA": {
             "target": "Package",
-            "version": "[4.1.5, )"
+            "version": "[4.2.2, )"
           },
           "Microsoft.Bot.Builder.Azure": {
             "target": "Package",
-            "version": "[4.1.5, )"
+            "version": "[4.2.2, )"
           },
           "Microsoft.Bot.Builder.Dialogs": {
             "target": "Package",
-            "version": "[4.1.5, )"
+            "version": "[4.2.2, )"
           },
           "Microsoft.Bot.Builder.Integration.AspNet.Core": {
             "target": "Package",
-            "version": "[4.1.5, )"
+            "version": "[4.2.2, )"
           },
           "Microsoft.Bot.Configuration": {
             "target": "Package",
-            "version": "[4.1.5, )"
+            "version": "[4.2.2, )"
           },
           "Microsoft.Bot.Connector": {
             "target": "Package",
-            "version": "[4.1.5, )"
+            "version": "[4.2.2, )"
           },
           "Microsoft.Bot.Schema": {
             "target": "Package",
-            "version": "[4.1.5, )"
+            "version": "[4.2.2, )"
           },
           "Microsoft.Graph": {
             "target": "Package",

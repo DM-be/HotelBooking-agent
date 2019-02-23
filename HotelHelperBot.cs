@@ -99,6 +99,11 @@ namespace HotelBot
 
                 ProcessFacebookPayload(turnContext.Activity.ChannelData, turnContext);
                 // Perform a call to LUIS to retrieve results for the current activity message.
+                if (dc.Context.Activity.Text == null)
+                {
+                    dc.Context.Activity.Text = "No intent";
+                }
+
                 var luisResults = await _services.LuisServices[LuisConfiguration]
                     .RecognizeAsync(dc.Context, cancellationToken);
 
@@ -270,6 +275,7 @@ namespace HotelBot
                     var heroCard = new HeroCard
                     {
                         Title = "Starhotel Bruges",
+                        Text = "",
                         Images = new List<CardImage> { new CardImage("https://img.hotelspecials.be/fc2fadf52703ae0181b289f84011bf6a.jpeg?w=250&h=200&c=1&quality=70") },
                         Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl, "Show direction", value: url) },
                     };
