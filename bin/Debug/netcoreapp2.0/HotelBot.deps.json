@@ -5602,7 +5602,7 @@
     "Microsoft.Bot.Builder.Dialogs/4.2.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-PmU8kMHf6IIq3oZVCK7vTPFf1KNW96KH94A+C5hIlatoF66rpAnhyHP46QL6Urp/gfZe0I3xD4PGf9NjrWjdeg==",
+      "sha512": "sha512-i9BxbvjapHpKaGnRFlTKrPyWeNabkbbLGNtQoVAU0hpux+jR68BBa48UqVgMB+zZ4kmJpN9YH3/Dp7sIcnjHkg==",
       "path": "microsoft.bot.builder.dialogs/4.2.2",
       "hashPath": "microsoft.bot.builder.dialogs.4.2.2.nupkg.sha512"
     },

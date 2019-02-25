@@ -6476,7 +6476,7 @@
       ]
     },
     "Microsoft.Bot.Builder.Dialogs/4.2.2": {
-      "sha512": "PmU8kMHf6IIq3oZVCK7vTPFf1KNW96KH94A+C5hIlatoF66rpAnhyHP46QL6Urp/gfZe0I3xD4PGf9NjrWjdeg==",
+      "sha512": "i9BxbvjapHpKaGnRFlTKrPyWeNabkbbLGNtQoVAU0hpux+jR68BBa48UqVgMB+zZ4kmJpN9YH3/Dp7sIcnjHkg==",
       "type": "package",
       "path": "microsoft.bot.builder.dialogs/4.2.2",
       "files": [
@@ -12290,23 +12290,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\DM\\.nuget\\packages\\": {},
+    "C:\\Users\\dennis.morent\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\source\\hoteltestv2\\HotelBot.csproj",
+      "projectUniqueName": "C:\\Users\\dennis.morent\\source\\hoteltestV2-new\\hoteltestv2\\HotelBot.csproj",
       "projectName": "HotelBot",
-      "projectPath": "C:\\source\\hoteltestv2\\HotelBot.csproj",
-      "packagesPath": "C:\\Users\\DM\\.nuget\\packages\\",
-      "outputPath": "C:\\source\\hoteltestv2\\obj\\",
+      "projectPath": "C:\\Users\\dennis.morent\\source\\hoteltestV2-new\\hoteltestv2\\HotelBot.csproj",
+      "packagesPath": "C:\\Users\\dennis.morent\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\dennis.morent\\source\\hoteltestV2-new\\hoteltestv2\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\DM\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\dennis.morent\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

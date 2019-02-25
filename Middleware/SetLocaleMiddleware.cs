@@ -22,7 +22,7 @@ namespace HotelBot.Middleware
             var userProfile = await _accessors.UserProfileAccessor.GetAsync(context, () => new UserProfile());
             if (string.IsNullOrWhiteSpace(userProfile.Locale))
             {
-                // still needs to be set by the activity
+                // still needs to be set by the SetUserProfileMiddleware
                 await next(cancellationToken).ConfigureAwait(false);
                 return;
             }

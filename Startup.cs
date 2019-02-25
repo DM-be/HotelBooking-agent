@@ -169,7 +169,9 @@ namespace HotelBot
                options.Middleware.Add(new SetConversationDataMiddleware(stateBotAccessors));
                options.Middleware.Add(new SetUserProfileMiddleware(stateBotAccessors));
                 options.Middleware.Add(new SetLocaleMiddleware(stateBotAccessors));
+                options.Middleware.Add(new FacebookMiddleware(stateBotAccessors));
               options.Middleware.Add(new AutoSaveStateMiddleware(userState, conversationState));
+
 
             });
         }
