@@ -119,5 +119,10 @@
   </resheader>
   <data name="ASK_LOCATION" xml:space="preserve">
     <value>Could you send me your location?</value>
+    <comment>facebook prompt or sending location</comment>
+  </data>
+  <data name="DIRECTION_REPLY" xml:space="preserve">
+    <value>Follow the below link to get directions to our location. </value>
+    <comment>facebook attachment quick reply answer to the sent location</comment>
   </data>
 </root>

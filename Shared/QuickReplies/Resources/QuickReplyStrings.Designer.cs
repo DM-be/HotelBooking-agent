@@ -68,5 +68,14 @@ namespace HotelBot.Shared.QuickReplies.Resources {
                 return ResourceManager.GetString("ASK_LOCATION", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Follow the below link to get directions to our location. .
+        /// </summary>
+        public static string DIRECTION_REPLY {
+            get {
+                return ResourceManager.GetString("DIRECTION_REPLY", resourceCulture);
+            }
+        }
     }
 }

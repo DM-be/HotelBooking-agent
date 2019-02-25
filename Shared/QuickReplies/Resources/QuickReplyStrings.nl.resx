@@ -120,4 +120,7 @@
   <data name="ASK_LOCATION" xml:space="preserve">
     <value>Stuur me je locatie?</value>
   </data>
+  <data name="DIRECTION_REPLY" xml:space="preserve">
+    <value>Volg onderstaande link om een route te volgen naar onze locatie.</value>
+  </data>
 </root>

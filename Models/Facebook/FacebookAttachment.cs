@@ -8,6 +8,10 @@ namespace HotelBot.Models.Facebook
 {
     public class FacebookAttachment
     {
+        public const string Location = "location";
+
+
+
         [JsonProperty("title")]
         public string Title { get; set; }
 

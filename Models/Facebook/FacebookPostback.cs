@@ -12,6 +12,8 @@ namespace HotelBot.Models.Facebook
     /// <remarks>See <see cref="https://developers.facebook.com/docs/messenger-platform/reference/webhook-events/messaging_postbacks/"> Facebook messaging_postback</see> webhook event documentation.</remarks>
     public class FacebookPostback
     {
+
+        public const string GetStartedPostback = "started";
         /// <summary>
         /// Gets or sets payload of the PostBack. Could be an object depending on the object sent.
         /// </summary>
