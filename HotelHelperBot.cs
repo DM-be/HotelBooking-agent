@@ -97,27 +97,29 @@ namespace HotelBot
 
                // ProcessFacebookPayload(turnContext.Activity.ChannelData, turnContext);
                 // Perform a call to LUIS to retrieve results for the current activity message.
-                if (dc.Context.Activity.Text == null)
+                var topIntent = "";
+                if (dc.Context.Activity.Text != null)
                 {
-                    dc.Context.Activity.Text = "No intent";
-                }
-
+                    
                 var luisResults = await _services.LuisServices[LuisConfiguration]
                     .RecognizeAsync(dc.Context, cancellationToken);
 
                 var topScoringIntent = luisResults?.GetTopScoringIntent();
-                var topIntent = topScoringIntent.Value.intent;
+                topIntent = topScoringIntent.Value.intent;
+                }
+
+                
 
 
                 // Handle conversation interrupts first.
-                var interrupted = await IsTurnInterruptedAsync(dc, topIntent, turnContext);
-                if (interrupted)
+              //  var interrupted = await IsTurnInterruptedAsync(dc, topIntent, turnContext);
+           //     if (interrupted)
 
-                {
+              //  {
                     // Bypass the dialog.
                     // state is always saved between turns because of the autosaving middleware
-                    return;
-                }
+              //      return;
+              //  }
 
                 // Continue the current dialog
                 var dialogResult = await dc.ContinueDialogAsync();
@@ -145,7 +147,7 @@ namespace HotelBot
                                 default:
                                     // Help or no intent identified, either way, let's provide some help.
                                     // to the user
-                                    await dc.Context.SendActivityAsync("I didn't understand what you just said to me.");
+                               //     await dc.Context.SendActivityAsync("I didn't understand what you just said to me.");
                                     break;
                                 
                             }

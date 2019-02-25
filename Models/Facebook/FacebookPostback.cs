@@ -14,6 +14,7 @@ namespace HotelBot.Models.Facebook
     {
 
         public const string GetStartedPostback = "started";
+        public const string GetDirectionsPostback = "location";
         /// <summary>
         /// Gets or sets payload of the PostBack. Could be an object depending on the object sent.
         /// </summary>

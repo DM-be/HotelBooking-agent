@@ -77,5 +77,14 @@ namespace HotelBot.Shared.QuickReplies.Resources {
                 return ResourceManager.GetString("DIRECTION_REPLY", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tap a common question below or ask me another directly..
+        /// </summary>
+        public static string WELCOME_OPTIONS {
+            get {
+                return ResourceManager.GetString("WELCOME_OPTIONS", resourceCulture);
+            }
+        }
     }
 }

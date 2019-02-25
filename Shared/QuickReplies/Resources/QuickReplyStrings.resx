@@ -125,4 +125,8 @@
     <value>Follow the below link to get directions to our location. </value>
     <comment>facebook attachment quick reply answer to the sent location</comment>
   </data>
+  <data name="WELCOME_OPTIONS" xml:space="preserve">
+    <value>Tap a common question below or ask me another directly.</value>
+    <comment>facebook quick reply prompt: book a room, get directions, call us</comment>
+  </data>
 </root>

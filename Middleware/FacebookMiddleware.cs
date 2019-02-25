@@ -49,7 +49,7 @@ namespace HotelBot.Middleware
 
                 // Quick reply
                 else if (facebookPayload.Message?.QuickReply != null)
-                    OnFacebookQuickReply(facebookPayload.Message.QuickReply);
+                    OnFacebookQuickReply(facebookPayload.Message.QuickReply, context);
 
                 else if (facebookPayload.Message.Attachments != null) OnFacebookAttachments(facebookPayload.Message.Attachments, context);
             }
@@ -74,10 +74,13 @@ namespace HotelBot.Middleware
 
         }
 
-        private void OnFacebookQuickReply(FacebookQuickReply quickReply)
+        private void OnFacebookQuickReply(FacebookQuickReply quickReply, ITurnContext context)
         {
+            if (quickReply.Payload.Equals(FacebookQuickReply.LocationQuickReplyPayload))
+            {
+                SendLocationQuickReply(context);
+            }
 
-            // TODO: Your quick reply event handling logic here...
         }
 
         private async void SendLocationQuickReply(ITurnContext context)
@@ -104,6 +107,7 @@ namespace HotelBot.Middleware
                 functionalityReply
             };
             await context.SendActivitiesAsync(activities);
+            SendWelcomeQuickReplies(context);
         }
 
         private async void SendDirections(ITurnContext context, FacebookAttachment attachment)
@@ -126,6 +130,44 @@ namespace HotelBot.Middleware
                 heroCard.ToAttachment(),
             };
             await context.SendActivityAsync(reply);
+        }
+        // TODO: add icons folder and add material icons
+        private async void SendWelcomeQuickReplies(ITurnContext context)
+        {
+            var reply = context.Activity.CreateReply();
+            FacebookQuickReply [] quick_replies =
+            {
+                new FacebookQuickReply
+                {
+                    Title = "Book a room",
+                    Content_Type = "text",
+                    Payload = "Book_a_room",
+                    Image_Url = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Button_Icon_Blue.svg/768px-Button_Icon_Blue.svg.png"
+                },
+                new FacebookQuickReply {
+                    Title = "Get directions",
+                    Content_Type = "text",
+                    Payload = "location",
+                    Image_Url = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Button_Icon_Blue.svg/768px-Button_Icon_Blue.svg.png"
+                },
+                new FacebookQuickReply {
+                    Title = "Call us",
+                    Content_Type = "text",
+                    Payload = "call",
+                    Image_Url = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Button_Icon_Blue.svg/768px-Button_Icon_Blue.svg.png"
+                }
+            };
+            JObject[] jObjects =  new JObject[quick_replies.Length];
+            for (int i = 0; i < quick_replies.Length; i++)
+            {
+                jObjects[i] = (JObject) JToken.FromObject(quick_replies[i]);
+            }
+            reply.Text = QuickReplyStrings.WELCOME_OPTIONS;
+            var channelData = new JObject();
+            channelData.Add("quick_replies", new JArray(jObjects));
+            reply.ChannelData = channelData;
+            await context.SendActivityAsync(reply);
+
         }
     }
 }
