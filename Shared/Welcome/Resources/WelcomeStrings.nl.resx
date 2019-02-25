@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FUNCTIONALITY" xml:space="preserve">
-    <value>Ik kan je helpen bij het boeken van een kamer of om je vragen te beantwoorden. </value>
+    <value>Ik kan je helpen bij het boeken van een kamer en bij het beantwoorden van vragen. </value>
   </data>
   <data name="WELCOME_MESSAGE" xml:space="preserve">
     <value>Welkom bij onze hotelbot.</value>

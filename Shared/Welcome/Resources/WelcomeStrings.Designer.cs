@@ -61,7 +61,7 @@ namespace HotelBot.Shared.Welcome.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I can help you book a room or answer questions for you about our hotel..
+        ///   Looks up a localized string similar to I can help you book a room and answer questions about our hotel..
         /// </summary>
         public static string FUNCTIONALITY {
             get {
