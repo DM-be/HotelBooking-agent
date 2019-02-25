@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Models.Facebook;
 using HotelBot.Shared.QuickReplies.Resources;
+using HotelBot.Shared.Welcome.Resources;
 using HotelBot.StateAccessors;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Schema;
@@ -66,7 +67,7 @@ namespace HotelBot.Middleware
 
         private void OnFacebookPostBack(FacebookPostback postBack, ITurnContext context)
         {
-            if (postBack.Payload.Equals(FacebookPostback.GetStartedPostback)) SendLocationQuickReply(context);
+            if (postBack.Payload.Equals(FacebookPostback.GetStartedPostback)) SendGettingStartedWelcomeMessage(context);
 
             // implement other postback logic before calling next
             // also possible to update text of the activity.message.text property
@@ -93,7 +94,16 @@ namespace HotelBot.Middleware
 
         private async void SendGettingStartedWelcomeMessage(ITurnContext context)
         {
-            
+            var welcomeReply = context.Activity.CreateReply();
+            welcomeReply.Text = WelcomeStrings.WELCOME_MESSAGE;
+            var functionalityReply = context.Activity.CreateReply();
+            functionalityReply.Text = WelcomeStrings.FUNCTIONALITY;
+            IActivity[] activities =
+            {
+                welcomeReply,
+                functionalityReply
+            };
+            await context.SendActivitiesAsync(activities);
         }
 
         private async void SendDirections(ITurnContext context, FacebookAttachment attachment)

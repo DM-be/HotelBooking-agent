@@ -63,18 +63,18 @@ namespace HotelBot.Shared.Welcome.Resources {
         /// <summary>
         ///   Looks up a localized string similar to I can help you book a room or answer questions for you about our hotel..
         /// </summary>
-        public static string Functionality {
+        public static string FUNCTIONALITY {
             get {
-                return ResourceManager.GetString("Functionality", resourceCulture);
+                return ResourceManager.GetString("FUNCTIONALITY", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Welcome to our hotel chatbot.
         /// </summary>
-        public static string WelcomeMessage {
+        public static string WELCOME_MESSAGE {
             get {
-                return ResourceManager.GetString("WelcomeMessage", resourceCulture);
+                return ResourceManager.GetString("WELCOME_MESSAGE", resourceCulture);
             }
         }
     }
