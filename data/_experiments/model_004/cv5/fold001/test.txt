@@ -1,0 +1,45 @@
+Label	Weight	Text
+l_BasicBotLuisApplication	4.055555	abort
+l_BasicBotLuisApplication	4.055555	cancel
+l_BasicBotLuisApplication	4.055555	i live in london
+l_BasicBotLuisApplication	4.055555	i'm stuck
+l_BasicBotLuisApplication	4.055555	what can i say
+l_BasicBotLuisApplication	4.055555	help
+l_BasicBotLuisApplication	4.055555	i'm lili
+l_BasicBotLuisApplication	4.055555	i will not give you my name
+l_BasicBotLuisApplication	4.055555	why doesn't this work
+l_BasicBotLuisApplication	4.055555	hello
+l_BasicBotLuisApplication	4.055555	good morning
+l_BasicBotLuisApplication	4.055555	hi bot
+l_BasicBotLuisApplication	4.055555	spaghetti
+l_BasicBotLuisApplication	4.055555	i will not give you my location or name
+l_BasicBotLuisApplication	4.055555	my name is tom
+l_BasicBotLuisApplication	4.055555	who is your boss
+l_BasicBotLuisApplication	4.055555	who am i speaking with
+l_BasicBotLuisApplication	4.055555	i won't give you my name
+l_HotelBot	5.214286	can i book for tonight
+l_HotelBot	5.214286	i want to get a room for next week
+l_HotelBot	5.214286	this is nothing special
+l_HotelBot	5.214286	help me
+l_HotelBot	5.214286	i want to book a room in january for myself and my partner
+l_HotelBot	5.214286	i want to book a room for next week
+l_HotelBot	5.214286	i want to book a room for myself and my partner next week.
+l_HotelBot	5.214286	can i book for tonight
+l_HotelBot	5.214286	i want to get a room for next week
+l_HotelBot	5.214286	this is nothing special
+l_HotelBot	5.214286	help me
+l_HotelBot	5.214286	i want to book a room in january for myself and my partner
+l_HotelBot	5.214286	i want to book a room for next week
+l_HotelBot	5.214286	i want to book a room for myself and my partner next week.
+q_faq	6.083333	Can we take our dogs
+q_faq	6.083333	At what time can we check in
+q_faq	6.083333	Are dogs allowed
+q_faq	6.083333	Can we take our dogs
+q_faq	6.083333	At what time can we check in
+q_faq	6.083333	Are dogs allowed
+q_faq	6.083333	Can we take our dogs
+q_faq	6.083333	At what time can we check in
+q_faq	6.083333	Are dogs allowed
+q_faq	6.083333	Can we take our dogs
+q_faq	6.083333	At what time can we check in
+q_faq	6.083333	Are dogs allowed

@@ -1,0 +1,38 @@
+{
+  "authoringRegion": "westeurope",
+  "hierarchical": true,
+  "useAllTrainingData": false,
+  "dontReviseUtterance": false,
+  "services": [
+    {
+      "appId": "b1fa4a04-cb5e-47bd-ac18-2e3a3d5877fa",
+      "authoringKey": "cbcdfd8ed0d14d48ae3b01dd8c739bbf",
+      "subscriptionKey": "cbcdfd8ed0d14d48ae3b01dd8c739bbf",
+      "version": "0.1",
+      "region": "westeurope",
+      "type": "luis",
+      "name": "HotelBot",
+      "id": "118"
+    },
+    {
+      "kbId": "fb174302-8e45-495b-9354-a39eaa158b48",
+      "subscriptionKey": "ff912b1c840f4af180b9432c615635bc",
+      "hostname": "https://hoteltestqna.azurewebsites.net/qnamaker",
+      "endpointKey": "5d8bae0b-2fb8-44dd-809c-c26d70d12d6b",
+      "type": "qna",
+      "name": "HotelBotTest_qna",
+      "id": "168"
+    }
+  ],
+  "serviceIds": [
+    "118",
+    "168"
+  ],
+  "appId": "8f5a1469-f5da-4877-846f-2af7a1667ca9",
+  "authoringKey": "cbcdfd8ed0d14d48ae3b01dd8c739bbf",
+  "subscriptionKey": "cbcdfd8ed0d14d48ae3b01dd8c739bbf",
+  "version": "Dispatch",
+  "region": "westeurope",
+  "type": "dispatch",
+  "name": "HotelDispatch"
+}

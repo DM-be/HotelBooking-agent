@@ -1,0 +1,45 @@
+Label	Weight	Text
+l_BasicBotLuisApplication	4.055555	i am tired of you
+l_BasicBotLuisApplication	4.055555	spaghetti
+l_BasicBotLuisApplication	4.055555	my location is new york
+l_BasicBotLuisApplication	4.055555	please stop
+l_BasicBotLuisApplication	4.055555	please cancel
+l_BasicBotLuisApplication	4.055555	don't do it
+l_BasicBotLuisApplication	4.055555	hey there
+l_BasicBotLuisApplication	4.055555	i'm lost
+l_BasicBotLuisApplication	4.055555	no way
+l_BasicBotLuisApplication	4.055555	don't do that
+l_BasicBotLuisApplication	4.055555	what can i say
+l_BasicBotLuisApplication	4.055555	who am i speaking to
+l_BasicBotLuisApplication	4.055555	delhi
+l_BasicBotLuisApplication	4.055555	i won't give you my name
+l_BasicBotLuisApplication	4.055555	you are boring
+l_BasicBotLuisApplication	4.055555	what's your name
+l_BasicBotLuisApplication	4.055555	i'm lauren, and i'm from madrid
+l_BasicBotLuisApplication	4.055555	hello bot
+l_HotelBot	5.214286	i want to book a room tomorrow
+l_HotelBot	5.214286	i want to do something else
+l_HotelBot	5.214286	i need help
+l_HotelBot	5.214286	nice to meet you
+l_HotelBot	5.214286	cancel this
+l_HotelBot	5.214286	i want a room for tomorow
+l_HotelBot	5.214286	i want to get a room for next week
+l_HotelBot	5.214286	i want to book a room tomorrow
+l_HotelBot	5.214286	i want to do something else
+l_HotelBot	5.214286	i need help
+l_HotelBot	5.214286	nice to meet you
+l_HotelBot	5.214286	cancel this
+l_HotelBot	5.214286	i want a room for tomorow
+l_HotelBot	5.214286	i want to get a room for next week
+q_faq	6.083333	When is checkin
+q_faq	6.083333	We have two dogs, is that a problem
+q_faq	6.083333	What is the checkin time
+q_faq	6.083333	When is checkin
+q_faq	6.083333	We have two dogs, is that a problem
+q_faq	6.083333	What is the checkin time
+q_faq	6.083333	When is checkin
+q_faq	6.083333	We have two dogs, is that a problem
+q_faq	6.083333	What is the checkin time
+q_faq	6.083333	When is checkin
+q_faq	6.083333	We have two dogs, is that a problem
+q_faq	6.083333	What is the checkin time

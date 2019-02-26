@@ -1,0 +1,27 @@
+Label	Weight	Text
+l_HotelBot	1.928571	how late can i arrive tomorrow
+l_HotelBot	1.928571	cancel now
+l_HotelBot	1.928571	cancel this
+l_HotelBot	1.928571	can i get a room for tomorrow
+l_HotelBot	1.928571	cancel this booking
+l_HotelBot	1.928571	nothing meaningfull said
+l_HotelBot	1.928571	i want to book a room for two persons tonight
+l_HotelBot	1.928571	how late can i arrive tomorrow
+l_HotelBot	1.928571	cancel now
+l_HotelBot	1.928571	cancel this
+l_HotelBot	1.928571	can i get a room for tomorrow
+l_HotelBot	1.928571	cancel this booking
+l_HotelBot	1.928571	nothing meaningfull said
+l_HotelBot	1.928571	i want to book a room for two persons tonight
+q_faq	2.25	When is checking in possible
+q_faq	2.25	We have two dogs, is that a problem
+q_faq	2.25	When is checkin
+q_faq	2.25	When is checking in possible
+q_faq	2.25	We have two dogs, is that a problem
+q_faq	2.25	When is checkin
+q_faq	2.25	When is checking in possible
+q_faq	2.25	We have two dogs, is that a problem
+q_faq	2.25	When is checkin
+q_faq	2.25	When is checking in possible
+q_faq	2.25	We have two dogs, is that a problem
+q_faq	2.25	When is checkin

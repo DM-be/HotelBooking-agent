@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using HotelBot.Dialogs.Main;
 using HotelBot.Models.Facebook;
 using HotelBot.Services;
 using HotelBot.Shared.Intents.Help.Resources;
@@ -26,24 +27,14 @@ namespace HotelBot
     /// </summary>
     public class HotelHelperBot : IBot
     {
-        // Supported LUIS Intents --> case sensitive
-        public const string GreetingIntent = "greeting";
-        public const string CancelIntent = "cancel";
-        public const string HelpIntent = "help";
-        public const string NoneIntent = "None";
-        public const string BookARoomIntent = "book_a_room";
-
-        /// <summary>
-        ///     Key in the bot config (.bot file) for the LUIS instance.
-        ///     In the .bot file, multiple instances of LUIS can be configured.
-        /// </summary>
-        public static readonly string LuisConfiguration = "HotelBot";
-
+     
         // singleton that contains all property accessors
         private readonly StateBotAccessors _accessors;
 
-        // services that contain LUIS + QNA
+        // services that contain LUIS, dispatch and qna
         private readonly BotServices _services;
+
+        private DialogSet _dialogs;
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="BasicBot" /> class.
@@ -56,16 +47,12 @@ namespace HotelBot
             _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
 
 
-            // Verify LUIS configuration.
-            if (!_services.LuisServices.ContainsKey(LuisConfiguration))
-                throw new InvalidOperationException(
-                    $"The bot configuration does not contain a service type of `luis` with the id `{LuisConfiguration}`.");
-
             // set accessor for dialogstate
-            Dialogs = new DialogSet(_accessors.DialogStateAccessor);
+            _dialogs = new DialogSet(_accessors.DialogStateAccessor);
+            // add main dispatching dialog
+            _dialogs.Add(new MainDialog(_services, _accessors));
         }
 
-        private DialogSet Dialogs { get; }
 
         /// <summary>
         ///     Run every turn of the conversation. Handles orchestration of messages.
@@ -77,163 +64,16 @@ namespace HotelBot
         {
             if (turnContext.Activity == null) throw new ArgumentNullException("turnContext is null");
 
+            var dc = await _dialogs.CreateContextAsync(turnContext);
 
-            // get the userprofile or create a new object if null
-            var userProfile =
-                await _accessors.UserProfileAccessor.GetAsync(turnContext, () => new UserProfile());
-
-            // get conversationData or create a new object if null
-
-            var conversationData =
-                await _accessors.ConversationDataAccessor.GetAsync(turnContext, () => new ConversationData());
-
-            var activity = turnContext.Activity;
-
-            // Create a dialog context
-            var dc = await Dialogs.CreateContextAsync(turnContext);
-
-            if (activity.Type == ActivityTypes.Message)
+            if (dc.ActiveDialog != null)
             {
-
-               // ProcessFacebookPayload(turnContext.Activity.ChannelData, turnContext);
-                // Perform a call to LUIS to retrieve results for the current activity message.
-                var topIntent = "";
-                if (dc.Context.Activity.Text != null)
-                {
-                    
-                var luisResults = await _services.LuisServices[LuisConfiguration]
-                    .RecognizeAsync(dc.Context, cancellationToken);
-
-                var topScoringIntent = luisResults?.GetTopScoringIntent();
-                topIntent = topScoringIntent.Value.intent;
-                }
-
-                
-
-
-                // Handle conversation interrupts first.
-              //  var interrupted = await IsTurnInterruptedAsync(dc, topIntent, turnContext);
-           //     if (interrupted)
-
-              //  {
-                    // Bypass the dialog.
-                    // state is always saved between turns because of the autosaving middleware
-              //      return;
-              //  }
-
-                // Continue the current dialog
-                var dialogResult = await dc.ContinueDialogAsync();
-
-                // if no one has responded,
-                if (!dc.Context.Responded)
-                    switch (dialogResult.Status)
-                    {
-                        case DialogTurnStatus.Empty:
-                            switch (topIntent)
-                            {
-                                case GreetingIntent:
-                                    // await dc.BeginDialogAsync(nameof(GreetingDialog));
-                                    //var usp = await _accessors.UserProfileAccessor.GetAsync(turnContext);
-
-                                    //await dc.Context.SendActivityAsync(usp.First_Name);
-
-                                    break;
-                                case BookARoomIntent:
-                                
-                                    await dc.Context.SendActivityAsync("Book a room intent");
-                                    break;
-
-                                case NoneIntent:
-                                default:
-                                    // Help or no intent identified, either way, let's provide some help.
-                                    // to the user
-                               //     await dc.Context.SendActivityAsync("I didn't understand what you just said to me.");
-                                    break;
-                                
-                            }
-
-                            break;
-
-                        case DialogTurnStatus.Waiting:
-                            // The active dialog is waiting for a response from the user, so do nothing.
-                            break;
-
-                        case DialogTurnStatus.Complete:
-                            await dc.EndDialogAsync();
-                            break;
-
-                        default:
-                            await dc.CancelAllDialogsAsync();
-                            break;
-                    }
+                await dc.ContinueDialogAsync();
             }
-            else if (activity.Type == ActivityTypes.ConversationUpdate)
+            else
             {
-                if (activity.MembersAdded != null)
-                    foreach (var member in activity.MembersAdded)
-                    // Greet anyone that was not the target (recipient) of this message.
-                    // To learn more about Adaptive Cards, see https://aka.ms/msbot-adaptivecards for more details.
-                        if (member.Id != activity.Recipient.Id)
-                        {
-                            var reply = turnContext.Activity.CreateReply();
-                            reply.Text = "Welcome to testbot";
-                            await dc.Context.SendActivityAsync(reply);
-                        }
+                await dc.BeginDialogAsync(nameof(MainDialog));
             }
-
-            await _accessors.UserProfileAccessor.SetAsync(turnContext, userProfile);
-            await _accessors.ConversationDataAccessor.SetAsync(turnContext, conversationData);
-        }
-
-        // Determine if an interruption has occurred before we dispatch to any active dialog.
-        private async Task<bool> IsTurnInterruptedAsync(DialogContext dc, string topIntent, ITurnContext turnContext)
-        {
-            // See if there are any conversation interrupts we need to handle.
-            if (topIntent.Equals(CancelIntent))
-            {
-                if (dc.ActiveDialog != null)
-                {
-                    await dc.CancelAllDialogsAsync();
-                    await dc.Context.SendActivityAsync("Ok. I've canceled our last activity.");
-                }
-                else
-                {
-                    await dc.Context.SendActivityAsync("I don't have anything to cancel.");
-                }
-
-                return true; // Handled the interrupt.
-            }
-
-            if (topIntent.Equals(HelpIntent))
-            {
-                var userProfile = await _accessors.UserProfileAccessor.GetAsync(turnContext);
-                var introString = $"{HelpStrings.INTRO} {userProfile.First_Name}.";
-                await dc.Context.SendActivityAsync(introString);
-                await dc.Context.SendActivityAsync(HelpStrings.EXPLANATION);
-                if (dc.ActiveDialog != null) await dc.RepromptDialogAsync();
-                return true; // Handled the interrupt.
-            }
-
-            return false; // Did not handle the interrupt.
-        }
-
-        // Create an attachment message response.
-        private Activity CreateResponse(Activity activity, Attachment attachment)
-        {
-            var response = activity.CreateReply();
-            response.Attachments = new List<Attachment> {attachment};
-            return response;
-        }
-
-        // Load attachment from file.
-        private Attachment CreateAdaptiveCardAttachment()
-        {
-            var adaptiveCard = File.ReadAllText(@".\Dialogs\Welcome\Resources\welcomeCard.json");
-            return new Attachment
-            {
-                ContentType = "application/vnd.microsoft.card.adaptive",
-                Content = JsonConvert.DeserializeObject(adaptiveCard)
-            };
         }
     }
 }

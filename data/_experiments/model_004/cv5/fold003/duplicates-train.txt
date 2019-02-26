@@ -1,0 +1,8 @@
+Utterance	Intents
+help me	l_BasicBotLuisApplication, l_HotelBot
+hi	l_BasicBotLuisApplication, l_HotelBot
+cancel	l_BasicBotLuisApplication, l_HotelBot
+what can you do	l_BasicBotLuisApplication, l_HotelBot
+are dogs allowed	l_HotelBot, q_faq
+help	l_BasicBotLuisApplication, l_HotelBot
+hello	l_BasicBotLuisApplication, l_HotelBot

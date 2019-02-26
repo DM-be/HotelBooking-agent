@@ -1,0 +1,45 @@
+Label	Weight	Text
+l_BasicBotLuisApplication	4.055555	i'd rather be riding my bike
+l_BasicBotLuisApplication	4.055555	who am i speaking with
+l_BasicBotLuisApplication	4.055555	can you fly
+l_BasicBotLuisApplication	4.055555	portland
+l_BasicBotLuisApplication	4.055555	my name is maria and i'm from sydney
+l_BasicBotLuisApplication	4.055555	good evening
+l_BasicBotLuisApplication	4.055555	melanie
+l_BasicBotLuisApplication	4.055555	confused
+l_BasicBotLuisApplication	4.055555	lost
+l_BasicBotLuisApplication	4.055555	are you old
+l_BasicBotLuisApplication	4.055555	what can you help me with
+l_BasicBotLuisApplication	4.055555	stop
+l_BasicBotLuisApplication	4.055555	are you busy
+l_BasicBotLuisApplication	4.055555	quit
+l_BasicBotLuisApplication	4.055555	you can assume i live in cairo
+l_BasicBotLuisApplication	4.055555	what's your age
+l_BasicBotLuisApplication	4.055555	her cat has no teeth
+l_BasicBotLuisApplication	4.055555	i'm stuck
+l_HotelBot	5.214286	hello
+l_HotelBot	5.214286	how late can i arrive tomorrow
+l_HotelBot	5.214286	what can i ask you
+l_HotelBot	5.214286	cancel
+l_HotelBot	5.214286	nothing meaningfull said
+l_HotelBot	5.214286	are dogs allowed
+l_HotelBot	5.214286	i want to book a room for two persons tonight
+l_HotelBot	5.214286	hello
+l_HotelBot	5.214286	how late can i arrive tomorrow
+l_HotelBot	5.214286	what can i ask you
+l_HotelBot	5.214286	cancel
+l_HotelBot	5.214286	nothing meaningfull said
+l_HotelBot	5.214286	are dogs allowed
+l_HotelBot	5.214286	i want to book a room for two persons tonight
+q_faq	6.083333	Can we take our dogs
+q_faq	6.083333	Is a dog allowed in the room
+q_faq	6.083333	Are dogs allowed
+q_faq	6.083333	Can we take our dogs
+q_faq	6.083333	Is a dog allowed in the room
+q_faq	6.083333	Are dogs allowed
+q_faq	6.083333	Can we take our dogs
+q_faq	6.083333	Is a dog allowed in the room
+q_faq	6.083333	Are dogs allowed
+q_faq	6.083333	Can we take our dogs
+q_faq	6.083333	Is a dog allowed in the room
+q_faq	6.083333	Are dogs allowed

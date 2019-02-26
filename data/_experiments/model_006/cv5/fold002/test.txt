@@ -1,0 +1,27 @@
+Label	Weight	Text
+l_HotelBot	1.928571	what can i ask you
+l_HotelBot	1.928571	what can you do
+l_HotelBot	1.928571	i want to book a room for myself and my partner next week.
+l_HotelBot	1.928571	how late can i arrive tomorrow
+l_HotelBot	1.928571	stop
+l_HotelBot	1.928571	i want to book a room tomorrow
+l_HotelBot	1.928571	cancel
+l_HotelBot	1.928571	what can i ask you
+l_HotelBot	1.928571	what can you do
+l_HotelBot	1.928571	i want to book a room for myself and my partner next week.
+l_HotelBot	1.928571	how late can i arrive tomorrow
+l_HotelBot	1.928571	stop
+l_HotelBot	1.928571	i want to book a room tomorrow
+l_HotelBot	1.928571	cancel
+q_faq	2.25	When can we check in
+q_faq	2.25	At what time can we checkin
+q_faq	2.25	When is check in time
+q_faq	2.25	When can we check in
+q_faq	2.25	At what time can we checkin
+q_faq	2.25	When is check in time
+q_faq	2.25	When can we check in
+q_faq	2.25	At what time can we checkin
+q_faq	2.25	When is check in time
+q_faq	2.25	When can we check in
+q_faq	2.25	At what time can we checkin
+q_faq	2.25	When is check in time

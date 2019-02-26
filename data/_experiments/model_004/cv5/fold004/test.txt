@@ -1,0 +1,45 @@
+Label	Weight	Text
+l_BasicBotLuisApplication	4.055555	who are you
+l_BasicBotLuisApplication	4.055555	hey there
+l_BasicBotLuisApplication	4.055555	you can call me steve
+l_BasicBotLuisApplication	4.055555	hi
+l_BasicBotLuisApplication	4.055555	do you play games
+l_BasicBotLuisApplication	4.055555	getting tired of you
+l_BasicBotLuisApplication	4.055555	don't do that
+l_BasicBotLuisApplication	4.055555	you can assume i live in cairo
+l_BasicBotLuisApplication	4.055555	portland
+l_BasicBotLuisApplication	4.055555	i'm lost
+l_BasicBotLuisApplication	4.055555	i reside in san francisco
+l_BasicBotLuisApplication	4.055555	are you busy
+l_BasicBotLuisApplication	4.055555	help me
+l_BasicBotLuisApplication	4.055555	what's your name
+l_BasicBotLuisApplication	4.055555	i would like to cancel
+l_BasicBotLuisApplication	4.055555	paris
+l_BasicBotLuisApplication	4.055555	i am tired of you
+l_BasicBotLuisApplication	4.055555	cook me something
+l_HotelBot	5.214286	nothing meaningfull said
+l_HotelBot	5.214286	are dogs allowed
+l_HotelBot	5.214286	what can you do
+l_HotelBot	5.214286	hi
+l_HotelBot	5.214286	i want to get a room for myself and my partner for tomorrow
+l_HotelBot	5.214286	stop doing this
+l_HotelBot	5.214286	cancel this
+l_HotelBot	5.214286	nothing meaningfull said
+l_HotelBot	5.214286	are dogs allowed
+l_HotelBot	5.214286	what can you do
+l_HotelBot	5.214286	hi
+l_HotelBot	5.214286	i want to get a room for myself and my partner for tomorrow
+l_HotelBot	5.214286	stop doing this
+l_HotelBot	5.214286	cancel this
+q_faq	6.083333	Can I take my dog
+q_faq	6.083333	When can we check in
+q_faq	6.083333	When is check in time
+q_faq	6.083333	Can I take my dog
+q_faq	6.083333	When can we check in
+q_faq	6.083333	When is check in time
+q_faq	6.083333	Can I take my dog
+q_faq	6.083333	When can we check in
+q_faq	6.083333	When is check in time
+q_faq	6.083333	Can I take my dog
+q_faq	6.083333	When can we check in
+q_faq	6.083333	When is check in time

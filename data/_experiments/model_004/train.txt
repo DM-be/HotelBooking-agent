@@ -1,0 +1,140 @@
+Label	Weight	Text
+l_BasicBotLuisApplication	1	shangai
+l_BasicBotLuisApplication	1	how do i interact with you
+l_BasicBotLuisApplication	1	hey
+l_BasicBotLuisApplication	1	no way, i won't give you my location
+l_BasicBotLuisApplication	1	you are boring
+l_BasicBotLuisApplication	1	my name is maria and i'm from sydney
+l_BasicBotLuisApplication	1	delhi
+l_BasicBotLuisApplication	1	can you help me
+l_BasicBotLuisApplication	1	good evening
+l_BasicBotLuisApplication	1	lost
+l_BasicBotLuisApplication	1	hello bot
+l_BasicBotLuisApplication	1	frustrated
+l_BasicBotLuisApplication	1	i'm bailing
+l_BasicBotLuisApplication	1	hiya
+l_BasicBotLuisApplication	1	i'm lauren, and i'm from madrid
+l_BasicBotLuisApplication	1	dan
+l_BasicBotLuisApplication	1	quit
+l_BasicBotLuisApplication	1	help please
+l_BasicBotLuisApplication	1	abort
+l_BasicBotLuisApplication	1	cancel
+l_BasicBotLuisApplication	1	i live in london
+l_BasicBotLuisApplication	1	i'm stuck
+l_BasicBotLuisApplication	1	what can i say
+l_BasicBotLuisApplication	1	help
+l_BasicBotLuisApplication	1	i'm lili
+l_BasicBotLuisApplication	1	i will not give you my name
+l_BasicBotLuisApplication	1	why doesn't this work
+l_BasicBotLuisApplication	1	hello
+l_BasicBotLuisApplication	1	good morning
+l_BasicBotLuisApplication	1	hi bot
+l_BasicBotLuisApplication	1	spaghetti
+l_BasicBotLuisApplication	1	i will not give you my location or name
+l_BasicBotLuisApplication	1	my name is tom
+l_BasicBotLuisApplication	1	who is your boss
+l_BasicBotLuisApplication	1	who am i speaking with
+l_BasicBotLuisApplication	1	i won't give you my name
+l_BasicBotLuisApplication	1	who am i speaking to
+l_BasicBotLuisApplication	1	what are your capabilities
+l_BasicBotLuisApplication	1	toronto
+l_BasicBotLuisApplication	1	i'm not going to tell you where i live
+l_BasicBotLuisApplication	1	please stop
+l_BasicBotLuisApplication	1	mumbai
+l_BasicBotLuisApplication	1	how are you today
+l_BasicBotLuisApplication	1	how old are you
+l_BasicBotLuisApplication	1	what can you do
+l_BasicBotLuisApplication	1	melanie
+l_BasicBotLuisApplication	1	i'd rather be riding my bike
+l_BasicBotLuisApplication	1	dhaka
+l_BasicBotLuisApplication	1	world wide pants
+l_BasicBotLuisApplication	1	my location is new york
+l_BasicBotLuisApplication	1	have you any dreams
+l_BasicBotLuisApplication	1	dont you ever sleep
+l_BasicBotLuisApplication	1	seattle is my current city
+l_BasicBotLuisApplication	1	are you old
+l_BasicBotLuisApplication	1	what's your age
+l_BasicBotLuisApplication	1	can you fly
+l_BasicBotLuisApplication	1	no way
+l_BasicBotLuisApplication	1	her cat has no teeth
+l_BasicBotLuisApplication	1	stop
+l_BasicBotLuisApplication	1	i'm john from cairo
+l_BasicBotLuisApplication	1	how are you
+l_BasicBotLuisApplication	1	yo
+l_BasicBotLuisApplication	1	don't do it
+l_BasicBotLuisApplication	1	i'm from georgia
+l_BasicBotLuisApplication	1	i don't understand
+l_BasicBotLuisApplication	1	vishwac is my name
+l_BasicBotLuisApplication	1	tony is my name
+l_BasicBotLuisApplication	1	what do i do now
+l_BasicBotLuisApplication	1	please cancel
+l_BasicBotLuisApplication	1	confused
+l_BasicBotLuisApplication	1	what can you help me with
+l_BasicBotLuisApplication	1	call me scott
+l_BasicBotLuisApplication	1	who are you
+l_BasicBotLuisApplication	1	hey there
+l_BasicBotLuisApplication	1	you can call me steve
+l_BasicBotLuisApplication	1	hi
+l_BasicBotLuisApplication	1	do you play games
+l_BasicBotLuisApplication	1	getting tired of you
+l_BasicBotLuisApplication	1	don't do that
+l_BasicBotLuisApplication	1	you can assume i live in cairo
+l_BasicBotLuisApplication	1	portland
+l_BasicBotLuisApplication	1	i'm lost
+l_BasicBotLuisApplication	1	i reside in san francisco
+l_BasicBotLuisApplication	1	are you busy
+l_BasicBotLuisApplication	1	help me
+l_BasicBotLuisApplication	1	what's your name
+l_BasicBotLuisApplication	1	i would like to cancel
+l_BasicBotLuisApplication	1	paris
+l_BasicBotLuisApplication	1	i am tired of you
+l_BasicBotLuisApplication	1	cook me something
+l_BasicBotLuisApplication	1	gnocchi
+l_HotelBot	2.6	can i book another room for myself next week
+l_HotelBot	2.6	i want to book a room for two persons tonight
+l_HotelBot	2.6	stop
+l_HotelBot	2.6	hello
+l_HotelBot	2.6	cancel
+l_HotelBot	2.6	nice to meet you
+l_HotelBot	2.6	cancel now
+l_HotelBot	2.6	can i book for tonight
+l_HotelBot	2.6	i want to get a room for next week
+l_HotelBot	2.6	this is nothing special
+l_HotelBot	2.6	help me
+l_HotelBot	2.6	i want to book a room in january for myself and my partner
+l_HotelBot	2.6	i want to book a room for next week
+l_HotelBot	2.6	i want to book a room for myself and my partner next week.
+l_HotelBot	2.6	i want a room for tomorow
+l_HotelBot	2.6	could i get a room for next week
+l_HotelBot	2.6	help
+l_HotelBot	2.6	can you book me a room
+l_HotelBot	2.6	how late can i arrive tomorrow
+l_HotelBot	2.6	i want to do something else
+l_HotelBot	2.6	a random sentence
+l_HotelBot	2.6	cancel this booking
+l_HotelBot	2.6	can i get a room for tomorrow
+l_HotelBot	2.6	i need help
+l_HotelBot	2.6	i want to book a room tomorrow
+l_HotelBot	2.6	i want to book a room for three tomorrow
+l_HotelBot	2.6	what can i ask you
+l_HotelBot	2.6	i want to cancel
+l_HotelBot	2.6	nothing meaningfull said
+l_HotelBot	2.6	are dogs allowed
+l_HotelBot	2.6	what can you do
+l_HotelBot	2.6	hi
+l_HotelBot	2.6	i want to get a room for myself and my partner for tomorrow
+l_HotelBot	2.6	stop doing this
+l_HotelBot	2.6	cancel this
+q_faq	7	Is my dog allowed
+q_faq	7	When is checkin
+q_faq	7	We have two dogs, is that a problem
+q_faq	7	Can we take our dogs
+q_faq	7	At what time can we check in
+q_faq	7	Are dogs allowed
+q_faq	7	When is checking in possible
+q_faq	7	What is the checkin time
+q_faq	7	At what time can we checkin
+q_faq	7	Is a dog allowed in the room
+q_faq	7	Can I take my dog
+q_faq	7	When can we check in
+q_faq	7	When is check in time

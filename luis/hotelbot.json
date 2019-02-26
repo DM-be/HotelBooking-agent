@@ -1,0 +1,223 @@
+{
+  "luis_schema_version": "3.2.0",
+  "versionId": "0.1",
+  "name": "hotelbot",
+  "desc": "",
+  "culture": "en-us",
+  "tokenizerVersion": "1.0.0",
+  "intents": [
+    {
+      "name": "book_a_room"
+    },
+    {
+      "name": "cancel"
+    },
+    {
+      "name": "greeting"
+    },
+    {
+      "name": "help"
+    },
+    {
+      "name": "none"
+    },
+    {
+      "name": "None"
+    },
+    {
+      "name": "question"
+    }
+  ],
+  "entities": [],
+  "composites": [],
+  "closedLists": [],
+  "patternAnyEntities": [],
+  "regex_entities": [],
+  "prebuiltEntities": [
+    {
+      "name": "datetimeV2",
+      "roles": []
+    }
+  ],
+  "model_features": [],
+  "regex_features": [],
+  "patterns": [],
+  "utterances": [
+    {
+      "text": "a random sentence",
+      "intent": "none",
+      "entities": []
+    },
+    {
+      "text": "are dogs allowed?",
+      "intent": "question",
+      "entities": []
+    },
+    {
+      "text": "can i book another room for myself next week?",
+      "intent": "book_a_room",
+      "entities": []
+    },
+    {
+      "text": "can i book for tonight?",
+      "intent": "book_a_room",
+      "entities": []
+    },
+    {
+      "text": "can i get a room for tomorrow?",
+      "intent": "book_a_room",
+      "entities": []
+    },
+    {
+      "text": "can you book me a room?",
+      "intent": "book_a_room",
+      "entities": []
+    },
+    {
+      "text": "cancel",
+      "intent": "cancel",
+      "entities": []
+    },
+    {
+      "text": "cancel now",
+      "intent": "cancel",
+      "entities": []
+    },
+    {
+      "text": "cancel this",
+      "intent": "cancel",
+      "entities": []
+    },
+    {
+      "text": "cancel this booking",
+      "intent": "cancel",
+      "entities": []
+    },
+    {
+      "text": "could i get a room for next week?",
+      "intent": "book_a_room",
+      "entities": []
+    },
+    {
+      "text": "hello",
+      "intent": "greeting",
+      "entities": []
+    },
+    {
+      "text": "help",
+      "intent": "help",
+      "entities": []
+    },
+    {
+      "text": "help me",
+      "intent": "help",
+      "entities": []
+    },
+    {
+      "text": "hi",
+      "intent": "greeting",
+      "entities": []
+    },
+    {
+      "text": "how late can i arrive tomorrow?",
+      "intent": "book_a_room",
+      "entities": []
+    },
+    {
+      "text": "i need help",
+      "intent": "help",
+      "entities": []
+    },
+    {
+      "text": "i want a room for tomorow",
+      "intent": "book_a_room",
+      "entities": []
+    },
+    {
+      "text": "i want to book a room for myself and my partner next week.",
+      "intent": "book_a_room",
+      "entities": []
+    },
+    {
+      "text": "i want to book a room for next week",
+      "intent": "book_a_room",
+      "entities": []
+    },
+    {
+      "text": "i want to book a room for three tomorrow",
+      "intent": "book_a_room",
+      "entities": []
+    },
+    {
+      "text": "i want to book a room for two persons tonight",
+      "intent": "book_a_room",
+      "entities": []
+    },
+    {
+      "text": "i want to book a room in january for myself and my partner",
+      "intent": "book_a_room",
+      "entities": []
+    },
+    {
+      "text": "i want to book a room tomorrow",
+      "intent": "book_a_room",
+      "entities": []
+    },
+    {
+      "text": "i want to cancel",
+      "intent": "cancel",
+      "entities": []
+    },
+    {
+      "text": "i want to do something else",
+      "intent": "cancel",
+      "entities": []
+    },
+    {
+      "text": "i want to get a room for myself and my partner for tomorrow",
+      "intent": "book_a_room",
+      "entities": []
+    },
+    {
+      "text": "i want to get a room for next week",
+      "intent": "book_a_room",
+      "entities": []
+    },
+    {
+      "text": "nice to meet you",
+      "intent": "greeting",
+      "entities": []
+    },
+    {
+      "text": "nothing meaningfull said",
+      "intent": "none",
+      "entities": []
+    },
+    {
+      "text": "stop",
+      "intent": "cancel",
+      "entities": []
+    },
+    {
+      "text": "stop doing this",
+      "intent": "cancel",
+      "entities": []
+    },
+    {
+      "text": "this is nothing special",
+      "intent": "none",
+      "entities": []
+    },
+    {
+      "text": "what can i ask you",
+      "intent": "help",
+      "entities": []
+    },
+    {
+      "text": "what can you do",
+      "intent": "help",
+      "entities": []
+    }
+  ],
+  "settings": []
+}

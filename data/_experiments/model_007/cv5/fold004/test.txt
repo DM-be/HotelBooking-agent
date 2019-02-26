@@ -1,0 +1,29 @@
+Label	Weight	Text
+l_HotelBot	1.944444	i want to cancel
+l_HotelBot	1.944444	i want to book a room for myself and my partner next week.
+l_HotelBot	1.944444	a random sentence
+l_HotelBot	1.944444	can i book another room for myself next week
+l_HotelBot	1.944444	help
+l_HotelBot	1.944444	could i get a room for next week
+l_HotelBot	1.944444	can i book for tonight
+l_HotelBot	1.944444	what's your address
+l_HotelBot	1.944444	where is the hotel
+l_HotelBot	1.944444	i want to cancel
+l_HotelBot	1.944444	i want to book a room for myself and my partner next week.
+l_HotelBot	1.944444	a random sentence
+l_HotelBot	1.944444	can i book another room for myself next week
+l_HotelBot	1.944444	help
+l_HotelBot	1.944444	could i get a room for next week
+l_HotelBot	1.944444	can i book for tonight
+l_HotelBot	1.944444	what's your address
+l_HotelBot	1.944444	where is the hotel
+q_HotelBotTest_qna	3.5	Can I take my dog
+q_HotelBotTest_qna	3.5	Do you allow dogs
+q_HotelBotTest_qna	3.5	Can I take my dog
+q_HotelBotTest_qna	3.5	Do you allow dogs
+q_HotelBotTest_qna	3.5	Can I take my dog
+q_HotelBotTest_qna	3.5	Do you allow dogs
+q_HotelBotTest_qna	3.5	Can I take my dog
+q_HotelBotTest_qna	3.5	Do you allow dogs
+q_HotelBotTest_qna	3.5	Can I take my dog
+q_HotelBotTest_qna	3.5	Do you allow dogs

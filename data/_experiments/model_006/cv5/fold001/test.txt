@@ -1,0 +1,27 @@
+Label	Weight	Text
+l_HotelBot	1.928571	hello
+l_HotelBot	1.928571	i want a room for tomorow
+l_HotelBot	1.928571	stop doing this
+l_HotelBot	1.928571	i want to cancel
+l_HotelBot	1.928571	help me
+l_HotelBot	1.928571	can i book for tonight
+l_HotelBot	1.928571	could i get a room for next week
+l_HotelBot	1.928571	hello
+l_HotelBot	1.928571	i want a room for tomorow
+l_HotelBot	1.928571	stop doing this
+l_HotelBot	1.928571	i want to cancel
+l_HotelBot	1.928571	help me
+l_HotelBot	1.928571	can i book for tonight
+l_HotelBot	1.928571	could i get a room for next week
+q_faq	2.25	Is my dog allowed
+q_faq	2.25	At what time can we check in
+q_faq	2.25	Are dogs allowed
+q_faq	2.25	Is my dog allowed
+q_faq	2.25	At what time can we check in
+q_faq	2.25	Are dogs allowed
+q_faq	2.25	Is my dog allowed
+q_faq	2.25	At what time can we check in
+q_faq	2.25	Are dogs allowed
+q_faq	2.25	Is my dog allowed
+q_faq	2.25	At what time can we check in
+q_faq	2.25	Are dogs allowed

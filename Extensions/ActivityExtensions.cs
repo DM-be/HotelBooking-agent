@@ -1,12 +1,16 @@
 ﻿
 using System.Linq;
+using HotelBot.Models.Facebook;
 using Microsoft.Bot.Connector;
 using Microsoft.Bot.Schema;
+using Newtonsoft.Json.Linq;
 
 namespace HotelBot.Extensions
 {
     public static class ActivityExtensions
     {
+
+        // TODO: remove isstartactivity when obselete
         public static bool IsStartActivity(this Activity activity)
         {
             switch (activity.ChannelId)
@@ -43,6 +47,22 @@ namespace HotelBot.Extensions
                     return false;
                 }
             }
+        }
+
+        public static bool IsGetStartedPostBack(this Activity activity)
+        {
+            var channelData = activity.ChannelData;
+            var facebookPayload = (channelData as JObject)?.ToObject<FacebookPayload>();
+            if (facebookPayload.PostBack != null)
+            {
+                if (facebookPayload.PostBack.Payload.Equals(FacebookPostback.GetStartedPostback))
+                {
+                    return true;
+                }
+            }
+            return false;
+
+
         }
     }
 }

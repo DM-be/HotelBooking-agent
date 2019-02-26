@@ -1,0 +1,27 @@
+Label	Weight	Text
+l_HotelBot	1.928571	i need help
+l_HotelBot	1.928571	i want to book a room for two persons tonight
+l_HotelBot	1.928571	cancel now
+l_HotelBot	1.928571	i want to get a room for myself and my partner for tomorrow
+l_HotelBot	1.928571	nothing meaningfull said
+l_HotelBot	1.928571	hi
+l_HotelBot	1.928571	i want to book a room for next week
+l_HotelBot	1.928571	i need help
+l_HotelBot	1.928571	i want to book a room for two persons tonight
+l_HotelBot	1.928571	cancel now
+l_HotelBot	1.928571	i want to get a room for myself and my partner for tomorrow
+l_HotelBot	1.928571	nothing meaningfull said
+l_HotelBot	1.928571	hi
+l_HotelBot	1.928571	i want to book a room for next week
+q_faq	2.25	Is a dog allowed in the room
+q_faq	2.25	Can I take my dog
+q_faq	2.25	What is the checkin time
+q_faq	2.25	Is a dog allowed in the room
+q_faq	2.25	Can I take my dog
+q_faq	2.25	What is the checkin time
+q_faq	2.25	Is a dog allowed in the room
+q_faq	2.25	Can I take my dog
+q_faq	2.25	What is the checkin time
+q_faq	2.25	Is a dog allowed in the room
+q_faq	2.25	Can I take my dog
+q_faq	2.25	What is the checkin time

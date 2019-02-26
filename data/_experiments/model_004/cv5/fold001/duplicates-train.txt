@@ -1,0 +1,4 @@
+Utterance	Intents
+hi	l_BasicBotLuisApplication, l_HotelBot
+stop	l_BasicBotLuisApplication, l_HotelBot
+what can you do	l_BasicBotLuisApplication, l_HotelBot

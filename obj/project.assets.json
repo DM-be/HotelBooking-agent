@@ -1633,6 +1633,20 @@
           "lib/netstandard2.0/Microsoft.Bot.Builder.Integration.AspNet.Core.dll": {}
         }
       },
+      "Microsoft.Bot.Builder.TemplateManager/4.2.2": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Bot.Builder": "4.2.2",
+          "Microsoft.CSharp": "4.5.0",
+          "SourceLink.Create.CommandLine": "2.8.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Bot.Builder.TemplateManager.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Bot.Builder.TemplateManager.dll": {}
+        }
+      },
       "Microsoft.Bot.Configuration/4.2.2": {
         "type": "package",
         "dependencies": {
@@ -1756,7 +1770,7 @@
           "lib/netstandard2.0/Microsoft.CodeAnalysis.Razor.dll": {}
         }
       },
-      "Microsoft.CSharp/4.4.0": {
+      "Microsoft.CSharp/4.5.0": {
         "type": "package",
         "compile": {
           "ref/netcoreapp2.0/_._": {}
@@ -6503,6 +6517,20 @@
         "microsoft.bot.builder.integration.aspnet.core.nuspec"
       ]
     },
+    "Microsoft.Bot.Builder.TemplateManager/4.2.2": {
+      "sha512": "CmLtrutGkXTw0VKyDjw3o6boH4UA0bRDTEcTes0WVK29c77M5pjg7ChfeVRbLnWURyBUPvv6PckVFRuBZ17nDg==",
+      "type": "package",
+      "path": "microsoft.bot.builder.templatemanager/4.2.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.Bot.Builder.TemplateManager.dll",
+        "lib/netstandard2.0/Microsoft.Bot.Builder.TemplateManager.pdb",
+        "lib/netstandard2.0/Microsoft.Bot.Builder.TemplateManager.xml",
+        "microsoft.bot.builder.templatemanager.4.2.2.nupkg.sha512",
+        "microsoft.bot.builder.templatemanager.nuspec"
+      ]
+    },
     "Microsoft.Bot.Configuration/4.2.2": {
       "sha512": "nXkdDAWXnXL0VaQs6JCMXD8LSosZm/7UVutNbuX62xSXgjvbRIH6kConnqYIy4vGT0VWPGEEfNAJ1S9N0CDYeA==",
       "type": "package",
@@ -6604,10 +6632,10 @@
         "microsoft.codeanalysis.razor.nuspec"
       ]
     },
-    "Microsoft.CSharp/4.4.0": {
-      "sha512": "vvVR/B08YVghQ4jHEloxqw2ZWzEGE1AOA5E0DioUM3ujbXz6FD3AfB/0Jl2ohJPd0nXYGwmPe1En6HTsSriq1A==",
+    "Microsoft.CSharp/4.5.0": {
+      "sha512": "EGoBmf3Na2ppbhPePDE9PlX81r1HuOZH5twBrq7couJZiPTjUnD3648balerQJO6EJ8Sj+43+XuRwQ7r+3tE3w==",
       "type": "package",
-      "path": "microsoft.csharp/4.4.0",
+      "path": "microsoft.csharp/4.5.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -6621,6 +6649,7 @@
         "lib/netstandard1.3/Microsoft.CSharp.dll",
         "lib/netstandard2.0/Microsoft.CSharp.dll",
         "lib/portable-net45+win8+wp8+wpa81/_._",
+        "lib/uap10.0.16299/_._",
         "lib/win8/_._",
         "lib/wp80/_._",
         "lib/wpa81/_._",
@@ -6628,7 +6657,7 @@
         "lib/xamarinmac20/_._",
         "lib/xamarintvos10/_._",
         "lib/xamarinwatchos10/_._",
-        "microsoft.csharp.4.4.0.nupkg.sha512",
+        "microsoft.csharp.4.5.0.nupkg.sha512",
         "microsoft.csharp.nuspec",
         "ref/MonoAndroid10/_._",
         "ref/MonoTouch10/_._",
@@ -6659,6 +6688,7 @@
         "ref/netstandard2.0/Microsoft.CSharp.dll",
         "ref/netstandard2.0/Microsoft.CSharp.xml",
         "ref/portable-net45+win8+wp8+wpa81/_._",
+        "ref/uap10.0.16299/_._",
         "ref/win8/_._",
         "ref/wp80/_._",
         "ref/wpa81/_._",
@@ -12281,6 +12311,7 @@
       "Microsoft.Bot.Builder.Azure >= 4.2.2",
       "Microsoft.Bot.Builder.Dialogs >= 4.2.2",
       "Microsoft.Bot.Builder.Integration.AspNet.Core >= 4.2.2",
+      "Microsoft.Bot.Builder.TemplateManager >= 4.2.2",
       "Microsoft.Bot.Configuration >= 4.2.2",
       "Microsoft.Bot.Connector >= 4.2.2",
       "Microsoft.Bot.Schema >= 4.2.2",
@@ -12367,6 +12398,10 @@
             "version": "[4.2.2, )"
           },
           "Microsoft.Bot.Builder.Integration.AspNet.Core": {
+            "target": "Package",
+            "version": "[4.2.2, )"
+          },
+          "Microsoft.Bot.Builder.TemplateManager": {
             "target": "Package",
             "version": "[4.2.2, )"
           },

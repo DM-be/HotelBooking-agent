@@ -1,0 +1,753 @@
+{
+  "luis_schema_version": "3.1.0",
+  "versionId": "Dispatch",
+  "name": "HotelTestv2Dispatch",
+  "desc": "Dispatch model for HotelTestv2Dispatch",
+  "culture": "en-us",
+  "intents": [
+    {
+      "name": "l_BasicBotLuisApplication"
+    },
+    {
+      "name": "l_HotelBot"
+    },
+    {
+      "name": "q_faq"
+    }
+  ],
+  "entities": [],
+  "composites": [],
+  "closedLists": [],
+  "patternAnyEntities": [
+    {
+      "name": "userLocation_patternAny",
+      "explicitList": [],
+      "roles": []
+    },
+    {
+      "name": "userName_patternAny",
+      "explicitList": [],
+      "roles": []
+    }
+  ],
+  "regex_entities": [],
+  "prebuiltEntities": [],
+  "model_features": [],
+  "regex_features": [],
+  "patterns": [
+    {
+      "pattern": "my name is {userName_patternAny}",
+      "intent": "l_BasicBotLuisApplication"
+    },
+    {
+      "pattern": "you can call me {userName_patternAny}",
+      "intent": "l_BasicBotLuisApplication"
+    },
+    {
+      "pattern": "i live in {userLocation_patternAny}",
+      "intent": "l_BasicBotLuisApplication"
+    },
+    {
+      "pattern": "{userName_patternAny} is my name",
+      "intent": "l_BasicBotLuisApplication"
+    },
+    {
+      "pattern": "i'm {userName_patternAny}",
+      "intent": "l_BasicBotLuisApplication"
+    },
+    {
+      "pattern": "i'm {userName_patternAny}[,] [and i'm] from {userLocation_patternAny}",
+      "intent": "l_BasicBotLuisApplication"
+    },
+    {
+      "pattern": "call me {userName_patternAny}",
+      "intent": "l_BasicBotLuisApplication"
+    },
+    {
+      "pattern": "i'm from {userLocation_patternAny}",
+      "intent": "l_BasicBotLuisApplication"
+    },
+    {
+      "pattern": "i reside in {userLocation_patternAny}",
+      "intent": "l_BasicBotLuisApplication"
+    },
+    {
+      "pattern": "my name is {userName_patternAny} and i'm from {userLocation_patternAny}",
+      "intent": "l_BasicBotLuisApplication"
+    },
+    {
+      "pattern": "{userLocation_patternAny} is where i live",
+      "intent": "l_BasicBotLuisApplication"
+    },
+    {
+      "pattern": "some people call me {userName_patternAny}",
+      "intent": "l_BasicBotLuisApplication"
+    },
+    {
+      "pattern": "{userName_patternAny}.",
+      "intent": "l_BasicBotLuisApplication"
+    },
+    {
+      "pattern": "you can assume i live in {userLocation_patternAny}",
+      "intent": "l_BasicBotLuisApplication"
+    }
+  ],
+  "utterances": [
+    {
+      "text": "tony is my name",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "please stop",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "what can you help me with",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "my name is maria and i'm from sydney",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "hi",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "i'm john from cairo",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "dan",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "i would like to cancel",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "what's your name",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "i'm lauren, and i'm from madrid",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "are you old",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "what can i say",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "i'm from georgia",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "please cancel",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "seattle is my current city",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "how old are you",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "i won't give you my name",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "don't do it",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "hello",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "good evening",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "what are your capabilities",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "have you any dreams",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "vishwac is my name",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "i'm stuck",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "hey",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "can you fly",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "cancel",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "hiya",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "paris",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "i'd rather be riding my bike",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "who is your boss",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "portland",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "no way",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "delhi",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "yo",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "you can call me steve",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "help please",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "who am i speaking to",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "no way, i won't give you my location",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "confused",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "stop",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "dhaka",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "i reside in san francisco",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "quit",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "i am tired of you",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "my name is tom",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "what can you do",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "dont you ever sleep",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "gnocchi",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "hello bot",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "what do i do now",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "do you play games",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "i live in london",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "how are you today",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "how do i interact with you",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "my location is new york",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "can you help me",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "help me",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "shangai",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "what's your age",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "cook me something",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "help",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "who am i speaking with",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "i'm lili",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "i don't understand",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "mumbai",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "abort",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "call me scott",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "her cat has no teeth",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "i will not give you my name",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "frustrated",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "hey there",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "why doesn't this work",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "you are boring",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "good morning",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "you can assume i live in cairo",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "toronto",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "getting tired of you",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "lost",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "are you busy",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "don't do that",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "i'm not going to tell you where i live",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "i will not give you my location or name",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "i'm bailing",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "hi bot",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "spaghetti",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "i'm lost",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "who are you",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "how are you",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "world wide pants",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "melanie",
+      "intent": "l_BasicBotLuisApplication",
+      "entities": []
+    },
+    {
+      "text": "can i book another room for myself next week",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "this is nothing special",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "can i get a room for tomorrow",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "i want to book a room for myself and my partner next week.",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "nice to meet you",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "i want to get a room for myself and my partner for tomorrow",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "i need help",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "how late can i arrive tomorrow",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "cancel now",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "i want to book a room for three tomorrow",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "i want to book a room in january for myself and my partner",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "what can i ask you",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "i want to book a room for next week",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "i want to get a room for next week",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "can i book for tonight",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "can you book me a room",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "i want to do something else",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "i want to book a room for two persons tonight",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "i want a room for tomorow",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "i want to cancel",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "are dogs allowed",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "i want to book a room tomorrow",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "stop doing this",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "nothing meaningfull said",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "could i get a room for next week",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "cancel this",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "cancel this booking",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "a random sentence",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "what is the checkin time",
+      "intent": "q_faq",
+      "entities": []
+    },
+    {
+      "text": "is a dog allowed in the room",
+      "intent": "q_faq",
+      "entities": []
+    },
+    {
+      "text": "is my dog allowed",
+      "intent": "q_faq",
+      "entities": []
+    },
+    {
+      "text": "we have two dogs, is that a problem",
+      "intent": "q_faq",
+      "entities": []
+    },
+    {
+      "text": "at what time can we check in",
+      "intent": "q_faq",
+      "entities": []
+    },
+    {
+      "text": "at what time can we checkin",
+      "intent": "q_faq",
+      "entities": []
+    },
+    {
+      "text": "when is check in time",
+      "intent": "q_faq",
+      "entities": []
+    },
+    {
+      "text": "when can we check in",
+      "intent": "q_faq",
+      "entities": []
+    },
+    {
+      "text": "when is checkin",
+      "intent": "q_faq",
+      "entities": []
+    },
+    {
+      "text": "when is checking in possible",
+      "intent": "q_faq",
+      "entities": []
+    },
+    {
+      "text": "can i take my dog",
+      "intent": "q_faq",
+      "entities": []
+    },
+    {
+      "text": "can we take our dogs",
+      "intent": "q_faq",
+      "entities": []
+    }
+  ],
+  "settings": []
+}

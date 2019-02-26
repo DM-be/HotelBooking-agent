@@ -14,7 +14,7 @@
         },
         {
             "type": "blob",
-            "connectionString": "SovDaWqK53DVlRely8ivkw==!lHb+S3Gj3w9K8119gDFq+HEkjTiFbn07v7GuVvBOU4JNR6r7g1rF27lLGJFpGkfhyHFHVDZHl7ymEsDSAby6ODtPvfVPBaBbJmLvB1Oun5eOGkRz3YE2xjmu/CTj1hBlhGm8QvSBhxrl8ZiiArr3SJu2TGkkMVOnercOXI8RCQOxRMNXXY3BXai9YM7NttKa7mg4wwgZKkdZn/ZJ53h0z438Rb2djYOh+aA5ZJ/HK9I=",
+            "connectionString": "hB0ONd3Ek9R9ehesjdE4bw==!U5lF16xuFf3Z5E66oWp1v9MIZ6q+dHTm0rJgdptTBvMgoFQFcCvj9wlEVM0DjNI8emxhQErPqnypCchsDFFw6yXFEiSFiolnuWmnRDn54oN8qafIIm+wYEpZsV++XNrpYdJ8BsuF4FyOpMVArFKjuCCGCoSmkuFmAj+WSUeHXJWdenjtkLDlsEncuthlrPCeRseoztCUCzbtdOvcQurMN9TgExlXla3MiXkXshnXZpY=",
             "id": "2",
             "resourceGroup": "hotelBot-b7d8",
             "serviceName": "hotelbotb7d8b7d8",
@@ -24,7 +24,7 @@
         {
             "type": "endpoint",
             "appId": "07eecd2c-e40c-41a9-82ac-ce65e0eedece",
-            "appPassword": "MrpKFiPoEw5Yxy7jspgw9g==!6ICq0DH/M1THaGJwCTMaeQJdRw1NLh7X/hPb+yI9Fzs=",
+            "appPassword": "8PB4lVvDqtzLJXw5V6oJyw==!K8ybIFJKsxqenH3LdQCJL0s05YYDJhkXphvNAumoQGQ=",
             "endpoint": "http://localhost:80/api/messages",
             "id": "3",
             "name": "development"
@@ -32,33 +32,44 @@
         {
             "type": "endpoint",
             "appId": "07eecd2c-e40c-41a9-82ac-ce65e0eedece",
-            "appPassword": "UdVRtALoNqSBkh1Qo5j3+w==!BdyLDl6ihmonWC1z7nomWogLhW+A2+6o7dU322nmZpY=",
+            "appPassword": "reZcOCsYD+e4h8KB1qPiJw==!aZRv5Lyl9+8v6IjQn0ZLcLDZYAzJ48/iHF51mRgDONU=",
             "endpoint": "https://hoteltestv2.azurewebsites.net/api/messages",
             "id": "4",
             "name": "production"
         },
         {
             "type": "luis",
-            "appId": "e0286049-901a-4dc7-820b-6a4b8b7b87b8",
-            "authoringKey": "XJNS85n6mLXoXgqIQ4MR1A==!5NGwaX+cucOvRBPOWZyRBaHgpPcAVwKYaIGcBxskAkYef/V+mltPXLfmt8uL+EqL",
-            "id": "5",
-            "name": "BasicBotLuisApplication",
+            "appId": "b1fa4a04-cb5e-47bd-ac18-2e3a3d5877fa",
+            "authoringKey": "JaHJaiPryFmfdX9aNZia5w==!7wFHGnBgS4vlK5ESWrvutjwNL7h4DpHq/52ZusS8sMUJNilRgw4E0nGcltRtvMVL",
+            "id": "118",
+            "name": "HotelBot",
             "region": "westeurope",
+            "subscriptionKey": "D7NLMiUwrcO94eljJEyLyg==!dwKG6AJwPoXjRZEx76ItyptpzT4v4QrKftdSAgNfx3ETn0GB1+L5a9nxqVIginlF",
             "version": "0.1"
         },
         {
-            "type": "luis",
-            "appId": "b1fa4a04-cb5e-47bd-ac18-2e3a3d5877fa",
-            "authoringKey": "EDUF/GZxHq/L1r5++dheyA==!y1vpgqXiPi4AJEOZ5VbNKNwiuX+IHUPetm4l2kK+bNKYT2AKFqRGYBpoWdUjmNWa",
-            "subscriptionKey": "AsyJeURMht/OV4Eqh0wBiA==!KcwR7K+dA2AHFsuDgDTCyFLY4kqOd+lnK8Vhc24OhpArg1VGBMMfa/8VGfcXFfHP",
-          "version": "0.1",
-          "name": "HotelBot", 
-            "region":  "westeurope", 
-            "id": "118"
+            "type": "qna",
+            "endpointKey": "1TDsFYN2ghhqjns9MDmnGQ==!m9aU/qT6L4yn433Z6utWldDJRFWToXUl0f1zo/NYc2guFVaYDoYT92jpNLNTn4ip",
+            "hostname": "https://hoteltestqna.azurewebsites.net/qnamaker",
+            "id": "168",
+            "kbId": "fb174302-8e45-495b-9354-a39eaa158b48",
+            "name": "HotelBotTest_qna",
+            "subscriptionKey": "mQWdAPKac96l9T8OaqUTBA==!NqGWOmrC1uCTgJCobK/95XUeU9VAde+MnXMai9ZoxHdbw/Jzc0t/TS7LsB6hkntY"
+        },
+        {
+            "type": "dispatch",
+            "appId": "8f5a1469-f5da-4877-846f-2af7a1667ca9",
+            "authoringKey": "rbS6SRKZP1ahwbl3Bk1LOA==!s5cc+4GLykYPGh0hxLgi/14cS+E4OI9QrsTRT1dO6ckCZpUqAoOakZcYKDFmhBO2",
+            "name": "HotelDispatch",
+            "serviceIds": [],
+            "version": "Dispatch",
+            "id": "96",
+            "subscriptionKey": "5QdoRgexwRM1Xi1+crc+Mg==!OZrOgdnnOWCCgco7pwva8St0IzHx0p4j6ChbvMotQgrrVksgnNqVa7NjySAF2EUA",
+            "region": "westeurope"
         }
     ],
     "padlock": "0TYLs6DEw8iJDUL6zu+5iw==!rxsmOWArrpuULgXx/nS1A9D19+6eN26w21i08Gcn7zFKbakeJkubndr/nakeUMRE",
     "version": "2.0",
-    "path": "C:\\Users\\dennis.morent\\source\\hoteltestv2\\HotelTestv2.bot",
+    "path": "C:\\Users\\dennis.morent\\source\\hoteltestV2-new\\hoteltestv2\\HotelTestv2.bot",
     "overrides": null
 }

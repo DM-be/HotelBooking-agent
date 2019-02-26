@@ -1,0 +1,262 @@
+{
+  "luis_schema_version": "3.1.0",
+  "versionId": "Dispatch",
+  "name": "HotelTestv2Dispatch",
+  "desc": "Dispatch model for HotelTestv2Dispatch",
+  "culture": "en-us",
+  "intents": [
+    {
+      "name": "l_HotelBot"
+    },
+    {
+      "name": "q_faq"
+    }
+  ],
+  "entities": [],
+  "composites": [],
+  "closedLists": [],
+  "patternAnyEntities": [],
+  "regex_entities": [],
+  "prebuiltEntities": [],
+  "model_features": [],
+  "regex_features": [],
+  "patterns": [],
+  "utterances": [
+    {
+      "text": "i want to get a room for myself and my partner for tomorrow",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "hello",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "can i book for tonight",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "can you book me a room",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "what can you do",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "can i book another room for myself next week",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "i want to book a room in january for myself and my partner",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "how late can i arrive tomorrow",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "cancel now",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "cancel this",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "can i get a room for tomorrow",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "cancel this booking",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "nothing meaningfull said",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "i want to book a room for two persons tonight",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "help",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "i want to get a room for next week",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "stop",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "i want to book a room for three tomorrow",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "nice to meet you",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "i need help",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "i want to book a room tomorrow",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "i want to book a room for myself and my partner next week.",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "cancel",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "stop doing this",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "help me",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "i want a room for tomorow",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "hi",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "what can i ask you",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "i want to cancel",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "could i get a room for next week",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "i want to do something else",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "a random sentence",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "this is nothing special",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "i want to book a room for next week",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "can i take my dog",
+      "intent": "q_faq",
+      "entities": []
+    },
+    {
+      "text": "at what time can we check in",
+      "intent": "q_faq",
+      "entities": []
+    },
+    {
+      "text": "what is the checkin time",
+      "intent": "q_faq",
+      "entities": []
+    },
+    {
+      "text": "when is checking in possible",
+      "intent": "q_faq",
+      "entities": []
+    },
+    {
+      "text": "we have two dogs, is that a problem",
+      "intent": "q_faq",
+      "entities": []
+    },
+    {
+      "text": "when is checkin",
+      "intent": "q_faq",
+      "entities": []
+    },
+    {
+      "text": "is a dog allowed in the room",
+      "intent": "q_faq",
+      "entities": []
+    },
+    {
+      "text": "can we take our dogs",
+      "intent": "q_faq",
+      "entities": []
+    },
+    {
+      "text": "is my dog allowed",
+      "intent": "q_faq",
+      "entities": []
+    },
+    {
+      "text": "at what time can we checkin",
+      "intent": "q_faq",
+      "entities": []
+    },
+    {
+      "text": "when can we check in",
+      "intent": "q_faq",
+      "entities": []
+    },
+    {
+      "text": "when is check in time",
+      "intent": "q_faq",
+      "entities": []
+    },
+    {
+      "text": "are dogs allowed",
+      "intent": "q_faq",
+      "entities": []
+    }
+  ],
+  "settings": []
+}

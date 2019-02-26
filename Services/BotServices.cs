@@ -19,8 +19,8 @@ namespace HotelBot.Services
                 switch (service.Type)
                 {
                     case ServiceTypes.Luis:
-                        {
-                            var luis = (LuisService)service;
+                    {
+                        var luis = service as LuisService;
                             if (luis == null)
                             {
                                 throw new InvalidOperationException("The LUIS service is not configured correctly in your '.bot' file.");
@@ -70,6 +70,28 @@ namespace HotelBot.Services
 
                             break;
                         }
+                    case ServiceTypes.Dispatch:
+                    {
+                        var dispatch = service as DispatchService;
+                        if (dispatch == null)
+                        {
+                            throw new InvalidOperationException("The Dispatch service is not configured correctly in your '.bot' file.");
+                        }
+
+                        if (string.IsNullOrWhiteSpace(dispatch.AppId))
+                        {
+                            throw new InvalidOperationException("The Dispatch Luis Model Application Id ('appId') is required to run this sample.  Please update your '.bot' file.");
+                        }
+
+                        if (string.IsNullOrWhiteSpace(dispatch.SubscriptionKey))
+                        {
+                            throw new InvalidOperationException("The Subscription Key ('subscriptionKey') is required to run this sample.  Please update your '.bot' file.");
+                        }
+
+                        var dispatchApp = new LuisApplication(dispatch.AppId, dispatch.AuthoringKey, dispatch.GetEndpoint());
+                        DispatchRecognizer = new LuisRecognizer(dispatchApp);
+                        break;
+                    }
                 }
             }
         }
@@ -86,5 +108,14 @@ namespace HotelBot.Services
         /// </value>
         public Dictionary<string, LuisRecognizer> LuisServices { get; } = new Dictionary<string, LuisRecognizer>();
         public Dictionary<string, QnAMaker> QnaServices { get; } = new Dictionary<string, QnAMaker>();
+
+        /// <summary>
+        /// Gets the set of Dispatch LUIS Recognizer used.
+        /// </summary>
+        /// <remarks>The Dispatch LUIS Recognizer should not be modified while the bot is running.</remarks>
+        /// <value>
+        /// A <see cref="LuisRecognizer"/> client instance created based on configuration in the .bot file.
+        /// </value>
+        public LuisRecognizer DispatchRecognizer { get; set; }
     }
 }

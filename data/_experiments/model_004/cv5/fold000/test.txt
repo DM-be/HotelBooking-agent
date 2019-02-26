@@ -1,0 +1,45 @@
+Label	Weight	Text
+l_BasicBotLuisApplication	4.055555	shangai
+l_BasicBotLuisApplication	4.055555	how do i interact with you
+l_BasicBotLuisApplication	4.055555	hey
+l_BasicBotLuisApplication	4.055555	no way, i won't give you my location
+l_BasicBotLuisApplication	4.055555	you are boring
+l_BasicBotLuisApplication	4.055555	my name is maria and i'm from sydney
+l_BasicBotLuisApplication	4.055555	delhi
+l_BasicBotLuisApplication	4.055555	can you help me
+l_BasicBotLuisApplication	4.055555	good evening
+l_BasicBotLuisApplication	4.055555	lost
+l_BasicBotLuisApplication	4.055555	hello bot
+l_BasicBotLuisApplication	4.055555	frustrated
+l_BasicBotLuisApplication	4.055555	i'm bailing
+l_BasicBotLuisApplication	4.055555	hiya
+l_BasicBotLuisApplication	4.055555	i'm lauren, and i'm from madrid
+l_BasicBotLuisApplication	4.055555	dan
+l_BasicBotLuisApplication	4.055555	quit
+l_BasicBotLuisApplication	4.055555	help please
+l_HotelBot	5.214286	can i book another room for myself next week
+l_HotelBot	5.214286	i want to book a room for two persons tonight
+l_HotelBot	5.214286	stop
+l_HotelBot	5.214286	hello
+l_HotelBot	5.214286	cancel
+l_HotelBot	5.214286	nice to meet you
+l_HotelBot	5.214286	cancel now
+l_HotelBot	5.214286	can i book another room for myself next week
+l_HotelBot	5.214286	i want to book a room for two persons tonight
+l_HotelBot	5.214286	stop
+l_HotelBot	5.214286	hello
+l_HotelBot	5.214286	cancel
+l_HotelBot	5.214286	nice to meet you
+l_HotelBot	5.214286	cancel now
+q_faq	6.083333	Is my dog allowed
+q_faq	6.083333	When is checkin
+q_faq	6.083333	We have two dogs, is that a problem
+q_faq	6.083333	Is my dog allowed
+q_faq	6.083333	When is checkin
+q_faq	6.083333	We have two dogs, is that a problem
+q_faq	6.083333	Is my dog allowed
+q_faq	6.083333	When is checkin
+q_faq	6.083333	We have two dogs, is that a problem
+q_faq	6.083333	Is my dog allowed
+q_faq	6.083333	When is checkin
+q_faq	6.083333	We have two dogs, is that a problem

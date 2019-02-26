@@ -1,0 +1,2 @@
+Utterance	Intents
+hi	l_BasicBotLuisApplication, l_HotelBot

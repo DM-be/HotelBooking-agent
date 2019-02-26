@@ -1,0 +1,27 @@
+Label	Weight	Text
+l_HotelBot	2	what can you do
+l_HotelBot	2	nothing meaningfull said
+l_HotelBot	2	stop doing this
+l_HotelBot	2	help me
+l_HotelBot	2	can i book another room for myself next week
+l_HotelBot	2	i want to get a room for myself and my partner for tomorrow
+l_HotelBot	2	i want to book a room for next week
+l_HotelBot	2	what can you do
+l_HotelBot	2	nothing meaningfull said
+l_HotelBot	2	stop doing this
+l_HotelBot	2	help me
+l_HotelBot	2	can i book another room for myself next week
+l_HotelBot	2	i want to get a room for myself and my partner for tomorrow
+l_HotelBot	2	i want to book a room for next week
+q_faq	2.333333	When can we check in
+q_faq	2.333333	When is check in time
+q_faq	2.333333	Can I take my dog
+q_faq	2.333333	When can we check in
+q_faq	2.333333	When is check in time
+q_faq	2.333333	Can I take my dog
+q_faq	2.333333	When can we check in
+q_faq	2.333333	When is check in time
+q_faq	2.333333	Can I take my dog
+q_faq	2.333333	When can we check in
+q_faq	2.333333	When is check in time
+q_faq	2.333333	Can I take my dog

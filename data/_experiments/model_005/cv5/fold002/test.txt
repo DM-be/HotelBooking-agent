@@ -1,0 +1,27 @@
+Label	Weight	Text
+l_HotelBot	1.928571	help
+l_HotelBot	1.928571	i want to get a room for next week
+l_HotelBot	1.928571	stop
+l_HotelBot	1.928571	i want to book a room for three tomorrow
+l_HotelBot	1.928571	nice to meet you
+l_HotelBot	1.928571	i need help
+l_HotelBot	1.928571	i want to book a room tomorrow
+l_HotelBot	1.928571	help
+l_HotelBot	1.928571	i want to get a room for next week
+l_HotelBot	1.928571	stop
+l_HotelBot	1.928571	i want to book a room for three tomorrow
+l_HotelBot	1.928571	nice to meet you
+l_HotelBot	1.928571	i need help
+l_HotelBot	1.928571	i want to book a room tomorrow
+q_faq	2.25	Is a dog allowed in the room
+q_faq	2.25	Can we take our dogs
+q_faq	2.25	Is my dog allowed
+q_faq	2.25	Is a dog allowed in the room
+q_faq	2.25	Can we take our dogs
+q_faq	2.25	Is my dog allowed
+q_faq	2.25	Is a dog allowed in the room
+q_faq	2.25	Can we take our dogs
+q_faq	2.25	Is my dog allowed
+q_faq	2.25	Is a dog allowed in the room
+q_faq	2.25	Can we take our dogs
+q_faq	2.25	Is my dog allowed

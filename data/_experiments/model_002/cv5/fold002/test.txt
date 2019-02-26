@@ -1,0 +1,27 @@
+Label	Weight	Text
+l_HotelBot	2	i want to book a room for three tomorrow
+l_HotelBot	2	cancel
+l_HotelBot	2	stop
+l_HotelBot	2	are dogs allowed
+l_HotelBot	2	can i book for tonight
+l_HotelBot	2	help
+l_HotelBot	2	i want to do something else
+l_HotelBot	2	i want to book a room for three tomorrow
+l_HotelBot	2	cancel
+l_HotelBot	2	stop
+l_HotelBot	2	are dogs allowed
+l_HotelBot	2	can i book for tonight
+l_HotelBot	2	help
+l_HotelBot	2	i want to do something else
+q_faq	2.333333	What is the checkin time
+q_faq	2.333333	At what time can we check in
+q_faq	2.333333	At what time can we checkin
+q_faq	2.333333	What is the checkin time
+q_faq	2.333333	At what time can we check in
+q_faq	2.333333	At what time can we checkin
+q_faq	2.333333	What is the checkin time
+q_faq	2.333333	At what time can we check in
+q_faq	2.333333	At what time can we checkin
+q_faq	2.333333	What is the checkin time
+q_faq	2.333333	At what time can we check in
+q_faq	2.333333	At what time can we checkin

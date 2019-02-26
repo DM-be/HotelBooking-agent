@@ -1,0 +1,29 @@
+Label	Weight	Text
+l_HotelBot	1.944444	hello
+l_HotelBot	1.944444	help me
+l_HotelBot	1.944444	cancel now
+l_HotelBot	1.944444	can you book me a room
+l_HotelBot	1.944444	what is the location
+l_HotelBot	1.944444	where is it
+l_HotelBot	1.944444	i want to book a room for three tomorrow
+l_HotelBot	1.944444	i want to book a room for next week
+l_HotelBot	1.944444	hi
+l_HotelBot	1.944444	hello
+l_HotelBot	1.944444	help me
+l_HotelBot	1.944444	cancel now
+l_HotelBot	1.944444	can you book me a room
+l_HotelBot	1.944444	what is the location
+l_HotelBot	1.944444	where is it
+l_HotelBot	1.944444	i want to book a room for three tomorrow
+l_HotelBot	1.944444	i want to book a room for next week
+l_HotelBot	1.944444	hi
+q_HotelBotTest_qna	3.5	Are dogs allowed in the room
+q_HotelBotTest_qna	3.5	What is the check in time
+q_HotelBotTest_qna	3.5	Are dogs allowed in the room
+q_HotelBotTest_qna	3.5	What is the check in time
+q_HotelBotTest_qna	3.5	Are dogs allowed in the room
+q_HotelBotTest_qna	3.5	What is the check in time
+q_HotelBotTest_qna	3.5	Are dogs allowed in the room
+q_HotelBotTest_qna	3.5	What is the check in time
+q_HotelBotTest_qna	3.5	Are dogs allowed in the room
+q_HotelBotTest_qna	3.5	What is the check in time

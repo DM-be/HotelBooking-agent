@@ -1,0 +1,27 @@
+Label	Weight	Text
+l_HotelBot	1.928571	i want to get a room for myself and my partner for tomorrow
+l_HotelBot	1.928571	hello
+l_HotelBot	1.928571	can i book for tonight
+l_HotelBot	1.928571	can you book me a room
+l_HotelBot	1.928571	what can you do
+l_HotelBot	1.928571	can i book another room for myself next week
+l_HotelBot	1.928571	i want to book a room in january for myself and my partner
+l_HotelBot	1.928571	i want to get a room for myself and my partner for tomorrow
+l_HotelBot	1.928571	hello
+l_HotelBot	1.928571	can i book for tonight
+l_HotelBot	1.928571	can you book me a room
+l_HotelBot	1.928571	what can you do
+l_HotelBot	1.928571	can i book another room for myself next week
+l_HotelBot	1.928571	i want to book a room in january for myself and my partner
+q_faq	2.25	Can I take my dog
+q_faq	2.25	At what time can we check in
+q_faq	2.25	What is the checkin time
+q_faq	2.25	Can I take my dog
+q_faq	2.25	At what time can we check in
+q_faq	2.25	What is the checkin time
+q_faq	2.25	Can I take my dog
+q_faq	2.25	At what time can we check in
+q_faq	2.25	What is the checkin time
+q_faq	2.25	Can I take my dog
+q_faq	2.25	At what time can we check in
+q_faq	2.25	What is the checkin time

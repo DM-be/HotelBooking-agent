@@ -1,0 +1,27 @@
+Label	Weight	Text
+l_HotelBot	1.928571	this is nothing special
+l_HotelBot	1.928571	help
+l_HotelBot	1.928571	cancel this
+l_HotelBot	1.928571	cancel this booking
+l_HotelBot	1.928571	i want to book a room for three tomorrow
+l_HotelBot	1.928571	a random sentence
+l_HotelBot	1.928571	i want to do something else
+l_HotelBot	1.928571	this is nothing special
+l_HotelBot	1.928571	help
+l_HotelBot	1.928571	cancel this
+l_HotelBot	1.928571	cancel this booking
+l_HotelBot	1.928571	i want to book a room for three tomorrow
+l_HotelBot	1.928571	a random sentence
+l_HotelBot	1.928571	i want to do something else
+q_faq	2.25	When is checkin
+q_faq	2.25	We have two dogs, is that a problem
+q_faq	2.25	When is checking in possible
+q_faq	2.25	When is checkin
+q_faq	2.25	We have two dogs, is that a problem
+q_faq	2.25	When is checking in possible
+q_faq	2.25	When is checkin
+q_faq	2.25	We have two dogs, is that a problem
+q_faq	2.25	When is checking in possible
+q_faq	2.25	When is checkin
+q_faq	2.25	We have two dogs, is that a problem
+q_faq	2.25	When is checking in possible
