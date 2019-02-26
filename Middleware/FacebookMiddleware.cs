@@ -24,11 +24,14 @@ namespace HotelBot.Middleware
             _accessors = accessors;
         }
 
+        
+
         public async Task OnTurnAsync(ITurnContext turnContext, NextDelegate next, CancellationToken cancellationToken = default(CancellationToken))
         {
             var channelData = turnContext.Activity.ChannelData;
             await ProcessFacebookPayload(channelData, turnContext);
             await next(cancellationToken).ConfigureAwait(false);
+            
         }
 
         private async Task ProcessFacebookPayload(object channelData, ITurnContext context)
@@ -78,12 +81,13 @@ namespace HotelBot.Middleware
         {
             if (quickReply.Payload.Equals(FacebookQuickReply.LocationQuickReplyPayload))
             {
-                SendLocationQuickReply(context);
+                // update text --> let the maindialog handle sending quick replies
+                context.Activity.Text = "Where are you located?";
             }
 
         }
 
-        private async void SendLocationQuickReply(ITurnContext context)
+        public static async void SendLocationQuickReply(ITurnContext context)
         {
             var reply = context.Activity.CreateReply();
             reply.Text = QuickReplyStrings.ASK_LOCATION;

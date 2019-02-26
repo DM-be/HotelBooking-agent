@@ -5,12 +5,14 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.Shared;
+using HotelBot.Middleware;
 using HotelBot.Services;
 using HotelBot.StateAccessors;
 using Luis;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.CodeAnalysis;
+using Microsoft.CognitiveServices.ContentModerator.Models;
 
 
 namespace HotelBot.Dialogs.Main
@@ -86,6 +88,11 @@ namespace HotelBot.Dialogs.Main
                                 await dc.Context.SendActivityAsync(userProfile.First_Name);
                                 await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.Greeting);
                                 break;
+                            }
+                            case HotelBotLuis.Intent.get_directions:
+                            {
+                                 FacebookMiddleware.SendLocationQuickReply(dc.Context);
+                                 break;
                             }
 
 
