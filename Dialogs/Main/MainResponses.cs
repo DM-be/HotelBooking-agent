@@ -43,6 +43,10 @@ namespace HotelBot.Dialogs.Main
             }
         };
 
+        public MainResponses()
+        {
+            Register(new DictionaryRenderer(_responseTemplates));
+        }
         public class ResponseIds
         {
             // Constants

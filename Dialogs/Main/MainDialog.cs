@@ -81,10 +81,13 @@ namespace HotelBot.Dialogs.Main
                                 }
                             case HotelBotLuis.Intent.book_a_room:
                             {
-                                await dc.Context.SendActivityAsync("book a room intent");
-                                await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.Help);
+                              //  await dc.Context.SendActivityAsync("book a room intent");
+                                var userProfile = await _accessors.UserProfileAccessor.GetAsync(dc.Context);
+                                await dc.Context.SendActivityAsync(userProfile.First_Name);
+                                await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.Greeting);
                                 break;
                             }
+
 
                             case HotelBotLuis.Intent.None:
                             default:
