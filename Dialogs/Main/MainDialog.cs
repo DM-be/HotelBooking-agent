@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using HotelBot.Dialogs.Shared;
 using HotelBot.Middleware;
 using HotelBot.Services;
+using HotelBot.Shared.Helpers;
 using HotelBot.StateAccessors;
 using Luis;
 using Microsoft.Bot.Builder;
@@ -91,7 +92,9 @@ namespace HotelBot.Dialogs.Main
                             }
                             case HotelBotLuis.Intent.get_directions:
                             {
-                                 FacebookMiddleware.SendLocationQuickReply(dc.Context);
+                                var fbHelper = new FacebookHelper();
+                                
+                                 fbHelper.SendLocationQuickReply(dc.Context);
                                  break;
                             }
 
