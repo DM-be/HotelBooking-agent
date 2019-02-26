@@ -23,7 +23,8 @@ namespace Luis
             greeting, 
             help, 
             none, 
-            None
+            None,
+            call_us
         };
         public Dictionary<Intent, IntentScore> Intents;
 

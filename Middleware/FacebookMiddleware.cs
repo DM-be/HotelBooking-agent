@@ -77,12 +77,16 @@ namespace HotelBot.Middleware
             // implement other postback logic before calling next
         }
 
-        private void OnFacebookQuickReply(FacebookQuickReply quickReply, ITurnContext context)
+        private async void OnFacebookQuickReply(FacebookQuickReply quickReply, ITurnContext context)
         {
             if (quickReply.Payload.Equals(FacebookQuickReply.LocationQuickReplyPayload))
             {
                 // update text --> let the maindialog handle sending quick replies
                 context.Activity.Text = "Where are you located?";
+            }
+            else if (quickReply.Payload.Equals(FacebookQuickReply.CallUsReplyPayload))
+            {
+                // updated text if needed (for now call us is in luis model)
             }
 
         }

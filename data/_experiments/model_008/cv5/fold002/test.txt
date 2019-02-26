@@ -1,0 +1,22 @@
+Label	Weight	Text
+l_HotelBot	4.272727	i want to call you
+l_HotelBot	4.272727	can we call the hotel
+l_HotelBot	4.272727	help me
+l_HotelBot	4.272727	can i call the hotel
+l_HotelBot	4.272727	where is it
+l_HotelBot	4.272727	i want to book a room for two persons tonight
+l_HotelBot	4.272727	how can we find you
+l_HotelBot	4.272727	what is the location
+l_HotelBot	4.272727	a random sentence
+l_HotelBot	4.272727	where is the bed and breakfast
+l_HotelBot	4.272727	nothing meaningfull said
+q_HotelBotTest_qna	4.700001	What is the checkin time
+q_HotelBotTest_qna	4.700001	Are dogs allowed in the room
+q_HotelBotTest_qna	4.700001	What is the checkin time
+q_HotelBotTest_qna	4.700001	Are dogs allowed in the room
+q_HotelBotTest_qna	4.700001	What is the checkin time
+q_HotelBotTest_qna	4.700001	Are dogs allowed in the room
+q_HotelBotTest_qna	4.700001	What is the checkin time
+q_HotelBotTest_qna	4.700001	Are dogs allowed in the room
+q_HotelBotTest_qna	4.700001	What is the checkin time
+q_HotelBotTest_qna	4.700001	Are dogs allowed in the room

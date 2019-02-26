@@ -1,0 +1,22 @@
+Label	Weight	Text
+l_HotelBot	3.833333	what can i ask you
+l_HotelBot	3.833333	what is the hotel number?>
+l_HotelBot	3.833333	i want to book a room for three tomorrow
+l_HotelBot	7.666667	where are you located
+l_HotelBot	3.833333	can i get a room for tomorrow
+l_HotelBot	3.833333	i want to call reception
+l_HotelBot	3.833333	i want to call a person
+l_HotelBot	3.833333	hello
+l_HotelBot	3.833333	where in the city are you
+l_HotelBot	3.833333	i want a room for tomorow
+l_HotelBot	3.833333	i want to book a room for next week
+q_HotelBotTest_qna	4.6	Are dogs allowed?
+q_HotelBotTest_qna	4.6	When is check in
+q_HotelBotTest_qna	4.6	Are dogs allowed?
+q_HotelBotTest_qna	4.6	When is check in
+q_HotelBotTest_qna	4.6	Are dogs allowed?
+q_HotelBotTest_qna	4.6	When is check in
+q_HotelBotTest_qna	4.6	Are dogs allowed?
+q_HotelBotTest_qna	4.6	When is check in
+q_HotelBotTest_qna	4.6	Are dogs allowed?
+q_HotelBotTest_qna	4.6	When is check in

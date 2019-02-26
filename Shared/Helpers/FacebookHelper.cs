@@ -41,8 +41,12 @@ namespace HotelBot.Shared.Helpers
            
         }
 
-        
+        public async Task SendCallMessage(ITurnContext context)
+        {
 
+            await _responder.ReplyWith(context, FacebookHelperResponses.ResponseIds.CallUs);
+
+        }
 
     }
 }

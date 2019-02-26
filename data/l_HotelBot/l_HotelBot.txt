@@ -1,7 +1,13 @@
 a random sentence
+call us
+call you
 can i book another room for myself next week
 can i book for tonight
+can i call the hotel
+can i call you
 can i get a room for tomorrow
+can we call
+can we call the hotel
 can you book me a room
 cancel
 cancel now
@@ -22,6 +28,10 @@ i want to book a room for three tomorrow
 i want to book a room for two persons tonight
 i want to book a room in january for myself and my partner
 i want to book a room tomorrow
+i want to call a person
+i want to call reception
+i want to call the hotel
+i want to call you
 i want to cancel
 i want to do something else
 i want to get a room for myself and my partner for tomorrow
@@ -33,11 +43,15 @@ stop doing this
 this is nothing special
 what can i ask you
 what can you do
+what is the hotel number?>
 what is the location
 what is your address
 what's your address
+whats your number
+whats your number
 where are you located
 where are you located
+where can i find your number
 where in the city are you
 where is it
 where is the bed and breakfast

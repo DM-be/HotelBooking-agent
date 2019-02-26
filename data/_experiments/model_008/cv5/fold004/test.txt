@@ -1,0 +1,22 @@
+Label	Weight	Text
+l_HotelBot	4.272727	stop doing this
+l_HotelBot	4.272727	can i call you
+l_HotelBot	4.272727	where is the hotel
+l_HotelBot	4.272727	i want to book a room for myself and my partner next week.
+l_HotelBot	4.272727	cancel this booking
+l_HotelBot	4.272727	where can i find your number
+l_HotelBot	4.272727	i want to book a room in january for myself and my partner
+l_HotelBot	4.272727	how late can i arrive tomorrow
+l_HotelBot	4.272727	cancel this
+l_HotelBot	4.272727	i need help
+l_HotelBot	4.272727	can i book another room for myself next week
+q_HotelBotTest_qna	4.7	What is the check in time
+q_HotelBotTest_qna	4.7	What time can I check in
+q_HotelBotTest_qna	4.7	What is the check in time
+q_HotelBotTest_qna	4.7	What time can I check in
+q_HotelBotTest_qna	4.7	What is the check in time
+q_HotelBotTest_qna	4.7	What time can I check in
+q_HotelBotTest_qna	4.7	What is the check in time
+q_HotelBotTest_qna	4.7	What time can I check in
+q_HotelBotTest_qna	4.7	What is the check in time
+q_HotelBotTest_qna	4.7	What time can I check in

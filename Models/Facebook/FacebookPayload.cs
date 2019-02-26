@@ -42,5 +42,19 @@ namespace HotelBot.Models.Facebook
 
         [JsonProperty("coordinates")]
         public FacebookPayloadCoordinates Coordinates { get; set; }
+
+        [JsonProperty("template_type")]
+        public string Template_Type { get; set; }
+
+
+        [JsonProperty("text")]
+        public string Text { get; set; }
+
+        [JsonProperty("buttons")]
+        public FacebookButton[] FacebookButtons { get; set; }
+
+
+
+
     }
 }

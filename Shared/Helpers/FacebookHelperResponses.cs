@@ -32,6 +32,10 @@ namespace HotelBot.Shared.Helpers
                     (context, data) =>
                         BuildDirectionsCard(context, data)
                 },
+                { ResponseIds.CallUs,
+                    (context, data) =>
+                        BuildCallMessage(context, data)
+                },
                 { ResponseIds.Welcome,
                     (context, data) =>
                         MessageFactory.Text(
@@ -106,6 +110,28 @@ namespace HotelBot.Shared.Helpers
             return reply;
         }
 
+        public static IMessageActivity BuildCallMessage(ITurnContext context, dynamic data)
+        {
+            //TODO: refactor + backend get number
+           var facebookMessage = new FacebookMessage();
+           var facebookAttachment = new FacebookAttachment();
+           facebookAttachment.Type = "template";
+           var payload =  new FacebookPayload();
+           payload.Template_Type = "button";
+           payload.Text = "Need more help? here is our number";
+           var button = new FacebookButton();
+           button.Type = "phone_number";
+           button.Title = "Call us";
+           button.Payload = "+15105551234";
+           payload.FacebookButtons = new FacebookButton[1];
+           payload.FacebookButtons[0] = button;
+           facebookAttachment.FacebookPayload = payload;
+           facebookMessage.Attachment = facebookAttachment;
+           var reply = context.Activity.CreateReply();
+           reply.ChannelData = facebookMessage;
+           return reply;
+        }
+
 
         public static IMessageActivity BuildDirectionsCard(ITurnContext context, FacebookAttachment attachment)
         {
@@ -139,6 +165,7 @@ namespace HotelBot.Shared.Helpers
             public const string Functionality = "functionality";
             public const string Welcome = "welcome";
             public const string SendDirections = "sendDirections";
+            public const string CallUs = "callUs";
 
         }
     }

@@ -39,5 +39,8 @@ namespace HotelBot.Models.Facebook
         
 
         public FacebookAttachment[] Attachments { get; set; }
+
+        [JsonProperty ("attachment")]
+        public FacebookAttachment Attachment { get; set; }
     }
 }

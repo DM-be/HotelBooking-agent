@@ -10,6 +10,9 @@
       "name": "book_a_room"
     },
     {
+      "name": "call_us"
+    },
+    {
       "name": "cancel"
     },
     {
@@ -49,6 +52,16 @@
       "entities": []
     },
     {
+      "text": "call us",
+      "intent": "call_us",
+      "entities": []
+    },
+    {
+      "text": "call you",
+      "intent": "call_us",
+      "entities": []
+    },
+    {
       "text": "can i book another room for myself next week?",
       "intent": "book_a_room",
       "entities": []
@@ -59,8 +72,28 @@
       "entities": []
     },
     {
+      "text": "can i call the hotel",
+      "intent": "call_us",
+      "entities": []
+    },
+    {
+      "text": "can i call you",
+      "intent": "call_us",
+      "entities": []
+    },
+    {
       "text": "can i get a room for tomorrow?",
       "intent": "book_a_room",
+      "entities": []
+    },
+    {
+      "text": "can we call",
+      "intent": "call_us",
+      "entities": []
+    },
+    {
+      "text": "can we call the hotel",
+      "intent": "call_us",
       "entities": []
     },
     {
@@ -164,6 +197,26 @@
       "entities": []
     },
     {
+      "text": "i want to call a person",
+      "intent": "call_us",
+      "entities": []
+    },
+    {
+      "text": "i want to call reception",
+      "intent": "call_us",
+      "entities": []
+    },
+    {
+      "text": "i want to call the hotel",
+      "intent": "call_us",
+      "entities": []
+    },
+    {
+      "text": "i want to call you",
+      "intent": "call_us",
+      "entities": []
+    },
+    {
       "text": "i want to cancel",
       "intent": "cancel",
       "entities": []
@@ -219,6 +272,11 @@
       "entities": []
     },
     {
+      "text": "what is the hotel number?>",
+      "intent": "call_us",
+      "entities": []
+    },
+    {
       "text": "what is the location?",
       "intent": "get_directions",
       "entities": []
@@ -234,6 +292,16 @@
       "entities": []
     },
     {
+      "text": "whats your number",
+      "intent": "call_us",
+      "entities": []
+    },
+    {
+      "text": "whats your number?",
+      "intent": "call_us",
+      "entities": []
+    },
+    {
       "text": "where are you located",
       "intent": "get_directions",
       "entities": []
@@ -241,6 +309,11 @@
     {
       "text": "where are you located?",
       "intent": "get_directions",
+      "entities": []
+    },
+    {
+      "text": "where can i find your number",
+      "intent": "call_us",
       "entities": []
     },
     {

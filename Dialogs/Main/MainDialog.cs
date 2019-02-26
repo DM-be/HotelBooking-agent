@@ -24,6 +24,7 @@ namespace HotelBot.Dialogs.Main
         private StateBotAccessors _accessors;
       
         private MainResponses _responder = new MainResponses();
+        private FacebookHelper _facebookHelper = new FacebookHelper();
 
         public MainDialog(BotServices services, StateBotAccessors accessors)
             : base(nameof(MainDialog))
@@ -92,13 +93,15 @@ namespace HotelBot.Dialogs.Main
                             }
                             case HotelBotLuis.Intent.get_directions:
                             {
-                                var fbHelper = new FacebookHelper();
-                                
-                                 fbHelper.SendLocationQuickReply(dc.Context);
+                          
+                                 _facebookHelper.SendLocationQuickReply(dc.Context);
                                  break;
                             }
-
-
+                            case HotelBotLuis.Intent.call_us:
+                            {
+                                _facebookHelper.SendCallMessage(dc.Context);
+                                break;
+                            }
                             case HotelBotLuis.Intent.None:
                             default:
                                 {
