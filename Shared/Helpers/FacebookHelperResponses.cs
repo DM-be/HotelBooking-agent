@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using HotelBot.Dialogs.Main.Resources;
+﻿using System.Collections.Generic;
 using HotelBot.Models.Facebook;
+using HotelBot.Shared.Helpers.Resources;
 using HotelBot.Shared.QuickReplies.Resources;
 using HotelBot.Shared.Welcome.Resources;
 using Microsoft.Bot.Builder;
@@ -62,7 +59,7 @@ namespace HotelBot.Shared.Helpers
         public static IMessageActivity BuildLocationQuickReply(ITurnContext context, dynamic data)
         {
             var reply = context.Activity.CreateReply();
-            reply.Text = QuickReplyStrings.ASK_LOCATION;
+            reply.Text = FacebookStrings.QUICK_REPLY_ASK_LOCATION;
             var channelData = new JObject();
             var child = new JObject
             {
@@ -80,22 +77,19 @@ namespace HotelBot.Shared.Helpers
             {
                 new FacebookQuickReply
                 {
-                    Title = "Book a room",
+                    Title = FacebookStrings.QUICK_REPLY_BUTTON_BOOK_A_ROOM,
                     Content_Type = "text",
                     Payload = "Book_a_room",
-                    Image_Url = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Button_Icon_Blue.svg/768px-Button_Icon_Blue.svg.png"
                 },
                 new FacebookQuickReply {
-                    Title = "Get directions",
+                    Title = FacebookStrings.QUICK_REPLY_BUTTON_DIRECTION,
                     Content_Type = "text",
                     Payload = "location",
-                    Image_Url = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Button_Icon_Blue.svg/768px-Button_Icon_Blue.svg.png"
                 },
                 new FacebookQuickReply {
-                    Title = "Call us",
+                    Title = FacebookStrings.QUICK_REPLY_BUTTON_CALL,
                     Content_Type = "text",
                     Payload = "call",
-                    Image_Url = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Button_Icon_Blue.svg/768px-Button_Icon_Blue.svg.png"
                 }
             };
             JObject[] jObjects = new JObject[quick_replies.Length];
@@ -118,10 +112,10 @@ namespace HotelBot.Shared.Helpers
            facebookAttachment.Type = "template";
            var payload =  new FacebookPayload();
            payload.Template_Type = "button";
-           payload.Text = "Need more help? here is our number";
+           payload.Text = FacebookStrings.CALL_MESSAGE_PAYLOAD_TEXT;
            var button = new FacebookButton();
            button.Type = "phone_number";
-           button.Title = "Call us";
+           button.Title = FacebookStrings.BUTTON_TITLE_CALL;
            button.Payload = "+15105551234";
            payload.FacebookButtons = new FacebookButton[1];
            payload.FacebookButtons[0] = button;
@@ -141,13 +135,13 @@ namespace HotelBot.Shared.Helpers
             var url = $"https://www.google.com/maps/dir/?api=1&origin={latCoordinatesLat},{longCoordinatesLong}&destination=51.228557,3.231737";
             var heroCard = new HeroCard
             {
-                Title = "Starhotel Bruges", // TODO: get from resources (hotel page property)
+                Title = "Starhotel Bruges", // TODO: get from conversation state
                 Images = new List<CardImage> { new CardImage("https://img.hotelspecials.be/fc2fadf52703ae0181b289f84011bf6a.jpeg?w=250&h=200&c=1&quality=70") },
-                Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl, "Show direction", value: url) },
+                Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl, FacebookStrings.HEROCARD_BUTTON_DIRECTION_TITLE, value: url) },
             };
 
             var reply = context.Activity.CreateReply();
-            reply.Text = QuickReplyStrings.DIRECTION_REPLY;
+            reply.Text = FacebookStrings.HEROCARD_REPLY_TEXT_DIRECTION;
             reply.Attachments = new List<Attachment>
             {
                 heroCard.ToAttachment(),

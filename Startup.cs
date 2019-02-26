@@ -166,6 +166,7 @@ namespace HotelBot
 
                 // check if still needed! now manual at start of get started or when user talks
                 var defaultLocale = Configuration.GetSection("defaultLocale").Get<string>();
+                options.Middleware.Add(new ShowTypingMiddleware(100));
                options.Middleware.Add(new SetConversationDataMiddleware(stateBotAccessors));
                options.Middleware.Add(new SetUserProfileMiddleware(stateBotAccessors));
                 options.Middleware.Add(new SetLocaleMiddleware(stateBotAccessors));

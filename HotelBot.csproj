@@ -43,6 +43,11 @@
      <AutoGen>True</AutoGen>
      <DependentUpon>MainStrings.resx</DependentUpon>
    </Compile>
+   <Compile Update="Shared\Helpers\Resources\FacebookStrings.Designer.cs">
+     <DesignTime>True</DesignTime>
+     <AutoGen>True</AutoGen>
+     <DependentUpon>FacebookStrings.resx</DependentUpon>
+   </Compile>
    <Compile Update="Shared\Intents\Help\Resources\HelpStrings.Designer.cs">
      <DesignTime>True</DesignTime>
      <AutoGen>True</AutoGen>
@@ -64,6 +69,10 @@
    <EmbeddedResource Update="Dialogs\Main\Resources\MainStrings.resx">
      <Generator>PublicResXFileCodeGenerator</Generator>
      <LastGenOutput>MainStrings.Designer.cs</LastGenOutput>
+   </EmbeddedResource>
+   <EmbeddedResource Update="Shared\Helpers\Resources\FacebookStrings.resx">
+     <Generator>PublicResXFileCodeGenerator</Generator>
+     <LastGenOutput>FacebookStrings.Designer.cs</LastGenOutput>
    </EmbeddedResource>
    <EmbeddedResource Update="Shared\Intents\Help\Resources\HelpStrings.nl.resx">
      <Generator>PublicResXFileCodeGenerator</Generator>
@@ -92,7 +101,6 @@
 
  <ItemGroup>
    <Folder Include="CognitiveModels\QnA\en\" />
-   <Folder Include="Shared\Helpers\Resources\" />
  </ItemGroup> 
 
   <Import Project="PostDeployScripts\IncludeSources.targets" Condition="Exists('PostDeployScripts\IncludeSources.targets')" />

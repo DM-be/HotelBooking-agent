@@ -2,23 +2,15 @@
 // Licensed under the MIT License.
 
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.Main;
-using HotelBot.Models.Facebook;
 using HotelBot.Services;
-using HotelBot.Shared.Intents.Help.Resources;
-using HotelBot.Shared.QuickReplies.Resources;
 using HotelBot.StateAccessors;
-using HotelBot.StateProperties;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
-using Microsoft.Bot.Schema;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+
 
 namespace HotelBot
 {
