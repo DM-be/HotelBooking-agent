@@ -77,6 +77,8 @@ namespace HotelBot.Middleware
             // implement other postback logic before calling next
         }
 
+
+        // TODO: think about translating middleware --> keep from translating twice in these postbacks
         private async void OnFacebookQuickReply(FacebookQuickReply quickReply, ITurnContext context)
         {
             if (quickReply.Payload.Equals(FacebookQuickReply.LocationQuickReplyPayload))
@@ -86,7 +88,10 @@ namespace HotelBot.Middleware
             }
             else if (quickReply.Payload.Equals(FacebookQuickReply.CallUsReplyPayload))
             {
-                // updated text if needed (for now call us is in luis model)
+                // send english text so intent can be recognized
+                
+                context.Activity.Text = "Can I call you?";
+
             }
 
         }

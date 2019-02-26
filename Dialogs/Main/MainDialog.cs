@@ -85,21 +85,19 @@ namespace HotelBot.Dialogs.Main
                                 }
                             case HotelBotLuis.Intent.book_a_room:
                             {
-                              //  await dc.Context.SendActivityAsync("book a room intent");
-                                var userProfile = await _accessors.UserProfileAccessor.GetAsync(dc.Context);
-                                await dc.Context.SendActivityAsync(userProfile.First_Name);
-                                await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.Greeting);
+
+                                await dc.Context.SendActivityAsync("book a room intent");
                                 break;
                             }
                             case HotelBotLuis.Intent.get_directions:
                             {
                           
-                                 _facebookHelper.SendLocationQuickReply(dc.Context);
+                                 await _facebookHelper.SendLocationQuickReply(dc.Context);
                                  break;
                             }
                             case HotelBotLuis.Intent.call_us:
                             {
-                                _facebookHelper.SendCallMessage(dc.Context);
+                                await _facebookHelper.SendCallMessage(dc.Context);
                                 break;
                             }
                             case HotelBotLuis.Intent.None:
