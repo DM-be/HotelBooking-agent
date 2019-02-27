@@ -1,0 +1,32 @@
+Label	Weight	Text
+l_HotelBot	4.272727	what is your address
+l_HotelBot	4.272727	can i book another room for myself next week
+l_HotelBot	4.272727	where is the hotel
+l_HotelBot	4.272727	call us
+l_HotelBot	4.272727	can i call the hotel
+l_HotelBot	4.272727	can you book me a room
+l_HotelBot	4.272727	a random sentence
+l_HotelBot	4.272727	i want to get a room for myself and my partner for tomorrow
+l_HotelBot	4.272727	can i call you
+l_HotelBot	4.272727	what is the location
+l_HotelBot	4.272727	i want to book a room in january for myself and my partner
+q_HotelBotTest_qna_en_US	4.7	When can I checkin
+q_HotelBotTest_qna_en_US	4.7	Can I take my dog
+q_HotelBotTest_qna_en_US	4.7	When can I checkin
+q_HotelBotTest_qna_en_US	4.7	Can I take my dog
+q_HotelBotTest_qna_en_US	4.7	When can I checkin
+q_HotelBotTest_qna_en_US	4.7	Can I take my dog
+q_HotelBotTest_qna_en_US	4.7	When can I checkin
+q_HotelBotTest_qna_en_US	4.7	Can I take my dog
+q_HotelBotTest_qna_en_US	4.7	When can I checkin
+q_HotelBotTest_qna_en_US	4.7	Can I take my dog
+q_HotelBotTest_qna_nl_BE	4.700001	kan ik een hond meenemen
+q_HotelBotTest_qna_nl_BE	4.700001	wanneer is incheck tijd
+q_HotelBotTest_qna_nl_BE	4.700001	kan ik een hond meenemen
+q_HotelBotTest_qna_nl_BE	4.700001	wanneer is incheck tijd
+q_HotelBotTest_qna_nl_BE	4.700001	kan ik een hond meenemen
+q_HotelBotTest_qna_nl_BE	4.700001	wanneer is incheck tijd
+q_HotelBotTest_qna_nl_BE	4.700001	kan ik een hond meenemen
+q_HotelBotTest_qna_nl_BE	4.700001	wanneer is incheck tijd
+q_HotelBotTest_qna_nl_BE	4.700001	kan ik een hond meenemen
+q_HotelBotTest_qna_nl_BE	4.700001	wanneer is incheck tijd

@@ -1,0 +1,32 @@
+Label	Weight	Text
+l_HotelBot	4.272727	where is the bed and breakfast
+l_HotelBot	4.272727	i want to do something else
+l_HotelBot	4.272727	i need help
+l_HotelBot	4.272727	hello
+l_HotelBot	4.272727	i want a room for tomorow
+l_HotelBot	4.272727	i want to call reception
+l_HotelBot	4.272727	i want to cancel
+l_HotelBot	4.272727	i want to book a room for two persons tonight
+l_HotelBot	4.272727	what can you do
+l_HotelBot	4.272727	can i get a room for tomorrow
+l_HotelBot	4.272727	cancel this booking
+q_HotelBotTest_qna_en_US	4.700001	What is the checkin time
+q_HotelBotTest_qna_en_US	4.700001	What is the check in time
+q_HotelBotTest_qna_en_US	4.700001	What is the checkin time
+q_HotelBotTest_qna_en_US	4.700001	What is the check in time
+q_HotelBotTest_qna_en_US	4.700001	What is the checkin time
+q_HotelBotTest_qna_en_US	4.700001	What is the check in time
+q_HotelBotTest_qna_en_US	4.700001	What is the checkin time
+q_HotelBotTest_qna_en_US	4.700001	What is the check in time
+q_HotelBotTest_qna_en_US	4.700001	What is the checkin time
+q_HotelBotTest_qna_en_US	4.700001	What is the check in time
+q_HotelBotTest_qna_nl_BE	4.7	hoelaat is inchecken
+q_HotelBotTest_qna_nl_BE	4.7	Waneer kan ik inchecken
+q_HotelBotTest_qna_nl_BE	4.7	hoelaat is inchecken
+q_HotelBotTest_qna_nl_BE	4.7	Waneer kan ik inchecken
+q_HotelBotTest_qna_nl_BE	4.7	hoelaat is inchecken
+q_HotelBotTest_qna_nl_BE	4.7	Waneer kan ik inchecken
+q_HotelBotTest_qna_nl_BE	4.7	hoelaat is inchecken
+q_HotelBotTest_qna_nl_BE	4.7	Waneer kan ik inchecken
+q_HotelBotTest_qna_nl_BE	4.7	hoelaat is inchecken
+q_HotelBotTest_qna_nl_BE	4.7	Waneer kan ik inchecken

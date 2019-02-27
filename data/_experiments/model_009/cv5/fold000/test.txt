@@ -1,0 +1,32 @@
+Label	Weight	Text
+l_HotelBot	4.272727	i want to book a room tomorrow
+l_HotelBot	4.272727	where is it
+l_HotelBot	4.272727	call you
+l_HotelBot	4.272727	can we call
+l_HotelBot	4.272727	what's your address
+l_HotelBot	4.272727	hi
+l_HotelBot	4.272727	i want to get a room for next week
+l_HotelBot	4.272727	how can we find you
+l_HotelBot	4.272727	help me
+l_HotelBot	4.272727	i want to call the hotel
+l_HotelBot	4.272727	i want to book a room for next week
+q_HotelBotTest_qna_en_US	4.7	Whats the checkin time
+q_HotelBotTest_qna_en_US	4.7	Do you allow dogs
+q_HotelBotTest_qna_en_US	4.7	Whats the checkin time
+q_HotelBotTest_qna_en_US	4.7	Do you allow dogs
+q_HotelBotTest_qna_en_US	4.7	Whats the checkin time
+q_HotelBotTest_qna_en_US	4.7	Do you allow dogs
+q_HotelBotTest_qna_en_US	4.7	Whats the checkin time
+q_HotelBotTest_qna_en_US	4.7	Do you allow dogs
+q_HotelBotTest_qna_en_US	4.7	Whats the checkin time
+q_HotelBotTest_qna_en_US	4.7	Do you allow dogs
+q_HotelBotTest_qna_nl_BE	4.7	mag de hond mee
+q_HotelBotTest_qna_nl_BE	4.7	kan mijn hondje mee?
+q_HotelBotTest_qna_nl_BE	4.7	mag de hond mee
+q_HotelBotTest_qna_nl_BE	4.7	kan mijn hondje mee?
+q_HotelBotTest_qna_nl_BE	4.7	mag de hond mee
+q_HotelBotTest_qna_nl_BE	4.7	kan mijn hondje mee?
+q_HotelBotTest_qna_nl_BE	4.7	mag de hond mee
+q_HotelBotTest_qna_nl_BE	4.7	kan mijn hondje mee?
+q_HotelBotTest_qna_nl_BE	4.7	mag de hond mee
+q_HotelBotTest_qna_nl_BE	4.7	kan mijn hondje mee?

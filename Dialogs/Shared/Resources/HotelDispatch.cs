@@ -16,8 +16,9 @@ namespace Luis
         public string AlteredText;
         public enum Intent {
             l_HotelBot, 
-            q_HotelBotTest_qna,
-            None
+            None, 
+            q_HotelBotTest_qna_en_US, 
+            q_HotelBotTest_qna_nl_BE
         };
         public Dictionary<Intent, IntentScore> Intents;
 

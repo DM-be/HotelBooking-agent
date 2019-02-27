@@ -10,7 +10,7 @@ namespace HotelBot.Shared.Helpers
 {
     public  class FacebookHelper
     {
-        private  FacebookHelperResponses _responder = new FacebookHelperResponses();
+        private FacebookHelperResponses _responder = new FacebookHelperResponses();
 
 
         public async Task SendGettingStartedQuickReplies(ITurnContext context)

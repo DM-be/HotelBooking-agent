@@ -1,0 +1,32 @@
+Label	Weight	Text
+l_HotelBot	4.272727	i want to book a room for three tomorrow
+l_HotelBot	4.272727	this is nothing special
+l_HotelBot	4.272727	nothing meaningfull said
+l_HotelBot	4.272727	stop doing this
+l_HotelBot	4.272727	i want to call you
+l_HotelBot	4.272727	cancel
+l_HotelBot	4.272727	nice to meet you
+l_HotelBot	4.272727	cancel now
+l_HotelBot	4.272727	stop
+l_HotelBot	4.272727	i want to book a room for myself and my partner next week.
+l_HotelBot	4.272727	could i get a room for next week
+q_HotelBotTest_qna_en_US	4.7	What time can I check in
+q_HotelBotTest_qna_en_US	4.7	Are dogs allowed in the room
+q_HotelBotTest_qna_en_US	4.7	What time can I check in
+q_HotelBotTest_qna_en_US	4.7	Are dogs allowed in the room
+q_HotelBotTest_qna_en_US	4.7	What time can I check in
+q_HotelBotTest_qna_en_US	4.7	Are dogs allowed in the room
+q_HotelBotTest_qna_en_US	4.7	What time can I check in
+q_HotelBotTest_qna_en_US	4.7	Are dogs allowed in the room
+q_HotelBotTest_qna_en_US	4.7	What time can I check in
+q_HotelBotTest_qna_en_US	4.7	Are dogs allowed in the room
+q_HotelBotTest_qna_nl_BE	4.7	mogen we honden meenemen
+q_HotelBotTest_qna_nl_BE	4.7	om hoelaat kan ik inchecken
+q_HotelBotTest_qna_nl_BE	4.7	mogen we honden meenemen
+q_HotelBotTest_qna_nl_BE	4.7	om hoelaat kan ik inchecken
+q_HotelBotTest_qna_nl_BE	4.7	mogen we honden meenemen
+q_HotelBotTest_qna_nl_BE	4.7	om hoelaat kan ik inchecken
+q_HotelBotTest_qna_nl_BE	4.7	mogen we honden meenemen
+q_HotelBotTest_qna_nl_BE	4.7	om hoelaat kan ik inchecken
+q_HotelBotTest_qna_nl_BE	4.7	mogen we honden meenemen
+q_HotelBotTest_qna_nl_BE	4.7	om hoelaat kan ik inchecken

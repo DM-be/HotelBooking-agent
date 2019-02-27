@@ -20,13 +20,23 @@
       "hostname": "https://hoteltestqna.azurewebsites.net/qnamaker",
       "endpointKey": "5d8bae0b-2fb8-44dd-809c-c26d70d12d6b",
       "type": "qna",
-      "name": "HotelBotTest_qna",
+      "name": "HotelBotTest_qna_en_US",
       "id": "168"
+    },
+    {
+      "kbId": "1cd7661a-25c0-4b52-960c-4c48b22a413d",
+      "subscriptionKey": "ff912b1c840f4af180b9432c615635bc",
+      "hostname": "https://hoteltestqna.azurewebsites.net/qnamaker",
+      "endpointKey": "5d8bae0b-2fb8-44dd-809c-c26d70d12d6b",
+      "type": "qna",
+      "name": "HotelBotTest_qna_nl_BE",
+      "id": "106"
     }
   ],
   "serviceIds": [
     "118",
-    "168"
+    "168",
+    "106"
   ],
   "appId": "8f5a1469-f5da-4877-846f-2af7a1667ca9",
   "authoringKey": "cbcdfd8ed0d14d48ae3b01dd8c739bbf",

@@ -110,9 +110,27 @@ namespace HotelBot.Dialogs.Main
                         }
                     }
                 }
-                else if (intent == HotelDispatch.Intent.q_HotelBotTest_qna)
+                else if (intent == HotelDispatch.Intent.q_HotelBotTest_qna_en_US)
                 {
-                    _services.QnaServices.TryGetValue("HotelBotTest_qna", out var qnaService);
+                    _services.QnaServices.TryGetValue("HotelBotTest_qna_en_US", out var qnaService);
+
+                    if (qnaService == null)
+                    {
+                        throw new Exception("The specified QnA Maker Service could not be found in your Bot Services configuration.");
+                    }
+                    else
+                    {
+                        var answers = await qnaService.GetAnswersAsync(dc.Context);
+
+                        if (answers != null && answers.Count() > 0)
+                        {
+                            await dc.Context.SendActivityAsync(answers[0].Answer);
+                        }
+                    }
+                }
+                else if (intent == HotelDispatch.Intent.q_HotelBotTest_qna_nl_BE)
+                {
+                    _services.QnaServices.TryGetValue("HotelBotTest_qna_nl_BE", out var qnaService);
 
                     if (qnaService == null)
                     {
