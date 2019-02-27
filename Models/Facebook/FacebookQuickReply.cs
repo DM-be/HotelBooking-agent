@@ -14,6 +14,7 @@ namespace HotelBot.Models.Facebook
 
         public const string LocationQuickReplyPayload = "location";
         public const string CallUsReplyPayload = "call";
+        public const string BookARoomPayload = "book";
 
         [JsonProperty("payload")]
         public string Payload { get; set; }

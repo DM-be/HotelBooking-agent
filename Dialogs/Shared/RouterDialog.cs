@@ -22,7 +22,7 @@ namespace HotelBot.Dialogs.Shared
         {
             var activity = innerDc.Context.Activity;
 
-            if (activity.IsGetStartedPostBack())
+            if (activity.IsGetStartedPostBack() | activity.IsStartActivity())
             {
                 await OnStartAsync(innerDc);
             }

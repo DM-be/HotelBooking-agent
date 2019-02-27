@@ -110,7 +110,10 @@ namespace HotelBot.Dialogs.Main
                         }
                     }
                 }
-                // TODO: naming convention per hotel id etc, language from locale is not needed here
+                // TODO: naming convention per hotel id etc
+                // qna intents start with q_HotelBot.._nl_BE
+
+
                 else if (intent.ToString().StartsWith("q_"))
                 {
                     var intentString = intent.ToString();

@@ -79,7 +79,7 @@ namespace HotelBot.Shared.Helpers
                 {
                     Title = FacebookStrings.QUICK_REPLY_BUTTON_BOOK_A_ROOM,
                     Content_Type = "text",
-                    Payload = "Book_a_room",
+                    Payload = "book",
                 },
                 new FacebookQuickReply {
                     Title = FacebookStrings.QUICK_REPLY_BUTTON_DIRECTION,

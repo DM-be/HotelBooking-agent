@@ -93,6 +93,10 @@ namespace HotelBot.Middleware
                 context.Activity.Text = "Can I call you?";
 
             }
+            else if (quickReply.Payload.Equals(FacebookQuickReply.BookARoomPayload))
+            {
+                context.Activity.Text = "Can I book a room?";
+            }
 
         }
     }
