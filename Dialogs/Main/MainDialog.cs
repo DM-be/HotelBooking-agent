@@ -4,6 +4,7 @@ using System.Dynamic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using HotelBot.Dialogs.BookARoom;
 using HotelBot.Dialogs.Shared;
 using HotelBot.Middleware;
 using HotelBot.Services;
@@ -32,6 +33,8 @@ namespace HotelBot.Dialogs.Main
             _services = services ?? throw new ArgumentNullException(nameof(services));
             _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
             // TODO: add dialogs based on intent here, ie get location dialog or book a room dialog
+
+            AddDialog(new BookARoomDialog(_services, _accessors));
         }
 
         protected override async Task OnStartAsync(DialogContext dc, CancellationToken cancellationToken = default(CancellationToken))
@@ -86,7 +89,7 @@ namespace HotelBot.Dialogs.Main
                             case HotelBotLuis.Intent.book_a_room:
                             {
 
-                                await dc.Context.SendActivityAsync("book a room intent");
+                                await dc.BeginDialogAsync(nameof(BookARoomDialog));
                                 break;
                             }
                             case HotelBotLuis.Intent.get_directions:

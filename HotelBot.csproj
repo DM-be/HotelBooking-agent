@@ -38,6 +38,16 @@
   </ItemGroup>
 
  <ItemGroup>
+   <Compile Update="Dialogs\BookARoom\Resources\BookARoomStrings.Designer.cs">
+     <DesignTime>True</DesignTime>
+     <AutoGen>True</AutoGen>
+     <DependentUpon>BookARoomStrings.resx</DependentUpon>
+   </Compile>
+   <Compile Update="Dialogs\Cancel\Resources\CancelStrings.Designer.cs">
+     <DesignTime>True</DesignTime>
+     <AutoGen>True</AutoGen>
+     <DependentUpon>CancelStrings.resx</DependentUpon>
+   </Compile>
    <Compile Update="Dialogs\Main\Resources\MainStrings.Designer.cs">
      <DesignTime>True</DesignTime>
      <AutoGen>True</AutoGen>
@@ -66,6 +76,14 @@
  </ItemGroup>
 
  <ItemGroup>
+   <EmbeddedResource Update="Dialogs\BookARoom\Resources\BookARoomStrings.resx">
+     <Generator>PublicResXFileCodeGenerator</Generator>
+     <LastGenOutput>BookARoomStrings.Designer.cs</LastGenOutput>
+   </EmbeddedResource>
+   <EmbeddedResource Update="Dialogs\Cancel\Resources\CancelStrings.resx">
+     <Generator>PublicResXFileCodeGenerator</Generator>
+     <LastGenOutput>CancelStrings.Designer.cs</LastGenOutput>
+   </EmbeddedResource>
    <EmbeddedResource Update="Dialogs\Main\Resources\MainStrings.resx">
      <Generator>PublicResXFileCodeGenerator</Generator>
      <LastGenOutput>MainStrings.Designer.cs</LastGenOutput>

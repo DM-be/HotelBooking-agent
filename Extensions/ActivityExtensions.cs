@@ -10,7 +10,7 @@ namespace HotelBot.Extensions
     public static class ActivityExtensions
     {
 
-        // TODO: remove isstartactivity when obselete
+        // TODO: remove isstartactivity if obsolete
         public static bool IsStartActivity(this Activity activity)
         {
             switch (activity.ChannelId)

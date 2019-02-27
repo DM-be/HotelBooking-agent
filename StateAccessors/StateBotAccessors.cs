@@ -1,4 +1,5 @@
 ﻿using System;
+using HotelBot.Dialogs.BookARoom;
 using HotelBot.StateProperties;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
@@ -17,7 +18,7 @@ namespace HotelBot.StateAccessors
         public static string UserProfileName { get; } = "UserProfile";
         public static string ConversationDataName { get; } = "ConversationData";
         public static string DialogStateName { get; } = "DialogState";
-        public static string BookARoomAName { get; } = "BookARoom";
+        public static string BookARoomAName { get; } = "BookARoomState";
 
         public IStatePropertyAccessor<UserProfile> UserProfileAccessor { get; set; }
 
@@ -25,7 +26,7 @@ namespace HotelBot.StateAccessors
 
         public IStatePropertyAccessor<DialogState> DialogStateAccessor { get; set; }
 
-        public IStatePropertyAccessor<BookARoom> BookARoomAccessor { get; set; }
+        public IStatePropertyAccessor<BookARoomState> BookARoomStateAccessor { get; set; }
     
         public ConversationState ConversationState { get; }
         public UserState UserState { get; }
