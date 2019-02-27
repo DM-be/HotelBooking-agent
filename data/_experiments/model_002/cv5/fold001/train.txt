@@ -1,39 +1,66 @@
 Label	Weight	Text
-l_HotelBot	1	this is nothing special
-l_HotelBot	1	a random sentence
-l_HotelBot	1	cancel this booking
-l_HotelBot	1	can you book me a room
-l_HotelBot	1	hello
-l_HotelBot	1	can i get a room for tomorrow
-l_HotelBot	1	cancel now
-l_HotelBot	1	i want to book a room for three tomorrow
-l_HotelBot	1	cancel
-l_HotelBot	1	stop
-l_HotelBot	1	are dogs allowed
-l_HotelBot	1	can i book for tonight
-l_HotelBot	1	help
-l_HotelBot	1	i want to do something else
-l_HotelBot	1	what can you do
-l_HotelBot	1	nothing meaningfull said
-l_HotelBot	1	stop doing this
-l_HotelBot	1	help me
-l_HotelBot	1	can i book another room for myself next week
-l_HotelBot	1	i want to get a room for myself and my partner for tomorrow
-l_HotelBot	1	i want to book a room for next week
-l_HotelBot	1	i want a room for tomorow
-l_HotelBot	1	i need help
-l_HotelBot	1	could i get a room for next week
-l_HotelBot	1	what can i ask you
-l_HotelBot	1	hi
 l_HotelBot	1	cancel this
+l_HotelBot	1	can i call you
+l_HotelBot	1	i want to call a person
+l_HotelBot	1	where is the hotel
+l_HotelBot	1	what is the hotel number?>
+l_HotelBot	1	i want to call reception
+l_HotelBot	1	cancel this booking
+l_HotelBot	1	cancel
+l_HotelBot	1	i want to book a room tomorrow
+l_HotelBot	1	how can we find you
+l_HotelBot	1	i need help
+l_HotelBot	1	stop doing this
+l_HotelBot	1	i want to get a room for myself and my partner for tomorrow
+l_HotelBot	1	a random sentence
+l_HotelBot	1	stop
+l_HotelBot	1	can we call the hotel
+l_HotelBot	1	what's your address
+l_HotelBot	1	i want to call the hotel
+l_HotelBot	1	i want to get a room for next week
+l_HotelBot	1	can i book another room for myself next week
+l_HotelBot	2	where are you located
+l_HotelBot	1	i want to book a room in january for myself and my partner
+l_HotelBot	1	hello
+l_HotelBot	1	help me
+l_HotelBot	1	can you book me a room
+l_HotelBot	1	call us
+l_HotelBot	1	hi
+l_HotelBot	1	nice to meet you
 l_HotelBot	1	how late can i arrive tomorrow
-q_faq	2.8	When is checkin
-q_faq	2.8	When is checking in possible
-q_faq	2.8	Are dogs allowed
-q_faq	2.8	What is the checkin time
-q_faq	2.8	At what time can we check in
-q_faq	2.8	At what time can we checkin
-q_faq	2.8	When can we check in
-q_faq	2.8	When is check in time
-q_faq	2.8	Can I take my dog
-q_faq	2.8	Is a dog allowed in the room
+l_HotelBot	1	where is the bed and breakfast
+l_HotelBot	1	this is nothing special
+l_HotelBot	1	i want to book a room for two persons tonight
+l_HotelBot	1	i want to book a room for three tomorrow
+l_HotelBot	1	where in the city are you
+l_HotelBot	1	i want to cancel
+l_HotelBot	1	can i get a room for tomorrow
+l_HotelBot	2	whats your number
+l_HotelBot	1	where is it
+l_HotelBot	1	can i book for tonight
+l_HotelBot	1	what is the location
+l_HotelBot	1	can we call
+l_HotelBot	1	nothing meaningfull said
+l_HotelBot	1	what is your address
+l_HotelBot	1	i want to call you
+l_HotelBot	1	i want a room for tomorow
+q_2129612763787673_Starhotelpage_qna_en_US	4.7	can i take my dog
+q_2129612763787673_Starhotelpage_qna_en_US	4.7	can i take my dog
+q_2129612763787673_Starhotelpage_qna_en_US	4.7	can i take my dog
+q_2129612763787673_Starhotelpage_qna_en_US	4.7	can i take my dog
+q_2129612763787673_Starhotelpage_qna_en_US	4.7	can i take my dog
+q_2129612763787673_Starhotelpage_qna_en_US	4.7	can i take my dog
+q_2129612763787673_Starhotelpage_qna_en_US	4.7	can i take my dog
+q_2129612763787673_Starhotelpage_qna_en_US	4.7	can i take my dog
+q_2129612763787673_Starhotelpage_qna_en_US	4.7	can i take my dog
+q_2129612763787673_Starhotelpage_qna_en_US	4.7	can i take my dog
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	Zijn honden toegelaten
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	Mogen we onze hond meenemen
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	Is mijn hond toegelaten in het hotel
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	We hebben twee honden, is dat een probleem
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	Zijn honden toegelaten op de kamer
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	Zijn honden toegelaten
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	Zijn honden toegelaten
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	Zijn honden toegelaten
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	Zijn honden toegelaten
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	Zijn honden toegelaten

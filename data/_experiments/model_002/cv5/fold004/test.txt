@@ -1,27 +1,32 @@
 Label	Weight	Text
-l_HotelBot	2	i want a room for tomorow
-l_HotelBot	2	i need help
-l_HotelBot	2	could i get a room for next week
-l_HotelBot	2	what can i ask you
-l_HotelBot	2	hi
-l_HotelBot	2	cancel this
-l_HotelBot	2	how late can i arrive tomorrow
-l_HotelBot	2	i want a room for tomorow
-l_HotelBot	2	i need help
-l_HotelBot	2	could i get a room for next week
-l_HotelBot	2	what can i ask you
-l_HotelBot	2	hi
-l_HotelBot	2	cancel this
-l_HotelBot	2	how late can i arrive tomorrow
-q_faq	2.333333	When is check in time
-q_faq	2.333333	Can I take my dog
-q_faq	2.333333	Is a dog allowed in the room
-q_faq	2.333333	When is check in time
-q_faq	2.333333	Can I take my dog
-q_faq	2.333333	Is a dog allowed in the room
-q_faq	2.333333	When is check in time
-q_faq	2.333333	Can I take my dog
-q_faq	2.333333	Is a dog allowed in the room
-q_faq	2.333333	When is check in time
-q_faq	2.333333	Can I take my dog
-q_faq	2.333333	Is a dog allowed in the room
+l_HotelBot	3.833333	where in the city are you
+l_HotelBot	3.833333	i want to cancel
+l_HotelBot	3.833333	can i get a room for tomorrow
+l_HotelBot	7.666667	whats your number
+l_HotelBot	3.833333	where is it
+l_HotelBot	3.833333	can i book for tonight
+l_HotelBot	3.833333	what is the location
+l_HotelBot	3.833333	can we call
+l_HotelBot	3.833333	nothing meaningfull said
+l_HotelBot	3.833333	what is your address
+l_HotelBot	3.833333	i want to call you
+q_2129612763787673_Starhotelpage_qna_en_US	4.6	are dogs allowed
+q_2129612763787673_Starhotelpage_qna_en_US	4.6	are dogs allowed
+q_2129612763787673_Starhotelpage_qna_en_US	4.6	are dogs allowed
+q_2129612763787673_Starhotelpage_qna_en_US	4.6	are dogs allowed
+q_2129612763787673_Starhotelpage_qna_en_US	4.6	are dogs allowed
+q_2129612763787673_Starhotelpage_qna_en_US	4.6	are dogs allowed
+q_2129612763787673_Starhotelpage_qna_en_US	4.6	are dogs allowed
+q_2129612763787673_Starhotelpage_qna_en_US	4.6	are dogs allowed
+q_2129612763787673_Starhotelpage_qna_en_US	4.6	are dogs allowed
+q_2129612763787673_Starhotelpage_qna_en_US	4.6	are dogs allowed
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	We hebben twee honden, is dat een probleem
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	We hebben twee honden, is dat een probleem
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	We hebben twee honden, is dat een probleem
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	We hebben twee honden, is dat een probleem
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	We hebben twee honden, is dat een probleem
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	We hebben twee honden, is dat een probleem
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	We hebben twee honden, is dat een probleem
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	We hebben twee honden, is dat een probleem
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	We hebben twee honden, is dat een probleem
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	We hebben twee honden, is dat een probleem

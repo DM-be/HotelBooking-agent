@@ -1,47 +1,18 @@
 {
-  "luis_schema_version": "3.2.0",
+  "luis_schema_version": "3.1.0",
   "versionId": "Dispatch",
   "name": "HotelDispatch",
   "desc": "Dispatch model for HotelDispatch",
   "culture": "en-us",
-  "tokenizerVersion": "1.0.0",
   "intents": [
     {
-      "name": "l_HotelBot",
-      "serviceConnections": {
-        "type": "LUIS",
-        "appName": "hotelbot",
-        "appId": "b1fa4a04-cb5e-47bd-ac18-2e3a3d5877fa",
-        "appVersion": "0.1",
-        "slotName": "PRODUCTION",
-        "region": "westeurope",
-        "luisIncludedIntentNames": []
-      }
+      "name": "l_HotelBot"
     },
     {
-      "name": "None"
+      "name": "q_2129612763787673_en"
     },
     {
-      "name": "q_HotelBotTest_qna_en_US",
-      "serviceConnections": {
-        "type": "QnA",
-        "appId": "fb174302-8e45-495b-9354-a39eaa158b48",
-        "luisIncludedIntentNames": [],
-        "endpointKey": "5d8bae0b-2fb8-44dd-809c-c26d70d12d6b",
-        "subscriptionKey": "ff912b1c840f4af180b9432c615635bc",
-        "hostName": "https://hoteltestqna.azurewebsites.net/qnamaker"
-      }
-    },
-    {
-      "name": "q_HotelBotTest_qna_nl_BE",
-      "serviceConnections": {
-        "type": "QnA",
-        "appId": "1cd7661a-25c0-4b52-960c-4c48b22a413d",
-        "luisIncludedIntentNames": [],
-        "endpointKey": "5d8bae0b-2fb8-44dd-809c-c26d70d12d6b",
-        "subscriptionKey": "ff912b1c840f4af180b9432c615635bc",
-        "hostName": "https://hoteltestqna.azurewebsites.net/qnamaker"
-      }
+      "name": "q_2129612763787673_nl"
     }
   ],
   "entities": [],
@@ -55,37 +26,7 @@
   "patterns": [],
   "utterances": [
     {
-      "text": "a random sentence",
-      "intent": "l_HotelBot",
-      "entities": []
-    },
-    {
-      "text": "are dogs allowed in the room",
-      "intent": "q_HotelBotTest_qna_en_US",
-      "entities": []
-    },
-    {
-      "text": "are dogs allowed?",
-      "intent": "q_HotelBotTest_qna_en_US",
-      "entities": []
-    },
-    {
-      "text": "call us",
-      "intent": "l_HotelBot",
-      "entities": []
-    },
-    {
-      "text": "call you",
-      "intent": "l_HotelBot",
-      "entities": []
-    },
-    {
-      "text": "can i book another room for myself next week",
-      "intent": "l_HotelBot",
-      "entities": []
-    },
-    {
-      "text": "can i book for tonight",
+      "text": "what can you do",
       "intent": "l_HotelBot",
       "entities": []
     },
@@ -95,37 +36,32 @@
       "entities": []
     },
     {
-      "text": "can i call you",
+      "text": "where is the hotel",
       "intent": "l_HotelBot",
       "entities": []
     },
     {
-      "text": "can i get a room for tomorrow",
+      "text": "call you",
       "intent": "l_HotelBot",
       "entities": []
     },
     {
-      "text": "can i take my dog",
-      "intent": "q_HotelBotTest_qna_en_US",
-      "entities": []
-    },
-    {
-      "text": "can we call",
+      "text": "i want to do something else",
       "intent": "l_HotelBot",
       "entities": []
     },
     {
-      "text": "can we call the hotel",
+      "text": "i want to call you",
       "intent": "l_HotelBot",
       "entities": []
     },
     {
-      "text": "can you book me a room",
+      "text": "a random sentence",
       "intent": "l_HotelBot",
       "entities": []
     },
     {
-      "text": "cancel",
+      "text": "i want to book a room for two persons tonight",
       "intent": "l_HotelBot",
       "entities": []
     },
@@ -135,7 +71,17 @@
       "entities": []
     },
     {
-      "text": "cancel this",
+      "text": "i want to cancel",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "what is your address",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "where are you located",
       "intent": "l_HotelBot",
       "entities": []
     },
@@ -150,42 +96,22 @@
       "entities": []
     },
     {
-      "text": "do you allow dogs",
-      "intent": "q_HotelBotTest_qna_en_US",
-      "entities": []
-    },
-    {
-      "text": "hello",
+      "text": "where can i find your number",
       "intent": "l_HotelBot",
       "entities": []
     },
     {
-      "text": "help",
+      "text": "what can i ask you",
       "intent": "l_HotelBot",
       "entities": []
     },
     {
-      "text": "help me",
+      "text": "stop",
       "intent": "l_HotelBot",
       "entities": []
     },
     {
-      "text": "hi",
-      "intent": "l_HotelBot",
-      "entities": []
-    },
-    {
-      "text": "hoe laat kan ik inchecken",
-      "intent": "q_HotelBotTest_qna_nl_BE",
-      "entities": []
-    },
-    {
-      "text": "hoelaat is inchecken",
-      "intent": "q_HotelBotTest_qna_nl_BE",
-      "entities": []
-    },
-    {
-      "text": "how can we find you",
+      "text": "can we call the hotel",
       "intent": "l_HotelBot",
       "entities": []
     },
@@ -195,122 +121,12 @@
       "entities": []
     },
     {
-      "text": "i need help",
-      "intent": "l_HotelBot",
-      "entities": []
-    },
-    {
-      "text": "i want a room for tomorow",
-      "intent": "l_HotelBot",
-      "entities": []
-    },
-    {
-      "text": "i want to book a room for myself and my partner next week.",
-      "intent": "l_HotelBot",
-      "entities": []
-    },
-    {
-      "text": "i want to book a room for next week",
-      "intent": "l_HotelBot",
-      "entities": []
-    },
-    {
-      "text": "i want to book a room for three tomorrow",
-      "intent": "l_HotelBot",
-      "entities": []
-    },
-    {
-      "text": "i want to book a room for two persons tonight",
-      "intent": "l_HotelBot",
-      "entities": []
-    },
-    {
-      "text": "i want to book a room in january for myself and my partner",
-      "intent": "l_HotelBot",
-      "entities": []
-    },
-    {
-      "text": "i want to book a room tomorrow",
-      "intent": "l_HotelBot",
-      "entities": []
-    },
-    {
-      "text": "i want to call a person",
-      "intent": "l_HotelBot",
-      "entities": []
-    },
-    {
-      "text": "i want to call reception",
-      "intent": "l_HotelBot",
-      "entities": []
-    },
-    {
       "text": "i want to call the hotel",
       "intent": "l_HotelBot",
       "entities": []
     },
     {
-      "text": "i want to call you",
-      "intent": "l_HotelBot",
-      "entities": []
-    },
-    {
-      "text": "i want to cancel",
-      "intent": "l_HotelBot",
-      "entities": []
-    },
-    {
-      "text": "i want to do something else",
-      "intent": "l_HotelBot",
-      "entities": []
-    },
-    {
-      "text": "i want to get a room for myself and my partner for tomorrow",
-      "intent": "l_HotelBot",
-      "entities": []
-    },
-    {
-      "text": "i want to get a room for next week",
-      "intent": "l_HotelBot",
-      "entities": []
-    },
-    {
-      "text": "kan ik een hond meenemen",
-      "intent": "q_HotelBotTest_qna_nl_BE",
-      "entities": []
-    },
-    {
-      "text": "kan mijn hondje mee?",
-      "intent": "q_HotelBotTest_qna_nl_BE",
-      "entities": []
-    },
-    {
-      "text": "mag de hond mee",
-      "intent": "q_HotelBotTest_qna_nl_BE",
-      "entities": []
-    },
-    {
-      "text": "mogen we honden meenemen",
-      "intent": "q_HotelBotTest_qna_nl_BE",
-      "entities": []
-    },
-    {
-      "text": "nice to meet you",
-      "intent": "l_HotelBot",
-      "entities": []
-    },
-    {
-      "text": "nothing meaningfull said",
-      "intent": "l_HotelBot",
-      "entities": []
-    },
-    {
-      "text": "om hoelaat kan ik inchecken",
-      "intent": "q_HotelBotTest_qna_nl_BE",
-      "entities": []
-    },
-    {
-      "text": "stop",
+      "text": "hi",
       "intent": "l_HotelBot",
       "entities": []
     },
@@ -320,67 +136,72 @@
       "entities": []
     },
     {
+      "text": "call us",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "can i get a room for tomorrow",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "i want a room for tomorow",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "i want to get a room for next week",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "i want to call a person",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "cancel this",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "help",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "i want to book a room for three tomorrow",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
       "text": "this is nothing special",
       "intent": "l_HotelBot",
       "entities": []
     },
     {
-      "text": "waneer kan ik inchecken",
-      "intent": "q_HotelBotTest_qna_nl_BE",
-      "entities": []
-    },
-    {
-      "text": "wanneer is incheck tijd",
-      "intent": "q_HotelBotTest_qna_nl_BE",
-      "entities": []
-    },
-    {
-      "text": "what can i ask you",
+      "text": "can i book for tonight",
       "intent": "l_HotelBot",
       "entities": []
     },
     {
-      "text": "what can you do",
+      "text": "can i call you",
       "intent": "l_HotelBot",
-      "entities": []
-    },
-    {
-      "text": "what is the check in time",
-      "intent": "q_HotelBotTest_qna_en_US",
-      "entities": []
-    },
-    {
-      "text": "what is the checkin time",
-      "intent": "q_HotelBotTest_qna_en_US",
-      "entities": []
-    },
-    {
-      "text": "what is the hotel number?>",
-      "intent": "l_HotelBot",
-      "entities": []
-    },
-    {
-      "text": "what is the location",
-      "intent": "l_HotelBot",
-      "entities": []
-    },
-    {
-      "text": "what is your address",
-      "intent": "l_HotelBot",
-      "entities": []
-    },
-    {
-      "text": "what time can i check in",
-      "intent": "q_HotelBotTest_qna_en_US",
-      "entities": []
-    },
-    {
-      "text": "whats the checkin time",
-      "intent": "q_HotelBotTest_qna_en_US",
       "entities": []
     },
     {
       "text": "what's your address",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "can you book me a room",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "nice to meet you",
       "intent": "l_HotelBot",
       "entities": []
     },
@@ -390,22 +211,42 @@
       "entities": []
     },
     {
-      "text": "when can i checkin",
-      "intent": "q_HotelBotTest_qna_en_US",
-      "entities": []
-    },
-    {
-      "text": "when is check in",
-      "intent": "q_HotelBotTest_qna_en_US",
-      "entities": []
-    },
-    {
-      "text": "where are you located",
+      "text": "where is it",
       "intent": "l_HotelBot",
       "entities": []
     },
     {
-      "text": "where can i find your number",
+      "text": "i want to call reception",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "cancel",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "i want to book a room for myself and my partner next week.",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "nothing meaningfull said",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "i want to book a room tomorrow",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "what is the location",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "how can we find you",
       "intent": "l_HotelBot",
       "entities": []
     },
@@ -415,7 +256,42 @@
       "entities": []
     },
     {
-      "text": "where is it",
+      "text": "i want to book a room in january for myself and my partner",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "i want to book a room for next week",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "i need help",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "what is the hotel number?>",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "i want to get a room for myself and my partner for tomorrow",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "hello",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "can we call",
+      "intent": "l_HotelBot",
+      "entities": []
+    },
+    {
+      "text": "help me",
       "intent": "l_HotelBot",
       "entities": []
     },
@@ -425,18 +301,48 @@
       "entities": []
     },
     {
-      "text": "where is the hotel",
+      "text": "can i book another room for myself next week",
       "intent": "l_HotelBot",
       "entities": []
     },
     {
-      "text": "zijn honden toegelaten",
-      "intent": "q_HotelBotTest_qna_nl_BE",
+      "text": "can i take my dog",
+      "intent": "q_2129612763787673_en",
       "entities": []
     },
     {
-      "text": "zijn honden toegelaten op de kamer?",
-      "intent": "q_HotelBotTest_qna_nl_BE",
+      "text": "are dogs allowed",
+      "intent": "q_2129612763787673_en",
+      "entities": []
+    },
+    {
+      "text": "mogen we onze hond meenemen",
+      "intent": "q_2129612763787673_nl",
+      "entities": []
+    },
+    {
+      "text": "we hebben twee honden, is dat een probleem",
+      "intent": "q_2129612763787673_nl",
+      "entities": []
+    },
+    {
+      "text": "zijn honden toegelaten",
+      "intent": "q_2129612763787673_nl",
+      "entities": []
+    },
+    {
+      "text": "is mijn hond toegelaten in het hotel",
+      "intent": "q_2129612763787673_nl",
+      "entities": []
+    },
+    {
+      "text": "mag ik mijn hond meenemen",
+      "intent": "q_2129612763787673_nl",
+      "entities": []
+    },
+    {
+      "text": "zijn honden toegelaten op de kamer",
+      "intent": "q_2129612763787673_nl",
       "entities": []
     }
   ],

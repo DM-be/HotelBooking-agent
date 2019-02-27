@@ -1,29 +1,32 @@
 Label	Weight	Text
-l_HotelBot	1.944444	i want to cancel
-l_HotelBot	1.944444	i want to book a room for myself and my partner next week.
-l_HotelBot	1.944444	a random sentence
-l_HotelBot	1.944444	can i book another room for myself next week
-l_HotelBot	1.944444	help
-l_HotelBot	1.944444	could i get a room for next week
-l_HotelBot	1.944444	can i book for tonight
-l_HotelBot	1.944444	what's your address
-l_HotelBot	1.944444	where is the hotel
-l_HotelBot	1.944444	i want to cancel
-l_HotelBot	1.944444	i want to book a room for myself and my partner next week.
-l_HotelBot	1.944444	a random sentence
-l_HotelBot	1.944444	can i book another room for myself next week
-l_HotelBot	1.944444	help
-l_HotelBot	1.944444	could i get a room for next week
-l_HotelBot	1.944444	can i book for tonight
-l_HotelBot	1.944444	what's your address
-l_HotelBot	1.944444	where is the hotel
-q_HotelBotTest_qna	3.5	Can I take my dog
-q_HotelBotTest_qna	3.5	Do you allow dogs
-q_HotelBotTest_qna	3.5	Can I take my dog
-q_HotelBotTest_qna	3.5	Do you allow dogs
-q_HotelBotTest_qna	3.5	Can I take my dog
-q_HotelBotTest_qna	3.5	Do you allow dogs
-q_HotelBotTest_qna	3.5	Can I take my dog
-q_HotelBotTest_qna	3.5	Do you allow dogs
-q_HotelBotTest_qna	3.5	Can I take my dog
-q_HotelBotTest_qna	3.5	Do you allow dogs
+l_HotelBot	4.272727	how can we find you
+l_HotelBot	4.272727	where in the city are you
+l_HotelBot	4.272727	i want to book a room in january for myself and my partner
+l_HotelBot	4.272727	i want to book a room for next week
+l_HotelBot	4.272727	i need help
+l_HotelBot	4.272727	what is the hotel number?>
+l_HotelBot	4.272727	i want to get a room for myself and my partner for tomorrow
+l_HotelBot	4.272727	hello
+l_HotelBot	4.272727	can we call
+l_HotelBot	4.272727	help me
+l_HotelBot	4.272727	where is the bed and breakfast
+q_2129612763787673_en	4.7	are dogs allowed
+q_2129612763787673_en	4.7	are dogs allowed
+q_2129612763787673_en	4.7	are dogs allowed
+q_2129612763787673_en	4.7	are dogs allowed
+q_2129612763787673_en	4.7	are dogs allowed
+q_2129612763787673_en	4.7	are dogs allowed
+q_2129612763787673_en	4.7	are dogs allowed
+q_2129612763787673_en	4.7	are dogs allowed
+q_2129612763787673_en	4.7	are dogs allowed
+q_2129612763787673_en	4.7	are dogs allowed
+q_2129612763787673_nl	4.7	Mag ik mijn hond meenemen
+q_2129612763787673_nl	4.7	Mag ik mijn hond meenemen
+q_2129612763787673_nl	4.7	Mag ik mijn hond meenemen
+q_2129612763787673_nl	4.7	Mag ik mijn hond meenemen
+q_2129612763787673_nl	4.7	Mag ik mijn hond meenemen
+q_2129612763787673_nl	4.7	Mag ik mijn hond meenemen
+q_2129612763787673_nl	4.7	Mag ik mijn hond meenemen
+q_2129612763787673_nl	4.7	Mag ik mijn hond meenemen
+q_2129612763787673_nl	4.7	Mag ik mijn hond meenemen
+q_2129612763787673_nl	4.7	Mag ik mijn hond meenemen

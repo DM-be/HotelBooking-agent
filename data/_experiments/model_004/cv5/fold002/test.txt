@@ -1,45 +1,32 @@
 Label	Weight	Text
-l_BasicBotLuisApplication	4.055555	who am i speaking to
-l_BasicBotLuisApplication	4.055555	what are your capabilities
-l_BasicBotLuisApplication	4.055555	toronto
-l_BasicBotLuisApplication	4.055555	i'm not going to tell you where i live
-l_BasicBotLuisApplication	4.055555	please stop
-l_BasicBotLuisApplication	4.055555	mumbai
-l_BasicBotLuisApplication	4.055555	how are you today
-l_BasicBotLuisApplication	4.055555	how old are you
-l_BasicBotLuisApplication	4.055555	what can you do
-l_BasicBotLuisApplication	4.055555	melanie
-l_BasicBotLuisApplication	4.055555	i'd rather be riding my bike
-l_BasicBotLuisApplication	4.055555	dhaka
-l_BasicBotLuisApplication	4.055555	world wide pants
-l_BasicBotLuisApplication	4.055555	my location is new york
-l_BasicBotLuisApplication	4.055555	have you any dreams
-l_BasicBotLuisApplication	4.055555	dont you ever sleep
-l_BasicBotLuisApplication	4.055555	seattle is my current city
-l_BasicBotLuisApplication	4.055555	are you old
-l_HotelBot	5.214286	i want a room for tomorow
-l_HotelBot	5.214286	could i get a room for next week
-l_HotelBot	5.214286	help
-l_HotelBot	5.214286	can you book me a room
-l_HotelBot	5.214286	how late can i arrive tomorrow
-l_HotelBot	5.214286	i want to do something else
-l_HotelBot	5.214286	a random sentence
-l_HotelBot	5.214286	i want a room for tomorow
-l_HotelBot	5.214286	could i get a room for next week
-l_HotelBot	5.214286	help
-l_HotelBot	5.214286	can you book me a room
-l_HotelBot	5.214286	how late can i arrive tomorrow
-l_HotelBot	5.214286	i want to do something else
-l_HotelBot	5.214286	a random sentence
-q_faq	6.083333	When is checking in possible
-q_faq	6.083333	What is the checkin time
-q_faq	6.083333	At what time can we checkin
-q_faq	6.083333	When is checking in possible
-q_faq	6.083333	What is the checkin time
-q_faq	6.083333	At what time can we checkin
-q_faq	6.083333	When is checking in possible
-q_faq	6.083333	What is the checkin time
-q_faq	6.083333	At what time can we checkin
-q_faq	6.083333	When is checking in possible
-q_faq	6.083333	What is the checkin time
-q_faq	6.083333	At what time can we checkin
+l_HotelBot	4.272727	stop doing this
+l_HotelBot	4.272727	what's your address
+l_HotelBot	4.272727	i want to call the hotel
+l_HotelBot	4.272727	call us
+l_HotelBot	4.272727	can i get a room for tomorrow
+l_HotelBot	4.272727	can i book another room for myself next week
+l_HotelBot	4.272727	i want to book a room for two persons tonight
+l_HotelBot	4.272727	i want to get a room for next week
+l_HotelBot	4.272727	where is the bed and breakfast
+l_HotelBot	4.272727	can we call the hotel
+l_HotelBot	4.272727	i need help
+q_Starhotelpage_2129612763787673_en_US	4.7	We hebben twee honden, is dat een probleem
+q_Starhotelpage_2129612763787673_en_US	4.7	We hebben twee honden, is dat een probleem
+q_Starhotelpage_2129612763787673_en_US	4.7	We hebben twee honden, is dat een probleem
+q_Starhotelpage_2129612763787673_en_US	4.7	We hebben twee honden, is dat een probleem
+q_Starhotelpage_2129612763787673_en_US	4.7	We hebben twee honden, is dat een probleem
+q_Starhotelpage_2129612763787673_en_US	4.7	We hebben twee honden, is dat een probleem
+q_Starhotelpage_2129612763787673_en_US	4.7	We hebben twee honden, is dat een probleem
+q_Starhotelpage_2129612763787673_en_US	4.7	We hebben twee honden, is dat een probleem
+q_Starhotelpage_2129612763787673_en_US	4.7	We hebben twee honden, is dat een probleem
+q_Starhotelpage_2129612763787673_en_US	4.7	We hebben twee honden, is dat een probleem
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	Is mijn hond toegelaten in het hotel
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	Is mijn hond toegelaten in het hotel
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	Is mijn hond toegelaten in het hotel
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	Is mijn hond toegelaten in het hotel
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	Is mijn hond toegelaten in het hotel
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	Is mijn hond toegelaten in het hotel
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	Is mijn hond toegelaten in het hotel
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	Is mijn hond toegelaten in het hotel
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	Is mijn hond toegelaten in het hotel
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	Is mijn hond toegelaten in het hotel

@@ -1,27 +1,32 @@
 Label	Weight	Text
-l_HotelBot	2	i want to book a room for three tomorrow
-l_HotelBot	2	cancel
-l_HotelBot	2	stop
-l_HotelBot	2	are dogs allowed
-l_HotelBot	2	can i book for tonight
-l_HotelBot	2	help
-l_HotelBot	2	i want to do something else
-l_HotelBot	2	i want to book a room for three tomorrow
-l_HotelBot	2	cancel
-l_HotelBot	2	stop
-l_HotelBot	2	are dogs allowed
-l_HotelBot	2	can i book for tonight
-l_HotelBot	2	help
-l_HotelBot	2	i want to do something else
-q_faq	2.333333	What is the checkin time
-q_faq	2.333333	At what time can we check in
-q_faq	2.333333	At what time can we checkin
-q_faq	2.333333	What is the checkin time
-q_faq	2.333333	At what time can we check in
-q_faq	2.333333	At what time can we checkin
-q_faq	2.333333	What is the checkin time
-q_faq	2.333333	At what time can we check in
-q_faq	2.333333	At what time can we checkin
-q_faq	2.333333	What is the checkin time
-q_faq	2.333333	At what time can we check in
-q_faq	2.333333	At what time can we checkin
+l_HotelBot	3.833333	stop doing this
+l_HotelBot	3.833333	i want to get a room for myself and my partner for tomorrow
+l_HotelBot	3.833333	a random sentence
+l_HotelBot	3.833333	stop
+l_HotelBot	3.833333	can we call the hotel
+l_HotelBot	3.833333	what's your address
+l_HotelBot	3.833333	i want to call the hotel
+l_HotelBot	3.833333	i want to get a room for next week
+l_HotelBot	3.833333	can i book another room for myself next week
+l_HotelBot	7.666667	where are you located
+l_HotelBot	3.833333	i want to book a room in january for myself and my partner
+q_2129612763787673_Starhotelpage_qna_en_US	4.6	are dogs allowed
+q_2129612763787673_Starhotelpage_qna_en_US	4.6	are dogs allowed
+q_2129612763787673_Starhotelpage_qna_en_US	4.6	are dogs allowed
+q_2129612763787673_Starhotelpage_qna_en_US	4.6	are dogs allowed
+q_2129612763787673_Starhotelpage_qna_en_US	4.6	are dogs allowed
+q_2129612763787673_Starhotelpage_qna_en_US	4.6	are dogs allowed
+q_2129612763787673_Starhotelpage_qna_en_US	4.6	are dogs allowed
+q_2129612763787673_Starhotelpage_qna_en_US	4.6	are dogs allowed
+q_2129612763787673_Starhotelpage_qna_en_US	4.6	are dogs allowed
+q_2129612763787673_Starhotelpage_qna_en_US	4.6	are dogs allowed
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	Mogen we onze hond meenemen
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	Mogen we onze hond meenemen
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	Mogen we onze hond meenemen
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	Mogen we onze hond meenemen
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	Mogen we onze hond meenemen
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	Mogen we onze hond meenemen
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	Mogen we onze hond meenemen
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	Mogen we onze hond meenemen
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	Mogen we onze hond meenemen
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	Mogen we onze hond meenemen

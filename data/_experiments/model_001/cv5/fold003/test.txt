@@ -1,45 +1,32 @@
 Label	Weight	Text
-l_BasicBotLuisApplication	4.055555	how do i interact with you
-l_BasicBotLuisApplication	4.055555	my location is new york
-l_BasicBotLuisApplication	4.055555	can you help me
-l_BasicBotLuisApplication	4.055555	help me
-l_BasicBotLuisApplication	4.055555	shangai
-l_BasicBotLuisApplication	4.055555	what's your age
-l_BasicBotLuisApplication	4.055555	cook me something
-l_BasicBotLuisApplication	4.055555	help
-l_BasicBotLuisApplication	4.055555	who am i speaking with
-l_BasicBotLuisApplication	4.055555	i'm lili
-l_BasicBotLuisApplication	4.055555	i don't understand
-l_BasicBotLuisApplication	4.055555	mumbai
-l_BasicBotLuisApplication	4.055555	abort
-l_BasicBotLuisApplication	4.055555	call me scott
-l_BasicBotLuisApplication	4.055555	her cat has no teeth
-l_BasicBotLuisApplication	4.055555	i will not give you my name
-l_BasicBotLuisApplication	4.055555	frustrated
-l_BasicBotLuisApplication	4.055555	hey there
-l_HotelBot	5.214286	i want to book a room for two persons tonight
-l_HotelBot	5.214286	i want a room for tomorow
-l_HotelBot	5.214286	i want to cancel
-l_HotelBot	5.214286	what can you do
-l_HotelBot	5.214286	are dogs allowed
-l_HotelBot	5.214286	i want to book a room tomorrow
-l_HotelBot	5.214286	hi
-l_HotelBot	5.214286	i want to book a room for two persons tonight
-l_HotelBot	5.214286	i want a room for tomorow
-l_HotelBot	5.214286	i want to cancel
-l_HotelBot	5.214286	what can you do
-l_HotelBot	5.214286	are dogs allowed
-l_HotelBot	5.214286	i want to book a room tomorrow
-l_HotelBot	5.214286	hi
-q_faq	6.083333	When is checkin
-q_faq	6.083333	When is checking in possible
-q_faq	6.083333	Can I take my dog
-q_faq	6.083333	When is checkin
-q_faq	6.083333	When is checking in possible
-q_faq	6.083333	Can I take my dog
-q_faq	6.083333	When is checkin
-q_faq	6.083333	When is checking in possible
-q_faq	6.083333	Can I take my dog
-q_faq	6.083333	When is checkin
-q_faq	6.083333	When is checking in possible
-q_faq	6.083333	Can I take my dog
+l_HotelBot	4.272727	what can you do
+l_HotelBot	4.272727	call you
+l_HotelBot	4.272727	i want to get a room for next week
+l_HotelBot	4.272727	stop doing this
+l_HotelBot	4.272727	hello
+l_HotelBot	4.272727	can i call you
+l_HotelBot	4.272727	cancel this
+l_HotelBot	4.272727	how late can i arrive tomorrow
+l_HotelBot	4.272727	can we call
+l_HotelBot	4.272727	cancel
+l_HotelBot	4.272727	i want to call a person
+q_2129612763787673_Starhotelpage_qna_en_US	4.7	Is mijn hond toegelaten in het hotel
+q_2129612763787673_Starhotelpage_qna_en_US	4.7	Is mijn hond toegelaten in het hotel
+q_2129612763787673_Starhotelpage_qna_en_US	4.7	Is mijn hond toegelaten in het hotel
+q_2129612763787673_Starhotelpage_qna_en_US	4.7	Is mijn hond toegelaten in het hotel
+q_2129612763787673_Starhotelpage_qna_en_US	4.7	Is mijn hond toegelaten in het hotel
+q_2129612763787673_Starhotelpage_qna_en_US	4.7	Is mijn hond toegelaten in het hotel
+q_2129612763787673_Starhotelpage_qna_en_US	4.7	Is mijn hond toegelaten in het hotel
+q_2129612763787673_Starhotelpage_qna_en_US	4.7	Is mijn hond toegelaten in het hotel
+q_2129612763787673_Starhotelpage_qna_en_US	4.7	Is mijn hond toegelaten in het hotel
+q_2129612763787673_Starhotelpage_qna_en_US	4.7	Is mijn hond toegelaten in het hotel
+q_2129612763787673_Starhotelpage_qna_nl_BE	4.7	Zijn honden toegelaten
+q_2129612763787673_Starhotelpage_qna_nl_BE	4.7	Zijn honden toegelaten
+q_2129612763787673_Starhotelpage_qna_nl_BE	4.7	Zijn honden toegelaten
+q_2129612763787673_Starhotelpage_qna_nl_BE	4.7	Zijn honden toegelaten
+q_2129612763787673_Starhotelpage_qna_nl_BE	4.7	Zijn honden toegelaten
+q_2129612763787673_Starhotelpage_qna_nl_BE	4.7	Zijn honden toegelaten
+q_2129612763787673_Starhotelpage_qna_nl_BE	4.7	Zijn honden toegelaten
+q_2129612763787673_Starhotelpage_qna_nl_BE	4.7	Zijn honden toegelaten
+q_2129612763787673_Starhotelpage_qna_nl_BE	4.7	Zijn honden toegelaten
+q_2129612763787673_Starhotelpage_qna_nl_BE	4.7	Zijn honden toegelaten

@@ -1,27 +1,32 @@
 Label	Weight	Text
-l_HotelBot	1.928571	this is nothing special
-l_HotelBot	1.928571	help
-l_HotelBot	1.928571	cancel this
-l_HotelBot	1.928571	cancel this booking
-l_HotelBot	1.928571	i want to book a room for three tomorrow
-l_HotelBot	1.928571	a random sentence
-l_HotelBot	1.928571	i want to do something else
-l_HotelBot	1.928571	this is nothing special
-l_HotelBot	1.928571	help
-l_HotelBot	1.928571	cancel this
-l_HotelBot	1.928571	cancel this booking
-l_HotelBot	1.928571	i want to book a room for three tomorrow
-l_HotelBot	1.928571	a random sentence
-l_HotelBot	1.928571	i want to do something else
-q_faq	2.25	When is checkin
-q_faq	2.25	We have two dogs, is that a problem
-q_faq	2.25	When is checking in possible
-q_faq	2.25	When is checkin
-q_faq	2.25	We have two dogs, is that a problem
-q_faq	2.25	When is checking in possible
-q_faq	2.25	When is checkin
-q_faq	2.25	We have two dogs, is that a problem
-q_faq	2.25	When is checking in possible
-q_faq	2.25	When is checkin
-q_faq	2.25	We have two dogs, is that a problem
-q_faq	2.25	When is checking in possible
+l_HotelBot	3.833333	call you
+l_HotelBot	3.833333	nice to meet you
+l_HotelBot	3.833333	i want to call a person
+l_HotelBot	3.833333	i want to call reception
+l_HotelBot	3.833333	stop doing this
+l_HotelBot	3.833333	can i call the hotel
+l_HotelBot	3.833333	i want to get a room for myself and my partner for tomorrow
+l_HotelBot	3.833333	where can i find your number
+l_HotelBot	3.833333	what's your address
+l_HotelBot	3.833333	where is the hotel
+l_HotelBot	7.666667	whats your number
+q_2129612763787673_en	4.6	can i take my dog
+q_2129612763787673_en	4.6	can i take my dog
+q_2129612763787673_en	4.6	can i take my dog
+q_2129612763787673_en	4.6	can i take my dog
+q_2129612763787673_en	4.6	can i take my dog
+q_2129612763787673_en	4.6	can i take my dog
+q_2129612763787673_en	4.6	can i take my dog
+q_2129612763787673_en	4.6	can i take my dog
+q_2129612763787673_en	4.6	can i take my dog
+q_2129612763787673_en	4.6	can i take my dog
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	Mogen we onze hond meenemen
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	Mogen we onze hond meenemen
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	Mogen we onze hond meenemen
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	Mogen we onze hond meenemen
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	Mogen we onze hond meenemen
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	Mogen we onze hond meenemen
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	Mogen we onze hond meenemen
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	Mogen we onze hond meenemen
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	Mogen we onze hond meenemen
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	Mogen we onze hond meenemen

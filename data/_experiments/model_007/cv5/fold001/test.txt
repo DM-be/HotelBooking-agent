@@ -1,29 +1,32 @@
 Label	Weight	Text
-l_HotelBot	1.944444	hello
-l_HotelBot	1.944444	help me
-l_HotelBot	1.944444	cancel now
-l_HotelBot	1.944444	can you book me a room
-l_HotelBot	1.944444	what is the location
-l_HotelBot	1.944444	where is it
-l_HotelBot	1.944444	i want to book a room for three tomorrow
-l_HotelBot	1.944444	i want to book a room for next week
-l_HotelBot	1.944444	hi
-l_HotelBot	1.944444	hello
-l_HotelBot	1.944444	help me
-l_HotelBot	1.944444	cancel now
-l_HotelBot	1.944444	can you book me a room
-l_HotelBot	1.944444	what is the location
-l_HotelBot	1.944444	where is it
-l_HotelBot	1.944444	i want to book a room for three tomorrow
-l_HotelBot	1.944444	i want to book a room for next week
-l_HotelBot	1.944444	hi
-q_HotelBotTest_qna	3.5	Are dogs allowed in the room
-q_HotelBotTest_qna	3.5	What is the check in time
-q_HotelBotTest_qna	3.5	Are dogs allowed in the room
-q_HotelBotTest_qna	3.5	What is the check in time
-q_HotelBotTest_qna	3.5	Are dogs allowed in the room
-q_HotelBotTest_qna	3.5	What is the check in time
-q_HotelBotTest_qna	3.5	Are dogs allowed in the room
-q_HotelBotTest_qna	3.5	What is the check in time
-q_HotelBotTest_qna	3.5	Are dogs allowed in the room
-q_HotelBotTest_qna	3.5	What is the check in time
+l_HotelBot	7.666667	where are you located
+l_HotelBot	3.833333	cancel this booking
+l_HotelBot	3.833333	could i get a room for next week
+l_HotelBot	3.833333	where can i find your number
+l_HotelBot	3.833333	what can i ask you
+l_HotelBot	3.833333	stop
+l_HotelBot	3.833333	can we call the hotel
+l_HotelBot	3.833333	how late can i arrive tomorrow
+l_HotelBot	3.833333	i want to call the hotel
+l_HotelBot	3.833333	hi
+l_HotelBot	3.833333	stop doing this
+q_2129612763787673_en	4.6	are dogs allowed
+q_2129612763787673_en	4.6	are dogs allowed
+q_2129612763787673_en	4.6	are dogs allowed
+q_2129612763787673_en	4.6	are dogs allowed
+q_2129612763787673_en	4.6	are dogs allowed
+q_2129612763787673_en	4.6	are dogs allowed
+q_2129612763787673_en	4.6	are dogs allowed
+q_2129612763787673_en	4.6	are dogs allowed
+q_2129612763787673_en	4.6	are dogs allowed
+q_2129612763787673_en	4.6	are dogs allowed
+q_2129612763787673_nl	4.6	We hebben twee honden, is dat een probleem
+q_2129612763787673_nl	4.6	We hebben twee honden, is dat een probleem
+q_2129612763787673_nl	4.6	We hebben twee honden, is dat een probleem
+q_2129612763787673_nl	4.6	We hebben twee honden, is dat een probleem
+q_2129612763787673_nl	4.6	We hebben twee honden, is dat een probleem
+q_2129612763787673_nl	4.6	We hebben twee honden, is dat een probleem
+q_2129612763787673_nl	4.6	We hebben twee honden, is dat een probleem
+q_2129612763787673_nl	4.6	We hebben twee honden, is dat een probleem
+q_2129612763787673_nl	4.6	We hebben twee honden, is dat een probleem
+q_2129612763787673_nl	4.6	We hebben twee honden, is dat een probleem

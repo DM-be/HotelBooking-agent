@@ -15,32 +15,31 @@
       "id": "118"
     },
     {
-      "kbId": "fb174302-8e45-495b-9354-a39eaa158b48",
+      "kbId": "6fb3d7ef-9769-465a-b7c7-c1491dbb3cca",
       "subscriptionKey": "ff912b1c840f4af180b9432c615635bc",
       "hostname": "https://hoteltestqna.azurewebsites.net/qnamaker",
       "endpointKey": "5d8bae0b-2fb8-44dd-809c-c26d70d12d6b",
       "type": "qna",
-      "name": "HotelBotTest_qna_en_US",
-      "id": "168"
+      "name": "2129612763787673_en",
+      "id": "69"
     },
     {
-      "kbId": "1cd7661a-25c0-4b52-960c-4c48b22a413d",
+      "kbId": "38264bf8-37cd-4526-b76a-9c8e76460d0c",
       "subscriptionKey": "ff912b1c840f4af180b9432c615635bc",
       "hostname": "https://hoteltestqna.azurewebsites.net/qnamaker",
       "endpointKey": "5d8bae0b-2fb8-44dd-809c-c26d70d12d6b",
       "type": "qna",
-      "name": "HotelBotTest_qna_nl_BE",
-      "id": "106"
+      "name": "2129612763787673_nl",
+      "id": "0"
     }
   ],
   "serviceIds": [
     "118",
-    "168",
-    "106"
+    "69",
+    "0"
   ],
-  "appId": "8f5a1469-f5da-4877-846f-2af7a1667ca9",
+  "appId": "df3d5154-a0dd-48cf-ac6e-4ceb8147fc9f",
   "authoringKey": "cbcdfd8ed0d14d48ae3b01dd8c739bbf",
-  "subscriptionKey": "cbcdfd8ed0d14d48ae3b01dd8c739bbf",
   "version": "Dispatch",
   "region": "westeurope",
   "type": "dispatch",

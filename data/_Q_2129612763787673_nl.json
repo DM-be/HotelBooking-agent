@@ -1,0 +1,21 @@
+{
+  "qnaDocuments": [
+    {
+      "id": 1,
+      "answer": "Honden zijn niet toegelaten.",
+      "source": "custom editorial",
+      "questions": [
+        "Zijn honden toegelaten?",
+        "Mag ik mijn hond meenemen?",
+        "Zijn honden toegelaten op de kamer?",
+        "Mogen we onze hond meenemen?",
+        "Is mijn hond toegelaten in het hotel?",
+        "We hebben twee honden, is dat een probleem?"
+      ],
+      "metadata": [],
+      "alternateQuestionClusters": [],
+      "changeStatus": "NoChange",
+      "kbId": "38264bf8-37cd-4526-b76a-9c8e76460d0c"
+    }
+  ]
+}

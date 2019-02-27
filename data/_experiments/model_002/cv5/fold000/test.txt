@@ -1,27 +1,32 @@
 Label	Weight	Text
-l_HotelBot	2	this is nothing special
-l_HotelBot	2	a random sentence
-l_HotelBot	2	cancel this booking
-l_HotelBot	2	can you book me a room
-l_HotelBot	2	hello
-l_HotelBot	2	can i get a room for tomorrow
-l_HotelBot	2	cancel now
-l_HotelBot	2	this is nothing special
-l_HotelBot	2	a random sentence
-l_HotelBot	2	cancel this booking
-l_HotelBot	2	can you book me a room
-l_HotelBot	2	hello
-l_HotelBot	2	can i get a room for tomorrow
-l_HotelBot	2	cancel now
-q_faq	2.333333	When is checkin
-q_faq	2.333333	When is checking in possible
-q_faq	2.333333	Are dogs allowed
-q_faq	2.333333	When is checkin
-q_faq	2.333333	When is checking in possible
-q_faq	2.333333	Are dogs allowed
-q_faq	2.333333	When is checkin
-q_faq	2.333333	When is checking in possible
-q_faq	2.333333	Are dogs allowed
-q_faq	2.333333	When is checkin
-q_faq	2.333333	When is checking in possible
-q_faq	2.333333	Are dogs allowed
+l_HotelBot	4.272727	cancel this
+l_HotelBot	4.272727	can i call you
+l_HotelBot	4.272727	i want to call a person
+l_HotelBot	4.272727	where is the hotel
+l_HotelBot	4.272727	what is the hotel number?>
+l_HotelBot	4.272727	i want to call reception
+l_HotelBot	4.272727	cancel this booking
+l_HotelBot	4.272727	cancel
+l_HotelBot	4.272727	i want to book a room tomorrow
+l_HotelBot	4.272727	how can we find you
+l_HotelBot	4.272727	i need help
+q_2129612763787673_Starhotelpage_qna_en_US	4.7	can i take my dog
+q_2129612763787673_Starhotelpage_qna_en_US	4.7	can i take my dog
+q_2129612763787673_Starhotelpage_qna_en_US	4.7	can i take my dog
+q_2129612763787673_Starhotelpage_qna_en_US	4.7	can i take my dog
+q_2129612763787673_Starhotelpage_qna_en_US	4.7	can i take my dog
+q_2129612763787673_Starhotelpage_qna_en_US	4.7	can i take my dog
+q_2129612763787673_Starhotelpage_qna_en_US	4.7	can i take my dog
+q_2129612763787673_Starhotelpage_qna_en_US	4.7	can i take my dog
+q_2129612763787673_Starhotelpage_qna_en_US	4.7	can i take my dog
+q_2129612763787673_Starhotelpage_qna_en_US	4.7	can i take my dog
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	Zijn honden toegelaten
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	Zijn honden toegelaten
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	Zijn honden toegelaten
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	Zijn honden toegelaten
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	Zijn honden toegelaten
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	Zijn honden toegelaten
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	Zijn honden toegelaten
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	Zijn honden toegelaten
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	Zijn honden toegelaten
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	Zijn honden toegelaten

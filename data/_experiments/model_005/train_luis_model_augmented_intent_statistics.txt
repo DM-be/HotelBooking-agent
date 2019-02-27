@@ -1,3 +1,4 @@
 No	Intent	Utterance Count	Utterance Average Length	Utterance Maximum Length	Utterance Minimum Length	Utterance Length StdDev
-0	l_HotelBot	34	23.912	59	2	15.789
-1	q_faq	13	22.769	35	15	6.071
+0	l_HotelBot	56	22.089	59	2	13.004
+1	q_Starhotelpage_2129612763787673_qna_nl_BE	6	31	42	22	7.589
+2	q_test	2	16.5	17	16	0.707

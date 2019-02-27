@@ -1,45 +1,32 @@
 Label	Weight	Text
-l_BasicBotLuisApplication	4.055555	paris
-l_BasicBotLuisApplication	4.055555	how are you today
-l_BasicBotLuisApplication	4.055555	can you help me
-l_BasicBotLuisApplication	4.055555	cancel
-l_BasicBotLuisApplication	4.055555	vishwac is my name
-l_BasicBotLuisApplication	4.055555	i'm bailing
-l_BasicBotLuisApplication	4.055555	i don't understand
-l_BasicBotLuisApplication	4.055555	dhaka
-l_BasicBotLuisApplication	4.055555	call me scott
-l_BasicBotLuisApplication	4.055555	dont you ever sleep
-l_BasicBotLuisApplication	4.055555	i reside in san francisco
-l_BasicBotLuisApplication	4.055555	world wide pants
-l_BasicBotLuisApplication	4.055555	how are you
-l_BasicBotLuisApplication	4.055555	i would like to cancel
-l_BasicBotLuisApplication	4.055555	gnocchi
-l_BasicBotLuisApplication	4.055555	hiya
-l_BasicBotLuisApplication	4.055555	dan
-l_BasicBotLuisApplication	4.055555	shangai
-l_HotelBot	5.214286	i want to book a room for next week
-l_HotelBot	5.214286	could i get a room for next week
-l_HotelBot	5.214286	hi
-l_HotelBot	5.214286	cancel now
-l_HotelBot	5.214286	can you book me a room
-l_HotelBot	5.214286	i want to cancel
-l_HotelBot	5.214286	can i get a room for tomorrow
-l_HotelBot	5.214286	i want to book a room for next week
-l_HotelBot	5.214286	could i get a room for next week
-l_HotelBot	5.214286	hi
-l_HotelBot	5.214286	cancel now
-l_HotelBot	5.214286	can you book me a room
-l_HotelBot	5.214286	i want to cancel
-l_HotelBot	5.214286	can i get a room for tomorrow
-q_faq	6.083333	We have two dogs, is that a problem
-q_faq	6.083333	What is the checkin time
-q_faq	6.083333	When is check in time
-q_faq	6.083333	We have two dogs, is that a problem
-q_faq	6.083333	What is the checkin time
-q_faq	6.083333	When is check in time
-q_faq	6.083333	We have two dogs, is that a problem
-q_faq	6.083333	What is the checkin time
-q_faq	6.083333	When is check in time
-q_faq	6.083333	We have two dogs, is that a problem
-q_faq	6.083333	What is the checkin time
-q_faq	6.083333	When is check in time
+l_HotelBot	3.833333	i want to cancel
+l_HotelBot	3.833333	what is your address
+l_HotelBot	3.833333	a random sentence
+l_HotelBot	7.666667	where are you located
+l_HotelBot	3.833333	where can i find your number
+l_HotelBot	3.833333	i want to book a room for next week
+l_HotelBot	3.833333	i want to get a room for myself and my partner for tomorrow
+l_HotelBot	3.833333	i want to call a person
+l_HotelBot	3.833333	can we call
+l_HotelBot	3.833333	i want to get a room for next week
+l_HotelBot	3.833333	what can you do
+q_Starhotelpage_2129612763787673_qna_en_US	4.6	Zijn honden toegelaten
+q_Starhotelpage_2129612763787673_qna_en_US	4.6	Zijn honden toegelaten
+q_Starhotelpage_2129612763787673_qna_en_US	4.6	Zijn honden toegelaten
+q_Starhotelpage_2129612763787673_qna_en_US	4.6	Zijn honden toegelaten
+q_Starhotelpage_2129612763787673_qna_en_US	4.6	Zijn honden toegelaten
+q_Starhotelpage_2129612763787673_qna_en_US	4.6	Zijn honden toegelaten
+q_Starhotelpage_2129612763787673_qna_en_US	4.6	Zijn honden toegelaten
+q_Starhotelpage_2129612763787673_qna_en_US	4.6	Zijn honden toegelaten
+q_Starhotelpage_2129612763787673_qna_en_US	4.6	Zijn honden toegelaten
+q_Starhotelpage_2129612763787673_qna_en_US	4.6	Zijn honden toegelaten
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	Is mijn hond toegelaten in het hotel
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	Is mijn hond toegelaten in het hotel
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	Is mijn hond toegelaten in het hotel
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	Is mijn hond toegelaten in het hotel
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	Is mijn hond toegelaten in het hotel
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	Is mijn hond toegelaten in het hotel
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	Is mijn hond toegelaten in het hotel
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	Is mijn hond toegelaten in het hotel
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	Is mijn hond toegelaten in het hotel
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	Is mijn hond toegelaten in het hotel

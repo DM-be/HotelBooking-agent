@@ -1,45 +1,32 @@
 Label	Weight	Text
-l_BasicBotLuisApplication	4.055555	why doesn't this work
-l_BasicBotLuisApplication	4.055555	you are boring
-l_BasicBotLuisApplication	4.055555	good morning
-l_BasicBotLuisApplication	4.055555	you can assume i live in cairo
-l_BasicBotLuisApplication	4.055555	toronto
-l_BasicBotLuisApplication	4.055555	getting tired of you
-l_BasicBotLuisApplication	4.055555	lost
-l_BasicBotLuisApplication	4.055555	are you busy
-l_BasicBotLuisApplication	4.055555	don't do that
-l_BasicBotLuisApplication	4.055555	i'm not going to tell you where i live
-l_BasicBotLuisApplication	4.055555	i will not give you my location or name
-l_BasicBotLuisApplication	4.055555	i'm bailing
-l_BasicBotLuisApplication	4.055555	hi bot
-l_BasicBotLuisApplication	4.055555	spaghetti
-l_BasicBotLuisApplication	4.055555	i'm lost
-l_BasicBotLuisApplication	4.055555	who are you
-l_BasicBotLuisApplication	4.055555	how are you
-l_BasicBotLuisApplication	4.055555	world wide pants
-l_HotelBot	5.214286	stop doing this
-l_HotelBot	5.214286	stop
-l_HotelBot	5.214286	nothing meaningfull said
-l_HotelBot	5.214286	could i get a room for next week
-l_HotelBot	5.214286	cancel this
-l_HotelBot	5.214286	cancel this booking
-l_HotelBot	5.214286	a random sentence
-l_HotelBot	5.214286	stop doing this
-l_HotelBot	5.214286	stop
-l_HotelBot	5.214286	nothing meaningfull said
-l_HotelBot	5.214286	could i get a room for next week
-l_HotelBot	5.214286	cancel this
-l_HotelBot	5.214286	cancel this booking
-l_HotelBot	5.214286	a random sentence
-q_faq	6.083333	When is checking in possible
-q_faq	6.083333	Can I take my dog
-q_faq	6.083333	Can we take our dogs
-q_faq	6.083333	When is checking in possible
-q_faq	6.083333	Can I take my dog
-q_faq	6.083333	Can we take our dogs
-q_faq	6.083333	When is checking in possible
-q_faq	6.083333	Can I take my dog
-q_faq	6.083333	Can we take our dogs
-q_faq	6.083333	When is checking in possible
-q_faq	6.083333	Can I take my dog
-q_faq	6.083333	Can we take our dogs
+l_HotelBot	3.833333	can i call the hotel
+l_HotelBot	3.833333	i want to book a room for three tomorrow
+l_HotelBot	3.833333	can i book another room for myself next week
+l_HotelBot	3.833333	where is it
+l_HotelBot	3.833333	where is the bed and breakfast
+l_HotelBot	3.833333	could i get a room for next week
+l_HotelBot	3.833333	what is the location
+l_HotelBot	7.666667	where are you located
+l_HotelBot	3.833333	i want to book a room in january for myself and my partner
+l_HotelBot	3.833333	where in the city are you
+l_HotelBot	3.833333	i want to call the hotel
+q_2129612763787673_Starhotelpage_qna_en_US	4.6	Mag ik mijn hond meenemen
+q_2129612763787673_Starhotelpage_qna_en_US	4.6	Mag ik mijn hond meenemen
+q_2129612763787673_Starhotelpage_qna_en_US	4.6	Mag ik mijn hond meenemen
+q_2129612763787673_Starhotelpage_qna_en_US	4.6	Mag ik mijn hond meenemen
+q_2129612763787673_Starhotelpage_qna_en_US	4.6	Mag ik mijn hond meenemen
+q_2129612763787673_Starhotelpage_qna_en_US	4.6	Mag ik mijn hond meenemen
+q_2129612763787673_Starhotelpage_qna_en_US	4.6	Mag ik mijn hond meenemen
+q_2129612763787673_Starhotelpage_qna_en_US	4.6	Mag ik mijn hond meenemen
+q_2129612763787673_Starhotelpage_qna_en_US	4.6	Mag ik mijn hond meenemen
+q_2129612763787673_Starhotelpage_qna_en_US	4.6	Mag ik mijn hond meenemen
+q_2129612763787673_Starhotelpage_qna_nl_BE	4.6	Mag ik mijn hond meenemen
+q_2129612763787673_Starhotelpage_qna_nl_BE	4.6	Mag ik mijn hond meenemen
+q_2129612763787673_Starhotelpage_qna_nl_BE	4.6	Mag ik mijn hond meenemen
+q_2129612763787673_Starhotelpage_qna_nl_BE	4.6	Mag ik mijn hond meenemen
+q_2129612763787673_Starhotelpage_qna_nl_BE	4.6	Mag ik mijn hond meenemen
+q_2129612763787673_Starhotelpage_qna_nl_BE	4.6	Mag ik mijn hond meenemen
+q_2129612763787673_Starhotelpage_qna_nl_BE	4.6	Mag ik mijn hond meenemen
+q_2129612763787673_Starhotelpage_qna_nl_BE	4.6	Mag ik mijn hond meenemen
+q_2129612763787673_Starhotelpage_qna_nl_BE	4.6	Mag ik mijn hond meenemen
+q_2129612763787673_Starhotelpage_qna_nl_BE	4.6	Mag ik mijn hond meenemen

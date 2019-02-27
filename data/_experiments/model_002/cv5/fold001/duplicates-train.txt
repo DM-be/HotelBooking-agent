@@ -1,2 +1,1 @@
 Utterance	Intents
-are dogs allowed	l_HotelBot, q_faq

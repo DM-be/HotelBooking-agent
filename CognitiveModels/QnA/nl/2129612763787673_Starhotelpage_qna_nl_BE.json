@@ -1,0 +1,21 @@
+{
+  "urls": [],
+  "qnaList": [
+    {
+      "id": 0,
+      "answer": "Honden zijn niet toegelaten.\r\n",
+      "source": "custom editorial",
+      "questions": [
+        "Zijn honden toegelaten?",
+        "Mag ik mijn hond meenemen?",
+        "Zijn honden toegelaten op de kamer?",
+        "Mogen we onze hond meenemen?",
+        "Is mijn hond toegelaten in het hotel?",
+        "We hebben twee honden, is dat een probleem?"
+      ],
+      "metadata": []
+    }
+  ],
+  "files": [],
+  "name": "Starhotel"
+}

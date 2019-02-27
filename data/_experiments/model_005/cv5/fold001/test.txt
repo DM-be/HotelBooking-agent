@@ -1,27 +1,32 @@
 Label	Weight	Text
-l_HotelBot	1.928571	how late can i arrive tomorrow
-l_HotelBot	1.928571	cancel now
-l_HotelBot	1.928571	cancel this
-l_HotelBot	1.928571	can i get a room for tomorrow
-l_HotelBot	1.928571	cancel this booking
-l_HotelBot	1.928571	nothing meaningfull said
-l_HotelBot	1.928571	i want to book a room for two persons tonight
-l_HotelBot	1.928571	how late can i arrive tomorrow
-l_HotelBot	1.928571	cancel now
-l_HotelBot	1.928571	cancel this
-l_HotelBot	1.928571	can i get a room for tomorrow
-l_HotelBot	1.928571	cancel this booking
-l_HotelBot	1.928571	nothing meaningfull said
-l_HotelBot	1.928571	i want to book a room for two persons tonight
-q_faq	2.25	When is checking in possible
-q_faq	2.25	We have two dogs, is that a problem
-q_faq	2.25	When is checkin
-q_faq	2.25	When is checking in possible
-q_faq	2.25	We have two dogs, is that a problem
-q_faq	2.25	When is checkin
-q_faq	2.25	When is checking in possible
-q_faq	2.25	We have two dogs, is that a problem
-q_faq	2.25	When is checkin
-q_faq	2.25	When is checking in possible
-q_faq	2.25	We have two dogs, is that a problem
-q_faq	2.25	When is checkin
+l_HotelBot	4.272727	call you
+l_HotelBot	4.272727	i want to book a room tomorrow
+l_HotelBot	4.272727	where is the hotel
+l_HotelBot	4.272727	i want to call a person
+l_HotelBot	4.272727	could i get a room for next week
+l_HotelBot	4.272727	how can we find you
+l_HotelBot	4.272727	cancel this
+l_HotelBot	4.272727	what can you do
+l_HotelBot	4.272727	where is it
+l_HotelBot	4.272727	i want to get a room for myself and my partner for tomorrow
+l_HotelBot	4.272727	i want to call reception
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	We hebben twee honden, is dat een probleem
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	We hebben twee honden, is dat een probleem
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	We hebben twee honden, is dat een probleem
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	We hebben twee honden, is dat een probleem
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	We hebben twee honden, is dat een probleem
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	We hebben twee honden, is dat een probleem
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	We hebben twee honden, is dat een probleem
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	We hebben twee honden, is dat een probleem
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	We hebben twee honden, is dat een probleem
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	We hebben twee honden, is dat een probleem
+q_test	4.7	can i take my dog
+q_test	4.7	can i take my dog
+q_test	4.7	can i take my dog
+q_test	4.7	can i take my dog
+q_test	4.7	can i take my dog
+q_test	4.7	can i take my dog
+q_test	4.7	can i take my dog
+q_test	4.7	can i take my dog
+q_test	4.7	can i take my dog
+q_test	4.7	can i take my dog

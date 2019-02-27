@@ -1,27 +1,32 @@
 Label	Weight	Text
-l_HotelBot	1.928571	help
-l_HotelBot	1.928571	i want to get a room for next week
-l_HotelBot	1.928571	stop
-l_HotelBot	1.928571	i want to book a room for three tomorrow
-l_HotelBot	1.928571	nice to meet you
-l_HotelBot	1.928571	i need help
-l_HotelBot	1.928571	i want to book a room tomorrow
-l_HotelBot	1.928571	help
-l_HotelBot	1.928571	i want to get a room for next week
-l_HotelBot	1.928571	stop
-l_HotelBot	1.928571	i want to book a room for three tomorrow
-l_HotelBot	1.928571	nice to meet you
-l_HotelBot	1.928571	i need help
-l_HotelBot	1.928571	i want to book a room tomorrow
-q_faq	2.25	Is a dog allowed in the room
-q_faq	2.25	Can we take our dogs
-q_faq	2.25	Is my dog allowed
-q_faq	2.25	Is a dog allowed in the room
-q_faq	2.25	Can we take our dogs
-q_faq	2.25	Is my dog allowed
-q_faq	2.25	Is a dog allowed in the room
-q_faq	2.25	Can we take our dogs
-q_faq	2.25	Is my dog allowed
-q_faq	2.25	Is a dog allowed in the room
-q_faq	2.25	Can we take our dogs
-q_faq	2.25	Is my dog allowed
+l_HotelBot	4.272727	what's your address
+l_HotelBot	4.272727	what can i ask you
+l_HotelBot	4.272727	i want a room for tomorow
+l_HotelBot	4.272727	i need help
+l_HotelBot	4.272727	can i book for tonight
+l_HotelBot	4.272727	hi
+l_HotelBot	4.272727	can i get a room for tomorrow
+l_HotelBot	4.272727	stop
+l_HotelBot	4.272727	how late can i arrive tomorrow
+l_HotelBot	4.272727	nothing meaningfull said
+l_HotelBot	4.272727	where can i find your number
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	Mag ik mijn hond meenemen
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	Mag ik mijn hond meenemen
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	Mag ik mijn hond meenemen
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	Mag ik mijn hond meenemen
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	Mag ik mijn hond meenemen
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	Mag ik mijn hond meenemen
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	Mag ik mijn hond meenemen
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	Mag ik mijn hond meenemen
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	Mag ik mijn hond meenemen
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.7	Mag ik mijn hond meenemen
+q_test	4.7	can i take my dog
+q_test	4.7	can i take my dog
+q_test	4.7	can i take my dog
+q_test	4.7	can i take my dog
+q_test	4.7	can i take my dog
+q_test	4.7	can i take my dog
+q_test	4.7	can i take my dog
+q_test	4.7	can i take my dog
+q_test	4.7	can i take my dog
+q_test	4.7	can i take my dog

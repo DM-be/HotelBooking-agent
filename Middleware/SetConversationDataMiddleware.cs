@@ -21,11 +21,9 @@ namespace HotelBot.Middleware
         public async Task OnTurnAsync(ITurnContext turnContext, NextDelegate next, CancellationToken cancellationToken = default(CancellationToken))
         {
             var conversationData = await _accessors.ConversationDataAccessor.GetAsync(turnContext, () => new ConversationData());
-            if (string.IsNullOrEmpty(conversationData.ProfilePageId))
+            if (string.IsNullOrEmpty(conversationData.FacebookPageId))
             {
-                conversationData.ChannelId = turnContext.Activity.ChannelId;
-                conversationData.ProfilePageId = turnContext.Activity.Recipient.Id;
-                conversationData.FacebookPageName = turnContext.Activity.Recipient.Name;
+                conversationData.FacebookPageId = turnContext.Activity.Recipient.Id;
                 await _accessors.ConversationDataAccessor.SetAsync(turnContext, conversationData);
                 await next(cancellationToken).ConfigureAwait(false);
                 return;

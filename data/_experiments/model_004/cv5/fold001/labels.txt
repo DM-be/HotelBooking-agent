@@ -1,4 +1,4 @@
 Label	LabelName	Samples
-0	l_BasicBotLuisApplication	91
-1	l_HotelBot	42
-2	q_faq	22
+0	l_HotelBot	56
+1	q_Starhotelpage_2129612763787673_en_US	20
+2	q_Starhotelpage_2129612763787673_qna_nl_BE	20

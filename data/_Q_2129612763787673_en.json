@@ -1,0 +1,17 @@
+{
+  "qnaDocuments": [
+    {
+      "id": 1,
+      "answer": "no dogs are not allowed.  \n\n",
+      "source": "Editorial",
+      "questions": [
+        "are dogs allowed?",
+        "can i take my dog?"
+      ],
+      "metadata": [],
+      "alternateQuestionClusters": [],
+      "changeStatus": "NoChange",
+      "kbId": "6fb3d7ef-9769-465a-b7c7-c1491dbb3cca"
+    }
+  ]
+}

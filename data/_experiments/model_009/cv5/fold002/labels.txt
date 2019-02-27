@@ -1,4 +1,0 @@
-Label	LabelName	Samples
-0	l_HotelBot	56
-1	q_HotelBotTest_qna_en_US	26
-2	q_HotelBotTest_qna_nl_BE	28

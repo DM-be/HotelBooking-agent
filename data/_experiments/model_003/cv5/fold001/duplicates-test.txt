@@ -1,2 +1,1 @@
 Utterance	Intents
-what can you do	l_BasicBotLuisApplication, l_HotelBot

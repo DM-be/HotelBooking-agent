@@ -1,29 +1,32 @@
 Label	Weight	Text
-l_HotelBot	1.944444	nice to meet you
-l_HotelBot	1.944444	i want to book a room tomorrow
-l_HotelBot	1.944444	what can you do
-l_HotelBot	1.944444	stop
-l_HotelBot	1.944444	stop doing this
-l_HotelBot	1.944444	where is the bed and breakfast
-l_HotelBot	1.944444	i need help
-l_HotelBot	1.944444	i want to cancel
-l_HotelBot	1.944444	i want to book a room for myself and my partner next week.
-l_HotelBot	1.944444	nice to meet you
-l_HotelBot	1.944444	i want to book a room tomorrow
-l_HotelBot	1.944444	what can you do
-l_HotelBot	1.944444	stop
-l_HotelBot	1.944444	stop doing this
-l_HotelBot	1.944444	where is the bed and breakfast
-l_HotelBot	1.944444	i need help
-l_HotelBot	1.944444	i want to cancel
-l_HotelBot	1.944444	i want to book a room for myself and my partner next week.
-q_HotelBotTest_qna	3.5	What time can I check in
-q_HotelBotTest_qna	3.5	When can I checkin
-q_HotelBotTest_qna	3.5	What time can I check in
-q_HotelBotTest_qna	3.5	When can I checkin
-q_HotelBotTest_qna	3.5	What time can I check in
-q_HotelBotTest_qna	3.5	When can I checkin
-q_HotelBotTest_qna	3.5	What time can I check in
-q_HotelBotTest_qna	3.5	When can I checkin
-q_HotelBotTest_qna	3.5	What time can I check in
-q_HotelBotTest_qna	3.5	When can I checkin
+l_HotelBot	3.833333	what's your address
+l_HotelBot	3.833333	can you book me a room
+l_HotelBot	3.833333	nice to meet you
+l_HotelBot	7.666667	whats your number
+l_HotelBot	3.833333	where is it
+l_HotelBot	3.833333	i want to call reception
+l_HotelBot	3.833333	cancel
+l_HotelBot	3.833333	i want to book a room for myself and my partner next week.
+l_HotelBot	3.833333	nothing meaningfull said
+l_HotelBot	3.833333	i want to book a room tomorrow
+l_HotelBot	3.833333	what is the location
+q_2129612763787673_en	4.6	are dogs allowed
+q_2129612763787673_en	4.6	are dogs allowed
+q_2129612763787673_en	4.6	are dogs allowed
+q_2129612763787673_en	4.6	are dogs allowed
+q_2129612763787673_en	4.6	are dogs allowed
+q_2129612763787673_en	4.6	are dogs allowed
+q_2129612763787673_en	4.6	are dogs allowed
+q_2129612763787673_en	4.6	are dogs allowed
+q_2129612763787673_en	4.6	are dogs allowed
+q_2129612763787673_en	4.6	are dogs allowed
+q_2129612763787673_nl	4.6	Is mijn hond toegelaten in het hotel
+q_2129612763787673_nl	4.6	Is mijn hond toegelaten in het hotel
+q_2129612763787673_nl	4.6	Is mijn hond toegelaten in het hotel
+q_2129612763787673_nl	4.6	Is mijn hond toegelaten in het hotel
+q_2129612763787673_nl	4.6	Is mijn hond toegelaten in het hotel
+q_2129612763787673_nl	4.6	Is mijn hond toegelaten in het hotel
+q_2129612763787673_nl	4.6	Is mijn hond toegelaten in het hotel
+q_2129612763787673_nl	4.6	Is mijn hond toegelaten in het hotel
+q_2129612763787673_nl	4.6	Is mijn hond toegelaten in het hotel
+q_2129612763787673_nl	4.6	Is mijn hond toegelaten in het hotel

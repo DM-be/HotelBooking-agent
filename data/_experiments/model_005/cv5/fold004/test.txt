@@ -1,27 +1,32 @@
 Label	Weight	Text
-l_HotelBot	1.928571	what can i ask you
-l_HotelBot	1.928571	i want to cancel
-l_HotelBot	1.928571	could i get a room for next week
-l_HotelBot	1.928571	i want to do something else
-l_HotelBot	1.928571	a random sentence
-l_HotelBot	1.928571	this is nothing special
-l_HotelBot	1.928571	i want to book a room for next week
-l_HotelBot	1.928571	what can i ask you
-l_HotelBot	1.928571	i want to cancel
-l_HotelBot	1.928571	could i get a room for next week
-l_HotelBot	1.928571	i want to do something else
-l_HotelBot	1.928571	a random sentence
-l_HotelBot	1.928571	this is nothing special
-l_HotelBot	1.928571	i want to book a room for next week
-q_faq	2.25	When can we check in
-q_faq	2.25	When is check in time
-q_faq	2.25	Are dogs allowed
-q_faq	2.25	When can we check in
-q_faq	2.25	When is check in time
-q_faq	2.25	Are dogs allowed
-q_faq	2.25	When can we check in
-q_faq	2.25	When is check in time
-q_faq	2.25	Are dogs allowed
-q_faq	2.25	When can we check in
-q_faq	2.25	When is check in time
-q_faq	2.25	Are dogs allowed
+l_HotelBot	3.833333	stop doing this
+l_HotelBot	3.833333	hello
+l_HotelBot	3.833333	help me
+l_HotelBot	3.833333	cancel now
+l_HotelBot	7.666667	whats your number
+l_HotelBot	3.833333	i want to book a room for next week
+l_HotelBot	3.833333	where is the bed and breakfast
+l_HotelBot	3.833333	where in the city are you
+l_HotelBot	3.833333	a random sentence
+l_HotelBot	3.833333	call us
+l_HotelBot	3.833333	can you book me a room
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	Zijn honden toegelaten op de kamer
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	Zijn honden toegelaten op de kamer
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	Zijn honden toegelaten op de kamer
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	Zijn honden toegelaten op de kamer
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	Zijn honden toegelaten op de kamer
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	Zijn honden toegelaten op de kamer
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	Zijn honden toegelaten op de kamer
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	Zijn honden toegelaten op de kamer
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	Zijn honden toegelaten op de kamer
+q_Starhotelpage_2129612763787673_qna_nl_BE	4.6	Zijn honden toegelaten op de kamer
+q_test	4.6	can i take my dog
+q_test	4.6	can i take my dog
+q_test	4.6	can i take my dog
+q_test	4.6	can i take my dog
+q_test	4.6	can i take my dog
+q_test	4.6	can i take my dog
+q_test	4.6	can i take my dog
+q_test	4.6	can i take my dog
+q_test	4.6	can i take my dog
+q_test	4.6	can i take my dog

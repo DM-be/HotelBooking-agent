@@ -1,4 +1,5 @@
 Utterance	Intents
-hi	l_BasicBotLuisApplication, l_HotelBot
-stop	l_BasicBotLuisApplication, l_HotelBot
-what can you do	l_BasicBotLuisApplication, l_HotelBot
+mag ik mijn hond meenemen	q_Starhotelpage_2129612763787673_en_US, q_Starhotelpage_2129612763787673_qna_nl_BE
+is mijn hond toegelaten in het hotel	q_Starhotelpage_2129612763787673_en_US, q_Starhotelpage_2129612763787673_qna_nl_BE
+zijn honden toegelaten op de kamer	q_Starhotelpage_2129612763787673_en_US, q_Starhotelpage_2129612763787673_qna_nl_BE
+we hebben twee honden, is dat een probleem	q_Starhotelpage_2129612763787673_en_US, q_Starhotelpage_2129612763787673_qna_nl_BE
