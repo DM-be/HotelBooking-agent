@@ -110,27 +110,12 @@ namespace HotelBot.Dialogs.Main
                         }
                     }
                 }
-                else if (intent == HotelDispatch.Intent.q_HotelBotTest_qna_en_US)
+                // TODO: naming convention per hotel id etc, language from locale is not needed here
+                else if (intent.ToString().StartsWith("q_"))
                 {
-                    _services.QnaServices.TryGetValue("HotelBotTest_qna_en_US", out var qnaService);
-
-                    if (qnaService == null)
-                    {
-                        throw new Exception("The specified QnA Maker Service could not be found in your Bot Services configuration.");
-                    }
-                    else
-                    {
-                        var answers = await qnaService.GetAnswersAsync(dc.Context);
-
-                        if (answers != null && answers.Count() > 0)
-                        {
-                            await dc.Context.SendActivityAsync(answers[0].Answer);
-                        }
-                    }
-                }
-                else if (intent == HotelDispatch.Intent.q_HotelBotTest_qna_nl_BE)
-                {
-                    _services.QnaServices.TryGetValue("HotelBotTest_qna_nl_BE", out var qnaService);
+                    var intentString = intent.ToString();
+                    var qnaName = intentString.Substring(2);
+                    _services.QnaServices.TryGetValue(qnaName, out var qnaService);
 
                     if (qnaService == null)
                     {
