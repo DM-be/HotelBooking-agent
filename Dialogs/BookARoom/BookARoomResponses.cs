@@ -70,6 +70,20 @@ namespace HotelBot.Dialogs.BookARoom
                             text: string.Format(BookARoomStrings.HAVE_NUMBEROFPEOPLE, data),
                             ssml: string.Format(BookARoomStrings.HAVE_NUMBEROFPEOPLE, data),
                             inputHint: InputHints.IgnoringInput)
+                },
+                { ResponseIds.IncorrectDate,
+                    (context, data) =>
+                        MessageFactory.Text(
+                            text: BookARoomStrings.INCORRECT_DATE,
+                            ssml: BookARoomStrings.INCORRECT_DATE,
+                            inputHint: InputHints.IgnoringInput)
+                },
+                { ResponseIds.NotRecognizedDate,
+                    (context, data) =>
+                        MessageFactory.Text(
+                            text: BookARoomStrings.NOT_RECOGNIZED_DATE,
+                            ssml: BookARoomStrings.NOT_RECOGNIZED_DATE,
+                            inputHint: InputHints.IgnoringInput)
                 }
             }
         };
@@ -92,7 +106,10 @@ namespace HotelBot.Dialogs.BookARoom
 
             public const string NumberOfPeoplePrompt = "numberOfPeoplePrompt";
             public const string HaveNumberOfPeople = "HaveNumberOfPeople";
-   
+
+            public const string IncorrectDate = "incorrectDate";
+            public const string NotRecognizedDate = "notRecognizedDate";
+
         }
     }
 }

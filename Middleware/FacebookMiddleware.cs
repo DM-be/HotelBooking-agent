@@ -89,7 +89,7 @@ namespace HotelBot.Middleware
             else if (quickReply.Payload.Equals(FacebookQuickReply.CallUsReplyPayload))
             {
                 // send english text so intent can be recognized
-                
+
                 context.Activity.Text = "Can I call you?";
 
             }

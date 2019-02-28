@@ -105,10 +105,7 @@ namespace HotelBot.Dialogs.BookARoom
         public async Task<DialogTurnResult> FinishBookARoomDialog(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             // send webview for booking here
-            _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
-            // todo: convert to natural language expression 
-            
-            var resolution = (sc.Result as IList<DateTimeResolution>).First();
+            _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());            var resolution = (sc.Result as IList<DateTimeResolution>).First();
             var timexProp = new TimexProperty(resolution.Timex);
             var leavingDateAsNaturalLanguage = timexProp.ToNaturalLanguage(DateTime.Now);
 
@@ -127,19 +124,18 @@ namespace HotelBot.Dialogs.BookARoom
             // Check whether the input could be recognized as an integer.
             if (!promptContext.Recognized.Succeeded)
             {
-                await promptContext.Context.SendActivityAsync(
-                    "I'm sorry, I do not understand. Please enter the date or time for your booking.",
-                    cancellationToken: cancellationToken);
 
+                await _responder.ReplyWith(promptContext.Context, BookARoomResponses.ResponseIds.NotRecognizedDate);
                 return false;
             }
+            // TODO: translate in real time here?
 
-            // Check whether any of the recognized date-times are appropriate,
-            // and if so, return the first appropriate date-time.
+
             var earliest = DateTime.Now.AddHours(1.0);
             var value = promptContext.Recognized.Value.FirstOrDefault(v =>
                 DateTime.TryParse(v.Value ?? v.Start, out var time) && DateTime.Compare(earliest, time) <= 0);
 
+           
             if (value != null)
             {
                 promptContext.Recognized.Value.Clear();
@@ -147,10 +143,7 @@ namespace HotelBot.Dialogs.BookARoom
                 return true;
             }
 
-            await promptContext.Context.SendActivityAsync(
-                "I'm sorry, incorrect time",
-                cancellationToken: cancellationToken);
-
+            await _responder.ReplyWith(promptContext.Context, BookARoomResponses.ResponseIds.IncorrectDate);
             return false;
         }
 

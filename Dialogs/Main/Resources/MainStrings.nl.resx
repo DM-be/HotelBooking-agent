@@ -117,7 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="COMPLETED" xml:space="preserve">
+    <value>Waar kan ik je verder mee helpen?</value>
+  </data>
+  <data name="CONFUSED" xml:space="preserve">
+    <value>Sorry daar kan ik je niet mee helpen.</value>
+  </data>
+  <data name="ERROR" xml:space="preserve">
+    <value>Sorry er is iets fout gelopen.</value>
+  </data>
   <data name="GREETING" xml:space="preserve">
     <value>Hallo!</value>
+  </data>
+  <data name="GREETING_WITH_NA" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GREETING_WITH_NAME" xml:space="preserve">
+    <value>Hey {0}! </value>
   </data>
 </root>

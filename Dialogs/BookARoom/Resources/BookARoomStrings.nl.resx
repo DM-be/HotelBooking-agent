@@ -118,36 +118,36 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ARRIVALDATE_PROMPT" xml:space="preserve">
-    <value>When would you arrive?</value>
+    <value>Wanneer zou je aankomen?</value>
   </data>
   <data name="EMAIL_PROMPT" xml:space="preserve">
-    <value>What is your email?</value>
+    <value>Wat is je email adres?</value>
   </data>
   <data name="FINISHEDBOOKAROOM" xml:space="preserve">
-    <value>Thank you for booking with us. To enter payment follow this link:</value>
+    <value>Bedankt om bij ons te boeken. Volg onderstaande link om te betalen:</value>
   </data>
   <data name="HAVE_ARRIVALDATE" xml:space="preserve">
-    <value>Ok, you would like to arrive on {0}.</value>
+    <value>Ok je wilt aankomen {0}.</value>
   </data>
   <data name="HAVE_EMAIL" xml:space="preserve">
-    <value>Got it, I've added {0} as your primary contact address.</value>
+    <value>Ik heb {0} toegevoegd als je primaire e-mailadres</value>
   </data>
   <data name="HAVE_LEAVINGDATE" xml:space="preserve">
-    <value>Leaving at {0}.</value>
+    <value>Vertrekken op {0}.</value>
   </data>
   <data name="HAVE_NUMBEROFPEOPLE" xml:space="preserve">
-    <value>You are bringing {0} people.</value>
+    <value>Je brengt {0} personen.</value>
   </data>
   <data name="INCORRECT_DATE" xml:space="preserve">
-    <value>Sorry you cannot book a room in the past. </value>
+    <value>Sorry, je kan niet in het verleden een kamer boeken.</value>
   </data>
   <data name="LEAVINGDATE_PROMPT" xml:space="preserve">
-    <value>When would you be leaving?</value>
+    <value>Wanneer zou je vertrekken?</value>
   </data>
   <data name="NOT_RECOGNIZED_DATE" xml:space="preserve">
-    <value>I'm sorry, I do not understand. Please enter the date or time for your booking.</value>
+    <value>Sorry dat heb ik niet verstaan. Geef een datum.</value>
   </data>
   <data name="NUMBEROFPEOPLE_PROMPT" xml:space="preserve">
-    <value>How many people should we expect?</value>
+    <value>Hoeveel personen kunnen we verwachten?</value>
   </data>
 </root>

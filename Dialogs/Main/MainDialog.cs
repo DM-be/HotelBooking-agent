@@ -32,7 +32,6 @@ namespace HotelBot.Dialogs.Main
         {
             _services = services ?? throw new ArgumentNullException(nameof(services));
             _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
-            // TODO: add dialogs based on intent here, ie get location dialog or book a room dialog
 
             AddDialog(new BookARoomDialog(_services, _accessors));
         }
@@ -113,10 +112,6 @@ namespace HotelBot.Dialogs.Main
                         }
                     }
                 }
-                // TODO: naming convention per hotel id etc
-                // qna intents start with q_HotelBot.._nl_BE
-
-
                 else if (intent.ToString().StartsWith("q_"))
                 {
                     var intentString = intent.ToString();
@@ -152,7 +147,7 @@ namespace HotelBot.Dialogs.Main
         protected override async Task OnEventAsync(DialogContext dc, CancellationToken cancellationToken = default(CancellationToken))
         {
             // TODO: check for quick reply here?
-            
+
            
         }
 

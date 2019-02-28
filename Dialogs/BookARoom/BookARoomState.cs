@@ -10,7 +10,7 @@ namespace HotelBot.Dialogs.BookARoom
         public string Email { get; set; }
         public int NumberOfPeople { get; set; }
 
-        // todo: correct format based on timex
+        // todo: correct format based on needs
         public string ArrivalDate { get; set; }
 
         public string LeavingDate { get; set; }

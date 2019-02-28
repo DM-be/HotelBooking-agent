@@ -124,11 +124,29 @@ namespace HotelBot.Dialogs.BookARoom.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sorry you cannot book a room in the past. .
+        /// </summary>
+        public static string INCORRECT_DATE {
+            get {
+                return ResourceManager.GetString("INCORRECT_DATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to When would you be leaving?.
         /// </summary>
         public static string LEAVINGDATE_PROMPT {
             get {
                 return ResourceManager.GetString("LEAVINGDATE_PROMPT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I&apos;m sorry, I do not understand. Please enter the date or time for your booking..
+        /// </summary>
+        public static string NOT_RECOGNIZED_DATE {
+            get {
+                return ResourceManager.GetString("NOT_RECOGNIZED_DATE", resourceCulture);
             }
         }
         
