@@ -5,11 +5,14 @@ using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
 using System.Threading;
 using System.Threading.Tasks;
+using HotelBot.Custom;
 using HotelBot.Dialogs.Shared;
 using HotelBot.Services;
 using HotelBot.StateAccessors;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
+using Microsoft.Recognizers.Text;
+using Microsoft.Recognizers.Text.DataTypes.TimexExpression;
 
 namespace HotelBot.Dialogs.BookARoom
 {
@@ -25,6 +28,9 @@ namespace HotelBot.Dialogs.BookARoom
             _accessors = accessors;
             InitialDialogId = nameof(BookARoomDialog);
 
+            
+
+
             var bookARoom = new WaterfallStep[]
             {
                 AskForEmail,
@@ -34,7 +40,7 @@ namespace HotelBot.Dialogs.BookARoom
                 FinishBookARoomDialog,
             };
             AddDialog(new WaterfallDialog(InitialDialogId, bookARoom));
-            AddDialog(new DateTimePrompt(DialogIds.ArrivalDateTimePrompt, DateValidatorAsync));
+            AddDialog(new CustomDateTimePrompt(DialogIds.ArrivalDateTimePrompt, DateValidatorAsync, Culture.Dutch));
             AddDialog(new DateTimePrompt(DialogIds.LeavingDateTimePrompt, DateValidatorAsync));
             AddDialog(new TextPrompt(DialogIds.EmailPrompt));
             AddDialog(new NumberPrompt<int>(DialogIds.NumberOfPeopleNumberPrompt));
@@ -68,12 +74,12 @@ namespace HotelBot.Dialogs.BookARoom
         {
             _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
             var numberOfPeople = _state.NumberOfPeople = (int) sc.Result;
-
-            await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveNumberOfPeople, new { numberOfPeople });
+            
+            await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveNumberOfPeople, numberOfPeople);
 
             return await sc.PromptAsync(DialogIds.ArrivalDateTimePrompt, new PromptOptions()
             {
-                Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, BookARoomResponses.ResponseIds.ArrivalDatePrompt),
+                Prompt = await _responder.RenderTemplate(sc.Context, Culture.Dutch, BookARoomResponses.ResponseIds.ArrivalDatePrompt),
             });
 
         }
@@ -82,11 +88,12 @@ namespace HotelBot.Dialogs.BookARoom
         {
             _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
 
-            // todo: convert to natural language expression 
             var resolution = (sc.Result as IList<DateTimeResolution>).First();
-            var arrivalDate = resolution.Value ?? resolution.Start;
+            var timexProp = new TimexProperty(resolution.Timex);
+            var arrivalDateAsNaturalLanguage = timexProp.ToNaturalLanguage(DateTime.Now);
 
-            await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveArrivalDate, arrivalDate);
+
+            await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveArrivalDate, arrivalDateAsNaturalLanguage);
 
             return await sc.PromptAsync(DialogIds.LeavingDateTimePrompt, new PromptOptions()
             {
@@ -100,8 +107,12 @@ namespace HotelBot.Dialogs.BookARoom
             // send webview for booking here
             _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
             // todo: convert to natural language expression 
+            
             var resolution = (sc.Result as IList<DateTimeResolution>).First();
-            var leavingDate = resolution.Value ?? resolution.Start;
+            var timexProp = new TimexProperty(resolution.Timex);
+            var leavingDateAsNaturalLanguage = timexProp.ToNaturalLanguage(DateTime.Now);
+
+            await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveLeavingDate, leavingDateAsNaturalLanguage);
 
             await sc.Context.SendActivityAsync("end of dialog");
             return await sc.EndDialogAsync();

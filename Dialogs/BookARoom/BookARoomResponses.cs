@@ -53,8 +53,8 @@ namespace HotelBot.Dialogs.BookARoom
                 { ResponseIds.HaveLeavingDate,
                     (context, data) =>
                         MessageFactory.Text(
-                            text: string.Format(BookARoomStrings.HAVE_LEAVINGDATE, data.LeavingDate),
-                            ssml: string.Format(BookARoomStrings.HAVE_LEAVINGDATE, data.LeavingDate),
+                            text: string.Format(BookARoomStrings.HAVE_LEAVINGDATE, data),
+                            ssml: string.Format(BookARoomStrings.HAVE_LEAVINGDATE, data),
                             inputHint: InputHints.IgnoringInput)
                 },
                 { ResponseIds.NumberOfPeoplePrompt,

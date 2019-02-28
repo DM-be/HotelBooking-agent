@@ -21,6 +21,9 @@
     <PackageReference Include="Microsoft.Bot.Connector" Version="4.2.2" />
     <PackageReference Include="Microsoft.Bot.Schema" Version="4.2.2" />
     <PackageReference Include="Microsoft.Graph" Version="1.10.0" />
+    <PackageReference Include="Microsoft.Recognizers.Text" Version="1.1.5" />
+    <PackageReference Include="Microsoft.Recognizers.Text.DataTypes.TimexExpression" Version="1.1.5" />
+    <PackageReference Include="Microsoft.Recognizers.Text.DateTime" Version="1.1.5" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.0-beta008">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>

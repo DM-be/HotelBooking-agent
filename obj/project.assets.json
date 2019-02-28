@@ -2789,7 +2789,7 @@
           "lib/netstandard1.0/_._": {}
         }
       },
-      "Microsoft.Recognizers.Text/1.1.3": {
+      "Microsoft.Recognizers.Text/1.1.5": {
         "type": "package",
         "dependencies": {
           "System.Collections.Immutable": "1.4.0",
@@ -2817,12 +2817,21 @@
           "lib/netstandard2.0/Microsoft.Recognizers.Text.Choice.dll": {}
         }
       },
-      "Microsoft.Recognizers.Text.DateTime/1.1.3": {
+      "Microsoft.Recognizers.Text.DataTypes.TimexExpression/1.1.5": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Recognizers.Text.DataTypes.TimexExpression.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Recognizers.Text.DataTypes.TimexExpression.dll": {}
+        }
+      },
+      "Microsoft.Recognizers.Text.DateTime/1.1.5": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Recognizers.Text": "1.1.3",
-          "Microsoft.Recognizers.Text.Number": "1.1.3",
-          "Microsoft.Recognizers.Text.NumberWithUnit": "1.1.3",
+          "Microsoft.Recognizers.Text": "1.1.5",
+          "Microsoft.Recognizers.Text.Number": "1.1.5",
+          "Microsoft.Recognizers.Text.NumberWithUnit": "1.1.5",
           "System.Collections.Immutable": "1.4.0"
         },
         "compile": {
@@ -2832,10 +2841,10 @@
           "lib/netstandard2.0/Microsoft.Recognizers.Text.DateTime.dll": {}
         }
       },
-      "Microsoft.Recognizers.Text.Number/1.1.3": {
+      "Microsoft.Recognizers.Text.Number/1.1.5": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Recognizers.Text": "1.1.3",
+          "Microsoft.Recognizers.Text": "1.1.5",
           "System.Collections.Immutable": "1.4.0"
         },
         "compile": {
@@ -2845,11 +2854,11 @@
           "lib/netstandard2.0/Microsoft.Recognizers.Text.Number.dll": {}
         }
       },
-      "Microsoft.Recognizers.Text.NumberWithUnit/1.1.3": {
+      "Microsoft.Recognizers.Text.NumberWithUnit/1.1.5": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Recognizers.Text": "1.1.3",
-          "Microsoft.Recognizers.Text.Number": "1.1.3",
+          "Microsoft.Recognizers.Text": "1.1.5",
+          "Microsoft.Recognizers.Text.Number": "1.1.5",
           "System.Collections.Immutable": "1.4.0"
         },
         "compile": {
@@ -7903,10 +7912,10 @@
         "runtime.json"
       ]
     },
-    "Microsoft.Recognizers.Text/1.1.3": {
-      "sha512": "9mkm6MxMe5MplY9wdVzMIFKbRQhZ27Bro2KacqSWeXTc405PM8vqSrTiiQ6H/4VwZrnjTTGKU2WmAhRbQslFKA==",
+    "Microsoft.Recognizers.Text/1.1.5": {
+      "sha512": "9YAwDMGMz5idNnPtRjHp8hQ4lkEdgT36UIsQ94DoMAucyQRFli2szebG2izhtWMZSabgK7bU+2VOoeFQl5OFoQ==",
       "type": "package",
-      "path": "microsoft.recognizers.text/1.1.3",
+      "path": "microsoft.recognizers.text/1.1.5",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7918,7 +7927,7 @@
         "lib/net462/Microsoft.Recognizers.Text.dll",
         "lib/netstandard2.0/Microsoft.Recognizers.Definitions.dll",
         "lib/netstandard2.0/Microsoft.Recognizers.Text.dll",
-        "microsoft.recognizers.text.1.1.3.nupkg.sha512",
+        "microsoft.recognizers.text.1.1.5.nupkg.sha512",
         "microsoft.recognizers.text.nuspec"
       ]
     },
@@ -7937,10 +7946,25 @@
         "microsoft.recognizers.text.choice.nuspec"
       ]
     },
-    "Microsoft.Recognizers.Text.DateTime/1.1.3": {
-      "sha512": "IFq8ec1Mm30qey0Ku5cwlkZ/18qlzg9BY+bo6h2mYwXyXfDmuCN3UbWXeyRsXTkPepE72c4rFmO08zWzFxt9lQ==",
+    "Microsoft.Recognizers.Text.DataTypes.TimexExpression/1.1.5": {
+      "sha512": "V29PXvcKPvG1rllpegZqvufGxXaooCMdA0MwJyalvZDHgqNqZ+0Gd5netJ2hFv686heDGdg0MTQuPRToI0IbOw==",
       "type": "package",
-      "path": "microsoft.recognizers.text.datetime/1.1.3",
+      "path": "microsoft.recognizers.text.datatypes.timexexpression/1.1.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/Microsoft.Recognizers.Text.DataTypes.TimexExpression.dll",
+        "lib/net452/Microsoft.Recognizers.Text.DataTypes.TimexExpression.dll",
+        "lib/net462/Microsoft.Recognizers.Text.DataTypes.TimexExpression.dll",
+        "lib/netstandard2.0/Microsoft.Recognizers.Text.DataTypes.TimexExpression.dll",
+        "microsoft.recognizers.text.datatypes.timexexpression.1.1.5.nupkg.sha512",
+        "microsoft.recognizers.text.datatypes.timexexpression.nuspec"
+      ]
+    },
+    "Microsoft.Recognizers.Text.DateTime/1.1.5": {
+      "sha512": "lhwDyXWpiTTuwDHUIF6aJBihvDSdV6XuzSiStQK+tRf2SqwhP/cNLGLNx6GVeLwig1Q2HK+dTsmV6lRHWyELvA==",
+      "type": "package",
+      "path": "microsoft.recognizers.text.datetime/1.1.5",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7948,14 +7972,14 @@
         "lib/net452/Microsoft.Recognizers.Text.DateTime.dll",
         "lib/net462/Microsoft.Recognizers.Text.DateTime.dll",
         "lib/netstandard2.0/Microsoft.Recognizers.Text.DateTime.dll",
-        "microsoft.recognizers.text.datetime.1.1.3.nupkg.sha512",
+        "microsoft.recognizers.text.datetime.1.1.5.nupkg.sha512",
         "microsoft.recognizers.text.datetime.nuspec"
       ]
     },
-    "Microsoft.Recognizers.Text.Number/1.1.3": {
-      "sha512": "RBJhV5flJMw5UlmhmOpVS7Uk8ug18qDhty4zkGafR+h8g4ZzzeQSk8Fo8O8wu4p5lq/7J31r/muNZq1bL7/F/w==",
+    "Microsoft.Recognizers.Text.Number/1.1.5": {
+      "sha512": "laYdr+wcbLHUkUelIGWbs3Keni02RXwxukSJQOZz1ozVw94qspue1/pGSCWW1KVui1WUBXeMnHnvRzbm7dfk8w==",
       "type": "package",
-      "path": "microsoft.recognizers.text.number/1.1.3",
+      "path": "microsoft.recognizers.text.number/1.1.5",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7963,14 +7987,14 @@
         "lib/net452/Microsoft.Recognizers.Text.Number.dll",
         "lib/net462/Microsoft.Recognizers.Text.Number.dll",
         "lib/netstandard2.0/Microsoft.Recognizers.Text.Number.dll",
-        "microsoft.recognizers.text.number.1.1.3.nupkg.sha512",
+        "microsoft.recognizers.text.number.1.1.5.nupkg.sha512",
         "microsoft.recognizers.text.number.nuspec"
       ]
     },
-    "Microsoft.Recognizers.Text.NumberWithUnit/1.1.3": {
-      "sha512": "X/Ng7dvy3Fvim7UqdKucLkFF3REbE6lAPLDp8j7xwM+qZAD9LQmW5Y3+KRCd2zxUYRm7tUZIEbHjcv/gz4Myig==",
+    "Microsoft.Recognizers.Text.NumberWithUnit/1.1.5": {
+      "sha512": "Z3iJzVCBuiRnxNY0If3eQrjQgc5bFglRFKsXLyZ2GpxSpQlvq4MAe+8m4j00XfXZAQ+XOKwWCQ9+chqh5Gi73g==",
       "type": "package",
-      "path": "microsoft.recognizers.text.numberwithunit/1.1.3",
+      "path": "microsoft.recognizers.text.numberwithunit/1.1.5",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7978,7 +8002,7 @@
         "lib/net452/Microsoft.Recognizers.Text.NumberWithUnit.dll",
         "lib/net462/Microsoft.Recognizers.Text.NumberWithUnit.dll",
         "lib/netstandard2.0/Microsoft.Recognizers.Text.NumberWithUnit.dll",
-        "microsoft.recognizers.text.numberwithunit.1.1.3.nupkg.sha512",
+        "microsoft.recognizers.text.numberwithunit.1.1.5.nupkg.sha512",
         "microsoft.recognizers.text.numberwithunit.nuspec"
       ]
     },
@@ -12317,6 +12341,9 @@
       "Microsoft.Bot.Schema >= 4.2.2",
       "Microsoft.Graph >= 1.10.0",
       "Microsoft.NETCore.App >= 2.0.0",
+      "Microsoft.Recognizers.Text >= 1.1.5",
+      "Microsoft.Recognizers.Text.DataTypes.TimexExpression >= 1.1.5",
+      "Microsoft.Recognizers.Text.DateTime >= 1.1.5",
       "StyleCop.Analyzers >= 1.1.0-beta008"
     ]
   },
@@ -12425,6 +12452,18 @@
             "target": "Package",
             "version": "[2.0.0, )",
             "autoReferenced": true
+          },
+          "Microsoft.Recognizers.Text": {
+            "target": "Package",
+            "version": "[1.1.5, )"
+          },
+          "Microsoft.Recognizers.Text.DataTypes.TimexExpression": {
+            "target": "Package",
+            "version": "[1.1.5, )"
+          },
+          "Microsoft.Recognizers.Text.DateTime": {
+            "target": "Package",
+            "version": "[1.1.5, )"
           },
           "StyleCop.Analyzers": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers",

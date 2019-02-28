@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "c9514f6aa9c92880df3205b2b66404710a4d312f"
+    "signature": "09f4e6859b4c30c7fbe14734f6bb6f454fda0f72"
   },
   "compilationOptions": {
     "defines": [
@@ -40,6 +40,9 @@
           "Microsoft.Bot.Schema": "4.2.2",
           "Microsoft.Graph": "1.10.0",
           "Microsoft.NETCore.App": "2.0.0",
+          "Microsoft.Recognizers.Text": "1.1.5",
+          "Microsoft.Recognizers.Text.DataTypes.TimexExpression": "1.1.5",
+          "Microsoft.Recognizers.Text.DateTime": "1.1.5",
           "StyleCop.Analyzers": "1.1.0-beta008"
         },
         "runtime": {
@@ -1836,7 +1839,7 @@
         "dependencies": {
           "Microsoft.Bot.Builder": "4.2.2",
           "Microsoft.Recognizers.Text.Choice": "1.1.3",
-          "Microsoft.Recognizers.Text.DateTime": "1.1.3",
+          "Microsoft.Recognizers.Text.DateTime": "1.1.5",
           "SourceLink.Create.CommandLine": "2.8.1"
         },
         "runtime": {
@@ -2947,7 +2950,7 @@
         }
       },
       "Microsoft.NETCore.Targets/1.1.0": {},
-      "Microsoft.Recognizers.Text/1.1.3": {
+      "Microsoft.Recognizers.Text/1.1.5": {
         "dependencies": {
           "System.Collections.Immutable": "1.4.0",
           "System.ValueTuple": "4.4.0"
@@ -2969,7 +2972,7 @@
       },
       "Microsoft.Recognizers.Text.Choice/1.1.3": {
         "dependencies": {
-          "Microsoft.Recognizers.Text": "1.1.3",
+          "Microsoft.Recognizers.Text": "1.1.5",
           "System.Collections.Immutable": "1.4.0"
         },
         "runtime": {
@@ -2982,11 +2985,22 @@
           "lib/netstandard2.0/Microsoft.Recognizers.Text.Choice.dll": {}
         }
       },
-      "Microsoft.Recognizers.Text.DateTime/1.1.3": {
+      "Microsoft.Recognizers.Text.DataTypes.TimexExpression/1.1.5": {
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Recognizers.Text.DataTypes.TimexExpression.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Recognizers.Text.DataTypes.TimexExpression.dll": {}
+        }
+      },
+      "Microsoft.Recognizers.Text.DateTime/1.1.5": {
         "dependencies": {
-          "Microsoft.Recognizers.Text": "1.1.3",
-          "Microsoft.Recognizers.Text.Number": "1.1.3",
-          "Microsoft.Recognizers.Text.NumberWithUnit": "1.1.3",
+          "Microsoft.Recognizers.Text": "1.1.5",
+          "Microsoft.Recognizers.Text.Number": "1.1.5",
+          "Microsoft.Recognizers.Text.NumberWithUnit": "1.1.5",
           "System.Collections.Immutable": "1.4.0"
         },
         "runtime": {
@@ -2999,9 +3013,9 @@
           "lib/netstandard2.0/Microsoft.Recognizers.Text.DateTime.dll": {}
         }
       },
-      "Microsoft.Recognizers.Text.Number/1.1.3": {
+      "Microsoft.Recognizers.Text.Number/1.1.5": {
         "dependencies": {
-          "Microsoft.Recognizers.Text": "1.1.3",
+          "Microsoft.Recognizers.Text": "1.1.5",
           "System.Collections.Immutable": "1.4.0"
         },
         "runtime": {
@@ -3014,10 +3028,10 @@
           "lib/netstandard2.0/Microsoft.Recognizers.Text.Number.dll": {}
         }
       },
-      "Microsoft.Recognizers.Text.NumberWithUnit/1.1.3": {
+      "Microsoft.Recognizers.Text.NumberWithUnit/1.1.5": {
         "dependencies": {
-          "Microsoft.Recognizers.Text": "1.1.3",
-          "Microsoft.Recognizers.Text.Number": "1.1.3",
+          "Microsoft.Recognizers.Text": "1.1.5",
+          "Microsoft.Recognizers.Text.Number": "1.1.5",
           "System.Collections.Immutable": "1.4.0"
         },
         "runtime": {
@@ -6134,12 +6148,12 @@
       "path": "microsoft.netcore.targets/1.1.0",
       "hashPath": "microsoft.netcore.targets.1.1.0.nupkg.sha512"
     },
-    "Microsoft.Recognizers.Text/1.1.3": {
+    "Microsoft.Recognizers.Text/1.1.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-9mkm6MxMe5MplY9wdVzMIFKbRQhZ27Bro2KacqSWeXTc405PM8vqSrTiiQ6H/4VwZrnjTTGKU2WmAhRbQslFKA==",
-      "path": "microsoft.recognizers.text/1.1.3",
-      "hashPath": "microsoft.recognizers.text.1.1.3.nupkg.sha512"
+      "sha512": "sha512-9YAwDMGMz5idNnPtRjHp8hQ4lkEdgT36UIsQ94DoMAucyQRFli2szebG2izhtWMZSabgK7bU+2VOoeFQl5OFoQ==",
+      "path": "microsoft.recognizers.text/1.1.5",
+      "hashPath": "microsoft.recognizers.text.1.1.5.nupkg.sha512"
     },
     "Microsoft.Recognizers.Text.Choice/1.1.3": {
       "type": "package",
@@ -6148,26 +6162,33 @@
       "path": "microsoft.recognizers.text.choice/1.1.3",
       "hashPath": "microsoft.recognizers.text.choice.1.1.3.nupkg.sha512"
     },
-    "Microsoft.Recognizers.Text.DateTime/1.1.3": {
+    "Microsoft.Recognizers.Text.DataTypes.TimexExpression/1.1.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-IFq8ec1Mm30qey0Ku5cwlkZ/18qlzg9BY+bo6h2mYwXyXfDmuCN3UbWXeyRsXTkPepE72c4rFmO08zWzFxt9lQ==",
-      "path": "microsoft.recognizers.text.datetime/1.1.3",
-      "hashPath": "microsoft.recognizers.text.datetime.1.1.3.nupkg.sha512"
+      "sha512": "sha512-V29PXvcKPvG1rllpegZqvufGxXaooCMdA0MwJyalvZDHgqNqZ+0Gd5netJ2hFv686heDGdg0MTQuPRToI0IbOw==",
+      "path": "microsoft.recognizers.text.datatypes.timexexpression/1.1.5",
+      "hashPath": "microsoft.recognizers.text.datatypes.timexexpression.1.1.5.nupkg.sha512"
     },
-    "Microsoft.Recognizers.Text.Number/1.1.3": {
+    "Microsoft.Recognizers.Text.DateTime/1.1.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-RBJhV5flJMw5UlmhmOpVS7Uk8ug18qDhty4zkGafR+h8g4ZzzeQSk8Fo8O8wu4p5lq/7J31r/muNZq1bL7/F/w==",
-      "path": "microsoft.recognizers.text.number/1.1.3",
-      "hashPath": "microsoft.recognizers.text.number.1.1.3.nupkg.sha512"
+      "sha512": "sha512-lhwDyXWpiTTuwDHUIF6aJBihvDSdV6XuzSiStQK+tRf2SqwhP/cNLGLNx6GVeLwig1Q2HK+dTsmV6lRHWyELvA==",
+      "path": "microsoft.recognizers.text.datetime/1.1.5",
+      "hashPath": "microsoft.recognizers.text.datetime.1.1.5.nupkg.sha512"
     },
-    "Microsoft.Recognizers.Text.NumberWithUnit/1.1.3": {
+    "Microsoft.Recognizers.Text.Number/1.1.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-X/Ng7dvy3Fvim7UqdKucLkFF3REbE6lAPLDp8j7xwM+qZAD9LQmW5Y3+KRCd2zxUYRm7tUZIEbHjcv/gz4Myig==",
-      "path": "microsoft.recognizers.text.numberwithunit/1.1.3",
-      "hashPath": "microsoft.recognizers.text.numberwithunit.1.1.3.nupkg.sha512"
+      "sha512": "sha512-laYdr+wcbLHUkUelIGWbs3Keni02RXwxukSJQOZz1ozVw94qspue1/pGSCWW1KVui1WUBXeMnHnvRzbm7dfk8w==",
+      "path": "microsoft.recognizers.text.number/1.1.5",
+      "hashPath": "microsoft.recognizers.text.number.1.1.5.nupkg.sha512"
+    },
+    "Microsoft.Recognizers.Text.NumberWithUnit/1.1.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Z3iJzVCBuiRnxNY0If3eQrjQgc5bFglRFKsXLyZ2GpxSpQlvq4MAe+8m4j00XfXZAQ+XOKwWCQ9+chqh5Gi73g==",
+      "path": "microsoft.recognizers.text.numberwithunit/1.1.5",
+      "hashPath": "microsoft.recognizers.text.numberwithunit.1.1.5.nupkg.sha512"
     },
     "Microsoft.Rest.ClientRuntime/2.3.13": {
       "type": "package",
