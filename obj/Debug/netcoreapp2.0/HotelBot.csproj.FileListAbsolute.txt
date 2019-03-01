@@ -66,3 +66,4 @@ C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\obj\Debug\netcoreapp2.
 C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.Dialogs.BookARoom.Resources.BookARoomStrings.resources
 C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.Dialogs.Cancel.Resources.CancelStrings.resources
 C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.Dialogs.BookARoom.Resources.BookARoomStrings.nl.resources
+C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.csprojAssemblyReference.cache

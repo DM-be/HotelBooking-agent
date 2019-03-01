@@ -26,6 +26,7 @@ namespace HotelBot.Dialogs.Main
       
         private MainResponses _responder = new MainResponses();
         private FacebookHelper _facebookHelper = new FacebookHelper();
+        
 
         public MainDialog(BotServices services, StateBotAccessors accessors)
             : base(nameof(MainDialog))
@@ -36,11 +37,6 @@ namespace HotelBot.Dialogs.Main
             AddDialog(new BookARoomDialog(_services, _accessors));
         }
 
-        protected override async Task OnStartAsync(DialogContext dc, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            var view = new MainResponses();
-            await view.ReplyWith(dc.Context, MainResponses.ResponseIds.Intro);
-        }
 
         protected override async Task RouteAsync(DialogContext dc, CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -56,7 +52,7 @@ namespace HotelBot.Dialogs.Main
                     _services.LuisServices.TryGetValue("HotelBot", out var luisService);
 
                     if (luisService == null)
-                    {
+                    { // new argument null exception ---> nameoff luis servi
                         throw new Exception("The specified LUIS Model could not be found in your Bot Services configuration.");
                     }
                     else
@@ -68,6 +64,7 @@ namespace HotelBot.Dialogs.Main
                         // switch on general intents
                         switch (hotelBotIntent)
                         {
+                            // delegates  -  reflection 
                             case HotelBotLuis.Intent.cancel:
                                 {
                                     // send cancelled response

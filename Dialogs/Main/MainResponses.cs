@@ -1,4 +1,5 @@
-﻿using HotelBot.Dialogs.Main.Resources;
+﻿using System.Collections.Generic;
+using HotelBot.Dialogs.Main.Resources;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.TemplateManager;
 using Microsoft.Bot.Schema;
@@ -47,6 +48,8 @@ namespace HotelBot.Dialogs.Main
         {
             Register(new DictionaryRenderer(_responseTemplates));
         }
+
+
         public class ResponseIds
         {
             // Constants

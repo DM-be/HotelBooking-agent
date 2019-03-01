@@ -18,9 +18,9 @@ namespace HotelBot.Dialogs.BookARoom
                 { ResponseIds.EmailPrompt,
                     (context, data) =>
                     MessageFactory.Text(
-                        text: BookARoomStrings.EMAIL_PROMPT,
-                        ssml: BookARoomStrings.EMAIL_PROMPT,
-                        inputHint: InputHints.ExpectingInput)
+                        BookARoomStrings.EMAIL_PROMPT,
+                        BookARoomStrings.EMAIL_PROMPT,
+                        InputHints.ExpectingInput)
                 },
                 { ResponseIds.HaveEmailMessage,
                     (context, data) =>
@@ -32,9 +32,9 @@ namespace HotelBot.Dialogs.BookARoom
                 { ResponseIds.ArrivalDatePrompt,
                     (context, data) =>
                     MessageFactory.Text(
-                        text: BookARoomStrings.ARRIVALDATE_PROMPT,
-                        ssml: BookARoomStrings.ARRIVALDATE_PROMPT,
-                        inputHint: InputHints.IgnoringInput)
+                        BookARoomStrings.ARRIVALDATE_PROMPT,
+                        BookARoomStrings.ARRIVALDATE_PROMPT,
+                        InputHints.IgnoringInput)
                 },
                 { ResponseIds.HaveArrivalDate,
                     (context, data) =>
@@ -46,9 +46,9 @@ namespace HotelBot.Dialogs.BookARoom
                 { ResponseIds.LeavingDatePrompt,
                     (context, data) =>
                         MessageFactory.Text(
-                            text: BookARoomStrings.LEAVINGDATE_PROMPT,
-                            ssml: BookARoomStrings.LEAVINGDATE_PROMPT,
-                            inputHint: InputHints.IgnoringInput)
+                            BookARoomStrings.LEAVINGDATE_PROMPT,
+                            BookARoomStrings.LEAVINGDATE_PROMPT,
+                            InputHints.IgnoringInput)
                 },
                 { ResponseIds.HaveLeavingDate,
                     (context, data) =>
@@ -60,9 +60,9 @@ namespace HotelBot.Dialogs.BookARoom
                 { ResponseIds.NumberOfPeoplePrompt,
                     (context, data) =>
                     MessageFactory.Text(
-                        text: BookARoomStrings.NUMBEROFPEOPLE_PROMPT,
-                        ssml: BookARoomStrings.NUMBEROFPEOPLE_PROMPT,
-                        inputHint: InputHints.ExpectingInput)
+                        BookARoomStrings.NUMBEROFPEOPLE_PROMPT,
+                        BookARoomStrings.NUMBEROFPEOPLE_PROMPT,
+                        InputHints.ExpectingInput)
                 },
                 { ResponseIds.HaveNumberOfPeople,
                     (context, data) =>
@@ -74,16 +74,16 @@ namespace HotelBot.Dialogs.BookARoom
                 { ResponseIds.IncorrectDate,
                     (context, data) =>
                         MessageFactory.Text(
-                            text: BookARoomStrings.INCORRECT_DATE,
-                            ssml: BookARoomStrings.INCORRECT_DATE,
-                            inputHint: InputHints.IgnoringInput)
+                            BookARoomStrings.INCORRECT_DATE,
+                            BookARoomStrings.INCORRECT_DATE,
+                            InputHints.IgnoringInput)
                 },
                 { ResponseIds.NotRecognizedDate,
                     (context, data) =>
                         MessageFactory.Text(
-                            text: BookARoomStrings.NOT_RECOGNIZED_DATE,
-                            ssml: BookARoomStrings.NOT_RECOGNIZED_DATE,
-                            inputHint: InputHints.IgnoringInput)
+                            BookARoomStrings.NOT_RECOGNIZED_DATE,
+                            BookARoomStrings.NOT_RECOGNIZED_DATE,
+                            InputHints.IgnoringInput)
                 }
             }
         };

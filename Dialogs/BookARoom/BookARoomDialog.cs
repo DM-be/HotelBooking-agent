@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Custom;
 using HotelBot.Dialogs.Shared;
 using HotelBot.Services;
+using HotelBot.Shared.Helpers;
 using HotelBot.StateAccessors;
-using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Recognizers.Text;
 using Microsoft.Recognizers.Text.DataTypes.TimexExpression;
@@ -21,16 +19,13 @@ namespace HotelBot.Dialogs.BookARoom
         private static BookARoomResponses _responder = new BookARoomResponses();
         private StateBotAccessors _accessors;
         private BookARoomState _state;
+        private TranslatorHelper _translatorHelper = new TranslatorHelper();
 
         public BookARoomDialog(BotServices botServices, StateBotAccessors accessors)
             : base(botServices, nameof(BookARoomDialog))
         {
             _accessors = accessors;
             InitialDialogId = nameof(BookARoomDialog);
-
-            
-
-
             var bookARoom = new WaterfallStep[]
             {
                 AskForEmail,
@@ -88,6 +83,17 @@ namespace HotelBot.Dialogs.BookARoom
         {
             _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
 
+            var userProfile = await _accessors.UserProfileAccessor.GetAsync(sc.Context);
+            var locale = userProfile.Locale;
+
+                //if (_translatorHelper.ShouldTranslate(locale))
+                //{
+                //    var originalText = sc.Context.Activity.Text;
+                   
+                //}
+
+           
+            
             var resolution = (sc.Result as IList<DateTimeResolution>).First();
             var timexProp = new TimexProperty(resolution.Timex);
             var arrivalDateAsNaturalLanguage = timexProp.ToNaturalLanguage(DateTime.Now);
@@ -134,8 +140,6 @@ namespace HotelBot.Dialogs.BookARoom
             var earliest = DateTime.Now.AddHours(1.0);
             var value = promptContext.Recognized.Value.FirstOrDefault(v =>
                 DateTime.TryParse(v.Value ?? v.Start, out var time) && DateTime.Compare(earliest, time) <= 0);
-
-           
             if (value != null)
             {
                 promptContext.Recognized.Value.Clear();
@@ -149,7 +153,6 @@ namespace HotelBot.Dialogs.BookARoom
 
         private class DialogIds
         {
-
             public const string ArrivalDateTimePrompt = "arrivalDateTimePrompt";
             public const string LeavingDateTimePrompt = "leavingDateTimePrompt";
             public const string NumberOfPeopleNumberPrompt = "numberOfPeopleNumberPrompt";

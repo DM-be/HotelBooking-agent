@@ -122,6 +122,7 @@
 
  <ItemGroup>
    <Folder Include="CognitiveModels\QnA\en\" />
+   <Folder Include="Shared\Helpers\NewFolder\" />
  </ItemGroup> 
 
   <Import Project="PostDeployScripts\IncludeSources.targets" Condition="Exists('PostDeployScripts\IncludeSources.targets')" />
