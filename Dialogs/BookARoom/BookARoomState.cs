@@ -15,5 +15,8 @@ namespace HotelBot.Dialogs.BookARoom
 
         public string LeavingDate { get; set; }
 
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
     }
 }

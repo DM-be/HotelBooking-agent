@@ -1,11 +1,13 @@
 ﻿
 using System;
+using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.BookARoom;
 using HotelBot.Dialogs.Shared;
+using HotelBot.Dialogs.SlotFillingDialog;
 using HotelBot.Middleware;
 using HotelBot.Services;
 using HotelBot.Shared.Helpers;
@@ -15,6 +17,7 @@ using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.CodeAnalysis;
 using Microsoft.CognitiveServices.ContentModerator.Models;
+using Newtonsoft.Json.Linq;
 
 
 namespace HotelBot.Dialogs.Main
@@ -33,8 +36,18 @@ namespace HotelBot.Dialogs.Main
         {
             _services = services ?? throw new ArgumentNullException(nameof(services));
             _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
-
             AddDialog(new BookARoomDialog(_services, _accessors));
+           
+
+            var fullname_slots = new List<SlotDetails>
+            {
+                new SlotDetails("first", "text", "Please enter your first name."),
+                new SlotDetails("last", "text", "Please enter your last name."),
+            };
+            AddDialog(new SlotFillingDialog.SlotFillingDialog(services, _accessors, fullname_slots));
+            AddDialog(new TextPrompt("text"));
+          
+
         }
 
 
@@ -45,6 +58,8 @@ namespace HotelBot.Dialogs.Main
             {
                 var dispatchResult = await _services.DispatchRecognizer.RecognizeAsync<HotelDispatch>(dc.Context, cancellationToken);
                 var intent = dispatchResult.TopIntent().intent;
+                
+                
 
                 if (intent == HotelDispatch.Intent.l_HotelBot)
                 {
@@ -52,8 +67,8 @@ namespace HotelBot.Dialogs.Main
                     _services.LuisServices.TryGetValue("HotelBot", out var luisService);
 
                     if (luisService == null)
-                    { // new argument null exception ---> nameoff luis servi
-                        throw new Exception("The specified LUIS Model could not be found in your Bot Services configuration.");
+                    { 
+                        throw new ArgumentNullException(nameof(luisService));
                     }
                     else
                     {
@@ -78,13 +93,13 @@ namespace HotelBot.Dialogs.Main
                             case HotelBotLuis.Intent.help:
                                 {
                                     // send help response
-                                   
-                                    await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.Help);
+                                    await dc.BeginDialogAsync(nameof(SlotFillingDialog.SlotFillingDialog));
+                                    //await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.Help);
                                     break;
                                 }
                             case HotelBotLuis.Intent.book_a_room:
                             {
-
+                                
                                 await dc.BeginDialogAsync(nameof(BookARoomDialog));
                                 break;
                             }
@@ -152,6 +167,39 @@ namespace HotelBot.Dialogs.Main
         {
             // The active dialog's stack ended with a complete status
             await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.Completed);
+        }
+
+        private void FromLuisResults(RecognizerResult luisResults)
+        {
+            string [] allEntities =
+            {
+                "datetime"
+            };
+
+            foreach (var entity in allEntities)
+            {
+                var value = luisResults.Entities.SelectTokens(entity).FirstOrDefault();
+                if (value == null)
+                {
+                    continue;
+                }
+
+                object property = null;
+                var val = value.First();
+                if (val.Type == JTokenType.Object)
+                {
+                    var obj = (JObject) val;
+                    if (obj["type"].ToString() == "datetime")
+                    {
+                        property = val;
+                    }
+                }
+
+                // continue for each entity
+
+
+
+            }
         }
     }
 }

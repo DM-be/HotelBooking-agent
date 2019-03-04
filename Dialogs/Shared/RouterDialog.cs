@@ -54,6 +54,11 @@ namespace HotelBot.Dialogs.Shared
                                         await innerDc.EndDialogAsync();
                                         break;
                                     }
+                               
+                                case DialogTurnStatus.Waiting:
+                                {
+                                    break;
+                                }
                                 default:
                                     {
                                         break;

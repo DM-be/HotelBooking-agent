@@ -8,6 +8,8 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.AI.Luis;
+using Microsoft.Bot.Schema;
+
 namespace Luis
 {
     public class HotelBotLuis: IRecognizerConvert
@@ -27,6 +29,8 @@ namespace Luis
             call_us
         };
         public Dictionary<Intent, IntentScore> Intents;
+
+
 
         public class _Entities
         {

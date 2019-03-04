@@ -16,18 +16,21 @@ namespace HotelBot.Dialogs.Shared
         {
             var status = await OnDialogInterruptionAsync(dc, cancellationToken);
 
+
             if (status == InterruptionStatus.Interrupted)
             {
                 // Resume the waiting dialog after interruption
                 await dc.RepromptDialogAsync().ConfigureAwait(false);
                 return EndOfTurn;
             }
+
+            // set to waiting when waiting for a response
             else if (status == InterruptionStatus.Waiting)
             {
                 // Stack is already waiting for a response, shelve inner stack
                 return EndOfTurn;
             }
-
+            // status is no action when sending "no"
             return await base.OnContinueDialogAsync(dc, cancellationToken);
         }
 

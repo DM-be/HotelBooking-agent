@@ -43,6 +43,7 @@ namespace HotelBot
             _dialogs = new DialogSet(_accessors.DialogStateAccessor);
             // add main dispatching dialog
             _dialogs.Add(new MainDialog(_services, _accessors));
+
         }
 
 

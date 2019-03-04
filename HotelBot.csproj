@@ -122,6 +122,7 @@
 
  <ItemGroup>
    <Folder Include="CognitiveModels\QnA\en\" />
+   <Folder Include="Dialogs\Shared\Prompts\" />
    <Folder Include="Shared\Helpers\NewFolder\" />
  </ItemGroup> 
 
