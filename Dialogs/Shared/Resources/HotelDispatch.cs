@@ -7,23 +7,18 @@
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using Microsoft.Bot.Builder;
+using Microsoft.Bot.Builder.AI.Luis;
 namespace Luis
 {
     public class HotelDispatch: IRecognizerConvert
     {
         public string Text;
         public string AlteredText;
-
-
-        // TODO: each hotelbot will have unique unique fb id --> 
-        // enum for each? 2^32 is max
-        // max dispatch sources: 500
         public enum Intent {
             l_HotelBot, 
             q_2129612763787673_en, 
             q_2129612763787673_nl,
             None
-
         };
         public Dictionary<Intent, IntentScore> Intents;
 

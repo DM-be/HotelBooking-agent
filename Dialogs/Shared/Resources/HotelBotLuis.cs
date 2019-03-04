@@ -8,40 +8,39 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.AI.Luis;
-using Microsoft.Bot.Schema;
-
 namespace Luis
 {
     public class HotelBotLuis: IRecognizerConvert
     {
-
-        // TODO: update to upper case intents
         public string Text;
         public string AlteredText;
         public enum Intent {
             book_a_room, 
+            call_us, 
             cancel, 
             get_directions, 
             greeting, 
             help, 
             none, 
-            None,
-            call_us
+            None, 
+            Update_Book_A_Room
         };
         public Dictionary<Intent, IntentScore> Intents;
-
-
 
         public class _Entities
         {
 
             // Built-in entities
             public DateTimeSpec[] datetime;
+            public string[] email;
+            public double[] number;
 
             // Instance
             public class _Instance
             {
                 public InstanceData[] datetime;
+                public InstanceData[] email;
+                public InstanceData[] number;
             }
             [JsonProperty("$instance")]
             public _Instance _instance;

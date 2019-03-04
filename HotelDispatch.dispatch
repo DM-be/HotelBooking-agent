@@ -40,6 +40,7 @@
   ],
   "appId": "df3d5154-a0dd-48cf-ac6e-4ceb8147fc9f",
   "authoringKey": "cbcdfd8ed0d14d48ae3b01dd8c739bbf",
+  "subscriptionKey": "cbcdfd8ed0d14d48ae3b01dd8c739bbf",
   "version": "Dispatch",
   "region": "westeurope",
   "type": "dispatch",

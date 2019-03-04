@@ -1,0 +1,34 @@
+Label	Weight	Text
+l_HotelBot	3.928571	can i call the hotel
+l_HotelBot	3.928571	what can i ask you
+l_HotelBot	3.928571	i want to call the hotel
+l_HotelBot	3.928571	can i book for tonight
+l_HotelBot	3.928571	can i get a room for tomorrow
+l_HotelBot	7.857143	where are you located
+l_HotelBot	3.928571	nice to meet you
+l_HotelBot	3.928571	i want to call you
+l_HotelBot	3.928571	hi
+l_HotelBot	3.928571	i need a room for two instead
+l_HotelBot	3.928571	i want to book a room for two persons tonight
+l_HotelBot	3.928571	stop doing this
+l_HotelBot	3.928571	i want to book a room for myself and my partner next week.
+q_2129612763787673_en	5.5	are dogs allowed
+q_2129612763787673_en	5.5	are dogs allowed
+q_2129612763787673_en	5.5	are dogs allowed
+q_2129612763787673_en	5.5	are dogs allowed
+q_2129612763787673_en	5.5	are dogs allowed
+q_2129612763787673_en	5.5	are dogs allowed
+q_2129612763787673_en	5.5	are dogs allowed
+q_2129612763787673_en	5.5	are dogs allowed
+q_2129612763787673_en	5.5	are dogs allowed
+q_2129612763787673_en	5.5	are dogs allowed
+q_2129612763787673_nl	5.5	Mag ik mijn hond meenemen
+q_2129612763787673_nl	5.5	Mag ik mijn hond meenemen
+q_2129612763787673_nl	5.5	Mag ik mijn hond meenemen
+q_2129612763787673_nl	5.5	Mag ik mijn hond meenemen
+q_2129612763787673_nl	5.5	Mag ik mijn hond meenemen
+q_2129612763787673_nl	5.5	Mag ik mijn hond meenemen
+q_2129612763787673_nl	5.5	Mag ik mijn hond meenemen
+q_2129612763787673_nl	5.5	Mag ik mijn hond meenemen
+q_2129612763787673_nl	5.5	Mag ik mijn hond meenemen
+q_2129612763787673_nl	5.5	Mag ik mijn hond meenemen

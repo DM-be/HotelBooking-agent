@@ -1,0 +1,34 @@
+Label	Weight	Text
+l_HotelBot	3.928571	can we call the hotel
+l_HotelBot	3.928571	i need help
+l_HotelBot	3.928571	where is the bed and breakfast
+l_HotelBot	3.928571	actually we need a room for two
+l_HotelBot	7.857143	whats your number
+l_HotelBot	3.928571	can we call
+l_HotelBot	3.928571	can you book me a room
+l_HotelBot	3.928571	could i get a room for next week
+l_HotelBot	3.928571	hello
+l_HotelBot	3.928571	actually i want to come tomorrow
+l_HotelBot	3.928571	cancel this booking
+l_HotelBot	3.928571	could i change arrival date
+l_HotelBot	3.928571	where is it
+q_2129612763787673_en	5.5	are dogs allowed
+q_2129612763787673_en	5.5	are dogs allowed
+q_2129612763787673_en	5.5	are dogs allowed
+q_2129612763787673_en	5.5	are dogs allowed
+q_2129612763787673_en	5.5	are dogs allowed
+q_2129612763787673_en	5.5	are dogs allowed
+q_2129612763787673_en	5.5	are dogs allowed
+q_2129612763787673_en	5.5	are dogs allowed
+q_2129612763787673_en	5.5	are dogs allowed
+q_2129612763787673_en	5.5	are dogs allowed
+q_2129612763787673_nl	5.5	We hebben twee honden, is dat een probleem
+q_2129612763787673_nl	5.5	We hebben twee honden, is dat een probleem
+q_2129612763787673_nl	5.5	We hebben twee honden, is dat een probleem
+q_2129612763787673_nl	5.5	We hebben twee honden, is dat een probleem
+q_2129612763787673_nl	5.5	We hebben twee honden, is dat een probleem
+q_2129612763787673_nl	5.5	We hebben twee honden, is dat een probleem
+q_2129612763787673_nl	5.5	We hebben twee honden, is dat een probleem
+q_2129612763787673_nl	5.5	We hebben twee honden, is dat een probleem
+q_2129612763787673_nl	5.5	We hebben twee honden, is dat een probleem
+q_2129612763787673_nl	5.5	We hebben twee honden, is dat een probleem

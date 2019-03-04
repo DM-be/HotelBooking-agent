@@ -1,0 +1,34 @@
+Label	Weight	Text
+l_HotelBot	4.307693	where can i find your number
+l_HotelBot	4.307693	a random sentence
+l_HotelBot	4.307693	where is the hotel
+l_HotelBot	4.307693	cancel now
+l_HotelBot	4.307693	i want to get a room for myself and my partner for tomorrow
+l_HotelBot	4.307693	this is nothing special
+l_HotelBot	4.307693	cancel
+l_HotelBot	4.307693	i want to cancel
+l_HotelBot	4.307693	i want to call reception
+l_HotelBot	4.307693	i want to book a room for three tomorrow
+l_HotelBot	4.307693	how can we find you
+l_HotelBot	4.307693	stop
+l_HotelBot	4.307693	i want to get a room for next week
+q_2129612763787673_en	5.6	are dogs allowed
+q_2129612763787673_en	5.6	are dogs allowed
+q_2129612763787673_en	5.6	are dogs allowed
+q_2129612763787673_en	5.6	are dogs allowed
+q_2129612763787673_en	5.6	are dogs allowed
+q_2129612763787673_en	5.6	are dogs allowed
+q_2129612763787673_en	5.6	are dogs allowed
+q_2129612763787673_en	5.6	are dogs allowed
+q_2129612763787673_en	5.6	are dogs allowed
+q_2129612763787673_en	5.6	are dogs allowed
+q_2129612763787673_nl	5.6	Mogen we onze hond meenemen
+q_2129612763787673_nl	5.6	Mogen we onze hond meenemen
+q_2129612763787673_nl	5.6	Mogen we onze hond meenemen
+q_2129612763787673_nl	5.6	Mogen we onze hond meenemen
+q_2129612763787673_nl	5.6	Mogen we onze hond meenemen
+q_2129612763787673_nl	5.6	Mogen we onze hond meenemen
+q_2129612763787673_nl	5.6	Mogen we onze hond meenemen
+q_2129612763787673_nl	5.6	Mogen we onze hond meenemen
+q_2129612763787673_nl	5.6	Mogen we onze hond meenemen
+q_2129612763787673_nl	5.6	Mogen we onze hond meenemen

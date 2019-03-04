@@ -97,12 +97,18 @@ namespace HotelBot.Dialogs.BookARoom
                {
                    _state.ArrivalDate = converted.datetime[0].ToString();
                }
-               
 
+               if (converted.email != null)
+               {
+                   _state.Email = converted.email[0].ToString();
+               }
 
+               if (converted.number != null)
+               {
+                   _state.NumberOfPeople = (int) converted.number[0];
+               }
 
-
-
+               await _accessors.BookARoomStateAccessor.SetAsync(sc.Context, _state);
             }
 
             return await sc.ReplaceDialogAsync(InitialDialogId);
@@ -168,15 +174,8 @@ namespace HotelBot.Dialogs.BookARoom
             if (_state.Email != null)
             {
                 // skip to next step
-                sc.NextAsync();
+                return await sc.NextAsync(null);
             }
-
-
-
-
-            var values = sc.Values;
-
-            
             return await sc.PromptAsync(DialogIds.EmailPrompt, new PromptOptions()
             {
                 Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, BookARoomResponses.ResponseIds.EmailPrompt),
@@ -186,55 +185,49 @@ namespace HotelBot.Dialogs.BookARoom
         public async Task<DialogTurnResult> AskForNumberOfPeople(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
-            
 
-
-            _services.LuisServices.TryGetValue("HotelBot", out var luisService);
-
-            if (luisService == null)
+            var res = sc.Result;
+            if (res != null)
             {
-                throw new ArgumentNullException(nameof(luisService));
-            }
-            else
-            {
-                var result = await luisService.RecognizeAsync<HotelBotLuis>(sc.Context, cancellationToken);
+                _services.LuisServices.TryGetValue("HotelBot", out var luisService);
 
-                // one general change intent with possible entities
-                var hotelBotIntent = result?.TopIntent().intent;
-
-                if (result.TopIntent().score > 0.7)
+                if (luisService == null)
                 {
-                         
-                     return await sc.BeginDialogAsync("confirmwaterfall", result.Entities);
-                    
+                    throw new ArgumentNullException(nameof(luisService));
                 }
-
                 else
                 {
-                    
+                    var result = await luisService.RecognizeAsync<HotelBotLuis>(sc.Context, cancellationToken);
+
+                    // one general change intent with possible entities
+                    var hotelBotIntent = result?.TopIntent().intent;
+
+                    if (result.TopIntent().score > 0.7)
+                    {
+
+                        return await sc.BeginDialogAsync("confirmwaterfall", result.Entities);
+
+                    }
+
+                    else
+                    {
+
+                    }
                 }
-
-
-                // if score above threshhold --> get entities
-                // ask if found entities can be updated.
-                // if no entities but high score ---> replace dialog so validators can run.
-
-              
-             
 
 
             }
 
-            return null;
-            //var email = _state.Email = (string)sc.Result;
+
+            var email = _state.Email;
 
 
-            //await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveEmailMessage, new { email });
+            await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveEmailMessage, new { email });
 
-            //return await sc.PromptAsync(DialogIds.NumberOfPeopleNumberPrompt, new PromptOptions()
-            //{
-            //    Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, BookARoomResponses.ResponseIds.NumberOfPeoplePrompt),
-            //});
+            return await sc.PromptAsync(DialogIds.NumberOfPeopleNumberPrompt, new PromptOptions()
+            {
+                Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, BookARoomResponses.ResponseIds.NumberOfPeoplePrompt),
+            });
 
         }
 

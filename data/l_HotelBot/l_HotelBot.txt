@@ -1,10 +1,14 @@
 a random sentence
+actually i want to come tomorrow
+actually we have five people
+actually we need a room for two
 call us
 call you
 can i book another room for myself next week
 can i book for tonight
 can i call the hotel
 can i call you
+can i change my email to tester@test.com
 can i get a room for tomorrow
 can we call
 can we call the hotel
@@ -13,6 +17,7 @@ cancel
 cancel now
 cancel this
 cancel this booking
+could i change arrival date
 could i get a room for next week
 hello
 help
@@ -20,8 +25,10 @@ help me
 hi
 how can we find you
 how late can i arrive tomorrow
+i need a room for two instead
 i need help
 i want a room for tomorow
+i want to arrive next week instead
 i want to book a room for myself and my partner next week.
 i want to book a room for next week
 i want to book a room for three tomorrow
@@ -36,8 +43,12 @@ i want to cancel
 i want to do something else
 i want to get a room for myself and my partner for tomorrow
 i want to get a room for next week
+i want to update my arrival date
+my email adres is dennistest@test.com
 nice to meet you
+no i want a room for two
 nothing meaningfull said
+sorry my email is blabla@test.com
 stop
 stop doing this
 this is nothing special

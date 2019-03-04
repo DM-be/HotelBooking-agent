@@ -29,6 +29,9 @@
     },
     {
       "name": "None"
+    },
+    {
+      "name": "Update_Book_A_Room"
     }
   ],
   "entities": [],
@@ -40,6 +43,14 @@
     {
       "name": "datetimeV2",
       "roles": []
+    },
+    {
+      "name": "email",
+      "roles": []
+    },
+    {
+      "name": "number",
+      "roles": []
     }
   ],
   "model_features": [],
@@ -49,6 +60,21 @@
     {
       "text": "a random sentence",
       "intent": "none",
+      "entities": []
+    },
+    {
+      "text": "actually i want to come tomorrow",
+      "intent": "Update_Book_A_Room",
+      "entities": []
+    },
+    {
+      "text": "actually we have five people",
+      "intent": "Update_Book_A_Room",
+      "entities": []
+    },
+    {
+      "text": "actually we need a room for two",
+      "intent": "Update_Book_A_Room",
       "entities": []
     },
     {
@@ -79,6 +105,11 @@
     {
       "text": "can i call you",
       "intent": "call_us",
+      "entities": []
+    },
+    {
+      "text": "can i change my email to tester@test.com?",
+      "intent": "Update_Book_A_Room",
       "entities": []
     },
     {
@@ -122,6 +153,11 @@
       "entities": []
     },
     {
+      "text": "could i change arrival date?",
+      "intent": "Update_Book_A_Room",
+      "entities": []
+    },
+    {
       "text": "could i get a room for next week?",
       "intent": "book_a_room",
       "entities": []
@@ -157,6 +193,11 @@
       "entities": []
     },
     {
+      "text": "i need a room for two instead",
+      "intent": "Update_Book_A_Room",
+      "entities": []
+    },
+    {
       "text": "i need help",
       "intent": "help",
       "entities": []
@@ -164,6 +205,11 @@
     {
       "text": "i want a room for tomorow",
       "intent": "book_a_room",
+      "entities": []
+    },
+    {
+      "text": "i want to arrive next week instead",
+      "intent": "Update_Book_A_Room",
       "entities": []
     },
     {
@@ -237,13 +283,33 @@
       "entities": []
     },
     {
+      "text": "i want to update my arrival date",
+      "intent": "Update_Book_A_Room",
+      "entities": []
+    },
+    {
+      "text": "my email adres is dennistest@test.com",
+      "intent": "Update_Book_A_Room",
+      "entities": []
+    },
+    {
       "text": "nice to meet you",
       "intent": "greeting",
       "entities": []
     },
     {
+      "text": "no i want a room for two",
+      "intent": "Update_Book_A_Room",
+      "entities": []
+    },
+    {
       "text": "nothing meaningfull said",
       "intent": "none",
+      "entities": []
+    },
+    {
+      "text": "sorry my email is blabla@test.com",
+      "intent": "Update_Book_A_Room",
       "entities": []
     },
     {

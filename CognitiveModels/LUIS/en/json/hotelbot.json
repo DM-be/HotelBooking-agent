@@ -10,6 +10,9 @@
       "name": "book_a_room"
     },
     {
+      "name": "call_us"
+    },
+    {
       "name": "cancel"
     },
     {
@@ -26,6 +29,9 @@
     },
     {
       "name": "None"
+    },
+    {
+      "name": "Update_Book_A_Room"
     }
   ],
   "entities": [],
@@ -36,6 +42,14 @@
   "prebuiltEntities": [
     {
       "name": "datetimeV2",
+      "roles": []
+    },
+    {
+      "name": "email",
+      "roles": []
+    },
+    {
+      "name": "number",
       "roles": []
     }
   ],
@@ -49,6 +63,31 @@
       "entities": []
     },
     {
+      "text": "actually i want to come tomorrow",
+      "intent": "Update_Book_A_Room",
+      "entities": []
+    },
+    {
+      "text": "actually we have five people",
+      "intent": "Update_Book_A_Room",
+      "entities": []
+    },
+    {
+      "text": "actually we need a room for two",
+      "intent": "Update_Book_A_Room",
+      "entities": []
+    },
+    {
+      "text": "call us",
+      "intent": "call_us",
+      "entities": []
+    },
+    {
+      "text": "call you",
+      "intent": "call_us",
+      "entities": []
+    },
+    {
       "text": "can i book another room for myself next week?",
       "intent": "book_a_room",
       "entities": []
@@ -59,8 +98,33 @@
       "entities": []
     },
     {
+      "text": "can i call the hotel",
+      "intent": "call_us",
+      "entities": []
+    },
+    {
+      "text": "can i call you",
+      "intent": "call_us",
+      "entities": []
+    },
+    {
+      "text": "can i change my email to tester@test.com?",
+      "intent": "Update_Book_A_Room",
+      "entities": []
+    },
+    {
       "text": "can i get a room for tomorrow?",
       "intent": "book_a_room",
+      "entities": []
+    },
+    {
+      "text": "can we call",
+      "intent": "call_us",
+      "entities": []
+    },
+    {
+      "text": "can we call the hotel",
+      "intent": "call_us",
       "entities": []
     },
     {
@@ -86,6 +150,11 @@
     {
       "text": "cancel this booking",
       "intent": "cancel",
+      "entities": []
+    },
+    {
+      "text": "could i change arrival date?",
+      "intent": "Update_Book_A_Room",
       "entities": []
     },
     {
@@ -124,6 +193,11 @@
       "entities": []
     },
     {
+      "text": "i need a room for two instead",
+      "intent": "Update_Book_A_Room",
+      "entities": []
+    },
+    {
       "text": "i need help",
       "intent": "help",
       "entities": []
@@ -131,6 +205,11 @@
     {
       "text": "i want a room for tomorow",
       "intent": "book_a_room",
+      "entities": []
+    },
+    {
+      "text": "i want to arrive next week instead",
+      "intent": "Update_Book_A_Room",
       "entities": []
     },
     {
@@ -164,6 +243,26 @@
       "entities": []
     },
     {
+      "text": "i want to call a person",
+      "intent": "call_us",
+      "entities": []
+    },
+    {
+      "text": "i want to call reception",
+      "intent": "call_us",
+      "entities": []
+    },
+    {
+      "text": "i want to call the hotel",
+      "intent": "call_us",
+      "entities": []
+    },
+    {
+      "text": "i want to call you",
+      "intent": "call_us",
+      "entities": []
+    },
+    {
       "text": "i want to cancel",
       "intent": "cancel",
       "entities": []
@@ -184,13 +283,33 @@
       "entities": []
     },
     {
+      "text": "i want to update my arrival date",
+      "intent": "Update_Book_A_Room",
+      "entities": []
+    },
+    {
+      "text": "my email adres is dennistest@test.com",
+      "intent": "Update_Book_A_Room",
+      "entities": []
+    },
+    {
       "text": "nice to meet you",
       "intent": "greeting",
       "entities": []
     },
     {
+      "text": "no i want a room for two",
+      "intent": "Update_Book_A_Room",
+      "entities": []
+    },
+    {
       "text": "nothing meaningfull said",
       "intent": "none",
+      "entities": []
+    },
+    {
+      "text": "sorry my email is blabla@test.com",
+      "intent": "Update_Book_A_Room",
       "entities": []
     },
     {
@@ -219,6 +338,11 @@
       "entities": []
     },
     {
+      "text": "what is the hotel number?>",
+      "intent": "call_us",
+      "entities": []
+    },
+    {
       "text": "what is the location?",
       "intent": "get_directions",
       "entities": []
@@ -234,6 +358,16 @@
       "entities": []
     },
     {
+      "text": "whats your number",
+      "intent": "call_us",
+      "entities": []
+    },
+    {
+      "text": "whats your number?",
+      "intent": "call_us",
+      "entities": []
+    },
+    {
       "text": "where are you located",
       "intent": "get_directions",
       "entities": []
@@ -241,6 +375,11 @@
     {
       "text": "where are you located?",
       "intent": "get_directions",
+      "entities": []
+    },
+    {
+      "text": "where can i find your number",
+      "intent": "call_us",
       "entities": []
     },
     {
