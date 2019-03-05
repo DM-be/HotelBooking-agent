@@ -140,6 +140,11 @@ namespace HotelBot.Dialogs.Shared
             data[0] = luisResult;
             data[1] = _state;
 
+            // TODO: check for empty entities here
+
+
+            
+
             return await sc.PromptAsync(
                 "confirm",
                 new PromptOptions
@@ -170,10 +175,20 @@ namespace HotelBot.Dialogs.Shared
             switch (luisResult.TopIntent().intent)
             {
                 case HotelBotLuis.Intent.Update_email:
-                    var emailFromLuisResult = luisResult.Entities.email[0];
-                    if (emailFromLuisResult != null)
+                    // todo: check if entity contains email.
+
+                    if (luisResult.Entities.email != null)
                     {
-                        _state.Email = emailFromLuisResult;
+                        var emailFromLuisResult = luisResult.Entities.email[0];
+                        if (emailFromLuisResult != null)
+                        {
+                            _state.Email = emailFromLuisResult;
+                        }
+                    }
+                    else // intent matched but no matching entity
+                    {
+                        // set to null to allow for waterfall to reprompt for the email 
+                        _state.Email = null;
                     }
                     break;
             }

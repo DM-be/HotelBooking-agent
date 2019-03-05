@@ -99,7 +99,7 @@ namespace HotelBot.Dialogs.BookARoom
             var luisResult = data[0] as HotelBotLuis;
             var state = data[1] as BookARoomState;
 
-            string message = "Default message";
+            string message = "Do you want to change your";
 
             switch (luisResult.TopIntent().intent)
             {
@@ -128,7 +128,7 @@ namespace HotelBot.Dialogs.BookARoom
                     break;
 
                 case HotelBotLuis.Intent.Update_email:
-                    if (luisResult.Entities.email[0] != null)
+                    if (luisResult.Entities.email != null)
                     {
                         var emailString = luisResult.Entities.email[0];
                         message = $"Do you want to update your email to ${emailString} ?";
@@ -137,6 +137,12 @@ namespace HotelBot.Dialogs.BookARoom
                             message += $"from ${state.Email}";
                         }
                     }
+                    else
+                    {
+                        message += "email?";
+                    }
+
+
                     break;
 
                 case HotelBotLuis.Intent.Update_Number_Of_People:

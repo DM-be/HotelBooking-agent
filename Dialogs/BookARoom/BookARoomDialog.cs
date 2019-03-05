@@ -37,7 +37,7 @@ namespace HotelBot.Dialogs.BookARoom
             _services = botServices;
             _accessors = accessors;
             InitialDialogId = nameof(BookARoomDialog);
-
+      
 
             var bookARoom = new WaterfallStep[]
             {
@@ -52,17 +52,6 @@ namespace HotelBot.Dialogs.BookARoom
             AddDialog(new DateTimePrompt(DialogIds.LeavingDateTimePrompt, DateValidatorAsync));
             AddDialog(new TextPrompt(DialogIds.EmailPrompt));
             AddDialog(new NumberPrompt<int>(DialogIds.NumberOfPeopleNumberPrompt));
-            AddDialog(new ConfirmPrompt("confirm2"));
-
-
-            var confirmWaterFallSteps =  new WaterfallStep []
-            {
-                PromptConfirm,
-                EndConfirm
-            };
-
-            AddDialog(new WaterfallDialog("confirmwaterfall2", confirmWaterFallSteps) );
-
         }
 
 
@@ -275,62 +264,7 @@ namespace HotelBot.Dialogs.BookARoom
             return false;
         }
 
-
-
-        private async Task<HotelBotLuis._Entities> CheckPreviousStepForEntities(WaterfallStepContext sc, CancellationToken cancellationToken)
-        {
-            _services.LuisServices.TryGetValue("HotelBot", out var luisService);
-
-            if (luisService == null)
-            {
-                throw new ArgumentNullException(nameof(luisService));
-            }
-            {
-                var result = await luisService.RecognizeAsync<HotelBotLuis>(sc.Context, cancellationToken);
-
-                // one general change intent with possible entities
-                var hotelBotIntent = result?.TopIntent().intent;
-                
-                if (result.TopIntent().score > 0.8)
-                {
-                    return result.Entities;
-
-                }
-                return null;
-            }
-        }
-
-
-
-        private async Task<HotelBotLuis> GetPreviousStepLuisResult(WaterfallStepContext sc, CancellationToken cancellationToken)
-        {
-            _services.LuisServices.TryGetValue("HotelBot", out var luisService);
-
-            if (luisService == null)
-            {
-                throw new ArgumentNullException(nameof(luisService));
-            }
-            {
-                var result = await luisService.RecognizeAsync<HotelBotLuis>(sc.Context, cancellationToken);
-
-                // one general change intent with possible entities
-                var topIntent = result.TopIntent().intent;
-                var score = result?.TopIntent().score;
-                if (score > 0.85 && IsUpdateIntent(topIntent))
-                {
-                    return result;
-                }
-                
-                return null;
-            }
-        }
-
-        private bool IsUpdateIntent(HotelBotLuis.Intent intent)
-        {
-            return (intent.Equals(HotelBotLuis.Intent.Update_ArrivalDate) | intent.Equals(HotelBotLuis.Intent.Update_Leaving_Date) |
-                    intent.Equals(HotelBotLuis.Intent.Update_Number_Of_People) | intent.Equals(HotelBotLuis.Intent.Update_email));
-        }
-
+        
 
         private class DialogIds
         {
