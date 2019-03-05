@@ -195,18 +195,21 @@ namespace HotelBot.Dialogs.BookARoom
         {
             _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
 
-
-
             if (_state.LeavingDate != null)
             {
+
+                await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveLeavingDate, _state.LeavingDate);
                 return await sc.NextAsync();
             }
 
-            var resolution = (sc.Result as IList<DateTimeResolution>).First();
-            var timexProp = new TimexProperty(resolution.Timex);
-            var arrivalDateAsNaturalLanguage = timexProp.ToNaturalLanguage(DateTime.Now);
-
-            await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveArrivalDate, arrivalDateAsNaturalLanguage);
+            if (sc.Result != null)
+            {
+                var resolution = (sc.Result as IList<DateTimeResolution>).First();
+                var timexProp = new TimexProperty(resolution.Timex);
+                var arrivalDateAsNaturalLanguage = timexProp.ToNaturalLanguage(DateTime.Now);
+                _state.ArrivalDate = arrivalDateAsNaturalLanguage;
+                await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveArrivalDate, arrivalDateAsNaturalLanguage);
+            }
 
             return await sc.PromptAsync(DialogIds.LeavingDateTimePrompt, new PromptOptions()
             {
@@ -217,14 +220,27 @@ namespace HotelBot.Dialogs.BookARoom
 
         public async Task<DialogTurnResult> FinishBookARoomDialog(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
+
             // send webview for booking here
-            _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());            var resolution = (sc.Result as IList<DateTimeResolution>).First();
-            var timexProp = new TimexProperty(resolution.Timex);
-            var leavingDateAsNaturalLanguage = timexProp.ToNaturalLanguage(DateTime.Now);
+            _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
 
-            await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveLeavingDate, leavingDateAsNaturalLanguage);
 
-            await sc.Context.SendActivityAsync("end of dialog");
+            if (sc.Result != null)
+            {
+                var resolution = (sc.Result as IList<DateTimeResolution>).First();
+                var timexProp = new TimexProperty(resolution.Timex);
+                var leavingDateAsNaturalLanguage = timexProp.ToNaturalLanguage(DateTime.Now);
+                _state.LeavingDate = leavingDateAsNaturalLanguage;
+                await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveLeavingDate, leavingDateAsNaturalLanguage);
+            }
+
+
+
+            await sc.Context.SendActivityAsync("end of dialog, emptying result");
+            // clear state as a test
+
+            var bookARoomEmpty = new BookARoomState();
+            _accessors.BookARoomStateAccessor.SetAsync(sc.Context, bookARoomEmpty);
             return await sc.EndDialogAsync();
         }
 
