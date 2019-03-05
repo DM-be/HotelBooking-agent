@@ -1,21 +1,18 @@
-﻿using System.Threading;
+﻿using Microsoft.Bot.Builder.Dialogs;
+using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.Bot.Builder.Dialogs;
 
 namespace HotelBot.Dialogs.Shared
 {
-    public abstract class InterruptableDialog: ComponentDialog
+    public abstract class InterruptableDialog : ComponentDialog
     {
-        public InterruptableDialog(string dialogId): base(dialogId)
+        public InterruptableDialog(string dialogId) : base(dialogId)
         {
-            
         }
-
 
         protected override async Task<DialogTurnResult> OnContinueDialogAsync(DialogContext dc, CancellationToken cancellationToken)
         {
             var status = await OnDialogInterruptionAsync(dc, cancellationToken);
-
 
             if (status == InterruptionStatus.Interrupted)
             {
@@ -35,6 +32,5 @@ namespace HotelBot.Dialogs.Shared
         }
 
         protected abstract Task<InterruptionStatus> OnDialogInterruptionAsync(DialogContext dc, CancellationToken cancellationToken);
-
     }
 }

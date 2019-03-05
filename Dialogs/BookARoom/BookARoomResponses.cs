@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using HotelBot.Dialogs.BookARoom.Resources;
+﻿using HotelBot.Dialogs.BookARoom.Resources;
+using Luis;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.TemplateManager;
 using Microsoft.Bot.Schema;
@@ -25,8 +22,8 @@ namespace HotelBot.Dialogs.BookARoom
                 { ResponseIds.HaveEmailMessage,
                     (context, data) =>
                     MessageFactory.Text(
-                        text: string.Format(BookARoomStrings.HAVE_EMAIL, data.email),
-                        ssml: string.Format(BookARoomStrings.HAVE_EMAIL, data.email),
+                        text: string.Format(BookARoomStrings.HAVE_EMAIL, data),
+                        ssml: string.Format(BookARoomStrings.HAVE_EMAIL, data),
                         inputHint: InputHints.IgnoringInput)
                 },
                 { ResponseIds.ArrivalDatePrompt,
@@ -84,13 +81,78 @@ namespace HotelBot.Dialogs.BookARoom
                             BookARoomStrings.NOT_RECOGNIZED_DATE,
                             BookARoomStrings.NOT_RECOGNIZED_DATE,
                             InputHints.IgnoringInput)
-                }
+                },
+                { ResponseIds.UpdateText,
+                    (context, data) =>
+                       BuildUpdatePropertyResponse(context, data)
+                },
             }
         };
 
         public BookARoomResponses()
         {
             Register(new DictionaryRenderer(_responseTemplates));
+        }
+
+        public static IMessageActivity BuildUpdatePropertyResponse(ITurnContext context, dynamic data)
+        {
+            var luisResult = data[0] as HotelBotLuis;
+            var state = data[1] as BookARoomState;
+
+            string message = "Default message";
+
+            switch (luisResult.TopIntent().intent)
+            {
+                case HotelBotLuis.Intent.Update_ArrivalDate:
+                    if (luisResult.Entities.datetime[0] != null)
+                    {
+                        var dateToString = luisResult.Entities.datetime[0].ToString();
+                        message = $"Do you want to update your arriving date to ${dateToString} ?";
+                        if (state.ArrivalDate != null)
+                        {
+                            message += $"from ${state.ArrivalDate}";
+                        }
+                    }
+                    break;
+
+                case HotelBotLuis.Intent.Update_Leaving_Date:
+                    if (luisResult.Entities.datetime[0] != null)
+                    {
+                        var dateToString = luisResult.Entities.datetime[0].ToString();
+                        message = $"Do you want to update your leaving date to ${dateToString} ?";
+                        if (state.LeavingDate != null)
+                        {
+                            message += $"from ${state.LeavingDate}";
+                        }
+                    }
+                    break;
+
+                case HotelBotLuis.Intent.Update_email:
+                    if (luisResult.Entities.email[0] != null)
+                    {
+                        var emailString = luisResult.Entities.email[0];
+                        message = $"Do you want to update your email to ${emailString} ?";
+                        if (state.Email != null)
+                        {
+                            message += $"from ${state.Email}";
+                        }
+                    }
+                    break;
+
+                case HotelBotLuis.Intent.Update_Number_Of_People:
+                    if (luisResult.Entities.number[0] != null)
+                    {
+                        var numberOfPeopleString = luisResult.Entities.number[0].ToString();
+                        message = $"Do you want to update the number of people to ${numberOfPeopleString} ?";
+                        if (state.NumberOfPeople != null)
+                        {
+                            message += $"from ${state.NumberOfPeople.ToString()}";
+                        }
+                    }
+                    break;
+            }
+
+            return MessageFactory.Text(message);
         }
 
         public class ResponseIds
@@ -110,6 +172,7 @@ namespace HotelBot.Dialogs.BookARoom
             public const string IncorrectDate = "incorrectDate";
             public const string NotRecognizedDate = "notRecognizedDate";
 
+            public const string UpdateText = "updateText";
         }
     }
 }

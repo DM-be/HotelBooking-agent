@@ -1,30 +1,45 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using HotelBot.Dialogs.BookARoom;
 using HotelBot.Dialogs.Cancel;
 using HotelBot.Dialogs.Main;
 using HotelBot.Services;
+using HotelBot.StateAccessors;
 using Luis;
 using Microsoft.Bot.Builder.Dialogs;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace HotelBot.Dialogs.Shared
 {
+    /// <summary>
+    ///  currently supports room booking intents only
+    /// --> refactor name or fully generic?
+    /// </summary>
 
-    //dialog that can recognize help and cancel intent and responds accordingly
     public class CustomDialog : InterruptableDialog
     {
-        protected const string LuisResultKey = "LuisResult";
+        protected const string LuisResultBookARoomKey = "LuisResult_BookARoom";
 
         // Fields
         private readonly BotServices _services;
+
+        private readonly StateBotAccessors _accessors;
         private readonly CancelResponses _responder = new CancelResponses();
 
-        public CustomDialog(BotServices services, string dialogId)
+        public CustomDialog(BotServices services, StateBotAccessors accessors, string dialogId)
             : base(dialogId)
         {
             _services = services;
-
+            _accessors = accessors;
             AddDialog(new CancelDialog());
+            AddDialog(new ConfirmPrompt("confirm"));
+            var confirmWaterFallSteps = new WaterfallStep[]
+            {
+                PromptConfirm,
+                EndConfirm
+            };
+
+            AddDialog(new WaterfallDialog("confirmwaterfall", confirmWaterFallSteps));
         }
 
         protected override async Task<InterruptionStatus> OnDialogInterruptionAsync(DialogContext dc, CancellationToken cancellationToken)
@@ -42,10 +57,10 @@ namespace HotelBot.Dialogs.Shared
                 var intent = luisResult.TopIntent().intent;
 
                 // Only triggers interruption if confidence level is high
-                if (luisResult.TopIntent().score > 0.5)
+                if (luisResult.TopIntent().score > 0.7)
                 {
                     // Add the luis result (intent and entities) for further processing in the derived dialog
-                    dc.Context.TurnState.Add(LuisResultKey, luisResult);
+                    dc.Context.TurnState.Add(LuisResultBookARoomKey, luisResult);
 
                     switch (intent)
                     {
@@ -56,7 +71,15 @@ namespace HotelBot.Dialogs.Shared
 
                         case HotelBotLuis.Intent.help:
                             {
+                                // todo: provide contextual help
                                 return await OnHelp(dc);
+                            }
+                        case HotelBotLuis.Intent.Update_email:
+                        case HotelBotLuis.Intent.Update_ArrivalDate:
+                        case HotelBotLuis.Intent.Update_Leaving_Date:
+                        case HotelBotLuis.Intent.Update_Number_Of_People:
+                            {
+                                return await OnUpdate(dc);
                             }
                     }
                 }
@@ -87,6 +110,75 @@ namespace HotelBot.Dialogs.Shared
 
             // Signal the conversation was interrupted and should immediately continue
             return InterruptionStatus.Interrupted;
+        }
+
+        protected virtual async Task<InterruptionStatus> OnUpdate(DialogContext dc)
+        {
+            // do not restart running dialog
+            if (dc.ActiveDialog.Id != "confirmwaterfall")
+            {
+                await dc.BeginDialogAsync("confirmwaterfall");
+                return InterruptionStatus.Waiting;
+            }
+
+            return InterruptionStatus.NoAction;
+        }
+
+        public async Task<DialogTurnResult> PromptConfirm(WaterfallStepContext sc, CancellationToken cancellationToken)
+        {
+            // added to initial step only
+            sc.Context.TurnState.TryGetValue(LuisResultBookARoomKey, out var value);
+            var luisResult = value as HotelBotLuis;
+
+            // set values for waterfallsteps
+            sc.Values.Add(LuisResultBookARoomKey, luisResult);
+
+            var _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
+            var view = new BookARoomResponses();
+
+            dynamic data = new dynamic[2];
+            data[0] = luisResult;
+            data[1] = _state;
+
+            return await sc.PromptAsync(
+                "confirm",
+                new PromptOptions
+                {
+                    Prompt = await view.RenderTemplate(sc.Context, sc.Context.Activity.Locale, BookARoomResponses.ResponseIds.UpdateText, data),
+                });
+        }
+
+        public async Task<DialogTurnResult> EndConfirm(WaterfallStepContext sc, CancellationToken cancellationToken)
+        {
+            // replace the current dialog with itself --> in this case the bookaroomdialog will be restarted
+            // creates a loop --> skips waterfall steps when state is filled in
+            var dialogs = sc.Context;
+            sc.Values.TryGetValue(LuisResultBookARoomKey, out var value);
+            var luisResult = value as HotelBotLuis;
+
+            var confirmed = (bool)sc.Result;
+            if (confirmed)
+            {
+                UpdateState(luisResult, sc);
+            }
+            return await sc.ReplaceDialogAsync(InitialDialogId);
+        }
+
+        private async void UpdateState(HotelBotLuis luisResult, WaterfallStepContext sc)
+        {
+            var _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
+            switch (luisResult.TopIntent().intent)
+            {
+                case HotelBotLuis.Intent.Update_email:
+                    var emailFromLuisResult = luisResult.Entities.email[0];
+                    if (emailFromLuisResult != null)
+                    {
+                        _state.Email = emailFromLuisResult;
+                    }
+                    break;
+            }
+
+            await _accessors.BookARoomStateAccessor.SetAsync(sc.Context, _state);
         }
     }
 }

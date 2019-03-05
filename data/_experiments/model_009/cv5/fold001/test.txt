@@ -1,0 +1,41 @@
+Label	Weight	Text
+l_HotelBot	4.1	i want to get a room for myself and my partner for tomorrow
+l_HotelBot	4.1	i want to call the hotel
+l_HotelBot	4.1	how can we find you
+l_HotelBot	4.1	what is your address
+l_HotelBot	4.1	how late can i arrive tomorrow
+l_HotelBot	4.1	cancel this booking
+l_HotelBot	4.1	i need help
+l_HotelBot	4.1	i want to leave tomorrow
+l_HotelBot	4.1	change my arrivaldate to 25/02/2019
+l_HotelBot	4.1	what's your address
+l_HotelBot	4.1	i want a room for six instead
+l_HotelBot	4.1	can we call the hotel
+l_HotelBot	4.1	change leaving date to next friday
+l_HotelBot	4.1	can i change when i will arrive
+l_HotelBot	4.1	i want to leave next week instead
+l_HotelBot	4.1	i need a room for five instead
+l_HotelBot	4.1	where is the bed and breakfast
+l_HotelBot	4.1	i want to change when i arrive
+l_HotelBot	4.1	change my email to anothertesting@gmail.com
+l_HotelBot	4.1	update when i leave to another time
+q_2129612763787673_en	8.2	are dogs allowed
+q_2129612763787673_en	8.2	are dogs allowed
+q_2129612763787673_en	8.2	are dogs allowed
+q_2129612763787673_en	8.2	are dogs allowed
+q_2129612763787673_en	8.2	are dogs allowed
+q_2129612763787673_en	8.2	are dogs allowed
+q_2129612763787673_en	8.2	are dogs allowed
+q_2129612763787673_en	8.2	are dogs allowed
+q_2129612763787673_en	8.2	are dogs allowed
+q_2129612763787673_en	8.2	are dogs allowed
+q_2129612763787673_nl	8.2	Mag ik mijn hond meenemen
+q_2129612763787673_nl	8.2	Mag ik mijn hond meenemen
+q_2129612763787673_nl	8.2	Mag ik mijn hond meenemen
+q_2129612763787673_nl	8.2	Mag ik mijn hond meenemen
+q_2129612763787673_nl	8.2	Mag ik mijn hond meenemen
+q_2129612763787673_nl	8.2	Mag ik mijn hond meenemen
+q_2129612763787673_nl	8.2	Mag ik mijn hond meenemen
+q_2129612763787673_nl	8.2	Mag ik mijn hond meenemen
+q_2129612763787673_nl	8.2	Mag ik mijn hond meenemen
+q_2129612763787673_nl	8.2	Mag ik mijn hond meenemen

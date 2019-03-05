@@ -1,15 +1,16 @@
 a random sentence
-actually i want to come tomorrow
-actually we have five people
-actually we need a room for two
 call us
 call you
 can i book another room for myself next week
 can i book for tonight
 can i call the hotel
 can i call you
-can i change my email to tester@test.com
+can i change arrival date
+can i change my leaving date
+can i change when i leave
+can i change when i will arrive
 can i get a room for tomorrow
+can i update my arriving date
 can we call
 can we call the hotel
 can you book me a room
@@ -17,18 +18,35 @@ cancel
 cancel now
 cancel this
 cancel this booking
-could i change arrival date
+change leaving date to next friday
+change leaving date to next week
+change my arrivaldate to 25/02/2019
+change my arrivaldate to next week
+change my email to anothertesting@gmail.com
+change my leaving date to another date
+change my leaving date to another time
+change the number of people to six
+change the number of people to two
+change the room for three please
+change when i arrive to the first of next month
+could i change my email address
 could i get a room for next week
+could i leave next week instead
+could i update my email
+could you change my email to another one
 hello
 help
 help me
 hi
 how can we find you
 how late can i arrive tomorrow
-i need a room for two instead
+i made a mistake, can i change my arrivaldate
+i mistyped my email adres it is dennistest@hotmail.com instead of the other
+i need a room for five instead
 i need help
+i want a room for six instead
 i want a room for tomorow
-i want to arrive next week instead
+i want to arrive tomorrow instead
 i want to book a room for myself and my partner next week.
 i want to book a room for next week
 i want to book a room for three tomorrow
@@ -40,18 +58,33 @@ i want to call reception
 i want to call the hotel
 i want to call you
 i want to cancel
+i want to change my arrivaldate
+i want to change when i arrive
+i want to come next week instead
 i want to do something else
 i want to get a room for myself and my partner for tomorrow
 i want to get a room for next week
-i want to update my arrival date
-my email adres is dennistest@test.com
+i want to leave next week
+i want to leave next week instead
+i want to leave on 23/04.2019 instead
+i want to leave tomorrow
 nice to meet you
-no i want a room for two
 nothing meaningfull said
-sorry my email is blabla@test.com
+sorry i made a mistake my email is blabla@test.com
+sorry we are arriving with six people
 stop
 stop doing this
 this is nothing special
+update arrival please
+update my arriving date
+update my email to bla@test.com
+update my leaving date
+update my leaving date to the 4th please
+update the arrival date please
+update the number of people to ten
+update the room to two people please
+update when i leave to 26 march
+update when i leave to another time
 what can i ask you
 what can you do
 what is the hotel number?>

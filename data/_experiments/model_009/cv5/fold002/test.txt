@@ -1,0 +1,41 @@
+Label	Weight	Text
+l_HotelBot	3.857143	help
+l_HotelBot	3.857143	could i get a room for next week
+l_HotelBot	3.857143	i want to get a room for next week
+l_HotelBot	3.857143	where is the hotel
+l_HotelBot	3.857143	update when i leave to 26 march
+l_HotelBot	3.857143	update the room to two people please
+l_HotelBot	3.857143	update my arriving date
+l_HotelBot	3.857143	i want to book a room for next week
+l_HotelBot	3.857143	can i book another room for myself next week
+l_HotelBot	3.857143	hi
+l_HotelBot	3.857143	i want to change my arrivaldate
+l_HotelBot	3.857143	could you change my email to another one
+l_HotelBot	3.857143	stop doing this
+l_HotelBot	3.857143	i want to call reception
+l_HotelBot	7.714286	whats your number
+l_HotelBot	3.857143	update the arrival date please
+l_HotelBot	3.857143	what is the location
+l_HotelBot	3.857143	i want to book a room for three tomorrow
+l_HotelBot	3.857143	change the number of people to two
+l_HotelBot	3.857143	i want to leave next week
+q_2129612763787673_en	8.1	are dogs allowed
+q_2129612763787673_en	8.1	are dogs allowed
+q_2129612763787673_en	8.1	are dogs allowed
+q_2129612763787673_en	8.1	are dogs allowed
+q_2129612763787673_en	8.1	are dogs allowed
+q_2129612763787673_en	8.1	are dogs allowed
+q_2129612763787673_en	8.1	are dogs allowed
+q_2129612763787673_en	8.1	are dogs allowed
+q_2129612763787673_en	8.1	are dogs allowed
+q_2129612763787673_en	8.1	are dogs allowed
+q_2129612763787673_nl	8.1	Zijn honden toegelaten
+q_2129612763787673_nl	8.1	Zijn honden toegelaten
+q_2129612763787673_nl	8.1	Zijn honden toegelaten
+q_2129612763787673_nl	8.1	Zijn honden toegelaten
+q_2129612763787673_nl	8.1	Zijn honden toegelaten
+q_2129612763787673_nl	8.1	Zijn honden toegelaten
+q_2129612763787673_nl	8.1	Zijn honden toegelaten
+q_2129612763787673_nl	8.1	Zijn honden toegelaten
+q_2129612763787673_nl	8.1	Zijn honden toegelaten
+q_2129612763787673_nl	8.1	Zijn honden toegelaten

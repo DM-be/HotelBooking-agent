@@ -23,7 +23,10 @@ namespace Luis
             help, 
             none, 
             None, 
-            Update_Book_A_Room
+            Update_ArrivalDate, 
+            Update_email, 
+            Update_Leaving_Date, 
+            Update_Number_Of_People
         };
         public Dictionary<Intent, IntentScore> Intents;
 

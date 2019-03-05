@@ -31,7 +31,16 @@
       "name": "None"
     },
     {
-      "name": "Update_Book_A_Room"
+      "name": "Update_ArrivalDate"
+    },
+    {
+      "name": "Update_email"
+    },
+    {
+      "name": "Update_Leaving_Date"
+    },
+    {
+      "name": "Update_Number_Of_People"
     }
   ],
   "entities": [],
@@ -60,21 +69,6 @@
     {
       "text": "a random sentence",
       "intent": "none",
-      "entities": []
-    },
-    {
-      "text": "actually i want to come tomorrow",
-      "intent": "Update_Book_A_Room",
-      "entities": []
-    },
-    {
-      "text": "actually we have five people",
-      "intent": "Update_Book_A_Room",
-      "entities": []
-    },
-    {
-      "text": "actually we need a room for two",
-      "intent": "Update_Book_A_Room",
       "entities": []
     },
     {
@@ -108,13 +102,33 @@
       "entities": []
     },
     {
-      "text": "can i change my email to tester@test.com?",
-      "intent": "Update_Book_A_Room",
+      "text": "can i change arrival date?",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "can i change my leaving date?",
+      "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
+      "text": "can i change when i leave?",
+      "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
+      "text": "can i change when i will arrive?",
+      "intent": "Update_ArrivalDate",
       "entities": []
     },
     {
       "text": "can i get a room for tomorrow?",
       "intent": "book_a_room",
+      "entities": []
+    },
+    {
+      "text": "can i update my arriving date?",
+      "intent": "Update_ArrivalDate",
       "entities": []
     },
     {
@@ -153,13 +167,83 @@
       "entities": []
     },
     {
-      "text": "could i change arrival date?",
-      "intent": "Update_Book_A_Room",
+      "text": "change leaving date to next friday",
+      "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
+      "text": "change leaving date to next week",
+      "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
+      "text": "change my arrivaldate to 25/02/2019",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "change my arrivaldate to next week",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "change my email to anothertesting@gmail.com",
+      "intent": "Update_email",
+      "entities": []
+    },
+    {
+      "text": "change my leaving date to another date",
+      "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
+      "text": "change my leaving date to another time",
+      "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
+      "text": "change the number of people to six",
+      "intent": "Update_Number_Of_People",
+      "entities": []
+    },
+    {
+      "text": "change the number of people to two",
+      "intent": "Update_Number_Of_People",
+      "entities": []
+    },
+    {
+      "text": "change the room for three please",
+      "intent": "Update_Number_Of_People",
+      "entities": []
+    },
+    {
+      "text": "change when i arrive to the first of next month",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "could i change my email address?",
+      "intent": "Update_email",
       "entities": []
     },
     {
       "text": "could i get a room for next week?",
       "intent": "book_a_room",
+      "entities": []
+    },
+    {
+      "text": "could i leave next week instead?",
+      "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
+      "text": "could i update my email?",
+      "intent": "Update_email",
+      "entities": []
+    },
+    {
+      "text": "could you change my email to another one?",
+      "intent": "Update_email",
       "entities": []
     },
     {
@@ -193,8 +277,18 @@
       "entities": []
     },
     {
-      "text": "i need a room for two instead",
-      "intent": "Update_Book_A_Room",
+      "text": "i made a mistake, can i change my arrivaldate?",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "i mistyped my email adres it is dennistest@hotmail.com instead of the other",
+      "intent": "Update_email",
+      "entities": []
+    },
+    {
+      "text": "i need a room for five instead",
+      "intent": "Update_Number_Of_People",
       "entities": []
     },
     {
@@ -203,13 +297,18 @@
       "entities": []
     },
     {
+      "text": "i want a room for six instead",
+      "intent": "Update_Number_Of_People",
+      "entities": []
+    },
+    {
       "text": "i want a room for tomorow",
       "intent": "book_a_room",
       "entities": []
     },
     {
-      "text": "i want to arrive next week instead",
-      "intent": "Update_Book_A_Room",
+      "text": "i want to arrive tomorrow instead",
+      "intent": "Update_ArrivalDate",
       "entities": []
     },
     {
@@ -268,6 +367,21 @@
       "entities": []
     },
     {
+      "text": "i want to change my arrivaldate",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "i want to change when i arrive",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "i want to come next week instead",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
       "text": "i want to do something else",
       "intent": "cancel",
       "entities": []
@@ -283,13 +397,23 @@
       "entities": []
     },
     {
-      "text": "i want to update my arrival date",
-      "intent": "Update_Book_A_Room",
+      "text": "i want to leave next week",
+      "intent": "Update_Leaving_Date",
       "entities": []
     },
     {
-      "text": "my email adres is dennistest@test.com",
-      "intent": "Update_Book_A_Room",
+      "text": "i want to leave next week instead",
+      "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
+      "text": "i want to leave on 23/04.2019 instead",
+      "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
+      "text": "i want to leave tomorrow",
+      "intent": "Update_Leaving_Date",
       "entities": []
     },
     {
@@ -298,18 +422,18 @@
       "entities": []
     },
     {
-      "text": "no i want a room for two",
-      "intent": "Update_Book_A_Room",
-      "entities": []
-    },
-    {
       "text": "nothing meaningfull said",
       "intent": "none",
       "entities": []
     },
     {
-      "text": "sorry my email is blabla@test.com",
-      "intent": "Update_Book_A_Room",
+      "text": "sorry i made a mistake my email is blabla@test.com",
+      "intent": "Update_email",
+      "entities": []
+    },
+    {
+      "text": "sorry we are arriving with six people",
+      "intent": "Update_Number_Of_People",
       "entities": []
     },
     {
@@ -325,6 +449,56 @@
     {
       "text": "this is nothing special",
       "intent": "none",
+      "entities": []
+    },
+    {
+      "text": "update arrival please",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "update my arriving date",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "update my email to bla@test.com",
+      "intent": "Update_email",
+      "entities": []
+    },
+    {
+      "text": "update my leaving date",
+      "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
+      "text": "update my leaving date to the 4th please",
+      "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
+      "text": "update the arrival date please",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "update the number of people to ten",
+      "intent": "Update_Number_Of_People",
+      "entities": []
+    },
+    {
+      "text": "update the room to two people please",
+      "intent": "Update_Number_Of_People",
+      "entities": []
+    },
+    {
+      "text": "update when i leave to 26 march",
+      "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
+      "text": "update when i leave to another time",
+      "intent": "Update_Leaving_Date",
       "entities": []
     },
     {

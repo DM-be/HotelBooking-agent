@@ -27,7 +27,7 @@ namespace HotelBot.Dialogs.SlotFillingDialog
 
         private readonly List<SlotDetails> _slots;
         public SlotFillingDialog(BotServices botServices, StateBotAccessors accessors, List<SlotDetails> slots)
-            : base(botServices, nameof(SlotFillingDialog))
+            : base(botServices, accessors, nameof(SlotFillingDialog))
         {
             _slots = slots ?? throw new ArgumentNullException(nameof(slots));
             _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));

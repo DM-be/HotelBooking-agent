@@ -1,0 +1,41 @@
+Label	Weight	Text
+l_HotelBot	3.857143	i want a room for tomorow
+l_HotelBot	3.857143	cancel now
+l_HotelBot	3.857143	call us
+l_HotelBot	3.857143	change my leaving date to another date
+l_HotelBot	3.857143	could i update my email
+l_HotelBot	7.714286	where are you located
+l_HotelBot	3.857143	change when i arrive to the first of next month
+l_HotelBot	3.857143	i want to do something else
+l_HotelBot	3.857143	can i book for tonight
+l_HotelBot	3.857143	can i change when i leave
+l_HotelBot	3.857143	i made a mistake, can i change my arrivaldate
+l_HotelBot	3.857143	what can you do
+l_HotelBot	3.857143	sorry we are arriving with six people
+l_HotelBot	3.857143	change my leaving date to another time
+l_HotelBot	3.857143	could i change my email address
+l_HotelBot	3.857143	where is it
+l_HotelBot	3.857143	can i get a room for tomorrow
+l_HotelBot	3.857143	change my arrivaldate to next week
+l_HotelBot	3.857143	what is the hotel number?>
+l_HotelBot	3.857143	can i change arrival date
+q_2129612763787673_en	8.1	are dogs allowed
+q_2129612763787673_en	8.1	are dogs allowed
+q_2129612763787673_en	8.1	are dogs allowed
+q_2129612763787673_en	8.1	are dogs allowed
+q_2129612763787673_en	8.1	are dogs allowed
+q_2129612763787673_en	8.1	are dogs allowed
+q_2129612763787673_en	8.1	are dogs allowed
+q_2129612763787673_en	8.1	are dogs allowed
+q_2129612763787673_en	8.1	are dogs allowed
+q_2129612763787673_en	8.1	are dogs allowed
+q_2129612763787673_nl	8.1	Is mijn hond toegelaten in het hotel
+q_2129612763787673_nl	8.1	Is mijn hond toegelaten in het hotel
+q_2129612763787673_nl	8.1	Is mijn hond toegelaten in het hotel
+q_2129612763787673_nl	8.1	Is mijn hond toegelaten in het hotel
+q_2129612763787673_nl	8.1	Is mijn hond toegelaten in het hotel
+q_2129612763787673_nl	8.1	Is mijn hond toegelaten in het hotel
+q_2129612763787673_nl	8.1	Is mijn hond toegelaten in het hotel
+q_2129612763787673_nl	8.1	Is mijn hond toegelaten in het hotel
+q_2129612763787673_nl	8.1	Is mijn hond toegelaten in het hotel
+q_2129612763787673_nl	8.1	Is mijn hond toegelaten in het hotel

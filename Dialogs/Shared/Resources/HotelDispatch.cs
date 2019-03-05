@@ -18,7 +18,7 @@ namespace Luis
             l_HotelBot, 
             q_2129612763787673_en, 
             q_2129612763787673_nl,
-            None
+            None    
         };
         public Dictionary<Intent, IntentScore> Intents;
 

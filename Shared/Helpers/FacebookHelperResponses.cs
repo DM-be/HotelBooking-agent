@@ -1,15 +1,15 @@
-﻿using System.Collections.Generic;
-using HotelBot.Models.Facebook;
+﻿using HotelBot.Models.Facebook;
 using HotelBot.Shared.Helpers.Resources;
 using HotelBot.Shared.QuickReplies.Resources;
 using HotelBot.Shared.Welcome.Resources;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.TemplateManager;
 using Microsoft.Bot.Schema;
+using System.Collections.Generic;
 
 namespace HotelBot.Shared.Helpers
 {
-    public class FacebookHelperResponses: TemplateManager
+    public class FacebookHelperResponses : TemplateManager
     {
         private static readonly LanguageTemplateDictionary _responseTemplates = new LanguageTemplateDictionary
         {
@@ -52,7 +52,6 @@ namespace HotelBot.Shared.Helpers
                             WelcomeStrings.FUNCTIONALITY,
                             InputHints.AcceptingInput)
                 }
-
             }
         };
 
@@ -66,7 +65,7 @@ namespace HotelBot.Shared.Helpers
             var facebookMessage = new FacebookMessage
             {
                 Text = FacebookStrings.QUICK_REPLY_ASK_LOCATION,
-                QuickReplies = new []
+                QuickReplies = new[]
                 {
                     new FacebookQuickReply
                     {
@@ -82,7 +81,7 @@ namespace HotelBot.Shared.Helpers
         public static IMessageActivity BuildGettingStartedQuickReplies(ITurnContext context, dynamic data)
         {
             var reply = context.Activity.CreateReply();
-            FacebookQuickReply [] quick_replies =
+            FacebookQuickReply[] quick_replies =
             {
                 new FacebookQuickReply
                 {
@@ -124,14 +123,14 @@ namespace HotelBot.Shared.Helpers
                     {
                         Template_Type = "button",
                         Text = FacebookStrings.CALL_MESSAGE_PAYLOAD_TEXT,
-                        FacebookButtons = new []
+                        FacebookButtons = new[]
                         {
                             new FacebookButton
                             {
                                 Type = "phone_number",
                                 Title = FacebookStrings.BUTTON_TITLE_CALL,
                                 Payload = "+15105551234"
-                            }
+                            },
                         }
                     }
                 }
@@ -141,10 +140,8 @@ namespace HotelBot.Shared.Helpers
             return reply;
         }
 
-
         public static IMessageActivity BuildDirectionsCard(ITurnContext context, FacebookAttachment attachment)
         {
-
             var latCoordinatesLat = attachment.FacebookPayload.Coordinates.Lat;
             var longCoordinatesLong = attachment.FacebookPayload.Coordinates.Long;
             var url = $"https://www.google.com/maps/dir/?api=1&origin={latCoordinatesLat},{longCoordinatesLong}&destination=51.228557,3.231737";
@@ -164,12 +161,11 @@ namespace HotelBot.Shared.Helpers
             return reply;
         }
 
-
-
         public class ResponseIds
         {
             // Constants
             public const string SendGetStartedQuickReplies = "sendGetStartedQuickReplies";
+
             public const string SendLocationQuickReply = "sendLocationQuickReply";
             public const string Functionality = "functionality";
             public const string Welcome = "welcome";
@@ -177,8 +173,4 @@ namespace HotelBot.Shared.Helpers
             public const string CallUs = "callUs";
         }
     }
-
-
-
-
 }

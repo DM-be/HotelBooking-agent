@@ -8,15 +8,12 @@ namespace HotelBot.Dialogs.BookARoom
     public class BookARoomState
     {
         public string Email { get; set; }
-        public int NumberOfPeople { get; set; }
+        public int? NumberOfPeople { get; set; }
 
         // todo: correct format based on needs
         public string ArrivalDate { get; set; }
 
         public string LeavingDate { get; set; }
 
-        public string FirstName { get; set; }
-
-        public string LastName { get; set; }
     }
 }
