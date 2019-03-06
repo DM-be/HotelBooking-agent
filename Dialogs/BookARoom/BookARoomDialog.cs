@@ -20,6 +20,7 @@ using Microsoft.Graph;
 using Microsoft.Recognizers.Text;
 using Microsoft.Recognizers.Text.DataTypes.TimexExpression;
 using HotelBot.Custom;
+using Microsoft.Bot.Builder.AI.Luis;
 
 namespace HotelBot.Dialogs.BookARoom
 {
@@ -137,9 +138,10 @@ namespace HotelBot.Dialogs.BookARoom
             if (sc.Result != null)
             {
                 var resolution = (sc.Result as IList<DateTimeResolution>).First();
+                
                 var timexProp = new TimexProperty(resolution.Timex);
                 var arrivalDateAsNaturalLanguage = timexProp.ToNaturalLanguage(DateTime.Now);
-                _state.ArrivalDate = arrivalDateAsNaturalLanguage;
+               // _state.ArrivalDate = arrivalDateAsNaturalLanguage;
                 await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveArrivalDate, arrivalDateAsNaturalLanguage);
             }
 
@@ -162,7 +164,7 @@ namespace HotelBot.Dialogs.BookARoom
                 var resolution = (sc.Result as IList<DateTimeResolution>).First();
                 var timexProp = new TimexProperty(resolution.Timex);
                 var leavingDateAsNaturalLanguage = timexProp.ToNaturalLanguage(DateTime.Now);
-                _state.LeavingDate = leavingDateAsNaturalLanguage;
+            //    _state.LeavingDate = leavingDateAsNaturalLanguage;
                 await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveLeavingDate, leavingDateAsNaturalLanguage);
             }
 
@@ -209,7 +211,7 @@ namespace HotelBot.Dialogs.BookARoom
 
         
 
-        private class DialogIds
+        public class DialogIds
         {
             public const string ArrivalDateTimePrompt = "arrivalDateTimePrompt";
             public const string LeavingDateTimePrompt = "leavingDateTimePrompt";

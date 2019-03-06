@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Bot.Builder.AI.Luis;
+using Microsoft.Bot.Builder.Dialogs;
 
 namespace HotelBot.Dialogs.BookARoom
 {
@@ -12,9 +13,9 @@ namespace HotelBot.Dialogs.BookARoom
         public double? NumberOfPeople { get; set; }
 
         // todo: correct format based on needs
-        public dynamic ArrivalDate { get; set; }
+        public DateTimeResolution ArrivalDate { get; set; }
 
-        public dynamic LeavingDate { get; set; }
+        public DateTimeResolution LeavingDate { get; set; }
 
     }
 }

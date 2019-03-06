@@ -6,10 +6,16 @@ using HotelBot.StateAccessors;
 using Luis;
 using Microsoft.Bot.Builder.Dialogs;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Extensions;
+using Microsoft.Bot.Builder;
+using Microsoft.Graph;
+using Microsoft.Recognizers.Text;
+using Microsoft.Recognizers.Text.DataTypes.TimexExpression;
+using Microsoft.Recognizers.Text.DateTime;
 
 namespace HotelBot.Dialogs.Shared
 {
@@ -42,7 +48,17 @@ namespace HotelBot.Dialogs.Shared
             };
 
             AddDialog(new WaterfallDialog("confirmwaterfall", confirmWaterFallSteps));
+
+            var recheckDateWaterFallSteps = new WaterfallStep []
+            {
+                PromptRecheckDate, EndRecheckDate,
+            };
+
+            AddDialog(new WaterfallDialog("recheckdatewaterfall", recheckDateWaterFallSteps));
+
         }
+
+
 
         protected override async Task<InterruptionStatus> OnDialogInterruptionAsync(DialogContext dc, CancellationToken cancellationToken)
         {
@@ -126,11 +142,42 @@ namespace HotelBot.Dialogs.Shared
             return InterruptionStatus.NoAction;
         }
 
+
+        public async Task<DialogTurnResult> PromptRecheckDate(WaterfallStepContext sc, CancellationToken cancellationToken)
+        {
+            return await sc.PromptAsync(BookARoomDialog.DialogIds.ArrivalDateTimePrompt, new PromptOptions()
+            {
+                Prompt = MessageFactory.Text("That is not a date i can understand, please resend date"),
+            });
+        }
+
+        public async Task<DialogTurnResult> EndRecheckDate(WaterfallStepContext sc, CancellationToken cancellationToken)
+        {
+            var date = sc.Result;
+            sc.Context.TurnState.Add("correctDate", date);
+            return await sc.ReplaceDialogAsync("confirmwaterfall");
+        }
+
+
+
+
+
         public async Task<DialogTurnResult> PromptConfirm(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
+
+
             // added to initial step only
             sc.Context.TurnState.TryGetValue(LuisResultBookARoomKey, out var value);
             var luisResult = value as HotelBotLuis;
+
+            if (luisResult.HasEntityWithPropertyName(EntityNames.ArrivalDate))
+            {
+                if (luisResult.Entities.datetime.First().Type != "date")
+                {
+                    return await sc.ReplaceDialogAsync("recheckdatewaterfall");
+                }
+
+            }
 
             // set values for waterfallsteps
             sc.Values.Add(LuisResultBookARoomKey, luisResult);
@@ -138,6 +185,8 @@ namespace HotelBot.Dialogs.Shared
             var _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
             var view = new BookARoomResponses();
 
+
+            // todo refactor
             dynamic data = new dynamic[2];
             data[0] = luisResult;
             data[1] = _state;
@@ -201,7 +250,24 @@ namespace HotelBot.Dialogs.Shared
                 {
                     if (luisResult.HasEntityWithPropertyName(EntityNames.ArrivalDate))
                     {
-                        _state.ArrivalDate = luisResult.Entities.datetime.First();
+                        //todo: do not allow changing date to "daterange" type, only allow "date";
+                        var spec = luisResult.Entities.datetime.First().Expressions.First();
+                        var resolution = DateTimeRecognizer.RecognizeDateTime(spec, Culture.English);
+
+                        var results = DateTimeRecognizer.RecognizeDateTime(spec, Culture.English);
+                        var dateTimeResolutions = new List<DateTimeResolution>();
+
+
+                        var values = (List<Dictionary<string, string>>)results[0].Resolution["values"];
+                        foreach (var value in values)
+                        {
+                            dateTimeResolutions.Add(ReadResolution(value));
+                        }
+
+                        var test = dateTimeResolutions;
+
+                        //  var res = luisResult.ConvertDateTimeSpec(spec);
+                        // _state.ArrivalDate = luisResult.Entities.datetime.First();
                     }
                     else
                     {
@@ -210,13 +276,38 @@ namespace HotelBot.Dialogs.Shared
                     break;
                 }
                 case HotelBotLuis.Intent.Update_Leaving_Date:
-                    var x = luisResult.HasEntityWithPropertyName(EntityNames.LeavingDate)
-                        ? _state.LeavingDate = luisResult.Entities.datetime.First()
-                        : _state.LeavingDate = null;
                     break;
             }
 
             await _accessors.BookARoomStateAccessor.SetAsync(sc.Context, _state);
+        }
+
+        private DateTimeResolution ReadResolution(IDictionary<string, string> resolution)
+        {
+            var result = new DateTimeResolution();
+
+            if (resolution.TryGetValue("timex", out var timex))
+            {
+                result.Timex = timex;
+            }
+
+            if (resolution.TryGetValue("value", out var value))
+            {
+                result.Value = value;
+            }
+
+            if (resolution.TryGetValue("start", out var start))
+            {
+                result.Start = start;
+                result.Start = start;
+            }
+
+            if (resolution.TryGetValue("end", out var end))
+            {
+                result.End = end;
+            }
+
+            return result;
         }
     }
 
@@ -227,4 +318,5 @@ namespace HotelBot.Dialogs.Shared
         public const string ArrivalDate = "datetime";
         public const string LeavingDate = "datetime";
     }
+
 }
