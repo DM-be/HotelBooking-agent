@@ -55,63 +55,6 @@ namespace HotelBot.Dialogs.BookARoom
         }
 
 
-        public async Task<DialogTurnResult> PromptConfirm(WaterfallStepContext sc, CancellationToken cancellationToken)
-        {
-
-            var _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, null);
-
-
-
-            var luisResult = sc.Options as HotelBotLuis;
-            sc.Values.Add("luisResult", luisResult);
-            var topIntent =  luisResult.TopIntent().intent; // has a score above 0.85 
-
-            dynamic [] data = new dynamic [2];
-            data[0] = luisResult;
-            data[1] = _state;
-
-            return await sc.PromptAsync(
-                "confirm",
-                new PromptOptions
-                {
-                    Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, BookARoomResponses.ResponseIds.UpdateText, data),
-                });
-
-        }
-
-        public async Task<DialogTurnResult> EndConfirm(WaterfallStepContext sc, CancellationToken cancellationToken)
-        {
-
-            var _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, null);
-
-            var confirmed = (bool) sc.Result;
-            if (confirmed)
-            {
-                // update state property
-               sc.Values.TryGetValue("entities", out var entities);
-               var converted = entities as HotelBotLuis._Entities;
-               if (converted.datetime != null)
-               {
-                   _state.ArrivalDate = converted.datetime[0].ToString();
-               }
-
-               if (converted.email != null)
-               {
-                   _state.Email = converted.email[0].ToString();
-               }
-
-               if (converted.number != null)
-               {
-                   _state.NumberOfPeople = (int) converted.number[0];
-               }
-
-               await _accessors.BookARoomStateAccessor.SetAsync(sc.Context, _state);
-            }
-
-            return await sc.ReplaceDialogAsync(InitialDialogId);
-
-        }
-
 
     // first step --> intent checking and entity gathering was done in the general book a room intent
     public async Task<DialogTurnResult> AskForEmail(WaterfallStepContext sc, CancellationToken cancellationToken)

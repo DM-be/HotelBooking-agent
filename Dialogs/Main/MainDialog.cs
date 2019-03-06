@@ -124,6 +124,8 @@ namespace HotelBot.Dialogs.Main
                         }
                     }
                 }
+
+                // TODO: refactor with classes --> create qnaname member
                 else if (intent.ToString().StartsWith("q_"))
                 {
                     var intentString = intent.ToString();

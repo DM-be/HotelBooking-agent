@@ -6,8 +6,10 @@ using HotelBot.StateAccessors;
 using Luis;
 using Microsoft.Bot.Builder.Dialogs;
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using HotelBot.Extensions;
 
 namespace HotelBot.Dialogs.Shared
 {
@@ -157,10 +159,8 @@ namespace HotelBot.Dialogs.Shared
         {
             // replace the current dialog with itself --> in this case the bookaroomdialog will be restarted
             // creates a loop --> skips waterfall steps when state is filled in
-            var dialogs = sc.Context;
             sc.Values.TryGetValue(LuisResultBookARoomKey, out var value);
             var luisResult = value as HotelBotLuis;
-
             var confirmed = (bool)sc.Result;
             if (confirmed)
             {
@@ -175,15 +175,9 @@ namespace HotelBot.Dialogs.Shared
             switch (luisResult.TopIntent().intent)
             {
                 case HotelBotLuis.Intent.Update_email:
-                    // todo: check if entity contains email.
-
-                    if (luisResult.Entities.email != null)
+                    if (luisResult.HasEntityWithPropertyName(EntityNames.Email))
                     {
-                        var emailFromLuisResult = luisResult.Entities.email[0];
-                        if (emailFromLuisResult != null)
-                        {
-                            _state.Email = emailFromLuisResult;
-                        }
+                        _state.Email = luisResult.Entities.email.First();
                     }
                     else // intent matched but no matching entity
                     {
@@ -191,9 +185,46 @@ namespace HotelBot.Dialogs.Shared
                         _state.Email = null;
                     }
                     break;
+                case HotelBotLuis.Intent.Update_Number_Of_People:
+                {
+                    if (luisResult.HasEntityWithPropertyName(EntityNames.NumberOfPeople))
+                    {
+                        _state.NumberOfPeople = luisResult.Entities.number.First();
+                    }
+                    else
+                    {
+                        _state.NumberOfPeople = null;
+                    }
+                    break;
+                }
+                case HotelBotLuis.Intent.Update_ArrivalDate:
+                {
+                    if (luisResult.HasEntityWithPropertyName(EntityNames.ArrivalDate))
+                    {
+                        _state.ArrivalDate = luisResult.Entities.datetime.First();
+                    }
+                    else
+                    {
+                        _state.ArrivalDate = null;
+                    }
+                    break;
+                }
+                case HotelBotLuis.Intent.Update_Leaving_Date:
+                    var x = luisResult.HasEntityWithPropertyName(EntityNames.LeavingDate)
+                        ? _state.LeavingDate = luisResult.Entities.datetime.First()
+                        : _state.LeavingDate = null;
+                    break;
             }
 
             await _accessors.BookARoomStateAccessor.SetAsync(sc.Context, _state);
         }
+    }
+
+    public class EntityNames
+    {
+        public const string Email = "email";
+        public const string NumberOfPeople = "number";
+        public const string ArrivalDate = "datetime";
+        public const string LeavingDate = "datetime";
     }
 }
