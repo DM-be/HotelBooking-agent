@@ -9,6 +9,14 @@ namespace HotelBot.StateProperties
     {
 
         // used to determine qna services per facebook page
-        public string FacebookPageId { get; set; } 
+        public string FacebookPageId { get; set; }
+
+        // persistent dictionary in every state;
+        public Dictionary<string, object> StateObjects { get; set; }
+
+        public ConversationData()
+        {
+            StateObjects = new Dictionary<string, object>();
+        }
     }
 }

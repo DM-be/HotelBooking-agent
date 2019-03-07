@@ -13,7 +13,6 @@ namespace HotelBot.Shared.Helpers
     {
         private static readonly LanguageTemplateDictionary _responseTemplates = new LanguageTemplateDictionary
         {
-            // todo: implement basic welcoming based on postback (quick replies)
             ["default"] = new TemplateIdMap
             {
                 {

@@ -1,21 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Bot.Builder.AI.Luis;
-using Microsoft.Bot.Builder.Dialogs;
+﻿using System.Collections.Generic;
+using Luis;
+using Microsoft.Recognizers.Text.DataTypes.TimexExpression;
 
 namespace HotelBot.Dialogs.BookARoom
 {
     public class BookARoomState
     {
+
+        public BookARoomState()
+        {
+            LuisResults = new Dictionary<string, HotelBotLuis>();
+            TimexResults = new Dictionary<string, TimexProperty>();
+        }
+
         public string Email { get; set; }
         public double? NumberOfPeople { get; set; }
+        public TimexProperty ArrivalDate { get; set; }
+        public TimexProperty LeavingDate { get; set; }
 
-        // todo: correct format based on needs
-        public DateTimeResolution ArrivalDate { get; set; }
 
-        public DateTimeResolution LeavingDate { get; set; }
+        // a dictionary holding temporary luisResults
+        public Dictionary<string, HotelBotLuis> LuisResults { get; set; }
 
+        // dictionary holding
+        public Dictionary<string, TimexProperty> TimexResults { get; set; }
     }
 }

@@ -1,12 +1,17 @@
-﻿using HotelBot.Dialogs.BookARoom.Resources;
+﻿using System;
+using System.Threading.Tasks;
+using HotelBot.Dialogs.BookARoom.Resources;
+using HotelBot.StateAccessors;
 using Luis;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.TemplateManager;
 using Microsoft.Bot.Schema;
+using Microsoft.Recognizers.Text.DataTypes.TimexExpression;
 
 namespace HotelBot.Dialogs.BookARoom
 {
     public class BookARoomResponses : TemplateManager
+
     {
         private static LanguageTemplateDictionary _responseTemplates = new LanguageTemplateDictionary
         {
@@ -94,23 +99,29 @@ namespace HotelBot.Dialogs.BookARoom
             Register(new DictionaryRenderer(_responseTemplates));
         }
 
-        public static IMessageActivity BuildUpdatePropertyResponse(ITurnContext context, dynamic data)
+        public  static IMessageActivity BuildUpdatePropertyResponse(ITurnContext context, dynamic data)
         {
-            var luisResult = data[0] as HotelBotLuis;
-            var state = data[1] as BookARoomState;
+
+            context.TurnState.TryGetValue("bookARoomState", out var b);
+            context.TurnState.TryGetValue("tempTimex", out var t);
+            context.TurnState.TryGetValue("LuisResult_BookARoom", out var l);
+            var luisResult = l as HotelBotLuis;
+            var timexProperty = t as TimexProperty;
+            var bookARoomState = b as BookARoomState;
 
             string message = "Do you want to change your";
 
             switch (luisResult.TopIntent().intent)
             {
                 case HotelBotLuis.Intent.Update_ArrivalDate:
-                    if (luisResult.Entities.datetime[0] != null)
+                    if (timexProperty != null)
                     {
-                        var dateToString = luisResult.Entities.datetime[0].ToString();
+                        var dateToString = timexProperty.ToNaturalLanguage(DateTime.Now);
                         message = $"Do you want to update your arriving date to ${dateToString} ?";
-                        if (state.ArrivalDate != null)
+                        if (bookARoomState.ArrivalDate != null)
                         {
-                            message += $"from ${state.ArrivalDate}";
+                            var naturalLang = bookARoomState.ArrivalDate.ToNaturalLanguage(DateTime.Now);
+                            message += $"from ${naturalLang}";
                         }
                     }
                     break;
@@ -120,9 +131,9 @@ namespace HotelBot.Dialogs.BookARoom
                     {
                         var dateToString = luisResult.Entities.datetime[0].ToString();
                         message = $"Do you want to update your leaving date to ${dateToString} ?";
-                        if (state.LeavingDate != null)
+                        if (bookARoomState.LeavingDate != null)
                         {
-                            message += $"from ${state.LeavingDate}";
+                            message += $"from ${bookARoomState.LeavingDate}";
                         }
                     }
                     break;
@@ -132,9 +143,9 @@ namespace HotelBot.Dialogs.BookARoom
                     {
                         var emailString = luisResult.Entities.email[0];
                         message = $"Do you want to update your email to ${emailString} ?";
-                        if (state.Email != null)
+                        if (bookARoomState.Email != null)
                         {
-                            message += $"from ${state.Email}";
+                            message += $"from ${bookARoomState.Email}";
                         }
                     }
                     else
@@ -150,15 +161,16 @@ namespace HotelBot.Dialogs.BookARoom
                     {
                         var numberOfPeopleString = luisResult.Entities.number[0].ToString();
                         message = $"Do you want to update the number of people to ${numberOfPeopleString} ?";
-                        if (state.NumberOfPeople != null)
+                        if (bookARoomState.NumberOfPeople != null)
                         {
-                            message += $"from ${state.NumberOfPeople.ToString()}";
+                            message += $"from ${bookARoomState.NumberOfPeople.ToString()}";
                         }
                     }
                     break;
             }
 
             return MessageFactory.Text(message);
+
         }
 
         public class ResponseIds

@@ -26,7 +26,7 @@ namespace HotelBot.Dialogs.BookARoom
 {
     public class BookARoomDialog : CustomDialog
     {
-        private static BookARoomResponses _responder = new BookARoomResponses();
+        private static BookARoomResponses _responder;
         private StateBotAccessors _accessors;
         private BookARoomState _state;
         private readonly BotServices _services;
@@ -37,6 +37,7 @@ namespace HotelBot.Dialogs.BookARoom
         {
             _services = botServices;
             _accessors = accessors;
+            _responder = new BookARoomResponses();
             InitialDialogId = nameof(BookARoomDialog);
       
 
@@ -49,7 +50,7 @@ namespace HotelBot.Dialogs.BookARoom
                 FinishBookARoomDialog,
             };
             AddDialog(new WaterfallDialog(InitialDialogId, bookARoom));
-            AddDialog(new CustomDateTimePrompt(DialogIds.ArrivalDateTimePrompt, DateValidatorAsync, Culture.Dutch));
+            AddDialog(new CustomDateTimePrompt(DialogIds.ArrivalDateTimePrompt));
             AddDialog(new DateTimePrompt(DialogIds.LeavingDateTimePrompt, DateValidatorAsync));
             AddDialog(new TextPrompt(DialogIds.EmailPrompt));
             AddDialog(new NumberPrompt<int>(DialogIds.NumberOfPeopleNumberPrompt));
