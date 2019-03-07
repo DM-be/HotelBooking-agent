@@ -187,7 +187,7 @@ namespace HotelBot.Dialogs.Shared
                timexProperty = sc.Options as TimexProperty;
                return await sc.NextAsync(timexProperty);
             }
-            if (luisResult.HasEntityWithPropertyName(EntityNames.LeavingDate))
+            if (luisResult.HasEntityWithPropertyName(EntityNames.Datetime))
             {
                 if (luisResult.Entities.datetime.First().Type != "date") // not of type date --> not clear what day arriving etc
                 {   // replace the dialog with a recheck --> eventually entering the timexproperty in the options and skipping this
@@ -272,7 +272,7 @@ namespace HotelBot.Dialogs.Shared
                     break;
                 case HotelBotLuis.Intent.Update_Number_Of_People:
                 {
-                    if (luisResult.HasEntityWithPropertyName(EntityNames.NumberOfPeople))
+                    if (luisResult.HasEntityWithPropertyName(EntityNames.Number))
                     {
                         bookARoomState.NumberOfPeople = luisResult.Entities.number.First();
                     }
@@ -286,7 +286,7 @@ namespace HotelBot.Dialogs.Shared
                 {
                     // a recognized date was added --> could be date or datetime,...
                     // either way the dialog cannot continue without the correct timexproperty set;
-                    if (luisResult.HasEntityWithPropertyName(EntityNames.ArrivalDate))
+                    if (luisResult.HasEntityWithPropertyName(EntityNames.Datetime))
                     {
                         bookARoomState.TimexResults.TryGetValue("tempTimex", out TimexProperty timexProperty);
                         bookARoomState.TimexResults.Clear();
@@ -299,7 +299,7 @@ namespace HotelBot.Dialogs.Shared
                     break;
                 }
                 case HotelBotLuis.Intent.Update_Leaving_Date:
-                    if (luisResult.HasEntityWithPropertyName(EntityNames.LeavingDate))
+                    if (luisResult.HasEntityWithPropertyName(EntityNames.Datetime))
                     {
                         bookARoomState.TimexResults.TryGetValue("tempTimex", out TimexProperty timexProperty);
                         bookARoomState.TimexResults.Clear();
@@ -319,9 +319,8 @@ namespace HotelBot.Dialogs.Shared
     public class EntityNames
     {
         public const string Email = "email";
-        public const string NumberOfPeople = "number";
-        public const string ArrivalDate = "datetime";
-        public const string LeavingDate = "datetime";
+        public const string Number = "number";
+        public const string Datetime = "datetime";
     }
 
 }
