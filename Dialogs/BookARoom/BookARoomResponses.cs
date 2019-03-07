@@ -104,10 +104,9 @@ namespace HotelBot.Dialogs.BookARoom
 
             context.TurnState.TryGetValue("bookARoomState", out var b);
             context.TurnState.TryGetValue("tempTimex", out var t);
-            context.TurnState.TryGetValue("LuisResult_BookARoom", out var l);
-            var luisResult = l as HotelBotLuis;
             var timexProperty = t as TimexProperty;
             var bookARoomState = b as BookARoomState;
+            bookARoomState.LuisResults.TryGetValue("LuisResult_BookARoom", out HotelBotLuis luisResult);
 
             string message = "Do you want to change your";
 

@@ -43,13 +43,22 @@ namespace HotelBot.Dialogs.Shared
             _accessors = accessors;
             AddDialog(new CancelDialog());
             AddDialog(new ConfirmPrompt("confirm"));
-            var confirmWaterFallSteps = new WaterfallStep[]
+            var confirmUpdateStepsDate = new WaterfallStep[]
+            {
+                ValidateTimeStep,
+                PromptConfirmDate,
+                EndConfirm
+            };
+
+
+            var confirmUpdateSteps = new WaterfallStep[]
             {
                 PromptConfirm,
                 EndConfirm
             };
 
-            AddDialog(new WaterfallDialog("confirmwaterfall", confirmWaterFallSteps));
+            AddDialog(new WaterfallDialog("confirmwaterfall_date", confirmUpdateStepsDate));
+            AddDialog(new WaterfallDialog("confirmwaterfall", confirmUpdateSteps));
 
             var recheckDateWaterFallSteps = new WaterfallStep []
             {
@@ -82,7 +91,6 @@ namespace HotelBot.Dialogs.Shared
                     // Add the luis result (intent and entities) for further processing in the derived dialog
                     var bookARoomState = await _accessors.BookARoomStateAccessor.GetAsync(dc.Context, () => new BookARoomState());
                     bookARoomState.LuisResults[LuisResultBookARoomKey] = luisResult;
-                 //   bookARoomState.LuisResults.Add(LuisResultBookARoomKey, luisResult);
                    
                     switch (intent)
                     {
@@ -96,13 +104,17 @@ namespace HotelBot.Dialogs.Shared
                                 // todo: provide contextual help
                                 return await OnHelp(dc);
                             }
+                        case HotelBotLuis.Intent.Update_Number_Of_People:
                         case HotelBotLuis.Intent.Update_email:
+                        {
+                            return await OnUpdate(dc, "confirmwaterfall");
+                        }
                         case HotelBotLuis.Intent.Update_ArrivalDate:
                         case HotelBotLuis.Intent.Update_Leaving_Date:
-                        case HotelBotLuis.Intent.Update_Number_Of_People:
-                            {
-                                return await OnUpdate(dc);
-                            }
+
+                        {
+                            return await OnUpdate(dc, "confirmwaterfall_date");
+                        }
                     }
                 }
             }
@@ -134,13 +146,13 @@ namespace HotelBot.Dialogs.Shared
             return InterruptionStatus.Interrupted;
         }
 
-        protected virtual async Task<InterruptionStatus> OnUpdate(DialogContext dc)
+        protected virtual async Task<InterruptionStatus> OnUpdate(DialogContext dc, string dialogId)
         {
             // do not restart running dialog
-            if (dc.ActiveDialog.Id != "confirmwaterfall")
+            if (dc.ActiveDialog.Id != dialogId)
             {
                 
-                await dc.BeginDialogAsync("confirmwaterfall");
+                await dc.BeginDialogAsync(dialogId);
                 return InterruptionStatus.Waiting;
             }
 
@@ -159,65 +171,86 @@ namespace HotelBot.Dialogs.Shared
 
         public async Task<DialogTurnResult> EndRecheckDate(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-            var resolutions = sc.Result as List<DateTimeResolution>;
-            var correctedDateResolution = resolutions.First();
-            var bookARoomState = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
-            bookARoomState.TimexResults.Add("tempTimex", new TimexProperty(correctedDateResolution.Timex));
-            return await sc.ReplaceDialogAsync("confirmwaterfall");
+            var resolution = (sc.Result as IList<DateTimeResolution>).First();
+            return await sc.ReplaceDialogAsync("confirmwaterfall_date", new TimexProperty(resolution.Timex));
         }
 
+        // only time validation is needed when an intent matches for example ""
+        public async Task<DialogTurnResult> ValidateTimeStep(WaterfallStepContext sc, CancellationToken cancellationToken)
+        {
+            var bookARoomState = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
+            bookARoomState.LuisResults.TryGetValue(LuisResultBookARoomKey, out HotelBotLuis luisResult);
+            TimexProperty timexProperty;
+            if (sc.Options != null)
+            {
+                // timex was get and set via a prompt in another dialog and passed as options (such as recheckdatewaterfall)
+               timexProperty = sc.Options as TimexProperty;
+               return await sc.NextAsync(timexProperty);
+            }
+            if (luisResult.HasEntityWithPropertyName(EntityNames.LeavingDate))
+            {
+                if (luisResult.Entities.datetime.First().Type != "date") // not of type date --> not clear what day arriving etc
+                {   // replace the dialog with a recheck --> eventually entering the timexproperty in the options and skipping this
+                    return await sc.ReplaceDialogAsync("recheckdatewaterfall");
+                }
+                // else the timexproperty can be parsed from the entities in the intent
+                var dateTimeSpecs = luisResult.Entities.datetime.First();
+                var firstExpression = dateTimeSpecs.Expressions.First();
+                timexProperty = new TimexProperty(firstExpression);
+                return await sc.NextAsync(timexProperty);
+            }
+            // intent to update arrival or leaving date but without entity also needs a recheck for date.
+            else
+            {
+                return await sc.ReplaceDialogAsync("recheckdatewaterfall");
+            }
 
+
+        }
 
 
         public async Task<DialogTurnResult> PromptConfirm(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-
             var bookARoomState = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
             bookARoomState.LuisResults.TryGetValue(LuisResultBookARoomKey, out HotelBotLuis luisResult);
-            if (bookARoomState.TimexResults.TryGetValue("tempTimex", out TimexProperty timexProperty))
-            {
-                // arrived to this dialog from recheck
-                sc.Context.TurnState.Add("tempTimex", timexProperty);
-            }
-            else
-            {
-                if (luisResult.HasEntityWithPropertyName(EntityNames.ArrivalDate))
-                {
-                    if (luisResult.Entities.datetime.First().Type != "date") // not of type date --> not clear what day arriving etc
-                    {
-                        return await sc.ReplaceDialogAsync("recheckdatewaterfall");
-                    }
-                    // datetime property is of type date --> 
-                    var dateTimeSpecs = luisResult.Entities.datetime.First();
-                    var firstExpression = dateTimeSpecs.Expressions.First();
-                    var timexPropertyFromLuis = new TimexProperty(firstExpression);
-                    bookARoomState.TimexResults["tempTimex"] = timexPropertyFromLuis;
-                    sc.Context.TurnState.Add("tempTimex", timexPropertyFromLuis);
-                }
-            }
-
-            sc.Context.TurnState.Add(LuisResultBookARoomKey, luisResult);
+            // attach the full state to the turnstate to allow for dynamic template rendering.
             sc.Context.TurnState.Add("bookARoomState", bookARoomState);
             var view = new BookARoomResponses();
             return await sc.PromptAsync(
                 "confirm",
                 new PromptOptions
                 {
-                    Prompt = await view.RenderTemplate(sc.Context, sc.Context.Activity.Locale,  BookARoomResponses.ResponseIds.UpdateText),
+                    Prompt = await view.RenderTemplate(sc.Context, sc.Context.Activity.Locale, BookARoomResponses.ResponseIds.UpdateText),
+                });
+        }
+
+        public async Task<DialogTurnResult> PromptConfirmDate(WaterfallStepContext sc, CancellationToken cancellationToken)
+        {
+            var bookARoomState = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
+            bookARoomState.LuisResults.TryGetValue(LuisResultBookARoomKey, out HotelBotLuis luisResult);
+
+             sc.Context.TurnState.Add("tempTimex", sc.Result as TimexProperty);
+             bookARoomState.TimexResults.Add("tempTimex", sc.Result as TimexProperty);
+
+            // attach the full state to the turnstate to allow for dynamic template rendering.
+            sc.Context.TurnState.Add("bookARoomState", bookARoomState);
+            var view = new BookARoomResponses();
+            return await sc.PromptAsync(
+                "confirm",
+                new PromptOptions
+                {
+                    Prompt = await view.RenderTemplate(sc.Context, sc.Context.Activity.Locale, BookARoomResponses.ResponseIds.UpdateText),
                 });
         }
 
         public async Task<DialogTurnResult> EndConfirm(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-            // replace the current dialog with itself --> in this case the bookaroomdialog will be restarted
-            // creates a loop --> skips waterfall steps when state is filled in
             var confirmed = (bool)sc.Result;
             if (confirmed)
             {
-                UpdateState(sc);
+                 UpdateState(sc);
             }
-
-            return await sc.EndDialogAsync();
+            return await sc.EndDialogAsync(null, cancellationToken);
         }
 
         private async void UpdateState(WaterfallStepContext sc)
@@ -266,6 +299,16 @@ namespace HotelBot.Dialogs.Shared
                     break;
                 }
                 case HotelBotLuis.Intent.Update_Leaving_Date:
+                    if (luisResult.HasEntityWithPropertyName(EntityNames.LeavingDate))
+                    {
+                        bookARoomState.TimexResults.TryGetValue("tempTimex", out TimexProperty timexProperty);
+                        bookARoomState.TimexResults.Clear();
+                        bookARoomState.LeavingDate = timexProperty;
+                    }
+                    else
+                    {
+                        bookARoomState.ArrivalDate = null;
+                    }
                     break;
             }
 
