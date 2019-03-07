@@ -37,15 +37,6 @@ namespace HotelBot.Dialogs.Main
             _services = services ?? throw new ArgumentNullException(nameof(services));
             _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
             AddDialog(new BookARoomDialog(_services, _accessors));
-           
-
-            var fullname_slots = new List<SlotDetails>
-            {
-                new SlotDetails("first", "text", "Please enter your first name."),
-                new SlotDetails("last", "text", "Please enter your last name."),
-            };
-            AddDialog(new SlotFillingDialog.SlotFillingDialog(services, _accessors, fullname_slots));
-            AddDialog(new TextPrompt("text"));
           
 
         }

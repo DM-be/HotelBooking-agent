@@ -177,7 +177,7 @@ namespace HotelBot.Dialogs.BookARoom
             // clear state as a test
 
             var bookARoomEmpty = new BookARoomState();
-            _accessors.BookARoomStateAccessor.SetAsync(sc.Context, bookARoomEmpty);
+            await _accessors.BookARoomStateAccessor.SetAsync(sc.Context, bookARoomEmpty);
             return await sc.EndDialogAsync();
         }
 
