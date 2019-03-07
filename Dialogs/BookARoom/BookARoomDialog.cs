@@ -139,10 +139,9 @@ namespace HotelBot.Dialogs.BookARoom
             if (sc.Result != null)
             {
                 var resolution = (sc.Result as IList<DateTimeResolution>).First();
-                
                 var timexProp = new TimexProperty(resolution.Timex);
                 var arrivalDateAsNaturalLanguage = timexProp.ToNaturalLanguage(DateTime.Now);
-               // _state.ArrivalDate = arrivalDateAsNaturalLanguage;
+                _state.ArrivalDate = timexProp;
                 await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveArrivalDate, arrivalDateAsNaturalLanguage);
             }
 
@@ -164,11 +163,14 @@ namespace HotelBot.Dialogs.BookARoom
             {
                 var resolution = (sc.Result as IList<DateTimeResolution>).First();
                 var timexProp = new TimexProperty(resolution.Timex);
-                var leavingDateAsNaturalLanguage = timexProp.ToNaturalLanguage(DateTime.Now);
-            //    _state.LeavingDate = leavingDateAsNaturalLanguage;
-                await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveLeavingDate, leavingDateAsNaturalLanguage);
+                _state.LeavingDate = timexProp;
+               // await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveLeavingDate, leavingDateAsNaturalLanguage);
             }
-
+         
+            await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveEmailMessage,  _state.Email);
+            await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveNumberOfPeople, _state.NumberOfPeople);
+            await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveArrivalDate, _state.ArrivalDate.ToNaturalLanguage(DateTime.Now));
+            await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveLeavingDate, _state.LeavingDate.ToNaturalLanguage(DateTime.Now));
 
 
             await sc.Context.SendActivityAsync("end of dialog, emptying result");

@@ -177,7 +177,7 @@ namespace HotelBot.Dialogs.Shared
             if (bookARoomState.TimexResults.TryGetValue("tempTimex", out TimexProperty timexProperty))
             {
                 // arrived to this dialog from recheck
-                sc.Context.TurnState.Add("tempTimex", timexProperty); 
+                sc.Context.TurnState.Add("tempTimex", timexProperty);
             }
             else
             {

@@ -191,6 +191,8 @@ namespace HotelBot.Dialogs.BookARoom
             public const string NotRecognizedDate = "notRecognizedDate";
 
             public const string UpdateText = "updateText";
+
+            public const string SpecificTimePrompt = "specificTimePrompt";
         }
     }
 }
