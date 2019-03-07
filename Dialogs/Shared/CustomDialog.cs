@@ -11,13 +11,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Extensions;
-using HotelBot.StateProperties;
-using Microsoft.Azure.CognitiveServices.Language.LUIS.Runtime.Models;
-using Microsoft.Bot.Builder;
-using Microsoft.Graph;
-using Microsoft.Recognizers.Text;
 using Microsoft.Recognizers.Text.DataTypes.TimexExpression;
-using Microsoft.Recognizers.Text.DateTime;
 
 namespace HotelBot.Dialogs.Shared
 {
@@ -25,9 +19,17 @@ namespace HotelBot.Dialogs.Shared
     ///  currently supports room booking intents only
     /// --> refactor name or fully generic?
     /// </summary>
+    /// 
 
     public class CustomDialog : InterruptableDialog
+
     {
+
+
+
+
+
+
         protected const string LuisResultBookARoomKey = "LuisResult_BookARoom";
 
         // Fields

@@ -13,6 +13,7 @@ namespace HotelBot.Shared.Helpers
     {
         private static readonly LanguageTemplateDictionary _responseTemplates = new LanguageTemplateDictionary
         {
+
             ["default"] = new TemplateIdMap
             {
                 {
@@ -113,29 +114,18 @@ namespace HotelBot.Shared.Helpers
 
         public static IMessageActivity BuildCallMessage(ITurnContext context, dynamic data)
         {
-            var facebookMessage = new FacebookMessage
+            var number = "tel: +15 105 551 234";
+            var heroCard = new HeroCard
             {
-                Attachment = new FacebookAttachment
-                {
-                    Type = "template",
-                    FacebookPayload = new FacebookPayload
-                    {
-                        Template_Type = "button",
-                        Text = FacebookStrings.CALL_MESSAGE_PAYLOAD_TEXT,
-                        FacebookButtons = new[]
-                        {
-                            new FacebookButton
-                            {
-                                Type = "phone_number",
-                                Title = FacebookStrings.BUTTON_TITLE_CALL,
-                                Payload = "+15105551234"
-                            },
-                        }
-                    }
-                }
+                Title = FacebookStrings.BUTTON_TITLE_CALL,
+                Subtitle = number,
+                Buttons = new List<CardAction> { new CardAction(ActionTypes.Call, FacebookStrings.BUTTON_TITLE_CALL, value: number) }
             };
             var reply = context.Activity.CreateReply();
-            reply.ChannelData = facebookMessage;
+            reply.Attachments = new List<Attachment>
+            {
+                heroCard.ToAttachment()
+            };
             return reply;
         }
 
