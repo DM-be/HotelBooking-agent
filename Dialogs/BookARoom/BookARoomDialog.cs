@@ -55,10 +55,7 @@ namespace HotelBot.Dialogs.BookARoom
                 await _responder.ReplyWith(
                     sc.Context,
                     BookARoomResponses.ResponseIds.HaveEmailMessage,
-                    new
-                    {
-                        _state.Email
-                    });
+                    _state.Email);
                 return await sc.NextAsync();
             }
 
@@ -90,10 +87,7 @@ namespace HotelBot.Dialogs.BookARoom
                 await _responder.ReplyWith(
                     sc.Context,
                     BookARoomResponses.ResponseIds.HaveEmailMessage,
-                    new
-                    {
-                        _state.Email
-                    });
+                    _state.Email);
             }
 
             return await sc.PromptAsync(

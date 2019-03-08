@@ -123,11 +123,11 @@ namespace HotelBot.Dialogs.BookARoom
                     if (timexProperty != null)
                     {
                         var dateToString = timexProperty.ToNaturalLanguage(DateTime.Now);
-                        message = $"Do you want to update your arriving date to ${dateToString} ?";
+                        message = $"Do you want to update your arriving date to {dateToString} ?";
                         if (bookARoomState.ArrivalDate != null)
                         {
                             var naturalLang = bookARoomState.ArrivalDate.ToNaturalLanguage(DateTime.Now);
-                            message += $"from ${naturalLang}";
+                            message += $"from {naturalLang}";
                         }
                     }
                     break;
@@ -136,10 +136,10 @@ namespace HotelBot.Dialogs.BookARoom
                     if (luisResult.Entities.datetime[0] != null)
                     {
                         var dateToString = luisResult.Entities.datetime[0].ToString();
-                        message = $"Do you want to update your leaving date to ${dateToString} ?";
+                        message = $"Do you want to update your leaving date to {dateToString} ?";
                         if (bookARoomState.LeavingDate != null)
                         {
-                            message += $"from ${bookARoomState.LeavingDate}";
+                            message += $"from {bookARoomState.LeavingDate}";
                         }
                     }
                     break;
@@ -148,10 +148,10 @@ namespace HotelBot.Dialogs.BookARoom
                     if (luisResult.Entities.email != null)
                     {
                         var emailString = luisResult.Entities.email[0];
-                        message = $"Do you want to update your email to ${emailString} ?";
+                        message = $"Do you want to update your email to {emailString} ?";
                         if (bookARoomState.Email != null)
                         {
-                            message += $"from ${bookARoomState.Email}";
+                            message += $"from {bookARoomState.Email}";
                         }
                     }
                     else
@@ -166,10 +166,10 @@ namespace HotelBot.Dialogs.BookARoom
                     if (luisResult.Entities.number[0] != null)
                     {
                         var numberOfPeopleString = luisResult.Entities.number[0].ToString();
-                        message = $"Do you want to update the number of people to ${numberOfPeopleString} ?";
+                        message = $"Do you want to update the number of people to {numberOfPeopleString} ?";
                         if (bookARoomState.NumberOfPeople != null)
                         {
-                            message += $"from ${bookARoomState.NumberOfPeople.ToString()}";
+                            message += $"from {bookARoomState.NumberOfPeople.ToString()}";
                         }
                     }
                     break;
