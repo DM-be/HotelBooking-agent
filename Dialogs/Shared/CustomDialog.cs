@@ -28,8 +28,6 @@ namespace HotelBot.Dialogs.Shared
 
 
 
-
-
         protected const string LuisResultBookARoomKey = "LuisResult_BookARoom";
 
         // Fields
@@ -150,11 +148,17 @@ namespace HotelBot.Dialogs.Shared
 
         protected virtual async Task<InterruptionStatus> OnUpdate(DialogContext dc, string dialogId)
         {
-            // do not restart running dialog
+            // do not restart this running dialog
             if (dc.ActiveDialog.Id != dialogId)
             {
-                
+                // example: in dialog number prompt --> i want to update my email, this prompt is a dialog pushed on the stack
+                // to handle this interruption and start the correct new waterfall, we need to cancel the stack: bookaroomdialog>numberprompt
+
+                await dc.CancelAllDialogsAsync(); // removes entire stack
+
+                // begin our own new dialogwaterfall step
                 await dc.BeginDialogAsync(dialogId);
+
                 return InterruptionStatus.Waiting;
             }
 
@@ -167,7 +171,7 @@ namespace HotelBot.Dialogs.Shared
             var view = new BookARoomResponses();
             return await sc.PromptAsync(BookARoomDialog.DialogIds.ArrivalDateTimePrompt, new PromptOptions()
             {
-                Prompt = await view.RenderTemplate(sc.Context, sc.Context.Activity.Locale, BookARoomResponses.ResponseIds.ArrivalDatePrompt),
+                Prompt = await view.RenderTemplate(sc.Context, sc.Context.Activity.Locale, BookARoomResponses.ResponseIds.SpecificTimePrompt),
             });
         }
 
@@ -216,7 +220,7 @@ namespace HotelBot.Dialogs.Shared
             var bookARoomState = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
             bookARoomState.LuisResults.TryGetValue(LuisResultBookARoomKey, out HotelBotLuis luisResult);
             // attach the full state to the turnstate to allow for dynamic template rendering.
-            sc.Context.TurnState.Add("bookARoomState", bookARoomState);
+            sc.Context.TurnState["bookARoomState"] = bookARoomState;
             var view = new BookARoomResponses();
             return await sc.PromptAsync(
                 "confirm",
@@ -230,12 +234,14 @@ namespace HotelBot.Dialogs.Shared
         {
             var bookARoomState = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
             bookARoomState.LuisResults.TryGetValue(LuisResultBookARoomKey, out HotelBotLuis luisResult);
-
-             sc.Context.TurnState.Add("tempTimex", sc.Result as TimexProperty);
-             bookARoomState.TimexResults.Add("tempTimex", sc.Result as TimexProperty);
-
+            if (sc.Result != null)
+            {
+                // refactor, only timex in bookaroomstate?
+                bookARoomState.TimexResults["tempTimex"] = sc.Result as TimexProperty;
+                sc.Context.TurnState["tempTimex"] = sc.Result as TimexProperty;
+            }
             // attach the full state to the turnstate to allow for dynamic template rendering.
-            sc.Context.TurnState.Add("bookARoomState", bookARoomState);
+            sc.Context.TurnState["bookARoomState"] = bookARoomState;
             var view = new BookARoomResponses();
             return await sc.PromptAsync(
                 "confirm",
@@ -252,7 +258,10 @@ namespace HotelBot.Dialogs.Shared
             {
                  UpdateState(sc);
             }
-            return await sc.EndDialogAsync(null, cancellationToken);
+  
+            // end the current dialog (this waterfall) and start a new book a room dialog in its place 
+  
+            return await sc.ReplaceDialogAsync(nameof(BookARoomDialog), cancellationToken);
         }
 
         private async void UpdateState(WaterfallStepContext sc)
@@ -288,11 +297,14 @@ namespace HotelBot.Dialogs.Shared
                 {
                     // a recognized date was added --> could be date or datetime,...
                     // either way the dialog cannot continue without the correct timexproperty set;
+
+                    // todo! fix this when empty string! --> no replacing means no filling in! 
                     if (luisResult.HasEntityWithPropertyName(EntityNames.Datetime))
                     {
                         bookARoomState.TimexResults.TryGetValue("tempTimex", out TimexProperty timexProperty);
-                        bookARoomState.TimexResults.Clear();
                         bookARoomState.ArrivalDate = timexProperty;
+                        bookARoomState.TimexResults.Clear();
+
                     }
                     else
                     {
@@ -304,8 +316,8 @@ namespace HotelBot.Dialogs.Shared
                     if (luisResult.HasEntityWithPropertyName(EntityNames.Datetime))
                     {
                         bookARoomState.TimexResults.TryGetValue("tempTimex", out TimexProperty timexProperty);
-                        bookARoomState.TimexResults.Clear();
                         bookARoomState.LeavingDate = timexProperty;
+                        bookARoomState.TimexResults.Clear();
                     }
                     else
                     {
@@ -314,7 +326,7 @@ namespace HotelBot.Dialogs.Shared
                     break;
             }
 
-           // await _accessors.BookARoomStateAccessor.SetAsync(sc.Context, bookARoomState);
+            await _accessors.BookARoomStateAccessor.SetAsync(sc.Context, bookARoomState);
         }
     }
 

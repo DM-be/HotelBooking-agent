@@ -158,5 +158,14 @@ namespace HotelBot.Dialogs.BookARoom.Resources {
                 return ResourceManager.GetString("NUMBEROFPEOPLE_PROMPT", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I need a specific day to help you..
+        /// </summary>
+        public static string SPECIFICTIME_REPLY {
+            get {
+                return ResourceManager.GetString("SPECIFICTIME_REPLY", resourceCulture);
+            }
+        }
     }
 }

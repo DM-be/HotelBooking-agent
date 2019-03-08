@@ -91,6 +91,13 @@ namespace HotelBot.Dialogs.BookARoom
                     (context, data) =>
                        BuildUpdatePropertyResponse(context, data)
                 },
+                { ResponseIds.SpecificTimePrompt,
+                    (context, data) =>
+                        MessageFactory.Text(
+                            BookARoomStrings.SPECIFICTIME_REPLY,
+                            BookARoomStrings.SPECIFICTIME_REPLY,
+                            InputHints.IgnoringInput)
+                        }
             }
         };
 

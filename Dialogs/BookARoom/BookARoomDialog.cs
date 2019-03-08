@@ -1,35 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
-using HotelBot.Custom;
 using HotelBot.Dialogs.Shared;
-using HotelBot.Dialogs.SlotFillingDialog;
-using HotelBot.Extensions;
-
 using HotelBot.Services;
 using HotelBot.Shared.Helpers;
 using HotelBot.StateAccessors;
-using HotelBot.StateProperties;
-using Luis;
-using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
-using Microsoft.Graph;
 using Microsoft.Recognizers.Text;
 using Microsoft.Recognizers.Text.DataTypes.TimexExpression;
-using HotelBot.Custom;
-using Microsoft.Bot.Builder.AI.Luis;
 
 namespace HotelBot.Dialogs.BookARoom
 {
-    public class BookARoomDialog : CustomDialog
+    public class BookARoomDialog: CustomDialog
     {
         private static BookARoomResponses _responder;
-        private StateBotAccessors _accessors;
-        private BookARoomState _state;
         private readonly BotServices _services;
+        private readonly StateBotAccessors _accessors;
+        private BookARoomState _state;
         private TranslatorHelper _translatorHelper = new TranslatorHelper();
 
         public BookARoomDialog(BotServices botServices, StateBotAccessors accessors)
@@ -39,18 +28,14 @@ namespace HotelBot.Dialogs.BookARoom
             _accessors = accessors;
             _responder = new BookARoomResponses();
             InitialDialogId = nameof(BookARoomDialog);
-      
 
-            var bookARoom = new WaterfallStep[]
+
+            var bookARoom = new WaterfallStep []
             {
-                AskForEmail,
-                AskForNumberOfPeople,
-                AskForArrivalDate,
-                AskForLeavingDate,
-                FinishBookARoomDialog,
+                AskForEmail, AskForNumberOfPeople, AskForArrivalDate, AskForLeavingDate, FinishBookARoomDialog
             };
             AddDialog(new WaterfallDialog(InitialDialogId, bookARoom));
-            AddDialog(new CustomDateTimePrompt(DialogIds.ArrivalDateTimePrompt));
+            AddDialog(new DateTimePrompt(DialogIds.ArrivalDateTimePrompt, DateValidatorAsync));
             AddDialog(new DateTimePrompt(DialogIds.LeavingDateTimePrompt, DateValidatorAsync));
             AddDialog(new TextPrompt(DialogIds.EmailPrompt));
             AddDialog(new NumberPrompt<int>(DialogIds.NumberOfPeopleNumberPrompt));
@@ -58,8 +43,8 @@ namespace HotelBot.Dialogs.BookARoom
 
 
 
-    // first step --> intent checking and entity gathering was done in the general book a room intent
-    public async Task<DialogTurnResult> AskForEmail(WaterfallStepContext sc, CancellationToken cancellationToken)
+        // first step --> intent checking and entity gathering was done in the general book a room intent
+        public async Task<DialogTurnResult> AskForEmail(WaterfallStepContext sc, CancellationToken cancellationToken)
 
         {
             _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
@@ -67,18 +52,27 @@ namespace HotelBot.Dialogs.BookARoom
             if (_state.Email != null)
             {
                 // skip to next step and send a reply with the email
-                await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveEmailMessage, new { _state.Email });
+                await _responder.ReplyWith(
+                    sc.Context,
+                    BookARoomResponses.ResponseIds.HaveEmailMessage,
+                    new
+                    {
+                        _state.Email
+                    });
                 return await sc.NextAsync();
             }
+
             // else prompt for email
-            return await sc.PromptAsync(DialogIds.EmailPrompt, new PromptOptions()
-            {
-                Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, BookARoomResponses.ResponseIds.EmailPrompt),
-            });
+            return await sc.PromptAsync(
+                DialogIds.EmailPrompt,
+                new PromptOptions
+                {
+                    Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, BookARoomResponses.ResponseIds.EmailPrompt)
+                });
         }
 
 
-    // step 
+        // step 
         public async Task<DialogTurnResult> AskForNumberOfPeople(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
 
@@ -93,13 +87,21 @@ namespace HotelBot.Dialogs.BookARoom
             if (sc.Result != null)
             {
                 _state.Email = (string) sc.Result;
-                await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveEmailMessage, new { _state.Email });
+                await _responder.ReplyWith(
+                    sc.Context,
+                    BookARoomResponses.ResponseIds.HaveEmailMessage,
+                    new
+                    {
+                        _state.Email
+                    });
             }
 
-            return await sc.PromptAsync(DialogIds.NumberOfPeopleNumberPrompt, new PromptOptions()
-            {
-                Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, BookARoomResponses.ResponseIds.NumberOfPeoplePrompt),
-            });
+            return await sc.PromptAsync(
+                DialogIds.NumberOfPeopleNumberPrompt,
+                new PromptOptions
+                {
+                    Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, BookARoomResponses.ResponseIds.NumberOfPeoplePrompt)
+                });
 
         }
 
@@ -107,10 +109,7 @@ namespace HotelBot.Dialogs.BookARoom
         {
             _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
 
-            if (_state.ArrivalDate != null)
-            {
-                return await sc.NextAsync();
-            }
+            if (_state.ArrivalDate != null) return await sc.NextAsync();
 
             if (sc.Result != null)
             {
@@ -118,10 +117,12 @@ namespace HotelBot.Dialogs.BookARoom
                 await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveNumberOfPeople, _state.NumberOfPeople);
             }
 
-            return await sc.PromptAsync(DialogIds.ArrivalDateTimePrompt, new PromptOptions()
-            {
-                Prompt = await _responder.RenderTemplate(sc.Context, Culture.Dutch, BookARoomResponses.ResponseIds.ArrivalDatePrompt),
-            });
+            return await sc.PromptAsync(
+                DialogIds.ArrivalDateTimePrompt,
+                new PromptOptions
+                {
+                    Prompt = await _responder.RenderTemplate(sc.Context, Culture.Dutch, BookARoomResponses.ResponseIds.ArrivalDatePrompt)
+                });
 
         }
 
@@ -145,10 +146,12 @@ namespace HotelBot.Dialogs.BookARoom
                 await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveArrivalDate, arrivalDateAsNaturalLanguage);
             }
 
-            return await sc.PromptAsync(DialogIds.LeavingDateTimePrompt, new PromptOptions()
-            {
-                Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, BookARoomResponses.ResponseIds.LeavingDatePrompt),
-            });
+            return await sc.PromptAsync(
+                DialogIds.LeavingDateTimePrompt,
+                new PromptOptions
+                {
+                    Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, BookARoomResponses.ResponseIds.LeavingDatePrompt)
+                });
 
         }
 
@@ -164,10 +167,10 @@ namespace HotelBot.Dialogs.BookARoom
                 var resolution = (sc.Result as IList<DateTimeResolution>).First();
                 var timexProp = new TimexProperty(resolution.Timex);
                 _state.LeavingDate = timexProp;
-               // await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveLeavingDate, leavingDateAsNaturalLanguage);
+                // await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveLeavingDate, leavingDateAsNaturalLanguage);
             }
-         
-            await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveEmailMessage,  _state.Email);
+
+            await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveEmailMessage, _state.Email);
             await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveNumberOfPeople, _state.NumberOfPeople);
             await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveArrivalDate, _state.ArrivalDate.ToNaturalLanguage(DateTime.Now));
             await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveLeavingDate, _state.LeavingDate.ToNaturalLanguage(DateTime.Now));
@@ -182,29 +185,41 @@ namespace HotelBot.Dialogs.BookARoom
         }
 
 
-        
+
         private async Task<bool> DateValidatorAsync(
             PromptValidatorContext<IList<DateTimeResolution>> promptContext,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            // Check whether the input could be recognized as an integer.
             if (!promptContext.Recognized.Succeeded)
             {
 
                 await _responder.ReplyWith(promptContext.Context, BookARoomResponses.ResponseIds.NotRecognizedDate);
                 return false;
             }
-            // TODO: translate in real time here?
+
+            // only recognize concrete dates, not for example "next week" (is missing a day)
+            // accepts "next week thursday" or any date strings.
+
+            var first = promptContext.Recognized.Value.First();
+            var tempTimex = new TimexProperty(first.Timex);
+            if (tempTimex.DayOfMonth == null)
+            {
+                await _responder.ReplyWith(promptContext.Context, BookARoomResponses.ResponseIds.SpecificTimePrompt);
+                return false;
+            }
 
 
+
+            //only accept dates not in the future.
             var earliest = DateTime.Now.AddHours(1.0);
-            var value = promptContext.Recognized.Value.FirstOrDefault(v =>
-                DateTime.TryParse(v.Value ?? v.Start, out var time) && DateTime.Compare(earliest, time) <= 0);
+            var value = promptContext.Recognized.Value.FirstOrDefault(
+                v =>
+                    DateTime.TryParse(v.Value ?? v.Start, out var time) && DateTime.Compare(earliest, time) <= 0);
             if (value != null)
             {
                 promptContext.Recognized.Value.Clear();
                 promptContext.Recognized.Value.Add(value);
-                
+
                 return true;
             }
 
@@ -212,7 +227,7 @@ namespace HotelBot.Dialogs.BookARoom
             return false;
         }
 
-        
+
 
         public class DialogIds
         {

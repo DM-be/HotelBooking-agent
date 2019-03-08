@@ -150,4 +150,7 @@
   <data name="NUMBEROFPEOPLE_PROMPT" xml:space="preserve">
     <value>How many people should we expect?</value>
   </data>
+  <data name="SPECIFICTIME_REPLY" xml:space="preserve">
+    <value>I need a specific day to help you.</value>
+  </data>
 </root>
