@@ -61,6 +61,11 @@
      <AutoGen>True</AutoGen>
      <DependentUpon>ValidateDateTimeStrings.resx</DependentUpon>
    </Compile>
+   <Compile Update="Dialogs\Shared\Validators\Resources\ValidatorStrings.Designer.cs">
+     <DesignTime>True</DesignTime>
+     <AutoGen>True</AutoGen>
+     <DependentUpon>ValidatorStrings.resx</DependentUpon>
+   </Compile>
    <Compile Update="Shared\Helpers\Resources\FacebookStrings.Designer.cs">
      <DesignTime>True</DesignTime>
      <AutoGen>True</AutoGen>
@@ -99,6 +104,10 @@
    <EmbeddedResource Update="Dialogs\Shared\Prompts\ValidateDateTimeWaterfall\Resources\ValidateDateTimeStrings.resx">
      <Generator>PublicResXFileCodeGenerator</Generator>
      <LastGenOutput>ValidateDateTimeStrings.Designer.cs</LastGenOutput>
+   </EmbeddedResource>
+   <EmbeddedResource Update="Dialogs\Shared\Validators\Resources\ValidatorStrings.resx">
+     <Generator>PublicResXFileCodeGenerator</Generator>
+     <LastGenOutput>ValidatorStrings.Designer.cs</LastGenOutput>
    </EmbeddedResource>
    <EmbeddedResource Update="Shared\Helpers\Resources\FacebookStrings.resx">
      <Generator>PublicResXFileCodeGenerator</Generator>

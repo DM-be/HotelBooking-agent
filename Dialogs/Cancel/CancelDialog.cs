@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using HotelBot.StateAccessors;
 using Microsoft.Bot.Builder.Dialogs;
 
 namespace HotelBot.Dialogs.Cancel
@@ -7,12 +8,13 @@ namespace HotelBot.Dialogs.Cancel
     public class CancelDialog : ComponentDialog
     {
         private static CancelResponses _responder = new CancelResponses();
+        private readonly StateBotAccessors _accessors;
 
-        public CancelDialog()
+        public CancelDialog(StateBotAccessors accessors)
             : base(nameof(CancelDialog))
         {
             InitialDialogId = nameof(CancelDialog);
-
+            _accessors = accessors; // null check
             var cancel = new WaterfallStep[]
             {
                     AskToCancel,
@@ -46,6 +48,8 @@ namespace HotelBot.Dialogs.Cancel
                 await _responder.ReplyWith(outerDc.Context, CancelResponses.ResponseIds.CancelConfirmedMessage);
 
                 // Cancel all in outer stack of component i.e. the stack the component belongs to
+                // clears all saved state in the conversationstate
+                await _accessors.ConversationState.ClearStateAsync(outerDc.Context, cancellationToken).ConfigureAwait(false);
                 return await outerDc.CancelAllDialogsAsync();
             }
             else

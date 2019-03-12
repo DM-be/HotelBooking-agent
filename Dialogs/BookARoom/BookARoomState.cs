@@ -22,7 +22,7 @@ namespace HotelBot.Dialogs.BookARoom
         // a dictionary holding temporary luisResults
         public Dictionary<string, HotelBotLuis> LuisResults { get; set; }
 
-        // dictionary holding
+        // dictionary holding temporay timexproperties
         public Dictionary<string, TimexProperty> TimexResults { get; set; }
     }
 }

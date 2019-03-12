@@ -38,7 +38,7 @@ namespace HotelBot.Dialogs.Shared
         {
             _services = services;
             _accessors = accessors;
-            AddDialog(new CancelDialog());
+            AddDialog(new CancelDialog(_accessors));
             AddDialog(new ConfirmPrompt(nameof(ConfirmPrompt)));
             var confirmUpdateStepsDate = new WaterfallStep []
             {

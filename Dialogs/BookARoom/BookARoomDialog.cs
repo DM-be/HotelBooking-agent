@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.Shared;
+using HotelBot.Dialogs.Shared.Validators;
 using HotelBot.Services;
 using HotelBot.Shared.Helpers;
 using HotelBot.StateAccessors;
@@ -20,6 +21,7 @@ namespace HotelBot.Dialogs.BookARoom
         private readonly BotServices _services;
         private BookARoomState _state;
         private TranslatorHelper _translatorHelper = new TranslatorHelper();
+        private Validators _validators = new Validators();
 
         public BookARoomDialog(BotServices botServices, StateBotAccessors accessors)
             : base(botServices, accessors, nameof(BookARoomDialog))
@@ -35,8 +37,8 @@ namespace HotelBot.Dialogs.BookARoom
                 AskForEmail, AskForNumberOfPeople, AskForArrivalDate, AskForLeavingDate, FinishBookARoomDialog
             };
             AddDialog(new WaterfallDialog(InitialDialogId, bookARoom));
-            AddDialog(new DateTimePrompt(DialogIds.ArrivalDateTimePrompt, DateValidatorAsync));
-            AddDialog(new DateTimePrompt(DialogIds.LeavingDateTimePrompt, DateValidatorAsync));
+            AddDialog(new DateTimePrompt(DialogIds.ArrivalDateTimePrompt, _validators.DateValidatorAsync));
+            AddDialog(new DateTimePrompt(DialogIds.LeavingDateTimePrompt, _validators.DateValidatorAsync));
             AddDialog(new TextPrompt(DialogIds.EmailPrompt));
             AddDialog(new NumberPrompt<int>(DialogIds.NumberOfPeopleNumberPrompt));
         }
@@ -175,47 +177,7 @@ namespace HotelBot.Dialogs.BookARoom
 
 
 
-        private async Task<bool> DateValidatorAsync(
-            PromptValidatorContext<IList<DateTimeResolution>> promptContext,
-            CancellationToken cancellationToken = default(CancellationToken))
-        {
-            if (!promptContext.Recognized.Succeeded)
-            {
-
-                await _responder.ReplyWith(promptContext.Context, BookARoomResponses.ResponseIds.NotRecognizedDate);
-                return false;
-            }
-
-            // only recognize concrete dates, not for example "next week" (is missing a day)
-            // accepts "next week thursday" or any date strings.
-
-            var first = promptContext.Recognized.Value.First();
-            var tempTimex = new TimexProperty(first.Timex);
-            if (tempTimex.DayOfMonth == null)
-            {
-                await _responder.ReplyWith(promptContext.Context, BookARoomResponses.ResponseIds.SpecificTimePrompt);
-                return false;
-            }
-
-
-            //only accept dates not in the future.
-            var earliest = DateTime.Now.AddHours(1.0);
-            var value = promptContext.Recognized.Value.FirstOrDefault(
-                v =>
-                    DateTime.TryParse(v.Value ?? v.Start, out var time) && DateTime.Compare(earliest, time) <= 0);
-            if (value != null)
-            {
-                promptContext.Recognized.Value.Clear();
-                promptContext.Recognized.Value.Add(value);
-
-                return true;
-            }
-
-            await _responder.ReplyWith(promptContext.Context, BookARoomResponses.ResponseIds.IncorrectDate);
-            return false;
-        }
-
-
+        
 
         public class DialogIds
         {
