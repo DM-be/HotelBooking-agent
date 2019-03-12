@@ -39,7 +39,7 @@ namespace HotelBot.Dialogs.BookARoom
             AddDialog(new WaterfallDialog(InitialDialogId, bookARoom));
             AddDialog(new DateTimePrompt(DialogIds.ArrivalDateTimePrompt, _validators.DateValidatorAsync));
             AddDialog(new DateTimePrompt(DialogIds.LeavingDateTimePrompt, _validators.DateValidatorAsync));
-            AddDialog(new TextPrompt(DialogIds.EmailPrompt));
+            AddDialog(new TextPrompt(DialogIds.EmailPrompt, _validators.EmailValidatorAsync));
             AddDialog(new NumberPrompt<int>(DialogIds.NumberOfPeopleNumberPrompt));
         }
 

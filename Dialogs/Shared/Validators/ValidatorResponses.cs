@@ -40,6 +40,14 @@ namespace HotelBot.Dialogs.Shared.Validators
                             ValidatorStrings.NOT_IN_THE_PAST_DATE,
                             InputHints.AcceptingInput)
                     },
+                    {
+                        ValidatorResponses.ResponseIds.InvalidEmail, (context, data) =>
+                            MessageFactory.Text(
+                                ValidatorStrings.INVALID_EMAIL,
+                                ValidatorStrings.INVALID_EMAIL,
+                                InputHints.AcceptingInput)
+                    }
+
                 }
 
 

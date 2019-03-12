@@ -70,6 +70,15 @@ namespace HotelBot.Dialogs.Shared.Validators.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to That is not a valid email adress..
+        /// </summary>
+        public static string INVALID_EMAIL {
+            get {
+                return ResourceManager.GetString("INVALID_EMAIL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sorry, the date you gave cannot be in the past..
         /// </summary>
         public static string NOT_IN_THE_PAST_DATE {

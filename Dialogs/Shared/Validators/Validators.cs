@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -50,7 +51,18 @@ namespace HotelBot.Dialogs.Shared.Validators
             return false;
         }
 
+        public async Task<bool> EmailValidatorAsync(
+            PromptValidatorContext<string> promptContext,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var validEmail = new EmailAddressAttribute().IsValid(promptContext.Recognized.Value);
+            if (!validEmail)
+            {
+                await _responder.ReplyWith(promptContext.Context, ValidatorResponses.ResponseIds.InvalidEmail);
+                return false;
+            }
 
-
+            return true;
+        }
     }
 }
