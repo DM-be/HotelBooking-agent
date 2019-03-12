@@ -154,26 +154,6 @@ namespace HotelBot.Dialogs.Shared
             return InterruptionStatus.NoAction;
         }
 
-
-        //public async Task<DialogTurnResult> PromptRecheckDate(WaterfallStepContext sc, CancellationToken cancellationToken)
-        //{
-        //    var view = new BookARoomResponses();
-        //    return await sc.PromptAsync(
-        //        BookARoomDialog.DialogIds.ArrivalDateTimePrompt,
-        //        new PromptOptions
-        //        {
-        //            Prompt = await view.RenderTemplate(sc.Context, sc.Context.Activity.Locale, BookARoomResponses.ResponseIds.SpecificTimePrompt)
-        //        });
-        //}
-
-        //public async Task<DialogTurnResult> EndRecheckDate(WaterfallStepContext sc, CancellationToken cancellationToken)
-        //{
-        //    var resolution = (sc.Result as IList<DateTimeResolution>).First();
-        //    return await sc.ReplaceDialogAsync("confirmwaterfall_date", new TimexProperty(resolution.Timex));
-        //}
-
-
-
         // only time validation is needed when an intent matches for example ""
         public async Task<DialogTurnResult> ValidateTimeStep(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
@@ -202,9 +182,6 @@ namespace HotelBot.Dialogs.Shared
 
 
         }
-
-        
-
 
         public async Task<DialogTurnResult> PromptConfirm(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
@@ -272,10 +249,9 @@ namespace HotelBot.Dialogs.Shared
                 }
                 case HotelBotLuis.Intent.Update_ArrivalDate:
                 {
-                    if (luisResult.HasEntityWithPropertyName(EntityNames.Datetime))
+                    if (bookARoomState.TimexResults.TryGetValue("tempTimex", out var arrivingTimexProperty))
                     {
-                        bookARoomState.TimexResults.TryGetValue("tempTimex", out var timexProperty);
-                        bookARoomState.ArrivalDate = timexProperty;
+                        bookARoomState.ArrivalDate = arrivingTimexProperty;
                         bookARoomState.TimexResults.Clear();
                     }
                     else
@@ -286,10 +262,10 @@ namespace HotelBot.Dialogs.Shared
                     break;
                 }
                 case HotelBotLuis.Intent.Update_Leaving_Date:
-                    if (luisResult.HasEntityWithPropertyName(EntityNames.Datetime))
+                    if (bookARoomState.TimexResults.TryGetValue("tempTimex", out var leavingTimexProperty))
                     {
-                        bookARoomState.TimexResults.TryGetValue("tempTimex", out var timexProperty);
-                        bookARoomState.LeavingDate = timexProperty;
+                        
+                        bookARoomState.LeavingDate = leavingTimexProperty;
                         bookARoomState.TimexResults.Clear();
                     }
                     else

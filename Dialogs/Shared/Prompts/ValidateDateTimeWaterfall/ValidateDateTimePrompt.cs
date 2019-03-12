@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using HotelBot.Extensions;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Recognizers.Text.DataTypes.TimexExpression;
 
@@ -52,9 +53,9 @@ namespace HotelBot.Dialogs.Shared.Prompts
 
         public async Task<DialogTurnResult> ReplaceWithValidatedDate(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-            var resolution = (sc.Result as IList<DateTimeResolution>).First();
+            var timexProperty = (sc.Result as IList<DateTimeResolution>).First().ConvertToTimex();
             // ends and calls resume() on parent dialog.
-            return await sc.EndDialogAsync(new TimexProperty(resolution.Timex), cancellationToken);
+            return await sc.EndDialogAsync(timexProperty, cancellationToken);
 
         }
     }
