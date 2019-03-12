@@ -7,25 +7,25 @@
   "tokenizerVersion": "1.0.0",
   "intents": [
     {
-      "name": "book_a_room"
+      "name": "Book_A_Room"
     },
     {
-      "name": "call_us"
+      "name": "Call_Us"
     },
     {
-      "name": "cancel"
+      "name": "Cancel"
     },
     {
-      "name": "get_directions"
+      "name": "Get_Directions"
     },
     {
-      "name": "greeting"
+      "name": "Get_Location"
     },
     {
-      "name": "help"
+      "name": "Greeting"
     },
     {
-      "name": "none"
+      "name": "Help"
     },
     {
       "name": "None"
@@ -68,37 +68,37 @@
   "utterances": [
     {
       "text": "a random sentence",
-      "intent": "none",
+      "intent": "None",
       "entities": []
     },
     {
       "text": "call us",
-      "intent": "call_us",
+      "intent": "Call_Us",
       "entities": []
     },
     {
       "text": "call you",
-      "intent": "call_us",
+      "intent": "Call_Us",
       "entities": []
     },
     {
       "text": "can i book another room for myself next week?",
-      "intent": "book_a_room",
+      "intent": "Book_A_Room",
       "entities": []
     },
     {
       "text": "can i book for tonight?",
-      "intent": "book_a_room",
+      "intent": "Book_A_Room",
       "entities": []
     },
     {
       "text": "can i call the hotel",
-      "intent": "call_us",
+      "intent": "Call_Us",
       "entities": []
     },
     {
       "text": "can i call you",
-      "intent": "call_us",
+      "intent": "Call_Us",
       "entities": []
     },
     {
@@ -123,7 +123,12 @@
     },
     {
       "text": "can i get a room for tomorrow?",
-      "intent": "book_a_room",
+      "intent": "Book_A_Room",
+      "entities": []
+    },
+    {
+      "text": "can i get your adress",
+      "intent": "Get_Location",
       "entities": []
     },
     {
@@ -133,37 +138,47 @@
     },
     {
       "text": "can we call",
-      "intent": "call_us",
+      "intent": "Call_Us",
       "entities": []
     },
     {
       "text": "can we call the hotel",
-      "intent": "call_us",
+      "intent": "Call_Us",
       "entities": []
     },
     {
       "text": "can you book me a room?",
-      "intent": "book_a_room",
+      "intent": "Book_A_Room",
+      "entities": []
+    },
+    {
+      "text": "can you give me a map to the hotel>?",
+      "intent": "Get_Directions",
+      "entities": []
+    },
+    {
+      "text": "can you give me a map to your location?",
+      "intent": "Get_Directions",
       "entities": []
     },
     {
       "text": "cancel",
-      "intent": "cancel",
+      "intent": "Cancel",
       "entities": []
     },
     {
       "text": "cancel now",
-      "intent": "cancel",
+      "intent": "Cancel",
       "entities": []
     },
     {
       "text": "cancel this",
-      "intent": "cancel",
+      "intent": "Cancel",
       "entities": []
     },
     {
       "text": "cancel this booking",
-      "intent": "cancel",
+      "intent": "Cancel",
       "entities": []
     },
     {
@@ -228,7 +243,7 @@
     },
     {
       "text": "could i get a room for next week?",
-      "intent": "book_a_room",
+      "intent": "Book_A_Room",
       "entities": []
     },
     {
@@ -247,33 +262,63 @@
       "entities": []
     },
     {
+      "text": "could you give me a route to where you are",
+      "intent": "Get_Directions",
+      "entities": []
+    },
+    {
+      "text": "could you give me a route to your hotel?",
+      "intent": "Get_Directions",
+      "entities": []
+    },
+    {
+      "text": "could you give me a route to your location",
+      "intent": "Get_Directions",
+      "entities": []
+    },
+    {
+      "text": "could you help me move to your location?",
+      "intent": "Get_Directions",
+      "entities": []
+    },
+    {
       "text": "hello",
-      "intent": "greeting",
+      "intent": "Greeting",
       "entities": []
     },
     {
       "text": "help",
-      "intent": "help",
+      "intent": "Help",
       "entities": []
     },
     {
       "text": "help me",
-      "intent": "help",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "help me navigate to your location",
+      "intent": "Get_Directions",
       "entities": []
     },
     {
       "text": "hi",
-      "intent": "greeting",
+      "intent": "Greeting",
       "entities": []
     },
     {
       "text": "how can we find you",
-      "intent": "get_directions",
+      "intent": "Get_Location",
       "entities": []
     },
     {
       "text": "how late can i arrive tomorrow?",
-      "intent": "book_a_room",
+      "intent": "Book_A_Room",
+      "entities": []
+    },
+    {
+      "text": "i dont understand",
+      "intent": "Help",
       "entities": []
     },
     {
@@ -287,13 +332,23 @@
       "entities": []
     },
     {
+      "text": "i need a map to your hotel",
+      "intent": "Get_Directions",
+      "entities": []
+    },
+    {
       "text": "i need a room for five instead",
       "intent": "Update_Number_Of_People",
       "entities": []
     },
     {
+      "text": "i need directions to your hotel",
+      "intent": "Get_Directions",
+      "entities": []
+    },
+    {
       "text": "i need help",
-      "intent": "help",
+      "intent": "Help",
       "entities": []
     },
     {
@@ -303,7 +358,12 @@
     },
     {
       "text": "i want a room for tomorow",
-      "intent": "book_a_room",
+      "intent": "Book_A_Room",
+      "entities": []
+    },
+    {
+      "text": "i want a route to your location",
+      "intent": "Get_Directions",
       "entities": []
     },
     {
@@ -313,57 +373,57 @@
     },
     {
       "text": "i want to book a room for myself and my partner next week.",
-      "intent": "book_a_room",
+      "intent": "Book_A_Room",
       "entities": []
     },
     {
       "text": "i want to book a room for next week",
-      "intent": "book_a_room",
+      "intent": "Book_A_Room",
       "entities": []
     },
     {
       "text": "i want to book a room for three tomorrow",
-      "intent": "book_a_room",
+      "intent": "Book_A_Room",
       "entities": []
     },
     {
       "text": "i want to book a room for two persons tonight",
-      "intent": "book_a_room",
+      "intent": "Book_A_Room",
       "entities": []
     },
     {
       "text": "i want to book a room in january for myself and my partner",
-      "intent": "book_a_room",
+      "intent": "Book_A_Room",
       "entities": []
     },
     {
       "text": "i want to book a room tomorrow",
-      "intent": "book_a_room",
+      "intent": "Book_A_Room",
       "entities": []
     },
     {
       "text": "i want to call a person",
-      "intent": "call_us",
+      "intent": "Call_Us",
       "entities": []
     },
     {
       "text": "i want to call reception",
-      "intent": "call_us",
+      "intent": "Call_Us",
       "entities": []
     },
     {
       "text": "i want to call the hotel",
-      "intent": "call_us",
+      "intent": "Call_Us",
       "entities": []
     },
     {
       "text": "i want to call you",
-      "intent": "call_us",
+      "intent": "Call_Us",
       "entities": []
     },
     {
       "text": "i want to cancel",
-      "intent": "cancel",
+      "intent": "Cancel",
       "entities": []
     },
     {
@@ -383,17 +443,17 @@
     },
     {
       "text": "i want to do something else",
-      "intent": "cancel",
+      "intent": "Cancel",
       "entities": []
     },
     {
       "text": "i want to get a room for myself and my partner for tomorrow",
-      "intent": "book_a_room",
+      "intent": "Book_A_Room",
       "entities": []
     },
     {
       "text": "i want to get a room for next week",
-      "intent": "book_a_room",
+      "intent": "Book_A_Room",
       "entities": []
     },
     {
@@ -417,13 +477,18 @@
       "entities": []
     },
     {
+      "text": "i want to move to your location",
+      "intent": "Get_Directions",
+      "entities": []
+    },
+    {
       "text": "nice to meet you",
-      "intent": "greeting",
+      "intent": "Greeting",
       "entities": []
     },
     {
       "text": "nothing meaningfull said",
-      "intent": "none",
+      "intent": "None",
       "entities": []
     },
     {
@@ -438,17 +503,17 @@
     },
     {
       "text": "stop",
-      "intent": "cancel",
+      "intent": "Cancel",
       "entities": []
     },
     {
       "text": "stop doing this",
-      "intent": "cancel",
+      "intent": "Cancel",
       "entities": []
     },
     {
       "text": "this is nothing special",
-      "intent": "none",
+      "intent": "None",
       "entities": []
     },
     {
@@ -503,77 +568,97 @@
     },
     {
       "text": "what can i ask you",
-      "intent": "help",
+      "intent": "Help",
       "entities": []
     },
     {
       "text": "what can you do",
-      "intent": "help",
+      "intent": "Help",
       "entities": []
     },
     {
       "text": "what is the hotel number?>",
-      "intent": "call_us",
+      "intent": "Call_Us",
+      "entities": []
+    },
+    {
+      "text": "what is the location",
+      "intent": "Get_Location",
       "entities": []
     },
     {
       "text": "what is the location?",
-      "intent": "get_directions",
+      "intent": "Get_Location",
       "entities": []
     },
     {
       "text": "what is your address?",
-      "intent": "get_directions",
+      "intent": "Get_Location",
+      "entities": []
+    },
+    {
+      "text": "what is your adress",
+      "intent": "Get_Location",
       "entities": []
     },
     {
       "text": "what's your address?",
-      "intent": "get_directions",
+      "intent": "Get_Location",
       "entities": []
     },
     {
       "text": "whats your number",
-      "intent": "call_us",
+      "intent": "Call_Us",
       "entities": []
     },
     {
       "text": "whats your number?",
-      "intent": "call_us",
+      "intent": "Call_Us",
       "entities": []
     },
     {
       "text": "where are you located",
-      "intent": "get_directions",
+      "intent": "Get_Location",
       "entities": []
     },
     {
       "text": "where are you located?",
-      "intent": "get_directions",
+      "intent": "Get_Location",
+      "entities": []
+    },
+    {
+      "text": "where can i find the hotel",
+      "intent": "Get_Location",
       "entities": []
     },
     {
       "text": "where can i find your number",
-      "intent": "call_us",
+      "intent": "Call_Us",
       "entities": []
     },
     {
       "text": "where in the city are you?",
-      "intent": "get_directions",
+      "intent": "Get_Location",
+      "entities": []
+    },
+    {
+      "text": "where in the city can i visit you",
+      "intent": "Get_Location",
       "entities": []
     },
     {
       "text": "where is it?",
-      "intent": "get_directions",
+      "intent": "Get_Location",
       "entities": []
     },
     {
       "text": "where is the bed and breakfast?",
-      "intent": "get_directions",
+      "intent": "Get_Location",
       "entities": []
     },
     {
       "text": "where is the hotel?",
-      "intent": "get_directions",
+      "intent": "Get_Location",
       "entities": []
     }
   ],

@@ -1,0 +1,44 @@
+Label	Weight	Text
+l_hotelbot	3.76	i want to get a room for myself and my partner for tomorrow
+l_hotelbot	3.76	hi
+l_hotelbot	3.76	cancel
+l_hotelbot	3.76	can we call the hotel
+l_hotelbot	3.76	nothing meaningfull said
+l_hotelbot	3.76	i need directions to your hotel
+l_hotelbot	3.76	i want to call reception
+l_hotelbot	3.76	change the number of people to six
+l_hotelbot	3.76	can you give me a map to your location
+l_hotelbot	3.76	i want to move to your location
+l_hotelbot	3.76	i want to call a person
+l_hotelbot	3.76	i want to come next week instead
+l_hotelbot	3.76	change when i arrive to the first of next month
+l_hotelbot	3.76	hello
+l_hotelbot	3.76	where is it
+l_hotelbot	3.76	where in the city can i visit you
+l_hotelbot	7.52	what is the location
+l_hotelbot	3.76	nice to meet you
+l_hotelbot	3.76	change leaving date to next friday
+l_hotelbot	3.76	update the arrival date please
+l_hotelbot	7.52	whats your number
+l_hotelbot	3.76	i want to leave next week
+l_hotelbot	3.76	what is your adress
+q_2129612763787673_en	9.4	can i take my dog
+q_2129612763787673_en	9.4	can i take my dog
+q_2129612763787673_en	9.4	can i take my dog
+q_2129612763787673_en	9.4	can i take my dog
+q_2129612763787673_en	9.4	can i take my dog
+q_2129612763787673_en	9.4	can i take my dog
+q_2129612763787673_en	9.4	can i take my dog
+q_2129612763787673_en	9.4	can i take my dog
+q_2129612763787673_en	9.4	can i take my dog
+q_2129612763787673_en	9.4	can i take my dog
+q_2129612763787673_nl	9.400001	Mag ik mijn hond meenemen
+q_2129612763787673_nl	9.400001	Mag ik mijn hond meenemen
+q_2129612763787673_nl	9.400001	Mag ik mijn hond meenemen
+q_2129612763787673_nl	9.400001	Mag ik mijn hond meenemen
+q_2129612763787673_nl	9.400001	Mag ik mijn hond meenemen
+q_2129612763787673_nl	9.400001	Mag ik mijn hond meenemen
+q_2129612763787673_nl	9.400001	Mag ik mijn hond meenemen
+q_2129612763787673_nl	9.400001	Mag ik mijn hond meenemen
+q_2129612763787673_nl	9.400001	Mag ik mijn hond meenemen
+q_2129612763787673_nl	9.400001	Mag ik mijn hond meenemen

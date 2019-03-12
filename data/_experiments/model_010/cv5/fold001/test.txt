@@ -1,0 +1,44 @@
+Label	Weight	Text
+l_hotelbot	4.173913	change my arrivaldate to 25/02/2019
+l_hotelbot	4.173913	update arrival please
+l_hotelbot	4.173913	i made a mistake, can i change my arrivaldate
+l_hotelbot	4.173913	this is nothing special
+l_hotelbot	4.173913	could you give me a route to your hotel
+l_hotelbot	4.173913	stop
+l_hotelbot	4.173913	update the room to two people please
+l_hotelbot	4.173913	i want to change my arrivaldate
+l_hotelbot	4.173913	i want to book a room in january for myself and my partner
+l_hotelbot	4.173913	can i change when i leave
+l_hotelbot	4.173913	where is the hotel
+l_hotelbot	4.173913	i want to arrive tomorrow instead
+l_hotelbot	4.173913	cancel this booking
+l_hotelbot	4.173913	update when i leave to 26 march
+l_hotelbot	4.173913	call you
+l_hotelbot	4.173913	i want to book a room tomorrow
+l_hotelbot	4.173913	can i call the hotel
+l_hotelbot	4.173913	change my email to anothertesting@gmail.com
+l_hotelbot	4.173913	i want to do something else
+l_hotelbot	4.173913	could i change my email address
+l_hotelbot	4.173913	can i get your adress
+l_hotelbot	4.173913	how late can i arrive tomorrow
+l_hotelbot	4.173913	change the number of people to two
+q_2129612763787673_en	9.6	can i take my dog
+q_2129612763787673_en	9.6	can i take my dog
+q_2129612763787673_en	9.6	can i take my dog
+q_2129612763787673_en	9.6	can i take my dog
+q_2129612763787673_en	9.6	can i take my dog
+q_2129612763787673_en	9.6	can i take my dog
+q_2129612763787673_en	9.6	can i take my dog
+q_2129612763787673_en	9.6	can i take my dog
+q_2129612763787673_en	9.6	can i take my dog
+q_2129612763787673_en	9.6	can i take my dog
+q_2129612763787673_nl	9.6	Is mijn hond toegelaten in het hotel
+q_2129612763787673_nl	9.6	Is mijn hond toegelaten in het hotel
+q_2129612763787673_nl	9.6	Is mijn hond toegelaten in het hotel
+q_2129612763787673_nl	9.6	Is mijn hond toegelaten in het hotel
+q_2129612763787673_nl	9.6	Is mijn hond toegelaten in het hotel
+q_2129612763787673_nl	9.6	Is mijn hond toegelaten in het hotel
+q_2129612763787673_nl	9.6	Is mijn hond toegelaten in het hotel
+q_2129612763787673_nl	9.6	Is mijn hond toegelaten in het hotel
+q_2129612763787673_nl	9.6	Is mijn hond toegelaten in het hotel
+q_2129612763787673_nl	9.6	Is mijn hond toegelaten in het hotel

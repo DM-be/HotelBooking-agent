@@ -15,13 +15,13 @@ namespace Luis
         public string Text;
         public string AlteredText;
         public enum Intent {
-            book_a_room, 
-            call_us, 
-            cancel, 
-            get_directions, 
-            greeting, 
-            help, 
-            none, 
+            Book_A_Room, 
+            Call_Us, 
+            Cancel, 
+            Get_Directions, 
+            Get_Location, 
+            Greeting, 
+            Help, 
             None, 
             Update_ArrivalDate, 
             Update_email, 

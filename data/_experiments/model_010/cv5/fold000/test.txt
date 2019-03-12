@@ -1,0 +1,44 @@
+Label	Weight	Text
+l_hotelbot	4.173913	where can i find the hotel
+l_hotelbot	4.173913	update when i leave to another time
+l_hotelbot	4.173913	help
+l_hotelbot	4.173913	i need help
+l_hotelbot	4.173913	can we call
+l_hotelbot	4.173913	sorry we are arriving with six people
+l_hotelbot	4.173913	cancel now
+l_hotelbot	4.173913	i need a map to your hotel
+l_hotelbot	4.173913	i want to call the hotel
+l_hotelbot	4.173913	could you give me a route to where you are
+l_hotelbot	4.173913	i want a route to your location
+l_hotelbot	4.173913	could i update my email
+l_hotelbot	4.173913	i want to get a room for next week
+l_hotelbot	4.173913	i dont understand
+l_hotelbot	4.173913	could i get a room for next week
+l_hotelbot	4.173913	call us
+l_hotelbot	4.173913	what is the hotel number?>
+l_hotelbot	4.173913	can you give me a map to the hotel>
+l_hotelbot	4.173913	i want to leave next week instead
+l_hotelbot	4.173913	i want a room for six instead
+l_hotelbot	4.173913	change the room for three please
+l_hotelbot	4.173913	change my leaving date to another date
+l_hotelbot	4.173913	update my leaving date to the 4th please
+q_2129612763787673_en	9.6	are dogs allowed
+q_2129612763787673_en	9.6	are dogs allowed
+q_2129612763787673_en	9.6	are dogs allowed
+q_2129612763787673_en	9.6	are dogs allowed
+q_2129612763787673_en	9.6	are dogs allowed
+q_2129612763787673_en	9.6	are dogs allowed
+q_2129612763787673_en	9.6	are dogs allowed
+q_2129612763787673_en	9.6	are dogs allowed
+q_2129612763787673_en	9.6	are dogs allowed
+q_2129612763787673_en	9.6	are dogs allowed
+q_2129612763787673_nl	9.6	Zijn honden toegelaten
+q_2129612763787673_nl	9.6	Zijn honden toegelaten
+q_2129612763787673_nl	9.6	Zijn honden toegelaten
+q_2129612763787673_nl	9.6	Zijn honden toegelaten
+q_2129612763787673_nl	9.6	Zijn honden toegelaten
+q_2129612763787673_nl	9.6	Zijn honden toegelaten
+q_2129612763787673_nl	9.6	Zijn honden toegelaten
+q_2129612763787673_nl	9.6	Zijn honden toegelaten
+q_2129612763787673_nl	9.6	Zijn honden toegelaten
+q_2129612763787673_nl	9.6	Zijn honden toegelaten

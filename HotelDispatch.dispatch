@@ -5,13 +5,13 @@
   "dontReviseUtterance": false,
   "services": [
     {
-      "appId": "b1fa4a04-cb5e-47bd-ac18-2e3a3d5877fa",
-      "authoringKey": "cbcdfd8ed0d14d48ae3b01dd8c739bbf",
-      "subscriptionKey": "cbcdfd8ed0d14d48ae3b01dd8c739bbf",
+      "appId": "4dda25a6-5818-453d-9948-d4c46112f544",
+      "authoringKey": "fb0e00d3a5964977b1c4b1d941877a58",
+      "subscriptionKey": "fb0e00d3a5964977b1c4b1d941877a58",
       "version": "0.1",
       "region": "westeurope",
       "type": "luis",
-      "name": "HotelBot",
+      "name": "hotelbot",
       "id": "118"
     },
     {
@@ -38,9 +38,9 @@
     "69",
     "0"
   ],
-  "appId": "df3d5154-a0dd-48cf-ac6e-4ceb8147fc9f",
-  "authoringKey": "cbcdfd8ed0d14d48ae3b01dd8c739bbf",
-  "subscriptionKey": "cbcdfd8ed0d14d48ae3b01dd8c739bbf",
+  "appId": "ed6bd627-3700-408b-a5e9-b654d28de2dc",
+  "authoringKey": "fb0e00d3a5964977b1c4b1d941877a58",
+  "subscriptionKey": "fb0e00d3a5964977b1c4b1d941877a58",
   "version": "Dispatch",
   "region": "westeurope",
   "type": "dispatch",

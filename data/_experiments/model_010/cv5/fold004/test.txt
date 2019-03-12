@@ -1,0 +1,44 @@
+Label	Weight	Text
+l_hotelbot	4.173913	can i book for tonight
+l_hotelbot	4.173913	i want to call you
+l_hotelbot	4.173913	i want to change when i arrive
+l_hotelbot	4.173913	help me navigate to your location
+l_hotelbot	4.173913	sorry i made a mistake my email is blabla@test.com
+l_hotelbot	4.173913	can i change arrival date
+l_hotelbot	4.173913	could i leave next week instead
+l_hotelbot	4.173913	what is your address
+l_hotelbot	4.173913	what can i ask you
+l_hotelbot	4.173913	could you help me move to your location
+l_hotelbot	4.173913	where can i find your number
+l_hotelbot	4.173913	can i change my leaving date
+l_hotelbot	4.173913	can you book me a room
+l_hotelbot	4.173913	a random sentence
+l_hotelbot	4.173913	i mistyped my email adres it is dennistest@hotmail.com instead of the other
+l_hotelbot	4.173913	i want to leave tomorrow
+l_hotelbot	4.173913	stop doing this
+l_hotelbot	4.173913	can i get a room for tomorrow
+l_hotelbot	4.173913	how can we find you
+l_hotelbot	4.173913	i want to leave on 23/04.2019 instead
+l_hotelbot	4.173913	update my email to bla@test.com
+l_hotelbot	4.173913	can i call you
+l_hotelbot	4.173913	i want to book a room for next week
+q_2129612763787673_en	9.6	can i take my dog
+q_2129612763787673_en	9.6	can i take my dog
+q_2129612763787673_en	9.6	can i take my dog
+q_2129612763787673_en	9.6	can i take my dog
+q_2129612763787673_en	9.6	can i take my dog
+q_2129612763787673_en	9.6	can i take my dog
+q_2129612763787673_en	9.6	can i take my dog
+q_2129612763787673_en	9.6	can i take my dog
+q_2129612763787673_en	9.6	can i take my dog
+q_2129612763787673_en	9.6	can i take my dog
+q_2129612763787673_nl	9.599999	Mogen we onze hond meenemen
+q_2129612763787673_nl	9.599999	Mogen we onze hond meenemen
+q_2129612763787673_nl	9.599999	Mogen we onze hond meenemen
+q_2129612763787673_nl	9.599999	Mogen we onze hond meenemen
+q_2129612763787673_nl	9.599999	Mogen we onze hond meenemen
+q_2129612763787673_nl	9.599999	Mogen we onze hond meenemen
+q_2129612763787673_nl	9.599999	Mogen we onze hond meenemen
+q_2129612763787673_nl	9.599999	Mogen we onze hond meenemen
+q_2129612763787673_nl	9.599999	Mogen we onze hond meenemen
+q_2129612763787673_nl	9.599999	Mogen we onze hond meenemen

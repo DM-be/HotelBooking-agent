@@ -1,0 +1,44 @@
+Label	Weight	Text
+l_hotelbot	3.958333	where is the bed and breakfast
+l_hotelbot	3.958333	what can you do
+l_hotelbot	3.958333	i want to book a room for two persons tonight
+l_hotelbot	3.958333	update my leaving date
+l_hotelbot	3.958333	change my arrivaldate to next week
+l_hotelbot	3.958333	can i update my arriving date
+l_hotelbot	3.958333	what's your address
+l_hotelbot	3.958333	i need a room for five instead
+l_hotelbot	3.958333	could you give me a route to your location
+l_hotelbot	3.958333	i want to book a room for myself and my partner next week.
+l_hotelbot	3.958333	help me
+l_hotelbot	3.958333	update my arriving date
+l_hotelbot	3.958333	where in the city are you
+l_hotelbot	3.958333	could you change my email to another one
+l_hotelbot	3.958333	i want to book a room for three tomorrow
+l_hotelbot	3.958333	i want a room for tomorow
+l_hotelbot	3.958333	cancel this
+l_hotelbot	3.958333	change leaving date to next week
+l_hotelbot	3.958333	change my leaving date to another time
+l_hotelbot	7.916667	where are you located
+l_hotelbot	3.958333	update the number of people to ten
+l_hotelbot	3.958333	can i book another room for myself next week
+l_hotelbot	3.958333	can i change when i will arrive
+q_2129612763787673_en	9.5	can i take my dog
+q_2129612763787673_en	9.5	can i take my dog
+q_2129612763787673_en	9.5	can i take my dog
+q_2129612763787673_en	9.5	can i take my dog
+q_2129612763787673_en	9.5	can i take my dog
+q_2129612763787673_en	9.5	can i take my dog
+q_2129612763787673_en	9.5	can i take my dog
+q_2129612763787673_en	9.5	can i take my dog
+q_2129612763787673_en	9.5	can i take my dog
+q_2129612763787673_en	9.5	can i take my dog
+q_2129612763787673_nl	9.500001	We hebben twee honden, is dat een probleem
+q_2129612763787673_nl	9.500001	We hebben twee honden, is dat een probleem
+q_2129612763787673_nl	9.500001	We hebben twee honden, is dat een probleem
+q_2129612763787673_nl	9.500001	We hebben twee honden, is dat een probleem
+q_2129612763787673_nl	9.500001	We hebben twee honden, is dat een probleem
+q_2129612763787673_nl	9.500001	We hebben twee honden, is dat een probleem
+q_2129612763787673_nl	9.500001	We hebben twee honden, is dat een probleem
+q_2129612763787673_nl	9.500001	We hebben twee honden, is dat een probleem
+q_2129612763787673_nl	9.500001	We hebben twee honden, is dat een probleem
+q_2129612763787673_nl	9.500001	We hebben twee honden, is dat een probleem

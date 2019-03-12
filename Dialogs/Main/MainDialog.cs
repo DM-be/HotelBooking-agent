@@ -45,7 +45,7 @@ namespace HotelBot.Dialogs.Main
                 if (intent == HotelDispatch.Intent.l_HotelBot)
                 {
                     // If dispatch result is hotelbot luis model
-                    _services.LuisServices.TryGetValue("HotelBot", out var luisService);
+                    _services.LuisServices.TryGetValue("hotelbot", out var luisService);
 
                     if (luisService == null) throw new ArgumentNullException(nameof(luisService));
 
@@ -57,7 +57,7 @@ namespace HotelBot.Dialogs.Main
                     switch (hotelBotIntent)
                     {
                         // delegates  -  reflection 
-                        case HotelBotLuis.Intent.cancel:
+                        case HotelBotLuis.Intent.Cancel:
                         {
                             // send cancelled response
                             await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.Cancelled);
@@ -67,25 +67,25 @@ namespace HotelBot.Dialogs.Main
                             break;
                         }
 
-                        case HotelBotLuis.Intent.help:
+                        case HotelBotLuis.Intent.Help:
                         {
 
                             await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.Help);
                             break;
                         }
-                        case HotelBotLuis.Intent.book_a_room:
+                        case HotelBotLuis.Intent.Book_A_Room:
                         {
                             await UpdateState(dc, result);
                             await dc.BeginDialogAsync(nameof(BookARoomDialog));
                             break;
                         }
-                        case HotelBotLuis.Intent.get_directions:
+                        case HotelBotLuis.Intent.Get_Directions:
                         {
 
                             await _facebookHelper.SendLocationQuickReply(dc.Context);
                             break;
                         }
-                        case HotelBotLuis.Intent.call_us:
+                        case HotelBotLuis.Intent.Call_Us:
                         {
                             await _facebookHelper.SendCallMessage(dc.Context);
                             break;
@@ -144,7 +144,7 @@ namespace HotelBot.Dialogs.Main
 
             switch (luisResult.TopIntent().intent)
             {
-                case HotelBotLuis.Intent.book_a_room:
+                case HotelBotLuis.Intent.Book_A_Room:
                     if (luisResult.HasEntityWithPropertyName(EntityNames.Email))
                         bookARoomState.Email = luisResult.Entities.email.First();
                     if (luisResult.HasEntityWithPropertyName(EntityNames.Number))

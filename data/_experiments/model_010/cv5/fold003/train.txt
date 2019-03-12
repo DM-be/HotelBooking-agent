@@ -1,0 +1,115 @@
+Label	Weight	Text
+l_hotelbot	1	where can i find the hotel
+l_hotelbot	1	update when i leave to another time
+l_hotelbot	1	help
+l_hotelbot	1	i need help
+l_hotelbot	1	can we call
+l_hotelbot	1	sorry we are arriving with six people
+l_hotelbot	1	cancel now
+l_hotelbot	1	i need a map to your hotel
+l_hotelbot	1	i want to call the hotel
+l_hotelbot	1	could you give me a route to where you are
+l_hotelbot	1	i want a route to your location
+l_hotelbot	1	could i update my email
+l_hotelbot	1	i want to get a room for next week
+l_hotelbot	1	i dont understand
+l_hotelbot	1	could i get a room for next week
+l_hotelbot	1	call us
+l_hotelbot	1	what is the hotel number?>
+l_hotelbot	1	can you give me a map to the hotel>
+l_hotelbot	1	i want to leave next week instead
+l_hotelbot	1	i want a room for six instead
+l_hotelbot	1	change the room for three please
+l_hotelbot	1	change my leaving date to another date
+l_hotelbot	1	update my leaving date to the 4th please
+l_hotelbot	1	change my arrivaldate to 25/02/2019
+l_hotelbot	1	update arrival please
+l_hotelbot	1	i made a mistake, can i change my arrivaldate
+l_hotelbot	1	this is nothing special
+l_hotelbot	1	could you give me a route to your hotel
+l_hotelbot	1	stop
+l_hotelbot	1	update the room to two people please
+l_hotelbot	1	i want to change my arrivaldate
+l_hotelbot	1	i want to book a room in january for myself and my partner
+l_hotelbot	1	can i change when i leave
+l_hotelbot	1	where is the hotel
+l_hotelbot	1	i want to arrive tomorrow instead
+l_hotelbot	1	cancel this booking
+l_hotelbot	1	update when i leave to 26 march
+l_hotelbot	1	call you
+l_hotelbot	1	i want to book a room tomorrow
+l_hotelbot	1	can i call the hotel
+l_hotelbot	1	change my email to anothertesting@gmail.com
+l_hotelbot	1	i want to do something else
+l_hotelbot	1	could i change my email address
+l_hotelbot	1	can i get your adress
+l_hotelbot	1	how late can i arrive tomorrow
+l_hotelbot	1	change the number of people to two
+l_hotelbot	1	i want to get a room for myself and my partner for tomorrow
+l_hotelbot	1	hi
+l_hotelbot	1	cancel
+l_hotelbot	1	can we call the hotel
+l_hotelbot	1	nothing meaningfull said
+l_hotelbot	1	i need directions to your hotel
+l_hotelbot	1	i want to call reception
+l_hotelbot	1	change the number of people to six
+l_hotelbot	1	can you give me a map to your location
+l_hotelbot	1	i want to move to your location
+l_hotelbot	1	i want to call a person
+l_hotelbot	1	i want to come next week instead
+l_hotelbot	1	change when i arrive to the first of next month
+l_hotelbot	1	hello
+l_hotelbot	1	where is it
+l_hotelbot	1	where in the city can i visit you
+l_hotelbot	2	what is the location
+l_hotelbot	1	nice to meet you
+l_hotelbot	1	change leaving date to next friday
+l_hotelbot	1	update the arrival date please
+l_hotelbot	2	whats your number
+l_hotelbot	1	i want to leave next week
+l_hotelbot	1	what is your adress
+l_hotelbot	1	can i book for tonight
+l_hotelbot	1	i want to call you
+l_hotelbot	1	i want to change when i arrive
+l_hotelbot	1	help me navigate to your location
+l_hotelbot	1	sorry i made a mistake my email is blabla@test.com
+l_hotelbot	1	can i change arrival date
+l_hotelbot	1	could i leave next week instead
+l_hotelbot	1	what is your address
+l_hotelbot	1	what can i ask you
+l_hotelbot	1	could you help me move to your location
+l_hotelbot	1	where can i find your number
+l_hotelbot	1	can i change my leaving date
+l_hotelbot	1	can you book me a room
+l_hotelbot	1	a random sentence
+l_hotelbot	1	i mistyped my email adres it is dennistest@hotmail.com instead of the other
+l_hotelbot	1	i want to leave tomorrow
+l_hotelbot	1	stop doing this
+l_hotelbot	1	can i get a room for tomorrow
+l_hotelbot	1	how can we find you
+l_hotelbot	1	i want to leave on 23/04.2019 instead
+l_hotelbot	1	update my email to bla@test.com
+l_hotelbot	1	can i call you
+l_hotelbot	1	i want to book a room for next week
+l_hotelbot	1	i want to cancel
+q_2129612763787673_en	9.5	are dogs allowed
+q_2129612763787673_en	9.5	are dogs allowed
+q_2129612763787673_en	9.5	are dogs allowed
+q_2129612763787673_en	9.5	are dogs allowed
+q_2129612763787673_en	9.5	are dogs allowed
+q_2129612763787673_en	9.5	are dogs allowed
+q_2129612763787673_en	9.5	are dogs allowed
+q_2129612763787673_en	9.5	are dogs allowed
+q_2129612763787673_en	9.5	are dogs allowed
+q_2129612763787673_en	9.5	are dogs allowed
+q_2129612763787673_nl	8.636364	Zijn honden toegelaten
+q_2129612763787673_nl	8.636364	Is mijn hond toegelaten in het hotel
+q_2129612763787673_nl	8.636364	Mag ik mijn hond meenemen
+q_2129612763787673_nl	8.636364	Mogen we onze hond meenemen
+q_2129612763787673_nl	8.636364	Zijn honden toegelaten op de kamer
+q_2129612763787673_nl	8.636364	Zijn honden toegelaten
+q_2129612763787673_nl	8.636364	Is mijn hond toegelaten in het hotel
+q_2129612763787673_nl	8.636364	Mag ik mijn hond meenemen
+q_2129612763787673_nl	8.636364	Zijn honden toegelaten
+q_2129612763787673_nl	8.636364	Is mijn hond toegelaten in het hotel
+q_2129612763787673_nl	8.636364	Mag ik mijn hond meenemen

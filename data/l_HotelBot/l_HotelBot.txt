@@ -10,10 +10,13 @@ can i change my leaving date
 can i change when i leave
 can i change when i will arrive
 can i get a room for tomorrow
+can i get your adress
 can i update my arriving date
 can we call
 can we call the hotel
 can you book me a room
+can you give me a map to the hotel>
+can you give me a map to your location
 cancel
 cancel now
 cancel this
@@ -34,18 +37,27 @@ could i get a room for next week
 could i leave next week instead
 could i update my email
 could you change my email to another one
+could you give me a route to where you are
+could you give me a route to your hotel
+could you give me a route to your location
+could you help me move to your location
 hello
 help
 help me
+help me navigate to your location
 hi
 how can we find you
 how late can i arrive tomorrow
+i dont understand
 i made a mistake, can i change my arrivaldate
 i mistyped my email adres it is dennistest@hotmail.com instead of the other
+i need a map to your hotel
 i need a room for five instead
+i need directions to your hotel
 i need help
 i want a room for six instead
 i want a room for tomorow
+i want a route to your location
 i want to arrive tomorrow instead
 i want to book a room for myself and my partner next week.
 i want to book a room for next week
@@ -68,6 +80,7 @@ i want to leave next week
 i want to leave next week instead
 i want to leave on 23/04.2019 instead
 i want to leave tomorrow
+i want to move to your location
 nice to meet you
 nothing meaningfull said
 sorry i made a mistake my email is blabla@test.com
@@ -89,14 +102,18 @@ what can i ask you
 what can you do
 what is the hotel number?>
 what is the location
+what is the location
 what is your address
+what is your adress
 what's your address
 whats your number
 whats your number
 where are you located
 where are you located
+where can i find the hotel
 where can i find your number
 where in the city are you
+where in the city can i visit you
 where is it
 where is the bed and breakfast
 where is the hotel

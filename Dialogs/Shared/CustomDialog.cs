@@ -59,7 +59,7 @@ namespace HotelBot.Dialogs.Shared
         protected override async Task<InterruptionStatus> OnDialogInterruptionAsync(DialogContext dc, CancellationToken cancellationToken)
         {
             // check luis intent
-            _services.LuisServices.TryGetValue("HotelBot", out var luisService);
+            _services.LuisServices.TryGetValue("hotelbot", out var luisService);
 
             if (luisService == null) throw new Exception("The specified LUIS Model could not be found in your Bot Services configuration.");
 
@@ -75,12 +75,12 @@ namespace HotelBot.Dialogs.Shared
 
                 switch (intent)
                 {
-                    case HotelBotLuis.Intent.cancel:
+                    case HotelBotLuis.Intent.Cancel:
                     {
                         return await OnCancel(dc);
                     }
 
-                    case HotelBotLuis.Intent.help:
+                    case HotelBotLuis.Intent.Help:
                     {
                         // todo: provide contextual help
                         return await OnHelp(dc);
