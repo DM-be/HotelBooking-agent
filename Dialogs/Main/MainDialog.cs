@@ -4,13 +4,13 @@ using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.BookARoom;
 using HotelBot.Dialogs.Shared;
+using HotelBot.Extensions;
 using HotelBot.Services;
 using HotelBot.Shared.Helpers;
 using HotelBot.StateAccessors;
 using Luis;
-using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
-using Newtonsoft.Json.Linq;
+using Microsoft.Recognizers.Text.DataTypes.TimexExpression;
 
 namespace HotelBot.Dialogs.Main
 {
@@ -75,7 +75,7 @@ namespace HotelBot.Dialogs.Main
                         }
                         case HotelBotLuis.Intent.book_a_room:
                         {
-
+                            await UpdateState(dc, result);
                             await dc.BeginDialogAsync(nameof(BookARoomDialog));
                             break;
                         }
@@ -111,7 +111,7 @@ namespace HotelBot.Dialogs.Main
 
                     var answers = await qnaService.GetAnswersAsync(dc.Context);
 
-                    if (answers != null && answers.Count() > 0) await dc.Context.SendActivityAsync(answers[0].Answer);
+                    if (answers != null && answers.Any()) await dc.Context.SendActivityAsync(answers[0].Answer);
                 }
 
                 else
@@ -127,9 +127,6 @@ namespace HotelBot.Dialogs.Main
 
         protected override async Task OnEventAsync(DialogContext dc, CancellationToken cancellationToken = default(CancellationToken))
         {
-            // TODO: check for quick reply here?
-
-
         }
 
         protected override async Task CompleteAsync(DialogContext dc, CancellationToken cancellationToken = default(CancellationToken))
@@ -138,29 +135,29 @@ namespace HotelBot.Dialogs.Main
             await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.Completed);
         }
 
-        private void FromLuisResults(RecognizerResult luisResults)
+
+
+        //todo: refactor
+        private async Task UpdateState(DialogContext dc, HotelBotLuis luisResult)
         {
-            string [] allEntities =
+            var bookARoomState = await _accessors.BookARoomStateAccessor.GetAsync(dc.Context, () => new BookARoomState());
+
+            switch (luisResult.TopIntent().intent)
             {
-                "datetime"
-            };
+                case HotelBotLuis.Intent.book_a_room:
+                    if (luisResult.HasEntityWithPropertyName(EntityNames.Email))
+                        bookARoomState.Email = luisResult.Entities.email.First();
+                    if (luisResult.HasEntityWithPropertyName(EntityNames.Number))
+                        bookARoomState.NumberOfPeople = luisResult.Entities.number.First();
+                    if (luisResult.HasEntityWithPropertyName(EntityNames.Datetime))
+                        if (luisResult.Entities.datetime.First().Type == "date")
+                        {
+                            var dateTimeSpecs = luisResult.Entities.datetime.First();
+                            var firstExpression = dateTimeSpecs.Expressions.First();
+                            bookARoomState.ArrivalDate = new TimexProperty(firstExpression);
+                        }
 
-            foreach (var entity in allEntities)
-            {
-                var value = luisResults.Entities.SelectTokens(entity).FirstOrDefault();
-                if (value == null) continue;
-
-                object property = null;
-                var val = value.First();
-                if (val.Type == JTokenType.Object)
-                {
-                    var obj = (JObject) val;
-                    if (obj["type"].ToString() == "datetime") property = val;
-                }
-
-                // continue for each entity
-
-
+                    break;
             }
         }
     }
