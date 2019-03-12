@@ -85,6 +85,11 @@ namespace HotelBot.Dialogs.Main
                             await _facebookHelper.SendLocationQuickReply(dc.Context);
                             break;
                         }
+                        case HotelBotLuis.Intent.Get_Location:
+                        {
+                            await _facebookHelper.SendDirectionsWithoutOrigin(dc.Context, null);
+                            break;
+                        }
                         case HotelBotLuis.Intent.Call_Us:
                         {
                             await _facebookHelper.SendCallMessage(dc.Context);

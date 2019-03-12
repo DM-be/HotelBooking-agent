@@ -32,6 +32,11 @@ namespace HotelBot.Shared.Helpers
                         BuildDirectionsCard(context, data)
                 },
                 {
+                    ResponseIds.SendDirectionsWithoutOrigin,
+                    (context, data) =>
+                        BuildDirectionsCardWithoutOrigin(context, data)
+                },
+                {
                     ResponseIds.CallUs,
                     (context, data) =>
                         BuildCallMessage(context, data)
@@ -136,7 +141,7 @@ namespace HotelBot.Shared.Helpers
             var url = $"https://www.google.com/maps/dir/?api=1&origin={latCoordinatesLat},{longCoordinatesLong}&destination=51.228557,3.231737";
             var heroCard = new HeroCard
             {
-                Title = "Starhotel Bruges", // TODO: get from conversation state
+                Title = "Starhotel Bruges", // TODO: get from external source
                 Images = new List<CardImage> { new CardImage("https://img.hotelspecials.be/fc2fadf52703ae0181b289f84011bf6a.jpeg?w=250&h=200&c=1&quality=70") },
                 Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl, FacebookStrings.HEROCARD_BUTTON_DIRECTION_TITLE, value: url) }
             };
@@ -150,6 +155,27 @@ namespace HotelBot.Shared.Helpers
             return reply;
         }
 
+
+        public static IMessageActivity BuildDirectionsCardWithoutOrigin(ITurnContext context, FacebookAttachment attachment)
+        {
+            var url = $"https://www.google.com/maps/dir/?api=1&destination=51.228557,3.231737";
+            var heroCard = new HeroCard
+            {
+                Title = "Starhotel Bruges",
+                Images = new List<CardImage> { new CardImage("https://img.hotelspecials.be/fc2fadf52703ae0181b289f84011bf6a.jpeg?w=250&h=200&c=1&quality=70") },
+                Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl, FacebookStrings.HEROCARD_BUTTON_DIRECTION_TITLE, value: url) }
+            };
+
+            var reply = context.Activity.CreateReply();
+            reply.Text = "Our adres is Tijl Uilenspiegelstraat 9, 8000 Brugge";
+            reply.Attachments = new List<Attachment>
+            {
+                heroCard.ToAttachment()
+            };
+            return reply;
+        }
+
+
         public class ResponseIds
         {
             // Constants
@@ -159,6 +185,7 @@ namespace HotelBot.Shared.Helpers
             public const string Functionality = "functionality";
             public const string Welcome = "welcome";
             public const string SendDirections = "sendDirections";
+            public const string SendDirectionsWithoutOrigin = "sendDirectionsWithoutOrigin";
             public const string CallUs = "callUs";
         }
     }
