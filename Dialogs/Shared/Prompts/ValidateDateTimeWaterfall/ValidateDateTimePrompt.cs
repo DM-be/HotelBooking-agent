@@ -15,6 +15,9 @@ namespace HotelBot.Dialogs.Shared.Prompts
     public class ValidateDateTimePrompt: ComponentDialog
     {
 
+        private readonly Validators.Validators _validators = new Validators.Validators();
+
+
         /// <summary>
         ///     Custom and reusable component dialog that validates a datetime, replaces the given replacing dialog and provides it
         ///     with a correct
@@ -24,15 +27,14 @@ namespace HotelBot.Dialogs.Shared.Prompts
         ///         options.
         ///     </param>
         /// </summary>
-        public ValidateDateTimePrompt(string replacingDialogId): base(nameof(ValidateDateTimePrompt))
+        public ValidateDateTimePrompt(): base(nameof(ValidateDateTimePrompt))
         {
-            if (replacingDialogId == null) throw new ArgumentNullException(nameof(replacingDialogId));
+
             InitialDialogId = nameof(ValidateDateTimePrompt);
-            ReplacingDialogId = replacingDialogId;
-            AddDialog(new DateTimePrompt(nameof(DateTimePrompt)));
+            AddDialog(new DateTimePrompt(nameof(DateTimePrompt), _validators.DateValidatorAsync));
             var validateDateWaterFallSteps = new WaterfallStep []
             {
-                PromptValidateDate, ReplaceWithValidatedDate
+                PromptValidateDate, EndWithValidatedDate
             };
 
             AddDialog(new WaterfallDialog(InitialDialogId, validateDateWaterFallSteps));
@@ -51,7 +53,7 @@ namespace HotelBot.Dialogs.Shared.Prompts
                 });
         }
 
-        public async Task<DialogTurnResult> ReplaceWithValidatedDate(WaterfallStepContext sc, CancellationToken cancellationToken)
+        public async Task<DialogTurnResult> EndWithValidatedDate(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             var timexProperty = (sc.Result as IList<DateTimeResolution>).First().ConvertToTimex();
             // ends and calls resume() on parent dialog.

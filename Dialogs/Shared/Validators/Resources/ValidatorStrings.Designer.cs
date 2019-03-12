@@ -70,7 +70,7 @@ namespace HotelBot.Dialogs.Shared.Validators.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to That is not a valid email adress..
+        ///   Looks up a localized string similar to Sorry, that is not a valid email adress. Could you provide me one? .
         /// </summary>
         public static string INVALID_EMAIL {
             get {

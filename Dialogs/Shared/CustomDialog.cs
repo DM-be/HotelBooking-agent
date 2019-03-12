@@ -51,7 +51,7 @@ namespace HotelBot.Dialogs.Shared
 
             AddDialog(new WaterfallDialog(DialogIds.DateConfirmWaterfall, confirmUpdateStepsDate));
             AddDialog(new WaterfallDialog(DialogIds.ConfirmWaterfall, confirmUpdateSteps));
-            AddDialog(new ValidateDateTimePrompt(DialogIds.DateConfirmWaterfall));
+            AddDialog(new ValidateDateTimePrompt());
 
 
         }

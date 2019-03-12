@@ -62,7 +62,7 @@ namespace HotelBot.Dialogs.Shared.Prompts.ValidateDateTimeWaterfall.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry I need a specific day to help you. .
+        ///   Looks up a localized string similar to Sorry, could you give me a specific date? .
         /// </summary>
         public static string TIME_INCORRECT_FORMAT {
             get {
