@@ -16,8 +16,8 @@ namespace HotelBot.Dialogs.BookARoom
     public class BookARoomDialog: CustomDialog
     {
         private static BookARoomResponses _responder;
-        private readonly BotServices _services;
         private readonly StateBotAccessors _accessors;
+        private readonly BotServices _services;
         private BookARoomState _state;
         private TranslatorHelper _translatorHelper = new TranslatorHelper();
 
@@ -72,15 +72,7 @@ namespace HotelBot.Dialogs.BookARoom
         // step 
         public async Task<DialogTurnResult> AskForNumberOfPeople(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-
             _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
-
-            if (_state.NumberOfPeople != null)
-            {
-                await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveNumberOfPeople, _state.NumberOfPeople);
-                return await sc.NextAsync();
-            }
-
             if (sc.Result != null)
             {
                 _state.Email = (string) sc.Result;
@@ -88,6 +80,12 @@ namespace HotelBot.Dialogs.BookARoom
                     sc.Context,
                     BookARoomResponses.ResponseIds.HaveEmailMessage,
                     _state.Email);
+            }
+
+            if (_state.NumberOfPeople != null)
+            {
+                await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveNumberOfPeople, _state.NumberOfPeople);
+                return await sc.NextAsync();
             }
 
             return await sc.PromptAsync(
@@ -102,14 +100,13 @@ namespace HotelBot.Dialogs.BookARoom
         public async Task<DialogTurnResult> AskForArrivalDate(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
-
-            if (_state.ArrivalDate != null) return await sc.NextAsync();
-
             if (sc.Result != null)
             {
                 _state.NumberOfPeople = (int) sc.Result;
                 await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveNumberOfPeople, _state.NumberOfPeople);
             }
+
+            if (_state.ArrivalDate != null) return await sc.NextAsync();
 
             return await sc.PromptAsync(
                 DialogIds.ArrivalDateTimePrompt,
@@ -123,14 +120,6 @@ namespace HotelBot.Dialogs.BookARoom
         public async Task<DialogTurnResult> AskForLeavingDate(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
-
-            if (_state.LeavingDate != null)
-            {
-
-                await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveLeavingDate, _state.LeavingDate);
-                return await sc.NextAsync();
-            }
-
             if (sc.Result != null)
             {
                 var resolution = (sc.Result as IList<DateTimeResolution>).First();
@@ -138,6 +127,14 @@ namespace HotelBot.Dialogs.BookARoom
                 var arrivalDateAsNaturalLanguage = timexProp.ToNaturalLanguage(DateTime.Now);
                 _state.ArrivalDate = timexProp;
                 await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveArrivalDate, arrivalDateAsNaturalLanguage);
+            }
+
+
+            if (_state.LeavingDate != null)
+            {
+
+                await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveLeavingDate, _state.LeavingDate);
+                return await sc.NextAsync();
             }
 
             return await sc.PromptAsync(
@@ -151,11 +148,7 @@ namespace HotelBot.Dialogs.BookARoom
 
         public async Task<DialogTurnResult> FinishBookARoomDialog(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-
-            // send webview for booking here
             _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
-
-
             if (sc.Result != null)
             {
                 var resolution = (sc.Result as IList<DateTimeResolution>).First();
@@ -163,6 +156,8 @@ namespace HotelBot.Dialogs.BookARoom
                 _state.LeavingDate = timexProp;
                 // await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveLeavingDate, leavingDateAsNaturalLanguage);
             }
+            // send webview for booking here
+
 
             await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveEmailMessage, _state.Email);
             await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveNumberOfPeople, _state.NumberOfPeople);
@@ -201,7 +196,6 @@ namespace HotelBot.Dialogs.BookARoom
                 await _responder.ReplyWith(promptContext.Context, BookARoomResponses.ResponseIds.SpecificTimePrompt);
                 return false;
             }
-
 
 
             //only accept dates not in the future.

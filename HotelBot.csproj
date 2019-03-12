@@ -56,6 +56,11 @@
      <AutoGen>True</AutoGen>
      <DependentUpon>MainStrings.resx</DependentUpon>
    </Compile>
+   <Compile Update="Dialogs\Shared\Prompts\ValidateDateTimeWaterfall\Resources\ValidateDateTimeStrings.Designer.cs">
+     <DesignTime>True</DesignTime>
+     <AutoGen>True</AutoGen>
+     <DependentUpon>ValidateDateTimeStrings.resx</DependentUpon>
+   </Compile>
    <Compile Update="Shared\Helpers\Resources\FacebookStrings.Designer.cs">
      <DesignTime>True</DesignTime>
      <AutoGen>True</AutoGen>
@@ -91,6 +96,10 @@
      <Generator>PublicResXFileCodeGenerator</Generator>
      <LastGenOutput>MainStrings.Designer.cs</LastGenOutput>
    </EmbeddedResource>
+   <EmbeddedResource Update="Dialogs\Shared\Prompts\ValidateDateTimeWaterfall\Resources\ValidateDateTimeStrings.resx">
+     <Generator>PublicResXFileCodeGenerator</Generator>
+     <LastGenOutput>ValidateDateTimeStrings.Designer.cs</LastGenOutput>
+   </EmbeddedResource>
    <EmbeddedResource Update="Shared\Helpers\Resources\FacebookStrings.resx">
      <Generator>PublicResXFileCodeGenerator</Generator>
      <LastGenOutput>FacebookStrings.Designer.cs</LastGenOutput>
@@ -122,7 +131,6 @@
 
  <ItemGroup>
    <Folder Include="CognitiveModels\QnA\en\" />
-   <Folder Include="Dialogs\Shared\Prompts\" />
  </ItemGroup> 
 
   <Import Project="PostDeployScripts\IncludeSources.targets" Condition="Exists('PostDeployScripts\IncludeSources.targets')" />

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Threading.Tasks;
 using HotelBot.Dialogs.BookARoom.Resources;
-using HotelBot.StateAccessors;
 using Luis;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.TemplateManager;
@@ -10,94 +8,94 @@ using Microsoft.Recognizers.Text.DataTypes.TimexExpression;
 
 namespace HotelBot.Dialogs.BookARoom
 {
-    public class BookARoomResponses : TemplateManager
+    public class BookARoomResponses: TemplateManager
 
     {
-        private static LanguageTemplateDictionary _responseTemplates = new LanguageTemplateDictionary
+        private static readonly LanguageTemplateDictionary _responseTemplates = new LanguageTemplateDictionary
         {
             ["default"] = new TemplateIdMap
             {
-                { ResponseIds.EmailPrompt,
-                    (context, data) =>
-                    MessageFactory.Text(
-                        BookARoomStrings.EMAIL_PROMPT,
-                        BookARoomStrings.EMAIL_PROMPT,
-                        InputHints.ExpectingInput)
+                {
+                    ResponseIds.EmailPrompt, (context, data) =>
+                        MessageFactory.Text(
+                            BookARoomStrings.EMAIL_PROMPT,
+                            BookARoomStrings.EMAIL_PROMPT,
+                            InputHints.ExpectingInput)
                 },
-                { ResponseIds.HaveEmailMessage,
-                    (context, data) =>
-                    MessageFactory.Text(
-                        text: string.Format(BookARoomStrings.HAVE_EMAIL, data),
-                        ssml: string.Format(BookARoomStrings.HAVE_EMAIL, data),
-                        inputHint: InputHints.IgnoringInput)
+                {
+                    ResponseIds.HaveEmailMessage, (context, data) =>
+                        MessageFactory.Text(
+                            text: string.Format(BookARoomStrings.HAVE_EMAIL, data),
+                            ssml: string.Format(BookARoomStrings.HAVE_EMAIL, data),
+                            inputHint: InputHints.IgnoringInput)
                 },
-                { ResponseIds.ArrivalDatePrompt,
-                    (context, data) =>
-                    MessageFactory.Text(
-                        BookARoomStrings.ARRIVALDATE_PROMPT,
-                        BookARoomStrings.ARRIVALDATE_PROMPT,
-                        InputHints.IgnoringInput)
+                {
+                    ResponseIds.ArrivalDatePrompt, (context, data) =>
+                        MessageFactory.Text(
+                            BookARoomStrings.ARRIVALDATE_PROMPT,
+                            BookARoomStrings.ARRIVALDATE_PROMPT,
+                            InputHints.IgnoringInput)
                 },
-                { ResponseIds.HaveArrivalDate,
-                    (context, data) =>
-                    MessageFactory.Text(
-                        text: string.Format(BookARoomStrings.HAVE_ARRIVALDATE, data),
-                        ssml: string.Format(BookARoomStrings.HAVE_ARRIVALDATE, data),
-                        inputHint: InputHints.IgnoringInput)
+                {
+                    ResponseIds.HaveArrivalDate, (context, data) =>
+                        MessageFactory.Text(
+                            text: string.Format(BookARoomStrings.HAVE_ARRIVALDATE, data),
+                            ssml: string.Format(BookARoomStrings.HAVE_ARRIVALDATE, data),
+                            inputHint: InputHints.IgnoringInput)
                 },
-                { ResponseIds.LeavingDatePrompt,
-                    (context, data) =>
+                {
+                    ResponseIds.LeavingDatePrompt, (context, data) =>
                         MessageFactory.Text(
                             BookARoomStrings.LEAVINGDATE_PROMPT,
                             BookARoomStrings.LEAVINGDATE_PROMPT,
                             InputHints.IgnoringInput)
                 },
-                { ResponseIds.HaveLeavingDate,
-                    (context, data) =>
+                {
+                    ResponseIds.HaveLeavingDate, (context, data) =>
                         MessageFactory.Text(
                             text: string.Format(BookARoomStrings.HAVE_LEAVINGDATE, data),
                             ssml: string.Format(BookARoomStrings.HAVE_LEAVINGDATE, data),
                             inputHint: InputHints.IgnoringInput)
                 },
-                { ResponseIds.NumberOfPeoplePrompt,
-                    (context, data) =>
-                    MessageFactory.Text(
-                        BookARoomStrings.NUMBEROFPEOPLE_PROMPT,
-                        BookARoomStrings.NUMBEROFPEOPLE_PROMPT,
-                        InputHints.ExpectingInput)
+                {
+                    ResponseIds.NumberOfPeoplePrompt, (context, data) =>
+                        MessageFactory.Text(
+                            BookARoomStrings.NUMBEROFPEOPLE_PROMPT,
+                            BookARoomStrings.NUMBEROFPEOPLE_PROMPT,
+                            InputHints.ExpectingInput)
                 },
-                { ResponseIds.HaveNumberOfPeople,
-                    (context, data) =>
+                {
+                    ResponseIds.HaveNumberOfPeople, (context, data) =>
                         MessageFactory.Text(
                             text: string.Format(BookARoomStrings.HAVE_NUMBEROFPEOPLE, data),
                             ssml: string.Format(BookARoomStrings.HAVE_NUMBEROFPEOPLE, data),
                             inputHint: InputHints.IgnoringInput)
                 },
-                { ResponseIds.IncorrectDate,
-                    (context, data) =>
+                {
+                    ResponseIds.IncorrectDate, (context, data) =>
                         MessageFactory.Text(
                             BookARoomStrings.INCORRECT_DATE,
                             BookARoomStrings.INCORRECT_DATE,
                             InputHints.IgnoringInput)
                 },
-                { ResponseIds.NotRecognizedDate,
-                    (context, data) =>
+                {
+                    ResponseIds.NotRecognizedDate, (context, data) =>
                         MessageFactory.Text(
                             BookARoomStrings.NOT_RECOGNIZED_DATE,
                             BookARoomStrings.NOT_RECOGNIZED_DATE,
                             InputHints.IgnoringInput)
                 },
-                { ResponseIds.UpdateText,
-                    (context, data) =>
-                       BuildUpdatePropertyResponse(context, data)
+                {
+                    ResponseIds.UpdateText, (context, data) =>
+                        BuildUpdatePropertyResponse(context, data)
                 },
-                { ResponseIds.SpecificTimePrompt,
-                    (context, data) =>
+                {
+                    ResponseIds.SpecificTimePrompt, (context, data) =>
                         MessageFactory.Text(
                             BookARoomStrings.SPECIFICTIME_REPLY,
                             BookARoomStrings.SPECIFICTIME_REPLY,
                             InputHints.IgnoringInput)
-                        }
+                }
             }
         };
 
@@ -106,16 +104,16 @@ namespace HotelBot.Dialogs.BookARoom
             Register(new DictionaryRenderer(_responseTemplates));
         }
 
-        public  static IMessageActivity BuildUpdatePropertyResponse(ITurnContext context, dynamic data)
+        public static IMessageActivity BuildUpdatePropertyResponse(ITurnContext context, dynamic data)
         {
 
             context.TurnState.TryGetValue("bookARoomState", out var b);
             context.TurnState.TryGetValue("tempTimex", out var t);
             var timexProperty = t as TimexProperty;
             var bookARoomState = b as BookARoomState;
-            bookARoomState.LuisResults.TryGetValue("LuisResult_BookARoom", out HotelBotLuis luisResult);
+            bookARoomState.LuisResults.TryGetValue("LuisResult_BookARoom", out var luisResult);
 
-            string message = "Do you want to change your";
+            var message = "Do you want to change your";
 
             switch (luisResult.TopIntent().intent)
             {
@@ -130,6 +128,7 @@ namespace HotelBot.Dialogs.BookARoom
                             message += $"from {naturalLang}";
                         }
                     }
+
                     break;
 
                 case HotelBotLuis.Intent.Update_Leaving_Date:
@@ -137,11 +136,9 @@ namespace HotelBot.Dialogs.BookARoom
                     {
                         var dateToString = luisResult.Entities.datetime[0].ToString();
                         message = $"Do you want to update your leaving date to {dateToString} ?";
-                        if (bookARoomState.LeavingDate != null)
-                        {
-                            message += $"from {bookARoomState.LeavingDate}";
-                        }
+                        if (bookARoomState.LeavingDate != null) message += $"from {bookARoomState.LeavingDate}";
                     }
+
                     break;
 
                 case HotelBotLuis.Intent.Update_email:
@@ -149,10 +146,7 @@ namespace HotelBot.Dialogs.BookARoom
                     {
                         var emailString = luisResult.Entities.email[0];
                         message = $"Do you want to update your email to {emailString} ?";
-                        if (bookARoomState.Email != null)
-                        {
-                            message += $"from {bookARoomState.Email}";
-                        }
+                        if (bookARoomState.Email != null) message += $"from {bookARoomState.Email}";
                     }
                     else
                     {
@@ -167,11 +161,9 @@ namespace HotelBot.Dialogs.BookARoom
                     {
                         var numberOfPeopleString = luisResult.Entities.number[0].ToString();
                         message = $"Do you want to update the number of people to {numberOfPeopleString} ?";
-                        if (bookARoomState.NumberOfPeople != null)
-                        {
-                            message += $"from {bookARoomState.NumberOfPeople.ToString()}";
-                        }
+                        if (bookARoomState.NumberOfPeople != null) message += $"from {bookARoomState.NumberOfPeople.ToString()}";
                     }
+
                     break;
             }
 

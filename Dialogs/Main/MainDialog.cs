@@ -30,7 +30,6 @@ namespace HotelBot.Dialogs.Main
             _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
             AddDialog(new BookARoomDialog(_services, _accessors));
 
-
         }
 
 

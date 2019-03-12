@@ -1,20 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.StateAccessors;
 using HotelBot.StateProperties;
 using Microsoft.Bot.Builder;
+using Microsoft.Bot.Connector;
 using Newtonsoft.Json;
-
 
 namespace HotelBot.Middleware
 {
     public class SetUserProfileMiddleware: IMiddleware
     {
         private readonly StateBotAccessors _accessors;
+
         public SetUserProfileMiddleware(StateBotAccessors accessors)
         {
             _accessors = accessors;
@@ -24,8 +22,7 @@ namespace HotelBot.Middleware
         {
             var userProfile = await _accessors.UserProfileAccessor.GetAsync(turnContext, () => new UserProfile());
             if (string.IsNullOrEmpty(userProfile.Name))
-            {
-                if (turnContext.Activity.ChannelId == "facebook")
+                if (turnContext.Activity.ChannelId == Channels.Facebook)
                 {
                     // TODO token never expires: normal? if so, provide external api to get this according to facebook profile page
                     var page_access_token =
@@ -37,7 +34,7 @@ namespace HotelBot.Middleware
                     await next(cancellationToken).ConfigureAwait(false);
                     return;
                 }
-            }
+
             await next(cancellationToken).ConfigureAwait(false);
         }
 

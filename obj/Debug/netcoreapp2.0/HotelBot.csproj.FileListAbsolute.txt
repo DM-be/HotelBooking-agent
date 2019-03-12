@@ -67,3 +67,4 @@ C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\obj\Debug\netcoreapp2.
 C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.dll
 C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.pdb
 C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.csprojAssemblyReference.cache
+C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.Dialogs.Shared.Prompts.ValidateDateTimeWaterfall.Resources.ValidateDateTimeStrings.resources

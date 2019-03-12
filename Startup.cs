@@ -7,7 +7,6 @@ using System.Linq;
 using HotelBot.Dialogs.BookARoom;
 using HotelBot.Middleware;
 using HotelBot.Services;
-using HotelBot.Shared.Helpers;
 using HotelBot.StateAccessors;
 using HotelBot.StateProperties;
 using Microsoft.AspNetCore.Builder;
@@ -89,10 +88,11 @@ namespace HotelBot
                 throw new InvalidOperationException(msg);
             }
 
-            services.AddSingleton(sp =>
-                botConfig ??
-                throw new InvalidOperationException(
-                    $"The .bot configuration file could not be loaded. botFilePath: {botFilePath}"));
+            services.AddSingleton(
+                sp =>
+                    botConfig ??
+                    throw new InvalidOperationException(
+                        $"The .bot configuration file could not be loaded. botFilePath: {botFilePath}"));
 
             // Add BotServices singleton.
             // Create the connected services from .bot file.
@@ -145,35 +145,36 @@ namespace HotelBot
                 UserProfileAccessor = userState.CreateProperty<UserProfile>(StateBotAccessors.UserProfileName),
                 DialogStateAccessor = conversationState.CreateProperty<DialogState>(StateBotAccessors.DialogStateName),
                 BookARoomStateAccessor =
-                    conversationState.CreateProperty<BookARoomState>(StateBotAccessors.BookARoomAName),
+                    conversationState.CreateProperty<BookARoomState>(StateBotAccessors.BookARoomAName)
             };
 
             services.AddSingleton(stateBotAccessors);
 
-       
-            services.AddBot<HotelHelperBot>(options =>
-            {
-                options.CredentialProvider =
-                    new SimpleCredentialProvider(endpointService.AppId, endpointService.AppPassword);
-                options.ChannelProvider = new ConfigurationChannelProvider(Configuration);
 
-                // Catches any errors that occur during a conversation turn and logs them to currently
-                // configured ILogger.
-                ILogger logger = _loggerFactory.CreateLogger<HotelHelperBot>();
-                options.OnTurnError = async (context, exception) =>
+            services.AddBot<HotelHelperBot>(
+                options =>
                 {
-                    logger.LogError($"Exception caught : {exception}");
-                    await context.SendActivityAsync("Sorry, it looks like something went wrong.");
-                };
+                    options.CredentialProvider =
+                        new SimpleCredentialProvider(endpointService.AppId, endpointService.AppPassword);
+                    options.ChannelProvider = new ConfigurationChannelProvider(Configuration);
 
-                
-                options.Middleware.Add(new SetConversationDataMiddleware(stateBotAccessors));
-                options.Middleware.Add(new SetUserProfileMiddleware(stateBotAccessors));
-                options.Middleware.Add(new SetLocaleMiddleware(stateBotAccessors));
-                options.Middleware.Add(new FacebookMiddleware(stateBotAccessors));
-                options.Middleware.Add(new AutoSaveStateMiddleware(userState, conversationState));
-                options.Middleware.Add(new ShowTypingMiddleware());
-            });
+                    // Catches any errors that occur during a conversation turn and logs them to currently
+                    // configured ILogger.
+                    ILogger logger = _loggerFactory.CreateLogger<HotelHelperBot>();
+                    options.OnTurnError = async (context, exception) =>
+                    {
+                        logger.LogError($"Exception caught : {exception}");
+                        await context.SendActivityAsync("Sorry, it looks like something went wrong.");
+                    };
+
+
+                    options.Middleware.Add(new SetConversationDataMiddleware(stateBotAccessors));
+                    options.Middleware.Add(new SetUserProfileMiddleware(stateBotAccessors));
+                    options.Middleware.Add(new SetLocaleMiddleware(stateBotAccessors));
+                    options.Middleware.Add(new FacebookMiddleware());
+                    options.Middleware.Add(new AutoSaveStateMiddleware(userState, conversationState));
+                    options.Middleware.Add(new ShowTypingMiddleware());
+                });
         }
 
         /// <summary>

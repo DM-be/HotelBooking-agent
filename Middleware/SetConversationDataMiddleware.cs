@@ -13,6 +13,8 @@ namespace HotelBot.Middleware
     public class SetConversationDataMiddleware: IMiddleware
     {
         private readonly StateBotAccessors _accessors;
+
+        // todo: check if this is still needed? Facebookpageid should be available on every turn.
         public SetConversationDataMiddleware(StateBotAccessors accessors)
         {
             _accessors = accessors;
@@ -24,7 +26,7 @@ namespace HotelBot.Middleware
             if (string.IsNullOrEmpty(conversationData.FacebookPageId))
             {
                 conversationData.FacebookPageId = turnContext.Activity.Recipient.Id;
-                await _accessors.ConversationDataAccessor.SetAsync(turnContext, conversationData);
+                await _accessors.ConversationDataAccessor.SetAsync(turnContext, conversationData, cancellationToken);
                 await next(cancellationToken).ConfigureAwait(false);
                 return;
             }

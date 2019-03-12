@@ -167,5 +167,50 @@ namespace HotelBot.Dialogs.BookARoom.Resources {
                 return ResourceManager.GetString("SPECIFICTIME_REPLY", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string String1 {
+            get {
+                return ResourceManager.GetString("String1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to change your arrival date to {0}?.
+        /// </summary>
+        public static string UPDATE_ARRIVALDATE {
+            get {
+                return ResourceManager.GetString("UPDATE_ARRIVALDATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to change your email to {0}?.
+        /// </summary>
+        public static string UPDATE_EMAIL {
+            get {
+                return ResourceManager.GetString("UPDATE_EMAIL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to change your leaving date to {0}?.
+        /// </summary>
+        public static string UPDATE_LEAVINGDATE {
+            get {
+                return ResourceManager.GetString("UPDATE_LEAVINGDATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to change the number of people to {0}?.
+        /// </summary>
+        public static string UPDATE_NUMBEROFPEOPLE {
+            get {
+                return ResourceManager.GetString("UPDATE_NUMBEROFPEOPLE", resourceCulture);
+            }
+        }
     }
 }

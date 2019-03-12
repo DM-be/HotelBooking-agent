@@ -14,7 +14,7 @@
         },
         {
             "type": "blob",
-            "connectionString": "bDOLscH+Nm1rxdxj8MVAdw==!+tyuzDnkYRfwfyP6ryst/oveysiqA8OUwW78d/hefGyBIVtIplEMyEXjHNtlbxssO+KyZua2EdrixT2HSBUIo9GWr5CYWiQlWA/edIxC0rM67DZTetuPprZL4IL67hrVSgXFvk38L2kYsySmYI62+uvVfB/cy7WoZb0tWA3tZdtXSYsxZbLMAfciDiDVYlhwBPZyjf9PzJ7HB7/n+3EVyQ4XjXPuJa3twTICgR6sowc=",
+            "connectionString": "uugEelsJa6NhUtstSfsgzw==!8UnshgPq22+sJudARz8tMabHVFdBxQaNCw0efUAJPx0ESxTg0k0bn00KfO292pm8/nq88ybtTzYYDNX+hXecqZ+6nTslz2zRNtxqvDZD+icih56XIe7/3k+tZxLWtCdX9GynA8M6gAxAPW6+A3/ftYF7ki4V2o9SsvI4eQYu8H87ttJ7+cIz+z0swpXdDT/dHvDrbwZbDm5V8Hstc6kd5zfJTDnnAcZV9d5EOJ1RLSE=",
             "id": "2",
             "resourceGroup": "hotelBot-b7d8",
             "serviceName": "hotelbotb7d8b7d8",
@@ -24,7 +24,7 @@
         {
             "type": "endpoint",
             "appId": "07eecd2c-e40c-41a9-82ac-ce65e0eedece",
-            "appPassword": "czPqakCM/OBBAvcbc6gF6A==!iHQtFo26sj85RmPH7CR6jTymT8Ri+ABgZVPyZ9QzUoM=",
+            "appPassword": "ddWCs2K3a9rNkX59lf6bWQ==!rHHR0gZYj9s+GXCu2EtRGN5Dnhube8JE5+gkesGeeUU=",
             "endpoint": "http://localhost:80/api/messages",
             "id": "3",
             "name": "development"
@@ -32,7 +32,7 @@
         {
             "type": "endpoint",
             "appId": "07eecd2c-e40c-41a9-82ac-ce65e0eedece",
-            "appPassword": "4kP5AszsGS0VB1AFcu5Qaw==!UcdeLXXsdZouEO2nC8XG9CTytzY3A1lEYv+G58eN4iQ=",
+            "appPassword": "f9hA70ql8yAa8T2o+T2gzg==!E/m2maIg3kGJT9uvvjPwV7RBiZItzfH5UUXPs7Bs78k=",
             "endpoint": "https://hoteltestv2.azurewebsites.net/api/messages",
             "id": "4",
             "name": "production"
@@ -40,40 +40,40 @@
         {
             "type": "luis",
             "appId": "4dda25a6-5818-453d-9948-d4c46112f544",
-            "authoringKey": "iJSgoiF9tkvzz60CvYXbFQ==!iAkBWfYgCtWrCQPP+AhZh1zK1dfAxUi23d7NMUWl3TJvzWbEllm840BpD4YvlaMj",
+            "authoringKey": "e/jc9/nl2C6f6238KItO1A==!N2vjW+clch/oF3NBSdHaKtGL0jbO7Xw/S17oKsWpuYrANMPyk2C7ipuR5/VnoB+h",
             "id": "118",
             "name": "HotelBot",
             "region": "westeurope",
-            "subscriptionKey": "AAeQ/aJzvOiNUsdxoRkIUQ==!Yq15XDw0gR53Z8iEBdcBUOJm8ZZj4TuHu5/mvRNqi0RX/1xgObNzNpc48uhglEgI",
+            "subscriptionKey": "IaW7wZLVT4oZ+5L8GSpEVQ==!OzXTgRpWmmtZK2EaKPRz27TPYa6XpS2VuvjDooKGPQ4e/UVrAwzjna4/fjr0YUeZ",
             "version": "0.1"
         },
         {
             "type": "qna",
-            "endpointKey": "yQQN+u4/mvbclkTF7dAVNA==!IhwCNDTrE6B31SAVILr+UXMLLyJ1HFEzFsUmM1xoMSJTESl7nRi5Rvz/HVJjW7Mt",
+            "endpointKey": "AvszPVF3erGc8tOmkWDwPg==!K1PxwHOWTPIhccpsvXN/ZHep2Mdey7WwQ6eFDpvvO1sXCM5h/ts+9ZGDhd/nhZ/w",
             "hostname": "https://hoteltestqna.azurewebsites.net/qnamaker",
             "id": "69",
             "kbId": "6fb3d7ef-9769-465a-b7c7-c1491dbb3cca",
             "name": "2129612763787673_en",
-            "subscriptionKey": "/PDKbyvz82HmgFHoIleWRQ==!5QnSKcLFspZ69ij/BnodwQYl58OcDl3OHxdXshkalW2LeyWGppIBnqZGvV3SiCnx"
+            "subscriptionKey": "DCSFAj0nSVriDp+qcFWkrA==!wZCml+vIFYGQrJighOfMuXM7++2uZ+hw3cmvFP9hYc2VienAjvwqmW4Z4iBsmrDD"
         },
         {
             "type": "qna",
-            "endpointKey": "89e4pGS4m1cWS0f6OZGOKg==!0dPsnVlZMVVLxe8HIFnQ663hKdYcOGLKBrBRZw2CUfVjnIa4dBNyOo001jH1gUoa",
+            "endpointKey": "ow/GWaZ2BwOLAxoKaYdFBw==!tzCevl3VfsEsGLVzTkuQsopFdryKuiI5tVA8F1OJNz9V2HRk46BdoZO4AL77xzdm",
             "hostname": "https://hoteltestqna.azurewebsites.net/qnamaker",
             "id": "0",
             "kbId": "38264bf8-37cd-4526-b76a-9c8e76460d0c",
             "name": "2129612763787673_nl",
-            "subscriptionKey": "aP4v8rRrRtVMOxYu5f/GdA==!PrjvyXKJYR1YAlMqRE9WNtY95LmI4z5M8J59dweR1HeimIO4X6a/WSv1XdQ0++IX"
+            "subscriptionKey": "Lc5GFEVrV3kQciIOFXMNGw==!X+P1DTTNt46Luprby8Go3K5OlUH9vJn3rMG3DGD5d+RWl/eJT/iZnucFW7oJBrmi"
         },
         {
             "type": "dispatch",
             "appId": "ed6bd627-3700-408b-a5e9-b654d28de2dc",
-            "authoringKey": "gIxdLIANCfmzk4dLW4z1EA==!UO+EnqaKHDMMMnDWgTAbff+mVkHEKJBA0rX7fYzui00Q7o292eYjeNOBho+MK7pp",
+            "authoringKey": "XpEPip/hZCWRB6XpJzIxGw==!+OglymTs7agwal2p+D1tkn9RSgTnZH2J8gvhh2C5OkFMilut1IOP4lwm3qIsoZoG",
             "id": "239",
             "name": "HotelDispatch",
             "region": "westeurope",
             "serviceIds": [],
-            "subscriptionKey": "m/YZO6sJoU49Sqao7KoFSw==!h94vxioMhd8gOs/4LyJ/EctimIWOfs8S/JEQ2nit2vSR9TPoSaI5/IT4y2MQ2rt1",
+            "subscriptionKey": "NyFUBlcXT682utXxeF+nAg==!ohbf4qKGBzrXrbAWdNoHcdiscvpxkRktDq3v9U64xCtwyksUG6+8YVbcKdp6Ynkj",
             "version": "Dispatch"
         }
     ],

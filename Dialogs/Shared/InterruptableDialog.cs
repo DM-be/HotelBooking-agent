@@ -17,7 +17,7 @@ namespace HotelBot.Dialogs.Shared
             if (status == InterruptionStatus.Interrupted)
             {
                 // Resume the waiting dialog after interruption
-                await dc.RepromptDialogAsync().ConfigureAwait(false);
+                await dc.RepromptDialogAsync(cancellationToken).ConfigureAwait(false);
                 return EndOfTurn;
             }
 

@@ -79,6 +79,33 @@ namespace HotelBot.Shared.Helpers.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to I want to book a room..
+        /// </summary>
+        public static string CONTEXT_TEXT_BOOK_A_ROOM {
+            get {
+                return ResourceManager.GetString("CONTEXT_TEXT_BOOK_A_ROOM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could I call you?.
+        /// </summary>
+        public static string CONTEXT_TEXT_CALL_US {
+            get {
+                return ResourceManager.GetString("CONTEXT_TEXT_CALL_US", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Where are you located?.
+        /// </summary>
+        public static string CONTEXT_TEXT_DIRECTIONS {
+            get {
+                return ResourceManager.GetString("CONTEXT_TEXT_DIRECTIONS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Navigate.
         /// </summary>
         public static string HEROCARD_BUTTON_DIRECTION_TITLE {

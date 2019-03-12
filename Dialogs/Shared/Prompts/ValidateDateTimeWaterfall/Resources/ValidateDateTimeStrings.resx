@@ -117,37 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BUTTON_TITLE_CALL" xml:space="preserve">
-    <value>Call</value>
-  </data>
-  <data name="CALL_MESSAGE_PAYLOAD_TEXT" xml:space="preserve">
-    <value>Here is our number:</value>
-  </data>
-  <data name="CONTEXT_TEXT_BOOK_A_ROOM" xml:space="preserve">
-    <value>I want to book a room.</value>
-  </data>
-  <data name="CONTEXT_TEXT_CALL_US" xml:space="preserve">
-    <value>Could I call you?</value>
-  </data>
-  <data name="CONTEXT_TEXT_DIRECTIONS" xml:space="preserve">
-    <value>Where are you located?</value>
-  </data>
-  <data name="HEROCARD_BUTTON_DIRECTION_TITLE" xml:space="preserve">
-    <value>Navigate</value>
-  </data>
-  <data name="HEROCARD_REPLY_TEXT_DIRECTION" xml:space="preserve">
-    <value>I have found the most efficient route for you.</value>
-  </data>
-  <data name="QUICK_REPLY_ASK_LOCATION" xml:space="preserve">
-    <value>Could you send me your location?</value>
-  </data>
-  <data name="QUICK_REPLY_BUTTON_BOOK_A_ROOM" xml:space="preserve">
-    <value>Book</value>
-  </data>
-  <data name="QUICK_REPLY_BUTTON_CALL" xml:space="preserve">
-    <value>Call</value>
-  </data>
-  <data name="QUICK_REPLY_BUTTON_DIRECTION" xml:space="preserve">
-    <value>Directions</value>
+  <data name="TIME_INCORRECT_FORMAT" xml:space="preserve">
+    <value>Sorry I need a specific day to help you. </value>
   </data>
 </root>

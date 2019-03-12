@@ -153,4 +153,19 @@
   <data name="SPECIFICTIME_REPLY" xml:space="preserve">
     <value>I need a specific day to help you.</value>
   </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UPDATE_ARRIVALDATE" xml:space="preserve">
+    <value>Do you want to change your arrival date to {0}?</value>
+  </data>
+  <data name="UPDATE_EMAIL" xml:space="preserve">
+    <value>Do you want to change your email to {0}?</value>
+  </data>
+  <data name="UPDATE_LEAVINGDATE" xml:space="preserve">
+    <value>Do you want to change your leaving date to {0}?</value>
+  </data>
+  <data name="UPDATE_NUMBEROFPEOPLE" xml:space="preserve">
+    <value>Do you want to change the number of people to {0}?</value>
+  </data>
 </root>

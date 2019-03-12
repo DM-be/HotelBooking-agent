@@ -11,22 +11,21 @@ using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Extensions.Logging;
 
-
 namespace HotelBot
 {
     /// <summary>
     ///     Main entry point and orchestration for bot.
     /// </summary>
-    public class HotelHelperBot : IBot
+    public class HotelHelperBot: IBot
     {
-     
+
         // singleton that contains all property accessors
         private readonly StateBotAccessors _accessors;
 
         // services that contain LUIS, dispatch and qna
         private readonly BotServices _services;
 
-        private DialogSet _dialogs;
+        private readonly DialogSet _dialogs;
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="BasicBot" /> class.
@@ -55,18 +54,14 @@ namespace HotelBot
         /// <returns>A <see cref="Task" /> representing the asynchronous operation.</returns>
         public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken)
         {
-            if (turnContext.Activity == null) throw new ArgumentNullException("turnContext is null");
+            if (turnContext.Activity == null) throw new ArgumentNullException(nameof(turnContext));
 
             var dc = await _dialogs.CreateContextAsync(turnContext);
 
             if (dc.ActiveDialog != null)
-            {
                 await dc.ContinueDialogAsync();
-            }
             else
-            {
                 await dc.BeginDialogAsync(nameof(MainDialog));
-            }
         }
     }
 }
