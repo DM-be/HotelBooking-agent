@@ -113,5 +113,14 @@ namespace HotelBot.Dialogs.Main.Resources {
                 return ResourceManager.GetString("GREETING_WITH_NAME", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I can help you book a room or answer questions..
+        /// </summary>
+        public static string HELP {
+            get {
+                return ResourceManager.GetString("HELP", resourceCulture);
+            }
+        }
     }
 }

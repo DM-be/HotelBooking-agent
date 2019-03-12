@@ -124,6 +124,15 @@ namespace HotelBot.Dialogs.BookARoom.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You can book a room by providing me the information I need. You can also update previous set values, just ask me..
+        /// </summary>
+        public static string HELP_MESSAGE {
+            get {
+                return ResourceManager.GetString("HELP_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sorry you cannot book a room in the past. .
         /// </summary>
         public static string INCORRECT_DATE {

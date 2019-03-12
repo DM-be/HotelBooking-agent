@@ -40,7 +40,15 @@ namespace HotelBot.Dialogs.Main
                             text: MainStrings.GREETING,
                             ssml: MainStrings.GREETING,
                             inputHint: InputHints.AcceptingInput)
-                }
+                },
+                { ResponseIds.Help,
+                    (context, data) =>
+                        MessageFactory.Text(
+                            text: MainStrings.HELP,
+                            ssml: MainStrings.HELP,
+                            inputHint: InputHints.AcceptingInput)
+                },
+
             }
         };
 

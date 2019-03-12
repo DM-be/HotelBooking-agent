@@ -95,6 +95,13 @@ namespace HotelBot.Dialogs.BookARoom
                             BookARoomStrings.SPECIFICTIME_REPLY,
                             BookARoomStrings.SPECIFICTIME_REPLY,
                             InputHints.IgnoringInput)
+                },
+                {
+                    ResponseIds.Help, (context, data) =>
+                        MessageFactory.Text(
+                            BookARoomStrings.HELP_MESSAGE,
+                            BookARoomStrings.HELP_MESSAGE,
+                            InputHints.IgnoringInput)
                 }
             }
         };
@@ -191,6 +198,9 @@ namespace HotelBot.Dialogs.BookARoom
             public const string UpdateText = "updateText";
 
             public const string SpecificTimePrompt = "specificTimePrompt";
+
+            public const string Help = "help";
+
         }
     }
 }

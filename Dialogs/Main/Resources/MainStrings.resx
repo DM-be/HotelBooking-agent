@@ -135,4 +135,7 @@
   <data name="GREETING_WITH_NAME" xml:space="preserve">
     <value>Hey, {0}!</value>
   </data>
+  <data name="HELP" xml:space="preserve">
+    <value>I can help you book a room or answer questions.</value>
+  </data>
 </root>

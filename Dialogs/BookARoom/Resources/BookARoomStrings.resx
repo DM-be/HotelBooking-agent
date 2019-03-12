@@ -138,6 +138,9 @@
   <data name="HAVE_NUMBEROFPEOPLE" xml:space="preserve">
     <value>You are bringing {0} people.</value>
   </data>
+  <data name="HELP_MESSAGE" xml:space="preserve">
+    <value>You can book a room by providing me the information I need. You can also update previous set values, just ask me.</value>
+  </data>
   <data name="INCORRECT_DATE" xml:space="preserve">
     <value>Sorry you cannot book a room in the past. </value>
   </data>
