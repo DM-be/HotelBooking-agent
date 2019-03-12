@@ -69,7 +69,7 @@ namespace HotelBot.Dialogs.Main
 
                         case HotelBotLuis.Intent.help:
                         {
-                          
+
                             await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.Help);
                             break;
                         }

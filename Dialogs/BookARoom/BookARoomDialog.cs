@@ -23,11 +23,11 @@ namespace HotelBot.Dialogs.BookARoom
         private TranslatorHelper _translatorHelper = new TranslatorHelper();
         private Validators _validators = new Validators();
 
-        public BookARoomDialog(BotServices botServices, StateBotAccessors accessors)
-            : base(botServices, accessors, nameof(BookARoomDialog))
+        public BookARoomDialog(BotServices services, StateBotAccessors accessors)
+            : base(services, accessors, nameof(BookARoomDialog))
         {
-            _services = botServices;
-            _accessors = accessors;
+            _services = services ?? throw new ArgumentNullException(nameof(services));
+            _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
             _responder = new BookARoomResponses();
             InitialDialogId = nameof(BookARoomDialog);
 

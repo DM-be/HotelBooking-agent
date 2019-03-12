@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -11,7 +10,6 @@ using HotelBot.Extensions;
 using HotelBot.Services;
 using HotelBot.StateAccessors;
 using Luis;
-using Microsoft.Bot.Builder.AI.Luis;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Recognizers.Text.DataTypes.TimexExpression;
 
@@ -36,8 +34,8 @@ namespace HotelBot.Dialogs.Shared
         public CustomDialog(BotServices services, StateBotAccessors accessors, string dialogId)
             : base(dialogId)
         {
-            _services = services;
-            _accessors = accessors;
+            _services = services ?? throw new ArgumentNullException(nameof(services));
+            _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
             AddDialog(new CancelDialog(_accessors));
             AddDialog(new ConfirmPrompt(nameof(ConfirmPrompt)));
             var confirmUpdateStepsDate = new WaterfallStep []
@@ -52,16 +50,9 @@ namespace HotelBot.Dialogs.Shared
             };
 
             AddDialog(new WaterfallDialog(DialogIds.DateConfirmWaterfall, confirmUpdateStepsDate));
-            AddDialog(new WaterfallDialog( DialogIds.ConfirmWaterfall, confirmUpdateSteps));
-
-           
+            AddDialog(new WaterfallDialog(DialogIds.ConfirmWaterfall, confirmUpdateSteps));
             AddDialog(new ValidateDateTimePrompt(DialogIds.DateConfirmWaterfall));
-            //var recheckDateWaterFallSteps = new WaterfallStep []
-            //{
-            //    PromptRecheckDate, EndRecheckDate
-            //};
 
-            //AddDialog(new WaterfallDialog("recheckdatewaterfall", recheckDateWaterFallSteps));
 
         }
 
@@ -177,6 +168,7 @@ namespace HotelBot.Dialogs.Shared
                 timexProperty = new TimexProperty(firstExpression);
                 return await sc.NextAsync(timexProperty);
             }
+
             // intent to update arrival or leaving date but without entity also needs a validation for date.
             return await sc.BeginDialogAsync(nameof(ValidateDateTimePrompt));
 
@@ -206,6 +198,7 @@ namespace HotelBot.Dialogs.Shared
                 bookARoomState.TimexResults["tempTimex"] = sc.Result as TimexProperty; // for use in updatestate
                 sc.Context.TurnState["tempTimex"] = sc.Result as TimexProperty; // for use in reply
             }
+
             // attach the full state to the turnstate to allow for dynamic template rendering.
             sc.Context.TurnState["bookARoomState"] = bookARoomState;
             var view = new BookARoomResponses();
@@ -264,7 +257,7 @@ namespace HotelBot.Dialogs.Shared
                 case HotelBotLuis.Intent.Update_Leaving_Date:
                     if (bookARoomState.TimexResults.TryGetValue("tempTimex", out var leavingTimexProperty))
                     {
-                        
+
                         bookARoomState.LeavingDate = leavingTimexProperty;
                         bookARoomState.TimexResults.Clear();
                     }
