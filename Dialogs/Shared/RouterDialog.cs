@@ -80,18 +80,7 @@ namespace HotelBot.Dialogs.Shared
             return EndOfTurn;
         }
 
-        protected override Task OnEndDialogAsync(ITurnContext context, DialogInstance instance, DialogReason reason,
-            CancellationToken cancellationToken = default(CancellationToken))
-        {
-            return base.OnEndDialogAsync(context, instance, reason, cancellationToken);
-        }
-
-        protected override Task OnRepromptDialogAsync(ITurnContext turnContext, DialogInstance instance,
-            CancellationToken cancellationToken = default(CancellationToken))
-        {
-            return base.OnRepromptDialogAsync(turnContext, instance, cancellationToken);
-        }
-
+        
         /// <summary>
         ///     Called when the inner dialog stack is empty.
         /// </summary>
