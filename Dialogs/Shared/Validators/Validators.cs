@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Extensions;
@@ -55,7 +56,7 @@ namespace HotelBot.Dialogs.Shared.Validators
             PromptValidatorContext<string> promptContext,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            var validEmail = new EmailAddressAttribute().IsValid(promptContext.Recognized.Value);
+            var validEmail = IsValidEmailAddress(promptContext.Recognized.Value);
             if (!validEmail)
             {
                 await _responder.ReplyWith(promptContext.Context, ValidatorResponses.ResponseIds.InvalidEmail);
@@ -64,5 +65,22 @@ namespace HotelBot.Dialogs.Shared.Validators
 
             return true;
         }
-    }
+
+
+
+        public static bool IsValidEmailAddress(string emailaddress)
+        {
+            try
+            {
+                Regex rx = new Regex(
+                    @"^[-!#$%&'*+/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+/0-9=?A-Z^_a-z{|}~])*@[a-zA-Z](-?[a-zA-Z0-9])*(\.[a-zA-Z](-?[a-zA-Z0-9])*)+$");
+                return rx.IsMatch(emailaddress);
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+
+
+        }
 }
