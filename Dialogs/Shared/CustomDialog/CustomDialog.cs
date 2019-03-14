@@ -199,7 +199,7 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
             if (sc.Result != null)
             {
                 bookARoomState.TimexResults["tempTimex"] = sc.Result as TimexProperty; // for use in updatestate
-                sc.Context.TurnState["tempTimex"] = sc.Result as TimexProperty; // for use in reply
+                sc.Context.TurnState["tempTimex"] = sc.Result as TimexProperty; // for use in reply t
             }
 
             // attach the full state to the turnstate to allow for dynamic template rendering.
