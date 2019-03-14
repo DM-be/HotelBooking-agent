@@ -140,6 +140,8 @@
 
  <ItemGroup>
    <Folder Include="CognitiveModels\QnA\en\" />
+   <Folder Include="Dialogs\Shared\CustomDialog\Delegates\" />
+   <Folder Include="Dialogs\Shared\CustomDialog\Resources\" />
    <Folder Include="Shared\Delegates\" />
  </ItemGroup> 
 
