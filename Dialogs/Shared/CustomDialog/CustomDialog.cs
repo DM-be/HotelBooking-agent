@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.BookARoom;
 using HotelBot.Dialogs.Cancel;
+using HotelBot.Dialogs.Shared.CustomDialog.Delegates;
 using HotelBot.Dialogs.Shared.InterruptableDialog;
 using HotelBot.Dialogs.Shared.Prompts;
 using HotelBot.Extensions;
@@ -30,6 +31,7 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
 
         // Fields
         private readonly BotServices _services;
+        private readonly UpdateStateHandler _updateStateHandler = new UpdateStateHandler();
 
         public CustomDialog(BotServices services, StateBotAccessors accessors, string dialogId)
             : base(dialogId)
@@ -172,19 +174,16 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
             // intent to update arrival or leaving date but without entity also needs a validation for date.
             return await sc.BeginDialogAsync(nameof(ValidateDateTimePrompt));
 
-
         }
 
         public async Task<DialogTurnResult> PromptConfirm(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             var bookARoomState = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
-            //bookARoomState.LuisResults.TryGetValue(LuisResultBookARoomKey, out var luisResult);
             // attach the full state to the turnstate to allow for dynamic template rendering.
             sc.Context.TurnState["bookARoomState"] = bookARoomState;
             bookARoomState.LuisResults.TryGetValue(LuisResultBookARoomKey, out var luisResult);
             var intent = luisResult.TopIntent().intent.ToString();
             var view = new BookARoomResponses();
-
             return await sc.PromptAsync(
                 nameof(ConfirmPrompt),
                 new PromptOptions
@@ -201,7 +200,6 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
                 bookARoomState.TimexResults["tempTimex"] = sc.Result as TimexProperty; // for use in updatestate
                 sc.Context.TurnState["tempTimex"] = sc.Result as TimexProperty; // for use in reply t
             }
-
             // attach the full state to the turnstate to allow for dynamic template rendering.
             sc.Context.TurnState["bookARoomState"] = bookARoomState;
             var view = new BookARoomResponses();
@@ -217,9 +215,7 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
         {
             var confirmed = (bool) sc.Result;
             if (confirmed) UpdateState(sc);
-
-            // end the current dialog (this waterfall) and start a new book a room dialog in its place
-
+            // end the current dialog (this waterfall) and replace it with a bookaroomdialog
             return await sc.ReplaceDialogAsync(nameof(BookARoomDialog), cancellationToken);
         }
 
@@ -227,52 +223,9 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
         {
             var bookARoomState = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
             bookARoomState.LuisResults.TryGetValue(LuisResultBookARoomKey, out var luisResult);
-            switch (luisResult.TopIntent().intent)
-            {
-                case HotelBotLuis.Intent.Update_email:
-                    if (luisResult.HasEntityWithPropertyName(EntityNames.Email))
-                        bookARoomState.Email = luisResult.Entities.email.First();
-                    else // intent matched but no matching entity
-                        bookARoomState.Email = null;
-                    break;
-                case HotelBotLuis.Intent.Update_Number_Of_People:
-                {
-                    if (luisResult.HasEntityWithPropertyName(EntityNames.Number))
-                        bookARoomState.NumberOfPeople = luisResult.Entities.number.First();
-                    else
-                        bookARoomState.NumberOfPeople = null;
-                    break;
-                }
-                case HotelBotLuis.Intent.Update_ArrivalDate:
-                {
-                    if (bookARoomState.TimexResults.TryGetValue("tempTimex", out var arrivingTimexProperty))
-                    {
-                        bookARoomState.ArrivalDate = arrivingTimexProperty;
-                        bookARoomState.TimexResults.Clear();
-                    }
-                    else
-                    {
-                        bookARoomState.ArrivalDate = null;
-                    }
-
-                    break;
-                }
-                case HotelBotLuis.Intent.Update_Leaving_Date:
-                    if (bookARoomState.TimexResults.TryGetValue("tempTimex", out var leavingTimexProperty))
-                    {
-
-                        bookARoomState.LeavingDate = leavingTimexProperty;
-                        bookARoomState.TimexResults.Clear();
-                    }
-                    else
-                    {
-                        bookARoomState.ArrivalDate = null;
-                    }
-
-                    break;
-            }
-
-            await _accessors.BookARoomStateAccessor.SetAsync(sc.Context, bookARoomState);
+            var intent = luisResult.TopIntent().intent;
+            if (_updateStateHandler.UpdateStateHandlerDelegates.TryGetValue(intent, out var DelegateStateUpdate))
+                DelegateStateUpdate(bookARoomState, luisResult);
         }
     }
 

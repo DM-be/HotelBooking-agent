@@ -4,8 +4,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.BookARoom;
 using HotelBot.Dialogs.Main.Delegates;
-using HotelBot.Dialogs.Shared;
-using HotelBot.Dialogs.Shared.CustomDialog;
 using HotelBot.Dialogs.Shared.RouterDialog;
 using HotelBot.Extensions;
 using HotelBot.Services;
@@ -13,7 +11,6 @@ using HotelBot.Shared.Helpers;
 using HotelBot.StateAccessors;
 using Luis;
 using Microsoft.Bot.Builder.Dialogs;
-using Microsoft.Recognizers.Text.DataTypes.TimexExpression;
 
 namespace HotelBot.Dialogs.Main
 {
@@ -39,12 +36,10 @@ namespace HotelBot.Dialogs.Main
 
         protected override async Task RouteAsync(DialogContext dc, CancellationToken cancellationToken = default(CancellationToken))
         {
-            // Check dispatch result
             if (dc.Context.Activity.Text != null)
             {
                 var dispatchResult = await _services.DispatchRecognizer.RecognizeAsync<HotelDispatch>(dc.Context, cancellationToken);
                 var intent = dispatchResult.TopIntent().intent;
-
                 if (intent == HotelDispatch.Intent.l_HotelBot)
                 {
 
@@ -54,12 +49,11 @@ namespace HotelBot.Dialogs.Main
                     var hotelBotIntent = result.TopIntent().intent;
 
                     if (_intentHandler.MainIntentHandlerDelegates.TryGetValue(hotelBotIntent, out var DelegateAction))
-                        DelegateAction(dc, _responder, _facebookHelper);
+                        DelegateAction(dc, _responder, _facebookHelper, _accessors, result);
                     else
                         await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.Confused);
 
                 }
-
                 else if (intent.IsQnAIntent())
                 {
                     var qnaServiceName = intent.ConvertToQnAServiceName();
@@ -68,10 +62,8 @@ namespace HotelBot.Dialogs.Main
                     var answers = await qnaService.GetAnswersAsync(dc.Context);
                     if (answers != null && answers.Any()) await dc.Context.SendActivityAsync(answers[0].Answer);
                 }
-
                 else
                 {
-                    // If dispatch intent does not map to configured models, send "confused" response.
                     await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.Confused);
                 }
 
@@ -86,30 +78,6 @@ namespace HotelBot.Dialogs.Main
         {
             // The active dialog's stack ended with a complete status
             await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.Completed);
-        }
-
-        //todo: refactor
-        private async Task UpdateState(DialogContext dc, HotelBotLuis luisResult)
-        {
-            var bookARoomState = await _accessors.BookARoomStateAccessor.GetAsync(dc.Context, () => new BookARoomState());
-
-            switch (luisResult.TopIntent().intent)
-            {
-                case HotelBotLuis.Intent.Book_A_Room:
-                    if (luisResult.HasEntityWithPropertyName(EntityNames.Email))
-                        bookARoomState.Email = luisResult.Entities.email.First();
-                    if (luisResult.HasEntityWithPropertyName(EntityNames.Number))
-                        bookARoomState.NumberOfPeople = luisResult.Entities.number.First();
-                    if (luisResult.HasEntityWithPropertyName(EntityNames.Datetime))
-                        if (luisResult.Entities.datetime.First().Type == "date")
-                        {
-                            var dateTimeSpecs = luisResult.Entities.datetime.First();
-                            var firstExpression = dateTimeSpecs.Expressions.First();
-                            bookARoomState.ArrivalDate = new TimexProperty(firstExpression);
-                        }
-
-                    break;
-            }
         }
     }
 }

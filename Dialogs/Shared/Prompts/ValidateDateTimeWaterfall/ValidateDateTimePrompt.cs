@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Extensions;
 using Microsoft.Bot.Builder.Dialogs;
-using Microsoft.Recognizers.Text.DataTypes.TimexExpression;
 
 namespace HotelBot.Dialogs.Shared.Prompts
 {
@@ -14,14 +12,12 @@ namespace HotelBot.Dialogs.Shared.Prompts
     // TODO: add datetime validator here
     public class ValidateDateTimePrompt: ComponentDialog
     {
-
+        // todo: rename validators 
         private readonly Validators.Validators _validators = new Validators.Validators();
-
 
         /// <summary>
         ///     Custom and reusable component dialog that validates a datetime, replaces the given replacing dialog and provides it
-        ///     with a correct
-        ///     timexproperty.
+        ///     with a correct timexproperty.
         ///     <param name="replacingDialogId">
         ///         Dialogid of the replacing dialog, will recieven a valid timexproperty in its
         ///         options.
@@ -39,8 +35,6 @@ namespace HotelBot.Dialogs.Shared.Prompts
 
             AddDialog(new WaterfallDialog(InitialDialogId, validateDateWaterFallSteps));
         }
-
-        private string ReplacingDialogId { get; }
 
         public async Task<DialogTurnResult> PromptValidateDate(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
