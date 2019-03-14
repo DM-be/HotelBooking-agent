@@ -3,7 +3,10 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.BookARoom;
+using HotelBot.Dialogs.Main.Delegates;
 using HotelBot.Dialogs.Shared;
+using HotelBot.Dialogs.Shared.CustomDialog;
+using HotelBot.Dialogs.Shared.RouterDialog;
 using HotelBot.Extensions;
 using HotelBot.Services;
 using HotelBot.Shared.Helpers;
@@ -16,11 +19,13 @@ namespace HotelBot.Dialogs.Main
 {
     public class MainDialog: RouterDialog
     {
+        private const string HotelBotLuisKey = "hotelbot";
         private readonly StateBotAccessors _accessors;
         private readonly FacebookHelper _facebookHelper = new FacebookHelper();
-
         private readonly MainResponses _responder = new MainResponses();
         private readonly BotServices _services;
+        public IntentHandler _intentHandler = new IntentHandler();
+
 
 
         public MainDialog(BotServices services, StateBotAccessors accessors)
@@ -32,7 +37,6 @@ namespace HotelBot.Dialogs.Main
 
         }
 
-
         protected override async Task RouteAsync(DialogContext dc, CancellationToken cancellationToken = default(CancellationToken))
         {
             // Check dispatch result
@@ -41,81 +45,27 @@ namespace HotelBot.Dialogs.Main
                 var dispatchResult = await _services.DispatchRecognizer.RecognizeAsync<HotelDispatch>(dc.Context, cancellationToken);
                 var intent = dispatchResult.TopIntent().intent;
 
-
                 if (intent == HotelDispatch.Intent.l_HotelBot)
                 {
-                    // If dispatch result is hotelbot luis model
-                    _services.LuisServices.TryGetValue("hotelbot", out var luisService);
 
+                    _services.LuisServices.TryGetValue(HotelBotLuisKey, out var luisService);
                     if (luisService == null) throw new ArgumentNullException(nameof(luisService));
-
                     var result = await luisService.RecognizeAsync<HotelBotLuis>(dc.Context, cancellationToken);
+                    var hotelBotIntent = result.TopIntent().intent;
 
-                    var hotelBotIntent = result?.TopIntent().intent;
+                    if (_intentHandler.MainIntentHandlerDelegates.TryGetValue(hotelBotIntent, out var DelegateAction))
+                        DelegateAction(dc, _responder, _facebookHelper);
+                    else
+                        await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.Confused);
 
-                    // switch on general intents
-                    switch (hotelBotIntent)
-                    {
-                        // delegates  -  reflection 
-                        case HotelBotLuis.Intent.Cancel:
-                        {
-                            // send cancelled response
-                            await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.Cancelled);
-
-                            // Cancel any active dialogs on the stack
-                            await dc.CancelAllDialogsAsync();
-                            break;
-                        }
-
-                        case HotelBotLuis.Intent.Help:
-                        {
-
-                            await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.Help);
-                            break;
-                        }
-                        case HotelBotLuis.Intent.Book_A_Room:
-                        {
-                            await UpdateState(dc, result);
-                            await dc.BeginDialogAsync(nameof(BookARoomDialog));
-                            break;
-                        }
-                        case HotelBotLuis.Intent.Get_Directions:
-                        {
-
-                            await _facebookHelper.SendLocationQuickReply(dc.Context);
-                            break;
-                        }
-                        case HotelBotLuis.Intent.Get_Location:
-                        {
-                            await _facebookHelper.SendDirectionsWithoutOrigin(dc.Context, null);
-                            break;
-                        }
-                        case HotelBotLuis.Intent.Call_Us:
-                        {
-                            await _facebookHelper.SendCallMessage(dc.Context);
-                            break;
-                        }
-                        case HotelBotLuis.Intent.None:
-                        default:
-                        {
-                            // No intent was identified, send confused message
-                            await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.Confused);
-                            break;
-                        }
-                    }
                 }
 
-                // TODO: refactor with classes --> create qnaname member
-                else if (intent.ToString().StartsWith("q_"))
+                else if (intent.IsQnAIntent())
                 {
-                    var intentString = intent.ToString();
-                    var qnaName = intentString.Substring(2);
-                    _services.QnaServices.TryGetValue(qnaName, out var qnaService);
-
-                    if (qnaService == null) throw new Exception("The specified QnA Maker Service could not be found in your Bot Services configuration.");
-
+                    var qnaServiceName = intent.ConvertToQnAServiceName();
+                    _services.QnaServices.TryGetValue(qnaServiceName, out var qnaService);
+                    if (qnaService == null) throw new Exception(nameof(qnaService));
                     var answers = await qnaService.GetAnswersAsync(dc.Context);
-
                     if (answers != null && answers.Any()) await dc.Context.SendActivityAsync(answers[0].Answer);
                 }
 
@@ -126,8 +76,6 @@ namespace HotelBot.Dialogs.Main
                 }
 
             }
-
-
         }
 
         protected override async Task OnEventAsync(DialogContext dc, CancellationToken cancellationToken = default(CancellationToken))
@@ -139,8 +87,6 @@ namespace HotelBot.Dialogs.Main
             // The active dialog's stack ended with a complete status
             await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.Completed);
         }
-
-
 
         //todo: refactor
         private async Task UpdateState(DialogContext dc, HotelBotLuis luisResult)

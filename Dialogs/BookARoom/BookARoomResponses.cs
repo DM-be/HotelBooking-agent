@@ -90,6 +90,10 @@ namespace HotelBot.Dialogs.BookARoom
                         BuildUpdatePropertyResponse(context, data)
                 },
                 {
+                    ResponseIds.UpdateEmail, (context, data) =>
+                        UpdateEmail(context, data)
+                },
+                {
                     ResponseIds.SpecificTimePrompt, (context, data) =>
                         MessageFactory.Text(
                             BookARoomStrings.SPECIFICTIME_REPLY,
@@ -178,6 +182,35 @@ namespace HotelBot.Dialogs.BookARoom
 
         }
 
+        public static IMessageActivity UpdateEmail(ITurnContext context, dynamic data)
+        {
+
+            context.TurnState.TryGetValue("bookARoomState", out var b);
+            context.TurnState.TryGetValue("tempTimex", out var t);
+            var timexProperty = t as TimexProperty;
+            var bookARoomState = b as BookARoomState;
+            bookARoomState.LuisResults.TryGetValue("LuisResult_BookARoom", out var luisResult);
+
+            String message;
+            if (luisResult.Entities != null)
+            {
+                var emailString = luisResult.Entities.email[0];
+               
+                message = string.Format(BookARoomStrings.UPDATE_EMAIL_WITH_ENTITIY, emailString);
+            }
+            else
+            {
+                message = BookARoomStrings.UPDATE_EMAIL_WITHOUT_ENTITY;
+            }
+
+
+
+            return MessageFactory.Text(message);
+
+        }
+
+
+
         public class ResponseIds
         {
             public const string EmailPrompt = "emailPrompt";
@@ -200,6 +233,10 @@ namespace HotelBot.Dialogs.BookARoom
             public const string SpecificTimePrompt = "specificTimePrompt";
 
             public const string Help = "help";
+
+            // intents
+
+            public const string UpdateEmail = "Update_email";
 
         }
     }

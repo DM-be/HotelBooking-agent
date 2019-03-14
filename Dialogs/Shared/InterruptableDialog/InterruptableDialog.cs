@@ -1,12 +1,12 @@
-﻿using Microsoft.Bot.Builder.Dialogs;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Bot.Builder.Dialogs;
 
-namespace HotelBot.Dialogs.Shared
+namespace HotelBot.Dialogs.Shared.InterruptableDialog
 {
-    public abstract class InterruptableDialog : ComponentDialog
+    public abstract class InterruptableDialog: ComponentDialog
     {
-        public InterruptableDialog(string dialogId) : base(dialogId)
+        public InterruptableDialog(string dialogId): base(dialogId)
         {
         }
 
@@ -22,11 +22,13 @@ namespace HotelBot.Dialogs.Shared
             }
 
             // set to waiting when waiting for a response
-            else if (status == InterruptionStatus.Waiting)
+
+            if (status == InterruptionStatus.Waiting)
             {
                 // Stack is already waiting for a response, shelve inner stack
                 return EndOfTurn;
             }
+
             // status is no action when sending "no"
             return await base.OnContinueDialogAsync(dc, cancellationToken);
         }

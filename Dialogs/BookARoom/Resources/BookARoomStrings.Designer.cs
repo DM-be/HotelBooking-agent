@@ -198,9 +198,18 @@ namespace HotelBot.Dialogs.BookARoom.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Do you want to change your email to {0}?.
         /// </summary>
-        public static string UPDATE_EMAIL {
+        public static string UPDATE_EMAIL_WITH_ENTITIY {
             get {
-                return ResourceManager.GetString("UPDATE_EMAIL", resourceCulture);
+                return ResourceManager.GetString("UPDATE_EMAIL_WITH_ENTITIY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to update your email address? .
+        /// </summary>
+        public static string UPDATE_EMAIL_WITHOUT_ENTITY {
+            get {
+                return ResourceManager.GetString("UPDATE_EMAIL_WITHOUT_ENTITY", resourceCulture);
             }
         }
         

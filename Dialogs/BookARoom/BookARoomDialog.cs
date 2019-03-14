@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.Shared;
+using HotelBot.Dialogs.Shared.CustomDialog;
 using HotelBot.Dialogs.Shared.Validators;
 using HotelBot.Services;
 using HotelBot.Shared.Helpers;

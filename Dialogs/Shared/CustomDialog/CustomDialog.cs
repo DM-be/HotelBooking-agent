@@ -4,7 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.BookARoom;
 using HotelBot.Dialogs.Cancel;
-using HotelBot.Dialogs.Main;
+using HotelBot.Dialogs.Shared.InterruptableDialog;
 using HotelBot.Dialogs.Shared.Prompts;
 using HotelBot.Extensions;
 using HotelBot.Services;
@@ -13,13 +13,13 @@ using Luis;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Recognizers.Text.DataTypes.TimexExpression;
 
-namespace HotelBot.Dialogs.Shared
+namespace HotelBot.Dialogs.Shared.CustomDialog
 {
     /// <summary>
     ///     currently supports room booking intents only
     ///     --> refactor name or fully generic?
     /// </summary>
-    public class CustomDialog: InterruptableDialog
+    public class CustomDialog: InterruptableDialog.InterruptableDialog
 
     {
 
@@ -181,12 +181,15 @@ namespace HotelBot.Dialogs.Shared
             //bookARoomState.LuisResults.TryGetValue(LuisResultBookARoomKey, out var luisResult);
             // attach the full state to the turnstate to allow for dynamic template rendering.
             sc.Context.TurnState["bookARoomState"] = bookARoomState;
+            bookARoomState.LuisResults.TryGetValue(LuisResultBookARoomKey, out HotelBotLuis luisResult);
+            var intent  = luisResult.TopIntent().intent.ToString();
             var view = new BookARoomResponses();
+
             return await sc.PromptAsync(
                 nameof(ConfirmPrompt),
                 new PromptOptions
                 {
-                    Prompt = await view.RenderTemplate(sc.Context, sc.Context.Activity.Locale, BookARoomResponses.ResponseIds.UpdateText)
+                    Prompt = await view.RenderTemplate(sc.Context, sc.Context.Activity.Locale, intent)
                 });
         }
 

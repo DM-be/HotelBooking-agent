@@ -1,11 +1,10 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Extensions;
-using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Schema;
 
-namespace HotelBot.Dialogs.Shared
+namespace HotelBot.Dialogs.Shared.RouterDialog
 {
     public abstract class RouterDialog: ComponentDialog
     {
@@ -80,7 +79,7 @@ namespace HotelBot.Dialogs.Shared
             return EndOfTurn;
         }
 
-        
+
         /// <summary>
         ///     Called when the inner dialog stack is empty.
         /// </summary>

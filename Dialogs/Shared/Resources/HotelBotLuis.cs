@@ -14,7 +14,7 @@ namespace Luis
     {
         public string Text;
         public string AlteredText;
-        public enum Intent {
+        public enum Intent { 
             Book_A_Room, 
             Call_Us, 
             Cancel, 
