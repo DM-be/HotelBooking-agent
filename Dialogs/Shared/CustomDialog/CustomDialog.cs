@@ -181,8 +181,8 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
             //bookARoomState.LuisResults.TryGetValue(LuisResultBookARoomKey, out var luisResult);
             // attach the full state to the turnstate to allow for dynamic template rendering.
             sc.Context.TurnState["bookARoomState"] = bookARoomState;
-            bookARoomState.LuisResults.TryGetValue(LuisResultBookARoomKey, out HotelBotLuis luisResult);
-            var intent  = luisResult.TopIntent().intent.ToString();
+            bookARoomState.LuisResults.TryGetValue(LuisResultBookARoomKey, out var luisResult);
+            var intent = luisResult.TopIntent().intent.ToString();
             var view = new BookARoomResponses();
 
             return await sc.PromptAsync(
