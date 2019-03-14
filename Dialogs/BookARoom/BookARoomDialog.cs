@@ -157,7 +157,7 @@ namespace HotelBot.Dialogs.BookARoom
                 var resolution = (sc.Result as IList<DateTimeResolution>).First();
                 var timexProp = new TimexProperty(resolution.Timex);
                 _state.LeavingDate = timexProp;
-                // await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveLeavingDate, leavingDateAsNaturalLanguage);
+                 await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveLeavingDate, _state.LeavingDate);
             }
             // send webview for booking here
 

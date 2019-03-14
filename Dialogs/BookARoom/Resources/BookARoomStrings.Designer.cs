@@ -189,18 +189,27 @@ namespace HotelBot.Dialogs.BookARoom.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Do you want to change your arrival date to {0}?.
         /// </summary>
-        public static string UPDATE_ARRIVALDATE {
+        public static string UPDATE_ARRIVALDATE_WITH_ENTITY {
             get {
-                return ResourceManager.GetString("UPDATE_ARRIVALDATE", resourceCulture);
+                return ResourceManager.GetString("UPDATE_ARRIVALDATE_WITH_ENTITY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to change your arrival date?.
+        /// </summary>
+        public static string UPDATE_ARRIVALDATE_WITHOUT_ENTITY {
+            get {
+                return ResourceManager.GetString("UPDATE_ARRIVALDATE_WITHOUT_ENTITY", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Do you want to change your email to {0}?.
         /// </summary>
-        public static string UPDATE_EMAIL_WITH_ENTITIY {
+        public static string UPDATE_EMAIL_WITH_ENTITY {
             get {
-                return ResourceManager.GetString("UPDATE_EMAIL_WITH_ENTITIY", resourceCulture);
+                return ResourceManager.GetString("UPDATE_EMAIL_WITH_ENTITY", resourceCulture);
             }
         }
         
@@ -216,18 +225,36 @@ namespace HotelBot.Dialogs.BookARoom.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Do you want to change your leaving date to {0}?.
         /// </summary>
-        public static string UPDATE_LEAVINGDATE {
+        public static string UPDATE_LEAVINGDATE_WITH_ENTITY {
             get {
-                return ResourceManager.GetString("UPDATE_LEAVINGDATE", resourceCulture);
+                return ResourceManager.GetString("UPDATE_LEAVINGDATE_WITH_ENTITY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to change your leaving date?.
+        /// </summary>
+        public static string UPDATE_LEAVINGDATE_WITHOUT_ENTITY {
+            get {
+                return ResourceManager.GetString("UPDATE_LEAVINGDATE_WITHOUT_ENTITY", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Do you want to change the number of people to {0}?.
         /// </summary>
-        public static string UPDATE_NUMBEROFPEOPLE {
+        public static string UPDATE_NUMBEROFPEOPLE_WITH_ENTITY {
             get {
-                return ResourceManager.GetString("UPDATE_NUMBEROFPEOPLE", resourceCulture);
+                return ResourceManager.GetString("UPDATE_NUMBEROFPEOPLE_WITH_ENTITY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string UPDATE_NUMBEROFPEOPLE_WITHOUT_ENTITY {
+            get {
+                return ResourceManager.GetString("UPDATE_NUMBEROFPEOPLE_WITHOUT_ENTITY", resourceCulture);
             }
         }
     }

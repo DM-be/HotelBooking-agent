@@ -77,6 +77,8 @@ namespace HotelBot.Dialogs.Main.Delegates
             await responder.ReplyWith(dc.Context, MainResponses.ResponseIds.Confused);
         }
 
+
+        //TODO: improve logic and expand ()
         private static void SetInitialBookARoomState(BookARoomState state, HotelBotLuis luisResult)
         {
             if (luisResult.HasEntityWithPropertyName(EntityNames.Email))

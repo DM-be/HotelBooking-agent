@@ -27,7 +27,6 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
         protected const string LuisResultBookARoomKey = "LuisResult_BookARoom";
 
         private readonly StateBotAccessors _accessors;
-        private readonly CancelResponses _responder = new CancelResponses();
 
         // Fields
         private readonly BotServices _services;
@@ -42,7 +41,7 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
             AddDialog(new ConfirmPrompt(nameof(ConfirmPrompt)));
             var confirmUpdateStepsDate = new WaterfallStep []
             {
-                ValidateTimeStep, PromptConfirmDate, EndConfirm
+                ValidateTimeStep, PromptConfirm, EndConfirm
             };
 
 
@@ -157,7 +156,7 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
             {
                 // timex was get and set via a prompt in another dialog and passed as options (such as a validatedatetimeprompt)
                 timexProperty = sc.Options as TimexProperty;
-                return await sc.NextAsync(timexProperty);
+                return await sc.NextAsync(timexProperty, cancellationToken);
             }
 
             if (luisResult.HasEntityWithPropertyName(EntityNames.Datetime))
@@ -168,7 +167,7 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
                 var dateTimeSpecs = luisResult.Entities.datetime.First();
                 var firstExpression = dateTimeSpecs.Expressions.First();
                 timexProperty = new TimexProperty(firstExpression);
-                return await sc.NextAsync(timexProperty);
+                return await sc.NextAsync(timexProperty, cancellationToken);
             }
 
             // intent to update arrival or leaving date but without entity also needs a validation for date.
@@ -176,13 +175,20 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
 
         }
 
+
         public async Task<DialogTurnResult> PromptConfirm(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             var bookARoomState = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
-            // attach the full state to the turnstate to allow for dynamic template rendering.
-            sc.Context.TurnState["bookARoomState"] = bookARoomState;
             bookARoomState.LuisResults.TryGetValue(LuisResultBookARoomKey, out var luisResult);
             var intent = luisResult.TopIntent().intent.ToString();
+            if (sc.Result != null)
+            {
+                bookARoomState.TimexResults["tempTimex"] = sc.Result as TimexProperty; // for use in updatestate
+                sc.Context.TurnState["tempTimex"] = sc.Result as TimexProperty; // for use in reply t
+            }
+
+            // attach the full state to the turnstate to allow for dynamic template rendering.
+            sc.Context.TurnState["bookARoomState"] = bookARoomState;
             var view = new BookARoomResponses();
             return await sc.PromptAsync(
                 nameof(ConfirmPrompt),
@@ -192,29 +198,16 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
                 });
         }
 
-        public async Task<DialogTurnResult> PromptConfirmDate(WaterfallStepContext sc, CancellationToken cancellationToken)
-        {
-            var bookARoomState = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
-            if (sc.Result != null)
-            {
-                bookARoomState.TimexResults["tempTimex"] = sc.Result as TimexProperty; // for use in updatestate
-                sc.Context.TurnState["tempTimex"] = sc.Result as TimexProperty; // for use in reply t
-            }
-            // attach the full state to the turnstate to allow for dynamic template rendering.
-            sc.Context.TurnState["bookARoomState"] = bookARoomState;
-            var view = new BookARoomResponses();
-            return await sc.PromptAsync(
-                nameof(ConfirmPrompt),
-                new PromptOptions
-                {
-                    Prompt = await view.RenderTemplate(sc.Context, sc.Context.Activity.Locale, BookARoomResponses.ResponseIds.UpdateText)
-                });
-        }
-
         public async Task<DialogTurnResult> EndConfirm(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             var confirmed = (bool) sc.Result;
-            if (confirmed) UpdateState(sc);
+            if (confirmed)
+            {
+                UpdateState(sc);
+                var view = new BookARoomResponses();
+                await sc.Context.SendActivityAsync("Ok I updated that for you");
+            }
+
             // end the current dialog (this waterfall) and replace it with a bookaroomdialog
             return await sc.ReplaceDialogAsync(nameof(BookARoomDialog), cancellationToken);
         }
