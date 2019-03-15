@@ -63,12 +63,14 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
             _services.LuisServices.TryGetValue("hotelbot", out var luisService);
 
             if (luisService == null) throw new Exception("The specified LUIS Model could not be found in your Bot Services configuration.");
-
+            
             var luisResult = await luisService.RecognizeAsync<HotelBotLuis>(dc.Context, cancellationToken);
             var intent = luisResult.TopIntent().intent;
+            var isChoicePrompt = dc.ActiveDialog.Id == nameof(ChoicePrompt); 
+
 
             // Only triggers interruption if confidence level is high
-            if (luisResult.TopIntent().score > 0.7)
+            if (luisResult.TopIntent().score > 0.75 && !isChoicePrompt)
             {
                 // Add the luis result (intent and entities) for further processing in the derived dialog
                 var bookARoomState = await _accessors.BookARoomStateAccessor.GetAsync(dc.Context, () => new BookARoomState());
@@ -209,7 +211,7 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
             }
 
             // end the current dialog (this waterfall) and replace it with a bookaroomdialog
-            return await sc.ReplaceDialogAsync(nameof(BookARoomDialog), cancellationToken);
+            return await sc.ReplaceDialogAsync(nameof(BookARoomDialog), null,  cancellationToken);
         }
 
         private async void UpdateState(WaterfallStepContext sc)

@@ -2,6 +2,19 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.0": {
+      "AdaptiveCards/1.1.2": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.CSharp": "4.4.0",
+          "Newtonsoft.Json": "9.0.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/AdaptiveCards.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/AdaptiveCards.dll": {}
+        }
+      },
       "Libuv/1.10.0": {
         "type": "package",
         "dependencies": {
@@ -5175,6 +5188,20 @@
     }
   },
   "libraries": {
+    "AdaptiveCards/1.1.2": {
+      "sha512": "gOBBtjN9OjmRhJHRAvQKeRfRFTk/rRZjvtMQXGVQ7dgikUo+aPxOvPNipVhBIdj3t1GupfnZnupQ92HrXM748w==",
+      "type": "package",
+      "path": "adaptivecards/1.1.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "adaptivecards.1.1.2.nupkg.sha512",
+        "adaptivecards.nuspec",
+        "lib/net452/AdaptiveCards.dll",
+        "lib/netstandard1.3/AdaptiveCards.dll",
+        "lib/netstandard2.0/AdaptiveCards.dll"
+      ]
+    },
     "Libuv/1.10.0": {
       "sha512": "zisTbxitzki256+rKY0myI2T1yLyO9+qAU8P+FXkd8Dv0Iymk484Y9SbwUlyL3igF/bpiCv7SCdv349rN/JbfQ==",
       "type": "package",
@@ -12325,6 +12352,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
+      "AdaptiveCards >= 1.1.2",
       "Microsoft.ApplicationInsights.AspNetCore >= 2.1.1",
       "Microsoft.AspNetCore.All >= 2.0.8",
       "Microsoft.Azure.CognitiveServices.ContentModerator >= 0.12.1-preview",
@@ -12388,6 +12416,10 @@
     "frameworks": {
       "netcoreapp2.0": {
         "dependencies": {
+          "AdaptiveCards": {
+            "target": "Package",
+            "version": "[1.1.2, )"
+          },
           "Microsoft.ApplicationInsights.AspNetCore": {
             "target": "Package",
             "version": "[2.1.1, )"

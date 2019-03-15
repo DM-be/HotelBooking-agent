@@ -142,6 +142,15 @@ namespace HotelBot.Dialogs.BookARoom.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to To help you book a room I will need some information from you. Let&apos;s start. .
+        /// </summary>
+        public static string INTRODUCTION {
+            get {
+                return ResourceManager.GetString("INTRODUCTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to When would you be leaving?.
         /// </summary>
         public static string LEAVINGDATE_PROMPT {
@@ -178,11 +187,11 @@ namespace HotelBot.Dialogs.BookARoom.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to You are bringing {0} people, arriving on {1} and leaving on {2}. Your confirmation email address is {3}. Is this correct?.
         /// </summary>
-        public static string String1 {
+        public static string STATE_OVERVIEW {
             get {
-                return ResourceManager.GetString("String1", resourceCulture);
+                return ResourceManager.GetString("STATE_OVERVIEW", resourceCulture);
             }
         }
         
@@ -250,7 +259,7 @@ namespace HotelBot.Dialogs.BookARoom.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Do want to change the number of people?.
         /// </summary>
         public static string UPDATE_NUMBEROFPEOPLE_WITHOUT_ENTITY {
             get {

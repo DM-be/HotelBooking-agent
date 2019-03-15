@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.BookARoom;
+using HotelBot.Dialogs.BookARoom.Resources;
 using HotelBot.Dialogs.Shared.CustomDialog;
 using HotelBot.Extensions;
 using HotelBot.Shared.Helpers;
@@ -42,9 +43,10 @@ namespace HotelBot.Dialogs.Main.Delegates
         private static async Task BeginBookARoomDialog(DialogContext dc, StateBotAccessors accessors, HotelBotLuis luisResult)
         {
             var bookARoomState = await accessors.BookARoomStateAccessor.GetAsync(dc.Context, () => new BookARoomState());
+     
             // set initial book a room state with captured entities in the book a room intent 
             SetInitialBookARoomState(bookARoomState, luisResult);
-            await dc.BeginDialogAsync(nameof(BookARoomDialog));
+            await dc.BeginDialogAsync(nameof(BookARoomDialog), "fromMainDialog");
         }
 
         private static async Task CancelDialogs(DialogContext dc, TemplateManager responder)

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 using HotelBot.Dialogs.BookARoom.Resources;
+using HotelBot.Dialogs.Shared.CustomDialog;
+using HotelBot.Extensions;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.TemplateManager;
 using Microsoft.Bot.Schema;
@@ -102,6 +104,17 @@ namespace HotelBot.Dialogs.BookARoom
                         UpdateArrivalDate(context)
                 },
                 {
+                    ResponseIds.Overview, (context, data) =>
+                        SendOverview(context, data)
+                },
+                {
+                    ResponseIds.Introduction, (context, data) =>
+                        MessageFactory.Text(
+                            BookARoomStrings.INTRODUCTION,
+                            BookARoomStrings.INTRODUCTION,
+                            InputHints.IgnoringInput)
+                },
+                {
                     ResponseIds.SpecificTimePrompt, (context, data) =>
                         MessageFactory.Text(
                             BookARoomStrings.SPECIFICTIME_REPLY,
@@ -131,7 +144,7 @@ namespace HotelBot.Dialogs.BookARoom
             var state = x as BookARoomState;
             state.LuisResults.TryGetValue("LuisResult_BookARoom", out var luisResult);
             string message;
-            if (luisResult.Entities != null)
+            if (luisResult.HasEntityWithPropertyName(EntityNames.Email))
             {
                 var emailString = luisResult.Entities.email[0];
                 message = string.Format(BookARoomStrings.UPDATE_EMAIL_WITH_ENTITY, emailString);
@@ -210,6 +223,15 @@ namespace HotelBot.Dialogs.BookARoom
         }
 
 
+        public static IMessageActivity SendOverview(ITurnContext context, BookARoomState state)
+        {
+            string message = string.Format(BookARoomStrings.STATE_OVERVIEW, state.NumberOfPeople, state.ArrivalDate, state.LeavingDate, state.Email);
+            return MessageFactory.Text(message);
+        }
+
+
+
+
         public class ResponseIds
         {
             public const string EmailPrompt = "emailPrompt";
@@ -231,11 +253,14 @@ namespace HotelBot.Dialogs.BookARoom
 
             public const string Help = "help";
 
+            public const string Overview = "overview";
+            public const string Introduction = "introduction";
+
             // intents
 
-            public const string UpdateEmail = "Update_email";
-            public const string UpdateArrivalDate = "Update_Arrival_Date";
-            public const string UpdateLeavingDate = "Update_Leaving_Date";
+            public const string UpdateEmail = "Update_email"; // todo: update in LUIS
+            public const string UpdateArrivalDate = "Update_ArrivalDate";
+            public const string UpdateLeavingDate = "Update_Leaving_Date"; // todo: update in LUIS
             public const string UpdateNumberOfPeople = "Update_Number_Of_People";
         }
     }
