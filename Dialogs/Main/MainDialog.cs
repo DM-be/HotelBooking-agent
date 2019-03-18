@@ -57,7 +57,7 @@ namespace HotelBot.Dialogs.Main
                 {
                     var qnaServiceName = intent.ConvertToQnAServiceName();
                     _services.QnaServices.TryGetValue(qnaServiceName, out var qnaService);
-                    if (qnaService == null) throw new Exception(nameof(qnaService));
+                    if (qnaService == null) throw new ArgumentNullException(nameof(qnaService));
                     var answers = await qnaService.GetAnswersAsync(dc.Context);
                     if (answers != null && answers.Any()) await dc.Context.SendActivityAsync(answers.First().Answer);
                 }

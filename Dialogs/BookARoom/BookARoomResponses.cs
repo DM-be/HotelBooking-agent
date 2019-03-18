@@ -68,6 +68,13 @@ namespace HotelBot.Dialogs.BookARoom
                             InputHints.ExpectingInput)
                 },
                 {
+                    ResponseIds.NumberOfPeopleReprompt, (context, data) =>
+                        MessageFactory.Text(
+                            BookARoomStrings.NUMBEROFPEOPLE_PROMPT,
+                            BookARoomStrings.NUMBEROFPEOPLE_PROMPT,
+                            InputHints.ExpectingInput)
+                },
+                {
                     ResponseIds.HaveNumberOfPeople, (context, data) =>
                         MessageFactory.Text(
                             text: string.Format(BookARoomStrings.HAVE_NUMBEROFPEOPLE, data),
@@ -320,6 +327,7 @@ namespace HotelBot.Dialogs.BookARoom
             public const string HaveLeavingDate = "HaveLeavingDate";
 
             public const string NumberOfPeoplePrompt = "numberOfPeoplePrompt";
+            public const string NumberOfPeopleReprompt = "numberOfPeopleReprompt";
             public const string HaveNumberOfPeople = "HaveNumberOfPeople";
 
             public const string IncorrectDate = "incorrectDate";

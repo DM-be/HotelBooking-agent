@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using HotelBot.Dialogs.BookARoom;
 using HotelBot.Dialogs.Cancel;
 using HotelBot.Dialogs.Shared.CustomDialog.Delegates;
-using HotelBot.Dialogs.Shared.InterruptableDialog;
 using HotelBot.Dialogs.Shared.Prompts;
 using HotelBot.Extensions;
 using HotelBot.Models.LUIS;
@@ -20,7 +19,7 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
     ///     currently supports room booking intents only
     ///     --> refactor name or fully generic?
     /// </summary>
-    public class CustomDialog: InterruptableDialog.InterruptableDialog
+    public class RecognizerDialog: InterruptableDialog
 
     {
 
@@ -32,7 +31,7 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
         private readonly BotServices _services;
         private readonly UpdateStateHandler _updateStateHandler = new UpdateStateHandler();
 
-        public CustomDialog(BotServices services, StateBotAccessors accessors, string dialogId)
+        public RecognizerDialog(BotServices services, StateBotAccessors accessors, string dialogId)
             : base(dialogId)
         {
             _services = services ?? throw new ArgumentNullException(nameof(services));
@@ -63,10 +62,10 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
             _services.LuisServices.TryGetValue("hotelbot", out var luisService);
 
             if (luisService == null) throw new Exception("The specified LUIS Model could not be found in your Bot Services configuration.");
-            
+
             var luisResult = await luisService.RecognizeAsync<HotelBotLuis>(dc.Context, cancellationToken);
             var intent = luisResult.TopIntent().intent;
-            var isChoicePrompt = dc.ActiveDialog.Id == nameof(ChoicePrompt); 
+            var isChoicePrompt = dc.ActiveDialog.Id == nameof(ChoicePrompt);
 
 
             // Only triggers interruption if confidence level is high
@@ -99,11 +98,11 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
                     {
                         return await OnUpdate(dc, DialogIds.DateConfirmWaterfall);
                     }
-                   
+
 
                 }
             }
-
+            // call the non overriden continue dialog in componentdialog
             return InterruptionStatus.NoAction;
         }
 
@@ -122,20 +121,6 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
             return InterruptionStatus.NoAction;
         }
 
-
-        protected virtual async Task<InterruptionStatus> OnContinue(DialogContext dc)
-        {
-            if (dc.ActiveDialog.Id != nameof(CancelDialog))
-            {
-
-                var prompt = dc.Stack[0];
-                EndDialogAsync(dc.Context, prompt, DialogReason.ContinueCalled);
-                return InterruptionStatus.NoAction;
-            }
-
-            // Else, continue
-            return InterruptionStatus.NoAction;
-        }
 
         protected virtual async Task<InterruptionStatus> OnHelp(DialogContext dc)
         {
@@ -228,7 +213,7 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
             }
 
             // end the current dialog (this waterfall) and replace it with a bookaroomdialog
-            return await sc.ReplaceDialogAsync(nameof(BookARoomDialog), null,  cancellationToken);
+            return await sc.ReplaceDialogAsync(nameof(BookARoomDialog), null, cancellationToken);
         }
 
         private async void UpdateState(WaterfallStepContext sc)

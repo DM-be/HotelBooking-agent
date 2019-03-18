@@ -46,6 +46,7 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
                             }
                             case DialogTurnStatus.Complete:
                             {
+                                // in main dialog send completed message
                                 await CompleteAsync(innerDc);
 
                                 // End active dialog

@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using HotelBot.Shared.Welcome.Resources;
+﻿using System.Threading.Tasks;
 using Microsoft.Bot.Builder;
-using Microsoft.Bot.Schema;
 
 namespace HotelBot.Shared.Helpers
 {
-    public  class FacebookHelper
+    public class FacebookHelper
     {
-        private FacebookHelperResponses _responder = new FacebookHelperResponses();
+        private readonly FacebookHelperResponses _responder = new FacebookHelperResponses();
 
 
         public async Task SendGettingStartedQuickReplies(ITurnContext context)
@@ -36,10 +31,11 @@ namespace HotelBot.Shared.Helpers
 
         public async Task SendDirections(ITurnContext context, dynamic data)
         {
-            
+
             await _responder.ReplyWith(context, FacebookHelperResponses.ResponseIds.SendDirections, data);
-           
+
         }
+
         public async Task SendDirectionsWithoutOrigin(ITurnContext context, dynamic data)
         {
 
@@ -53,6 +49,5 @@ namespace HotelBot.Shared.Helpers
             await _responder.ReplyWith(context, FacebookHelperResponses.ResponseIds.CallUs);
 
         }
-
     }
 }

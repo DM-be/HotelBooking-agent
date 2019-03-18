@@ -1,4 +1,4 @@
-﻿namespace HotelBot.Dialogs.Shared.InterruptableDialog
+﻿namespace HotelBot.Dialogs.Shared
 {
     public enum InterruptionStatus
     {

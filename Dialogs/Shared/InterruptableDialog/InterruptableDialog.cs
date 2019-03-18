@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.Bot.Builder.Dialogs;
 
-namespace HotelBot.Dialogs.Shared.InterruptableDialog
+namespace HotelBot.Dialogs.Shared
 {
     public abstract class InterruptableDialog: ComponentDialog
     {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using HotelBot.Dialogs.BookARoom.Resources;
 using HotelBot.Dialogs.Shared.CustomDialog;
 using HotelBot.Dialogs.Shared.Validators;
 using HotelBot.Services;
@@ -16,7 +17,7 @@ using Microsoft.Recognizers.Text.DataTypes.TimexExpression;
 
 namespace HotelBot.Dialogs.BookARoom
 {
-    public class BookARoomDialog: CustomDialog
+    public class BookARoomDialog: RecognizerDialog
     {
         private static BookARoomResponses _responder;
         private readonly StateBotAccessors _accessors;
@@ -52,8 +53,8 @@ namespace HotelBot.Dialogs.BookARoom
         public async Task<DialogTurnResult> AskForEmail(WaterfallStepContext sc, CancellationToken cancellationToken)
 
         {
-
-      //      if (sc.Options == "fromMainDialog") await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.Introduction);
+            // TODO: validation breaks when sending an introduction
+            if (sc.Options == "fromMainDialog") await sc.Context.SendActivityAsync(BookARoomStrings.INTRODUCTION);
             _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
             // property was gathered by LUIS or replaced manually after a confirm prompt
             if (_state.Email != null) return await sc.NextAsync();
@@ -62,8 +63,8 @@ namespace HotelBot.Dialogs.BookARoom
                 DialogIds.EmailPrompt,
                 new PromptOptions
                 {
-                    Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, BookARoomResponses.ResponseIds.EmailPrompt)
-                });
+                    Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, BookARoomResponses.ResponseIds.EmailPrompt),
+                }, cancellationToken);
         }
 
         public async Task<DialogTurnResult> AskForNumberOfPeople(WaterfallStepContext sc, CancellationToken cancellationToken)
@@ -84,7 +85,8 @@ namespace HotelBot.Dialogs.BookARoom
                 DialogIds.NumberOfPeopleNumberPrompt,
                 new PromptOptions
                 {
-                    Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, BookARoomResponses.ResponseIds.NumberOfPeoplePrompt)
+                    Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, BookARoomResponses.ResponseIds.NumberOfPeoplePrompt),
+                    RetryPrompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, BookARoomResponses.ResponseIds.NumberOfPeopleReprompt),
                 });
 
         }

@@ -178,6 +178,15 @@ namespace HotelBot.Dialogs.BookARoom.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to How many people are you bringing?.
+        /// </summary>
+        public static string NUMBEROFPEOPLE_REPROMPT {
+            get {
+                return ResourceManager.GetString("NUMBEROFPEOPLE_REPROMPT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to I need a specific day to help you..
         /// </summary>
         public static string SPECIFICTIME_REPLY {
