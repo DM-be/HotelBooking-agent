@@ -26,7 +26,8 @@ namespace Luis
             Update_ArrivalDate, 
             Update_email, 
             Update_Leaving_Date, 
-            Update_Number_Of_People
+            Update_Number_Of_People,
+            Continue
         };
         public Dictionary<Intent, IntentScore> Intents;
 

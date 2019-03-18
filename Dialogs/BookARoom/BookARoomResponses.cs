@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using HotelBot.Dialogs.BookARoom.Resources;
 using HotelBot.Dialogs.Shared.CustomDialog;
@@ -127,13 +128,88 @@ namespace HotelBot.Dialogs.BookARoom
                             BookARoomStrings.HELP_MESSAGE,
                             BookARoomStrings.HELP_MESSAGE,
                             InputHints.IgnoringInput)
-                }
+                },
+                {
+                    ResponseIds.SendRooms, (context, data) =>
+                        SendRoomsCarousel(context, data)
+                },
             }
         };
+
+
 
         public BookARoomResponses()
         {
             Register(new DictionaryRenderer(_responseTemplates));
+        }
+
+        public static IMessageActivity SendRoomsCarousel(ITurnContext context, dynamic data)
+        {
+            if (data.GetType() != typeof(BookARoomState))
+            {
+                throw new InvalidCastException("Invalid type given");
+            }
+            var bookARoomState = data as BookARoomState;
+            var url = "https://www.google.com";
+            var heroCards = new []
+            {
+                new HeroCard
+                {
+                    Title = "Hotel in Bruges",
+                    Subtitle = $"Available on {bookARoomState.ArrivalDate}",
+                    Images = new List<CardImage>
+                    {
+                        new CardImage(
+                            "https://www.marinabaysands.com/content/dam/singapore/marinabaysands/master/main/home/hotel/rooms-suites/roomv2-mobile_500x454.jpg")
+                    },
+                    Buttons = new List<CardAction>
+                    {
+                        new CardAction(ActionTypes.OpenUrl, "Book now", value: url),
+                        new CardAction(ActionTypes.OpenUrl, "More info",value: url)
+                    }
+                },
+                new HeroCard
+                {
+                    Title = "Another Hotel in Bruges",
+                    Subtitle = $"Available on {bookARoomState.ArrivalDate}",
+                    Images = new List<CardImage>
+                    {
+                        new CardImage("https://media.cntraveler.com/photos/580e72a51dbfcd3538b953ec/4:3/w_480,c_limit/Bedroom-ThePeninsulaParis-ParisFrance-CRHotel.jpg")
+                    },
+                    Buttons = new List<CardAction>
+                    {
+                        new CardAction(ActionTypes.OpenUrl, "Book now", value: url),
+                        new CardAction(ActionTypes.OpenUrl, "More info", value: url)
+                    }
+                },
+                new HeroCard
+                {
+                    Title = "Yet another hotel in Bruges",
+                    Subtitle = $"Available on {bookARoomState.ArrivalDate}",
+                    Images = new List<CardImage>
+                    {
+                        new CardImage("https://t-ec.bstatic.com/images/hotel/max1024x768/159/159071869.jpg")
+                    },
+                    Buttons = new List<CardAction>
+                    {
+                        new CardAction(ActionTypes.OpenUrl, "Book now", value: url),
+                        new CardAction(ActionTypes.OpenUrl, "More info", value: url)
+                    }
+                }
+
+
+            };
+
+            var reply = context.Activity.CreateReply();
+            reply.Text = "Here are some available rooms, book one now or find more info.";
+            var attachments = new List<Attachment>();
+
+            foreach (var heroCard in heroCards) attachments.Add(heroCard.ToAttachment());
+
+
+            reply.AttachmentLayout = "carousel";
+            reply.Attachments = attachments;
+            return reply;
         }
 
 
@@ -225,7 +301,7 @@ namespace HotelBot.Dialogs.BookARoom
 
         public static IMessageActivity SendOverview(ITurnContext context, BookARoomState state)
         {
-            string message = string.Format(BookARoomStrings.STATE_OVERVIEW, state.NumberOfPeople, state.ArrivalDate, state.LeavingDate, state.Email);
+            var message = string.Format(BookARoomStrings.STATE_OVERVIEW, state.NumberOfPeople, state.ArrivalDate, state.LeavingDate, state.Email);
             return MessageFactory.Text(message);
         }
 
@@ -255,6 +331,8 @@ namespace HotelBot.Dialogs.BookARoom
 
             public const string Overview = "overview";
             public const string Introduction = "introduction";
+            public const string SendRooms = "sendRooms";
+
 
             // intents
 

@@ -99,6 +99,11 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
                     {
                         return await OnUpdate(dc, DialogIds.DateConfirmWaterfall);
                     }
+                    case HotelBotLuis.Intent.Continue:
+                    {
+                        return await OnContinue(dc);
+                    }
+
                 }
             }
 
@@ -114,6 +119,21 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
 
                 // Signal that the dialog is waiting on user response
                 return InterruptionStatus.Waiting;
+            }
+
+            // Else, continue
+            return InterruptionStatus.NoAction;
+        }
+
+
+        protected virtual async Task<InterruptionStatus> OnContinue(DialogContext dc)
+        {
+            if (dc.ActiveDialog.Id != nameof(CancelDialog))
+            {
+
+                var prompt = dc.Stack[0];
+                EndDialogAsync(dc.Context, prompt, DialogReason.ContinueCalled);
+                return InterruptionStatus.NoAction;
             }
 
             // Else, continue

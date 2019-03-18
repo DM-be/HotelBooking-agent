@@ -24,7 +24,6 @@ namespace HotelBot.Dialogs.Main
         public IntentHandler _intentHandler = new IntentHandler();
 
 
-
         public MainDialog(BotServices services, StateBotAccessors accessors)
             : base(nameof(MainDialog))
         {
@@ -69,10 +68,7 @@ namespace HotelBot.Dialogs.Main
 
             }
         }
-
-        protected override async Task OnEventAsync(DialogContext dc, CancellationToken cancellationToken = default(CancellationToken))
-        {
-        }
+        
 
         protected override async Task CompleteAsync(DialogContext dc, CancellationToken cancellationToken = default(CancellationToken))
         {

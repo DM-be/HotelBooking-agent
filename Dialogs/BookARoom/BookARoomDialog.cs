@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -9,15 +8,11 @@ using HotelBot.Dialogs.Shared.Validators;
 using HotelBot.Services;
 using HotelBot.Shared.Helpers;
 using HotelBot.StateAccessors;
+using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
+using Microsoft.Bot.Builder.Dialogs.Choices;
 using Microsoft.Recognizers.Text;
 using Microsoft.Recognizers.Text.DataTypes.TimexExpression;
-using Newtonsoft.Json;
-using AdaptiveCards;
-using Microsoft.Bot.Schema;
-using File = System.IO.File;
-using Microsoft.Bot.Builder.Dialogs.Choices;
-using Microsoft.Bot.Builder;
 
 namespace HotelBot.Dialogs.BookARoom
 {
@@ -26,10 +21,10 @@ namespace HotelBot.Dialogs.BookARoom
         private static BookARoomResponses _responder;
         private readonly StateBotAccessors _accessors;
         private readonly BotServices _services;
+        private readonly Validators _validators = new Validators();
         private BookARoomState _state;
         private TranslatorHelper _translatorHelper = new TranslatorHelper();
-        private readonly Validators _validators = new Validators();
-        
+
 
         public BookARoomDialog(BotServices services, StateBotAccessors accessors)
             : base(services, accessors, nameof(BookARoomDialog))
@@ -38,11 +33,9 @@ namespace HotelBot.Dialogs.BookARoom
             _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
             _responder = new BookARoomResponses();
             InitialDialogId = nameof(BookARoomDialog);
-
-
-            var bookARoom = new WaterfallStep []
+            var bookARoom = new WaterfallStep[]
             {
-                AskForEmail, AskForNumberOfPeople, AskForArrivalDate, AskForLeavingDate, PromptConfirm, ProcessConfirmPrompt, LoopDialog
+                AskForEmail, AskForNumberOfPeople, AskForArrivalDate, AskForLeavingDate, PromptConfirm, ProcessConfirmPrompt, LoopDialog,
             };
             AddDialog(new WaterfallDialog(InitialDialogId, bookARoom));
             AddDialog(new DateTimePrompt(DialogIds.ArrivalDateTimePrompt, _validators.DateValidatorAsync));
@@ -51,35 +44,19 @@ namespace HotelBot.Dialogs.BookARoom
             AddDialog(new NumberPrompt<int>(DialogIds.NumberOfPeopleNumberPrompt));
             AddDialog(new ChoicePrompt(nameof(ChoicePrompt)));
 
-
         }
-
-  
-
-
         // first step --> intent checking and entity gathering was done in the general book a room intent
+
+
+
         public async Task<DialogTurnResult> AskForEmail(WaterfallStepContext sc, CancellationToken cancellationToken)
 
         {
 
-            if (sc.Options == "fromMainDialog")
-            {
-                await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.Introduction);
-
-            }
-
+      //      if (sc.Options == "fromMainDialog") await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.Introduction);
             _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
             // property was gathered by LUIS or replaced manually after a confirm prompt
-            if (_state.Email != null)
-            {
-                // skip to next step and send a reply with the email
-                //await _responder.ReplyWith(
-                //    sc.Context,
-                //    BookARoomResponses.ResponseIds.HaveEmailMessage,
-                //    _state.Email);
-                return await sc.NextAsync();
-            }
-
+            if (_state.Email != null) return await sc.NextAsync();
             // else prompt for email
             return await sc.PromptAsync(
                 DialogIds.EmailPrompt,
@@ -89,8 +66,6 @@ namespace HotelBot.Dialogs.BookARoom
                 });
         }
 
-
-        // step 
         public async Task<DialogTurnResult> AskForNumberOfPeople(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
@@ -103,11 +78,7 @@ namespace HotelBot.Dialogs.BookARoom
                     _state.Email);
             }
 
-            if (_state.NumberOfPeople != null)
-            {
-                //await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveNumberOfPeople, _state.NumberOfPeople);
-                return await sc.NextAsync();
-            }
+            if (_state.NumberOfPeople != null) return await sc.NextAsync();
 
             return await sc.PromptAsync(
                 DialogIds.NumberOfPeopleNumberPrompt,
@@ -150,13 +121,7 @@ namespace HotelBot.Dialogs.BookARoom
                 await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveArrivalDate, arrivalDateAsNaturalLanguage);
             }
 
-
-            if (_state.LeavingDate != null)
-            {
-
-                //await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveLeavingDate, _state.LeavingDate);
-                return await sc.NextAsync();
-            }
+            if (_state.LeavingDate != null) return await sc.NextAsync();
 
             return await sc.PromptAsync(
                 DialogIds.LeavingDateTimePrompt,
@@ -179,34 +144,44 @@ namespace HotelBot.Dialogs.BookARoom
                 await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveLeavingDate, _state.LeavingDate);
             }
 
-            // var bookARoomEmpty = new BookARoomState();
-            //  await _accessors.BookARoomStateAccessor.SetAsync(sc.Context, bookARoomEmpty);
+          
 
             return await sc.PromptAsync(
                 nameof(ConfirmPrompt),
                 new PromptOptions
                 {
-                    Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, BookARoomResponses.ResponseIds.Overview, _state)
+                    Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, BookARoomResponses.ResponseIds.Overview, _state),
                 });
         }
 
         public async Task<DialogTurnResult> ProcessConfirmPrompt(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-            var confirmed = (bool)sc.Result;
+            var confirmed = (bool) sc.Result;
             if (confirmed)
             {
-                // skip to next step to show carousel of available rooms. 
-                // send new cards --> end this dialog --> main dialog
+                // send book a room cards
+                _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
+                await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.SendRooms, _state);
+                var bookARoomEmpty = new BookARoomState();
+                await _accessors.BookARoomStateAccessor.SetAsync(sc.Context, bookARoomEmpty);
                 return await sc.EndDialogAsync();
-
             }
+
+          
             return await sc.PromptAsync(
                 nameof(ChoicePrompt),
                 new PromptOptions
                 {
                     Prompt = MessageFactory.Text("What would you like to adjust?"),
                     RetryPrompt = MessageFactory.Text("Pick an item or tell me"),
-                    Choices = ChoiceFactory.ToChoices(new List<string> { "Arrival", "Leaving", "Number of people", "Email" }),
+                    Choices = ChoiceFactory.ToChoices(
+                        new List<string>
+                        {
+                            "Arrival",
+                            "Leaving",
+                            "Number of people",
+                            "Email"
+                        })
                 },
                 cancellationToken);
 
@@ -218,7 +193,7 @@ namespace HotelBot.Dialogs.BookARoom
         {
             _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
             var choice = sc.Result as FoundChoice;
-            
+
             switch (choice.Value)
             {
                 case "Arrival":
@@ -236,6 +211,7 @@ namespace HotelBot.Dialogs.BookARoom
 
 
             }
+
             return await sc.ReplaceDialogAsync(InitialDialogId, null);
         }
 
