@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using HotelBot.Models.LUIS;
 using HotelBot.Shared.Helpers;
 using HotelBot.StateAccessors;
-using Luis;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.TemplateManager;
 

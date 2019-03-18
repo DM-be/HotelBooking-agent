@@ -8,9 +8,9 @@ using HotelBot.Dialogs.Shared.CustomDialog.Delegates;
 using HotelBot.Dialogs.Shared.InterruptableDialog;
 using HotelBot.Dialogs.Shared.Prompts;
 using HotelBot.Extensions;
+using HotelBot.Models.LUIS;
 using HotelBot.Services;
 using HotelBot.StateAccessors;
-using Luis;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Recognizers.Text.DataTypes.TimexExpression;
 
@@ -99,10 +99,7 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
                     {
                         return await OnUpdate(dc, DialogIds.DateConfirmWaterfall);
                     }
-                    case HotelBotLuis.Intent.Continue:
-                    {
-                        return await OnContinue(dc);
-                    }
+                   
 
                 }
             }
@@ -241,6 +238,7 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
             var intent = luisResult.TopIntent().intent;
             if (_updateStateHandler.UpdateStateHandlerDelegates.TryGetValue(intent, out var DelegateStateUpdate))
                 DelegateStateUpdate(bookARoomState, luisResult);
+            await _accessors.BookARoomStateAccessor.SetAsync(sc.Context, bookARoomState);
         }
     }
 

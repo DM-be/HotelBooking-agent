@@ -6,10 +6,10 @@ using HotelBot.Dialogs.BookARoom;
 using HotelBot.Dialogs.Main.Delegates;
 using HotelBot.Dialogs.Shared.RouterDialog;
 using HotelBot.Extensions;
+using HotelBot.Models.LUIS;
 using HotelBot.Services;
 using HotelBot.Shared.Helpers;
 using HotelBot.StateAccessors;
-using Luis;
 using Microsoft.Bot.Builder.Dialogs;
 
 namespace HotelBot.Dialogs.Main

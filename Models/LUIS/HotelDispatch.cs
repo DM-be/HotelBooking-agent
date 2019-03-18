@@ -4,11 +4,12 @@
 // Changes may cause incorrect behavior and will be lost if the code is
 // regenerated.
 // </auto-generated>
-using Newtonsoft.Json;
+
 using System.Collections.Generic;
 using Microsoft.Bot.Builder;
-using Microsoft.Bot.Builder.AI.Luis;
-namespace Luis
+using Newtonsoft.Json;
+
+namespace HotelBot.Models.LUIS
 {
     public class HotelDispatch: IRecognizerConvert
     {

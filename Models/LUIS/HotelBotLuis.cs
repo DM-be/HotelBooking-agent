@@ -4,11 +4,13 @@
 // Changes may cause incorrect behavior and will be lost if the code is
 // regenerated.
 // </auto-generated>
-using Newtonsoft.Json;
+
 using System.Collections.Generic;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.AI.Luis;
-namespace Luis
+using Newtonsoft.Json;
+
+namespace HotelBot.Models.LUIS
 {
     public class HotelBotLuis: IRecognizerConvert
     {
@@ -27,7 +29,6 @@ namespace Luis
             Update_email, 
             Update_Leaving_Date, 
             Update_Number_Of_People,
-            Continue
         };
         public Dictionary<Intent, IntentScore> Intents;
 

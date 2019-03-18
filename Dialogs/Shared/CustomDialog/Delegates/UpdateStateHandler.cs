@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using HotelBot.Dialogs.BookARoom;
 using HotelBot.Extensions;
-using Luis;
+using HotelBot.Models.LUIS;
 
 namespace HotelBot.Dialogs.Shared.CustomDialog.Delegates
 {

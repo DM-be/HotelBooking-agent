@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Luis;
+using HotelBot.Models.LUIS;
 using Microsoft.Recognizers.Text.DataTypes.TimexExpression;
 
 namespace HotelBot.Dialogs.BookARoom

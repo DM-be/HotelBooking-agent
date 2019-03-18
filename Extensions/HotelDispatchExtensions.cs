@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Luis;
+using HotelBot.Models.LUIS;
 
 namespace HotelBot.Extensions
 {

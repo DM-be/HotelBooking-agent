@@ -1,6 +1,6 @@
 ﻿using System;
+using HotelBot.Models.LUIS;
 using HotelBot.Shared.Helpers;
-using Luis;
 
 namespace HotelBot.Extensions
 {
