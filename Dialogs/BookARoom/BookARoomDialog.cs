@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.BookARoom.Resources;
-using HotelBot.Dialogs.Shared.CustomDialog;
+using HotelBot.Dialogs.Shared.RecognizerDialogs;
 using HotelBot.Dialogs.Shared.Validators;
 using HotelBot.Services;
 using HotelBot.Shared.Helpers;
@@ -17,7 +17,7 @@ using Microsoft.Recognizers.Text.DataTypes.TimexExpression;
 
 namespace HotelBot.Dialogs.BookARoom
 {
-    public class BookARoomDialog: RecognizerDialog
+    public class BookARoomDialog: BookARoomRecognizerDialog
     {
         private static BookARoomResponses _responder;
         private readonly StateBotAccessors _accessors;
@@ -34,9 +34,9 @@ namespace HotelBot.Dialogs.BookARoom
             _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
             _responder = new BookARoomResponses();
             InitialDialogId = nameof(BookARoomDialog);
-            var bookARoom = new WaterfallStep[]
+            var bookARoom = new WaterfallStep []
             {
-                AskForEmail, AskForNumberOfPeople, AskForArrivalDate, AskForLeavingDate, PromptConfirm, ProcessConfirmPrompt, LoopDialog,
+                AskForEmail, AskForNumberOfPeople, AskForArrivalDate, AskForLeavingDate, PromptConfirm, ProcessConfirmPrompt, UpdateStateLoop
             };
             AddDialog(new WaterfallDialog(InitialDialogId, bookARoom));
             AddDialog(new DateTimePrompt(DialogIds.ArrivalDateTimePrompt, _validators.DateValidatorAsync));
@@ -63,8 +63,9 @@ namespace HotelBot.Dialogs.BookARoom
                 DialogIds.EmailPrompt,
                 new PromptOptions
                 {
-                    Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, BookARoomResponses.ResponseIds.EmailPrompt),
-                }, cancellationToken);
+                    Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, BookARoomResponses.ResponseIds.EmailPrompt)
+                },
+                cancellationToken);
         }
 
         public async Task<DialogTurnResult> AskForNumberOfPeople(WaterfallStepContext sc, CancellationToken cancellationToken)
@@ -86,7 +87,7 @@ namespace HotelBot.Dialogs.BookARoom
                 new PromptOptions
                 {
                     Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, BookARoomResponses.ResponseIds.NumberOfPeoplePrompt),
-                    RetryPrompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, BookARoomResponses.ResponseIds.NumberOfPeopleReprompt),
+                    RetryPrompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, BookARoomResponses.ResponseIds.NumberOfPeopleReprompt)
                 });
 
         }
@@ -146,13 +147,12 @@ namespace HotelBot.Dialogs.BookARoom
                 await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveLeavingDate, _state.LeavingDate);
             }
 
-          
 
             return await sc.PromptAsync(
                 nameof(ConfirmPrompt),
                 new PromptOptions
                 {
-                    Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, BookARoomResponses.ResponseIds.Overview, _state),
+                    Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, BookARoomResponses.ResponseIds.Overview, _state)
                 });
         }
 
@@ -166,10 +166,10 @@ namespace HotelBot.Dialogs.BookARoom
                 await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.SendRooms, _state);
                 var bookARoomEmpty = new BookARoomState();
                 await _accessors.BookARoomStateAccessor.SetAsync(sc.Context, bookARoomEmpty);
-                return await sc.EndDialogAsync();
+                return await sc.EndDialogAsync("bookedRoom");
             }
 
-          
+
             return await sc.PromptAsync(
                 nameof(ChoicePrompt),
                 new PromptOptions
@@ -191,7 +191,7 @@ namespace HotelBot.Dialogs.BookARoom
             //  await sc.EndDialogAsync(cancellationToken);
         }
 
-        public async Task<DialogTurnResult> LoopDialog(WaterfallStepContext sc, CancellationToken cancellationToken)
+        public async Task<DialogTurnResult> UpdateStateLoop(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
             var choice = sc.Result as FoundChoice;

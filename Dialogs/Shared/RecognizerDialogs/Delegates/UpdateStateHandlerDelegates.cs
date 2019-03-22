@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using HotelBot.Dialogs.BookARoom;
 using HotelBot.Models.LUIS;
-using Microsoft.Bot.Builder.Dialogs;
 
-namespace HotelBot.Dialogs.Shared.CustomDialog.Delegates
+namespace HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates
 {
 
 

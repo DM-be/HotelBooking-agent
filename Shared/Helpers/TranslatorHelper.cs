@@ -16,12 +16,13 @@ namespace HotelBot.Shared.Helpers
             _translator = new MicrosoftTranslator(key);
         }
 
-        public async Task<string> TranslateText(string text, string targetLocale)
+        
+        public async Task<string> TranslateTextToEnglish(string text)
         {
-            return await _translator.TranslateAsync(text, targetLocale);
+            return await _translator.TranslateAsync(text, TranslationSettings.DefaultLanguage);
         }
 
-        public bool ShouldTranslate(string facebookLocale)
+        public bool ShouldTranslateToEnglish(string facebookLocale)
         {
             var lang = facebookLocale.Substring(0, 2);
             return lang != TranslationSettings.DefaultLanguage;

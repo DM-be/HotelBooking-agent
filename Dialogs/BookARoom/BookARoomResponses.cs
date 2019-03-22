@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using HotelBot.Dialogs.BookARoom.Resources;
-using HotelBot.Dialogs.Shared.CustomDialog;
+using HotelBot.Dialogs.Shared.RecognizerDialogs;
 using HotelBot.Extensions;
+using HotelBot.Models.DTO;
+using HotelBot.Shared.Helpers;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.TemplateManager;
 using Microsoft.Bot.Schema;
@@ -14,6 +17,7 @@ namespace HotelBot.Dialogs.BookARoom
     public class BookARoomResponses: TemplateManager
 
     {
+        private RequestHandler _requestHandler = new RequestHandler();
         private static readonly LanguageTemplateDictionary _responseTemplates = new LanguageTemplateDictionary
         {
             ["default"] = new TemplateIdMap
@@ -139,7 +143,7 @@ namespace HotelBot.Dialogs.BookARoom
                 {
                     ResponseIds.SendRooms, (context, data) =>
                         SendRoomsCarousel(context, data)
-                },
+                }
             }
         };
 
@@ -150,13 +154,28 @@ namespace HotelBot.Dialogs.BookARoom
             Register(new DictionaryRenderer(_responseTemplates));
         }
 
-        public static IMessageActivity SendRoomsCarousel(ITurnContext context, dynamic data)
+        public async static Task<IMessageActivity> SendRoomsCarousel(ITurnContext context, dynamic data)
         {
-            if (data.GetType() != typeof(BookARoomState))
-            {
-                throw new InvalidCastException("Invalid type given");
-            }
+            var requestHandler = new RequestHandler();
             var bookARoomState = data as BookARoomState;
+
+            RoomRequestData requestData =
+                new RoomRequestData
+                {
+                    Arrival = bookARoomState.ArrivalDate.ToString(),
+                    Departure = bookARoomState.LeavingDate.ToString(),
+                };
+
+            var rooms = await requestHandler.FetchMatchingRooms(requestData);
+            var heroCards = new HeroCard [];
+            foreach (var roomDto in rooms)
+            {
+                
+            }
+            
+            // convert room objects to cards
+
+            if (data.GetType() != typeof(BookARoomState)) throw new InvalidCastException("Invalid type given");
             var url = "https://www.google.com";
             var heroCards = new []
             {
@@ -172,7 +191,7 @@ namespace HotelBot.Dialogs.BookARoom
                     Buttons = new List<CardAction>
                     {
                         new CardAction(ActionTypes.OpenUrl, "Book now", value: url),
-                        new CardAction(ActionTypes.OpenUrl, "More info",value: url)
+                        new CardAction(ActionTypes.OpenUrl, "More info", value: url)
                     }
                 },
                 new HeroCard
@@ -181,7 +200,8 @@ namespace HotelBot.Dialogs.BookARoom
                     Subtitle = $"Available on {bookARoomState.ArrivalDate}",
                     Images = new List<CardImage>
                     {
-                        new CardImage("https://media.cntraveler.com/photos/580e72a51dbfcd3538b953ec/4:3/w_480,c_limit/Bedroom-ThePeninsulaParis-ParisFrance-CRHotel.jpg")
+                        new CardImage(
+                            "https://media.cntraveler.com/photos/580e72a51dbfcd3538b953ec/4:3/w_480,c_limit/Bedroom-ThePeninsulaParis-ParisFrance-CRHotel.jpg")
                     },
                     Buttons = new List<CardAction>
                     {
@@ -311,6 +331,7 @@ namespace HotelBot.Dialogs.BookARoom
             var message = string.Format(BookARoomStrings.STATE_OVERVIEW, state.NumberOfPeople, state.ArrivalDate, state.LeavingDate, state.Email);
             return MessageFactory.Text(message);
         }
+
 
 
 

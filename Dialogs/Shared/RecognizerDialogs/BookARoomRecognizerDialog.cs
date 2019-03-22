@@ -4,8 +4,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.BookARoom;
 using HotelBot.Dialogs.Cancel;
-using HotelBot.Dialogs.Shared.CustomDialog.Delegates;
 using HotelBot.Dialogs.Shared.Prompts;
+using HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates;
 using HotelBot.Extensions;
 using HotelBot.Models.LUIS;
 using HotelBot.Services;
@@ -13,13 +13,10 @@ using HotelBot.StateAccessors;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Recognizers.Text.DataTypes.TimexExpression;
 
-namespace HotelBot.Dialogs.Shared.CustomDialog
+namespace HotelBot.Dialogs.Shared.RecognizerDialogs
 {
-    /// <summary>
-    ///     currently supports room booking intents only
-    ///     --> refactor name or fully generic?
-    /// </summary>
-    public class RecognizerDialog: InterruptableDialog
+
+    public class BookARoomRecognizerDialog: InterruptableDialog
 
     {
 
@@ -31,7 +28,7 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
         private readonly BotServices _services;
         private readonly UpdateStateHandler _updateStateHandler = new UpdateStateHandler();
 
-        public RecognizerDialog(BotServices services, StateBotAccessors accessors, string dialogId)
+        public BookARoomRecognizerDialog(BotServices services, StateBotAccessors accessors, string dialogId)
             : base(dialogId)
         {
             _services = services ?? throw new ArgumentNullException(nameof(services));
@@ -71,9 +68,11 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
             // Only triggers interruption if confidence level is high
             if (luisResult.TopIntent().score > 0.75 && !isChoicePrompt)
             {
+
                 // Add the luis result (intent and entities) for further processing in the derived dialog
                 var bookARoomState = await _accessors.BookARoomStateAccessor.GetAsync(dc.Context, () => new BookARoomState());
                 bookARoomState.LuisResults[LuisResultBookARoomKey] = luisResult;
+
 
                 switch (intent)
                 {
@@ -87,6 +86,7 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
                         // todo: provide contextual help
                         return await OnHelp(dc);
                     }
+
                     case HotelBotLuis.Intent.Update_Number_Of_People:
                     case HotelBotLuis.Intent.Update_email:
                     {
@@ -102,9 +102,12 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
 
                 }
             }
+
             // call the non overriden continue dialog in componentdialog
             return InterruptionStatus.NoAction;
         }
+
+
 
         protected virtual async Task<InterruptionStatus> OnCancel(DialogContext dc)
         {
@@ -207,8 +210,8 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
             var confirmed = (bool) sc.Result;
             if (confirmed)
             {
+                // todo: refactor delegateStateUpdate into fun to return the adjusted state property and send a response based on that
                 UpdateState(sc);
-                var view = new BookARoomResponses();
                 await sc.Context.SendActivityAsync("Ok I updated that for you");
             }
 

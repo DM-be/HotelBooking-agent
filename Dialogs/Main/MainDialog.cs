@@ -4,12 +4,14 @@ using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.BookARoom;
 using HotelBot.Dialogs.Main.Delegates;
+using HotelBot.Dialogs.RoomOverview;
 using HotelBot.Dialogs.Shared.RouterDialog;
 using HotelBot.Extensions;
 using HotelBot.Models.LUIS;
 using HotelBot.Services;
 using HotelBot.Shared.Helpers;
 using HotelBot.StateAccessors;
+using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 
 namespace HotelBot.Dialogs.Main
@@ -30,6 +32,8 @@ namespace HotelBot.Dialogs.Main
             _services = services ?? throw new ArgumentNullException(nameof(services));
             _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
             AddDialog(new BookARoomDialog(_services, _accessors));
+            AddDialog(new RoomOverviewDialog(_services, _accessors));
+
 
         }
 
@@ -68,12 +72,28 @@ namespace HotelBot.Dialogs.Main
 
             }
         }
-        
 
-        protected override async Task CompleteAsync(DialogContext dc, CancellationToken cancellationToken = default(CancellationToken))
+
+        protected override async Task CompleteAsync(DialogContext dc, dynamic Result, CancellationToken cancellationToken = default(CancellationToken))
         {
             // The active dialog's stack ended with a complete status
+            
+
+            // show the main room overview if the result is a room booking
+
+            //TODO: refactor into enums
+            //if (Result.Result == "bookedRoom")
+            //{
+            //    await dc.ReplaceDialogAsync(nameof(RoomOverviewDialog));
+                
+            //}
+
+        
             await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.Completed);
         }
+
+
+
+
     }
 }

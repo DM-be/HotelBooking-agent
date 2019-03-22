@@ -3,7 +3,7 @@ using HotelBot.Dialogs.BookARoom;
 using HotelBot.Extensions;
 using HotelBot.Models.LUIS;
 
-namespace HotelBot.Dialogs.Shared.CustomDialog.Delegates
+namespace HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates
 {
     public class UpdateStateHandler
     {
@@ -42,6 +42,7 @@ namespace HotelBot.Dialogs.Shared.CustomDialog.Delegates
             else
             {
                 state.ArrivalDate = null;
+
             }
         }
 
