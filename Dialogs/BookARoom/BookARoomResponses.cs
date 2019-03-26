@@ -17,7 +17,6 @@ namespace HotelBot.Dialogs.BookARoom
     public class BookARoomResponses: TemplateManager
 
     {
-        private RequestHandler _requestHandler = new RequestHandler();
         private static readonly LanguageTemplateDictionary _responseTemplates = new LanguageTemplateDictionary
         {
             ["default"] = new TemplateIdMap
@@ -141,11 +140,18 @@ namespace HotelBot.Dialogs.BookARoom
                             InputHints.IgnoringInput)
                 },
                 {
-                    ResponseIds.SendRooms, (context, data) =>
+                    ResponseIds.SendRoomsCarousel, (context, data) =>
                         SendRoomsCarousel(context, data)
+                },
+                {
+                    ResponseIds.SendFakeRoomCarousel, (context, data) =>
+                        SendFakeRoomCarousel(context, data)
                 }
+
             }
         };
+
+        private RequestHandler _requestHandler = new RequestHandler();
 
 
 
@@ -154,30 +160,62 @@ namespace HotelBot.Dialogs.BookARoom
             Register(new DictionaryRenderer(_responseTemplates));
         }
 
-        public async static Task<IMessageActivity> SendRoomsCarousel(ITurnContext context, dynamic data)
+        public static  IMessageActivity SendRoomsCarousel(ITurnContext context, dynamic data)
         {
             var requestHandler = new RequestHandler();
             var bookARoomState = data as BookARoomState;
+            var arrivalYear = 2019;
+            var arrivalMonth = (int) bookARoomState.ArrivalDate.Month;
+            var arrivalDay = (int) bookARoomState.ArrivalDate.DayOfMonth;
+            var arrivalDateTime = new DateTime(arrivalYear, arrivalMonth, arrivalDay);
 
-            RoomRequestData requestData =
+            var requestData =
                 new RoomRequestData
                 {
-                    Arrival = bookARoomState.ArrivalDate.ToString(),
-                    Departure = bookARoomState.LeavingDate.ToString(),
+                    Arrival = arrivalDateTime.ToString("yyyy-MM-dd"),
+                    Departure = bookARoomState.LeavingDate.ToString()
                 };
 
-            var rooms = await requestHandler.FetchMatchingRooms(requestData);
-            var heroCards = new HeroCard [];
-            foreach (var roomDto in rooms)
-            {
-                
-            }
-            
-            // convert room objects to cards
-
-            if (data.GetType() != typeof(BookARoomState)) throw new InvalidCastException("Invalid type given");
+            var rooms = requestHandler.FetchMatchingRooms(requestData).Result;
+            var heroCards = new HeroCard[2];
             var url = "https://www.google.com";
-            var heroCards = new []
+            for (var i = 0; i < rooms.Length; i++)
+                heroCards[i] = new HeroCard
+                {
+                    Title = rooms[i].Title,
+                    Images = new List<CardImage>
+                    {
+                        new CardImage(rooms[i].Thumbnail.ImageUrl)
+                    },
+                    Buttons = new List<CardAction>
+                    {
+                        new CardAction(ActionTypes.OpenUrl, "Book now", value: url),
+
+                    }
+                };
+            var reply = context.Activity.CreateReply();
+            reply.Text = "Here are some available rooms, book one now or find more info.";
+            var attachments = new List<Attachment>();
+
+            foreach (var heroCard in heroCards) attachments.Add(heroCard.ToAttachment());
+
+
+            reply.AttachmentLayout = "carousel";
+            reply.Attachments = attachments;
+            return reply;
+
+
+        }
+
+        public static IMessageActivity SendFakeRoomCarousel(ITurnContext context, dynamic data)
+        {
+            if (data.GetType() != typeof(BookARoomState))
+            {
+                throw new InvalidCastException("Invalid type given");
+            }
+            var bookARoomState = data as BookARoomState;
+            var url = "https://www.google.com";
+            var heroCards = new[]
             {
                 new HeroCard
                 {
@@ -191,7 +229,7 @@ namespace HotelBot.Dialogs.BookARoom
                     Buttons = new List<CardAction>
                     {
                         new CardAction(ActionTypes.OpenUrl, "Book now", value: url),
-                        new CardAction(ActionTypes.OpenUrl, "More info", value: url)
+                        new CardAction(ActionTypes.OpenUrl, "More info",value: url)
                     }
                 },
                 new HeroCard
@@ -200,8 +238,7 @@ namespace HotelBot.Dialogs.BookARoom
                     Subtitle = $"Available on {bookARoomState.ArrivalDate}",
                     Images = new List<CardImage>
                     {
-                        new CardImage(
-                            "https://media.cntraveler.com/photos/580e72a51dbfcd3538b953ec/4:3/w_480,c_limit/Bedroom-ThePeninsulaParis-ParisFrance-CRHotel.jpg")
+                        new CardImage("https://media.cntraveler.com/photos/580e72a51dbfcd3538b953ec/4:3/w_480,c_limit/Bedroom-ThePeninsulaParis-ParisFrance-CRHotel.jpg")
                     },
                     Buttons = new List<CardAction>
                     {
@@ -238,6 +275,7 @@ namespace HotelBot.Dialogs.BookARoom
             reply.Attachments = attachments;
             return reply;
         }
+
 
 
         public static IMessageActivity UpdateEmail(ITurnContext context)
@@ -360,8 +398,9 @@ namespace HotelBot.Dialogs.BookARoom
 
             public const string Overview = "overview";
             public const string Introduction = "introduction";
-            public const string SendRooms = "sendRooms";
+            public const string SendRoomsCarousel = "sendRoomsCarousel";
 
+            public const string SendFakeRoomCarousel = "sendFakeRoomCarousel";
 
             // intents
 

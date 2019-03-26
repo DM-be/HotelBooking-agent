@@ -2,7 +2,6 @@
 {
     public class RoomImage
     {
-
-        public string ImageURL { get; set; }
+        public string ImageUrl { get; set; }
     }
 }

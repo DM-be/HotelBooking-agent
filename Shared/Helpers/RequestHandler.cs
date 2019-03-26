@@ -1,4 +1,5 @@
 ﻿using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using HotelBot.Models.DTO;
 using Newtonsoft.Json;
@@ -12,31 +13,28 @@ namespace HotelBot.Shared.Helpers
         // send to backend api
         public RequestHandler()
         {
-            BaseURL = "";
+            FetchMatchingRoomsUrl = "https://us-central1-roomsbackend.cloudfunctions.net/fetchMatchingRooms";
         }
 
 
         // url for backend
-        public string BaseURL { get; set; }
+        public string FetchMatchingRoomsUrl { get; set; }
 
 
 
         // returns general room cards // fake it for now.
-        public async Task<RoomDto []> FetchMatchingRooms(dynamic predicate)
+        public async Task<RoomDto[]> FetchMatchingRooms(RoomRequestData predicate)
         {
-
-
-            // todo: set up 
-            RoomDto [] roomDtos = null;
+            RoomDto[] roomDtos = null;
             var client = new HttpClient();
-            var path = BaseURL + ""; // set correct backend path
-            var response = await client.GetAsync(path);
+            var path = FetchMatchingRoomsUrl;
+            var content = new StringContent(JsonConvert.SerializeObject(predicate), Encoding.UTF8, "application/json");
+            var response = await client.PostAsync(path, content);
             if (response.IsSuccessStatusCode)
             {
                 var roomsAsStrings = await response.Content.ReadAsStringAsync();
-                roomDtos = JsonConvert.DeserializeObject<RoomDto []>(roomsAsStrings);
+                roomDtos = JsonConvert.DeserializeObject<RoomDto[]>(roomsAsStrings);
             }
-
             return roomDtos;
         }
 
@@ -46,7 +44,7 @@ namespace HotelBot.Shared.Helpers
         {
             RoomDetailDto roomDetailDto = null;
             var client = new HttpClient();
-            var path = BaseURL + id; // implement correct route
+            var path = "";
             var response = await client.GetAsync(path);
             if (response.IsSuccessStatusCode)
             {

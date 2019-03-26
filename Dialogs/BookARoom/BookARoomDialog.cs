@@ -54,7 +54,7 @@ namespace HotelBot.Dialogs.BookARoom
 
         {
             // TODO: validation breaks when sending an introduction
-            if (sc.Options == "fromMainDialog") await sc.Context.SendActivityAsync(BookARoomStrings.INTRODUCTION);
+           // if (sc.Options == "fromMainDialog") await sc.Context.SendActivityAsync(BookARoomStrings.INTRODUCTION);
             _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
             // property was gathered by LUIS or replaced manually after a confirm prompt
             if (_state.Email != null) return await sc.NextAsync();
@@ -163,10 +163,13 @@ namespace HotelBot.Dialogs.BookARoom
             {
                 // send book a room cards
                 _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
-                await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.SendRooms, _state);
+                await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.SendRoomsCarousel, _state);
+               
+                
                 var bookARoomEmpty = new BookARoomState();
                 await _accessors.BookARoomStateAccessor.SetAsync(sc.Context, bookARoomEmpty);
-                return await sc.EndDialogAsync("bookedRoom");
+                return await sc.EndDialogAsync();
+                // return await Task.FromResult(new DialogTurnResult(DialogTurnStatus.Waiting));
             }
 
 

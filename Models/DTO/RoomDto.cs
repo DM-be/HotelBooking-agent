@@ -2,7 +2,7 @@
 {
 
     /// <summary>
-    ///     dummy class containing all data of a room from a fake backend
+    ///     dummy class containing all data of a room from a dummy backend made in firebase
     /// </summary>
     public class RoomDto
     {
