@@ -14,11 +14,13 @@ namespace HotelBot.Shared.Helpers
         public RequestHandler()
         {
             FetchMatchingRoomsUrl = "https://us-central1-roomsbackend.cloudfunctions.net/fetchMatchingRooms";
+            FetchRoomDetailUrl = "https://us-central1-roomsbackend.cloudfunctions.net/fetchRoomDetail";
         }
 
 
         // url for backend
         public string FetchMatchingRoomsUrl { get; set; }
+        public string FetchRoomDetailUrl { get; set; }
 
 
 
@@ -40,12 +42,13 @@ namespace HotelBot.Shared.Helpers
 
 
         // fetches a detail of a room --> more RoomImages, checkin time etc etc 
-        public async Task<RoomDetailDto> FetchRoomDetail(string id)
+        public async Task<RoomDetailDto> FetchRoomDetail(RoomDto roomDto)
         {
             RoomDetailDto roomDetailDto = null;
             var client = new HttpClient();
-            var path = "";
-            var response = await client.GetAsync(path);
+            var path = FetchRoomDetailUrl;
+            var content = new StringContent(JsonConvert.SerializeObject(roomDto), Encoding.UTF8, "application/json");
+            var response = await client.PostAsync(path, content);
             if (response.IsSuccessStatusCode)
             {
                 var roomsAsStrings = await response.Content.ReadAsStringAsync();

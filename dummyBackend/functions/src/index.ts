@@ -7,12 +7,13 @@ interface RoomDto {
     title: string,
     description: string,
     startingPrice: number,
-    thumbnail: RoomImage
+    thumbnail: RoomImage,
+    id: string; 
 }
 
 interface RoomDetailDto {
-    checkinTime: string, // iso date time string,
-    checkoutTime: string,
+    checkinTime: string | Date, // iso date time string,
+    checkoutTime: string | Date,
     smokingAllowed: boolean,
     wheelChairAccessible: boolean,
     images: RoomImage [],
@@ -43,7 +44,9 @@ interface Room {
     thumbnail: RoomImage 
     smokingAllowed: boolean,
     wheelChairAccessible: boolean,
-    reservationAgreement: string
+    reservationAgreement: string,
+    checkinTime: string | Date,
+    checkoutTime: string | Date, 
 }
 
 export const fetchMatchingRooms = functions.https.onRequest(async(req, res) => {
@@ -63,13 +66,37 @@ export const fetchMatchingRooms = functions.https.onRequest(async(req, res) => {
             description: room.description,
             title: room.title,
             startingPrice: room.startingPrice,
-            thumbnail: room.thumbnail
+            thumbnail: room.thumbnail,
+            id: snapshotDoc.id
         }
         roomDtos.push(roomDto) 
-       
     });
     res.send(roomDtos);
 })
+
+
+export const fetchRoomDetail = functions.https.onRequest(async(req, res) => {
+    const roomDto: RoomDto = req.body; 
+    const { id } = roomDto;
+    if(!id)
+    {
+        return res.send("bad request, need id") // todo send status code etc etc
+    }
+    const docRef = admin.firestore().collection('rooms').doc(id);
+    const snapshot = await docRef.get();
+    const room = snapshot.data() as Room;
+    const roomDetailDto: RoomDetailDto = {
+        checkinTime: room.checkinTime,
+        checkoutTime: room.checkoutTime,
+        wheelChairAccessible: room.wheelChairAccessible,
+        images: room.images,
+        reservationAgreement: room.reservationAgreement,
+        smokingAllowed: room.smokingAllowed
+    }
+    res.send(roomDetailDto);
+})
+
+
 
 export const createRoom = functions.https.onRequest(async(req, res) => {
     const roomFromBody: Room = req.body; 
@@ -86,8 +113,10 @@ export const createRoom = functions.https.onRequest(async(req, res) => {
 
 
 // refactor into something generic for reuse or delete and use json with createroom
-async function generateRoomObject(availableDateString: string ) {
+async function generateRoomObject(availableDateString: string, checkinTime: string, checkoutTime: string ) {
     const availableDate = new Date(availableDateString);
+    const checkinDate = new Date(checkinTime);
+    const checkoutDate = new Date(checkoutTime);
     const room: Room = {
         availableDate,
         description: "room with a view",
@@ -114,7 +143,9 @@ async function generateRoomObject(availableDateString: string ) {
         thumbnail: {
             imageUrl: "https://images.trvl-media.com/hotels/1000000/920000/911900/911814/37eb7948_z.jpg"
         },
-        wheelChairAccessible: false         
+        wheelChairAccessible: false,
+        checkinTime: checkinDate,
+        checkoutTime: checkoutDate
     }
     const roomsRef = admin.firestore().collection('rooms');
     await roomsRef.add(room);

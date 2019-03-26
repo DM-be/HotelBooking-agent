@@ -1,4 +1,6 @@
-﻿namespace HotelBot.Models.DTO
+﻿using Newtonsoft.Json;
+
+namespace HotelBot.Models.DTO
 {
 
     /// <summary>
@@ -6,6 +8,9 @@
     /// </summary>
     public class RoomDto
     {
+
+        [JsonProperty("id")]
+        public string id { get; set; }
         public string Title { get; set; } // 4-bed dorm...
         public string Description { get; set; } // Standaard 2-persoonskamer. Kingsize bed, wifi, tv, ..
         public int StartingPrice { get; set; }
