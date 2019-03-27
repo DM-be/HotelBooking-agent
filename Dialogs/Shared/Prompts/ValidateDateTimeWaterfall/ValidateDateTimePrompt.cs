@@ -12,8 +12,8 @@ namespace HotelBot.Dialogs.Shared.Prompts
     // TODO: add datetime validator here
     public class ValidateDateTimePrompt: ComponentDialog
     {
-        // todo: rename validators 
-        private readonly Validators.Validators _validators = new Validators.Validators();
+
+        private readonly PromptValidators.PromptValidators _promptValidators = new PromptValidators.PromptValidators();
 
         /// <summary>
         ///     Custom and reusable component dialog that validates a datetime, replaces the given replacing dialog and provides it
@@ -27,7 +27,7 @@ namespace HotelBot.Dialogs.Shared.Prompts
         {
 
             InitialDialogId = nameof(ValidateDateTimePrompt);
-            AddDialog(new DateTimePrompt(nameof(DateTimePrompt), _validators.DateValidatorAsync));
+            AddDialog(new DateTimePrompt(nameof(DateTimePrompt), _promptValidators.DateValidatorAsync));
             var validateDateWaterFallSteps = new WaterfallStep []
             {
                 PromptValidateDate, EndWithValidatedDate

@@ -1,7 +1,10 @@
 ﻿using System.Linq;
 using HotelBot.Dialogs.BookARoom;
+using HotelBot.Dialogs.Email;
 using HotelBot.Extensions;
 using HotelBot.Models.LUIS;
+using Microsoft.Bot.Builder;
+using Microsoft.Bot.Builder.Dialogs;
 
 namespace HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates
 {
@@ -10,10 +13,10 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates
         public readonly UpdateStateHandlerDelegates UpdateStateHandlerDelegates = new UpdateStateHandlerDelegates
         {
             {
-                HotelBotLuis.Intent.Update_ArrivalDate, (state, luisResult) => UpdateArrivalDate(state)
+                HotelBotLuis.Intent.Update_ArrivalDate, (state, luisResult, sc) => UpdateArrivalDate(state)
             },
             {
-                HotelBotLuis.Intent.Update_Leaving_Date, (state, luisResult) => UpdateLeavingDate(state)
+                HotelBotLuis.Intent.Update_Leaving_Date, (state, luisResult, sc) => UpdateLeavingDate(state)
             },
             {
                 HotelBotLuis.Intent.Update_Number_Of_People, UpdateNumberOfPeople
@@ -24,12 +27,17 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates
         };
 
 
-        private static void UpdateEmail(BookARoomState state, HotelBotLuis luisResult)
+        private static async void UpdateEmail(BookARoomState state, HotelBotLuis luisResult, WaterfallStepContext sc)
         {
             if (luisResult.HasEntityWithPropertyName(EntityNames.Email))
+            {
                 state.Email = luisResult.Entities.email.First();
+                
+            }
             else
-                state.Email = null;
+            {
+                await sc.BeginDialogAsync(nameof(EmailDialog));
+            }
         }
 
         private static void UpdateArrivalDate(BookARoomState state)
@@ -60,7 +68,7 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates
             }
         }
 
-        private static void UpdateNumberOfPeople(BookARoomState state, HotelBotLuis luisResult)
+        private static void UpdateNumberOfPeople(BookARoomState state, HotelBotLuis luisResult, WaterfallStepContext sc)
         {
             if (luisResult.HasEntityWithPropertyName(EntityNames.Number))
                 state.NumberOfPeople = luisResult.Entities.number.First();

@@ -210,7 +210,7 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs
             var confirmed = (bool) sc.Result;
             if (confirmed)
             {
-                // todo: refactor delegateStateUpdate into fun to return the adjusted state property and send a response based on that
+               
                 UpdateState(sc);
                 await sc.Context.SendActivityAsync("Ok I updated that for you");
             }
@@ -225,7 +225,7 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs
             bookARoomState.LuisResults.TryGetValue(LuisResultBookARoomKey, out var luisResult);
             var intent = luisResult.TopIntent().intent;
             if (_updateStateHandler.UpdateStateHandlerDelegates.TryGetValue(intent, out var DelegateStateUpdate))
-                DelegateStateUpdate(bookARoomState, luisResult);
+                DelegateStateUpdate(bookARoomState, luisResult, sc);
             await _accessors.BookARoomStateAccessor.SetAsync(sc.Context, bookARoomState);
         }
     }

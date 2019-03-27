@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 using HotelBot.Extensions;
 using Microsoft.Bot.Builder.Dialogs;
 
-namespace HotelBot.Dialogs.Shared.Validators
+namespace HotelBot.Dialogs.Shared.PromptValidators
 {
-    public class Validators
+    public class PromptValidators
     {
-        private readonly ValidatorResponses _responder = new ValidatorResponses();
+        private readonly PromptValidatorResponses _responder = new PromptValidatorResponses();
 
         public async Task<bool> DateValidatorAsync(
             PromptValidatorContext<IList<DateTimeResolution>> promptContext,
@@ -20,7 +20,7 @@ namespace HotelBot.Dialogs.Shared.Validators
             if (!promptContext.Recognized.Succeeded)
             {
                 // generic responses
-                await _responder.ReplyWith(promptContext.Context, ValidatorResponses.ResponseIds.NotRecognizedDate);
+                await _responder.ReplyWith(promptContext.Context, PromptValidatorResponses.ResponseIds.NotRecognizedDate);
                 return false;
             }
 
@@ -30,7 +30,7 @@ namespace HotelBot.Dialogs.Shared.Validators
             var tempTimex = promptContext.Recognized.Value.First().ConvertToTimex();
             if (tempTimex.DayOfMonth == null)
             {
-                await _responder.ReplyWith(promptContext.Context, ValidatorResponses.ResponseIds.IncorrectDate);
+                await _responder.ReplyWith(promptContext.Context, PromptValidatorResponses.ResponseIds.IncorrectDate);
                 return false;
             }
 
@@ -47,7 +47,7 @@ namespace HotelBot.Dialogs.Shared.Validators
                 return true;
             }
 
-            await _responder.ReplyWith(promptContext.Context, ValidatorResponses.ResponseIds.NotInThePast);
+            await _responder.ReplyWith(promptContext.Context, PromptValidatorResponses.ResponseIds.NotInThePast);
             return false;
         }
 
@@ -58,7 +58,7 @@ namespace HotelBot.Dialogs.Shared.Validators
             var validEmail = IsValidEmailAddress(promptContext.Recognized.Value);
             if (!validEmail)
             {
-                await _responder.ReplyWith(promptContext.Context, ValidatorResponses.ResponseIds.InvalidEmail);
+                await _responder.ReplyWith(promptContext.Context, PromptValidatorResponses.ResponseIds.InvalidEmail);
                 return false;
             }
 

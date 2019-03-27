@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using HotelBot.Dialogs.BookARoom.Resources;
+using HotelBot.Dialogs.Email;
+using HotelBot.Dialogs.Shared.PromptValidators;
 using HotelBot.Dialogs.Shared.RecognizerDialogs;
-using HotelBot.Dialogs.Shared.Validators;
 using HotelBot.Services;
 using HotelBot.Shared.Helpers;
 using HotelBot.StateAccessors;
@@ -21,8 +21,8 @@ namespace HotelBot.Dialogs.BookARoom
     {
         private static BookARoomResponses _responder;
         private readonly StateBotAccessors _accessors;
+        private readonly PromptValidators _promptValidators = new PromptValidators();
         private readonly BotServices _services;
-        private readonly Validators _validators = new Validators();
         private BookARoomState _state;
         private TranslatorHelper _translatorHelper = new TranslatorHelper();
 
@@ -39,11 +39,12 @@ namespace HotelBot.Dialogs.BookARoom
                 AskForEmail, AskForNumberOfPeople, AskForArrivalDate, AskForLeavingDate, PromptConfirm, ProcessConfirmPrompt, UpdateStateLoop
             };
             AddDialog(new WaterfallDialog(InitialDialogId, bookARoom));
-            AddDialog(new DateTimePrompt(DialogIds.ArrivalDateTimePrompt, _validators.DateValidatorAsync));
-            AddDialog(new DateTimePrompt(DialogIds.LeavingDateTimePrompt, _validators.DateValidatorAsync));
-            AddDialog(new TextPrompt(DialogIds.EmailPrompt, _validators.EmailValidatorAsync));
+            AddDialog(new DateTimePrompt(DialogIds.ArrivalDateTimePrompt, _promptValidators.DateValidatorAsync));
+            AddDialog(new DateTimePrompt(DialogIds.LeavingDateTimePrompt, _promptValidators.DateValidatorAsync));
+            AddDialog(new TextPrompt(DialogIds.EmailPrompt, _promptValidators.EmailValidatorAsync));
             AddDialog(new NumberPrompt<int>(DialogIds.NumberOfPeopleNumberPrompt));
             AddDialog(new ChoicePrompt(nameof(ChoicePrompt)));
+            AddDialog(new EmailDialog(_accessors));
 
         }
         // first step --> intent checking and entity gathering was done in the general book a room intent
@@ -54,18 +55,21 @@ namespace HotelBot.Dialogs.BookARoom
 
         {
             // TODO: validation breaks when sending an introduction
-           // if (sc.Options == "fromMainDialog") await sc.Context.SendActivityAsync(BookARoomStrings.INTRODUCTION);
+            // if (sc.Options == "fromMainDialog") await sc.Context.SendActivityAsync(BookARoomStrings.INTRODUCTION);
             _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
             // property was gathered by LUIS or replaced manually after a confirm prompt
             if (_state.Email != null) return await sc.NextAsync();
-            // else prompt for email
-            return await sc.PromptAsync(
-                DialogIds.EmailPrompt,
-                new PromptOptions
-                {
-                    Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, BookARoomResponses.ResponseIds.EmailPrompt)
-                },
-                cancellationToken);
+
+            return await sc.BeginDialogAsync(nameof(EmailDialog));
+
+            //// else prompt for email
+            //return await sc.PromptAsync(
+            //    DialogIds.EmailPrompt,
+            //    new PromptOptions
+            //    {
+            //        Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, BookARoomResponses.ResponseIds.EmailPrompt)
+            //    },
+            //    cancellationToken);
         }
 
         public async Task<DialogTurnResult> AskForNumberOfPeople(WaterfallStepContext sc, CancellationToken cancellationToken)
@@ -164,11 +168,12 @@ namespace HotelBot.Dialogs.BookARoom
                 // send book a room cards
                 _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
                 await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.SendRoomsCarousel, _state);
-               
-                
+
+
                 var bookARoomEmpty = new BookARoomState();
                 await _accessors.BookARoomStateAccessor.SetAsync(sc.Context, bookARoomEmpty);
-                return await sc.EndDialogAsync();
+                return EndOfTurn;
+                //  return await sc.EndDialogAsync();
                 // return await Task.FromResult(new DialogTurnResult(DialogTurnStatus.Waiting));
             }
 

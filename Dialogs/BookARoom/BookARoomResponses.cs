@@ -146,6 +146,10 @@ namespace HotelBot.Dialogs.BookARoom
                 {
                     ResponseIds.SendFakeRoomCarousel, (context, data) =>
                         SendFakeRoomCarousel(context, data)
+                },
+                {
+                    ResponseIds.SendRoomDetail, (context, data) =>
+                        SendRoomDetail(context, data)
                 }
 
             }
@@ -189,7 +193,7 @@ namespace HotelBot.Dialogs.BookARoom
                     },
                     Buttons = new List<CardAction>
                     {
-                        new CardAction(ActionTypes.OpenUrl, "Book now", value: url),
+                        new CardAction(ActionTypes.MessageBack, "Show more details", value: rooms[i].id),
 
                     }
                 };
@@ -203,8 +207,32 @@ namespace HotelBot.Dialogs.BookARoom
             reply.AttachmentLayout = "carousel";
             reply.Attachments = attachments;
             return reply;
+        }
+
+        public static IMessageActivity SendRoomDetail(ITurnContext context, dynamic data)
+        {
+            var requestHandler = new RequestHandler();
+            var roomDto = data as RoomDto;
 
 
+            var roomDetailDto = requestHandler.FetchRoomDetail(roomDto).Result;
+            var imageCards = new HeroCard[4];
+            for (var i = 0; i < roomDetailDto.RoomImages.Count; i++)
+                imageCards[i] = new HeroCard
+                {
+                    Images = new List<CardImage>
+                    {
+                        new CardImage(roomDetailDto.RoomImages[i].ImageUrl)
+                    }
+                };
+            var reply = context.Activity.CreateReply();
+            reply.Text = "Here are some more pictures";
+            var attachments = new List<Attachment>();
+
+            foreach (var heroCard in imageCards) attachments.Add(heroCard.ToAttachment());
+            reply.AttachmentLayout = "carousel";
+            reply.Attachments = attachments;
+            return reply;
         }
 
         public static IMessageActivity SendFakeRoomCarousel(ITurnContext context, dynamic data)
@@ -399,7 +427,7 @@ namespace HotelBot.Dialogs.BookARoom
             public const string Overview = "overview";
             public const string Introduction = "introduction";
             public const string SendRoomsCarousel = "sendRoomsCarousel";
-
+            public const string SendRoomDetail = "sendRoomDetail";
             public const string SendFakeRoomCarousel = "sendFakeRoomCarousel";
 
             // intents

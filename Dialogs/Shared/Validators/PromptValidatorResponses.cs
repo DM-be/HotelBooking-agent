@@ -3,9 +3,9 @@ using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.TemplateManager;
 using Microsoft.Bot.Schema;
 
-namespace HotelBot.Dialogs.Shared.Validators
+namespace HotelBot.Dialogs.Shared.PromptValidators
 {
-    public class ValidatorResponses: TemplateManager
+    public class PromptValidatorResponses: TemplateManager
     {
         private static readonly LanguageTemplateDictionary _responseTemplates = new LanguageTemplateDictionary
         {
@@ -46,7 +46,7 @@ namespace HotelBot.Dialogs.Shared.Validators
 
         };
 
-        public ValidatorResponses()
+        public PromptValidatorResponses()
         {
             Register(new DictionaryRenderer(_responseTemplates));
         }
