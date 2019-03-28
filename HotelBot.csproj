@@ -53,7 +53,7 @@
      <AutoGen>True</AutoGen>
      <DependentUpon>CancelStrings.resx</DependentUpon>
    </Compile>
-   <Compile Update="Dialogs\Email\Resources\EmailStrings.Designer.cs">
+   <Compile Update="Dialogs\Prompts\Email\Resources\EmailStrings.Designer.cs">
      <DesignTime>True</DesignTime>
      <AutoGen>True</AutoGen>
      <DependentUpon>EmailStrings.resx</DependentUpon>
@@ -104,7 +104,7 @@
      <Generator>PublicResXFileCodeGenerator</Generator>
      <LastGenOutput>CancelStrings.Designer.cs</LastGenOutput>
    </EmbeddedResource>
-   <EmbeddedResource Update="Dialogs\Email\Resources\EmailStrings.resx">
+   <EmbeddedResource Update="Dialogs\Prompts\Email\Resources\EmailStrings.resx">
      <Generator>PublicResXFileCodeGenerator</Generator>
      <LastGenOutput>EmailStrings.Designer.cs</LastGenOutput>
    </EmbeddedResource>
@@ -151,6 +151,7 @@
 
  <ItemGroup>
    <Folder Include="CognitiveModels\QnA\en\" />
+   <Folder Include="Dialogs\Email\Resources\" />
    <Folder Include="Dialogs\Shared\Prompts\UpdateState\Resources\" />
    <Folder Include="Dialogs\Shared\RecognizerDialogs\Resources\" />
    <Folder Include="Dialogs\Shared\Resources\" />

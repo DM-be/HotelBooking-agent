@@ -6,18 +6,18 @@ using HotelBot.Dialogs.Shared.PromptValidators;
 using HotelBot.StateAccessors;
 using Microsoft.Bot.Builder.Dialogs;
 
-namespace HotelBot.Dialogs.Email
+namespace HotelBot.Dialogs.Prompts.Email
 {
-    public class EmailDialog: ComponentDialog
+    public class EmailPrompt: ComponentDialog
     {
         private static readonly EmailResponses _responder = new EmailResponses();
         private readonly StateBotAccessors _accessors;
         private readonly PromptValidators _promptValidators = new PromptValidators();
 
-        public EmailDialog(StateBotAccessors accessors)
-            : base(nameof(EmailDialog))
+        public EmailPrompt(StateBotAccessors accessors)
+            : base(nameof(EmailPrompt))
         {
-            InitialDialogId = nameof(EmailDialog);
+            InitialDialogId = nameof(EmailPrompt);
             _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
             var askForEmailWaterfallSteps = new WaterfallStep []
             {

@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using HotelBot.Dialogs.BookARoom;
 using HotelBot.Dialogs.Email;
+using HotelBot.Dialogs.Prompts.Email;
 using HotelBot.Dialogs.Shared.Prompts.ConfirmFetchRooms;
 using HotelBot.Extensions;
 using HotelBot.Models.LUIS;
@@ -41,7 +42,7 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates
             }
             else
             {
-                return await sc.BeginDialogAsync(nameof(EmailDialog), true);
+                return await sc.BeginDialogAsync(nameof(EmailPrompt), true);
             }
         }
 

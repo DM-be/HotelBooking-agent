@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HotelBot.Dialogs.Email.Resources {
+namespace HotelBot.Dialogs.Prompts.Email.Resources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace HotelBot.Dialogs.Email.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("HotelBot.Dialogs.Email.Resources.EmailStrings", typeof(EmailStrings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("HotelBot.Dialogs.Prompts.Email.Resources.EmailStrings", typeof(EmailStrings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

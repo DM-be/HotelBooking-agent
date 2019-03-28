@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.Email;
+using HotelBot.Dialogs.Prompts.Email;
 using HotelBot.Dialogs.Shared.Prompts.ConfirmFetchRooms;
 using HotelBot.Dialogs.Shared.PromptValidators;
 using HotelBot.Dialogs.Shared.RecognizerDialogs;
@@ -45,7 +46,7 @@ namespace HotelBot.Dialogs.BookARoom
             AddDialog(new TextPrompt(DialogIds.EmailPrompt, _promptValidators.EmailValidatorAsync));
             AddDialog(new NumberPrompt<int>(DialogIds.NumberOfPeopleNumberPrompt));
             AddDialog(new ChoicePrompt(nameof(ChoicePrompt)));
-            AddDialog(new EmailDialog(_accessors));
+            AddDialog(new EmailPrompt(_accessors));
             AddDialog(new ConfirmFetchRoomsPrompt(accessors));
 
         }
@@ -56,22 +57,9 @@ namespace HotelBot.Dialogs.BookARoom
         public async Task<DialogTurnResult> AskForEmail(WaterfallStepContext sc, CancellationToken cancellationToken)
 
         {
-            // TODO: validation breaks when sending an introduction
-            // if (sc.Options == "fromMainDialog") await sc.Context.SendActivityAsync(BookARoomStrings.INTRODUCTION);
             _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
-            // property was gathered by LUIS or replaced manually after a confirm prompt
             if (_state.Email != null) return await sc.NextAsync();
-
-            return await sc.BeginDialogAsync(nameof(EmailDialog));
-
-            //// else prompt for email
-            //return await sc.PromptAsync(
-            //    DialogIds.EmailPrompt,
-            //    new PromptOptions
-            //    {
-            //        Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, BookARoomResponses.ResponseIds.EmailPrompt)
-            //    },
-            //    cancellationToken);
+            return await sc.BeginDialogAsync(nameof(EmailPrompt));
         }
 
         public async Task<DialogTurnResult> AskForNumberOfPeople(WaterfallStepContext sc, CancellationToken cancellationToken)

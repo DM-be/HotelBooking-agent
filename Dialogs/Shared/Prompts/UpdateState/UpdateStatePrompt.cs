@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.BookARoom;
 using HotelBot.Dialogs.Email;
+using HotelBot.Dialogs.Prompts.Email;
 using HotelBot.Dialogs.Shared.RecognizerDialogs;
 using HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates;
 using HotelBot.Extensions;
@@ -34,7 +35,7 @@ namespace HotelBot.Dialogs.Shared.Prompts.UpdateState
             AddDialog(new WaterfallDialog(InitialDialogId, updateStateWaterfallSteps));
             AddDialog(new ValidateDateTimePrompt());
             AddDialog(new ConfirmPrompt(nameof(ConfirmPrompt)));
-            AddDialog(new EmailDialog(accessors));
+            AddDialog(new EmailPrompt(accessors));
  
         }
 

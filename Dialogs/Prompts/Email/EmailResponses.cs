@@ -1,9 +1,8 @@
-﻿using HotelBot.Dialogs.Email.Resources;
-using Microsoft.Bot.Builder;
+﻿using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.TemplateManager;
 using Microsoft.Bot.Schema;
 
-namespace HotelBot.Dialogs.Email
+namespace HotelBot.Dialogs.Prompts.Email
 {
     public class EmailResponses: TemplateManager
     {
