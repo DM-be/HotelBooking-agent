@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.Prompts.Email;
+using HotelBot.Dialogs.Prompts.NumberOfPeople;
 using HotelBot.Dialogs.Shared.Prompts.ConfirmFetchRooms;
 using HotelBot.Dialogs.Shared.PromptValidators;
 using HotelBot.Dialogs.Shared.RecognizerDialogs;
@@ -43,7 +44,7 @@ namespace HotelBot.Dialogs.BookARoom
             AddDialog(new DateTimePrompt(DialogIds.ArrivalDateTimePrompt, _promptValidators.DateValidatorAsync));
             AddDialog(new DateTimePrompt(DialogIds.LeavingDateTimePrompt, _promptValidators.DateValidatorAsync));
             AddDialog(new TextPrompt(DialogIds.EmailPrompt, _promptValidators.EmailValidatorAsync));
-            AddDialog(new NumberPrompt<int>(DialogIds.NumberOfPeopleNumberPrompt));
+            AddDialog(new NumberOfPeoplePromptDialog(accessors));
             AddDialog(new ChoicePrompt(nameof(ChoicePrompt)));
             AddDialog(new EmailPromptDialog(_accessors));
             AddDialog(new ConfirmFetchRoomsPrompt(accessors));
@@ -64,18 +65,8 @@ namespace HotelBot.Dialogs.BookARoom
         public async Task<DialogTurnResult> AskForNumberOfPeople(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
-
-
             if (_state.NumberOfPeople != null) return await sc.NextAsync();
-
-            return await sc.PromptAsync(
-                DialogIds.NumberOfPeopleNumberPrompt,
-                new PromptOptions
-                {
-                    Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, BookARoomResponses.ResponseIds.NumberOfPeoplePrompt),
-                    RetryPrompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, BookARoomResponses.ResponseIds.NumberOfPeopleReprompt)
-                });
-
+            return await sc.BeginDialogAsync(nameof(NumberOfPeoplePromptDialog));
         }
 
         public async Task<DialogTurnResult> AskForArrivalDate(WaterfallStepContext sc, CancellationToken cancellationToken)

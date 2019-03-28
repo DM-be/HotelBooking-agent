@@ -55,7 +55,7 @@ namespace HotelBot.Dialogs.Prompts.Email
             else
                 await _responder.ReplyWith(sc.Context, EmailResponses.ResponseIds.HaveEmail, email);
 
-            return await sc.EndDialogAsync((string) sc.Result);
+            return await sc.EndDialogAsync();
         }
 
         private class DialogIds

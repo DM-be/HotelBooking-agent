@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using HotelBot.Dialogs.BookARoom;
 using HotelBot.Dialogs.Prompts.Email;
+using HotelBot.Dialogs.Prompts.NumberOfPeople;
 using HotelBot.Extensions;
 using HotelBot.Models.LUIS;
 using Microsoft.Bot.Builder.Dialogs;
@@ -74,10 +75,15 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates
         private static async Task<DialogTurnResult> UpdateNumberOfPeople(BookARoomState state, HotelBotLuis luisResult, WaterfallStepContext sc)
         {
             if (luisResult.HasEntityWithPropertyName(EntityNames.Number))
+            {
                 state.NumberOfPeople = luisResult.Entities.number.First();
-            else
-                state.NumberOfPeople = null;
-            return null;
+                var responder = new NumberOfPeopleResponses();
+                await responder.ReplyWith(sc.Context, NumberOfPeopleResponses.ResponseIds.HaveUpdatedNumberOfPeople, state.NumberOfPeople);
+                return await sc.EndDialogAsync();
+            }
+
+            return await sc.BeginDialogAsync(nameof(NumberOfPeoplePromptDialog), true);
+
         }
     }
 }

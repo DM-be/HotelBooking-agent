@@ -63,6 +63,11 @@
      <AutoGen>True</AutoGen>
      <DependentUpon>MainStrings.resx</DependentUpon>
    </Compile>
+   <Compile Update="Dialogs\Prompts\NumberOfPeople\Resources\NumberOfPeopleStrings.Designer.cs">
+     <DesignTime>True</DesignTime>
+     <AutoGen>True</AutoGen>
+     <DependentUpon>NumberOfPeopleStrings.resx</DependentUpon>
+   </Compile>
    <Compile Update="Dialogs\Shared\Prompts\ValidateDateTimeWaterfall\Resources\ValidateDateTimeStrings.Designer.cs">
      <DesignTime>True</DesignTime>
      <AutoGen>True</AutoGen>
@@ -111,6 +116,10 @@
    <EmbeddedResource Update="Dialogs\Main\Resources\MainStrings.resx">
      <Generator>PublicResXFileCodeGenerator</Generator>
      <LastGenOutput>MainStrings.Designer.cs</LastGenOutput>
+   </EmbeddedResource>
+   <EmbeddedResource Update="Dialogs\Prompts\NumberOfPeople\Resources\NumberOfPeopleStrings.resx">
+     <Generator>PublicResXFileCodeGenerator</Generator>
+     <LastGenOutput>NumberOfPeopleStrings.Designer.cs</LastGenOutput>
    </EmbeddedResource>
    <EmbeddedResource Update="Dialogs\Shared\Prompts\ValidateDateTimeWaterfall\Resources\ValidateDateTimeStrings.resx">
      <Generator>PublicResXFileCodeGenerator</Generator>
