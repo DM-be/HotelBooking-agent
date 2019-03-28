@@ -16,11 +16,9 @@ namespace HotelBot.Dialogs.Shared.Prompts
         private readonly PromptValidators.PromptValidators _promptValidators = new PromptValidators.PromptValidators();
 
         /// <summary>
-        ///     Custom and reusable component dialog that validates a datetime, replaces the given replacing dialog and provides it
-        ///     with a correct timexproperty.
+        ///     Custom and reusable component dialog that validates a datetime, ends the dialog and returns a timexproperty
         ///     <param name="replacingDialogId">
-        ///         Dialogid of the replacing dialog, will recieven a valid timexproperty in its
-        ///         options.
+        ///         Dialogid of the replacing dialog, will recieve a valid timexproperty in options parameter
         ///     </param>
         /// </summary>
         public ValidateDateTimePrompt(): base(nameof(ValidateDateTimePrompt))

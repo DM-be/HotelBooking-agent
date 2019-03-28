@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using HotelBot.Dialogs.BookARoom;
 using HotelBot.Dialogs.Cancel;
 using HotelBot.Dialogs.Shared.Prompts;
+using HotelBot.Dialogs.Shared.Prompts.UpdateState;
 using HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates;
 using HotelBot.Extensions;
 using HotelBot.Models.LUIS;
@@ -34,21 +35,7 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs
             _services = services ?? throw new ArgumentNullException(nameof(services));
             _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
             AddDialog(new CancelDialog(_accessors));
-            AddDialog(new ConfirmPrompt(nameof(ConfirmPrompt)));
-            var confirmUpdateStepsDate = new WaterfallStep []
-            {
-                ValidateTimeStep, PromptConfirm, EndConfirm
-            };
-
-
-            var confirmUpdateSteps = new WaterfallStep []
-            {
-                PromptConfirm, EndConfirm
-            };
-
-            AddDialog(new WaterfallDialog(DialogIds.DateConfirmWaterfall, confirmUpdateStepsDate));
-            AddDialog(new WaterfallDialog(DialogIds.ConfirmWaterfall, confirmUpdateSteps));
-            AddDialog(new ValidateDateTimePrompt());
+            AddDialog(new UpdateStatePrompt(services, accessors));
 
 
         }
@@ -85,20 +72,13 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs
                     {
                         // todo: provide contextual help
                         return await OnHelp(dc);
-                    }
 
-                    case HotelBotLuis.Intent.Update_Number_Of_People:
-                    case HotelBotLuis.Intent.Update_email:
+                    }
+                    default:
                     {
-                        return await OnUpdate(dc, DialogIds.ConfirmWaterfall);
+                        var isDateUpdateIntent = intent.IsUpdateDateIntent();
+                        return await OnUpdate(dc, isDateUpdateIntent);
                     }
-                    case HotelBotLuis.Intent.Update_ArrivalDate:
-                    case HotelBotLuis.Intent.Update_Leaving_Date:
-
-                    {
-                        return await OnUpdate(dc, DialogIds.DateConfirmWaterfall);
-                    }
-
 
                 }
             }
@@ -134,18 +114,18 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs
             return InterruptionStatus.Interrupted;
         }
 
-        protected virtual async Task<InterruptionStatus> OnUpdate(DialogContext dc, string dialogId)
+        protected virtual async Task<InterruptionStatus> OnUpdate(DialogContext dc, bool isUpdateDate)
         {
             // do not restart this running dialog
-            if (dc.ActiveDialog.Id != dialogId)
+            if (dc.ActiveDialog.Id != nameof(UpdateStatePrompt))
             {
                 // example: in dialog number prompt --> i want to update my email, this prompt is a dialog pushed on the stack
                 // to handle this interruption and start the correct new waterfall, we need to cancel the stack: bookaroomdialog>numberprompt
 
-                await dc.CancelAllDialogsAsync(); // removes entire stack
+               // await dc.CancelAllDialogsAsync(); // removes entire stack
 
                 // begin our own new dialogwaterfall step
-                await dc.BeginDialogAsync(dialogId);
+                await dc.BeginDialogAsync(nameof(UpdateStatePrompt), isUpdateDate);
 
                 return InterruptionStatus.Waiting;
             }
@@ -156,6 +136,9 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs
         // only time validation is needed when an intent matches for example ""
         public async Task<DialogTurnResult> ValidateTimeStep(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
+            var isUpdateDate = (bool) sc.Options;
+            if (!isUpdateDate) return await sc.NextAsync();
+
             var bookARoomState = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
             bookARoomState.LuisResults.TryGetValue(LuisResultBookARoomKey, out var luisResult);
             TimexProperty timexProperty;
@@ -210,7 +193,7 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs
             var confirmed = (bool) sc.Result;
             if (confirmed)
             {
-               
+
                 UpdateState(sc);
                 await sc.Context.SendActivityAsync("Ok I updated that for you");
             }

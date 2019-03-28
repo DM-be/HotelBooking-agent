@@ -16,5 +16,12 @@
         /// Indicates that no interruption action is required.
         /// </summary>
         NoAction,
+
+
+        /// <summary>
+        /// Indicates that reprompt action is required.
+        /// </summary>
+        Reprompt,
+
     }
 }

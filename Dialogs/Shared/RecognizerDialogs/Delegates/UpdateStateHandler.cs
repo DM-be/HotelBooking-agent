@@ -1,6 +1,8 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using HotelBot.Dialogs.BookARoom;
 using HotelBot.Dialogs.Email;
+using HotelBot.Dialogs.Shared.Prompts.ConfirmFetchRooms;
 using HotelBot.Extensions;
 using HotelBot.Models.LUIS;
 using Microsoft.Bot.Builder;
@@ -22,25 +24,27 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates
                 HotelBotLuis.Intent.Update_Number_Of_People, UpdateNumberOfPeople
             },
             {
-                HotelBotLuis.Intent.Update_email, UpdateEmail
+                HotelBotLuis.Intent.Update_email,  (state, luisResult, sc) => UpdateEmail(state, luisResult, sc)
             }
         };
 
 
-        private static async void UpdateEmail(BookARoomState state, HotelBotLuis luisResult, WaterfallStepContext sc)
+        private static async Task<DialogTurnResult> UpdateEmail(BookARoomState state, HotelBotLuis luisResult, WaterfallStepContext sc)
         {
             if (luisResult.HasEntityWithPropertyName(EntityNames.Email))
             {
                 state.Email = luisResult.Entities.email.First();
-                
+
+                return await sc.EndDialogAsync();
+
             }
             else
             {
-                await sc.BeginDialogAsync(nameof(EmailDialog));
+                return await sc.BeginDialogAsync(nameof(EmailDialog));
             }
         }
 
-        private static void UpdateArrivalDate(BookARoomState state)
+        private static async Task<DialogTurnResult> UpdateArrivalDate(BookARoomState state)
         {
             if (state.TimexResults.TryGetValue("tempTimex", out var arrivingTimexProperty))
             {
@@ -52,9 +56,11 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates
                 state.ArrivalDate = null;
 
             }
+
+            return null;
         }
 
-        private static void UpdateLeavingDate(BookARoomState state)
+        private static async Task<DialogTurnResult> UpdateLeavingDate(BookARoomState state)
         {
             if (state.TimexResults.TryGetValue("tempTimex", out var leavingTimexProperty))
             {
@@ -66,14 +72,17 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates
             {
                 state.LeavingDate = null;
             }
+
+            return null;
         }
 
-        private static void UpdateNumberOfPeople(BookARoomState state, HotelBotLuis luisResult, WaterfallStepContext sc)
+        private static async Task<DialogTurnResult> UpdateNumberOfPeople(BookARoomState state, HotelBotLuis luisResult, WaterfallStepContext sc)
         {
             if (luisResult.HasEntityWithPropertyName(EntityNames.Number))
                 state.NumberOfPeople = luisResult.Entities.number.First();
             else
                 state.NumberOfPeople = null;
+            return null;
         }
     }
 }

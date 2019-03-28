@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.Email;
+using HotelBot.Dialogs.Shared.Prompts.ConfirmFetchRooms;
 using HotelBot.Dialogs.Shared.PromptValidators;
 using HotelBot.Dialogs.Shared.RecognizerDialogs;
 using HotelBot.Services;
@@ -45,6 +46,7 @@ namespace HotelBot.Dialogs.BookARoom
             AddDialog(new NumberPrompt<int>(DialogIds.NumberOfPeopleNumberPrompt));
             AddDialog(new ChoicePrompt(nameof(ChoicePrompt)));
             AddDialog(new EmailDialog(_accessors));
+            AddDialog(new ConfirmFetchRoomsPrompt(accessors));
 
         }
         // first step --> intent checking and entity gathering was done in the general book a room intent
@@ -151,13 +153,7 @@ namespace HotelBot.Dialogs.BookARoom
                 await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveLeavingDate, _state.LeavingDate);
             }
 
-
-            return await sc.PromptAsync(
-                nameof(ConfirmPrompt),
-                new PromptOptions
-                {
-                    Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, BookARoomResponses.ResponseIds.Overview, _state)
-                });
+            return await sc.BeginDialogAsync(nameof(ConfirmFetchRoomsPrompt));
         }
 
         public async Task<DialogTurnResult> ProcessConfirmPrompt(WaterfallStepContext sc, CancellationToken cancellationToken)
@@ -172,8 +168,7 @@ namespace HotelBot.Dialogs.BookARoom
 
                 var bookARoomEmpty = new BookARoomState();
                 await _accessors.BookARoomStateAccessor.SetAsync(sc.Context, bookARoomEmpty);
-                return EndOfTurn;
-                //  return await sc.EndDialogAsync();
+                return await sc.EndDialogAsync();
                 // return await Task.FromResult(new DialogTurnResult(DialogTurnStatus.Waiting));
             }
 
@@ -225,6 +220,7 @@ namespace HotelBot.Dialogs.BookARoom
             return await sc.ReplaceDialogAsync(InitialDialogId, null);
         }
 
+        
 
 
 

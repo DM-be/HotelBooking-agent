@@ -18,5 +18,11 @@ namespace HotelBot.Extensions
             return false;
 
         }
+
+        public static bool IsUpdateDateIntent(this HotelBotLuis.Intent luisIntent)
+        {
+            return (luisIntent == HotelBotLuis.Intent.Update_ArrivalDate || luisIntent == HotelBotLuis.Intent.Update_Leaving_Date);
+        }
+
     }
 }

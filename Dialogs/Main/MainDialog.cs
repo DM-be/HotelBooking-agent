@@ -11,7 +11,6 @@ using HotelBot.Models.LUIS;
 using HotelBot.Services;
 using HotelBot.Shared.Helpers;
 using HotelBot.StateAccessors;
-using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 
 namespace HotelBot.Dialogs.Main
@@ -77,7 +76,7 @@ namespace HotelBot.Dialogs.Main
         protected override async Task CompleteAsync(DialogContext dc, dynamic Result, CancellationToken cancellationToken = default(CancellationToken))
         {
             // The active dialog's stack ended with a complete status
-            
+
 
             // show the main room overview if the result is a room booking
 
@@ -85,15 +84,11 @@ namespace HotelBot.Dialogs.Main
             //if (Result.Result == "bookedRoom")
             //{
             //    await dc.ReplaceDialogAsync(nameof(RoomOverviewDialog));
-                
+
             //}
 
-        
+
             await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.Completed);
         }
-
-
-
-
     }
 }

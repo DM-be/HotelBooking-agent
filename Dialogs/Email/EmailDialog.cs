@@ -20,7 +20,7 @@ namespace HotelBot.Dialogs.Email
         public EmailDialog(StateBotAccessors accessors)
             : base(nameof(EmailDialog))
         {
-            InitialDialogId = nameof(CancelDialog);
+            InitialDialogId = nameof(EmailDialog);
             _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
             var askForEmailWaterfallSteps = new WaterfallStep[]
             {
