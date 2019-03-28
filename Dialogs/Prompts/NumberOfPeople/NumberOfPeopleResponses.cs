@@ -1,4 +1,5 @@
-﻿using HotelBot.Dialogs.Prompts.NumberOfPeople.Resources;
+﻿using System;
+using HotelBot.Dialogs.Prompts.NumberOfPeople.Resources;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.TemplateManager;
 using Microsoft.Bot.Schema;
@@ -20,10 +21,7 @@ namespace HotelBot.Dialogs.Prompts.NumberOfPeople
                 },
                 {
                     ResponseIds.RetryNumberOfPeoplePrompt, (context, data) =>
-                        MessageFactory.Text(
-                            NumberOfPeopleStrings.RETRY_NUMBER_OF_PEOPLE_PROMPT,
-                            NumberOfPeopleStrings.RETRY_NUMBER_OF_PEOPLE_PROMPT,
-                            InputHints.AcceptingInput)
+                        GenerateRandomRetryResponse()
                 },
                 {
                     ResponseIds.HaveNumberOfPeople, (context, data) =>
@@ -49,6 +47,30 @@ namespace HotelBot.Dialogs.Prompts.NumberOfPeople
         public NumberOfPeopleResponses()
         {
             Register(new DictionaryRenderer(_responseTemplates));
+        }
+
+        private static IMessageActivity GenerateRandomRetryResponse()
+        {
+            var rnd = new Random();
+            string message = "";
+            int randomNumber = rnd.Next(1, 3);
+            switch (randomNumber)
+            {
+                case 1:
+                    message = NumberOfPeopleStrings.RETRY_NUMBER_OF_PEOPLE_PROMPT_1;
+                    break;
+                case 2:
+                    message = NumberOfPeopleStrings.RETRY_NUMBER_OF_PEOPLE_PROMPT_2;
+                    break;
+                case 3:
+                    message = NumberOfPeopleStrings.RETRY_NUMBER_OF_PEOPLE_PROMPT_3;
+                    break;
+            }
+
+            return MessageFactory.Text(
+                message,
+                message,
+                InputHints.AcceptingInput);
         }
 
         public class ResponseIds

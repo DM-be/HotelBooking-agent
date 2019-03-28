@@ -90,9 +90,27 @@ namespace HotelBot.Dialogs.Prompts.NumberOfPeople.Resources {
         /// <summary>
         ///   Looks up a localized string similar to I&apos;m sorry, I didn&apos;t understand. How many people would you bring?.
         /// </summary>
-        public static string RETRY_NUMBER_OF_PEOPLE_PROMPT {
+        public static string RETRY_NUMBER_OF_PEOPLE_PROMPT_1 {
             get {
-                return ResourceManager.GetString("RETRY_NUMBER_OF_PEOPLE_PROMPT", resourceCulture);
+                return ResourceManager.GetString("RETRY_NUMBER_OF_PEOPLE_PROMPT_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I couldn&apos;t understand, how many people would you bring?.
+        /// </summary>
+        public static string RETRY_NUMBER_OF_PEOPLE_PROMPT_2 {
+            get {
+                return ResourceManager.GetString("RETRY_NUMBER_OF_PEOPLE_PROMPT_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry, I didn&apos;t understand that, how many people would you bring?.
+        /// </summary>
+        public static string RETRY_NUMBER_OF_PEOPLE_PROMPT_3 {
+            get {
+                return ResourceManager.GetString("RETRY_NUMBER_OF_PEOPLE_PROMPT_3", resourceCulture);
             }
         }
     }
