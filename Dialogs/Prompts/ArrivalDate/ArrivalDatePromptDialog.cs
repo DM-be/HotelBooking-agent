@@ -41,6 +41,7 @@ namespace HotelBot.Dialogs.Prompts.ArrivalDate
                 {
                     Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, ArrivalDateResponses.ResponseIds.ArrivalDatePrompt),
                     RetryPrompt = await _responder.RenderTemplate(
+
                         sc.Context,
                         sc.Context.Activity.Locale,
                         ArrivalDateResponses.ResponseIds.RetryArrivalDatePrompt)

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.BookARoom;
 using HotelBot.Dialogs.Prompts.ArrivalDate;
+using HotelBot.Dialogs.Prompts.DepartureDate;
 using HotelBot.Dialogs.Prompts.Email;
 using HotelBot.Dialogs.Prompts.NumberOfPeople;
 using HotelBot.Extensions;
@@ -19,13 +20,13 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates
                 HotelBotLuis.Intent.Update_ArrivalDate, (state, luisResult, sc) => UpdateArrivalDate(state, sc)
             },
             {
-                HotelBotLuis.Intent.Update_Leaving_Date, (state, luisResult, sc) => UpdateLeavingDate(state)
+                HotelBotLuis.Intent.Update_Leaving_Date, (state, luisResult, sc) => UpdateLeavingDate(state, sc)
             },
             {
                 HotelBotLuis.Intent.Update_Number_Of_People, UpdateNumberOfPeople
             },
             {
-                HotelBotLuis.Intent.Update_email, (state, luisResult, sc) => UpdateEmail(state, luisResult, sc)
+                HotelBotLuis.Intent.Update_email, UpdateEmail
             }
         };
 
@@ -59,24 +60,24 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates
             }
 
             return await sc.BeginDialogAsync(nameof(ArrivalDatePromptDialog), true);
-
-
         }
 
-        private static async Task<DialogTurnResult> UpdateLeavingDate(BookARoomState state)
+        private static async Task<DialogTurnResult> UpdateLeavingDate(BookARoomState state, WaterfallStepContext sc)
         {
             if (state.TimexResults.TryGetValue("tempTimex", out var leavingTimexProperty))
             {
 
                 state.LeavingDate = leavingTimexProperty;
                 state.TimexResults.Clear();
-            }
-            else
-            {
-                state.LeavingDate = null;
+                var responder = new DepartureDateResponses();
+                await responder.ReplyWith(
+                    sc.Context,
+                    DepartureDateResponses.ResponseIds.HaveUpdatedDepartureDate,
+                    state.LeavingDate.ToNaturalLanguage(DateTime.Now));
+                return await sc.EndDialogAsync();
             }
 
-            return null;
+            return await sc.BeginDialogAsync(nameof(DepartureDatePromptDialog), true);
         }
 
         private static async Task<DialogTurnResult> UpdateNumberOfPeople(BookARoomState state, HotelBotLuis luisResult, WaterfallStepContext sc)

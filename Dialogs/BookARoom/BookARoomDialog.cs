@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.Prompts.ArrivalDate;
+using HotelBot.Dialogs.Prompts.DepartureDate;
 using HotelBot.Dialogs.Prompts.Email;
 using HotelBot.Dialogs.Prompts.NumberOfPeople;
 using HotelBot.Dialogs.Shared.Prompts.ConfirmFetchRooms;
@@ -15,7 +15,6 @@ using HotelBot.StateAccessors;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Dialogs.Choices;
-using Microsoft.Recognizers.Text.DataTypes.TimexExpression;
 
 namespace HotelBot.Dialogs.BookARoom
 {
@@ -48,6 +47,7 @@ namespace HotelBot.Dialogs.BookARoom
             AddDialog(new ChoicePrompt(nameof(ChoicePrompt)));
             AddDialog(new EmailPromptDialog(_accessors));
             AddDialog(new ConfirmFetchRoomsPrompt(accessors));
+            AddDialog(new DepartureDatePromptDialog(accessors));
 
         }
         // first step --> intent checking and entity gathering was done in the general book a room intent
@@ -79,38 +79,12 @@ namespace HotelBot.Dialogs.BookARoom
         public async Task<DialogTurnResult> AskForLeavingDate(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
-            if (sc.Result != null)
-            {
-                var resolution = (sc.Result as IList<DateTimeResolution>).First();
-                var timexProp = new TimexProperty(resolution.Timex);
-                var arrivalDateAsNaturalLanguage = timexProp.ToNaturalLanguage(DateTime.Now);
-                _state.ArrivalDate = timexProp;
-                await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveArrivalDate, arrivalDateAsNaturalLanguage);
-            }
-
             if (_state.LeavingDate != null) return await sc.NextAsync();
-
-            return await sc.PromptAsync(
-                DialogIds.LeavingDateTimePrompt,
-                new PromptOptions
-                {
-                    Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, BookARoomResponses.ResponseIds.LeavingDatePrompt)
-                });
-
+            return await sc.BeginDialogAsync(nameof(DepartureDatePromptDialog));
         }
 
         public async Task<DialogTurnResult> PromptConfirm(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-            _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
-
-            if (sc.Result != null)
-            {
-                var resolution = (sc.Result as IList<DateTimeResolution>).First();
-                var timexProp = new TimexProperty(resolution.Timex);
-                _state.LeavingDate = timexProp;
-                await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveLeavingDate, _state.LeavingDate);
-            }
-
             return await sc.BeginDialogAsync(nameof(ConfirmFetchRoomsPrompt));
         }
 

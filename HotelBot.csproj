@@ -58,6 +58,11 @@
      <AutoGen>True</AutoGen>
      <DependentUpon>ArrivalDateStrings.resx</DependentUpon>
    </Compile>
+   <Compile Update="Dialogs\Prompts\DepartureDate\Resources\DepartureDateStrings.Designer.cs">
+     <DesignTime>True</DesignTime>
+     <AutoGen>True</AutoGen>
+     <DependentUpon>DepartureDateStrings.resx</DependentUpon>
+   </Compile>
    <Compile Update="Dialogs\Prompts\Email\Resources\EmailStrings.Designer.cs">
      <DesignTime>True</DesignTime>
      <AutoGen>True</AutoGen>
@@ -118,6 +123,10 @@
      <Generator>PublicResXFileCodeGenerator</Generator>
      <LastGenOutput>ArrivalDateStrings.Designer.cs</LastGenOutput>
    </EmbeddedResource>
+   <EmbeddedResource Update="Dialogs\Prompts\DepartureDate\Resources\DepartureDateStrings.resx">
+     <Generator>PublicResXFileCodeGenerator</Generator>
+     <LastGenOutput>DepartureDateStrings.Designer.cs</LastGenOutput>
+   </EmbeddedResource>
    <EmbeddedResource Update="Dialogs\Prompts\Email\Resources\EmailStrings.resx">
      <Generator>PublicResXFileCodeGenerator</Generator>
      <LastGenOutput>EmailStrings.Designer.cs</LastGenOutput>
@@ -170,7 +179,6 @@
  <ItemGroup>
    <Folder Include="CognitiveModels\QnA\en\" />
    <Folder Include="Dialogs\Email\Resources\" />
-   <Folder Include="Dialogs\Prompts\DepartureDate\" />
    <Folder Include="Dialogs\Shared\Prompts\UpdateState\Resources\" />
    <Folder Include="Dialogs\Shared\RecognizerDialogs\Resources\" />
    <Folder Include="Shared\Delegates\" />
