@@ -126,4 +126,7 @@
   <data name="NUMBER_OF_PEOPLE_PROMPT" xml:space="preserve">
     <value>How many people are you bringing?</value>
   </data>
+  <data name="RETRY_NUMBER_OF_PEOPLE_PROMPT" xml:space="preserve">
+    <value>I'm sorry, I didn't understand. How many people would you bring?</value>
+  </data>
 </root>

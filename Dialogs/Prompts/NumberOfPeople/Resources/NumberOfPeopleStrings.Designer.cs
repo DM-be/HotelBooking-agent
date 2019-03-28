@@ -86,5 +86,14 @@ namespace HotelBot.Dialogs.Prompts.NumberOfPeople.Resources {
                 return ResourceManager.GetString("NUMBER_OF_PEOPLE_PROMPT", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I&apos;m sorry, I didn&apos;t understand. How many people would you bring?.
+        /// </summary>
+        public static string RETRY_NUMBER_OF_PEOPLE_PROMPT {
+            get {
+                return ResourceManager.GetString("RETRY_NUMBER_OF_PEOPLE_PROMPT", resourceCulture);
+            }
+        }
     }
 }

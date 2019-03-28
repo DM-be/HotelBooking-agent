@@ -36,7 +36,7 @@ namespace HotelBot.Dialogs.Prompts.NumberOfPeople
                 new PromptOptions
                 {
                     Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, NumberOfPeopleResponses.ResponseIds.NumberOfPeoplePrompt),
-                    RetryPrompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, NumberOfPeopleResponses.ResponseIds.Retry),
+                    RetryPrompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, NumberOfPeopleResponses.ResponseIds.RetryNumberOfPeoplePrompt),
                 });
 
         }
