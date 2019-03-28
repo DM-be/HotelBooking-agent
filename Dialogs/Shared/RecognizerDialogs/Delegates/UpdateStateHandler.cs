@@ -38,7 +38,7 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates
 
             }
 
-            return await sc.BeginDialogAsync(nameof(EmailPrompt), true);
+            return await sc.BeginDialogAsync(nameof(EmailPromptDialog), true);
         }
 
         private static async Task<DialogTurnResult> UpdateArrivalDate(BookARoomState state, WaterfallStepContext sc)

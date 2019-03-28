@@ -1,4 +1,4 @@
-﻿using HotelBot.Dialogs.Shared.Validators.Resources;
+﻿using HotelBot.Dialogs.Shared.PromptValidators.Resources;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.TemplateManager;
 using Microsoft.Bot.Schema;

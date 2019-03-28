@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HotelBot.Dialogs.Shared.Validators.Resources {
+namespace HotelBot.Dialogs.Shared.PromptValidators.Resources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace HotelBot.Dialogs.Shared.Validators.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("HotelBot.Dialogs.Shared.Validators.Resources.ValidatorStrings", typeof(ValidatorStrings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("HotelBot.Dialogs.Shared.PromptValidators.Resources.ValidatorStrings", typeof(ValidatorStrings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

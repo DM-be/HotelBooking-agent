@@ -8,16 +8,16 @@ using Microsoft.Bot.Builder.Dialogs;
 
 namespace HotelBot.Dialogs.Prompts.Email
 {
-    public class EmailPrompt: ComponentDialog
+    public class EmailPromptDialog: ComponentDialog
     {
         private static readonly EmailResponses _responder = new EmailResponses();
         private readonly StateBotAccessors _accessors;
         private readonly PromptValidators _promptValidators = new PromptValidators();
 
-        public EmailPrompt(StateBotAccessors accessors)
-            : base(nameof(EmailPrompt))
+        public EmailPromptDialog(StateBotAccessors accessors)
+            : base(nameof(EmailPromptDialog))
         {
-            InitialDialogId = nameof(EmailPrompt);
+            InitialDialogId = nameof(EmailPromptDialog);
             _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
             var askForEmailWaterfallSteps = new WaterfallStep []
             {

@@ -1,6 +1,6 @@
 ﻿namespace HotelBot.Dialogs.Prompts.NumberOfPeople
 {
-    public class NumberOfPeoplePrompt
+    public class NumberOfPeoplePromptDialog
     {
     }
 }

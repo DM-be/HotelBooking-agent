@@ -1,4 +1,5 @@
-﻿using Microsoft.Bot.Builder;
+﻿using HotelBot.Dialogs.Prompts.Email.Resources;
+using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.TemplateManager;
 using Microsoft.Bot.Schema;
 

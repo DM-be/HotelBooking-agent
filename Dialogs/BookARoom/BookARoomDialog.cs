@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using HotelBot.Dialogs.Email;
 using HotelBot.Dialogs.Prompts.Email;
 using HotelBot.Dialogs.Shared.Prompts.ConfirmFetchRooms;
 using HotelBot.Dialogs.Shared.PromptValidators;
@@ -46,7 +45,7 @@ namespace HotelBot.Dialogs.BookARoom
             AddDialog(new TextPrompt(DialogIds.EmailPrompt, _promptValidators.EmailValidatorAsync));
             AddDialog(new NumberPrompt<int>(DialogIds.NumberOfPeopleNumberPrompt));
             AddDialog(new ChoicePrompt(nameof(ChoicePrompt)));
-            AddDialog(new EmailPrompt(_accessors));
+            AddDialog(new EmailPromptDialog(_accessors));
             AddDialog(new ConfirmFetchRoomsPrompt(accessors));
 
         }
@@ -59,13 +58,13 @@ namespace HotelBot.Dialogs.BookARoom
         {
             _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
             if (_state.Email != null) return await sc.NextAsync();
-            return await sc.BeginDialogAsync(nameof(EmailPrompt));
+            return await sc.BeginDialogAsync(nameof(EmailPromptDialog));
         }
 
         public async Task<DialogTurnResult> AskForNumberOfPeople(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
-        
+
 
             if (_state.NumberOfPeople != null) return await sc.NextAsync();
 
@@ -201,7 +200,7 @@ namespace HotelBot.Dialogs.BookARoom
             return await sc.ReplaceDialogAsync(InitialDialogId, null);
         }
 
-        
+
 
 
 

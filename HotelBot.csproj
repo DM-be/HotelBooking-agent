@@ -68,7 +68,7 @@
      <AutoGen>True</AutoGen>
      <DependentUpon>ValidateDateTimeStrings.resx</DependentUpon>
    </Compile>
-   <Compile Update="Dialogs\Shared\Validators\Resources\ValidatorStrings.Designer.cs">
+   <Compile Update="Dialogs\Shared\PromptValidators\Resources\ValidatorStrings.Designer.cs">
      <DesignTime>True</DesignTime>
      <AutoGen>True</AutoGen>
      <DependentUpon>ValidatorStrings.resx</DependentUpon>
@@ -116,7 +116,7 @@
      <Generator>PublicResXFileCodeGenerator</Generator>
      <LastGenOutput>ValidateDateTimeStrings.Designer.cs</LastGenOutput>
    </EmbeddedResource>
-   <EmbeddedResource Update="Dialogs\Shared\Validators\Resources\ValidatorStrings.resx">
+   <EmbeddedResource Update="Dialogs\Shared\PromptValidators\Resources\ValidatorStrings.resx">
      <Generator>PublicResXFileCodeGenerator</Generator>
      <LastGenOutput>ValidatorStrings.Designer.cs</LastGenOutput>
    </EmbeddedResource>
@@ -154,7 +154,6 @@
    <Folder Include="Dialogs\Email\Resources\" />
    <Folder Include="Dialogs\Shared\Prompts\UpdateState\Resources\" />
    <Folder Include="Dialogs\Shared\RecognizerDialogs\Resources\" />
-   <Folder Include="Dialogs\Shared\Resources\" />
    <Folder Include="Shared\Delegates\" />
  </ItemGroup> 
 
