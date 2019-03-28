@@ -31,7 +31,14 @@ namespace HotelBot.Dialogs.Prompts.NumberOfPeople
                             text: string.Format(NumberOfPeopleStrings.HAVE_UPDATED_NUMBER_OF_PEOPLE, data),
                             ssml: string.Format(NumberOfPeopleStrings.HAVE_UPDATED_NUMBER_OF_PEOPLE, data),
                             inputHint: InputHints.IgnoringInput)
+                },
+                {
+                    ResponseIds.Retry, (context, data) =>
+                        MessageFactory.Text(
+                            text: "test retry" )
+                            
                 }
+
 
 
             }
@@ -47,6 +54,8 @@ namespace HotelBot.Dialogs.Prompts.NumberOfPeople
             public const string NumberOfPeoplePrompt = "NumberOfPeoplePrompt";
             public const string HaveNumberOfPeople = "HaveNumberOfPeople";
             public const string HaveUpdatedNumberOfPeople = "HaveUpdatedNumberOfPeople";
+
+            public const string Retry = "retry";
         }
     }
 }

@@ -55,7 +55,10 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs
                         // todo: provide contextual help
                         return await OnHelp(dc);
                     }
-                    default:
+                    case HotelBotLuis.Intent.Update_ArrivalDate:
+                    case HotelBotLuis.Intent.Update_Leaving_Date:
+                    case HotelBotLuis.Intent.Update_email:
+                    case HotelBotLuis.Intent.Update_Number_Of_People:
                     {
                         var isDateUpdateIntent = intent.IsUpdateDateIntent();
                         return await OnUpdate(dc, isDateUpdateIntent);
