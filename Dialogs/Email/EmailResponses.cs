@@ -24,7 +24,16 @@ namespace HotelBot.Dialogs.Email
                             text: string.Format(EmailStrings.HAVE_EMAIL, data),
                             ssml: string.Format(EmailStrings.HAVE_EMAIL, data),
                             inputHint: InputHints.IgnoringInput)
+                },
+                {
+                    ResponseIds.HaveUpdatedEmail, (context, data) =>
+                        MessageFactory.Text(
+                            text: string.Format(EmailStrings.HAVE_UPDATED_EMAIL, data),
+                            ssml: string.Format(EmailStrings.HAVE_UPDATED_EMAIL, data),
+                            inputHint: InputHints.IgnoringInput)
                 }
+
+
 
             }
         };
@@ -38,6 +47,7 @@ namespace HotelBot.Dialogs.Email
         {
             public const string EmailPrompt = "emailPrompt";
             public const string HaveEmail = "haveEmail";
+            public const string HaveUpdatedEmail = "haveUpdatedEmail";
         }
     }
 }

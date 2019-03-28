@@ -123,4 +123,7 @@
   <data name="HAVE_EMAIL" xml:space="preserve">
     <value>Got it, I've added {0} as your primary contact address.</value>
   </data>
+  <data name="HAVE_UPDATED_EMAIL" xml:space="preserve">
+    <value>Ok, I updated your email to {0}.</value>
+  </data>
 </root>

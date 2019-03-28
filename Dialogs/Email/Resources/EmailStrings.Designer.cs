@@ -77,5 +77,14 @@ namespace HotelBot.Dialogs.Email.Resources {
                 return ResourceManager.GetString("HAVE_EMAIL", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok, I updated your email to {0}..
+        /// </summary>
+        public static string HAVE_UPDATED_EMAIL {
+            get {
+                return ResourceManager.GetString("HAVE_UPDATED_EMAIL", resourceCulture);
+            }
+        }
     }
 }

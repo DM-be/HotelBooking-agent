@@ -77,14 +77,7 @@ namespace HotelBot.Dialogs.BookARoom
         public async Task<DialogTurnResult> AskForNumberOfPeople(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
-            if (sc.Result != null)
-            {
-                _state.Email = (string) sc.Result;
-                await _responder.ReplyWith(
-                    sc.Context,
-                    BookARoomResponses.ResponseIds.HaveEmailMessage,
-                    _state.Email);
-            }
+        
 
             if (_state.NumberOfPeople != null) return await sc.NextAsync();
 

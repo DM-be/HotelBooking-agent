@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.BookARoom;
-using HotelBot.Dialogs.Cancel;
 using HotelBot.Dialogs.Shared.PromptValidators;
 using HotelBot.StateAccessors;
 using Microsoft.Bot.Builder.Dialogs;
 
 namespace HotelBot.Dialogs.Email
 {
-    public class EmailDialog : ComponentDialog
+    public class EmailDialog: ComponentDialog
     {
         private static readonly EmailResponses _responder = new EmailResponses();
         private readonly StateBotAccessors _accessors;
@@ -22,7 +19,7 @@ namespace HotelBot.Dialogs.Email
         {
             InitialDialogId = nameof(EmailDialog);
             _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
-            var askForEmailWaterfallSteps = new WaterfallStep[]
+            var askForEmailWaterfallSteps = new WaterfallStep []
             {
                 AskForEmail, FinishEmailDialog
             };
@@ -45,20 +42,20 @@ namespace HotelBot.Dialogs.Email
 
         private async Task<DialogTurnResult> FinishEmailDialog(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-            return await sc.EndDialogAsync((string) sc.Result);
-        }
 
-        protected override async Task<DialogTurnResult> EndComponentAsync(DialogContext outerDc, object result, CancellationToken cancellationToken)
-        {
-            var email = (string) result;
+            var email = (string) sc.Result; // is never null because of validation
+            var updated = false;
+            if (sc.Options != null) updated = (bool) sc.Options; // usually true
 
-            var _state = await _accessors.BookARoomStateAccessor.GetAsync(outerDc.Context, () => new BookARoomState());
+            var _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
             _state.Email = email;
 
-            await _responder.ReplyWith(outerDc.Context, EmailResponses.ResponseIds.HaveEmail, email);
+            if (updated)
+                await _responder.ReplyWith(sc.Context, EmailResponses.ResponseIds.HaveUpdatedEmail, email);
+            else
+                await _responder.ReplyWith(sc.Context, EmailResponses.ResponseIds.HaveEmail, email);
 
-            // End this component. Will trigger reprompt/resume on outer stack
-            return await outerDc.EndDialogAsync();
+            return await sc.EndDialogAsync((string) sc.Result);
         }
 
         private class DialogIds
