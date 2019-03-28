@@ -1,6 +1,8 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.BookARoom;
+using HotelBot.Dialogs.Prompts.ArrivalDate;
 using HotelBot.Dialogs.Prompts.Email;
 using HotelBot.Dialogs.Prompts.NumberOfPeople;
 using HotelBot.Extensions;
@@ -48,11 +50,15 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates
             {
                 state.ArrivalDate = arrivingTimexProperty;
                 state.TimexResults.Clear();
-                
+                var responder = new ArrivalDateResponses();
+                await responder.ReplyWith(
+                    sc.Context,
+                    ArrivalDateResponses.ResponseIds.HaveUpdatedArrivalDate,
+                    state.ArrivalDate.ToNaturalLanguage(DateTime.Now));
                 return await sc.EndDialogAsync();
             }
 
-            return null;
+            return await sc.BeginDialogAsync(nameof(ArrivalDatePromptDialog), true);
 
 
         }

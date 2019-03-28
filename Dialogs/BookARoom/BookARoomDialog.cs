@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using HotelBot.Dialogs.Prompts.ArrivalDate;
 using HotelBot.Dialogs.Prompts.Email;
 using HotelBot.Dialogs.Prompts.NumberOfPeople;
 using HotelBot.Dialogs.Shared.Prompts.ConfirmFetchRooms;
@@ -14,7 +15,6 @@ using HotelBot.StateAccessors;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Dialogs.Choices;
-using Microsoft.Recognizers.Text;
 using Microsoft.Recognizers.Text.DataTypes.TimexExpression;
 
 namespace HotelBot.Dialogs.BookARoom
@@ -41,7 +41,7 @@ namespace HotelBot.Dialogs.BookARoom
                 AskForEmail, AskForNumberOfPeople, AskForArrivalDate, AskForLeavingDate, PromptConfirm, ProcessConfirmPrompt, UpdateStateLoop
             };
             AddDialog(new WaterfallDialog(InitialDialogId, bookARoom));
-            AddDialog(new DateTimePrompt(DialogIds.ArrivalDateTimePrompt, _promptValidators.DateValidatorAsync));
+            AddDialog(new ArrivalDatePromptDialog(accessors));
             AddDialog(new DateTimePrompt(DialogIds.LeavingDateTimePrompt, _promptValidators.DateValidatorAsync));
             AddDialog(new TextPrompt(DialogIds.EmailPrompt, _promptValidators.EmailValidatorAsync));
             AddDialog(new NumberOfPeoplePromptDialog(accessors));
@@ -72,21 +72,8 @@ namespace HotelBot.Dialogs.BookARoom
         public async Task<DialogTurnResult> AskForArrivalDate(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
-            if (sc.Result != null)
-            {
-                _state.NumberOfPeople = (int) sc.Result;
-                await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.HaveNumberOfPeople, _state.NumberOfPeople);
-            }
-
             if (_state.ArrivalDate != null) return await sc.NextAsync();
-
-            return await sc.PromptAsync(
-                DialogIds.ArrivalDateTimePrompt,
-                new PromptOptions
-                {
-                    Prompt = await _responder.RenderTemplate(sc.Context, Culture.Dutch, BookARoomResponses.ResponseIds.ArrivalDatePrompt)
-                });
-
+            return await sc.BeginDialogAsync(nameof(ArrivalDatePromptDialog));
         }
 
         public async Task<DialogTurnResult> AskForLeavingDate(WaterfallStepContext sc, CancellationToken cancellationToken)

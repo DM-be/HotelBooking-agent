@@ -75,9 +75,9 @@ namespace HotelBot.Dialogs.Prompts.NumberOfPeople
 
         public class ResponseIds
         {
-            public const string NumberOfPeoplePrompt = "NumberOfPeoplePrompt";
-            public const string HaveNumberOfPeople = "HaveNumberOfPeople";
-            public const string HaveUpdatedNumberOfPeople = "HaveUpdatedNumberOfPeople";
+            public const string NumberOfPeoplePrompt = "numberOfPeoplePrompt";
+            public const string HaveNumberOfPeople = "haveNumberOfPeople";
+            public const string HaveUpdatedNumberOfPeople = "haveUpdatedNumberOfPeople";
 
             public const string RetryNumberOfPeoplePrompt = "retryNumberOfPeoplePrompt";
         }

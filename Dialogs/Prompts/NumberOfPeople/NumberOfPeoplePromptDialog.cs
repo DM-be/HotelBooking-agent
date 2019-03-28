@@ -12,7 +12,7 @@ namespace HotelBot.Dialogs.Prompts.NumberOfPeople
     {
         private static readonly NumberOfPeopleResponses _responder = new NumberOfPeopleResponses();
         private readonly StateBotAccessors _accessors;
-        private readonly PromptValidators _promptValidators = new PromptValidators();
+        private readonly PromptValidators _promptValidators = new PromptValidators(); // implement checking on max min number of people --> x hotel only has y size rooms etc
 
         public NumberOfPeoplePromptDialog(StateBotAccessors accessors)
             : base(nameof(NumberOfPeoplePromptDialog))

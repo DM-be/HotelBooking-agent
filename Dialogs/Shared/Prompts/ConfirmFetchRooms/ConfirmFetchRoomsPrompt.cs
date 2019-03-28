@@ -47,11 +47,12 @@ namespace HotelBot.Dialogs.Shared.Prompts.ConfirmFetchRooms
 
 
 
-        // default resume behavior reprompts the existing prompt
+        // default resume behavior reprompts the existing prompt 
         // state can be updated so we need to loop the dialog with itself to reflect these changes
         // (child dialogs such as updatestateprompt will call end
         // --> resume on parent stack will be called
         // --> replace dialog with itself to update state)
+
         public override Task<DialogTurnResult> ResumeDialogAsync(DialogContext dc, DialogReason reason, object result = null,
             CancellationToken cancellationToken = new CancellationToken())
         {

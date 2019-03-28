@@ -53,6 +53,11 @@
      <AutoGen>True</AutoGen>
      <DependentUpon>CancelStrings.resx</DependentUpon>
    </Compile>
+   <Compile Update="Dialogs\Prompts\ArrivalDate\Resources\ArrivalDateStrings.Designer.cs">
+     <DesignTime>True</DesignTime>
+     <AutoGen>True</AutoGen>
+     <DependentUpon>ArrivalDateStrings.resx</DependentUpon>
+   </Compile>
    <Compile Update="Dialogs\Prompts\Email\Resources\EmailStrings.Designer.cs">
      <DesignTime>True</DesignTime>
      <AutoGen>True</AutoGen>
@@ -108,6 +113,10 @@
    <EmbeddedResource Update="Dialogs\Cancel\Resources\CancelStrings.resx">
      <Generator>PublicResXFileCodeGenerator</Generator>
      <LastGenOutput>CancelStrings.Designer.cs</LastGenOutput>
+   </EmbeddedResource>
+   <EmbeddedResource Update="Dialogs\Prompts\ArrivalDate\Resources\ArrivalDateStrings.resx">
+     <Generator>PublicResXFileCodeGenerator</Generator>
+     <LastGenOutput>ArrivalDateStrings.Designer.cs</LastGenOutput>
    </EmbeddedResource>
    <EmbeddedResource Update="Dialogs\Prompts\Email\Resources\EmailStrings.resx">
      <Generator>PublicResXFileCodeGenerator</Generator>

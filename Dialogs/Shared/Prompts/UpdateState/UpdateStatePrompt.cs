@@ -3,7 +3,9 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.BookARoom;
+using HotelBot.Dialogs.Prompts.ArrivalDate;
 using HotelBot.Dialogs.Prompts.Email;
+using HotelBot.Dialogs.Prompts.NumberOfPeople;
 using HotelBot.Dialogs.Shared.RecognizerDialogs;
 using HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates;
 using HotelBot.Extensions;
@@ -32,6 +34,8 @@ namespace HotelBot.Dialogs.Shared.Prompts.UpdateState
             AddDialog(new ValidateDateTimePrompt());
             AddDialog(new ConfirmPrompt(nameof(ConfirmPrompt)));
             AddDialog(new EmailPromptDialog(accessors));
+            AddDialog(new ArrivalDatePromptDialog(accessors));
+            AddDialog(new NumberOfPeoplePromptDialog(accessors));
         }
 
 
