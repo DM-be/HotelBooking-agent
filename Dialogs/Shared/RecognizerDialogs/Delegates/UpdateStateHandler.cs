@@ -1,12 +1,9 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.BookARoom;
-using HotelBot.Dialogs.Email;
 using HotelBot.Dialogs.Prompts.Email;
-using HotelBot.Dialogs.Shared.Prompts.ConfirmFetchRooms;
 using HotelBot.Extensions;
 using HotelBot.Models.LUIS;
-using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 
 namespace HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates
@@ -25,7 +22,7 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates
                 HotelBotLuis.Intent.Update_Number_Of_People, UpdateNumberOfPeople
             },
             {
-                HotelBotLuis.Intent.Update_email,  (state, luisResult, sc) => UpdateEmail(state, luisResult, sc)
+                HotelBotLuis.Intent.Update_email, (state, luisResult, sc) => UpdateEmail(state, luisResult, sc)
             }
         };
 
@@ -40,10 +37,8 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates
                 return await sc.EndDialogAsync();
 
             }
-            else
-            {
-                return await sc.BeginDialogAsync(nameof(EmailPrompt), true);
-            }
+
+            return await sc.BeginDialogAsync(nameof(EmailPrompt), true);
         }
 
         private static async Task<DialogTurnResult> UpdateArrivalDate(BookARoomState state, WaterfallStepContext sc)
@@ -54,13 +49,10 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates
                 state.TimexResults.Clear();
                 return await sc.EndDialogAsync();
             }
-            else
-            {
-                return null;
 
-            }
+            return null;
 
-            
+
         }
 
         private static async Task<DialogTurnResult> UpdateLeavingDate(BookARoomState state)
