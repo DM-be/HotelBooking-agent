@@ -161,6 +161,7 @@
  <ItemGroup>
    <Folder Include="CognitiveModels\QnA\en\" />
    <Folder Include="Dialogs\Email\Resources\" />
+   <Folder Include="Dialogs\Prompts\DepartureDate\" />
    <Folder Include="Dialogs\Shared\Prompts\UpdateState\Resources\" />
    <Folder Include="Dialogs\Shared\RecognizerDialogs\Resources\" />
    <Folder Include="Shared\Delegates\" />

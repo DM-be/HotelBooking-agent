@@ -2,7 +2,6 @@
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.BookARoom;
-using HotelBot.Dialogs.Prompts.Email;
 using HotelBot.Dialogs.Shared.PromptValidators;
 using HotelBot.StateAccessors;
 using Microsoft.Bot.Builder.Dialogs;
@@ -20,7 +19,7 @@ namespace HotelBot.Dialogs.Prompts.NumberOfPeople
         {
             InitialDialogId = nameof(NumberOfPeoplePromptDialog);
             _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
-            var askForNumberOfPeopleWaterfallSteps = new WaterfallStep[]
+            var askForNumberOfPeopleWaterfallSteps = new WaterfallStep []
             {
                 PromptForNumberOfPeople, FinishNumberOfPeoplePromptDialog
             };
@@ -36,8 +35,7 @@ namespace HotelBot.Dialogs.Prompts.NumberOfPeople
                 DialogIds.NumberOfPeoplePrompt,
                 new PromptOptions
                 {
-                    Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, NumberOfPeopleResponses.ResponseIds.NumberOfPeoplePrompt),
-                    RetryPrompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, NumberOfPeopleResponses.ResponseIds.NumberOfPeoplePrompt)
+                    Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, NumberOfPeopleResponses.ResponseIds.NumberOfPeoplePrompt)
                 });
 
         }
@@ -47,7 +45,7 @@ namespace HotelBot.Dialogs.Prompts.NumberOfPeople
 
             var numberOfPeople = (int) sc.Result;
             var updated = false;
-            if (sc.Options != null) updated = (bool)sc.Options; // usually true
+            if (sc.Options != null) updated = (bool) sc.Options; // usually true
 
             var _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
             _state.NumberOfPeople = numberOfPeople;
@@ -64,9 +62,5 @@ namespace HotelBot.Dialogs.Prompts.NumberOfPeople
         {
             public const string NumberOfPeoplePrompt = "numberOfPeoplePrompt";
         }
-
-
-
-
     }
 }

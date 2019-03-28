@@ -7,7 +7,6 @@ using HotelBot.Dialogs.Prompts.Email;
 using HotelBot.Dialogs.Shared.RecognizerDialogs;
 using HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates;
 using HotelBot.Extensions;
-using HotelBot.Services;
 using HotelBot.StateAccessors;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Recognizers.Text.DataTypes.TimexExpression;
@@ -18,12 +17,10 @@ namespace HotelBot.Dialogs.Shared.Prompts.UpdateState
     {
         protected const string LuisResultBookARoomKey = "LuisResult_BookARoom";
         private readonly StateBotAccessors _accessors;
-        private readonly BotServices _services;
         private readonly UpdateStateHandler _updateStateHandler = new UpdateStateHandler();
 
-        public UpdateStatePrompt(BotServices services, StateBotAccessors accessors): base(nameof(UpdateStatePrompt))
+        public UpdateStatePrompt(StateBotAccessors accessors): base(nameof(UpdateStatePrompt))
         {
-            _services = services ?? throw new ArgumentNullException(nameof(services));
             _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
             InitialDialogId = nameof(UpdateStatePrompt);
 
@@ -36,7 +33,6 @@ namespace HotelBot.Dialogs.Shared.Prompts.UpdateState
             AddDialog(new ConfirmPrompt(nameof(ConfirmPrompt)));
             AddDialog(new EmailPromptDialog(accessors));
         }
-
 
 
         public async Task<DialogTurnResult> ValidateTimeStep(WaterfallStepContext sc, CancellationToken cancellationToken)
@@ -57,7 +53,7 @@ namespace HotelBot.Dialogs.Shared.Prompts.UpdateState
             if (luisResult.HasEntityWithPropertyName(EntityNames.Datetime))
             {
                 if (luisResult.Entities.datetime.First().Type != "date") // not of type date --> not clear what day arriving etc
-                    return await sc.BeginDialogAsync(nameof(ValidateDateTimePrompt));
+                    return await sc.BeginDialogAsync(nameof(ValidateDateTimePrompt)); // reprompts until valid timex --> result gets passed into promptconfirm
                 // else the timexproperty can be parsed from the entities in the intent
                 var dateTimeSpecs = luisResult.Entities.datetime.First();
                 var firstExpression = dateTimeSpecs.Expressions.First();
@@ -95,9 +91,8 @@ namespace HotelBot.Dialogs.Shared.Prompts.UpdateState
         public async Task<DialogTurnResult> EndConfirm(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             var confirmed = (bool) sc.Result;
-            if (confirmed) return await UpdateState(sc);
-
-            return await sc.EndDialogAsync("test");
+            if (confirmed) return await UpdateState(sc); // updates in delegate and ends after
+            return await sc.EndDialogAsync(null, cancellationToken).ConfigureAwait(false); // end
         }
 
 
@@ -113,7 +108,6 @@ namespace HotelBot.Dialogs.Shared.Prompts.UpdateState
                 await _accessors.BookARoomStateAccessor.SetAsync(sc.Context, bookARoomState);
                 return result;
             }
-            // return correct sub dialog depending on delegate
 
             return null;
 

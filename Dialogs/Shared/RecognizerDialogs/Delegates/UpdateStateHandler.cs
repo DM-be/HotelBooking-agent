@@ -48,6 +48,7 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates
             {
                 state.ArrivalDate = arrivingTimexProperty;
                 state.TimexResults.Clear();
+                
                 return await sc.EndDialogAsync();
             }
 
