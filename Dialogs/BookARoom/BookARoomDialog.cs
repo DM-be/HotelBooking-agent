@@ -29,11 +29,11 @@ namespace HotelBot.Dialogs.BookARoom
             _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
             _responder = new BookARoomResponses();
             InitialDialogId = nameof(BookARoomDialog);
-            var bookARoom = new WaterfallStep []
+            var bookARoomwAWaterfallSteps= new WaterfallStep []
             {
                 AskForEmail, AskForNumberOfPeople, AskForArrivalDate, AskForLeavingDate, PromptConfirm, ProcessConfirmPrompt, UpdateStateLoop
             };
-            AddDialog(new WaterfallDialog(InitialDialogId, bookARoom));
+            AddDialog(new WaterfallDialog(InitialDialogId, bookARoomwAWaterfallSteps));
             AddDialog(new ArrivalDatePromptDialog(accessors));
             AddDialog(new NumberOfPeoplePromptDialog(accessors));
             AddDialog(new ChoicePrompt(nameof(ChoicePrompt)));

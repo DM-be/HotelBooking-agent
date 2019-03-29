@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using HotelBot.Dialogs.RoomDetail;
 using HotelBot.Extensions;
+using HotelBot.Models.DTO;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Schema;
 
@@ -32,7 +34,8 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
                 {
                     if (activity.Value != null)
                     {
-                        await OnEventAsync(innerDc);
+                        await innerDc.BeginDialogAsync(nameof(RoomDetailDialog), activity.Value);
+                        //await OnEventAsync(innerDc);
                     }
                     else if (!string.IsNullOrEmpty(activity.Text))
                     {
@@ -107,10 +110,13 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
         /// <param name="innerDc">The dialog context for the component.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A <see cref="Task" /> representing the asynchronous operation.</returns>
-        protected virtual Task OnEventAsync(DialogContext innerDc, CancellationToken cancellationToken = default(CancellationToken))
+        protected virtual  Task OnEventAsync(DialogContext innerDc, CancellationToken cancellationToken = default(CancellationToken))
         {
+
             return Task.CompletedTask;
         }
+
+        
 
         /// <summary>
         ///     Called when a system activity is received.

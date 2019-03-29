@@ -1,4 +1,5 @@
 ﻿using System.Net.Http;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 using HotelBot.Models.DTO;
@@ -42,12 +43,17 @@ namespace HotelBot.Shared.Helpers
 
 
         // fetches a detail of a room --> more RoomImages, checkin time etc etc 
-        public async Task<RoomDetailDto> FetchRoomDetail(RoomDto roomDto)
+        public async Task<RoomDetailDto> FetchRoomDetail(string roomId)
         {
+            var roomIdObject = new
+            {
+                id = roomId
+            };
+
             RoomDetailDto roomDetailDto = null;
             var client = new HttpClient();
             var path = FetchRoomDetailUrl;
-            var content = new StringContent(JsonConvert.SerializeObject(roomDto), Encoding.UTF8, "application/json");
+            var content = new StringContent(JsonConvert.SerializeObject(roomIdObject), Encoding.UTF8, "application/json");
             var response = await client.PostAsync(path, content);
             if (response.IsSuccessStatusCode)
             {

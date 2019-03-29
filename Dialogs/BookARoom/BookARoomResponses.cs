@@ -202,8 +202,7 @@ namespace HotelBot.Dialogs.BookARoom
         public static IMessageActivity SendRoomDetail(ITurnContext context, dynamic data)
         {
             var requestHandler = new RequestHandler();
-            var roomDto = data as RoomDto;
-            var roomDetailDto = requestHandler.FetchRoomDetail(roomDto).Result;
+            var roomDetailDto = requestHandler.FetchRoomDetail(data).Result;
             var imageCards = new HeroCard[4];
             for (var i = 0; i < roomDetailDto.RoomImages.Count; i++)
                 imageCards[i] = new HeroCard
@@ -345,7 +344,6 @@ namespace HotelBot.Dialogs.BookARoom
             public const string Introduction = "introduction";
             public const string SendRoomsCarousel = "sendRoomsCarousel";
             public const string SendRoomDetail = "sendRoomDetail";
-            public const string SendFakeRoomCarousel = "sendFakeRoomCarousel";
 
             // intents
 

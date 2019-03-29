@@ -1,6 +1,6 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
-import { QuerySnapshot, QueryDocumentSnapshot } from '@google-cloud/firestore';
+import { QuerySnapshot, QueryDocumentSnapshot, Timestamp } from '@google-cloud/firestore';
 admin.initializeApp();
 
 interface RoomDto {
@@ -16,7 +16,7 @@ interface RoomDetailDto {
     checkoutTime: string | Date,
     smokingAllowed: boolean,
     wheelChairAccessible: boolean,
-    images: RoomImage [],
+    roomImages: RoomImage [],
     reservationAgreement: string
 }
 
@@ -45,8 +45,8 @@ interface Room {
     smokingAllowed: boolean,
     wheelChairAccessible: boolean,
     reservationAgreement: string,
-    checkinTime: string | Date,
-    checkoutTime: string | Date, 
+    checkinTime:  Timestamp,
+    checkoutTime: Timestamp, 
 }
 
 export const fetchMatchingRooms = functions.https.onRequest(async(req, res) => {
@@ -76,8 +76,7 @@ export const fetchMatchingRooms = functions.https.onRequest(async(req, res) => {
 
 
 export const fetchRoomDetail = functions.https.onRequest(async(req, res) => {
-    const roomDto: RoomDto = req.body; 
-    const { id } = roomDto;
+    const id = req.body.id; 
     if(!id)
     {
         return res.send("bad request, need id") // todo send status code etc etc
@@ -85,11 +84,14 @@ export const fetchRoomDetail = functions.https.onRequest(async(req, res) => {
     const docRef = admin.firestore().collection('rooms').doc(id);
     const snapshot = await docRef.get();
     const room = snapshot.data() as Room;
+    const checkinTime = room.checkinTime.toDate();
+    const checkoutTime =  room.checkoutTime.toDate();
+
     const roomDetailDto: RoomDetailDto = {
-        checkinTime: room.checkinTime,
-        checkoutTime: room.checkoutTime,
+        checkinTime,
+        checkoutTime,
         wheelChairAccessible: room.wheelChairAccessible,
-        images: room.images,
+        roomImages: room.images,
         reservationAgreement: room.reservationAgreement,
         smokingAllowed: room.smokingAllowed
     }
@@ -144,8 +146,8 @@ async function generateRoomObject(availableDateString: string, checkinTime: stri
             imageUrl: "https://images.trvl-media.com/hotels/1000000/920000/911900/911814/37eb7948_z.jpg"
         },
         wheelChairAccessible: false,
-        checkinTime: checkinDate,
-        checkoutTime: checkoutDate
+        checkinTime: new Timestamp(checkinDate.getSeconds(), checkinDate.getMilliseconds()),
+        checkoutTime: new Timestamp(checkoutDate.getSeconds(), checkoutDate.getMilliseconds()),
     }
     const roomsRef = admin.firestore().collection('rooms');
     await roomsRef.add(room);

@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.BookARoom;
 using HotelBot.Dialogs.Main.Delegates;
+using HotelBot.Dialogs.RoomDetail;
 using HotelBot.Dialogs.RoomOverview;
 using HotelBot.Dialogs.Shared.RouterDialog;
 using HotelBot.Extensions;
@@ -32,6 +33,7 @@ namespace HotelBot.Dialogs.Main
             _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
             AddDialog(new BookARoomDialog(_services, _accessors));
             AddDialog(new RoomOverviewDialog(_services, _accessors));
+            AddDialog(new RoomDetailDialog(_services, accessors));
 
 
         }
