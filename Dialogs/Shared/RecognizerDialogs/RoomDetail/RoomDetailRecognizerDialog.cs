@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.BookARoom;
@@ -10,17 +12,15 @@ using HotelBot.Services;
 using HotelBot.StateAccessors;
 using Microsoft.Bot.Builder.Dialogs;
 
-namespace HotelBot.Dialogs.Shared.RecognizerDialogs
+namespace HotelBot.Dialogs.Shared.RecognizerDialogs.RoomDetail
 {
-
-    public class BookARoomRecognizerDialog: InterruptableDialog
-
+    public class RoomDetailRecognizerDialog : InterruptableDialog
     {
         protected const string LuisResultBookARoomKey = "LuisResult_BookARoom";
         private readonly StateBotAccessors _accessors;
         private readonly BotServices _services;
 
-        public BookARoomRecognizerDialog(BotServices services, StateBotAccessors accessors, string dialogId)
+        public RoomDetailRecognizerDialog(BotServices services, StateBotAccessors accessors, string dialogId)
             : base(dialogId)
         {
             _services = services ?? throw new ArgumentNullException(nameof(services));
@@ -47,22 +47,22 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs
                 switch (intent)
                 {
                     case HotelBotLuis.Intent.Cancel:
-                    {
-                        return await OnCancel(dc);
-                    }
+                        {
+                            return await OnCancel(dc);
+                        }
                     case HotelBotLuis.Intent.Help:
-                    {
-                        // todo: provide contextual help
-                        return await OnHelp(dc);
-                    }
+                        {
+                            // todo: provide contextual help
+                            return await OnHelp(dc);
+                        }
                     case HotelBotLuis.Intent.Update_ArrivalDate:
                     case HotelBotLuis.Intent.Update_Leaving_Date:
                     case HotelBotLuis.Intent.Update_email:
                     case HotelBotLuis.Intent.Update_Number_Of_People:
-                    {
-                        var isDateUpdateIntent = intent.IsUpdateDateIntent();
-                        return await OnUpdate(dc, isDateUpdateIntent);
-                    }
+                        {
+                            var isDateUpdateIntent = intent.IsUpdateDateIntent();
+                            return await OnUpdate(dc, isDateUpdateIntent);
+                        }
                 }
             }
 
@@ -112,6 +112,6 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs
 
             return InterruptionStatus.NoAction;
         }
-    }
 
+    }
 }

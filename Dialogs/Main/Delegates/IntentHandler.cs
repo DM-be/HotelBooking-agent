@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.BookARoom;
+using HotelBot.Dialogs.Prompts.UpdateState;
 using HotelBot.Dialogs.Shared.RecognizerDialogs;
 using HotelBot.Extensions;
 using HotelBot.Models.LUIS;
@@ -82,11 +83,11 @@ namespace HotelBot.Dialogs.Main.Delegates
         //TODO: improve logic and expand ()
         private static void SetInitialBookARoomState(BookARoomState state, HotelBotLuis luisResult)
         {
-            if (luisResult.HasEntityWithPropertyName(EntityNames.Email))
+            if (luisResult.HasEntityWithPropertyName(UpdateStatePrompt.EntityNames.Email))
                 state.Email = luisResult.Entities.email.First();
-            if (luisResult.HasEntityWithPropertyName(EntityNames.Number))
+            if (luisResult.HasEntityWithPropertyName(UpdateStatePrompt.EntityNames.Number))
                 state.NumberOfPeople = luisResult.Entities.number.First();
-            if (luisResult.HasEntityWithPropertyName(EntityNames.Datetime))
+            if (luisResult.HasEntityWithPropertyName(UpdateStatePrompt.EntityNames.Datetime))
                 if (luisResult.Entities.datetime.First().Type == "date")
                 {
                     var dateTimeSpecs = luisResult.Entities.datetime.First();

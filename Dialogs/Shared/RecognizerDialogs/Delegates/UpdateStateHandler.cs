@@ -6,6 +6,7 @@ using HotelBot.Dialogs.Prompts.ArrivalDate;
 using HotelBot.Dialogs.Prompts.DepartureDate;
 using HotelBot.Dialogs.Prompts.Email;
 using HotelBot.Dialogs.Prompts.NumberOfPeople;
+using HotelBot.Dialogs.Prompts.UpdateState;
 using HotelBot.Extensions;
 using HotelBot.Models.LUIS;
 using Microsoft.Bot.Builder.Dialogs;
@@ -33,7 +34,7 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates
 
         private static async Task<DialogTurnResult> UpdateEmail(BookARoomState state, HotelBotLuis luisResult, WaterfallStepContext sc)
         {
-            if (luisResult.HasEntityWithPropertyName(EntityNames.Email))
+            if (luisResult.HasEntityWithPropertyName(UpdateStatePrompt.EntityNames.Email))
             {
                 state.Email = luisResult.Entities.email.First();
                 var responder = new EmailResponses();
@@ -82,7 +83,7 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates
 
         private static async Task<DialogTurnResult> UpdateNumberOfPeople(BookARoomState state, HotelBotLuis luisResult, WaterfallStepContext sc)
         {
-            if (luisResult.HasEntityWithPropertyName(EntityNames.Number))
+            if (luisResult.HasEntityWithPropertyName(UpdateStatePrompt.EntityNames.Number))
             {
                 state.NumberOfPeople = luisResult.Entities.number.First();
                 var responder = new NumberOfPeopleResponses();

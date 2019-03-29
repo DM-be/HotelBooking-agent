@@ -8,7 +8,6 @@ using HotelBot.Dialogs.Prompts.DepartureDate;
 using HotelBot.Dialogs.Prompts.Email;
 using HotelBot.Dialogs.Prompts.NumberOfPeople;
 using HotelBot.Dialogs.Prompts.ValidateDateTimeWaterfall;
-using HotelBot.Dialogs.Shared.RecognizerDialogs;
 using HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates;
 using HotelBot.Extensions;
 using HotelBot.StateAccessors;
@@ -60,7 +59,7 @@ namespace HotelBot.Dialogs.Prompts.UpdateState
 
             if (luisResult.HasEntityWithPropertyName(EntityNames.Datetime))
             {
-                if (luisResult.Entities.datetime.First().Type != "date") // not of type date --> not clear what day arriving etc
+                if (luisResult.Entities.datetime.First().Type != EntityTypes.Date) // not of type date --> not clear what day arriving etc
                     return await sc.BeginDialogAsync(nameof(ValidateDateTimePrompt)); // reprompts until valid timex --> result gets passed into promptconfirm
                 // else the timexproperty can be parsed from the entities in the intent
                 var dateTimeSpecs = luisResult.Entities.datetime.First();
@@ -100,7 +99,7 @@ namespace HotelBot.Dialogs.Prompts.UpdateState
         {
             var confirmed = (bool) sc.Result;
             if (confirmed) return await UpdateState(sc); // updates in delegate and ends after
-            return await sc.EndDialogAsync(null, cancellationToken).ConfigureAwait(false); // end
+            return await sc.EndDialogAsync(null, cancellationToken).ConfigureAwait(false);
         }
 
 
@@ -120,6 +119,18 @@ namespace HotelBot.Dialogs.Prompts.UpdateState
             return null;
 
 
+        }
+
+        public class EntityNames
+        {
+            public const string Email = "email";
+            public const string Number = "number";
+            public const string Datetime = "datetime";
+        }
+
+        public class EntityTypes
+        {
+            public const string Date = "date";
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using HotelBot.Dialogs.BookARoom.Resources;
+using HotelBot.Dialogs.Prompts.UpdateState;
 using HotelBot.Dialogs.Shared.RecognizerDialogs;
 using HotelBot.Extensions;
 using HotelBot.Models.DTO;
@@ -229,7 +230,7 @@ namespace HotelBot.Dialogs.BookARoom
             var state = x as BookARoomState;
             state.LuisResults.TryGetValue("LuisResult_BookARoom", out var luisResult);
             string message;
-            if (luisResult.HasEntityWithPropertyName(EntityNames.Email))
+            if (luisResult.HasEntityWithPropertyName(UpdateStatePrompt.EntityNames.Email))
             {
                 var emailString = luisResult.Entities.email[0];
                 message = string.Format(BookARoomStrings.UPDATE_EMAIL_WITH_ENTITY, emailString);
