@@ -47,11 +47,19 @@ namespace HotelBot.Models.Facebook
         public string Template_Type { get; set; }
 
 
+        [JsonProperty("elements")]
+        public FacebookImageTemplate [] Elements { get; set; } 
+
+
         [JsonProperty("text")]
         public string Text { get; set; }
 
         [JsonProperty("buttons")]
         public FacebookButton[] FacebookButtons { get; set; }
+
+
+        [JsonProperty("url")]
+        public string Url { get; set; }
 
 
 

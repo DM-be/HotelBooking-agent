@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using HotelBot.Dialogs.BookARoom;
 using HotelBot.Dialogs.BookARoom.Resources;
 using HotelBot.Models.DTO;
+using HotelBot.Models.Facebook;
 using HotelBot.Shared.Helpers;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.TemplateManager;
 using Microsoft.Bot.Schema;
+using Newtonsoft.Json.Linq;
 
 namespace HotelBot.Dialogs.RoomDetail
 {
@@ -27,14 +29,21 @@ namespace HotelBot.Dialogs.RoomDetail
         public static IMessageActivity SendImages(ITurnContext context, dynamic data)
         {
             var requestHandler = new RequestHandler();
-            var roomDetailDto = requestHandler.FetchRoomDetail(data).Result;
+            RoomDetailDto roomDetailDto = requestHandler.FetchRoomDetail(data).Result;
             var imageCards = new HeroCard[4];
             for (var i = 0; i < roomDetailDto.RoomImages.Count; i++)
                 imageCards[i] = new HeroCard
                 {
+                    Title = "Room name",
+                    Subtitle = string.Empty,
+                    Text = string.Empty,
                     Images = new List<CardImage>
                     {
                         new CardImage(roomDetailDto.RoomImages[i].ImageUrl)
+                    },
+                    Tap = new CardAction {
+                       Type = ActionTypes.ShowImage,
+                       Value = roomDetailDto.RoomImages[i].ImageUrl
                     }
                 };
             var reply = context.Activity.CreateReply();
