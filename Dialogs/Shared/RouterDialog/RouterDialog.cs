@@ -6,6 +6,7 @@ using HotelBot.Extensions;
 using HotelBot.Models.DTO;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Schema;
+using Newtonsoft.Json;
 
 namespace HotelBot.Dialogs.Shared.RouterDialog
 {
@@ -34,7 +35,8 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
                 {
                     if (activity.Value != null)
                     {
-                        await innerDc.BeginDialogAsync(nameof(RoomDetailDialog), activity.Value);
+                        var roomAction = JsonConvert.DeserializeObject<RoomAction>(activity.Value.ToString());
+                        await innerDc.BeginDialogAsync(nameof(RoomDetailDialog), roomAction);
                         //await OnEventAsync(innerDc);
                     }
                     else if (!string.IsNullOrEmpty(activity.Text))

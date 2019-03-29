@@ -8,6 +8,12 @@ namespace HotelBot.Models.DTO
         // TODO: implement daterange implementation (checkin time between 10 - 11 am)
         public DateTime CheckinTime { get; set; }
         public DateTime CheckoutTime { get; set; }
+
+
+        public string Title { get; set; }
+        public string Description { get; set; }
+
+
         public bool SmokingAllowed { get; set; }
         public bool WeelChairAccessible { get; set; }
         public List<RoomImage> RoomImages { get; set; }

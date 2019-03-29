@@ -49,7 +49,6 @@ namespace HotelBot.Shared.Helpers
             {
                 id = roomId
             };
-
             RoomDetailDto roomDetailDto = null;
             var client = new HttpClient();
             var path = FetchRoomDetailUrl;

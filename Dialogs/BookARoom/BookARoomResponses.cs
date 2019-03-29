@@ -7,6 +7,7 @@ using HotelBot.Dialogs.Shared.RecognizerDialogs;
 using HotelBot.Extensions;
 using HotelBot.Models.DTO;
 using HotelBot.Shared.Helpers;
+using Microsoft.AspNetCore.Mvc.Razor.Internal;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.TemplateManager;
 using Microsoft.Bot.Schema;
@@ -184,7 +185,17 @@ namespace HotelBot.Dialogs.BookARoom
                     },
                     Buttons = new List<CardAction>
                     {
-                        new CardAction(ActionTypes.MessageBack, "Show more details", value: rooms[i].id)
+                        new CardAction(ActionTypes.MessageBack, "More info", value: Newtonsoft.Json.JsonConvert.SerializeObject(new RoomAction
+                        {
+                            Id = rooms[i].id,
+                            Action = "info",
+                        })),
+                        new CardAction(ActionTypes.MessageBack, "More pictures", value: Newtonsoft.Json.JsonConvert.SerializeObject(new RoomAction
+                        {
+                            Id = rooms[i].id,
+                            Action = "images",
+                        })),
+
                     }
                 };
             var reply = context.Activity.CreateReply();

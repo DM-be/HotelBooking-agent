@@ -12,6 +12,8 @@ interface RoomDto {
 }
 
 interface RoomDetailDto {
+    title: string,
+    description: string,
     checkinTime: string | Date, // iso date time string,
     checkoutTime: string | Date,
     smokingAllowed: boolean,
@@ -88,6 +90,8 @@ export const fetchRoomDetail = functions.https.onRequest(async(req, res) => {
     const checkoutTime =  room.checkoutTime.toDate();
 
     const roomDetailDto: RoomDetailDto = {
+        title: room.title,
+        description: room.description,
         checkinTime,
         checkoutTime,
         wheelChairAccessible: room.wheelChairAccessible,

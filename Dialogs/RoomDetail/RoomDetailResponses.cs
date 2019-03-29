@@ -21,7 +21,12 @@ namespace HotelBot.Dialogs.RoomDetail
                 {
                     ResponseIds.SendImages, (context, data) =>
                       SendImages(context, data)
+                },
+                {
+                    ResponseIds.SendGeneralDescription, (context, data) =>
+                        SendGeneralDescription(context, data)
                 }
+
             }
 
         };
@@ -55,6 +60,14 @@ namespace HotelBot.Dialogs.RoomDetail
             return reply;
         }
 
+        public static IMessageActivity SendGeneralDescription(ITurnContext context, dynamic data)
+        {
+            var requestHandler = new RequestHandler();
+            RoomDetailDto roomDetailDto = requestHandler.FetchRoomDetail(data).Result;
+            var message = "The hotel would describe this room as: " + roomDetailDto.Description;
+            return MessageFactory.Text(message);
+        }
+
 
         public RoomDetailResponses()
         {
@@ -65,6 +78,7 @@ namespace HotelBot.Dialogs.RoomDetail
         {
             // all images? maybe room + bathroom separate?
             public const string SendImages = "SendImages";
+            public const string SendGeneralDescription = "SendGeneralDescription";
         }
     }
 }
