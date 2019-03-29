@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.BookARoom;
 using HotelBot.Dialogs.Cancel;
-using HotelBot.Dialogs.Shared.Prompts.UpdateState;
+using HotelBot.Dialogs.Prompts.UpdateState;
 using HotelBot.Extensions;
 using HotelBot.Models.LUIS;
 using HotelBot.Services;

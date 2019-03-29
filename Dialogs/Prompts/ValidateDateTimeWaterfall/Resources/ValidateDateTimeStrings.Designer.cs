@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HotelBot.Dialogs.Shared.Prompts.ValidateDateTimeWaterfall.Resources {
+namespace HotelBot.Dialogs.Prompts.ValidateDateTimeWaterfall.Resources {
     using System;
     
     
@@ -39,8 +39,8 @@ namespace HotelBot.Dialogs.Shared.Prompts.ValidateDateTimeWaterfall.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("HotelBot.Dialogs.Shared.Prompts.ValidateDateTimeWaterfall.Resources.ValidateDateT" +
-                            "imeStrings", typeof(ValidateDateTimeStrings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("HotelBot.Dialogs.Prompts.ValidateDateTimeWaterfall.Resources.ValidateDateTimeStri" +
+                            "ngs", typeof(ValidateDateTimeStrings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.Prompts.ArrivalDate;
+using HotelBot.Dialogs.Prompts.ConfirmFetchRooms;
 using HotelBot.Dialogs.Prompts.DepartureDate;
 using HotelBot.Dialogs.Prompts.Email;
 using HotelBot.Dialogs.Prompts.NumberOfPeople;
-using HotelBot.Dialogs.Shared.Prompts.ConfirmFetchRooms;
 using HotelBot.Dialogs.Shared.PromptValidators;
 using HotelBot.Dialogs.Shared.RecognizerDialogs;
 using HotelBot.Services;
@@ -41,8 +41,6 @@ namespace HotelBot.Dialogs.BookARoom
             };
             AddDialog(new WaterfallDialog(InitialDialogId, bookARoom));
             AddDialog(new ArrivalDatePromptDialog(accessors));
-            AddDialog(new DateTimePrompt(DialogIds.LeavingDateTimePrompt, _promptValidators.DateValidatorAsync));
-            AddDialog(new TextPrompt(DialogIds.EmailPrompt, _promptValidators.EmailValidatorAsync));
             AddDialog(new NumberOfPeoplePromptDialog(accessors));
             AddDialog(new ChoicePrompt(nameof(ChoicePrompt)));
             AddDialog(new EmailPromptDialog(_accessors));
@@ -50,9 +48,6 @@ namespace HotelBot.Dialogs.BookARoom
             AddDialog(new DepartureDatePromptDialog(accessors));
 
         }
-        // first step --> intent checking and entity gathering was done in the general book a room intent
-
-
 
         public async Task<DialogTurnResult> AskForEmail(WaterfallStepContext sc, CancellationToken cancellationToken)
 
@@ -96,8 +91,6 @@ namespace HotelBot.Dialogs.BookARoom
                 // send book a room cards
                 _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
                 await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.SendRoomsCarousel, _state);
-
-
                 var bookARoomEmpty = new BookARoomState();
                 await _accessors.BookARoomStateAccessor.SetAsync(sc.Context, bookARoomEmpty);
                 return await sc.EndDialogAsync();

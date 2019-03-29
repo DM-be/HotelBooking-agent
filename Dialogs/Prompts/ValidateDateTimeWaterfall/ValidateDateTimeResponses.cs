@@ -1,9 +1,9 @@
-﻿using HotelBot.Dialogs.Shared.Prompts.ValidateDateTimeWaterfall.Resources;
+﻿using HotelBot.Dialogs.Prompts.ValidateDateTimeWaterfall.Resources;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.TemplateManager;
 using Microsoft.Bot.Schema;
 
-namespace HotelBot.Dialogs.Shared.Prompts
+namespace HotelBot.Dialogs.Prompts.ValidateDateTimeWaterfall
 {
     public class ValidateDateTimeResponses: TemplateManager
     {

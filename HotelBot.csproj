@@ -78,7 +78,7 @@
      <AutoGen>True</AutoGen>
      <DependentUpon>NumberOfPeopleStrings.resx</DependentUpon>
    </Compile>
-   <Compile Update="Dialogs\Shared\Prompts\ValidateDateTimeWaterfall\Resources\ValidateDateTimeStrings.Designer.cs">
+   <Compile Update="Dialogs\Prompts\ValidateDateTimeWaterfall\Resources\ValidateDateTimeStrings.Designer.cs">
      <DesignTime>True</DesignTime>
      <AutoGen>True</AutoGen>
      <DependentUpon>ValidateDateTimeStrings.resx</DependentUpon>
@@ -139,7 +139,7 @@
      <Generator>PublicResXFileCodeGenerator</Generator>
      <LastGenOutput>NumberOfPeopleStrings.Designer.cs</LastGenOutput>
    </EmbeddedResource>
-   <EmbeddedResource Update="Dialogs\Shared\Prompts\ValidateDateTimeWaterfall\Resources\ValidateDateTimeStrings.resx">
+   <EmbeddedResource Update="Dialogs\Prompts\ValidateDateTimeWaterfall\Resources\ValidateDateTimeStrings.resx">
      <Generator>PublicResXFileCodeGenerator</Generator>
      <LastGenOutput>ValidateDateTimeStrings.Designer.cs</LastGenOutput>
    </EmbeddedResource>
@@ -178,8 +178,6 @@
 
  <ItemGroup>
    <Folder Include="CognitiveModels\QnA\en\" />
-   <Folder Include="Dialogs\Email\Resources\" />
-   <Folder Include="Dialogs\Shared\Prompts\UpdateState\Resources\" />
    <Folder Include="Dialogs\Shared\RecognizerDialogs\Resources\" />
    <Folder Include="Shared\Delegates\" />
  </ItemGroup> 

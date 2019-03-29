@@ -7,6 +7,7 @@ using HotelBot.Dialogs.Prompts.ArrivalDate;
 using HotelBot.Dialogs.Prompts.DepartureDate;
 using HotelBot.Dialogs.Prompts.Email;
 using HotelBot.Dialogs.Prompts.NumberOfPeople;
+using HotelBot.Dialogs.Prompts.ValidateDateTimeWaterfall;
 using HotelBot.Dialogs.Shared.RecognizerDialogs;
 using HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates;
 using HotelBot.Extensions;
@@ -14,7 +15,7 @@ using HotelBot.StateAccessors;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Recognizers.Text.DataTypes.TimexExpression;
 
-namespace HotelBot.Dialogs.Shared.Prompts.UpdateState
+namespace HotelBot.Dialogs.Prompts.UpdateState
 {
     public class UpdateStatePrompt: ComponentDialog
     {

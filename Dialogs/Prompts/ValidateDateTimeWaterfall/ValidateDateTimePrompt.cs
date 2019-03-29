@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using HotelBot.Extensions;
 using Microsoft.Bot.Builder.Dialogs;
 
-namespace HotelBot.Dialogs.Shared.Prompts
+namespace HotelBot.Dialogs.Prompts.ValidateDateTimeWaterfall
 {
 
 
@@ -13,7 +13,7 @@ namespace HotelBot.Dialogs.Shared.Prompts
     public class ValidateDateTimePrompt: ComponentDialog
     {
 
-        private readonly PromptValidators.PromptValidators _promptValidators = new PromptValidators.PromptValidators();
+        private readonly Shared.PromptValidators.PromptValidators _promptValidators = new Shared.PromptValidators.PromptValidators();
 
         /// <summary>
         ///     Custom and reusable component dialog that validates a datetime, ends the dialog and returns a timexproperty

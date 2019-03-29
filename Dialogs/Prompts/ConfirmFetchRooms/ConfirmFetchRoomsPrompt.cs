@@ -5,13 +5,12 @@ using HotelBot.Dialogs.BookARoom;
 using HotelBot.StateAccessors;
 using Microsoft.Bot.Builder.Dialogs;
 
-namespace HotelBot.Dialogs.Shared.Prompts.ConfirmFetchRooms
+namespace HotelBot.Dialogs.Prompts.ConfirmFetchRooms
 {
     public class ConfirmFetchRoomsPrompt: ComponentDialog
     {
         private static readonly BookARoomResponses _responder = new BookARoomResponses();
         private readonly StateBotAccessors _accessors;
-        private readonly PromptValidators.PromptValidators _promptValidators = new PromptValidators.PromptValidators();
 
         public ConfirmFetchRoomsPrompt(StateBotAccessors accessors): base(nameof(ConfirmFetchRoomsPrompt))
         {

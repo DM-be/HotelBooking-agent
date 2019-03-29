@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using HotelBot.Dialogs.BookARoom.Resources;
 using HotelBot.Dialogs.Shared.RecognizerDialogs;
 using HotelBot.Extensions;
@@ -144,10 +143,6 @@ namespace HotelBot.Dialogs.BookARoom
                         SendRoomsCarousel(context, data)
                 },
                 {
-                    ResponseIds.SendFakeRoomCarousel, (context, data) =>
-                        SendFakeRoomCarousel(context, data)
-                },
-                {
                     ResponseIds.SendRoomDetail, (context, data) =>
                         SendRoomDetail(context, data)
                 }
@@ -155,16 +150,13 @@ namespace HotelBot.Dialogs.BookARoom
             }
         };
 
-        private RequestHandler _requestHandler = new RequestHandler();
-
-
 
         public BookARoomResponses()
         {
             Register(new DictionaryRenderer(_responseTemplates));
         }
 
-        public static  IMessageActivity SendRoomsCarousel(ITurnContext context, dynamic data)
+        public static IMessageActivity SendRoomsCarousel(ITurnContext context, dynamic data)
         {
             var requestHandler = new RequestHandler();
             var bookARoomState = data as BookARoomState;
@@ -172,14 +164,12 @@ namespace HotelBot.Dialogs.BookARoom
             var arrivalMonth = (int) bookARoomState.ArrivalDate.Month;
             var arrivalDay = (int) bookARoomState.ArrivalDate.DayOfMonth;
             var arrivalDateTime = new DateTime(arrivalYear, arrivalMonth, arrivalDay);
-
             var requestData =
                 new RoomRequestData
                 {
                     Arrival = arrivalDateTime.ToString("yyyy-MM-dd"),
                     Departure = bookARoomState.LeavingDate.ToString()
                 };
-
             var rooms = requestHandler.FetchMatchingRooms(requestData).Result;
             var heroCards = new HeroCard[2];
             var url = "https://www.google.com";
@@ -193,8 +183,7 @@ namespace HotelBot.Dialogs.BookARoom
                     },
                     Buttons = new List<CardAction>
                     {
-                        new CardAction(ActionTypes.MessageBack, "Show more details", value: rooms[i].id),
-
+                        new CardAction(ActionTypes.MessageBack, "Show more details", value: rooms[i].id)
                     }
                 };
             var reply = context.Activity.CreateReply();
@@ -213,8 +202,6 @@ namespace HotelBot.Dialogs.BookARoom
         {
             var requestHandler = new RequestHandler();
             var roomDto = data as RoomDto;
-
-
             var roomDetailDto = requestHandler.FetchRoomDetail(roomDto).Result;
             var imageCards = new HeroCard[4];
             for (var i = 0; i < roomDetailDto.RoomImages.Count; i++)
@@ -228,82 +215,11 @@ namespace HotelBot.Dialogs.BookARoom
             var reply = context.Activity.CreateReply();
             reply.Text = "Here are some more pictures";
             var attachments = new List<Attachment>();
-
             foreach (var heroCard in imageCards) attachments.Add(heroCard.ToAttachment());
             reply.AttachmentLayout = "carousel";
             reply.Attachments = attachments;
             return reply;
         }
-
-        public static IMessageActivity SendFakeRoomCarousel(ITurnContext context, dynamic data)
-        {
-            if (data.GetType() != typeof(BookARoomState))
-            {
-                throw new InvalidCastException("Invalid type given");
-            }
-            var bookARoomState = data as BookARoomState;
-            var url = "https://www.google.com";
-            var heroCards = new[]
-            {
-                new HeroCard
-                {
-                    Title = "Hotel in Bruges",
-                    Subtitle = $"Available on {bookARoomState.ArrivalDate}",
-                    Images = new List<CardImage>
-                    {
-                        new CardImage(
-                            "https://www.marinabaysands.com/content/dam/singapore/marinabaysands/master/main/home/hotel/rooms-suites/roomv2-mobile_500x454.jpg")
-                    },
-                    Buttons = new List<CardAction>
-                    {
-                        new CardAction(ActionTypes.OpenUrl, "Book now", value: url),
-                        new CardAction(ActionTypes.OpenUrl, "More info",value: url)
-                    }
-                },
-                new HeroCard
-                {
-                    Title = "Another Hotel in Bruges",
-                    Subtitle = $"Available on {bookARoomState.ArrivalDate}",
-                    Images = new List<CardImage>
-                    {
-                        new CardImage("https://media.cntraveler.com/photos/580e72a51dbfcd3538b953ec/4:3/w_480,c_limit/Bedroom-ThePeninsulaParis-ParisFrance-CRHotel.jpg")
-                    },
-                    Buttons = new List<CardAction>
-                    {
-                        new CardAction(ActionTypes.OpenUrl, "Book now", value: url),
-                        new CardAction(ActionTypes.OpenUrl, "More info", value: url)
-                    }
-                },
-                new HeroCard
-                {
-                    Title = "Yet another hotel in Bruges",
-                    Subtitle = $"Available on {bookARoomState.ArrivalDate}",
-                    Images = new List<CardImage>
-                    {
-                        new CardImage("https://t-ec.bstatic.com/images/hotel/max1024x768/159/159071869.jpg")
-                    },
-                    Buttons = new List<CardAction>
-                    {
-                        new CardAction(ActionTypes.OpenUrl, "Book now", value: url),
-                        new CardAction(ActionTypes.OpenUrl, "More info", value: url)
-                    }
-                }
-
-
-            };
-
-            var reply = context.Activity.CreateReply();
-            reply.Text = "Here are some available rooms, book one now or find more info.";
-            var attachments = new List<Attachment>();
-
-            foreach (var heroCard in heroCards) attachments.Add(heroCard.ToAttachment());
-
-
-            reply.AttachmentLayout = "carousel";
-            reply.Attachments = attachments;
-            return reply;
-        }
-
 
 
         public static IMessageActivity UpdateEmail(ITurnContext context)
