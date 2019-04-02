@@ -8,7 +8,7 @@ interface RoomDto {
     description: string,
     startingPrice: number,
     thumbnail: RoomImage,
-    id: string; 
+    id: string,
 }
 
 interface RoomDetailDto {
@@ -19,7 +19,8 @@ interface RoomDetailDto {
     smokingAllowed: boolean,
     wheelChairAccessible: boolean,
     roomImages: RoomImage [],
-    reservationAgreement: string
+    reservationAgreement: string,
+    rates: Rate []
 }
 
 interface RoomImage {
@@ -36,11 +37,16 @@ interface RoomRequestData {
     children?: string
 }
 
+interface Rate {
+    rateName: string, 
+    price: number,
+    rateDescription: string
+}
+
 
 interface Room {
     title: string,
     description: string,
-    startingPrice: number,
     availableDate: Date | string,
     images: RoomImage [],
     thumbnail: RoomImage 
@@ -49,6 +55,8 @@ interface Room {
     reservationAgreement: string,
     checkinTime:  Timestamp,
     checkoutTime: Timestamp, 
+    numberOfPeople: number,
+    rates: Rate []
 }
 
 export const fetchMatchingRooms = functions.https.onRequest(async(req, res) => {
@@ -64,10 +72,11 @@ export const fetchMatchingRooms = functions.https.onRequest(async(req, res) => {
     let roomDtos: RoomDto[] = [];
     snapshot.docs.forEach((snapshotDoc: QueryDocumentSnapshot) => {
         let room = snapshotDoc.data() as Room;
+        const lowestRate  = Math.min.apply(Math, room.rates.map(r => r.price));
         let roomDto: RoomDto = {
             description: room.description,
             title: room.title,
-            startingPrice: room.startingPrice,
+            startingPrice: lowestRate ,
             thumbnail: room.thumbnail,
             id: snapshotDoc.id
         }
@@ -97,7 +106,8 @@ export const fetchRoomDetail = functions.https.onRequest(async(req, res) => {
         wheelChairAccessible: room.wheelChairAccessible,
         roomImages: room.images,
         reservationAgreement: room.reservationAgreement,
-        smokingAllowed: room.smokingAllowed
+        smokingAllowed: room.smokingAllowed,
+        rates: room.rates
     }
     res.send(roomDetailDto);
 })
@@ -118,44 +128,45 @@ export const createRoom = functions.https.onRequest(async(req, res) => {
 })
 
 
-// refactor into something generic for reuse or delete and use json with createroom
-async function generateRoomObject(availableDateString: string, checkinTime: string, checkoutTime: string ) {
-    const availableDate = new Date(availableDateString);
-    const checkinDate = new Date(checkinTime);
-    const checkoutDate = new Date(checkoutTime);
-    const room: Room = {
-        availableDate,
-        description: "room with a view",
-        title: "2 star hotel",
-        startingPrice: 150,
-        smokingAllowed: false,
-        reservationAgreement: "a test reservation agreement",
-        images: [
-            {
-                imageUrl: "https://images.trvl-media.com/hotels/1000000/920000/911900/911814/37eb7948_z.jpg"
-            },
-            {
-                imageUrl: "https://images.trvl-media.com/hotels/1000000/920000/911900/911814/d4a1d9da_z.jpg"
-            },
-            {
-                imageUrl: "https://images.trvl-media.com/hotels/1000000/920000/911900/911814/0b52db98_z.jpg"
-            },
-            {
-                imageUrl: "https://images.trvl-media.com/hotels/1000000/920000/911900/911814/8742452f_z.jpg"
-            },
+// // refactor into something generic for reuse or delete and use json with createroom
+// async function generateRoomObject(availableDateString: string, checkinTime: string, checkoutTime: string ) {
+//     const availableDate = new Date(availableDateString);
+//     const checkinDate = new Date(checkinTime);
+//     const checkoutDate = new Date(checkoutTime);
+//     const room: Room = {
+//         availableDate,
+//         description: "room with a view",
+//         title: "2 star hotel",
+//         smokingAllowed: false,
+//         reservationAgreement: "a test reservation agreement",
+       
+//         images: [
+//             {
+//                 imageUrl: "https://images.trvl-media.com/hotels/1000000/920000/911900/911814/37eb7948_z.jpg"
+//             },
+//             {
+//                 imageUrl: "https://images.trvl-media.com/hotels/1000000/920000/911900/911814/d4a1d9da_z.jpg"
+//             },
+//             {
+//                 imageUrl: "https://images.trvl-media.com/hotels/1000000/920000/911900/911814/0b52db98_z.jpg"
+//             },
+//             {
+//                 imageUrl: "https://images.trvl-media.com/hotels/1000000/920000/911900/911814/8742452f_z.jpg"
+//             },
             
         
-        ],
-        thumbnail: {
-            imageUrl: "https://images.trvl-media.com/hotels/1000000/920000/911900/911814/37eb7948_z.jpg"
-        },
-        wheelChairAccessible: false,
-        checkinTime: new Timestamp(checkinDate.getSeconds(), checkinDate.getMilliseconds()),
-        checkoutTime: new Timestamp(checkoutDate.getSeconds(), checkoutDate.getMilliseconds()),
-    }
-    const roomsRef = admin.firestore().collection('rooms');
-    await roomsRef.add(room);
-}
+//         ],
+//         rates: [],
+//         thumbnail: {
+//             imageUrl: "https://images.trvl-media.com/hotels/1000000/920000/911900/911814/37eb7948_z.jpg"
+//         },
+//         wheelChairAccessible: false,
+//         checkinTime: new Timestamp(checkinDate.getSeconds(), checkinDate.getMilliseconds()),
+//         checkoutTime: new Timestamp(checkoutDate.getSeconds(), checkoutDate.getMilliseconds()),
+//     }
+//     const roomsRef = admin.firestore().collection('rooms');
+//     await roomsRef.add(room);
+// }
 
 
 function generateTitle() {

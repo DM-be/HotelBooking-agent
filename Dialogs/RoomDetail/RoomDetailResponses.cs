@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using HotelBot.Dialogs.BookARoom;
-using HotelBot.Dialogs.BookARoom.Resources;
+﻿using System.Collections.Generic;
 using HotelBot.Models.DTO;
-using HotelBot.Models.Facebook;
 using HotelBot.Shared.Helpers;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.TemplateManager;
 using Microsoft.Bot.Schema;
-using Newtonsoft.Json.Linq;
 
 namespace HotelBot.Dialogs.RoomDetail
 {
@@ -20,7 +15,7 @@ namespace HotelBot.Dialogs.RoomDetail
             {
                 {
                     ResponseIds.SendImages, (context, data) =>
-                      SendImages(context, data)
+                        SendImages(context, data)
                 },
                 {
                     ResponseIds.SendGeneralDescription, (context, data) =>
@@ -31,24 +26,30 @@ namespace HotelBot.Dialogs.RoomDetail
 
         };
 
+
+        public RoomDetailResponses()
+        {
+            Register(new DictionaryRenderer(_responseTemplates));
+        }
+
         public static IMessageActivity SendImages(ITurnContext context, dynamic data)
         {
-            var requestHandler = new RequestHandler();
-            RoomDetailDto roomDetailDto = requestHandler.FetchRoomDetail(data).Result;
+            var roomDetailDto = data as RoomDetailDto;
             var imageCards = new HeroCard[4];
             for (var i = 0; i < roomDetailDto.RoomImages.Count; i++)
                 imageCards[i] = new HeroCard
                 {
-                    Title = "Room name",
+                    Title = roomDetailDto.Title,
                     Subtitle = string.Empty,
                     Text = string.Empty,
                     Images = new List<CardImage>
                     {
                         new CardImage(roomDetailDto.RoomImages[i].ImageUrl)
                     },
-                    Tap = new CardAction {
-                       Type = ActionTypes.ShowImage,
-                       Value = roomDetailDto.RoomImages[i].ImageUrl
+                    Tap = new CardAction
+                    {
+                        Type = ActionTypes.ShowImage,
+                        Value = roomDetailDto.RoomImages[i].ImageUrl
                     }
                 };
             var reply = context.Activity.CreateReply();
@@ -62,16 +63,9 @@ namespace HotelBot.Dialogs.RoomDetail
 
         public static IMessageActivity SendGeneralDescription(ITurnContext context, dynamic data)
         {
-            var requestHandler = new RequestHandler();
-            RoomDetailDto roomDetailDto = requestHandler.FetchRoomDetail(data).Result;
-            var message = "The hotel would describe this room as: " + roomDetailDto.Description;
+            var selectedRoomDetailDto = data as RoomDetailDto;
+            var message = "The hotel would describe this room as: " + selectedRoomDetailDto.Description;
             return MessageFactory.Text(message);
-        }
-
-
-        public RoomDetailResponses()
-        {
-            Register(new DictionaryRenderer(_responseTemplates));
         }
 
         public class ResponseIds

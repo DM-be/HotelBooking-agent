@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.RoomDetail;
 using HotelBot.Extensions;
@@ -33,11 +32,10 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
             {
                 case ActivityTypes.Message:
                 {
-                    if (activity.Value != null)
+                    if (activity.Value != null && !activity.IsGetStartedPostBack())
                     {
                         var roomAction = JsonConvert.DeserializeObject<RoomAction>(activity.Value.ToString());
-                        await innerDc.BeginDialogAsync(nameof(RoomDetailDialog), roomAction);
-                        //await OnEventAsync(innerDc);
+                        await innerDc.ReplaceDialogAsync(nameof(RoomDetailDialog), roomAction);
                     }
                     else if (!string.IsNullOrEmpty(activity.Text))
                     {
@@ -101,7 +99,7 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
         /// <param name="innerDc">The dialog context for the component.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A <see cref="Task" /> representing the asynchronous operation.</returns>
-        protected virtual Task CompleteAsync(DialogContext innerDc, Object Result, CancellationToken cancellationToken = default(CancellationToken))
+        protected virtual Task CompleteAsync(DialogContext innerDc, object Result, CancellationToken cancellationToken = default(CancellationToken))
         {
             return Task.CompletedTask;
         }
@@ -112,13 +110,13 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
         /// <param name="innerDc">The dialog context for the component.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A <see cref="Task" /> representing the asynchronous operation.</returns>
-        protected virtual  Task OnEventAsync(DialogContext innerDc, CancellationToken cancellationToken = default(CancellationToken))
+        protected virtual Task OnEventAsync(DialogContext innerDc, CancellationToken cancellationToken = default(CancellationToken))
         {
 
             return Task.CompletedTask;
         }
 
-        
+
 
         /// <summary>
         ///     Called when a system activity is received.

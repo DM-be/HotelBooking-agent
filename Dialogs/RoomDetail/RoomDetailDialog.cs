@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using HotelBot.Dialogs.BookARoom;
-using HotelBot.Dialogs.Prompts.Email;
-using HotelBot.Dialogs.Shared.RecognizerDialogs;
 using HotelBot.Dialogs.Shared.RecognizerDialogs.RoomDetail;
 using HotelBot.Models.DTO;
 using HotelBot.Services;
+using HotelBot.Shared.Helpers;
 using HotelBot.StateAccessors;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
@@ -18,9 +15,10 @@ namespace HotelBot.Dialogs.RoomDetail
 {
     public class RoomDetailDialog: RoomDetailRecognizerDialog
     {
-        private readonly RoomDetailResponses _responder = new RoomDetailResponses();
         private readonly StateBotAccessors _accessors;
+        private readonly RoomDetailResponses _responder = new RoomDetailResponses();
         private readonly BotServices _services;
+        private RoomDetailDto _selectedRoomDetailDto;
 
 
         public RoomDetailDialog(BotServices services, StateBotAccessors accessors)
@@ -32,29 +30,20 @@ namespace HotelBot.Dialogs.RoomDetail
 
             var roomDetailWaterfallSteps = new WaterfallStep []
             {
-                ReplyGeneralDescription, ReplyImages, PromptActions
+                FetchSelectedRoomDetail, ReplyImages, PromptActions
             };
 
             AddDialog(new WaterfallDialog(InitialDialogId, roomDetailWaterfallSteps));
             AddDialog(new ChoicePrompt(nameof(ChoicePrompt)));
-
-
         }
 
-        public async Task<DialogTurnResult> ReplyGeneralDescription(WaterfallStepContext sc, CancellationToken cancellationToken)
+        public async Task<DialogTurnResult> FetchSelectedRoomDetail(WaterfallStepContext sc, CancellationToken cancellationToken)
 
 
         {
-
-
             var roomAction = (RoomAction) sc.Options;
-            if (roomAction.Action != "info")
-            {
-                return await sc.NextAsync();
-            }
-
-            await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendGeneralDescription, roomAction.Id);
-
+            var requestHandler = new RequestHandler();
+            _selectedRoomDetailDto = await requestHandler.FetchRoomDetail(roomAction.Id);
             return await sc.NextAsync();
         }
 
@@ -63,13 +52,8 @@ namespace HotelBot.Dialogs.RoomDetail
 
 
         {
-            var roomAction = (RoomAction)sc.Options;
-            if (roomAction.Action != "images")
-            {
-                return await sc.NextAsync();
-            }
-            await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendImages, roomAction.Id);
-
+            await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendGeneralDescription, _selectedRoomDetailDto);
+            await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendImages, _selectedRoomDetailDto);
             return await sc.NextAsync();
         }
 
@@ -85,7 +69,7 @@ namespace HotelBot.Dialogs.RoomDetail
                         new List<string>
                         {
                             "Pictures",
-                            "Info",
+                            "Info"
                         })
                 },
                 cancellationToken);

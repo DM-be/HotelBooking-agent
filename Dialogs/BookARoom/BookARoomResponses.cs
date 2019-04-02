@@ -179,6 +179,7 @@ namespace HotelBot.Dialogs.BookARoom
                 heroCards[i] = new HeroCard
                 {
                     Title = rooms[i].Title,
+                    Subtitle = $"Starting from {rooms[i].StartingPrice}",
                     Images = new List<CardImage>
                     {
                         new CardImage(rooms[i].Thumbnail.ImageUrl)
@@ -189,17 +190,11 @@ namespace HotelBot.Dialogs.BookARoom
                         {
                             Id = rooms[i].id,
                             Action = "info",
-                        })),
-                        new CardAction(ActionTypes.MessageBack, "More pictures", value: Newtonsoft.Json.JsonConvert.SerializeObject(new RoomAction
-                        {
-                            Id = rooms[i].id,
-                            Action = "images",
-                        })),
-
+                        }))
                     }
                 };
             var reply = context.Activity.CreateReply();
-            reply.Text = "Here are some available rooms, book one now or find more info.";
+            reply.Text = "Here are some available rooms";
             var attachments = new List<Attachment>();
 
             foreach (var heroCard in heroCards) attachments.Add(heroCard.ToAttachment());

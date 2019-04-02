@@ -52,6 +52,8 @@ namespace HotelBot.Dialogs.Prompts.UpdateState
             TimexProperty timexProperty;
             if (sc.Options != null)
             {
+                
+                // todo: true will be set as timexproperty!
                 // timex was get and set via a prompt in another dialog and passed as options (such as a validatedatetimeprompt)
                 timexProperty = sc.Options as TimexProperty;
                 return await sc.NextAsync(timexProperty, cancellationToken);
