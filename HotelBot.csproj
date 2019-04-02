@@ -43,10 +43,10 @@
   </ItemGroup>
 
  <ItemGroup>
-   <Compile Update="Dialogs\BookARoom\Resources\BookARoomStrings.Designer.cs">
+   <Compile Update="Dialogs\FetchAvailableRooms\Resources\FetchAvailableRoomsStrings.Designer.cs">
      <DesignTime>True</DesignTime>
      <AutoGen>True</AutoGen>
-     <DependentUpon>BookARoomStrings.resx</DependentUpon>
+     <DependentUpon>FetchAvailableRoomsStrings.resx</DependentUpon>
    </Compile>
    <Compile Update="Dialogs\Cancel\Resources\CancelStrings.Designer.cs">
      <DesignTime>True</DesignTime>
@@ -111,9 +111,9 @@
  </ItemGroup>
 
  <ItemGroup>
-   <EmbeddedResource Update="Dialogs\BookARoom\Resources\BookARoomStrings.resx">
+   <EmbeddedResource Update="Dialogs\FetchAvailableRooms\Resources\FetchAvailableRoomsStrings.resx">
      <Generator>PublicResXFileCodeGenerator</Generator>
-     <LastGenOutput>BookARoomStrings.Designer.cs</LastGenOutput>
+     <LastGenOutput>FetchAvailableRoomsStrings.Designer.cs</LastGenOutput>
    </EmbeddedResource>
    <EmbeddedResource Update="Dialogs\Cancel\Resources\CancelStrings.resx">
      <Generator>PublicResXFileCodeGenerator</Generator>

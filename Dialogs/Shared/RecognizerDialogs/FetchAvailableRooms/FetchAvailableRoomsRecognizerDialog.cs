@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using HotelBot.Dialogs.BookARoom;
 using HotelBot.Dialogs.Cancel;
+using HotelBot.Dialogs.FetchAvailableRooms;
 using HotelBot.Dialogs.Prompts.UpdateState;
 using HotelBot.Extensions;
 using HotelBot.Models.LUIS;
@@ -10,17 +10,18 @@ using HotelBot.Services;
 using HotelBot.StateAccessors;
 using Microsoft.Bot.Builder.Dialogs;
 
-namespace HotelBot.Dialogs.Shared.RecognizerDialogs
+namespace HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms
 {
 
-    public class BookARoomRecognizerDialog: InterruptableDialog
+    public class FetchAvailableRoomsRecognizerDialog: InterruptableDialog
 
     {
+        // todo: change key if needed
         protected const string LuisResultBookARoomKey = "LuisResult_BookARoom";
         private readonly StateBotAccessors _accessors;
         private readonly BotServices _services;
 
-        public BookARoomRecognizerDialog(BotServices services, StateBotAccessors accessors, string dialogId)
+        public FetchAvailableRoomsRecognizerDialog(BotServices services, StateBotAccessors accessors, string dialogId)
             : base(dialogId)
         {
             _services = services ?? throw new ArgumentNullException(nameof(services));
@@ -41,7 +42,7 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs
             if (luisResult.TopIntent().score > 0.75 && !isChoicePrompt)
             {
                 // Add the luis result (intent and entities) for further processing in the derived dialog
-                var bookARoomState = await _accessors.BookARoomStateAccessor.GetAsync(dc.Context, () => new BookARoomState());
+                var bookARoomState = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(dc.Context, () => new FetchAvailableRoomsState());
                 bookARoomState.LuisResults[LuisResultBookARoomKey] = luisResult;
 
                 switch (intent)
@@ -88,8 +89,8 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs
 
         protected virtual async Task<InterruptionStatus> OnHelp(DialogContext dc)
         {
-            var view = new BookARoomResponses();
-            await view.ReplyWith(dc.Context, BookARoomResponses.ResponseIds.Help);
+            var view = new FetchAvailableRoomsResponses();
+            await view.ReplyWith(dc.Context, FetchAvailableRoomsResponses.ResponseIds.Help);
 
             // Signal the conversation was interrupted and should immediately continue (calls reprompt)
             return InterruptionStatus.Interrupted;

@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using HotelBot.Dialogs.BookARoom;
 using HotelBot.Dialogs.Cancel;
+using HotelBot.Dialogs.FetchAvailableRooms;
 using HotelBot.Dialogs.Prompts.UpdateState;
 using HotelBot.Extensions;
 using HotelBot.Models.LUIS;
@@ -14,7 +12,7 @@ using Microsoft.Bot.Builder.Dialogs;
 
 namespace HotelBot.Dialogs.Shared.RecognizerDialogs.RoomDetail
 {
-    public class RoomDetailRecognizerDialog : InterruptableDialog
+    public class RoomDetailRecognizerDialog: InterruptableDialog
     {
         protected const string LuisResultBookARoomKey = "LuisResult_BookARoom";
         private readonly StateBotAccessors _accessors;
@@ -36,33 +34,33 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.RoomDetail
             if (luisService == null) throw new Exception("The specified LUIS Model could not be found in your Bot Services configuration.");
             var luisResult = await luisService.RecognizeAsync<HotelBotLuis>(dc.Context, cancellationToken);
             var intent = luisResult.TopIntent().intent;
-   
+
             // Only triggers interruption if confidence level is high
             if (luisResult.TopIntent().score > 0.75)
             {
                 // Add the luis result (intent and entities) for further processing in the derived dialog
-                var bookARoomState = await _accessors.BookARoomStateAccessor.GetAsync(dc.Context, () => new BookARoomState());
+                var bookARoomState = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(dc.Context, () => new FetchAvailableRoomsState());
                 bookARoomState.LuisResults[LuisResultBookARoomKey] = luisResult;
 
                 switch (intent)
                 {
                     case HotelBotLuis.Intent.Cancel:
-                        {
-                            return await OnCancel(dc);
-                        }
+                    {
+                        return await OnCancel(dc);
+                    }
                     case HotelBotLuis.Intent.Help:
-                        {
-                            // todo: provide contextual help
-                            return await OnHelp(dc);
-                        }
+                    {
+                        // todo: provide contextual help
+                        return await OnHelp(dc);
+                    }
                     case HotelBotLuis.Intent.Update_ArrivalDate:
                     case HotelBotLuis.Intent.Update_Leaving_Date:
                     case HotelBotLuis.Intent.Update_email:
                     case HotelBotLuis.Intent.Update_Number_Of_People:
-                        {
-                            var isDateUpdateIntent = intent.IsUpdateDateIntent();
-                            return await OnUpdate(dc, isDateUpdateIntent);
-                        }
+                    {
+                        var isDateUpdateIntent = intent.IsUpdateDateIntent();
+                        return await OnUpdate(dc, isDateUpdateIntent);
+                    }
                 }
             }
 
@@ -88,8 +86,8 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.RoomDetail
 
         protected virtual async Task<InterruptionStatus> OnHelp(DialogContext dc)
         {
-            var view = new BookARoomResponses();
-            await view.ReplyWith(dc.Context, BookARoomResponses.ResponseIds.Help);
+            var view = new FetchAvailableRoomsResponses();
+            await view.ReplyWith(dc.Context, FetchAvailableRoomsResponses.ResponseIds.Help);
 
             // Signal the conversation was interrupted and should immediately continue (calls reprompt)
             return InterruptionStatus.Interrupted;
@@ -112,6 +110,5 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.RoomDetail
 
             return InterruptionStatus.NoAction;
         }
-
     }
 }

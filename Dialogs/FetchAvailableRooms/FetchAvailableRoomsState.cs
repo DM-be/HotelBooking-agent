@@ -2,12 +2,12 @@
 using HotelBot.Models.LUIS;
 using Microsoft.Recognizers.Text.DataTypes.TimexExpression;
 
-namespace HotelBot.Dialogs.BookARoom
+namespace HotelBot.Dialogs.FetchAvailableRooms
 {
-    public class BookARoomState
+    public class FetchAvailableRoomsState
     {
 
-        public BookARoomState()
+        public FetchAvailableRoomsState()
         {
             LuisResults = new Dictionary<string, HotelBotLuis>();
             TimexResults = new Dictionary<string, TimexProperty>();

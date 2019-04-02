@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using HotelBot.Dialogs.BookARoom;
+using HotelBot.Dialogs.FetchAvailableRooms;
 using HotelBot.Dialogs.Prompts.UpdateState;
 using HotelBot.Dialogs.Shared.RecognizerDialogs;
 using HotelBot.Extensions;
@@ -19,7 +19,7 @@ namespace HotelBot.Dialogs.Main.Delegates
         public readonly MainIntentHandlerDelegates MainIntentHandlerDelegates = new MainIntentHandlerDelegates
         {
             {
-                HotelBotLuis.Intent.Book_A_Room, (dc, responder, facebookHelper, accessors, luisResult) => BeginBookARoomDialog(dc, accessors, luisResult)
+                HotelBotLuis.Intent.Book_A_Room, (dc, responder, facebookHelper, accessors, luisResult) => BeginFetchAvailableRoomsDialog(dc, accessors, luisResult)
             },
             {
                 HotelBotLuis.Intent.Cancel, (dc, responder, facebookHelper, accessors, luisResult) => CancelDialogs(dc, responder)
@@ -40,13 +40,13 @@ namespace HotelBot.Dialogs.Main.Delegates
         };
 
 
-        private static async Task BeginBookARoomDialog(DialogContext dc, StateBotAccessors accessors, HotelBotLuis luisResult)
+        private static async Task BeginFetchAvailableRoomsDialog(DialogContext dc, StateBotAccessors accessors, HotelBotLuis luisResult)
         {
-            var bookARoomState = await accessors.BookARoomStateAccessor.GetAsync(dc.Context, () => new BookARoomState());
+            var fetchAvailableRoomsState = await accessors.FetchAvailableRoomsStateAccessor.GetAsync(dc.Context, () => new FetchAvailableRoomsState());
 
             // set initial book a room state with captured entities in the book a room intent  
-            SetInitialBookARoomState(bookARoomState, luisResult);
-            await dc.BeginDialogAsync(nameof(BookARoomDialog), "fromMainDialog");
+            SetInitialFetchAvailableRoomsState(fetchAvailableRoomsState, luisResult);
+            await dc.BeginDialogAsync(nameof(FetchAvailableRoomsDialog));
         }
 
         private static async Task CancelDialogs(DialogContext dc, TemplateManager responder)
@@ -81,7 +81,7 @@ namespace HotelBot.Dialogs.Main.Delegates
 
 
         //TODO: improve logic and expand ()
-        private static void SetInitialBookARoomState(BookARoomState state, HotelBotLuis luisResult)
+        private static void SetInitialFetchAvailableRoomsState(FetchAvailableRoomsState state, HotelBotLuis luisResult)
         {
             if (luisResult.HasEntityWithPropertyName(UpdateStatePrompt.EntityNames.Email))
                 state.Email = luisResult.Entities.email.First();

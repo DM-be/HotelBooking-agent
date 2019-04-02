@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using HotelBot.Dialogs.BookARoom;
+using HotelBot.Dialogs.FetchAvailableRooms;
 using HotelBot.Dialogs.Shared.RecognizerDialogs.RoomDetail;
 using HotelBot.Models.DTO;
 using HotelBot.Services;
@@ -36,13 +36,11 @@ namespace HotelBot.Dialogs.RoomDetail
 
             AddDialog(new WaterfallDialog(InitialDialogId, roomDetailWaterfallSteps));
             AddDialog(new ChoicePrompt(nameof(ChoicePrompt)));
-            AddDialog(new BookARoomDialog(services, accessors));
+            AddDialog(new FetchAvailableRoomsDialog(services, accessors));
 
         }
 
         public async Task<DialogTurnResult> FetchSelectedRoomDetail(WaterfallStepContext sc, CancellationToken cancellationToken)
-
-
         {
             var roomAction = (RoomAction) sc.Options;
             var requestHandler = new RequestHandler();
@@ -87,14 +85,11 @@ namespace HotelBot.Dialogs.RoomDetail
             switch (choice.Value)
             {
                 case "View other rooms":
-                    return await sc.ReplaceDialogAsync(nameof(BookARoomDialog));
+                    return await sc.ReplaceDialogAsync(nameof(FetchAvailableRoomsDialog));
                     
                 case "Book this room":
                     // start booking process\
                     return null;
-                
-
-
 
             }
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using HotelBot.Dialogs.BookARoom;
+using HotelBot.Dialogs.FetchAvailableRooms;
 using HotelBot.Dialogs.Prompts.NumberOfPeople;
 using HotelBot.Dialogs.Shared.PromptValidators;
 using HotelBot.StateAccessors;
@@ -59,7 +59,7 @@ namespace HotelBot.Dialogs.Prompts.ArrivalDate
             var arrivalDateAsNaturalLanguage = timexProp.ToNaturalLanguage(DateTime.Now);
 
 
-            var _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
+            var _state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
             _state.ArrivalDate = timexProp;
 
             if (updated)

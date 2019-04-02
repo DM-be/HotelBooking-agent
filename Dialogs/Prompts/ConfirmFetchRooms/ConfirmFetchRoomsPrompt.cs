@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using HotelBot.Dialogs.BookARoom;
+using HotelBot.Dialogs.FetchAvailableRooms;
 using HotelBot.StateAccessors;
 using Microsoft.Bot.Builder.Dialogs;
 
@@ -9,7 +9,7 @@ namespace HotelBot.Dialogs.Prompts.ConfirmFetchRooms
 {
     public class ConfirmFetchRoomsPrompt: ComponentDialog
     {
-        private static readonly BookARoomResponses _responder = new BookARoomResponses();
+        private static readonly FetchAvailableRoomsResponses _responder = new FetchAvailableRoomsResponses();
         private readonly StateBotAccessors _accessors;
 
         public ConfirmFetchRoomsPrompt(StateBotAccessors accessors): base(nameof(ConfirmFetchRoomsPrompt))
@@ -30,12 +30,12 @@ namespace HotelBot.Dialogs.Prompts.ConfirmFetchRooms
         private async Task<DialogTurnResult> AskForConfirmation(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
 
-            var _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
+            var _state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
             return await sc.PromptAsync(
                 nameof(ConfirmPrompt),
                 new PromptOptions
                 {
-                    Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, BookARoomResponses.ResponseIds.Overview, _state)
+                    Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, FetchAvailableRoomsResponses.ResponseIds.Overview, _state)
                 });
         }
 

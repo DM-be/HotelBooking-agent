@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using HotelBot.Dialogs.BookARoom;
+using HotelBot.Dialogs.FetchAvailableRooms;
 using HotelBot.Dialogs.Shared.CustomDialog;
 using HotelBot.Dialogs.Shared.PromptValidators;
 using HotelBot.Services;
@@ -14,7 +14,7 @@ namespace HotelBot.Dialogs.RoomOverview
     public class RoomOverviewDialog: RoomOverviewRecognizerDialog
     {
 
-        private static BookARoomResponses _responder;
+        private static FetchAvailableRoomsResponses _responder;
         private readonly StateBotAccessors _accessors;
         private readonly PromptValidators _promptValidators = new PromptValidators();
         private readonly BotServices _services;

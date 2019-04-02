@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using HotelBot.Dialogs.BookARoom;
+using HotelBot.Dialogs.FetchAvailableRooms;
 using HotelBot.Dialogs.Cancel;
 using HotelBot.Models.LUIS;
 using HotelBot.Services;
@@ -92,8 +92,8 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
         protected virtual async Task<InterruptionStatus> OnHelp(DialogContext dc)
         {
             // todo: update to room overview help
-            var view = new BookARoomResponses();
-            await view.ReplyWith(dc.Context, BookARoomResponses.ResponseIds.Help);
+            var view = new FetchAvailableRoomsResponses();
+            await view.ReplyWith(dc.Context, FetchAvailableRoomsResponses.ResponseIds.Help);
 
             // Signal the conversation was interrupted and should immediately continue
             return InterruptionStatus.Interrupted;

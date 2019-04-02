@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using HotelBot.Dialogs.BookARoom;
+using HotelBot.Dialogs.FetchAvailableRooms;
 using HotelBot.Dialogs.Prompts.ArrivalDate;
 using HotelBot.Dialogs.Prompts.DepartureDate;
 using HotelBot.Dialogs.Prompts.Email;
@@ -47,7 +47,7 @@ namespace HotelBot.Dialogs.Prompts.UpdateState
             var isUpdateDate = (bool) sc.Options;
             if (!isUpdateDate) return await sc.NextAsync();
 
-            var bookARoomState = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
+            var bookARoomState = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
             bookARoomState.LuisResults.TryGetValue(LuisResultBookARoomKey, out var luisResult);
             TimexProperty timexProperty;
             if (sc.Options != null)
@@ -77,7 +77,7 @@ namespace HotelBot.Dialogs.Prompts.UpdateState
 
         public async Task<DialogTurnResult> PromptConfirm(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-            var bookARoomState = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
+            var bookARoomState = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
             bookARoomState.LuisResults.TryGetValue(LuisResultBookARoomKey, out var luisResult);
             var intent = luisResult.TopIntent().intent.ToString();
             if (sc.Result != null)
@@ -88,7 +88,7 @@ namespace HotelBot.Dialogs.Prompts.UpdateState
 
             // attach the full state to the turnstate to allow for dynamic template rendering.
             sc.Context.TurnState["bookARoomState"] = bookARoomState;
-            var view = new BookARoomResponses();
+            var view = new FetchAvailableRoomsResponses();
             return await sc.PromptAsync(
                 nameof(ConfirmPrompt),
                 new PromptOptions
@@ -108,13 +108,13 @@ namespace HotelBot.Dialogs.Prompts.UpdateState
         private async Task<DialogTurnResult> UpdateState(WaterfallStepContext sc)
         {
 
-            var bookARoomState = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
+            var bookARoomState = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
             bookARoomState.LuisResults.TryGetValue(LuisResultBookARoomKey, out var luisResult);
             var intent = luisResult.TopIntent().intent;
             if (_updateStateHandler.UpdateStateHandlerDelegates.TryGetValue(intent, out var DelegateStateUpdate))
             {
                 var result = await DelegateStateUpdate(bookARoomState, luisResult, sc);
-                await _accessors.BookARoomStateAccessor.SetAsync(sc.Context, bookARoomState);
+                await _accessors.FetchAvailableRoomsStateAccessor.SetAsync(sc.Context, bookARoomState);
                 return result;
             }
 

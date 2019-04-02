@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using HotelBot.Dialogs.BookARoom;
+using HotelBot.Dialogs.FetchAvailableRooms;
 using HotelBot.Dialogs.Prompts.ArrivalDate;
 using HotelBot.Dialogs.Prompts.DepartureDate;
 using HotelBot.Dialogs.Prompts.Email;
@@ -32,7 +32,7 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates
         };
 
 
-        private static async Task<DialogTurnResult> UpdateEmail(BookARoomState state, HotelBotLuis luisResult, WaterfallStepContext sc)
+        private static async Task<DialogTurnResult> UpdateEmail(FetchAvailableRoomsState state, HotelBotLuis luisResult, WaterfallStepContext sc)
         {
             if (luisResult.HasEntityWithPropertyName(UpdateStatePrompt.EntityNames.Email))
             {
@@ -46,7 +46,7 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates
             return await sc.BeginDialogAsync(nameof(EmailPromptDialog), true);
         }
 
-        private static async Task<DialogTurnResult> UpdateArrivalDate(BookARoomState state, WaterfallStepContext sc)
+        private static async Task<DialogTurnResult> UpdateArrivalDate(FetchAvailableRoomsState state, WaterfallStepContext sc)
         {
             if (state.TimexResults.TryGetValue("tempTimex", out var arrivingTimexProperty))
             {
@@ -63,7 +63,7 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates
             return await sc.BeginDialogAsync(nameof(ArrivalDatePromptDialog), true);
         }
 
-        private static async Task<DialogTurnResult> UpdateLeavingDate(BookARoomState state, WaterfallStepContext sc)
+        private static async Task<DialogTurnResult> UpdateLeavingDate(FetchAvailableRoomsState state, WaterfallStepContext sc)
         {
             if (state.TimexResults.TryGetValue("tempTimex", out var leavingTimexProperty))
             {
@@ -81,7 +81,7 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates
             return await sc.BeginDialogAsync(nameof(DepartureDatePromptDialog), true);
         }
 
-        private static async Task<DialogTurnResult> UpdateNumberOfPeople(BookARoomState state, HotelBotLuis luisResult, WaterfallStepContext sc)
+        private static async Task<DialogTurnResult> UpdateNumberOfPeople(FetchAvailableRoomsState state, HotelBotLuis luisResult, WaterfallStepContext sc)
         {
             if (luisResult.HasEntityWithPropertyName(UpdateStatePrompt.EntityNames.Number))
             {

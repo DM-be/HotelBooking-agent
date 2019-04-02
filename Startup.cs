@@ -4,7 +4,7 @@
 using System;
 using System.IO;
 using System.Linq;
-using HotelBot.Dialogs.BookARoom;
+using HotelBot.Dialogs.FetchAvailableRooms;
 using HotelBot.Middleware;
 using HotelBot.Services;
 using HotelBot.StateAccessors;
@@ -144,8 +144,8 @@ namespace HotelBot
                     conversationState.CreateProperty<ConversationData>(StateBotAccessors.ConversationDataName),
                 UserProfileAccessor = userState.CreateProperty<UserProfile>(StateBotAccessors.UserProfileName),
                 DialogStateAccessor = conversationState.CreateProperty<DialogState>(StateBotAccessors.DialogStateName),
-                BookARoomStateAccessor =
-                    conversationState.CreateProperty<BookARoomState>(StateBotAccessors.BookARoomAName)
+                FetchAvailableRoomsStateAccessor = 
+                    conversationState.CreateProperty<FetchAvailableRoomsState>(StateBotAccessors.FetchAvailableRoomsName)
             };
 
             services.AddSingleton(stateBotAccessors);

@@ -8,28 +8,27 @@ using HotelBot.Dialogs.Prompts.DepartureDate;
 using HotelBot.Dialogs.Prompts.Email;
 using HotelBot.Dialogs.Prompts.NumberOfPeople;
 using HotelBot.Dialogs.Shared.RecognizerDialogs;
+using HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms;
 using HotelBot.Services;
 using HotelBot.StateAccessors;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Dialogs.Choices;
 
-namespace HotelBot.Dialogs.BookARoom
+namespace HotelBot.Dialogs.FetchAvailableRooms
 {
-    public class BookARoomDialog: BookARoomRecognizerDialog
+    public class FetchAvailableRoomsDialog: FetchAvailableRoomsRecognizerDialog
     {
-        private static BookARoomResponses _responder;
+        private static FetchAvailableRoomsResponses _responder;
         private readonly StateBotAccessors _accessors;
-        private readonly BotServices _services;
 
-        public BookARoomDialog(BotServices services, StateBotAccessors accessors)
-            : base(services, accessors, nameof(BookARoomDialog))
+        public FetchAvailableRoomsDialog(BotServices services, StateBotAccessors accessors)
+            : base(services, accessors, nameof(FetchAvailableRoomsDialog))
         {
-            _services = services ?? throw new ArgumentNullException(nameof(services));
             _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
-            _responder = new BookARoomResponses();
-            InitialDialogId = nameof(BookARoomDialog);
-            var bookARoomwAWaterfallSteps= new WaterfallStep []
+            _responder = new FetchAvailableRoomsResponses();
+            InitialDialogId = nameof(FetchAvailableRoomsDialog);
+            var bookARoomwAWaterfallSteps = new WaterfallStep []
             {
                 AskForEmail, AskForNumberOfPeople, AskForArrivalDate, AskForLeavingDate, PromptConfirm, ProcessConfirmPrompt, UpdateStateLoop
             };
@@ -45,28 +44,29 @@ namespace HotelBot.Dialogs.BookARoom
         public async Task<DialogTurnResult> AskForEmail(WaterfallStepContext sc, CancellationToken cancellationToken)
 
         {
-            var state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
+
+            var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
             if (state.Email != null) return await sc.NextAsync();
             return await sc.BeginDialogAsync(nameof(EmailPromptDialog));
         }
 
         public async Task<DialogTurnResult> AskForNumberOfPeople(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-            var state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
+            var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
             if (state.NumberOfPeople != null) return await sc.NextAsync();
             return await sc.BeginDialogAsync(nameof(NumberOfPeoplePromptDialog));
         }
 
         public async Task<DialogTurnResult> AskForArrivalDate(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-            var state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
+            var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
             if (state.ArrivalDate != null) return await sc.NextAsync();
             return await sc.BeginDialogAsync(nameof(ArrivalDatePromptDialog));
         }
 
         public async Task<DialogTurnResult> AskForLeavingDate(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-            var state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
+            var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
             if (state.LeavingDate != null) return await sc.NextAsync();
             return await sc.BeginDialogAsync(nameof(DepartureDatePromptDialog));
         }
@@ -82,10 +82,10 @@ namespace HotelBot.Dialogs.BookARoom
             if (confirmed)
             {
                 // send book a room cards
-                var state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
-                await _responder.ReplyWith(sc.Context, BookARoomResponses.ResponseIds.SendRoomsCarousel, state);
-                var bookARoomEmpty = new BookARoomState();
-                await _accessors.BookARoomStateAccessor.SetAsync(sc.Context, bookARoomEmpty);
+                var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
+                await _responder.ReplyWith(sc.Context, FetchAvailableRoomsResponses.ResponseIds.SendRoomsCarousel, state);
+                var bookARoomEmpty = new FetchAvailableRoomsState();
+                await _accessors.FetchAvailableRoomsStateAccessor.SetAsync(sc.Context, bookARoomEmpty);
                 return await sc.EndDialogAsync();
                 // return await Task.FromResult(new DialogTurnResult(DialogTurnStatus.Waiting));
             }
@@ -114,7 +114,7 @@ namespace HotelBot.Dialogs.BookARoom
 
         public async Task<DialogTurnResult> UpdateStateLoop(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-            var state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
+            var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
             var choice = sc.Result as FoundChoice;
 
             switch (choice.Value)

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using HotelBot.Dialogs.BookARoom;
+using HotelBot.Dialogs.FetchAvailableRooms;
 using HotelBot.Dialogs.Shared.PromptValidators;
 using HotelBot.StateAccessors;
 using Microsoft.Bot.Builder.Dialogs;
@@ -47,7 +47,7 @@ namespace HotelBot.Dialogs.Prompts.Email
             var updated = false;
             if (sc.Options != null) updated = (bool) sc.Options; // usually true
 
-            var _state = await _accessors.BookARoomStateAccessor.GetAsync(sc.Context, () => new BookARoomState());
+            var _state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
             _state.Email = email;
 
             if (updated)
