@@ -243,7 +243,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                     }
                 };
             var reply = context.Activity.CreateReply();
-            reply.Text = "Here are some more pictures";
+            reply.Text = "Here are more pictures of the room.";
             var attachments = new List<Attachment>();
             foreach (var heroCard in imageCards) attachments.Add(heroCard.ToAttachment());
             reply.AttachmentLayout = "carousel";

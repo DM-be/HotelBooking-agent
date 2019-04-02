@@ -93,6 +93,7 @@ namespace HotelBot.Dialogs.Main.Delegates
                     var dateTimeSpecs = luisResult.Entities.datetime.First();
                     var firstExpression = dateTimeSpecs.Expressions.First();
                     state.ArrivalDate = new TimexProperty(firstExpression);
+                    state.NumberOfPeople = null; // todo: fix in a cleaner way
                 }
 
         }

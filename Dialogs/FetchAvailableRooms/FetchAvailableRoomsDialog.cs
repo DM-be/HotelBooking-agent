@@ -97,6 +97,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                         {
                             "Arrival",
                             "Leaving",
+                            "Number of people"
                         })
                 },
                 cancellationToken);
