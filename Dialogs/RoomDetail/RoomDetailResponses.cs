@@ -20,6 +20,10 @@ namespace HotelBot.Dialogs.RoomDetail
                 {
                     ResponseIds.SendGeneralDescription, (context, data) =>
                         SendGeneralDescription(context, data)
+                },
+                {
+                    ResponseIds.SendExtraInfo, (context, data) =>
+                        SendExtraInfo(context, data)
                 }
 
             }
@@ -53,7 +57,7 @@ namespace HotelBot.Dialogs.RoomDetail
                     }
                 };
             var reply = context.Activity.CreateReply();
-            reply.Text = "Here are some more pictures of the room";
+            reply.Text = "Here are some more pictures";
             var attachments = new List<Attachment>();
             foreach (var heroCard in imageCards) attachments.Add(heroCard.ToAttachment());
             reply.AttachmentLayout = "carousel";
@@ -68,11 +72,19 @@ namespace HotelBot.Dialogs.RoomDetail
             return MessageFactory.Text(message);
         }
 
+        public static IMessageActivity SendExtraInfo(ITurnContext context, dynamic data)
+        {
+            var selectedRoomDetailDto = data as RoomDetailDto;
+            var message = $"🚬 not allowed, ♿ accessible";
+            return MessageFactory.Text(message);
+        }
+
         public class ResponseIds
         {
-            // all images? maybe room + bathroom separate?
-            public const string SendImages = "SendImages";
-            public const string SendGeneralDescription = "SendGeneralDescription";
+            public const string SendImages = "sendImages";
+            public const string SendGeneralDescription = "sendGeneralDescription";
+            public const string SendExtraInfo = "sendExtraInfo";
+            public const string SendRates = "sendRates";
         }
     }
 }
