@@ -20,15 +20,15 @@ namespace HotelBot.Middleware
             CancellationToken cancellationToken = default(CancellationToken))
         {
             var userProfile = await _accessors.UserProfileAccessor.GetAsync(context, () => new UserProfile());
-            if (string.IsNullOrWhiteSpace(userProfile.Locale))
+            if (string.IsNullOrWhiteSpace(userProfile.FacebookProfileData.Locale))
             {
                 // TODO: check if not already solved by correct order
                 // still needs to be set by the SetUserProfileMiddleware
                 await next(cancellationToken).ConfigureAwait(false);
                 return;
             }
-            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(userProfile.Locale);
-            CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo(userProfile.Locale);
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(userProfile.FacebookProfileData.Locale);
+            CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo(userProfile.FacebookProfileData.Locale);
             await next(cancellationToken).ConfigureAwait(false);
         }
     }

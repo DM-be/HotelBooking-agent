@@ -88,7 +88,7 @@ namespace HotelBot.Dialogs.RoomDetail
                     return await sc.ReplaceDialogAsync(nameof(FetchAvailableRoomsDialog));
                     
                 case "Book this room":
-                    // start booking process\
+                    // start booking process
                     return null;
 
             }

@@ -16,6 +16,12 @@ namespace HotelBot.Models.DTO
         public int StartingPrice { get; set; }
 
         public RoomImage Thumbnail { get; set; }
+
+        public bool SmokingAllowed { get; set; }
+
+        public bool WheelChairAccessible { get; set; }
+
+        public int Capacity { get; set; }
     }
 
 }

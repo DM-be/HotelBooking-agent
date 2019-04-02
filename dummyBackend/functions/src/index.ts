@@ -9,6 +9,10 @@ interface RoomDto {
     startingPrice: number,
     thumbnail: RoomImage,
     id: string,
+    smokingAllowed: boolean,
+    wheelChairAccessible: boolean,
+    capacity: number
+
 }
 
 interface RoomDetailDto {
@@ -55,7 +59,7 @@ interface Room {
     reservationAgreement: string,
     checkinTime:  Timestamp,
     checkoutTime: Timestamp, 
-    numberOfPeople: number,
+    capacity: number,
     rates: Rate []
 }
 
@@ -78,7 +82,10 @@ export const fetchMatchingRooms = functions.https.onRequest(async(req, res) => {
             title: room.title,
             startingPrice: lowestRate ,
             thumbnail: room.thumbnail,
-            id: snapshotDoc.id
+            id: snapshotDoc.id,
+            capacity: room.capacity,
+            smokingAllowed: room.smokingAllowed,
+            wheelChairAccessible: room.wheelChairAccessible
         }
         roomDtos.push(roomDto) 
     });
@@ -107,7 +114,8 @@ export const fetchRoomDetail = functions.https.onRequest(async(req, res) => {
         roomImages: room.images,
         reservationAgreement: room.reservationAgreement,
         smokingAllowed: room.smokingAllowed,
-        rates: room.rates
+        rates: room.rates,
+        
     }
     res.send(roomDetailDto);
 })

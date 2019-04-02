@@ -62,6 +62,7 @@ namespace HotelBot.Middleware
         {
             if (postBack.Payload.Equals(FacebookPostback.GetStartedPostback))
             {
+                context.Activity.Text = "";
                 await facebookHelper.SendWelcomeMessage(context);
                 await facebookHelper.SendFunctionalityMessage(context);
                 await facebookHelper.SendGettingStartedQuickReplies(context);

@@ -159,11 +159,20 @@
   <data name="NUMBEROFPEOPLE_REPROMPT" xml:space="preserve">
     <value>How many people are you bringing?</value>
   </data>
+  <data name="PERSON" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SMOKING_ALLOWED" xml:space="preserve">
+    <value>🚬</value>
+  </data>
+  <data name="SMOKING_NOT_ALLOWED" xml:space="preserve">
+    <value>🚭</value>
+  </data>
   <data name="SPECIFICTIME_REPLY" xml:space="preserve">
     <value>I need a specific day to help you.</value>
   </data>
   <data name="STATE_OVERVIEW" xml:space="preserve">
-    <value>You are bringing {0} people, arriving on {1} and leaving on {2}. Your confirmation email address is {3}. Is this correct?</value>
+    <value>You are looking for a room for {0} people between {1} and {2}. Is this correct?</value>
   </data>
   <data name="UPDATE_ARRIVALDATE_WITHOUT_ENTITY" xml:space="preserve">
     <value>Do you want to change your arrival date?</value>
@@ -188,5 +197,11 @@
   </data>
   <data name="UPDATE_NUMBEROFPEOPLE_WITH_ENTITY" xml:space="preserve">
     <value>Do you want to change the number of people to {0}?</value>
+  </data>
+  <data name="WHEELCHAIR_ACCESSIBLE" xml:space="preserve">
+    <value>♿</value>
+  </data>
+  <data name="WHEELCHAIR_INACCESIBLE" xml:space="preserve">
+    <value />
   </data>
 </root>

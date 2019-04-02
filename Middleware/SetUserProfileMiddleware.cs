@@ -1,6 +1,7 @@
 ﻿using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using HotelBot.Models.Facebook;
 using HotelBot.StateAccessors;
 using HotelBot.StateProperties;
 using Microsoft.Bot.Builder;
@@ -21,15 +22,16 @@ namespace HotelBot.Middleware
         public async Task OnTurnAsync(ITurnContext turnContext, NextDelegate next, CancellationToken cancellationToken = default(CancellationToken))
         {
             var userProfile = await _accessors.UserProfileAccessor.GetAsync(turnContext, () => new UserProfile());
-            if (string.IsNullOrEmpty(userProfile.Name))
+            if (userProfile.FacebookProfileData == null)
                 if (turnContext.Activity.ChannelId == Channels.Facebook)
                 {
                     // TODO token never expires: normal? if so, provide external api to get this according to facebook profile page
                     var page_access_token =
                         "EAAZAwdCH6kA4BALmrXAxNUYIUfqaH01Lx3bsNDFlQZCgRolXq0yErVZABhdRHuZCkGjTuHGZCZBzhcWDCRVGOIXf6v5Yckz0MidVUJg8EXbWWXeaDhaGVR19CXtZBao64Y09N5IWWZBNMbQOa23Dt222YW8NwgdpNVWZBDjVOh5qXZCAZDZD";
                     var userId = turnContext.Activity.From.Id;
-                    userProfile = await GetUserProfileBasedOnFacebookData(userId, page_access_token);
-                    userProfile.Locale = userProfile.Locale.Replace("_", "-");
+                    
+                    userProfile.FacebookProfileData = await GetFacebookProfileData(userId, page_access_token);
+                    userProfile.FacebookProfileData.Locale = userProfile.FacebookProfileData.Locale.Replace("_", "-");
                     await _accessors.UserProfileAccessor.SetAsync(turnContext, userProfile);
                     await next(cancellationToken).ConfigureAwait(false);
                     return;
@@ -38,21 +40,22 @@ namespace HotelBot.Middleware
             await next(cancellationToken).ConfigureAwait(false);
         }
 
-        private async Task<UserProfile> GetUserProfileBasedOnFacebookData(string userId, string page_access_token)
+        private async Task<FacebookProfileData> GetFacebookProfileData(string userId, string page_access_token)
         {
             // https://developers.facebook.com/docs/messenger-platform/identity/user-profile/
-            UserProfile userProfile = null;
+            FacebookProfileData facebookProfileData = null;
             var client = new HttpClient();
             var path =
                 $"https://graph.facebook.com/{userId}?fields=name,first_name,last_name,locale&access_token={page_access_token}";
             var response = await client.GetAsync(path);
             if (response.IsSuccessStatusCode)
             {
-                var userProfileAsAString = await response.Content.ReadAsStringAsync();
-                userProfile = JsonConvert.DeserializeObject<UserProfile>(userProfileAsAString);
+                var facebookProfileAsAString = await response.Content.ReadAsStringAsync();
+                facebookProfileData = JsonConvert.DeserializeObject<FacebookProfileData>(facebookProfileAsAString);
             }
 
-            return userProfile;
+
+            return facebookProfileData;
         }
     }
 }

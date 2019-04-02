@@ -187,6 +187,33 @@ namespace HotelBot.Dialogs.FetchAvailableRooms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string PERSON {
+            get {
+                return ResourceManager.GetString("PERSON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 🚬.
+        /// </summary>
+        public static string SMOKING_ALLOWED {
+            get {
+                return ResourceManager.GetString("SMOKING_ALLOWED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 🚭.
+        /// </summary>
+        public static string SMOKING_NOT_ALLOWED {
+            get {
+                return ResourceManager.GetString("SMOKING_NOT_ALLOWED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to I need a specific day to help you..
         /// </summary>
         public static string SPECIFICTIME_REPLY {
@@ -196,7 +223,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You are bringing {0} people, arriving on {1} and leaving on {2}. Your confirmation email address is {3}. Is this correct?.
+        ///   Looks up a localized string similar to You are looking for a room for {0} people between {1} and {2}. Is this correct?.
         /// </summary>
         public static string STATE_OVERVIEW {
             get {
@@ -273,6 +300,24 @@ namespace HotelBot.Dialogs.FetchAvailableRooms.Resources {
         public static string UPDATE_NUMBEROFPEOPLE_WITHOUT_ENTITY {
             get {
                 return ResourceManager.GetString("UPDATE_NUMBEROFPEOPLE_WITHOUT_ENTITY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ♿.
+        /// </summary>
+        public static string WHEELCHAIR_ACCESSIBLE {
+            get {
+                return ResourceManager.GetString("WHEELCHAIR_ACCESSIBLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string WHEELCHAIR_INACCESIBLE {
+            get {
+                return ResourceManager.GetString("WHEELCHAIR_INACCESIBLE", resourceCulture);
             }
         }
     }

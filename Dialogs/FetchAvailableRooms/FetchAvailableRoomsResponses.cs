@@ -165,6 +165,8 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             var arrivalMonth = (int) bookARoomState.ArrivalDate.Month;
             var arrivalDay = (int) bookARoomState.ArrivalDate.DayOfMonth;
             var arrivalDateTime = new DateTime(arrivalYear, arrivalMonth, arrivalDay);
+            
+
             var requestData =
                 new RoomRequestData
                 {
@@ -178,26 +180,45 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                 heroCards[i] = new HeroCard
                 {
                     Title = rooms[i].Title,
-                    Subtitle = $"Starting from {rooms[i].StartingPrice}",
+                    Text = BuildHeroCardText(rooms[i].StartingPrice,rooms[i].WheelChairAccessible, rooms[i].SmokingAllowed, rooms[i].Description, rooms[i].Capacity),
                     Images = new List<CardImage>
                     {
                         new CardImage(rooms[i].Thumbnail.ImageUrl)
                     },
+                    
                     Buttons = new List<CardAction>
                     {
-                        new CardAction(
-                            ActionTypes.MessageBack,
-                            "More info",
-                            value: JsonConvert.SerializeObject(
+                        new CardAction
+                        {
+                            Type = ActionTypes.MessageBack,
+                            Value = JsonConvert.SerializeObject(
                                 new RoomAction
                                 {
                                     Id = rooms[i].id,
                                     Action = "info"
-                                }))
+                                }),
+                            Title = "More info",
+                            Text = "show me more info for x room"
+
+                        }
+                    },
+
+                    Tap = new CardAction
+                    {
+                        Type = ActionTypes.MessageBack,
+                        Value = JsonConvert.SerializeObject(
+                            new RoomAction
+                            {
+                                Id = rooms[i].id,
+                                Action = "info"
+                            })
+
+
                     }
                 };
             var reply = context.Activity.CreateReply();
-            reply.Text = "Here are some available rooms";
+
+            reply.Text = $"Here are our available rooms between {bookARoomState.ArrivalDate} and {bookARoomState.LeavingDate}";
             var attachments = new List<Attachment>();
 
             foreach (var heroCard in heroCards) attachments.Add(heroCard.ToAttachment());
@@ -319,9 +340,49 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
 
         public static IMessageActivity SendOverview(ITurnContext context, FetchAvailableRoomsState state)
         {
-            var message = string.Format(FetchAvailableRoomsStrings.STATE_OVERVIEW, state.NumberOfPeople, state.ArrivalDate, state.LeavingDate, state.Email);
+            var message = string.Format(FetchAvailableRoomsStrings.STATE_OVERVIEW, state.NumberOfPeople, state.ArrivalDate, state.LeavingDate);
             return MessageFactory.Text(message);
         }
+
+        public static string BuildHeroCardText(int startingPrice, bool wheelChair, bool smoking, string description, int capacity)
+        {
+            
+            var message = $"Starting from 💶 {startingPrice} \n";
+            message += description;
+            message += " \n";
+            message += GetSmokingString(smoking);
+            message += GetWheelChairAccessibleString(wheelChair);
+            message += " \n";
+            message += GetCapacityString(capacity); 
+            return message;
+
+        }
+
+        private static string GetSmokingString(bool smoking)
+        {
+            if (smoking) return FetchAvailableRoomsStrings.SMOKING_ALLOWED;
+
+            return FetchAvailableRoomsStrings.SMOKING_NOT_ALLOWED;
+        }
+
+        private static string GetWheelChairAccessibleString(bool wheelChair)
+        {
+            if (wheelChair) return FetchAvailableRoomsStrings.WHEELCHAIR_ACCESSIBLE;
+
+            return FetchAvailableRoomsStrings.WHEELCHAIR_INACCESIBLE;
+        }
+
+        private static string GetCapacityString(int capacity)
+        {
+            var mes = "";
+            for (int x = 0; x < capacity; x++)
+            {
+                mes += "🚹︎";
+            }
+
+            return mes;
+        }
+
 
 
 

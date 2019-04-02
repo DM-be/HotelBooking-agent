@@ -7,7 +7,6 @@ using HotelBot.Dialogs.Prompts.ConfirmFetchRooms;
 using HotelBot.Dialogs.Prompts.DepartureDate;
 using HotelBot.Dialogs.Prompts.Email;
 using HotelBot.Dialogs.Prompts.NumberOfPeople;
-using HotelBot.Dialogs.Shared.RecognizerDialogs;
 using HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms;
 using HotelBot.Services;
 using HotelBot.StateAccessors;
@@ -28,27 +27,26 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
             _responder = new FetchAvailableRoomsResponses();
             InitialDialogId = nameof(FetchAvailableRoomsDialog);
-            var bookARoomwAWaterfallSteps = new WaterfallStep []
+            var fetchAvailableRoomsWaterfallSteps = new WaterfallStep []
             {
-                AskForEmail, AskForNumberOfPeople, AskForArrivalDate, AskForLeavingDate, PromptConfirm, ProcessConfirmPrompt, UpdateStateLoop
+                AskForNumberOfPeople, AskForArrivalDate, AskForLeavingDate, PromptConfirm, ProcessConfirmPrompt, UpdateStateLoop
             };
-            AddDialog(new WaterfallDialog(InitialDialogId, bookARoomwAWaterfallSteps));
+            AddDialog(new WaterfallDialog(InitialDialogId, fetchAvailableRoomsWaterfallSteps));
             AddDialog(new ArrivalDatePromptDialog(accessors));
-            AddDialog(new NumberOfPeoplePromptDialog(accessors));
             AddDialog(new ChoicePrompt(nameof(ChoicePrompt)));
-            AddDialog(new EmailPromptDialog(_accessors));
             AddDialog(new ConfirmFetchRoomsPrompt(accessors));
             AddDialog(new DepartureDatePromptDialog(accessors));
+            AddDialog(new NumberOfPeoplePromptDialog(accessors));
         }
 
-        public async Task<DialogTurnResult> AskForEmail(WaterfallStepContext sc, CancellationToken cancellationToken)
+        //public async Task<DialogTurnResult> AskForEmail(WaterfallStepContext sc, CancellationToken cancellationToken)
 
-        {
+        //{
 
-            var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
-            if (state.Email != null) return await sc.NextAsync();
-            return await sc.BeginDialogAsync(nameof(EmailPromptDialog));
-        }
+        //    var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
+        //    if (state.Email != null) return await sc.NextAsync();
+        //    return await sc.BeginDialogAsync(nameof(EmailPromptDialog));
+        //}
 
         public async Task<DialogTurnResult> AskForNumberOfPeople(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
@@ -56,6 +54,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             if (state.NumberOfPeople != null) return await sc.NextAsync();
             return await sc.BeginDialogAsync(nameof(NumberOfPeoplePromptDialog));
         }
+
 
         public async Task<DialogTurnResult> AskForArrivalDate(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
@@ -84,12 +83,8 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                 // send book a room cards
                 var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
                 await _responder.ReplyWith(sc.Context, FetchAvailableRoomsResponses.ResponseIds.SendRoomsCarousel, state);
-                var bookARoomEmpty = new FetchAvailableRoomsState();
-                await _accessors.FetchAvailableRoomsStateAccessor.SetAsync(sc.Context, bookARoomEmpty);
-                return await sc.EndDialogAsync();
-                // return await Task.FromResult(new DialogTurnResult(DialogTurnStatus.Waiting));
-            }
 
+            }
 
             return await sc.PromptAsync(
                 nameof(ChoicePrompt),
@@ -102,8 +97,6 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                         {
                             "Arrival",
                             "Leaving",
-                            "Number of people",
-                            "Email"
                         })
                 },
                 cancellationToken);
@@ -125,29 +118,9 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                 case "Leaving":
                     state.LeavingDate = null;
                     break;
-                case "Number of people":
-                    state.NumberOfPeople = null;
-                    break;
-                case "Email":
-                    state.Email = null;
-                    break;
-
-
             }
 
             return await sc.ReplaceDialogAsync(InitialDialogId, null);
-        }
-
-
-
-
-
-        public class DialogIds
-        {
-            public const string ArrivalDateTimePrompt = "arrivalDateTimePrompt";
-            public const string LeavingDateTimePrompt = "leavingDateTimePrompt";
-            public const string NumberOfPeopleNumberPrompt = "NumberOfPeople";
-            public const string EmailPrompt = "Email";
         }
     }
 }
