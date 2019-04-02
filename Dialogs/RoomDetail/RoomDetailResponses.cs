@@ -4,6 +4,7 @@ using HotelBot.Shared.Helpers;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.TemplateManager;
 using Microsoft.Bot.Schema;
+using Newtonsoft.Json;
 
 namespace HotelBot.Dialogs.RoomDetail
 {
@@ -24,6 +25,10 @@ namespace HotelBot.Dialogs.RoomDetail
                 {
                     ResponseIds.SendExtraInfo, (context, data) =>
                         SendExtraInfo(context, data)
+                },
+                {
+                    ResponseIds.SendRates, (context, data) =>
+                        SendRates(context, data)
                 }
 
             }
@@ -60,6 +65,40 @@ namespace HotelBot.Dialogs.RoomDetail
             reply.Text = "Here are some more pictures";
             var attachments = new List<Attachment>();
             foreach (var heroCard in imageCards) attachments.Add(heroCard.ToAttachment());
+            reply.AttachmentLayout = "carousel";
+            reply.Attachments = attachments;
+            return reply;
+        }
+        public static IMessageActivity SendRates(ITurnContext context, dynamic data)
+        {
+            var roomDetailDto = data as RoomDetailDto;
+            var rateCards = new HeroCard[2];
+            for (var i = 0; i < roomDetailDto.Rates.Count; i++)
+                rateCards[i] = new HeroCard
+                {
+                    Title = roomDetailDto.Rates[i].RateName,
+                    Subtitle = roomDetailDto.Rates[i].RateDescription,
+                    Buttons = new List<CardAction>
+                    {
+                        new CardAction
+                        {
+                            Type = ActionTypes.MessageBack,
+                            Value = JsonConvert.SerializeObject(
+                                new RoomAction
+                                {
+                                    Id = "FAKEID",
+                                    Action = "info"
+                                }),
+                            Title = $"Book for {roomDetailDto.Rates[i].Price} 💶",
+                            Text = "show me more info for x room"
+
+                        }
+                    },
+                };
+            var reply = context.Activity.CreateReply();
+            reply.Text = "This room is available with following rates:";
+            var attachments = new List<Attachment>();
+            foreach (var heroCard in rateCards) attachments.Add(heroCard.ToAttachment());
             reply.AttachmentLayout = "carousel";
             reply.Attachments = attachments;
             return reply;

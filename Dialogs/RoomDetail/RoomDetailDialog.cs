@@ -31,7 +31,7 @@ namespace HotelBot.Dialogs.RoomDetail
 
             var roomDetailWaterfallSteps = new WaterfallStep []
             {
-                FetchSelectedRoomDetail, ReplyImages, PromptActions, OnAction
+                FetchSelectedRoomDetail, ReplyImages,ShowRates, PromptActions, OnAction
             };
 
             AddDialog(new WaterfallDialog(InitialDialogId, roomDetailWaterfallSteps));
@@ -53,11 +53,20 @@ namespace HotelBot.Dialogs.RoomDetail
 
 
         {
-            await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendExtraInfo, _selectedRoomDetailDto);
-            await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendGeneralDescription, _selectedRoomDetailDto);
             await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendImages, _selectedRoomDetailDto);
             return await sc.NextAsync();
         }
+
+        public async Task<DialogTurnResult> ShowRates(WaterfallStepContext sc, CancellationToken cancellationToken)
+
+
+        {
+            await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendRates, _selectedRoomDetailDto);
+            return await sc.NextAsync();
+        }
+
+
+
 
 
         public async Task<DialogTurnResult> PromptActions(WaterfallStepContext sc, CancellationToken cancellationToken)
