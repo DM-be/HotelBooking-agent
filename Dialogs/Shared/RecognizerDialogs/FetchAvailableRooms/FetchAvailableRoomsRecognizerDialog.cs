@@ -37,7 +37,7 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms
             if (luisService == null) throw new Exception("The specified LUIS Model could not be found in your Bot Services configuration.");
             var luisResult = await luisService.RecognizeAsync<HotelBotLuis>(dc.Context, cancellationToken);
             var intent = luisResult.TopIntent().intent;
-            var isChoicePrompt = dc.ActiveDialog.Id == "updateStateChoicePrompt";
+            var isChoicePrompt = dc.ActiveDialog.Id == "updateStateChoicePrompt" | dc.ActiveDialog.Id == nameof(ChoicePrompt);
 
 
 
