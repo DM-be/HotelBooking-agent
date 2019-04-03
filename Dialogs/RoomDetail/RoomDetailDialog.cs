@@ -51,6 +51,9 @@ namespace HotelBot.Dialogs.RoomDetail
             var state = await _accessors.RoomDetailStateAccessor.GetAsync(sc.Context, () => new RoomDetailState());
             state.RoomDetailDto = new RoomDetailDto();
             state.RoomDetailDto = await requestHandler.FetchRoomDetail(roomAction.Id);
+            await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendDescription, state.RoomDetailDto);
+            await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendImages, state.RoomDetailDto);
+            await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendLowestRate, state.RoomDetailDto);
             return await sc.NextAsync();
         }
 
@@ -60,11 +63,11 @@ namespace HotelBot.Dialogs.RoomDetail
                 nameof(ChoicePrompt),
                 new PromptOptions
                 {
-                    Prompt = MessageFactory.Text("Ask me questions about the room or pick an option"),
+                    Prompt = MessageFactory.Text("View more rates or book this room"),
                     Choices = ChoiceFactory.ToChoices(
                         new List<string>
                         {
-                            RoomDetailChoices.ShowPictures,
+                            RoomDetailChoices.Book,
                             RoomDetailChoices.ShowRates,
                             RoomDetailChoices.ViewOtherRooms
 
@@ -96,9 +99,11 @@ namespace HotelBot.Dialogs.RoomDetail
                 case RoomDetailChoices.ShowRates:
                     await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendRates, state.RoomDetailDto);
                     return await sc.ReplaceDialogAsync(InitialDialogId, roomAction);
-                case RoomDetailChoices.ShowPictures:
-                    await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendImages, state.RoomDetailDto);
-                    return await sc.ReplaceDialogAsync(InitialDialogId, roomAction);
+                case RoomDetailChoices.Book:
+                {
+                    // send Booking object to bookingdialog --> empty rate but with roomdetaildto
+                    return null;
+                }
             }
 
             return null;
@@ -108,9 +113,9 @@ namespace HotelBot.Dialogs.RoomDetail
 
         public class RoomDetailChoices
         {
-            public const string ViewOtherRooms = "View other rooms";
-            public const string ShowRates = "Rates";
-            public const string ShowPictures = "View more pictures";
+            public const string ViewOtherRooms = "New search";
+            public const string ShowRates = "View rates";
+            public const string Book = "Book";
         }
     }
 }

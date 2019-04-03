@@ -210,7 +210,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                         rooms[i].StartingPrice,
                         rooms[i].WheelChairAccessible,
                         rooms[i].SmokingAllowed,
-                        rooms[i].Description,
+                        rooms[i].ShortDescription,
                         rooms[i].Capacity),
                     Images = new List<CardImage>
                     {

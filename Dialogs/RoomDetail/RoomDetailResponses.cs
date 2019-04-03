@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using HotelBot.Models.DTO;
 using HotelBot.Models.Wrappers;
-using HotelBot.Shared.Helpers;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.TemplateManager;
 using Microsoft.Bot.Schema;
@@ -20,8 +19,8 @@ namespace HotelBot.Dialogs.RoomDetail
                         SendImages(context, data)
                 },
                 {
-                    ResponseIds.SendGeneralDescription, (context, data) =>
-                        SendGeneralDescription(context, data)
+                    ResponseIds.SendDescription, (context, data) =>
+                        SendDescription(context, data)
                 },
                 {
                     ResponseIds.SendExtraInfo, (context, data) =>
@@ -30,6 +29,10 @@ namespace HotelBot.Dialogs.RoomDetail
                 {
                     ResponseIds.SendRates, (context, data) =>
                         SendRates(context, data)
+                },
+                {
+                    ResponseIds.SendLowestRate, (context, data) =>
+                        SendLowestRate(context, data)
                 }
 
             }
@@ -70,6 +73,7 @@ namespace HotelBot.Dialogs.RoomDetail
             reply.Attachments = attachments;
             return reply;
         }
+
         public static IMessageActivity SendRates(ITurnContext context, dynamic data)
         {
             var roomDetailDto = data as RoomDetailDto;
@@ -94,7 +98,7 @@ namespace HotelBot.Dialogs.RoomDetail
                             Text = "show me more info for x room"
 
                         }
-                    },
+                    }
                 };
             var reply = context.Activity.CreateReply();
             reply.Text = "This room is available with following rates:";
@@ -105,26 +109,33 @@ namespace HotelBot.Dialogs.RoomDetail
             return reply;
         }
 
-        public static IMessageActivity SendGeneralDescription(ITurnContext context, dynamic data)
+        public static IMessageActivity SendDescription(ITurnContext context, dynamic data)
         {
             var selectedRoomDetailDto = data as RoomDetailDto;
-            var message = "The hotel would describe this room as: " + selectedRoomDetailDto.Description;
+            return MessageFactory.Text(selectedRoomDetailDto.Description);
+        }
+
+        public static IMessageActivity SendLowestRate(ITurnContext context, dynamic data)
+        {
+            var selectedRoomDetailDto = data as RoomDetailDto;
+            var message = $"This rooms lowest rate is {selectedRoomDetailDto.LowestRate} EUR";
             return MessageFactory.Text(message);
         }
 
         public static IMessageActivity SendExtraInfo(ITurnContext context, dynamic data)
         {
             var selectedRoomDetailDto = data as RoomDetailDto;
-            var message = $"🚬 not allowed, ♿ accessible";
+            var message = "🚬 not allowed, ♿ accessible";
             return MessageFactory.Text(message);
         }
 
         public class ResponseIds
         {
             public const string SendImages = "sendImages";
-            public const string SendGeneralDescription = "sendGeneralDescription";
+            public const string SendDescription = "sendDescription";
             public const string SendExtraInfo = "sendExtraInfo";
             public const string SendRates = "sendRates";
+            public const string SendLowestRate = "sendLowestRate";
         }
     }
 }

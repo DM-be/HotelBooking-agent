@@ -14,6 +14,11 @@ namespace HotelBot.Models.DTO
 
 
         public string Title { get; set; }
+
+
+        public string ShortDescription { get; set; }
+
+        public int LowestRate { get; set; }
         public string Description { get; set; }
 
 

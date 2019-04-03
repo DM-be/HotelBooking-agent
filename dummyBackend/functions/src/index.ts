@@ -6,6 +6,7 @@ admin.initializeApp();
 interface RoomDto {
     id: string,
     title: string,
+    shortDescription: string,
     description: string,
     startingPrice: number,
     thumbnail: RoomImage,
@@ -18,6 +19,7 @@ interface RoomDto {
 interface RoomDetailDto {
     id: string,
     title: string,
+    shortDescription: string,
     description: string,
     checkinTime: string | Date, // iso date time string,
     checkoutTime: string | Date,
@@ -26,6 +28,7 @@ interface RoomDetailDto {
     roomImages: RoomImage [],
     reservationAgreement: string,
     rates: Rate []
+    lowestRate: number
 }
 
 interface RoomImage {
@@ -51,6 +54,7 @@ interface Rate {
 
 interface Room {
     title: string,
+    shortDescription: string, 
     description: string,
     availableDate: Date | string,
     images: RoomImage [],
@@ -79,6 +83,7 @@ export const fetchMatchingRooms = functions.https.onRequest(async(req, res) => {
         let room = snapshotDoc.data() as Room;
         const lowestRate  = Math.min.apply(Math, room.rates.map(r => r.price));
         let roomDto: RoomDto = {
+            shortDescription: room.shortDescription,
             description: room.description,
             title: room.title,
             startingPrice: lowestRate ,
@@ -105,10 +110,13 @@ export const fetchRoomDetail = functions.https.onRequest(async(req, res) => {
     const room = snapshot.data() as Room;
     const checkinTime = room.checkinTime.toDate();
     const checkoutTime =  room.checkoutTime.toDate();
+    const lowestRate  = Math.min.apply(Math, room.rates.map(r => r.price));
 
     const roomDetailDto: RoomDetailDto = {
         id,
+        lowestRate,
         title: room.title,
+        shortDescription: room.shortDescription,
         description: room.description,
         checkinTime,
         checkoutTime,
