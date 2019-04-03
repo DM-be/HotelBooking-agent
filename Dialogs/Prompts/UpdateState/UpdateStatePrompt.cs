@@ -50,7 +50,7 @@ namespace HotelBot.Dialogs.Prompts.UpdateState
             var bookARoomState = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
             bookARoomState.LuisResults.TryGetValue(LuisResultBookARoomKey, out var luisResult);
             TimexProperty timexProperty;
-            if (sc.Options != null)
+            if (sc.Options != null && !((bool) sc.Options))
             {
                 
                 // todo: true will be set as timexproperty!
