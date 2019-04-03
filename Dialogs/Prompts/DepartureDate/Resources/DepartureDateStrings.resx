@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DEPARTURE_DATE_PROMPT" xml:space="preserve">
-    <value>When would you be leaving?</value>
+    <value>On what day would you like to checkout?</value>
   </data>
   <data name="HAVE_DEPARTURE_DATE" xml:space="preserve">
-    <value>Got it, you want to leave on {0}.</value>
+    <value>Got it, you want to checkout on {0}.</value>
   </data>
   <data name="HAVE_UPDATED_DEPARTURE_DATE" xml:space="preserve">
-    <value>Ok, I updated your departure to {0}.</value>
+    <value>Ok, I updated your checkout date to {0}.</value>
   </data>
   <data name="RETRY_DEPARTURE_PROMPT_1" xml:space="preserve">
     <value>I'm sorry, when would you be leaving?</value>

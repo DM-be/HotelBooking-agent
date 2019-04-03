@@ -61,7 +61,7 @@ namespace HotelBot.Dialogs.Prompts.NumberOfPeople.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ok, you will bring {0} people..
+        ///   Looks up a localized string similar to Ok, {0} people would be staying in this room..
         /// </summary>
         public static string HAVE_NUMBER_OF_PEOPLE {
             get {
@@ -79,7 +79,7 @@ namespace HotelBot.Dialogs.Prompts.NumberOfPeople.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to How many people are you bringing?.
+        ///   Looks up a localized string similar to How many people would stay in this room?.
         /// </summary>
         public static string NUMBER_OF_PEOPLE_PROMPT {
             get {

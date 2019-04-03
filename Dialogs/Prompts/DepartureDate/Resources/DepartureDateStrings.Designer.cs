@@ -61,7 +61,7 @@ namespace HotelBot.Dialogs.Prompts.DepartureDate.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to When would you be leaving?.
+        ///   Looks up a localized string similar to On what day would you like to checkout?.
         /// </summary>
         public static string DEPARTURE_DATE_PROMPT {
             get {
@@ -70,7 +70,7 @@ namespace HotelBot.Dialogs.Prompts.DepartureDate.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Got it, you want to leave on {0}..
+        ///   Looks up a localized string similar to Got it, you want to checkout on {0}..
         /// </summary>
         public static string HAVE_DEPARTURE_DATE {
             get {
@@ -79,7 +79,7 @@ namespace HotelBot.Dialogs.Prompts.DepartureDate.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ok, I updated your departure to {0}..
+        ///   Looks up a localized string similar to Ok, I updated your checkout date to {0}..
         /// </summary>
         public static string HAVE_UPDATED_DEPARTURE_DATE {
             get {

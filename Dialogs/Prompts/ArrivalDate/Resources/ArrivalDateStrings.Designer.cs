@@ -61,7 +61,7 @@ namespace HotelBot.Dialogs.Prompts.ArrivalDate.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to When would you arrive?.
+        ///   Looks up a localized string similar to When would you be checking in?.
         /// </summary>
         public static string ARRIVAL_DATE_PROMPT {
             get {
@@ -70,7 +70,7 @@ namespace HotelBot.Dialogs.Prompts.ArrivalDate.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ok, you would like to arrive on {0}..
+        ///   Looks up a localized string similar to Ok, you would join us on {0}..
         /// </summary>
         public static string HAVE_ARRIVAL_DATE {
             get {

@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="HAVE_NUMBER_OF_PEOPLE" xml:space="preserve">
-    <value>Ok, you will bring {0} people.</value>
+    <value>Ok, {0} people would be staying in this room.</value>
   </data>
   <data name="HAVE_UPDATED_NUMBER_OF_PEOPLE" xml:space="preserve">
     <value>I changed the number of people to {0}.</value>
   </data>
   <data name="NUMBER_OF_PEOPLE_PROMPT" xml:space="preserve">
-    <value>How many people are you bringing?</value>
+    <value>How many people would stay in this room?</value>
   </data>
   <data name="RETRY_NUMBER_OF_PEOPLE_PROMPT_1" xml:space="preserve">
     <value>I'm sorry, I didn't understand. How many people would you bring?</value>
