@@ -165,7 +165,14 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                 {
                     ResponseIds.SendRoomDetail, (context, data) =>
                         SendRoomDetail(context, data)
-                }
+                },
+                {
+                    ResponseIds.UpdateSavedState, (context, data) =>
+                        MessageFactory.Text(
+                            FetchAvailableRoomsStrings.UPDATE_SAVED_STATE,
+                            FetchAvailableRoomsStrings.UPDATE_SAVED_STATE,
+                            InputHints.IgnoringInput)
+                },
 
             }
         };
@@ -450,6 +457,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             public const string ContinueOrUpdate = "continueOrUpdate";
             public const string UpdatePrompt = "updatePrompt";
 
+            public const string UpdateSavedState = "updateSavedState";
 
 
 
