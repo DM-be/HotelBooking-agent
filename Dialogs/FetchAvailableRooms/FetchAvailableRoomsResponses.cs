@@ -209,7 +209,8 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                                     Id = rooms[i].id,
                                     Action = "book"
                                 }),
-                            Title = "Book    ",
+                            // todo: button formatting.....
+                            Title = "\t Book \t",
                             
 
                         },
@@ -223,7 +224,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                                     Id = rooms[i].id,
                                     Action = "info"
                                 }),
-                            Title = "More info",
+                            Title = "\t More info \t",
                         }
 
                     }
