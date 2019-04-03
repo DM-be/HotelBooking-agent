@@ -5,12 +5,11 @@ using System.Threading.Tasks;
 using HotelBot.Dialogs.Prompts.ArrivalDate;
 using HotelBot.Dialogs.Prompts.ConfirmFetchRooms;
 using HotelBot.Dialogs.Prompts.DepartureDate;
-using HotelBot.Dialogs.Prompts.Email;
 using HotelBot.Dialogs.Prompts.NumberOfPeople;
 using HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms;
+using HotelBot.Models.Wrappers;
 using HotelBot.Services;
 using HotelBot.StateAccessors;
-using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Dialogs.Choices;
 
@@ -29,7 +28,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             InitialDialogId = nameof(FetchAvailableRoomsDialog);
             var fetchAvailableRoomsWaterfallSteps = new WaterfallStep []
             {
-                AskForNumberOfPeople, AskForArrivalDate, AskForLeavingDate, PromptConfirm, ProcessConfirmPrompt, UpdateStateLoop
+                AskForNumberOfPeople, AskForArrivalDate, AskForLeavingDate, PromptConfirm, ProcessConfirmPrompt, RespondToContinueOrUpdate, RespondToNewRequest
             };
             AddDialog(new WaterfallDialog(InitialDialogId, fetchAvailableRoomsWaterfallSteps));
             AddDialog(new ArrivalDatePromptDialog(accessors));
@@ -40,10 +39,13 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
         }
 
 
+
+
         public async Task<DialogTurnResult> AskForNumberOfPeople(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
             if (state.NumberOfPeople != null) return await sc.NextAsync();
+
             return await sc.BeginDialogAsync(nameof(NumberOfPeoplePromptDialog));
         }
 
@@ -64,7 +66,17 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
 
         public async Task<DialogTurnResult> PromptConfirm(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-            return await sc.BeginDialogAsync(nameof(ConfirmFetchRoomsPrompt));
+            DialogOptions dialogOptions = null;
+            if (sc.Options != null)
+            {
+                dialogOptions = (DialogOptions) sc.Options;
+                if (dialogOptions.SkipConfirmation)
+                {
+                    return await sc.NextAsync(true);
+                }
+            }
+
+            return await sc.BeginDialogAsync(nameof(ConfirmFetchRoomsPrompt), dialogOptions);
         }
 
         public async Task<DialogTurnResult> ProcessConfirmPrompt(WaterfallStepContext sc, CancellationToken cancellationToken)
@@ -75,6 +87,14 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                 // send book a room cards
                 var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
                 await _responder.ReplyWith(sc.Context, FetchAvailableRoomsResponses.ResponseIds.SendRoomsCarousel, state);
+            }
+            else
+            {
+                var choice = new FoundChoice
+                {
+                    Value = "New request",
+                };
+                return await sc.NextAsync(choice);
             }
 
 
@@ -87,29 +107,80 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                         new List<string>
                         {
                             "New request",
+                            "Update request",
                             "No thanks",
                         })
                 },
                 cancellationToken);
         }
 
-        public async Task<DialogTurnResult> UpdateStateLoop(WaterfallStepContext sc, CancellationToken cancellationToken)
+        public async Task<DialogTurnResult> RespondToContinueOrUpdate(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-            var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
             var choice = sc.Result as FoundChoice;
 
             switch (choice.Value)
             {
+                case "Update request":
+
+                    return await sc.PromptAsync(
+                        nameof(ChoicePrompt),
+                        new PromptOptions
+                        {
+                            Prompt = await _responder.RenderTemplate(
+                                sc.Context,
+                                sc.Context.Activity.Locale,
+                                FetchAvailableRoomsResponses.ResponseIds.UpdatePrompt),
+                            Choices = ChoiceFactory.ToChoices(
+                                new List<string>
+                                {
+                                    "Checkin",
+                                    "Checkout",
+                                    "Number Of People"
+                                })
+                        },
+                        cancellationToken);
                 case "New request":
-                    return null; // send update prompt here 
-                    break;
+                {
+                    var emptyState = new FetchAvailableRoomsState();
+                    _accessors.FetchAvailableRoomsStateAccessor.SetAsync(sc.Context, emptyState);
+                    await sc.Context.SendActivityAsync("Ok, let's start over");
+                    return await sc.ReplaceDialogAsync(InitialDialogId);
+                }
                 case "No thanks":
                     await sc.Context.SendActivityAsync("You're welcome");
                     return await sc.EndDialogAsync();
                     break;
             }
 
-            return await sc.ReplaceDialogAsync(InitialDialogId, null);
+            return null;
+        }
+
+
+
+        public async Task<DialogTurnResult> RespondToNewRequest(WaterfallStepContext sc, CancellationToken cancellationToken)
+        {
+            var choice = sc.Result as FoundChoice;
+            var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
+            var dialogOptions = new DialogOptions
+            {
+                SkipConfirmation = true,
+                Rerouted = false
+            };
+            switch (choice.Value)
+            {
+                case "Checkin":
+                    state.ArrivalDate = null;
+                    return await sc.ReplaceDialogAsync(InitialDialogId, dialogOptions);
+                case "Checkout":
+                    state.LeavingDate = null;
+                    return await sc.ReplaceDialogAsync(InitialDialogId, dialogOptions);
+                case "Number Of People":
+                    state.NumberOfPeople = null;
+                    return await sc.ReplaceDialogAsync(InitialDialogId, dialogOptions);
+
+            }
+
+            return null;
         }
     }
 }

@@ -5,6 +5,7 @@ using HotelBot.Dialogs.FetchAvailableRooms.Resources;
 using HotelBot.Dialogs.Prompts.UpdateState;
 using HotelBot.Extensions;
 using HotelBot.Models.DTO;
+using HotelBot.Models.Wrappers;
 using HotelBot.Shared.Helpers;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.TemplateManager;
@@ -106,6 +107,13 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                             InputHints.IgnoringInput)
                 },
                 {
+                    ResponseIds.UpdatePrompt, (context, data) =>
+                        MessageFactory.Text(
+                            FetchAvailableRoomsStrings.UPDATE_PROMPT,
+                            FetchAvailableRoomsStrings.UPDATE_PROMPT,
+                            InputHints.IgnoringInput)
+                },
+                {
                     ResponseIds.UpdateEmail, (context, data) =>
                         UpdateEmail(context)
                 },
@@ -124,6 +132,10 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                 {
                     ResponseIds.Overview, (context, data) =>
                         SendOverview(context, data)
+                },
+                {
+                    ResponseIds.ReroutedOverview, (context, data) =>
+                        SendReroutedOverview(context, data)
                 },
                 {
                     ResponseIds.Introduction, (context, data) =>
@@ -359,6 +371,13 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             return MessageFactory.Text(message);
         }
 
+        public static IMessageActivity SendReroutedOverview(ITurnContext context, FetchAvailableRoomsState state)
+        {
+            var message = string.Format(FetchAvailableRoomsStrings.REROUTED_STATE_OVERVIEW, state.NumberOfPeople, state.ArrivalDate, state.LeavingDate);
+            return MessageFactory.Text(message);
+        }
+
+
         public static string BuildHeroCardText(int startingPrice, bool wheelChair, bool smoking, string description, int capacity)
         {
 
@@ -424,10 +443,12 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             public const string Help = "help";
 
             public const string Overview = "overview";
+            public const string ReroutedOverview = "ReroutedOverview";
             public const string Introduction = "introduction";
             public const string SendRoomsCarousel = "sendRoomsCarousel";
             public const string SendRoomDetail = "sendRoomDetail";
             public const string ContinueOrUpdate = "continueOrUpdate";
+            public const string UpdatePrompt = "updatePrompt";
 
 
 

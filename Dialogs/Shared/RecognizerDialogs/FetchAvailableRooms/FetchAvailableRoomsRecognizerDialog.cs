@@ -42,7 +42,7 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms
 
 
             // Only triggers interruption if confidence level is high
-            if (luisResult.TopIntent().score > 0.75)
+            if (luisResult.TopIntent().score > 0.75 && !isChoicePrompt)
             {
                 // Add the luis result (intent and entities) for further processing in the derived dialog
                 var fetchAvailableRoomsState = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(dc.Context, () => new FetchAvailableRoomsState());

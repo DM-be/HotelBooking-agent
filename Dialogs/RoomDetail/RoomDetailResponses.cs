@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using HotelBot.Models.DTO;
+using HotelBot.Models.Wrappers;
 using HotelBot.Shared.Helpers;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.TemplateManager;

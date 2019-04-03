@@ -165,6 +165,9 @@
   <data name="PERSON" xml:space="preserve">
     <value />
   </data>
+  <data name="REROUTED_STATE_OVERVIEW" xml:space="preserve">
+    <value>Last time you were looking for a room for {0} people between {1} and {2}. Do you want me to continue looking for rooms?</value>
+  </data>
   <data name="SMOKING_ALLOWED" xml:space="preserve">
     <value>🚬</value>
   </data>
@@ -200,6 +203,9 @@
   </data>
   <data name="UPDATE_NUMBEROFPEOPLE_WITH_ENTITY" xml:space="preserve">
     <value>Do you want to change the number of people to {0}?</value>
+  </data>
+  <data name="UPDATE_PROMPT" xml:space="preserve">
+    <value>What would you like to change?</value>
   </data>
   <data name="WHEELCHAIR_ACCESSIBLE" xml:space="preserve">
     <value>♿</value>

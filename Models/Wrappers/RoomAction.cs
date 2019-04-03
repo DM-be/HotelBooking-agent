@@ -1,4 +1,4 @@
-﻿namespace HotelBot.Models.DTO
+﻿namespace HotelBot.Models.Wrappers
 {
     public class RoomAction
     {

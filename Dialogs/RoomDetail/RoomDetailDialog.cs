@@ -6,6 +6,7 @@ using HotelBot.Dialogs.FetchAvailableRooms;
 using HotelBot.Dialogs.Prompts.RoomDetailActions;
 using HotelBot.Dialogs.Shared.RecognizerDialogs.RoomDetail;
 using HotelBot.Models.DTO;
+using HotelBot.Models.Wrappers;
 using HotelBot.Services;
 using HotelBot.Shared.Helpers;
 using HotelBot.StateAccessors;
@@ -86,7 +87,12 @@ namespace HotelBot.Dialogs.RoomDetail
             switch (choice.Value)
             {
                 case RoomDetailChoices.ViewOtherRooms:
-                    return await sc.ReplaceDialogAsync(nameof(FetchAvailableRoomsDialog), roomAction);
+                    var dialogOptions = new DialogOptions
+                    {
+                        Rerouted = true,
+                        SkipConfirmation = false,
+                    };
+                    return await sc.ReplaceDialogAsync(nameof(FetchAvailableRoomsDialog), dialogOptions);
                 case RoomDetailChoices.ShowRates:
                     await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendRates, state.RoomDetailDto);
                     return await sc.ReplaceDialogAsync(InitialDialogId, roomAction);

@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using HotelBot.Dialogs.RoomDetail;
 using HotelBot.Extensions;
 using HotelBot.Models.DTO;
+using HotelBot.Models.Wrappers;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Schema;
 using Newtonsoft.Json;

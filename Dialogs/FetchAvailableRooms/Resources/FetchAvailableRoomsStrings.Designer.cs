@@ -205,6 +205,15 @@ namespace HotelBot.Dialogs.FetchAvailableRooms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Last time you were looking for a room for {0} people between {1} and {2}. Do you want me to continue looking for rooms?.
+        /// </summary>
+        public static string REROUTED_STATE_OVERVIEW {
+            get {
+                return ResourceManager.GetString("REROUTED_STATE_OVERVIEW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 🚬.
         /// </summary>
         public static string SMOKING_ALLOWED {
@@ -309,6 +318,15 @@ namespace HotelBot.Dialogs.FetchAvailableRooms.Resources {
         public static string UPDATE_NUMBEROFPEOPLE_WITHOUT_ENTITY {
             get {
                 return ResourceManager.GetString("UPDATE_NUMBEROFPEOPLE_WITHOUT_ENTITY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What would you like to change?.
+        /// </summary>
+        public static string UPDATE_PROMPT {
+            get {
+                return ResourceManager.GetString("UPDATE_PROMPT", resourceCulture);
             }
         }
         

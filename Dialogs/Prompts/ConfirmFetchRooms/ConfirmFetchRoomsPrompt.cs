@@ -2,8 +2,10 @@
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.FetchAvailableRooms;
+using HotelBot.Models.Wrappers;
 using HotelBot.StateAccessors;
 using Microsoft.Bot.Builder.Dialogs;
+using Microsoft.Bot.Schema;
 
 namespace HotelBot.Dialogs.Prompts.ConfirmFetchRooms
 {
@@ -29,13 +31,29 @@ namespace HotelBot.Dialogs.Prompts.ConfirmFetchRooms
 
         private async Task<DialogTurnResult> AskForConfirmation(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-
             var _state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
+            Activity template = null;
+            if (sc.Options != null)
+            {
+                var dialogOptions = (DialogOptions) sc.Options;
+                if (dialogOptions.Rerouted)
+                    template = await _responder.RenderTemplate(
+                        sc.Context,
+                        sc.Context.Activity.Locale,
+                        FetchAvailableRoomsResponses.ResponseIds.ReroutedOverview,
+                        _state);
+            }
+            else
+            {
+                template = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, FetchAvailableRoomsResponses.ResponseIds.Overview, _state);
+            }
+
+
             return await sc.PromptAsync(
                 nameof(ConfirmPrompt),
                 new PromptOptions
                 {
-                    Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, FetchAvailableRoomsResponses.ResponseIds.Overview, _state)
+                    Prompt = template
                 });
         }
 
