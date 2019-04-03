@@ -71,14 +71,15 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             if (sc.Options != null)
             {
                 dialogOptions = (DialogOptions) sc.Options;
-                //if (dialogOptions.SkipConfirmation)
-                //{
-                //    return await sc.NextAsync(true);
-                //}
+                if (dialogOptions.SkipConfirmation)
+                {
+                    return await sc.NextAsync(true);
+                }
             }
 
             return await sc.BeginDialogAsync(nameof(ConfirmFetchRoomsPrompt), dialogOptions);
         }
+
 
         public async Task<DialogTurnResult> ProcessConfirmPrompt(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
@@ -102,6 +103,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                             {
                                 "New search",
                                 "Update search",
+                                "Keep search"
                             })
                     },
                     cancellationToken);
@@ -160,6 +162,15 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                     await sc.Context.SendActivityAsync("You're welcome");
                     return await sc.EndDialogAsync();
                     break;
+                case "Keep search":
+                {
+                    var dialogOptions = new DialogOptions
+                    {
+                        Rerouted = false,
+                        SkipConfirmation = true
+                    };
+                    return await sc.ReplaceDialogAsync(InitialDialogId, dialogOptions);
+                }
             }
 
             return null;
