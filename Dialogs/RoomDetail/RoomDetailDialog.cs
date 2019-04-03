@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.FetchAvailableRooms;
+using HotelBot.Dialogs.Prompts.RoomDetailActions;
 using HotelBot.Dialogs.Shared.RecognizerDialogs.RoomDetail;
 using HotelBot.Models.DTO;
 using HotelBot.Services;
@@ -31,12 +32,14 @@ namespace HotelBot.Dialogs.RoomDetail
 
             var roomDetailWaterfallSteps = new WaterfallStep []
             {
-                FetchSelectedRoomDetail, PromptActions, OnAction
+                FetchSelectedRoomDetail, PromptRoomChoices, ProcessChoice
             };
 
             AddDialog(new WaterfallDialog(InitialDialogId, roomDetailWaterfallSteps));
-            AddDialog(new ChoicePrompt(nameof(ChoicePrompt)));
             AddDialog(new FetchAvailableRoomsDialog(services, accessors));
+            AddDialog(new RoomDetailChoicesPrompt(accessors));
+            AddDialog(new ChoicePrompt(nameof(ChoicePrompt)));
+
 
         }
 
@@ -44,11 +47,13 @@ namespace HotelBot.Dialogs.RoomDetail
         {
             var roomAction = (RoomAction) sc.Options;
             var requestHandler = new RequestHandler();
-            _selectedRoomDetailDto = await requestHandler.FetchRoomDetail(roomAction.Id);
+            var state = await _accessors.RoomDetailStateAccessor.GetAsync(sc.Context, () => new RoomDetailState());
+            state.RoomDetailDto = new RoomDetailDto();
+            state.RoomDetailDto = await requestHandler.FetchRoomDetail(roomAction.Id);
             return await sc.NextAsync();
         }
 
-        public async Task<DialogTurnResult> PromptActions(WaterfallStepContext sc, CancellationToken cancellationToken)
+        public async Task<DialogTurnResult> PromptRoomChoices(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             return await sc.PromptAsync(
                 nameof(ChoicePrompt),
@@ -58,32 +63,48 @@ namespace HotelBot.Dialogs.RoomDetail
                     Choices = ChoiceFactory.ToChoices(
                         new List<string>
                         {
-                            "View other rooms",
-                            "Rates",
-                            "Pictures"
+                            RoomDetailChoices.ShowPictures,
+                            RoomDetailChoices.ShowRates,
+                            RoomDetailChoices.ViewOtherRooms
 
                         })
                 },
                 cancellationToken);
         }
 
-        public async Task<DialogTurnResult> OnAction(WaterfallStepContext sc, CancellationToken cancellationToken)
+
+
+        public async Task<DialogTurnResult> ProcessChoice(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
+            var state = await _accessors.RoomDetailStateAccessor.GetAsync(sc.Context, () => new RoomDetailState());
             var choice = sc.Result as FoundChoice;
+            var roomAction = new RoomAction
+            {
+                Id = state.RoomDetailDto.Id,
+                Action = "any"
+            };
             switch (choice.Value)
             {
-                case "View other rooms":
-                    return await sc.ReplaceDialogAsync(nameof(FetchAvailableRoomsDialog));
-
-                case "Rates":
-                    await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendRates, _selectedRoomDetailDto);
-                    return await sc.ReplaceDialogAsync(InitialDialogId);
-                case "Pictures":
-                    await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendImages, _selectedRoomDetailDto);
-                    return await sc.ReplaceDialogAsync(InitialDialogId);
+                case RoomDetailChoices.ViewOtherRooms:
+                    return await sc.ReplaceDialogAsync(nameof(FetchAvailableRoomsDialog), roomAction);
+                case RoomDetailChoices.ShowRates:
+                    await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendRates, state.RoomDetailDto);
+                    return await sc.ReplaceDialogAsync(InitialDialogId, roomAction);
+                case RoomDetailChoices.ShowPictures:
+                    await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendImages, state.RoomDetailDto);
+                    return await sc.ReplaceDialogAsync(InitialDialogId, roomAction);
             }
 
             return null;
+
+        }
+
+
+        public class RoomDetailChoices
+        {
+            public const string ViewOtherRooms = "View other rooms";
+            public const string ShowRates = "Rates";
+            public const string ShowPictures = "View more pictures";
         }
     }
 }

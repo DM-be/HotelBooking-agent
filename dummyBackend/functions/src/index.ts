@@ -4,11 +4,11 @@ import { QuerySnapshot, QueryDocumentSnapshot, Timestamp } from '@google-cloud/f
 admin.initializeApp();
 
 interface RoomDto {
+    id: string,
     title: string,
     description: string,
     startingPrice: number,
     thumbnail: RoomImage,
-    id: string,
     smokingAllowed: boolean,
     wheelChairAccessible: boolean,
     capacity: number
@@ -16,6 +16,7 @@ interface RoomDto {
 }
 
 interface RoomDetailDto {
+    id: string,
     title: string,
     description: string,
     checkinTime: string | Date, // iso date time string,
@@ -106,6 +107,7 @@ export const fetchRoomDetail = functions.https.onRequest(async(req, res) => {
     const checkoutTime =  room.checkoutTime.toDate();
 
     const roomDetailDto: RoomDetailDto = {
+        id,
         title: room.title,
         description: room.description,
         checkinTime,

@@ -56,6 +56,7 @@ namespace HotelBot.Dialogs.Prompts.NumberOfPeople
             else
                 await _responder.ReplyWith(sc.Context, NumberOfPeopleResponses.ResponseIds.HaveNumberOfPeople, numberOfPeople);
 
+
             return await sc.EndDialogAsync();
         }
 
