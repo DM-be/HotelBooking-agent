@@ -70,6 +70,15 @@ namespace HotelBot.Dialogs.FetchAvailableRooms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You can get more information or book a room by tapping the buttons in a card. If you want to update your request you can ask me or tap the button..
+        /// </summary>
+        public static string CONTINUE_OR_UPDATE {
+            get {
+                return ResourceManager.GetString("CONTINUE_OR_UPDATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to What is your email?.
         /// </summary>
         public static string EMAIL_PROMPT {

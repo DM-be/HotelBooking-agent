@@ -39,14 +39,6 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             AddDialog(new NumberOfPeoplePromptDialog(accessors));
         }
 
-        //public async Task<DialogTurnResult> AskForEmail(WaterfallStepContext sc, CancellationToken cancellationToken)
-
-        //{
-
-        //    var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
-        //    if (state.Email != null) return await sc.NextAsync();
-        //    return await sc.BeginDialogAsync(nameof(EmailPromptDialog));
-        //}
 
         public async Task<DialogTurnResult> AskForNumberOfPeople(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
@@ -83,27 +75,22 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                 // send book a room cards
                 var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
                 await _responder.ReplyWith(sc.Context, FetchAvailableRoomsResponses.ResponseIds.SendRoomsCarousel, state);
-
             }
+
 
             return await sc.PromptAsync(
                 nameof(ChoicePrompt),
                 new PromptOptions
                 {
-                    Prompt = MessageFactory.Text("What would you like to adjust?"),
-                    RetryPrompt = MessageFactory.Text("Pick an item or tell me"),
+                    Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, FetchAvailableRoomsResponses.ResponseIds.ContinueOrUpdate),
                     Choices = ChoiceFactory.ToChoices(
                         new List<string>
                         {
-                            "Arrival",
-                            "Leaving",
-                            "Number of people"
+                            "New request",
+                            "No thanks",
                         })
                 },
                 cancellationToken);
-
-            // end the current dialog (this waterfall) and replace it with a bookaroomdialog
-            //  await sc.EndDialogAsync(cancellationToken);
         }
 
         public async Task<DialogTurnResult> UpdateStateLoop(WaterfallStepContext sc, CancellationToken cancellationToken)
@@ -113,11 +100,12 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
 
             switch (choice.Value)
             {
-                case "Arrival":
-                    state.ArrivalDate = null;
+                case "New request":
+                    return null; // send update prompt here 
                     break;
-                case "Leaving":
-                    state.LeavingDate = null;
+                case "No thanks":
+                    await sc.Context.SendActivityAsync("You're welcome");
+                    return await sc.EndDialogAsync();
                     break;
             }
 

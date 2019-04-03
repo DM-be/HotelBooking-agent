@@ -120,6 +120,9 @@
   <data name="ARRIVALDATE_PROMPT" xml:space="preserve">
     <value>When would you arrive?</value>
   </data>
+  <data name="CONTINUE_OR_UPDATE" xml:space="preserve">
+    <value>You can get more information or book a room by tapping the buttons in a card. If you want to update your request you can ask me or tap the button.</value>
+  </data>
   <data name="EMAIL_PROMPT" xml:space="preserve">
     <value>What is your email?</value>
   </data>

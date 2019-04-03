@@ -71,6 +71,13 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                             InputHints.ExpectingInput)
                 },
                 {
+                    ResponseIds.ContinueOrUpdate, (context, data) =>
+                        MessageFactory.Text(
+                            FetchAvailableRoomsStrings.CONTINUE_OR_UPDATE,
+                            FetchAvailableRoomsStrings.CONTINUE_OR_UPDATE,
+                            InputHints.ExpectingInput)
+                },
+                {
                     ResponseIds.NumberOfPeopleReprompt, (context, data) =>
                         MessageFactory.Text(
                             FetchAvailableRoomsStrings.NUMBEROFPEOPLE_PROMPT,
@@ -165,7 +172,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             var arrivalMonth = (int) bookARoomState.ArrivalDate.Month;
             var arrivalDay = (int) bookARoomState.ArrivalDate.DayOfMonth;
             var arrivalDateTime = new DateTime(arrivalYear, arrivalMonth, arrivalDay);
-            
+
 
             var requestData =
                 new RoomRequestData
@@ -180,14 +187,33 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                 heroCards[i] = new HeroCard
                 {
                     Title = rooms[i].Title,
-                    Text = BuildHeroCardText(rooms[i].StartingPrice,rooms[i].WheelChairAccessible, rooms[i].SmokingAllowed, rooms[i].Description, rooms[i].Capacity),
+                    Text = BuildHeroCardText(
+                        rooms[i].StartingPrice,
+                        rooms[i].WheelChairAccessible,
+                        rooms[i].SmokingAllowed,
+                        rooms[i].Description,
+                        rooms[i].Capacity),
                     Images = new List<CardImage>
                     {
                         new CardImage(rooms[i].Thumbnail.ImageUrl)
                     },
-                    
+
                     Buttons = new List<CardAction>
                     {
+                        new CardAction
+                        {
+                            Type = ActionTypes.MessageBack,
+                            Value = JsonConvert.SerializeObject(
+                                new RoomAction
+                                {
+                                    Id = rooms[i].id,
+                                    Action = "book"
+                                }),
+                            Title = "Book    ",
+                            
+
+                        },
+
                         new CardAction
                         {
                             Type = ActionTypes.MessageBack,
@@ -198,27 +224,15 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                                     Action = "info"
                                 }),
                             Title = "More info",
-                            Text = "show me more info for x room"
-
                         }
-                    },
-
-                    Tap = new CardAction
-                    {
-                        Type = ActionTypes.MessageBack,
-                        Value = JsonConvert.SerializeObject(
-                            new RoomAction
-                            {
-                                Id = rooms[i].id,
-                                Action = "info"
-                            })
-
 
                     }
+
+
                 };
             var reply = context.Activity.CreateReply();
 
-            reply.Text = $"Here are our available rooms between {bookARoomState.ArrivalDate} and {bookARoomState.LeavingDate}";
+            reply.Text = $"Here are our available rooms between {bookARoomState.ArrivalDate} and {bookARoomState.LeavingDate} for {bookARoomState.NumberOfPeople.ToString()} people.";
             var attachments = new List<Attachment>();
 
             foreach (var heroCard in heroCards) attachments.Add(heroCard.ToAttachment());
@@ -346,14 +360,14 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
 
         public static string BuildHeroCardText(int startingPrice, bool wheelChair, bool smoking, string description, int capacity)
         {
-            
-            var message = $"Starting from 💶 {startingPrice} \n";
+
+            var message = $"Starting from €{startingPrice}\n";
             message += description;
             message += " \n";
             message += GetSmokingString(smoking);
             message += GetWheelChairAccessibleString(wheelChair);
             message += " \n";
-            message += GetCapacityString(capacity); 
+            message += GetCapacityString(capacity);
             return message;
 
         }
@@ -375,10 +389,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
         private static string GetCapacityString(int capacity)
         {
             var mes = "";
-            for (int x = 0; x < capacity; x++)
-            {
-                mes += "🚹︎";
-            }
+            for (var x = 0; x < capacity; x++) mes += "🚹︎";
 
             return mes;
         }
@@ -387,6 +398,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
 
 
 
+        // todo: cleanup!
 
         public class ResponseIds
         {
@@ -414,6 +426,11 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             public const string Introduction = "introduction";
             public const string SendRoomsCarousel = "sendRoomsCarousel";
             public const string SendRoomDetail = "sendRoomDetail";
+            public const string ContinueOrUpdate = "continueOrUpdate";
+
+
+
+
 
             // intents
 

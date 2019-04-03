@@ -38,8 +38,11 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms
             var luisResult = await luisService.RecognizeAsync<HotelBotLuis>(dc.Context, cancellationToken);
             var intent = luisResult.TopIntent().intent;
             var isChoicePrompt = dc.ActiveDialog.Id == nameof(ChoicePrompt);
+
+
+
             // Only triggers interruption if confidence level is high
-            if (luisResult.TopIntent().score > 0.75 && !isChoicePrompt)
+            if (luisResult.TopIntent().score > 0.75)
             {
                 // Add the luis result (intent and entities) for further processing in the derived dialog
                 var fetchAvailableRoomsState = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(dc.Context, () => new FetchAvailableRoomsState());
