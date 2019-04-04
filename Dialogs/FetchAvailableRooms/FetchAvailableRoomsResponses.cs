@@ -11,7 +11,6 @@ using HotelBot.Shared.Helpers;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.TemplateManager;
 using Microsoft.Bot.Schema;
-using Microsoft.Recognizers.Text.DataTypes.TimexExpression;
 using Newtonsoft.Json;
 
 namespace HotelBot.Dialogs.FetchAvailableRooms
