@@ -19,7 +19,6 @@ namespace HotelBot.Dialogs.Prompts.UpdateState
 {
     public class UpdateStatePrompt: ComponentDialog
     {
-        protected const string LuisResultBookARoomKey = "LuisResult_BookARoom";
         private readonly StateBotAccessors _accessors;
         private readonly UpdateStateHandler _updateStateHandler = new UpdateStateHandler();
 
@@ -30,9 +29,8 @@ namespace HotelBot.Dialogs.Prompts.UpdateState
 
             var updateStateWaterfallSteps = new WaterfallStep []
             {
-                ValidateTimeStep, PromptConfirm, EndConfirm
+                ValidateTimeStep, PromptConfirm, EndConfirm,
             };
-
 
             AddDialog(new WaterfallDialog(InitialDialogId, updateStateWaterfallSteps));
             AddDialog(new ValidateDateTimePrompt());
@@ -48,37 +46,6 @@ namespace HotelBot.Dialogs.Prompts.UpdateState
         public async Task<DialogTurnResult> ValidateTimeStep(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
 
-
-            //// todo: cleanup --> should be more readable, now skipping a bit weird with the timexproperty arriving here from validatetimeprompt
-            //var dialogOptions = (DialogOptions) sc.Options;
-            //if (dialogOptions.RecognizedIntent.IsUpdateDateIntent()) return await sc.NextAsync();
-
-            //var fetchAvailableRoomsState = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
-            //fetchAvailableRoomsState.LuisResults.TryGetValue(LuisResultBookARoomKey, out var luisResult);
-            //TimexProperty timexProperty;
-            //if (sc.Options != null && sc.Options is TimexProperty)
-            //{
-
-            //    // todo: true will be set as timexproperty!
-            //    // timex was get and set via a prompt in another dialog and passed as options (such as a validatedatetimeprompt)
-            //    timexProperty = sc.Options as TimexProperty;
-            //    return await sc.NextAsync(timexProperty, cancellationToken);
-            //}
-
-
-            //if (luisResult.HasEntityWithPropertyName(EntityNames.Datetime))
-            //{
-            //    if (luisResult.Entities.datetime.First().Type != EntityTypes.Date) // not of type date --> not clear what day arriving etc
-            //        return await sc.BeginDialogAsync(nameof(ValidateDateTimePrompt)); // reprompts until valid timex --> result gets passed into promptconfirm
-            //    // else the timexproperty can be parsed from the entities in the intent
-            //    var dateTimeSpecs = luisResult.Entities.datetime.First();
-            //    var firstExpression = dateTimeSpecs.Expressions.First();
-            //    timexProperty = new TimexProperty(firstExpression);
-            //    return await sc.NextAsync(timexProperty, cancellationToken);
-            //}
-
-            // intent to update arrival or leaving date but without entity also needs a validation for date.
-            // return await sc.BeginDialogAsync(nameof(ValidateDateTimePrompt));
             var dialogOptions = (DialogOptions) sc.Options;
             var luisResult = dialogOptions.LuisResult;
             if (!dialogOptions.LuisResult.TopIntent().intent.IsUpdateDateIntent())
@@ -96,9 +63,7 @@ namespace HotelBot.Dialogs.Prompts.UpdateState
 
             return await sc.BeginDialogAsync(nameof(ValidateDateTimePrompt)); // intent matching arrival/leaving but without a recognized entity
 
-
         }
-
 
         // get the timexproperty from the validatetimeprompt or from the step before if it is a valid date
         // sets it in a temptimexproperty for further processing (need confirmation etc to adjust arrival/leaving)
@@ -118,7 +83,7 @@ namespace HotelBot.Dialogs.Prompts.UpdateState
 
             dynamic data = new
             {
-                LuisResults = dialogOptions.LuisResult,
+                LuisResult = dialogOptions.LuisResult,
                 State = fetchAvailableRoomsState
             };
             return await sc.PromptAsync(
@@ -136,7 +101,6 @@ namespace HotelBot.Dialogs.Prompts.UpdateState
             return await sc.EndDialogAsync(null, cancellationToken).ConfigureAwait(false);
         }
 
-
         private async Task<DialogTurnResult> UpdateState(WaterfallStepContext sc)
         {
 
@@ -151,8 +115,8 @@ namespace HotelBot.Dialogs.Prompts.UpdateState
                 return result;
             }
 
-            return null;
-
+            //TODO: would never be thrown because of strongly typed hotelluis class....
+           throw new ArgumentNullException("No matching intent found");
 
         }
 

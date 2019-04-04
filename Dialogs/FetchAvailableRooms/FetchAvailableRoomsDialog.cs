@@ -6,6 +6,7 @@ using HotelBot.Dialogs.Prompts.ArrivalDate;
 using HotelBot.Dialogs.Prompts.ConfirmFetchRooms;
 using HotelBot.Dialogs.Prompts.DepartureDate;
 using HotelBot.Dialogs.Prompts.NumberOfPeople;
+using HotelBot.Dialogs.Prompts.UpdateStateChoice;
 using HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms;
 using HotelBot.Models.Wrappers;
 using HotelBot.Services;
@@ -34,10 +35,10 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             AddDialog(new WaterfallDialog(InitialDialogId, fetchAvailableRoomsWaterfallSteps));
             AddDialog(new ArrivalDatePromptDialog(accessors));
             AddDialog(new ChoicePrompt(nameof(ChoicePrompt)));
-            AddDialog(new ChoicePrompt("updateStateChoicePrompt"));
             AddDialog(new ConfirmFetchRoomsPrompt(accessors));
             AddDialog(new DepartureDatePromptDialog(accessors));
             AddDialog(new NumberOfPeoplePromptDialog(accessors));
+            AddDialog(new UpdateStateChoicePrompt(accessors));
         }
 
         public async Task<DialogTurnResult> AskForNumberOfPeople(WaterfallStepContext sc, CancellationToken cancellationToken)
@@ -114,8 +115,6 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             return await sc.NextAsync(foundChoice);
 
 
-
-
         }
 
 
@@ -129,23 +128,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             {
                 case FetchAvailableRoomsChoices.ChangeSearch:
 
-                    return await sc.PromptAsync(
-                        "updateStateChoicePrompt",
-                        new PromptOptions
-                        {
-                            Prompt = await _responder.RenderTemplate(
-                                sc.Context,
-                                sc.Context.Activity.Locale,
-                                FetchAvailableRoomsResponses.ResponseIds.UpdatePrompt),
-                            Choices = ChoiceFactory.ToChoices(
-                                new List<string>
-                                {
-                                    FetchAvailableRoomsChoices.Checkin,
-                                    FetchAvailableRoomsChoices.Checkout,
-                                    FetchAvailableRoomsChoices.NumberOfPeople
-                                })
-                        },
-                        cancellationToken);
+                    return await sc.BeginDialogAsync(nameof(UpdateStateChoicePrompt));
                 case FetchAvailableRoomsChoices.StartOver:
                 {
                     var emptyState = new FetchAvailableRoomsState();
@@ -175,6 +158,8 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
 
         public async Task<DialogTurnResult> RespondToNewRequest(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
+
+
             var choice = sc.Result as FoundChoice;
             var oldDialogOptions = new DialogOptions
             {
@@ -201,14 +186,15 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                 case FetchAvailableRoomsChoices.NumberOfPeople:
                     state.NumberOfPeople = null;
                     return await sc.ReplaceDialogAsync(InitialDialogId, dialogOptions);
-
+                case "none":
+                    return await sc.ReplaceDialogAsync(InitialDialogId, dialogOptions);
             }
 
             return null;
         }
 
 
-        private class FetchAvailableRoomsChoices
+        public class FetchAvailableRoomsChoices
         {
             public const string Checkin = "Checkin";
             public const string Checkout = "Checkout";
