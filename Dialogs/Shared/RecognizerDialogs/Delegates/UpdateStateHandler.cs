@@ -48,10 +48,10 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates
 
         private static async Task<DialogTurnResult> UpdateArrivalDate(FetchAvailableRoomsState state, WaterfallStepContext sc)
         {
-            if (state.TimexResults.TryGetValue("tempTimex", out var arrivingTimexProperty))
+            if (state.TempTimexProperty != null)
             {
-                state.ArrivalDate = arrivingTimexProperty;
-                state.TimexResults.Clear();
+                state.ArrivalDate = state.TempTimexProperty;
+                state.TempTimexProperty = null;
                 var responder = new ArrivalDateResponses();
                 await responder.ReplyWith(
                     sc.Context,
@@ -65,11 +65,11 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates
 
         private static async Task<DialogTurnResult> UpdateLeavingDate(FetchAvailableRoomsState state, WaterfallStepContext sc)
         {
-            if (state.TimexResults.TryGetValue("tempTimex", out var leavingTimexProperty))
+            if (state.TempTimexProperty != null)
             {
 
-                state.LeavingDate = leavingTimexProperty;
-                state.TimexResults.Clear();
+                state.ArrivalDate = state.TempTimexProperty;
+                state.TempTimexProperty = null;
                 var responder = new DepartureDateResponses();
                 await responder.ReplyWith(
                     sc.Context,

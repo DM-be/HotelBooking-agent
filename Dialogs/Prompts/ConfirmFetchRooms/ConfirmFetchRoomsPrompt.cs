@@ -43,15 +43,16 @@ namespace HotelBot.Dialogs.Prompts.ConfirmFetchRooms
                         FetchAvailableRoomsResponses.ResponseIds.ReroutedOverview,
                         _state);
                 else
-                {
-                    template = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, FetchAvailableRoomsResponses.ResponseIds.Overview, _state);
-                }
+                    template = await _responder.RenderTemplate(
+                        sc.Context,
+                        sc.Context.Activity.Locale,
+                        FetchAvailableRoomsResponses.ResponseIds.Overview,
+                        _state);
             }
             else
             {
                 template = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, FetchAvailableRoomsResponses.ResponseIds.Overview, _state);
             }
-
 
 
             return await sc.PromptAsync(

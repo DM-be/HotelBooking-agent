@@ -178,6 +178,7 @@
 
  <ItemGroup>
    <Folder Include="CognitiveModels\QnA\en\" />
+   <Folder Include="Dialogs\RoomDetail\Resources\" />
    <Folder Include="Dialogs\Shared\RecognizerDialogs\Resources\" />
    <Folder Include="Shared\Delegates\" />
  </ItemGroup> 

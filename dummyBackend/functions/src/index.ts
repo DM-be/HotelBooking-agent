@@ -46,6 +46,7 @@ interface RoomRequestData {
 }
 
 interface Rate {
+    id: string
     rateName: string, 
     price: number,
     rateDescription: string
@@ -129,6 +130,7 @@ export const fetchRoomDetail = functions.https.onRequest(async(req, res) => {
     }
     res.send(roomDetailDto);
 })
+
 
 
 

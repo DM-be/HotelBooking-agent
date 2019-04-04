@@ -10,6 +10,7 @@ using HotelBot.Dialogs.Prompts.NumberOfPeople;
 using HotelBot.Dialogs.Prompts.ValidateDateTimeWaterfall;
 using HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates;
 using HotelBot.Extensions;
+using HotelBot.Models.Wrappers;
 using HotelBot.StateAccessors;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Recognizers.Text.DataTypes.TimexExpression;
@@ -31,6 +32,8 @@ namespace HotelBot.Dialogs.Prompts.UpdateState
             {
                 ValidateTimeStep, PromptConfirm, EndConfirm
             };
+
+
             AddDialog(new WaterfallDialog(InitialDialogId, updateStateWaterfallSteps));
             AddDialog(new ValidateDateTimePrompt());
             AddDialog(new ConfirmPrompt(nameof(ConfirmPrompt)));
@@ -44,56 +47,85 @@ namespace HotelBot.Dialogs.Prompts.UpdateState
 
         public async Task<DialogTurnResult> ValidateTimeStep(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-            var isUpdateDate = (bool) sc.Options;
-            if (!isUpdateDate) return await sc.NextAsync();
 
-            var bookARoomState = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
-            bookARoomState.LuisResults.TryGetValue(LuisResultBookARoomKey, out var luisResult);
-            TimexProperty timexProperty;
-            if (sc.Options != null && !((bool) sc.Options))
-            {
-                
-                // todo: true will be set as timexproperty!
-                // timex was get and set via a prompt in another dialog and passed as options (such as a validatedatetimeprompt)
-                timexProperty = sc.Options as TimexProperty;
-                return await sc.NextAsync(timexProperty, cancellationToken);
-            }
+
+            //// todo: cleanup --> should be more readable, now skipping a bit weird with the timexproperty arriving here from validatetimeprompt
+            //var dialogOptions = (DialogOptions) sc.Options;
+            //if (dialogOptions.RecognizedIntent.IsUpdateDateIntent()) return await sc.NextAsync();
+
+            //var fetchAvailableRoomsState = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
+            //fetchAvailableRoomsState.LuisResults.TryGetValue(LuisResultBookARoomKey, out var luisResult);
+            //TimexProperty timexProperty;
+            //if (sc.Options != null && sc.Options is TimexProperty)
+            //{
+
+            //    // todo: true will be set as timexproperty!
+            //    // timex was get and set via a prompt in another dialog and passed as options (such as a validatedatetimeprompt)
+            //    timexProperty = sc.Options as TimexProperty;
+            //    return await sc.NextAsync(timexProperty, cancellationToken);
+            //}
+
+
+            //if (luisResult.HasEntityWithPropertyName(EntityNames.Datetime))
+            //{
+            //    if (luisResult.Entities.datetime.First().Type != EntityTypes.Date) // not of type date --> not clear what day arriving etc
+            //        return await sc.BeginDialogAsync(nameof(ValidateDateTimePrompt)); // reprompts until valid timex --> result gets passed into promptconfirm
+            //    // else the timexproperty can be parsed from the entities in the intent
+            //    var dateTimeSpecs = luisResult.Entities.datetime.First();
+            //    var firstExpression = dateTimeSpecs.Expressions.First();
+            //    timexProperty = new TimexProperty(firstExpression);
+            //    return await sc.NextAsync(timexProperty, cancellationToken);
+            //}
+
+            // intent to update arrival or leaving date but without entity also needs a validation for date.
+            // return await sc.BeginDialogAsync(nameof(ValidateDateTimePrompt));
+            var dialogOptions = (DialogOptions) sc.Options;
+            var luisResult = dialogOptions.LuisResult;
+            if (!dialogOptions.LuisResult.TopIntent().intent.IsUpdateDateIntent())
+                return await sc.NextAsync(); // skip to confirm if not update date (needs no validation)
 
             if (luisResult.HasEntityWithPropertyName(EntityNames.Datetime))
             {
-                if (luisResult.Entities.datetime.First().Type != EntityTypes.Date) // not of type date --> not clear what day arriving etc
-                    return await sc.BeginDialogAsync(nameof(ValidateDateTimePrompt)); // reprompts until valid timex --> result gets passed into promptconfirm
-                // else the timexproperty can be parsed from the entities in the intent
+                if (luisResult.Entities.datetime.First().Type != EntityTypes.Date) // could be a range or month, year...
+                    return await sc.BeginDialogAsync(nameof(ValidateDateTimePrompt)); // reprompt with day/month validation
                 var dateTimeSpecs = luisResult.Entities.datetime.First();
                 var firstExpression = dateTimeSpecs.Expressions.First();
-                timexProperty = new TimexProperty(firstExpression);
-                return await sc.NextAsync(timexProperty, cancellationToken);
+                var timexProperty = new TimexProperty(firstExpression);
+                return await sc.NextAsync(timexProperty, cancellationToken); // we got a date type, go next with the timexproperty
             }
 
-            // intent to update arrival or leaving date but without entity also needs a validation for date.
-            return await sc.BeginDialogAsync(nameof(ValidateDateTimePrompt));
+            return await sc.BeginDialogAsync(nameof(ValidateDateTimePrompt)); // intent matching arrival/leaving but without a recognized entity
+
+
         }
 
 
+        // get the timexproperty from the validatetimeprompt or from the step before if it is a valid date
+        // sets it in a temptimexproperty for further processing (need confirmation etc to adjust arrival/leaving)
         public async Task<DialogTurnResult> PromptConfirm(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-            var bookARoomState = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
-            bookARoomState.LuisResults.TryGetValue(LuisResultBookARoomKey, out var luisResult);
-            var intent = luisResult.TopIntent().intent.ToString();
-            if (sc.Result != null)
+
+            var fetchAvailableRoomsState = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
+            var dialogOptions = (DialogOptions) sc.Options;
+            var intentAsAString = dialogOptions.LuisResult.TopIntent().intent.ToString();
+            if (sc.Result != null) fetchAvailableRoomsState.TempTimexProperty = sc.Result as TimexProperty;
+            var view = new FetchAvailableRoomsResponses();
+            if (dialogOptions.SkipConfirmation)
             {
-                bookARoomState.TimexResults["tempTimex"] = sc.Result as TimexProperty; // for use in updatestate
-                sc.Context.TurnState["tempTimex"] = sc.Result as TimexProperty; // for use in reply t
+                var confirmed = true;
+                return await sc.NextAsync(confirmed);
             }
 
-            // attach the full state to the turnstate to allow for dynamic template rendering.
-            sc.Context.TurnState["bookARoomState"] = bookARoomState;
-            var view = new FetchAvailableRoomsResponses();
+            dynamic data = new
+            {
+                LuisResults = dialogOptions.LuisResult,
+                State = fetchAvailableRoomsState
+            };
             return await sc.PromptAsync(
                 nameof(ConfirmPrompt),
                 new PromptOptions
                 {
-                    Prompt = await view.RenderTemplate(sc.Context, sc.Context.Activity.Locale, intent)
+                    Prompt = await view.RenderTemplate(sc.Context, sc.Context.Activity.Locale, intentAsAString, data)
                 });
         }
 
@@ -109,8 +141,9 @@ namespace HotelBot.Dialogs.Prompts.UpdateState
         {
 
             var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
-            state.LuisResults.TryGetValue(LuisResultBookARoomKey, out var luisResult);
-            var intent = luisResult.TopIntent().intent;
+            var dialogOptions = (DialogOptions) sc.Options;
+            var luisResult = dialogOptions.LuisResult;
+            var intent = dialogOptions.LuisResult.TopIntent().intent;
             if (_updateStateHandler.UpdateStateHandlerDelegates.TryGetValue(intent, out var DelegateStateUpdate))
             {
                 var result = await DelegateStateUpdate(state, luisResult, sc);

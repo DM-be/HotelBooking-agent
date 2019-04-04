@@ -23,10 +23,6 @@ namespace HotelBot.Dialogs.RoomDetail
                         SendDescription(context, data)
                 },
                 {
-                    ResponseIds.SendExtraInfo, (context, data) =>
-                        SendExtraInfo(context, data)
-                },
-                {
                     ResponseIds.SendRates, (context, data) =>
                         SendRates(context, data)
                 },
@@ -34,7 +30,6 @@ namespace HotelBot.Dialogs.RoomDetail
                     ResponseIds.SendLowestRate, (context, data) =>
                         SendLowestRate(context, data)
                 }
-
             }
 
         };
@@ -94,7 +89,7 @@ namespace HotelBot.Dialogs.RoomDetail
                                     Id = "FAKEID",
                                     Action = "info"
                                 }),
-                            Title = $"Book for {roomDetailDto.Rates[i].Price} 💶",
+                            Title = $"Book for €{roomDetailDto.Rates[i].Price}",
                             Text = "show me more info for x room"
 
                         }
@@ -119,13 +114,6 @@ namespace HotelBot.Dialogs.RoomDetail
         {
             var selectedRoomDetailDto = data as RoomDetailDto;
             var message = $"This rooms lowest rate is {selectedRoomDetailDto.LowestRate} EUR";
-            return MessageFactory.Text(message);
-        }
-
-        public static IMessageActivity SendExtraInfo(ITurnContext context, dynamic data)
-        {
-            var selectedRoomDetailDto = data as RoomDetailDto;
-            var message = "🚬 not allowed, ♿ accessible";
             return MessageFactory.Text(message);
         }
 

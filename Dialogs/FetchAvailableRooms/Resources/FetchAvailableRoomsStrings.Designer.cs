@@ -61,74 +61,11 @@ namespace HotelBot.Dialogs.FetchAvailableRooms.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to When would you arrive?.
-        /// </summary>
-        public static string ARRIVALDATE_PROMPT {
-            get {
-                return ResourceManager.GetString("ARRIVALDATE_PROMPT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Tap the buttons in the card to continue. I can search for rooms again if you would like. .
         /// </summary>
         public static string CONTINUE_OR_UPDATE {
             get {
                 return ResourceManager.GetString("CONTINUE_OR_UPDATE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to What is your email?.
-        /// </summary>
-        public static string EMAIL_PROMPT {
-            get {
-                return ResourceManager.GetString("EMAIL_PROMPT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Thank you for booking with us. To enter payment follow this link:.
-        /// </summary>
-        public static string FINISHEDBOOKAROOM {
-            get {
-                return ResourceManager.GetString("FINISHEDBOOKAROOM", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ok, you would like to arrive on {0}..
-        /// </summary>
-        public static string HAVE_ARRIVALDATE {
-            get {
-                return ResourceManager.GetString("HAVE_ARRIVALDATE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Got it, I&apos;ve added {0} as your primary contact address..
-        /// </summary>
-        public static string HAVE_EMAIL {
-            get {
-                return ResourceManager.GetString("HAVE_EMAIL", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Leaving at {0}..
-        /// </summary>
-        public static string HAVE_LEAVINGDATE {
-            get {
-                return ResourceManager.GetString("HAVE_LEAVINGDATE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You are bringing {0} people..
-        /// </summary>
-        public static string HAVE_NUMBEROFPEOPLE {
-            get {
-                return ResourceManager.GetString("HAVE_NUMBEROFPEOPLE", resourceCulture);
             }
         }
         
@@ -151,15 +88,6 @@ namespace HotelBot.Dialogs.FetchAvailableRooms.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To help you book a room I will need some information from you. Let&apos;s start. .
-        /// </summary>
-        public static string INTRODUCTION {
-            get {
-                return ResourceManager.GetString("INTRODUCTION", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to When would you be leaving?.
         /// </summary>
         public static string LEAVINGDATE_PROMPT {
@@ -174,33 +102,6 @@ namespace HotelBot.Dialogs.FetchAvailableRooms.Resources {
         public static string NOT_RECOGNIZED_DATE {
             get {
                 return ResourceManager.GetString("NOT_RECOGNIZED_DATE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to How many people should we expect?.
-        /// </summary>
-        public static string NUMBEROFPEOPLE_PROMPT {
-            get {
-                return ResourceManager.GetString("NUMBEROFPEOPLE_PROMPT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to How many people are you bringing?.
-        /// </summary>
-        public static string NUMBEROFPEOPLE_REPROMPT {
-            get {
-                return ResourceManager.GetString("NUMBEROFPEOPLE_REPROMPT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        public static string PERSON {
-            get {
-                return ResourceManager.GetString("PERSON", resourceCulture);
             }
         }
         

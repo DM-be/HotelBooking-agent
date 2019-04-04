@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 using HotelBot.Dialogs.Cancel;
 using HotelBot.Dialogs.FetchAvailableRooms;
 using HotelBot.Dialogs.Prompts.UpdateState;
-using HotelBot.Extensions;
 using HotelBot.Models.LUIS;
+using HotelBot.Models.Wrappers;
 using HotelBot.Services;
 using HotelBot.StateAccessors;
 using Microsoft.Bot.Builder.Dialogs;
@@ -37,17 +37,12 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms
             if (luisService == null) throw new Exception("The specified LUIS Model could not be found in your Bot Services configuration.");
             var luisResult = await luisService.RecognizeAsync<HotelBotLuis>(dc.Context, cancellationToken);
             var intent = luisResult.TopIntent().intent;
-            var isChoicePrompt = dc.ActiveDialog.Id == "updateStateChoicePrompt" | dc.ActiveDialog.Id == nameof(ChoicePrompt);
-
+            var isChoiceOptionUtterance = (dc.ActiveDialog.Id == "updateStateChoicePrompt") | (dc.ActiveDialog.Id == nameof(ChoicePrompt));
 
 
             // Only triggers interruption if confidence level is high
-            if (luisResult.TopIntent().score > 0.75 && !isChoicePrompt)
+            if (luisResult.TopIntent().score > 0.85)
             {
-                // Add the luis result (intent and entities) for further processing in the derived dialog
-                var fetchAvailableRoomsState = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(dc.Context, () => new FetchAvailableRoomsState());
-                fetchAvailableRoomsState.LuisResults[LuisResultBookARoomKey] = luisResult;
-
                 switch (intent)
                 {
                     case HotelBotLuis.Intent.Cancel:
@@ -64,8 +59,15 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms
                     case HotelBotLuis.Intent.Update_email:
                     case HotelBotLuis.Intent.Update_Number_Of_People:
                     {
-                        var isDateUpdateIntent = intent.IsUpdateDateIntent();
-                        return await OnUpdate(dc, isDateUpdateIntent);
+
+                        var dialogOptions = new DialogOptions
+                        {
+                            LuisResult = luisResult,
+                            SkipConfirmation = isChoiceOptionUtterance
+                        };
+
+
+                        return await OnUpdate(dc, dialogOptions);
                     }
                 }
             }
@@ -99,7 +101,7 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms
             return InterruptionStatus.Interrupted;
         }
 
-        protected virtual async Task<InterruptionStatus> OnUpdate(DialogContext dc, bool isUpdateDate)
+        protected virtual async Task<InterruptionStatus> OnUpdate(DialogContext dc, DialogOptions options)
         {
             // do not restart this running dialog
             if (dc.ActiveDialog.Id != nameof(UpdateStatePrompt))
@@ -109,7 +111,8 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms
                 // --> old comment: await dc.CancelAllDialogsAsync(); // removes entire stack
                 // begin our own new dialogwaterfall step
 
-                await dc.BeginDialogAsync(nameof(UpdateStatePrompt), isUpdateDate);
+                
+                await dc.BeginDialogAsync(nameof(UpdateStatePrompt), options);
 
                 return InterruptionStatus.Waiting;
             }

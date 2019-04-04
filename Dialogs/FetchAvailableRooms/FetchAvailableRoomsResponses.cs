@@ -5,6 +5,7 @@ using HotelBot.Dialogs.FetchAvailableRooms.Resources;
 using HotelBot.Dialogs.Prompts.UpdateState;
 using HotelBot.Extensions;
 using HotelBot.Models.DTO;
+using HotelBot.Models.LUIS;
 using HotelBot.Models.Wrappers;
 using HotelBot.Shared.Helpers;
 using Microsoft.Bot.Builder;
@@ -22,34 +23,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
         {
             ["default"] = new TemplateIdMap
             {
-                {
-                    ResponseIds.EmailPrompt, (context, data) =>
-                        MessageFactory.Text(
-                            FetchAvailableRoomsStrings.EMAIL_PROMPT,
-                            FetchAvailableRoomsStrings.EMAIL_PROMPT,
-                            InputHints.ExpectingInput)
-                },
-                {
-                    ResponseIds.HaveEmailMessage, (context, data) =>
-                        MessageFactory.Text(
-                            text: string.Format(FetchAvailableRoomsStrings.HAVE_EMAIL, data),
-                            ssml: string.Format(FetchAvailableRoomsStrings.HAVE_EMAIL, data),
-                            inputHint: InputHints.IgnoringInput)
-                },
-                {
-                    ResponseIds.ArrivalDatePrompt, (context, data) =>
-                        MessageFactory.Text(
-                            FetchAvailableRoomsStrings.ARRIVALDATE_PROMPT,
-                            FetchAvailableRoomsStrings.ARRIVALDATE_PROMPT,
-                            InputHints.IgnoringInput)
-                },
-                {
-                    ResponseIds.HaveArrivalDate, (context, data) =>
-                        MessageFactory.Text(
-                            text: string.Format(FetchAvailableRoomsStrings.HAVE_ARRIVALDATE, data),
-                            ssml: string.Format(FetchAvailableRoomsStrings.HAVE_ARRIVALDATE, data),
-                            inputHint: InputHints.IgnoringInput)
-                },
+
                 {
                     ResponseIds.LeavingDatePrompt, (context, data) =>
                         MessageFactory.Text(
@@ -57,20 +31,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                             FetchAvailableRoomsStrings.LEAVINGDATE_PROMPT,
                             InputHints.IgnoringInput)
                 },
-                {
-                    ResponseIds.HaveLeavingDate, (context, data) =>
-                        MessageFactory.Text(
-                            text: string.Format(FetchAvailableRoomsStrings.HAVE_LEAVINGDATE, data),
-                            ssml: string.Format(FetchAvailableRoomsStrings.HAVE_LEAVINGDATE, data),
-                            inputHint: InputHints.IgnoringInput)
-                },
-                {
-                    ResponseIds.NumberOfPeoplePrompt, (context, data) =>
-                        MessageFactory.Text(
-                            FetchAvailableRoomsStrings.NUMBEROFPEOPLE_PROMPT,
-                            FetchAvailableRoomsStrings.NUMBEROFPEOPLE_PROMPT,
-                            InputHints.ExpectingInput)
-                },
+
                 {
                     ResponseIds.ContinueOrUpdate, (context, data) =>
                         MessageFactory.Text(
@@ -78,20 +39,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                             FetchAvailableRoomsStrings.CONTINUE_OR_UPDATE,
                             InputHints.ExpectingInput)
                 },
-                {
-                    ResponseIds.NumberOfPeopleReprompt, (context, data) =>
-                        MessageFactory.Text(
-                            FetchAvailableRoomsStrings.NUMBEROFPEOPLE_PROMPT,
-                            FetchAvailableRoomsStrings.NUMBEROFPEOPLE_PROMPT,
-                            InputHints.ExpectingInput)
-                },
-                {
-                    ResponseIds.HaveNumberOfPeople, (context, data) =>
-                        MessageFactory.Text(
-                            text: string.Format(FetchAvailableRoomsStrings.HAVE_NUMBEROFPEOPLE, data),
-                            ssml: string.Format(FetchAvailableRoomsStrings.HAVE_NUMBEROFPEOPLE, data),
-                            inputHint: InputHints.IgnoringInput)
-                },
+
                 {
                     ResponseIds.IncorrectDate, (context, data) =>
                         MessageFactory.Text(
@@ -115,19 +63,19 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                 },
                 {
                     ResponseIds.UpdateEmail, (context, data) =>
-                        UpdateEmail(context)
+                        UpdateEmail(context, data)
                 },
                 {
                     ResponseIds.UpdateNumberOfPeople, (context, data) =>
-                        UpdateNumberOfPeople(context)
+                        UpdateNumberOfPeople(context, data)
                 },
                 {
                     ResponseIds.UpdateLeavingDate, (context, data) =>
-                        UpdateLeavingDate(context)
+                        UpdateLeavingDate(context, data)
                 },
                 {
                     ResponseIds.UpdateArrivalDate, (context, data) =>
-                        UpdateArrivalDate(context)
+                        UpdateArrivalDate(context, data)
                 },
                 {
                     ResponseIds.Overview, (context, data) =>
@@ -136,13 +84,6 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                 {
                     ResponseIds.ReroutedOverview, (context, data) =>
                         SendReroutedOverview(context, data)
-                },
-                {
-                    ResponseIds.Introduction, (context, data) =>
-                        MessageFactory.Text(
-                            FetchAvailableRoomsStrings.INTRODUCTION,
-                            FetchAvailableRoomsStrings.INTRODUCTION,
-                            InputHints.IgnoringInput)
                 },
                 {
                     ResponseIds.SpecificTimePrompt, (context, data) =>
@@ -172,7 +113,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                             FetchAvailableRoomsStrings.UPDATE_SAVED_STATE,
                             FetchAvailableRoomsStrings.UPDATE_SAVED_STATE,
                             InputHints.IgnoringInput)
-                },
+                }
 
             }
         };
@@ -229,8 +170,8 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                                     Action = "book"
                                 }),
                             // todo: button formatting.....
-                            Title = "\t Book \t",
-                            
+                            Title = "\t Book \t"
+
 
                         },
 
@@ -243,7 +184,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                                     Id = rooms[i].id,
                                     Action = "info"
                                 }),
-                            Title = "\t More info \t",
+                            Title = "\t More info \t"
                         }
 
                     }
@@ -252,7 +193,8 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                 };
             var reply = context.Activity.CreateReply();
 
-            reply.Text = $"Here are our available rooms between {bookARoomState.ArrivalDate} and {bookARoomState.LeavingDate} for {bookARoomState.NumberOfPeople.ToString()} people.";
+            reply.Text =
+                $"Here are our available rooms between {bookARoomState.ArrivalDate} and {bookARoomState.LeavingDate} for {bookARoomState.NumberOfPeople.ToString()} people.";
             var attachments = new List<Attachment>();
 
             foreach (var heroCard in heroCards) attachments.Add(heroCard.ToAttachment());
@@ -286,12 +228,9 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
         }
 
 
-        public static IMessageActivity UpdateEmail(ITurnContext context)
+        public static IMessageActivity UpdateEmail(ITurnContext context, dynamic data)
         {
-
-            context.TurnState.TryGetValue("bookARoomState", out var x);
-            var state = x as FetchAvailableRoomsState;
-            state.LuisResults.TryGetValue("LuisResult_BookARoom", out var luisResult);
+            var luisResult = data.LuisResult as HotelBotLuis;
             string message;
             if (luisResult.HasEntityWithPropertyName(UpdateStatePrompt.EntityNames.Email))
             {
@@ -306,11 +245,10 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             return MessageFactory.Text(message);
         }
 
-        public static IMessageActivity UpdateArrivalDate(ITurnContext context)
+        public static IMessageActivity UpdateArrivalDate(ITurnContext context, dynamic data)
         {
-
-            context.TurnState.TryGetValue("tempTimex", out var t);
-            var timexProperty = t as TimexProperty;
+            var state = data.State as FetchAvailableRoomsState;
+            var timexProperty = state.TempTimexProperty;
             string message;
             if (timexProperty != null)
             {
@@ -329,12 +267,9 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
         }
 
 
-        public static IMessageActivity UpdateNumberOfPeople(ITurnContext context)
+        public static IMessageActivity UpdateNumberOfPeople(ITurnContext context, dynamic data)
         {
-
-            context.TurnState.TryGetValue("bookARoomState", out var x);
-            var state = x as FetchAvailableRoomsState;
-            state.LuisResults.TryGetValue("LuisResult_BookARoom", out var luisResult);
+            var luisResult = data.LuisResult as HotelBotLuis;
             string message;
             if (luisResult.Entities.number != null)
             {
@@ -351,10 +286,11 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
         }
 
 
-        public static IMessageActivity UpdateLeavingDate(ITurnContext context)
+        public static IMessageActivity UpdateLeavingDate(ITurnContext context, dynamic data)
         {
+            var state = data.State as FetchAvailableRoomsState;
             context.TurnState.TryGetValue("tempTimex", out var t);
-            var timexProperty = t as TimexProperty;
+            var timexProperty = state.TempTimexProperty;
             string message;
             if (timexProperty != null)
             {
@@ -429,19 +365,8 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
 
         public class ResponseIds
         {
-            public const string EmailPrompt = "emailPrompt";
-            public const string HaveEmailMessage = "haveEmail";
-
-            public const string ArrivalDatePrompt = "arrivalDatePrompt";
-            public const string HaveArrivalDate = "haveArrivalDate";
 
             public const string LeavingDatePrompt = "leavingDatePrompt";
-            public const string HaveLeavingDate = "HaveLeavingDate";
-
-            public const string NumberOfPeoplePrompt = "numberOfPeoplePrompt";
-            public const string NumberOfPeopleReprompt = "numberOfPeopleReprompt";
-            public const string HaveNumberOfPeople = "HaveNumberOfPeople";
-
             public const string IncorrectDate = "incorrectDate";
             public const string NotRecognizedDate = "notRecognizedDate";
 
@@ -451,7 +376,6 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
 
             public const string Overview = "overview";
             public const string ReroutedOverview = "ReroutedOverview";
-            public const string Introduction = "introduction";
             public const string SendRoomsCarousel = "sendRoomsCarousel";
             public const string SendRoomDetail = "sendRoomDetail";
             public const string ContinueOrUpdate = "continueOrUpdate";

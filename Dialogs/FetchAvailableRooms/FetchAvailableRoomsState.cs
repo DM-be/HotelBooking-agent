@@ -7,22 +7,14 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
     public class FetchAvailableRoomsState
     {
 
-        public FetchAvailableRoomsState()
-        {
-            LuisResults = new Dictionary<string, HotelBotLuis>();
-            TimexResults = new Dictionary<string, TimexProperty>();
-        }
-
         public string Email { get; set; }
         public double? NumberOfPeople { get; set; }
         public TimexProperty ArrivalDate { get; set; }
         public TimexProperty LeavingDate { get; set; }
 
+        public TimexProperty TempTimexProperty { get; set; } // used in delegates --> stores this in arrival/leaving
 
-        // a dictionary holding temporary luisResults
-        public Dictionary<string, HotelBotLuis> LuisResults { get; set; }
 
-        // dictionary holding temporay timexproperties
-        public Dictionary<string, TimexProperty> TimexResults { get; set; }
+
     }
 }

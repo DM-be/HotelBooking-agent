@@ -117,29 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ARRIVALDATE_PROMPT" xml:space="preserve">
-    <value>When would you arrive?</value>
-  </data>
   <data name="CONTINUE_OR_UPDATE" xml:space="preserve">
     <value>Tap the buttons in the card to continue. I can search for rooms again if you would like. </value>
-  </data>
-  <data name="EMAIL_PROMPT" xml:space="preserve">
-    <value>What is your email?</value>
-  </data>
-  <data name="FINISHEDBOOKAROOM" xml:space="preserve">
-    <value>Thank you for booking with us. To enter payment follow this link:</value>
-  </data>
-  <data name="HAVE_ARRIVALDATE" xml:space="preserve">
-    <value>Ok, you would like to arrive on {0}.</value>
-  </data>
-  <data name="HAVE_EMAIL" xml:space="preserve">
-    <value>Got it, I've added {0} as your primary contact address.</value>
-  </data>
-  <data name="HAVE_LEAVINGDATE" xml:space="preserve">
-    <value>Leaving at {0}.</value>
-  </data>
-  <data name="HAVE_NUMBEROFPEOPLE" xml:space="preserve">
-    <value>You are bringing {0} people.</value>
   </data>
   <data name="HELP_MESSAGE" xml:space="preserve">
     <value>You can book a room by providing me the information I need. You can also update previous set values, just ask me.</value>
@@ -147,23 +126,11 @@
   <data name="INCORRECT_DATE" xml:space="preserve">
     <value>Sorry you cannot book a room in the past. </value>
   </data>
-  <data name="INTRODUCTION" xml:space="preserve">
-    <value>To help you book a room I will need some information from you. Let's start. </value>
-  </data>
   <data name="LEAVINGDATE_PROMPT" xml:space="preserve">
     <value>When would you be leaving?</value>
   </data>
   <data name="NOT_RECOGNIZED_DATE" xml:space="preserve">
     <value>I'm sorry, I do not understand. Please enter the date or time for your booking.</value>
-  </data>
-  <data name="NUMBEROFPEOPLE_PROMPT" xml:space="preserve">
-    <value>How many people should we expect?</value>
-  </data>
-  <data name="NUMBEROFPEOPLE_REPROMPT" xml:space="preserve">
-    <value>How many people are you bringing?</value>
-  </data>
-  <data name="PERSON" xml:space="preserve">
-    <value />
   </data>
   <data name="REROUTED_STATE_OVERVIEW" xml:space="preserve">
     <value>I kept your last search. You were looking for a room for {0} people between {1} and {2}. Is this still what you are looking for?</value>

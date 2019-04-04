@@ -39,8 +39,6 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.RoomDetail
             if (luisResult.TopIntent().score > 0.75)
             {
                 // Add the luis result (intent and entities) for further processing in the derived dialog
-                var bookARoomState = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(dc.Context, () => new FetchAvailableRoomsState());
-                bookARoomState.LuisResults[LuisResultBookARoomKey] = luisResult;
 
                 switch (intent)
                 {
