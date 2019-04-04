@@ -98,7 +98,7 @@ namespace HotelBot.Dialogs.Prompts.UpdateState
         {
             var confirmed = (bool) sc.Result;
             if (confirmed) return await UpdateState(sc); // updates in delegate and ends after
-            return await sc.EndDialogAsync(null, cancellationToken).ConfigureAwait(false);
+            return await sc.EndDialogAsync("statechanged", cancellationToken).ConfigureAwait(false);
         }
 
         private async Task<DialogTurnResult> UpdateState(WaterfallStepContext sc)

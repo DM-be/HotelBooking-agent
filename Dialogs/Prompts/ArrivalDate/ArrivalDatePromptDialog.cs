@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using HotelBot.Dialogs.FetchAvailableRooms;
 using HotelBot.Dialogs.Prompts.NumberOfPeople;
 using HotelBot.Dialogs.Shared.PromptValidators;
+using HotelBot.Models.Wrappers;
 using HotelBot.StateAccessors;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Recognizers.Text.DataTypes.TimexExpression;
@@ -51,9 +52,13 @@ namespace HotelBot.Dialogs.Prompts.ArrivalDate
 
         private async Task<DialogTurnResult> FinishArrivalDatePromptDialog(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-            var updated = false;
-            if (sc.Options != null) updated = (bool) sc.Options; // usually true
+            bool updated = false;
 
+            if (sc.Options != null)
+            {
+                var dialogOptions = (DialogOptions)sc.Options;
+                updated = dialogOptions.UpdatedArrivalDate;
+            }
             var resolution = (sc.Result as IList<DateTimeResolution>).First();
             var timexProp = new TimexProperty(resolution.Timex);
             var arrivalDateAsNaturalLanguage = timexProp.ToNaturalLanguage(DateTime.Now);

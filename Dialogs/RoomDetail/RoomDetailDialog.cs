@@ -94,8 +94,10 @@ namespace HotelBot.Dialogs.RoomDetail
                     {
                         Rerouted = true,
                         SkipConfirmation = false,
+                        
                     };
-                    return await sc.ReplaceDialogAsync(nameof(FetchAvailableRoomsDialog), dialogOptions);
+                    var stack = sc.Stack;
+                    return await sc.EndDialogAsync("redirect");
                 case RoomDetailChoices.ShowRates:
                     await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendRates, state.RoomDetailDto);
                     return await sc.ReplaceDialogAsync(InitialDialogId, roomAction);

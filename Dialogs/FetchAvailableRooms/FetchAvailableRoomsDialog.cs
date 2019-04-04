@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.Prompts.ArrivalDate;
 using HotelBot.Dialogs.Prompts.ConfirmFetchRooms;
+using HotelBot.Dialogs.Prompts.ContinueOrUpdatePrompt;
 using HotelBot.Dialogs.Prompts.DepartureDate;
 using HotelBot.Dialogs.Prompts.NumberOfPeople;
 using HotelBot.Dialogs.Prompts.UpdateStateChoice;
@@ -39,6 +40,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             AddDialog(new DepartureDatePromptDialog(accessors));
             AddDialog(new NumberOfPeoplePromptDialog(accessors));
             AddDialog(new UpdateStateChoicePrompt(accessors));
+            AddDialog(new ContinueOrUpdatePrompt(accessors));
         }
 
         public async Task<DialogTurnResult> AskForNumberOfPeople(WaterfallStepContext sc, CancellationToken cancellationToken)
@@ -59,7 +61,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
         public async Task<DialogTurnResult> AskForLeavingDate(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
-            if (state.LeavingDate != null) return await sc.NextAsync();
+            if (state.LeavingDate != null)  return await sc.NextAsync();
             return await sc.BeginDialogAsync(nameof(DepartureDatePromptDialog));
         }
 
@@ -79,33 +81,14 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
         public async Task<DialogTurnResult> ProcessFetchRoomsConfirmationPrompt(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             var confirmed = (bool) sc.Result;
-            List<string> choices = new List<string>
-            {
-                FetchAvailableRoomsChoices.StartOver,
-                FetchAvailableRoomsChoices.ChangeSearch,
-            };
-            string promptTemplateId = "";
 
             if (confirmed)
             {
                 // send book a room cards and prompt to continue or update
                 var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
                 await _responder.ReplyWith(sc.Context, FetchAvailableRoomsResponses.ResponseIds.SendRoomsCarousel, state);
-                promptTemplateId = FetchAvailableRoomsResponses.ResponseIds.ContinueOrUpdate;
-                choices.Add(FetchAvailableRoomsChoices.NoThanks);
-                return await sc.PromptAsync(
-                    nameof(ChoicePrompt),
-                    new PromptOptions
-                    {
-                        Prompt = await _responder.RenderTemplate(
-                            sc.Context,
-                            sc.Context.Activity.Locale,
-                            promptTemplateId),
-                        Choices = ChoiceFactory.ToChoices(choices)
-                    },
-                    cancellationToken);
+                return await sc.BeginDialogAsync(nameof(ContinueOrUpdatePrompt));
             }
-
 
 
             var foundChoice = new FoundChoice

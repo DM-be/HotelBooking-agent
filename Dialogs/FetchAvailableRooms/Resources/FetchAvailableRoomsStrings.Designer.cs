@@ -61,6 +61,15 @@ namespace HotelBot.Dialogs.FetchAvailableRooms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to If you said something wrong, you can always ask me to change it..
+        /// </summary>
+        public static string CONTEXTUAL_HELP {
+            get {
+                return ResourceManager.GetString("CONTEXTUAL_HELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tap the buttons in the card to continue. I can search for rooms again if you would like. .
         /// </summary>
         public static string CONTINUE_OR_UPDATE {
@@ -84,6 +93,15 @@ namespace HotelBot.Dialogs.FetchAvailableRooms.Resources {
         public static string INCORRECT_DATE {
             get {
                 return ResourceManager.GetString("INCORRECT_DATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To help you find a room, I will need some information from you. Let&apos;s start. .
+        /// </summary>
+        public static string INTRODUCTION {
+            get {
+                return ResourceManager.GetString("INTRODUCTION", resourceCulture);
             }
         }
         

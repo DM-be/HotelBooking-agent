@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.FetchAvailableRooms;
 using HotelBot.Dialogs.Shared.PromptValidators;
+using HotelBot.Models.Wrappers;
 using HotelBot.StateAccessors;
 using Microsoft.Bot.Builder.Dialogs;
 
@@ -45,8 +46,13 @@ namespace HotelBot.Dialogs.Prompts.NumberOfPeople
         {
 
             var numberOfPeople = (int) sc.Result;
-            var updated = false;
-            if (sc.Options != null) updated = (bool) sc.Options; // usually true
+            bool updated = false;
+
+            if (sc.Options != null)
+            {
+                var dialogOptions = (DialogOptions)sc.Options;
+                updated = dialogOptions.UpdatedNumberOfPeople;
+            }
 
             var _state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
             _state.NumberOfPeople = numberOfPeople;

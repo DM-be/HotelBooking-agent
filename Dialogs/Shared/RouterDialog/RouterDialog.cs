@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using HotelBot.Dialogs.FetchAvailableRooms;
 using HotelBot.Dialogs.RoomDetail;
 using HotelBot.Extensions;
 using HotelBot.Models.DTO;
@@ -36,11 +37,17 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
                     if (activity.Value != null && !activity.IsGetStartedPostBack())
                     {
                         var roomAction = JsonConvert.DeserializeObject<RoomAction>(activity.Value.ToString());
-                        await innerDc.ReplaceDialogAsync(nameof(RoomDetailDialog), roomAction);
+                        await innerDc.CancelAllDialogsAsync();
+                        await innerDc.BeginDialogAsync(nameof(RoomDetailDialog), roomAction);
                     }
                     else if (!string.IsNullOrEmpty(activity.Text))
                     {
                         var result = await innerDc.ContinueDialogAsync();
+                        if (result.Result == "redirect")
+                        {
+                            await innerDc.BeginDialogAsync(nameof(FetchAvailableRoomsDialog));
+                            return EndOfTurn;
+                        }
 
                         switch (result.Status)
                         {

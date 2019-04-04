@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using HotelBot.Dialogs.Cancel;
 using HotelBot.Dialogs.FetchAvailableRooms;
 using HotelBot.Dialogs.Prompts.UpdateState;
+using HotelBot.Dialogs.Prompts.UpdateStateChoice;
 using HotelBot.Models.LUIS;
 using HotelBot.Models.Wrappers;
 using HotelBot.Services;
@@ -37,11 +38,11 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms
             if (luisService == null) throw new Exception("The specified LUIS Model could not be found in your Bot Services configuration.");
             var luisResult = await luisService.RecognizeAsync<HotelBotLuis>(dc.Context, cancellationToken);
             var intent = luisResult.TopIntent().intent;
-            var isChoiceOptionUtterance = (dc.ActiveDialog.Id == "updateStateChoicePrompt") | (dc.ActiveDialog.Id == nameof(ChoicePrompt));
+            var isChoiceOptionUtterance = (dc.ActiveDialog.Id == nameof(UpdateStateChoicePrompt)) | (dc.ActiveDialog.Id == nameof(ChoicePrompt));
 
 
             // Only triggers interruption if confidence level is high
-            if (luisResult.TopIntent().score > 0.85)
+            if (luisResult.TopIntent().score > 0.80)
             {
                 switch (intent)
                 {
