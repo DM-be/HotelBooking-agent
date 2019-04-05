@@ -88,7 +88,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To help you find a room, I will need some information from you..
+        ///   Looks up a localized string similar to To help you find a room, I will need some information from you. If you make a mistake, ask me to change it for you or use the suggested actions..
         /// </summary>
         public static string INTRODUCTION {
             get {

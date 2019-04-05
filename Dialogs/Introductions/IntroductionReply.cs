@@ -34,7 +34,7 @@ namespace HotelBot.Dialogs.Introductions
         public async Task<DialogTurnResult> SendIntroAndPromptUnderstood(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
 
-            await _responder.ReplyWith(sc.Context, FetchAvailableRoomsResponses.ResponseIds.SendIntroduction);
+         //   await _responder.ReplyWith(sc.Context, FetchAvailableRoomsResponses.ResponseIds.SendIntroduction);
 
             return await sc.PromptAsync(
                 nameof(ChoicePrompt),
@@ -43,7 +43,7 @@ namespace HotelBot.Dialogs.Introductions
                     Prompt = await _responder.RenderTemplate(
                         sc.Context,
                         sc.Context.Activity.Locale,
-                        FetchAvailableRoomsResponses.ResponseIds.SendMoreInfo),
+                        FetchAvailableRoomsResponses.ResponseIds.SendIntroduction),
                     Choices = ChoiceFactory.ToChoices(
                         new List<string>
                         {
@@ -59,26 +59,24 @@ namespace HotelBot.Dialogs.Introductions
 
         public async Task<DialogTurnResult> ProcessChoice(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-            var foundChoice = new FoundChoice
-            {
-                Value = (string) sc.Result
-            };
+            var foundChoice = sc.Result as FoundChoice;
 
+            if (foundChoice != null)
+                switch (foundChoice.Value)
+                {
+                    case "OK":
+                        await _responder.ReplyWith(sc.Context, FetchAvailableRoomsResponses.ResponseIds.SendStart);
+                        return await sc.EndDialogAsync();
+                    case "Help":
+                        await _responder.ReplyWith(sc.Context, FetchAvailableRoomsResponses.ResponseIds.Help);
+                        await _responder.ReplyWith(sc.Context, FetchAvailableRoomsResponses.ResponseIds.SendStart);
+                        return await sc.EndDialogAsync();
+                }
 
-            switch (foundChoice.Value)
-            {
-                case "OK":
-                    await _responder.ReplyWith(sc.Context, FetchAvailableRoomsResponses.ResponseIds.SendStart);
-                    return await sc.EndDialogAsync();
-                case "Help":
-                    await _responder.ReplyWith(sc.Context, FetchAvailableRoomsResponses.ResponseIds.Help);
-                    await _responder.ReplyWith(sc.Context, FetchAvailableRoomsResponses.ResponseIds.SendStart);
-                    return await sc.EndDialogAsync();
-            }
-
-            // todo: dialogturnresult instead?
-
-            return await sc.EndDialogAsync();
+            // not castable and not recognized --> loop dialog
+            await sc.Context.SendActivityAsync("sorry I didn't understand");
+            // loop
+            return await sc.ReplaceDialogAsync(InitialDialogId);
         }
     }
 

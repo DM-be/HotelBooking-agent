@@ -127,7 +127,7 @@
     <value>Sorry you cannot book a room in the past. </value>
   </data>
   <data name="INTRODUCTION" xml:space="preserve">
-    <value>To help you find a room, I will need some information from you.</value>
+    <value>To help you find a room, I will need some information from you. If you make a mistake, ask me to change it for you or use the suggested actions.</value>
   </data>
   <data name="INTRODUCTION_MORE_INFO" xml:space="preserve">
     <value>If you make a mistake, ask me to change it for you or use the suggested actions. Let's start.</value>
