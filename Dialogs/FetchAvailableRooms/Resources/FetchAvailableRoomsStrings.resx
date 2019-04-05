@@ -142,7 +142,7 @@
     <value>I'm sorry, I do not understand. Please enter the date or time for your booking.</value>
   </data>
   <data name="REROUTED_STATE_OVERVIEW" xml:space="preserve">
-    <value>I kept your last search. You were looking for a room for {0} people between {1} and {2}. Is this still what you are looking for?</value>
+    <value>Last time you looked for a room for {0} people between {1} and {2}. Is this still what you are looking for?</value>
   </data>
   <data name="SMOKING_ALLOWED" xml:space="preserve">
     <value>🚬</value>
@@ -157,10 +157,10 @@
     <value>You are looking for a room for {0} people between {1} and {2}. Is this correct?</value>
   </data>
   <data name="UPDATE_ARRIVALDATE_WITHOUT_ENTITY" xml:space="preserve">
-    <value>Do you want to change your arrival date?</value>
+    <value>Do you want to change your checkin date?</value>
   </data>
   <data name="UPDATE_ARRIVALDATE_WITH_ENTITY" xml:space="preserve">
-    <value>Do you want to change your arrival date to {0}?</value>
+    <value>Do you want to change your checkin date to {0}?</value>
   </data>
   <data name="UPDATE_EMAIL_WITHOUT_ENTITY" xml:space="preserve">
     <value>Do you want to update your email address? </value>
@@ -169,10 +169,10 @@
     <value>Do you want to change your email to {0}?</value>
   </data>
   <data name="UPDATE_LEAVINGDATE_WITHOUT_ENTITY" xml:space="preserve">
-    <value>Do you want to change your leaving date?</value>
+    <value>Do you want to change your checkout date?</value>
   </data>
   <data name="UPDATE_LEAVINGDATE_WITH_ENTITY" xml:space="preserve">
-    <value>Do you want to change your leaving date to {0}?</value>
+    <value>Do you want to change your checkout date to {0}?</value>
   </data>
   <data name="UPDATE_NUMBEROFPEOPLE_WITHOUT_ENTITY" xml:space="preserve">
     <value>Do want to change the number of people?</value>

@@ -30,7 +30,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             InitialDialogId = nameof(FetchAvailableRoomsDialog);
             var fetchAvailableRoomsWaterfallSteps = new WaterfallStep []
             {
-                SendIntroAndPromptHelp, AskForNumberOfPeople, AskForArrivalDate, AskForLeavingDate, PromptFetchRoomsConfirmationPrompt,
+                SendOptionalIntroduction, AskForNumberOfPeople, AskForArrivalDate, AskForLeavingDate, PromptFetchRoomsConfirmationPrompt,
                 ProcessFetchRoomsConfirmationPrompt, RespondToContinueOrUpdate, RespondToNewRequest
             };
 
@@ -47,7 +47,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
         }
 
 
-        public async Task<DialogTurnResult> SendIntroAndPromptHelp(WaterfallStepContext sc, CancellationToken cancellationToken)
+        public async Task<DialogTurnResult> SendOptionalIntroduction(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             var dialogOptions = sc.Options as DialogOptions;
             if (dialogOptions.SkipIntroduction != null && dialogOptions.SkipIntroduction == false)
@@ -98,7 +98,6 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
         public async Task<DialogTurnResult> ProcessFetchRoomsConfirmationPrompt(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             var confirmed = (bool) sc.Result;
-
             if (confirmed)
             {
                 // send book a room cards and prompt to continue or update
@@ -107,34 +106,26 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                 return await sc.BeginDialogAsync(nameof(ContinueOrUpdatePrompt));
             }
 
-
+            // when user presses no --> skip this step manually with a change search foundchoice
             var foundChoice = new FoundChoice
             {
                 Value = FetchAvailableRoomsChoices.ChangeSearch
             };
             return await sc.NextAsync(foundChoice);
-
-
         }
-
-
-
-
         public async Task<DialogTurnResult> RespondToContinueOrUpdate(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             var choice = sc.Result as FoundChoice;
-
             switch (choice.Value)
             {
                 case FetchAvailableRoomsChoices.ChangeSearch:
-
                     return await sc.BeginDialogAsync(nameof(UpdateStateChoicePrompt), sc.Options);
                 case FetchAvailableRoomsChoices.StartOver:
                 {
                     var emptyState = new FetchAvailableRoomsState();
                     _accessors.FetchAvailableRoomsStateAccessor.SetAsync(sc.Context, emptyState);
                     await sc.Context.SendActivityAsync("Ok, let's start over");
-                    return await sc.ReplaceDialogAsync(InitialDialogId);
+                    return await sc.ReplaceDialogAsync(InitialDialogId, sc.Options);
                 }
                 case FetchAvailableRoomsChoices.NoThanks:
                     await sc.Context.SendActivityAsync("You're welcome");

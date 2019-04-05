@@ -133,7 +133,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I kept your last search. You were looking for a room for {0} people between {1} and {2}. Is this still what you are looking for?.
+        ///   Looks up a localized string similar to Last time you looked for a room for {0} people between {1} and {2}. Is this still what you are looking for?.
         /// </summary>
         public static string REROUTED_STATE_OVERVIEW {
             get {
@@ -178,7 +178,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you want to change your arrival date to {0}?.
+        ///   Looks up a localized string similar to Do you want to change your checkin date to {0}?.
         /// </summary>
         public static string UPDATE_ARRIVALDATE_WITH_ENTITY {
             get {
@@ -187,7 +187,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you want to change your arrival date?.
+        ///   Looks up a localized string similar to Do you want to change your checkin date?.
         /// </summary>
         public static string UPDATE_ARRIVALDATE_WITHOUT_ENTITY {
             get {
@@ -214,7 +214,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you want to change your leaving date to {0}?.
+        ///   Looks up a localized string similar to Do you want to change your checkout date to {0}?.
         /// </summary>
         public static string UPDATE_LEAVINGDATE_WITH_ENTITY {
             get {
@@ -223,7 +223,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you want to change your leaving date?.
+        ///   Looks up a localized string similar to Do you want to change your checkout date?.
         /// </summary>
         public static string UPDATE_LEAVINGDATE_WITHOUT_ENTITY {
             get {
