@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using HotelBot.Dialogs.Introductions;
 using HotelBot.Dialogs.Prompts.ArrivalDate;
 using HotelBot.Dialogs.Prompts.ConfirmFetchRooms;
 using HotelBot.Dialogs.Prompts.ContinueOrUpdatePrompt;
 using HotelBot.Dialogs.Prompts.DepartureDate;
+using HotelBot.Dialogs.Prompts.FetchAvailableRoomsIntroduction;
 using HotelBot.Dialogs.Prompts.NumberOfPeople;
 using HotelBot.Dialogs.Prompts.UpdateStateChoice;
 using HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms;
@@ -45,7 +45,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             AddDialog(new NumberOfPeoplePromptDialog(accessors));
             AddDialog(new UpdateStateChoicePrompt(accessors));
             AddDialog(new ContinueOrUpdatePrompt(accessors));
-            AddDialog(new IntroductionReply(services, accessors));
+            AddDialog(new FetchAvailableRoomsIntroductionPrompt());
         }
 
 
@@ -53,7 +53,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
         {
             if (sc.Options == null)
             {
-                return await sc.BeginDialogAsync(nameof(IntroductionReply));
+                return await sc.BeginDialogAsync(nameof(FetchAvailableRoomsIntroductionPrompt));
 
             }
 

@@ -34,9 +34,17 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
                 {
                     if (activity.Value != null && !activity.IsGetStartedPostBack())
                     {
+
                         var roomAction = JsonConvert.DeserializeObject<RoomAction>(activity.Value.ToString());
+                        var dialogOptions = new DialogOptions
+                        {
+                            RoomAction = roomAction,
+                            Rerouted = true
+                        };
                         await innerDc.CancelAllDialogsAsync();
-                        await innerDc.BeginDialogAsync(nameof(RoomDetailDialog), roomAction);
+                        await innerDc.BeginDialogAsync(nameof(RoomDetailDialog), dialogOptions);
+
+
                     }
                     else if (!string.IsNullOrEmpty(activity.Text))
                     {

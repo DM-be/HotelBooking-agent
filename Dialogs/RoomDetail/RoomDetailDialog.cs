@@ -46,14 +46,18 @@ namespace HotelBot.Dialogs.RoomDetail
 
         public async Task<DialogTurnResult> FetchSelectedRoomDetail(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-            var roomAction = (RoomAction) sc.Options;
+
+            var dialogOptions = sc.Options as DialogOptions;
             var requestHandler = new RequestHandler();
             var state = await _accessors.RoomDetailStateAccessor.GetAsync(sc.Context, () => new RoomDetailState());
-            state.RoomDetailDto = new RoomDetailDto();
-            state.RoomDetailDto = await requestHandler.FetchRoomDetail(roomAction.Id);
-            await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendDescription, state.RoomDetailDto);
-            await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendImages, state.RoomDetailDto);
-            await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendLowestRate, state.RoomDetailDto);
+            if (dialogOptions.Rerouted)
+            {
+                state.RoomDetailDto = new RoomDetailDto();
+                state.RoomDetailDto = await requestHandler.FetchRoomDetail(dialogOptions.RoomAction.Id);
+                await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendDescription, state.RoomDetailDto);
+                await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendImages, state.RoomDetailDto);
+                await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendLowestRate, state.RoomDetailDto);
+            }
             return await sc.NextAsync();
         }
 
@@ -82,11 +86,6 @@ namespace HotelBot.Dialogs.RoomDetail
         {
             var state = await _accessors.RoomDetailStateAccessor.GetAsync(sc.Context, () => new RoomDetailState());
             var choice = sc.Result as FoundChoice;
-            var roomAction = new RoomAction
-            {
-                Id = state.RoomDetailDto.Id,
-                Action = "any"
-            };
             switch (choice.Value)
             {
                 case RoomDetailChoices.ViewOtherRooms:
@@ -104,7 +103,14 @@ namespace HotelBot.Dialogs.RoomDetail
                     return await sc.EndDialogAsync(dialogResult);
                 case RoomDetailChoices.ShowRates:
                     await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendRates, state.RoomDetailDto);
-                    return await sc.ReplaceDialogAsync(InitialDialogId, roomAction);
+                    var roomAction = new RoomAction
+                    {
+                        Id = state.RoomDetailDto.Id,
+                        Action = "any"
+                    };
+                    var dialogOpts = sc.Options as DialogOptions;
+                    dialogOpts.Rerouted = false;
+                    return await sc.ReplaceDialogAsync(InitialDialogId, dialogOpts);
                 case RoomDetailChoices.Book:
                 {
                     // send Booking object to bookingdialog --> empty rate but with roomdetaildto
@@ -123,5 +129,7 @@ namespace HotelBot.Dialogs.RoomDetail
             public const string ShowRates = "View rates";
             public const string Book = "Book";
         }
+
+
     }
 }

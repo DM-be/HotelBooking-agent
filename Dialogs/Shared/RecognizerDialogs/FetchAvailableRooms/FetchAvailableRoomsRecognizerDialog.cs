@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.Cancel;
 using HotelBot.Dialogs.FetchAvailableRooms;
-using HotelBot.Dialogs.Introductions;
+using HotelBot.Dialogs.Prompts.FetchAvailableRoomsIntroduction;
 using HotelBot.Dialogs.Prompts.UpdateState;
 using HotelBot.Dialogs.Prompts.UpdateStateChoice;
 using HotelBot.Models.LUIS;
@@ -38,7 +38,7 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms
             var luisResult = await luisService.RecognizeAsync<HotelBotLuis>(dc.Context, cancellationToken);
             var intent = luisResult.TopIntent().intent;
             var isChoiceOptionUtterance = (dc.ActiveDialog.Id == nameof(UpdateStateChoicePrompt)) | (dc.ActiveDialog.Id == nameof(ChoicePrompt));
-            var isIntroductionChoice = (dc.ActiveDialog.Id == nameof(IntroductionReply));
+            var isIntroductionChoice = (dc.ActiveDialog.Id == nameof(FetchAvailableRoomsIntroductionPrompt));
 
 
             // Only triggers interruption if confidence level is high

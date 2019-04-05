@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.FetchAvailableRooms;
-using HotelBot.Dialogs.Introductions;
 using HotelBot.Dialogs.Main.Delegates;
 using HotelBot.Dialogs.RoomDetail;
 using HotelBot.Dialogs.RoomOverview;
@@ -35,7 +34,6 @@ namespace HotelBot.Dialogs.Main
             AddDialog(new FetchAvailableRoomsDialog(_services, _accessors));
             AddDialog(new RoomOverviewDialog(_services, _accessors));
             AddDialog(new RoomDetailDialog(_services, accessors));
-            AddDialog(new IntroductionReply(services, accessors));
         }
 
         protected override async Task RouteAsync(DialogContext dc, CancellationToken cancellationToken = default(CancellationToken))

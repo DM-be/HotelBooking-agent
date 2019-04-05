@@ -1,27 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.FetchAvailableRooms;
-using HotelBot.Services;
-using HotelBot.StateAccessors;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Dialogs.Choices;
 
-namespace HotelBot.Dialogs.Introductions
+namespace HotelBot.Dialogs.Prompts.FetchAvailableRoomsIntroduction
 {
-    public class IntroductionReply: ComponentDialog
+    public class FetchAvailableRoomsIntroductionPrompt: ComponentDialog
     {
 
         private static FetchAvailableRoomsResponses _responder;
-        private readonly StateBotAccessors _accessors;
 
-        public IntroductionReply(BotServices services, StateBotAccessors accessors)
-            : base(nameof(IntroductionReply))
+        public FetchAvailableRoomsIntroductionPrompt()
+            : base(nameof(FetchAvailableRoomsIntroductionPrompt))
         {
-            _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
+
             _responder = new FetchAvailableRoomsResponses();
-            InitialDialogId = nameof(IntroductionReply);
+            InitialDialogId = nameof(FetchAvailableRoomsIntroductionPrompt);
             var fetchAvailableRoomsWaterfallSteps = new WaterfallStep []
             {
                 SendIntroAndPromptUnderstood, ProcessChoice
@@ -33,9 +29,6 @@ namespace HotelBot.Dialogs.Introductions
 
         public async Task<DialogTurnResult> SendIntroAndPromptUnderstood(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-
-         //   await _responder.ReplyWith(sc.Context, FetchAvailableRoomsResponses.ResponseIds.SendIntroduction);
-
             return await sc.PromptAsync(
                 nameof(ChoicePrompt),
                 new PromptOptions

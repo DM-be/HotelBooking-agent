@@ -9,6 +9,8 @@ namespace HotelBot.Models.Wrappers
         public bool SkipIntroduction { get; set; }
         public bool Rerouted { get; set; }
 
+        public RoomAction RoomAction { get; set; }
+
 
 
         // todo: refactor into dictionary when to many properties?
