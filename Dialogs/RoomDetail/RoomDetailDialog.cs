@@ -10,12 +10,16 @@ using HotelBot.Models.Wrappers;
 using HotelBot.Services;
 using HotelBot.Shared.Helpers;
 using HotelBot.StateAccessors;
-using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Dialogs.Choices;
+using Microsoft.Bot.Schema;
 
 namespace HotelBot.Dialogs.RoomDetail
 {
+
+
+
+    // todo: also send introduction? or assume help knowledge from other dialog?  
     public class RoomDetailDialog: RoomDetailRecognizerDialog
     {
         private readonly StateBotAccessors _accessors;
@@ -58,24 +62,40 @@ namespace HotelBot.Dialogs.RoomDetail
                 await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendImages, state.RoomDetailDto);
                 await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendLowestRate, state.RoomDetailDto);
             }
+
             return await sc.NextAsync();
         }
 
         public async Task<DialogTurnResult> PromptRoomChoices(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
+
+            Activity promptTemplate;
+            var choices = new List<string>
+            {
+                RoomDetailChoices.ViewOtherRooms,
+                RoomDetailChoices.NoThanks
+            };
+            var dialogOptions = sc.Options as DialogOptions;
+            if (dialogOptions.Looped)
+            {
+                promptTemplate = await _responder.RenderTemplate(
+                    sc.Context,
+                    sc.Context.Activity.Locale,
+                    RoomDetailResponses.ResponseIds.RoomChoicesPromptLooped);
+            }
+            else
+            {
+                promptTemplate = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, RoomDetailResponses.ResponseIds.RoomChoicesPrompt);
+                choices.Insert(0, RoomDetailChoices.ShowRates);
+            }
+
             return await sc.PromptAsync(
                 nameof(ChoicePrompt),
                 new PromptOptions
                 {
-                    Prompt = MessageFactory.Text("View more rates or book this room"),
+                    Prompt = promptTemplate,
                     Choices = ChoiceFactory.ToChoices(
-                        new List<string>
-                        {
-                            RoomDetailChoices.Book,
-                            RoomDetailChoices.ShowRates,
-                            RoomDetailChoices.ViewOtherRooms
-
-                        })
+                        choices)
                 },
                 cancellationToken);
         }
@@ -92,8 +112,8 @@ namespace HotelBot.Dialogs.RoomDetail
                     var dialogOptions = new DialogOptions
                     {
                         Rerouted = true,
-                        SkipConfirmation = false,
-                        
+                        SkipConfirmation = false
+
                     };
                     var dialogResult = new DialogResult
                     {
@@ -103,19 +123,13 @@ namespace HotelBot.Dialogs.RoomDetail
                     return await sc.EndDialogAsync(dialogResult);
                 case RoomDetailChoices.ShowRates:
                     await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendRates, state.RoomDetailDto);
-                    var roomAction = new RoomAction
-                    {
-                        Id = state.RoomDetailDto.Id,
-                        Action = "any"
-                    };
                     var dialogOpts = sc.Options as DialogOptions;
                     dialogOpts.Rerouted = false;
+                    dialogOpts.Looped = true;
                     return await sc.ReplaceDialogAsync(InitialDialogId, dialogOpts);
-                case RoomDetailChoices.Book:
-                {
-                    // send Booking object to bookingdialog --> empty rate but with roomdetaildto
-                    return null;
-                }
+                case RoomDetailChoices.NoThanks:
+                    return await sc.EndDialogAsync();
+
             }
 
             return null;
@@ -127,9 +141,7 @@ namespace HotelBot.Dialogs.RoomDetail
         {
             public const string ViewOtherRooms = "New search";
             public const string ShowRates = "View rates";
-            public const string Book = "Book";
+            public const string NoThanks = "No thanks";
         }
-
-
     }
 }

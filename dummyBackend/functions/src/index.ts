@@ -28,7 +28,9 @@ interface RoomDetailDto {
     roomImages: RoomImage [],
     reservationAgreement: string,
     rates: Rate []
-    lowestRate: number
+    lowestRate: number,
+    bedDescription: string,
+    squareFeet: number
 }
 
 interface RoomImage {
@@ -63,10 +65,13 @@ interface Room {
     smokingAllowed: boolean,
     wheelChairAccessible: boolean,
     reservationAgreement: string,
-    checkinTime:  Timestamp,
+    checkinTime:  Timestamp, // still needed or on hotel?
     checkoutTime: Timestamp, 
     capacity: number,
-    rates: Rate []
+    rates: Rate [],
+    bedDescription: string,
+    squareFeet: number 
+
 }
 
 export const fetchMatchingRooms = functions.https.onRequest(async(req, res) => {
@@ -115,6 +120,8 @@ export const fetchRoomDetail = functions.https.onRequest(async(req, res) => {
 
     const roomDetailDto: RoomDetailDto = {
         id,
+        squareFeet: room.squareFeet,
+        bedDescription: room.bedDescription,
         lowestRate,
         title: room.title,
         shortDescription: room.shortDescription,

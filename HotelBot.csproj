@@ -83,6 +83,11 @@
      <AutoGen>True</AutoGen>
      <DependentUpon>ValidateDateTimeStrings.resx</DependentUpon>
    </Compile>
+   <Compile Update="Dialogs\RoomDetail\Resources\RoomDetailStrings.Designer.cs">
+     <DesignTime>True</DesignTime>
+     <AutoGen>True</AutoGen>
+     <DependentUpon>RoomDetailStrings.resx</DependentUpon>
+   </Compile>
    <Compile Update="Dialogs\Shared\PromptValidators\Resources\ValidatorStrings.Designer.cs">
      <DesignTime>True</DesignTime>
      <AutoGen>True</AutoGen>
@@ -143,6 +148,10 @@
      <Generator>PublicResXFileCodeGenerator</Generator>
      <LastGenOutput>ValidateDateTimeStrings.Designer.cs</LastGenOutput>
    </EmbeddedResource>
+   <EmbeddedResource Update="Dialogs\RoomDetail\Resources\RoomDetailStrings.resx">
+     <Generator>PublicResXFileCodeGenerator</Generator>
+     <LastGenOutput>RoomDetailStrings.Designer.cs</LastGenOutput>
+   </EmbeddedResource>
    <EmbeddedResource Update="Dialogs\Shared\PromptValidators\Resources\ValidatorStrings.resx">
      <Generator>PublicResXFileCodeGenerator</Generator>
      <LastGenOutput>ValidatorStrings.Designer.cs</LastGenOutput>
@@ -179,7 +188,6 @@
  <ItemGroup>
    <Folder Include="CognitiveModels\QnA\en\" />
    <Folder Include="Dialogs\Introductions\" />
-   <Folder Include="Dialogs\RoomDetail\Resources\" />
    <Folder Include="Dialogs\Shared\RecognizerDialogs\Resources\" />
    <Folder Include="Shared\Delegates\" />
  </ItemGroup> 

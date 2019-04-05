@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using HotelBot.Dialogs.RoomDetail.Resources;
 using HotelBot.Models.DTO;
 using HotelBot.Models.Wrappers;
 using Microsoft.Bot.Builder;
@@ -29,7 +30,17 @@ namespace HotelBot.Dialogs.RoomDetail
                 {
                     ResponseIds.SendLowestRate, (context, data) =>
                         SendLowestRate(context, data)
-                }
+                },
+                {
+                    ResponseIds.RoomChoicesPrompt, (context, data) =>
+                       MessageFactory.Text(RoomDetailStrings.ROOM_CHOICES_PROMPT)
+                },
+                {
+                    ResponseIds.RoomChoicesPromptLooped, (context, data) =>
+                        MessageFactory.Text(RoomDetailStrings.ROOM_CHOICES_PROMPT_LOOPED)
+                },
+
+
             }
 
         };
@@ -124,6 +135,12 @@ namespace HotelBot.Dialogs.RoomDetail
             public const string SendExtraInfo = "sendExtraInfo";
             public const string SendRates = "sendRates";
             public const string SendLowestRate = "sendLowestRate";
+
+            public const string RoomChoicesPrompt = "roomChoicesPrompt";
+            public const string RoomChoicesPromptLooped = "roomChoisesPromptLooped";
+
+
+
         }
     }
 }
