@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.Cancel;
 using HotelBot.Dialogs.FetchAvailableRooms;
+using HotelBot.Dialogs.Introductions;
 using HotelBot.Dialogs.Prompts.UpdateState;
 using HotelBot.Dialogs.Prompts.UpdateStateChoice;
 using HotelBot.Models.LUIS;
@@ -17,8 +18,6 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms
     public class FetchAvailableRoomsRecognizerDialog: InterruptableDialog
 
     {
-        // todo: change key if needed
-        protected const string LuisResultBookARoomKey = "LuisResult_BookARoom";
         private readonly StateBotAccessors _accessors;
         private readonly BotServices _services;
 
@@ -39,11 +38,11 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms
             var luisResult = await luisService.RecognizeAsync<HotelBotLuis>(dc.Context, cancellationToken);
             var intent = luisResult.TopIntent().intent;
             var isChoiceOptionUtterance = (dc.ActiveDialog.Id == nameof(UpdateStateChoicePrompt)) | (dc.ActiveDialog.Id == nameof(ChoicePrompt));
+            var isIntroductionChoice = (dc.ActiveDialog.Id == nameof(IntroductionReply));
 
 
             // Only triggers interruption if confidence level is high
-            if (luisResult.TopIntent().score > 0.80)
-            {
+            if (luisResult.TopIntent().score > 0.80 && !isIntroductionChoice)
                 switch (intent)
                 {
                     case HotelBotLuis.Intent.Cancel:
@@ -71,7 +70,6 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms
                         return await OnUpdate(dc, dialogOptions);
                     }
                 }
-            }
 
             // call the non overriden continue dialog in componentdialog
             return InterruptionStatus.NoAction;
@@ -112,7 +110,7 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms
                 // --> old comment: await dc.CancelAllDialogsAsync(); // removes entire stack
                 // begin our own new dialogwaterfall step
 
-                
+
                 await dc.BeginDialogAsync(nameof(UpdateStatePrompt), options);
 
                 return InterruptionStatus.Waiting;

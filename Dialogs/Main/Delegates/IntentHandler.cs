@@ -1,12 +1,14 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.FetchAvailableRooms;
+using HotelBot.Dialogs.Introductions;
 using HotelBot.Dialogs.Prompts.UpdateState;
 using HotelBot.Dialogs.Shared.RecognizerDialogs;
 using HotelBot.Extensions;
 using HotelBot.Models.LUIS;
 using HotelBot.Shared.Helpers;
 using HotelBot.StateAccessors;
+using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.TemplateManager;
 using Microsoft.Recognizers.Text.DataTypes.TimexExpression;
@@ -46,6 +48,7 @@ namespace HotelBot.Dialogs.Main.Delegates
 
             // set initial book a room state with captured entities in the book a room intent  
             SetInitialFetchAvailableRoomsState(fetchAvailableRoomsState, luisResult);
+          
             await dc.BeginDialogAsync(nameof(FetchAvailableRoomsDialog));
         }
 

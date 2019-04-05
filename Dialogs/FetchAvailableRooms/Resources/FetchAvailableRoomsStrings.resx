@@ -117,20 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CONTEXTUAL_HELP" xml:space="preserve">
-    <value>If you said something wrong, you can always ask me to change it.</value>
-  </data>
   <data name="CONTINUE_OR_UPDATE" xml:space="preserve">
     <value>Tap the buttons in the card to continue. I can search for rooms again if you would like. </value>
   </data>
   <data name="HELP_MESSAGE" xml:space="preserve">
-    <value>You can book a room by providing me the information I need. You can also update previous set values, just ask me.</value>
+    <value>I can help you find a room. If you make a mistake try asking me to change it. I can understand sentences like "Can you change my arrival date to next week thursday". You can do something else by asking me to cancel. </value>
   </data>
   <data name="INCORRECT_DATE" xml:space="preserve">
     <value>Sorry you cannot book a room in the past. </value>
   </data>
   <data name="INTRODUCTION" xml:space="preserve">
-    <value>To help you find a room, I will need some information from you. Let's start. </value>
+    <value>To help you find a room, I will need some information from you.</value>
+  </data>
+  <data name="INTRODUCTION_MORE_INFO" xml:space="preserve">
+    <value>If you make a mistake, ask me to change it for you or use the suggested actions. Let's start.</value>
+  </data>
+  <data name="INTRODUCTION_START" xml:space="preserve">
+    <value>OK, let's start!</value>
   </data>
   <data name="LEAVINGDATE_PROMPT" xml:space="preserve">
     <value>When would you be leaving?</value>

@@ -61,15 +61,6 @@ namespace HotelBot.Dialogs.FetchAvailableRooms.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If you said something wrong, you can always ask me to change it..
-        /// </summary>
-        public static string CONTEXTUAL_HELP {
-            get {
-                return ResourceManager.GetString("CONTEXTUAL_HELP", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Tap the buttons in the card to continue. I can search for rooms again if you would like. .
         /// </summary>
         public static string CONTINUE_OR_UPDATE {
@@ -79,7 +70,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You can book a room by providing me the information I need. You can also update previous set values, just ask me..
+        ///   Looks up a localized string similar to I can help you find a room. If you make a mistake try asking me to change it. I can understand sentences like &quot;Can you change my arrival date to next week thursday&quot;. You can do something else by asking me to cancel. .
         /// </summary>
         public static string HELP_MESSAGE {
             get {
@@ -97,11 +88,29 @@ namespace HotelBot.Dialogs.FetchAvailableRooms.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To help you find a room, I will need some information from you. Let&apos;s start. .
+        ///   Looks up a localized string similar to To help you find a room, I will need some information from you..
         /// </summary>
         public static string INTRODUCTION {
             get {
                 return ResourceManager.GetString("INTRODUCTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you make a mistake, ask me to change it for you or use the suggested actions. Let&apos;s start..
+        /// </summary>
+        public static string INTRODUCTION_MORE_INFO {
+            get {
+                return ResourceManager.GetString("INTRODUCTION_MORE_INFO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK, let&apos;s start!.
+        /// </summary>
+        public static string INTRODUCTION_START {
+            get {
+                return ResourceManager.GetString("INTRODUCTION_START", resourceCulture);
             }
         }
         

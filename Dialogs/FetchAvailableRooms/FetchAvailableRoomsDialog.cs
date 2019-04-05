@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using HotelBot.Dialogs.Introductions;
 using HotelBot.Dialogs.Prompts.ArrivalDate;
 using HotelBot.Dialogs.Prompts.ConfirmFetchRooms;
 using HotelBot.Dialogs.Prompts.ContinueOrUpdatePrompt;
@@ -12,8 +12,10 @@ using HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms;
 using HotelBot.Models.Wrappers;
 using HotelBot.Services;
 using HotelBot.StateAccessors;
+using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Dialogs.Choices;
+using Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments;
 
 namespace HotelBot.Dialogs.FetchAvailableRooms
 {
@@ -30,9 +32,11 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             InitialDialogId = nameof(FetchAvailableRoomsDialog);
             var fetchAvailableRoomsWaterfallSteps = new WaterfallStep []
             {
-                AskForNumberOfPeople, AskForArrivalDate, AskForLeavingDate, PromptFetchRoomsConfirmationPrompt, ProcessFetchRoomsConfirmationPrompt,
+                SendIntroAndPromptHelp, AskForNumberOfPeople, AskForArrivalDate, AskForLeavingDate, PromptFetchRoomsConfirmationPrompt, ProcessFetchRoomsConfirmationPrompt,
                 RespondToContinueOrUpdate, RespondToNewRequest
             };
+
+          
             AddDialog(new WaterfallDialog(InitialDialogId, fetchAvailableRoomsWaterfallSteps));
             AddDialog(new ArrivalDatePromptDialog(accessors));
             AddDialog(new ChoicePrompt(nameof(ChoicePrompt)));
@@ -41,10 +45,28 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             AddDialog(new NumberOfPeoplePromptDialog(accessors));
             AddDialog(new UpdateStateChoicePrompt(accessors));
             AddDialog(new ContinueOrUpdatePrompt(accessors));
+            AddDialog(new IntroductionReply(services, accessors));
         }
+
+
+        public async Task<DialogTurnResult> SendIntroAndPromptHelp(WaterfallStepContext sc, CancellationToken cancellationToken)
+        {
+            if (sc.Options == null)
+            {
+                return await sc.BeginDialogAsync(nameof(IntroductionReply));
+
+            }
+
+            return await sc.NextAsync();
+
+        }
+
+
+
 
         public async Task<DialogTurnResult> AskForNumberOfPeople(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
+
             var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
             if (state.NumberOfPeople != null) return await sc.NextAsync();
 
@@ -61,7 +83,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
         public async Task<DialogTurnResult> AskForLeavingDate(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
-            if (state.LeavingDate != null)  return await sc.NextAsync();
+            if (state.LeavingDate != null) return await sc.NextAsync();
             return await sc.BeginDialogAsync(nameof(DepartureDatePromptDialog));
         }
 

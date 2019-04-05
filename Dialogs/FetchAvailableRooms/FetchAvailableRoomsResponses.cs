@@ -47,6 +47,13 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                             InputHints.IgnoringInput)
                 },
                 {
+                    ResponseIds.SendStart, (context, data) =>
+                        MessageFactory.Text(
+                            FetchAvailableRoomsStrings.INTRODUCTION_START,
+                            FetchAvailableRoomsStrings.INTRODUCTION_START,
+                            InputHints.IgnoringInput)
+                },
+                {
                     ResponseIds.NotRecognizedDate, (context, data) =>
                         MessageFactory.Text(
                             FetchAvailableRoomsStrings.NOT_RECOGNIZED_DATE,
@@ -105,6 +112,20 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                 {
                     ResponseIds.SendRoomDetail, (context, data) =>
                         SendRoomDetail(context, data)
+                },
+                {
+                    ResponseIds.SendIntroduction, (context, data) =>
+                        MessageFactory.Text(
+                            FetchAvailableRoomsStrings.INTRODUCTION,
+                            FetchAvailableRoomsStrings.INTRODUCTION,
+                            InputHints.IgnoringInput)
+                },
+                {
+                    ResponseIds.SendMoreInfo, (context, data) =>
+                        MessageFactory.Text(
+                            FetchAvailableRoomsStrings.INTRODUCTION_MORE_INFO,
+                            FetchAvailableRoomsStrings.INTRODUCTION_MORE_INFO,
+                            InputHints.IgnoringInput)
                 },
                 {
                     ResponseIds.UpdateSavedState, (context, data) =>
@@ -374,7 +395,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             public const string Help = "help";
 
             public const string Overview = "overview";
-            public const string ReroutedOverview = "ReroutedOverview";
+            public const string ReroutedOverview = "reroutedOverview";
             public const string SendRoomsCarousel = "sendRoomsCarousel";
             public const string SendRoomDetail = "sendRoomDetail";
             public const string ContinueOrUpdate = "continueOrUpdate";
@@ -382,6 +403,14 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
 
             public const string UpdateSavedState = "updateSavedState";
 
+
+            public const string SendIntroduction = "sendIntroduction";
+            public const string SendStart = "sendStart";
+
+
+
+
+            public const string SendMoreInfo = "sendMoreInfo";
 
 
 
