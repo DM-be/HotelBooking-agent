@@ -1,0 +1,222 @@
+Label	Weight	Text
+l_hotelbot	1	i want to leave next week friday instead
+l_hotelbot	1	call us
+l_hotelbot	1	set checkin to april 15
+l_hotelbot	1	could you give me a route to your location
+l_hotelbot	1	update my leaving date
+l_hotelbot	1	i checkin on april 15
+l_hotelbot	1	what's your address
+l_hotelbot	1	change room size
+l_hotelbot	1	i need a room for five
+l_hotelbot	1	i want a room for three
+l_hotelbot	1	how late can i arrive tomorrow
+l_hotelbot	1	change people to two
+l_hotelbot	1	change my arrival time
+l_hotelbot	1	could i change my checking in date to april 15
+l_hotelbot	1	change room to 2 persons
+l_hotelbot	1	i want to cancel
+l_hotelbot	1	change the checking out date
+l_hotelbot	1	no we want a room for seven
+l_hotelbot	1	cancel
+l_hotelbot	1	change my arrivaldate to next week
+l_hotelbot	1	the checkin is april 15
+l_hotelbot	1	i mistyped my email adres it is dennistest@hotmail.com instead of the other
+l_hotelbot	1	i need a map to your hotel
+l_hotelbot	1	could you give me a route to where you are
+l_hotelbot	1	i need directions to your hotel
+l_hotelbot	1	i want to call you
+l_hotelbot	1	i want to change when i arrive
+l_hotelbot	1	update room size to five people
+l_hotelbot	1	update the arrival date please
+l_hotelbot	1	i want to book a room for next week
+l_hotelbot	1	actually i mean six people
+l_hotelbot	1	change my email to blabla@test.com
+l_hotelbot	1	can we call the hotel
+l_hotelbot	1	room for three instead
+l_hotelbot	1	i want to book a room for three tomorrow
+l_hotelbot	1	change my email address
+l_hotelbot	1	can you give me a map to the hotel>
+l_hotelbot	1	can we call
+l_hotelbot	1	change the number of people to seven
+l_hotelbot	1	checkout is wrong
+l_hotelbot	1	i want to book a room tomorrow
+l_hotelbot	1	can i get your adress
+l_hotelbot	1	i want to book a room for myself and my partner next week.
+l_hotelbot	1	checking out on next week thursday
+l_hotelbot	1	could you help me move to your location
+l_hotelbot	1	help me book another room for five
+l_hotelbot	1	i made a mistake, can i change my arrivaldate
+l_hotelbot	1	could i leave next week instead
+l_hotelbot	1	need a room for two
+l_hotelbot	1	i leave on april 15 instead
+l_hotelbot	1	i want to change my checkin to next week friday
+l_hotelbot	1	nice to meet you
+l_hotelbot	1	checkout next week instead
+l_hotelbot	1	no sorry checkin should be april 15
+l_hotelbot	1	can i change my checkin to next week thursday
+l_hotelbot	1	i want to change my arrival time
+l_hotelbot	1	are rooms available on april 12
+l_hotelbot	1	can i book for tonight
+l_hotelbot	1	can you give me a map to your location
+l_hotelbot	1	i want to arrive tomorrow instead
+l_hotelbot	1	no i want a room for two
+l_hotelbot	1	update room size to two
+l_hotelbot	1	can i update my arriving date
+l_hotelbot	1	a random sentence
+l_hotelbot	1	update checking out to next sunday
+l_hotelbot	1	sorry change email
+l_hotelbot	1	can i change my checkin
+l_hotelbot	1	checking in on tomorrow
+l_hotelbot	1	where in the city can i visit you
+l_hotelbot	1	i want to leave next week instead
+l_hotelbot	1	i want a room for three instead
+l_hotelbot	1	i want to checkin on april 15 instead
+l_hotelbot	1	set checkin to next week thursday
+l_hotelbot	1	change the room for three please
+l_hotelbot	1	book me a room for three
+l_hotelbot	1	i made a mistake in checking out
+l_hotelbot	2	whats your number
+l_hotelbot	1	i want to come next week instead
+l_hotelbot	1	i want a room on sunday
+l_hotelbot	1	change my arrivaldate to 25/02/2019
+l_hotelbot	1	update room to three
+l_hotelbot	1	can i call the hotel
+l_hotelbot	1	i want to leave next week
+l_hotelbot	1	i leave next sunday instead
+l_hotelbot	1	could i change my arrival date to april 22 instead
+l_hotelbot	1	change room to 6 people
+l_hotelbot	1	need a room for five tomorrow
+l_hotelbot	1	change my arrival date
+l_hotelbot	1	i want to arrive on april 15 instead
+l_hotelbot	1	no checking out is wrong
+l_hotelbot	1	change room to 2
+l_hotelbot	2	change checkout to april 22
+l_hotelbot	1	change the number of people to two
+l_hotelbot	1	need a room
+l_hotelbot	1	where is the bed and breakfast
+l_hotelbot	1	what can you do
+l_hotelbot	1	no leaving is wrong
+l_hotelbot	1	can i change when i leave
+l_hotelbot	1	can i change my checkin to tomorrow
+l_hotelbot	1	change when i arrive to the first of next month
+l_hotelbot	1	i want to do something else
+l_hotelbot	1	hi
+l_hotelbot	1	change my checkin
+l_hotelbot	1	i want to arrive next week monday instead
+l_hotelbot	1	change checkin to next week
+l_hotelbot	1	where is it
+l_hotelbot	1	can i get a room for tomorrow
+l_hotelbot	1	could i change my email address
+l_hotelbot	1	update my email
+l_hotelbot	1	where can i find the hotel
+l_hotelbot	1	nothing meaningfull said
+l_hotelbot	1	can i change my leaving date
+l_hotelbot	1	can i book another room for myself next week
+l_hotelbot	1	change my checkout to april 15 instead
+l_hotelbot	1	i want to arrive on another day
+l_hotelbot	1	i need a room for two people and i want to arrive april 15
+l_hotelbot	1	i want to book a room for two persons tonight
+l_hotelbot	1	update my email to bla@test.com
+l_hotelbot	1	checking in on april 15
+l_hotelbot	1	i need help
+l_hotelbot	1	i want a room on april 15
+l_hotelbot	1	i want a room for tomorow
+l_hotelbot	1	i want a route to your location
+l_hotelbot	1	i want to checkout on next week thursday instead
+l_hotelbot	1	cancel this
+l_hotelbot	1	change leaving date to next friday
+l_hotelbot	1	could you change my email to another one
+l_hotelbot	1	update my email address please
+l_hotelbot	1	i need a room for five instead
+l_hotelbot	2	what is the location
+l_hotelbot	1	i need to checkout on thursday
+l_hotelbot	1	i want to get a room for next week
+l_hotelbot	1	i want to call a person
+l_hotelbot	1	i want to leave on 23/04.2019 instead
+l_hotelbot	1	i checkin tomorrow instead
+l_hotelbot	1	help me
+l_hotelbot	1	please cancel
+l_hotelbot	1	meaningless
+l_hotelbot	1	could i update my email
+l_hotelbot	1	where is the hotel
+l_hotelbot	1	change my checkout
+l_hotelbot	1	actually i want to bring six people
+l_hotelbot	1	update room size to four
+l_hotelbot	1	i want to move to your location
+l_hotelbot	1	i want to checkout next week thursday instead
+l_hotelbot	1	i want to book a room in january for myself and my partner
+l_hotelbot	1	how can we find you
+l_hotelbot	1	i want to checkout next week friday instead
+l_hotelbot	1	no a room for six
+l_hotelbot	1	update my arriving date
+l_hotelbot	1	i want to call reception
+l_hotelbot	1	no checkin is april 15
+l_hotelbot	1	stop
+l_hotelbot	1	i want to update my checkin to april 15
+l_hotelbot	1	change the number of people to six
+l_hotelbot	1	i want to update checkout
+l_hotelbot	1	need a room for three next sunday
+l_hotelbot	1	change my leaving date to another time
+l_hotelbot	1	i want to checkin on next week thursday instead
+l_hotelbot	1	actually its seven instead
+l_hotelbot	1	i want to call the hotel
+l_hotelbot	1	i want to change my arrivaldate
+l_hotelbot	1	no checkout is 2 june
+l_hotelbot	1	no we want a room for three
+l_hotelbot	1	update my email address
+l_hotelbot	1	get me another room
+l_hotelbot	1	cancel this booking
+l_hotelbot	1	what is the hotel number?>
+l_hotelbot	1	where in the city are you
+l_hotelbot	1	can i change when i will arrive
+l_hotelbot	1	please stop
+l_hotelbot	1	change the checkout time
+l_hotelbot	1	can i call you
+l_hotelbot	1	stop now
+l_hotelbot	1	can i change arrival date
+l_hotelbot	1	i want to leave tomorrow
+l_hotelbot	1	what can i ask you
+l_hotelbot	1	update checkout
+l_hotelbot	1	i dont understand
+l_hotelbot	1	this is nothing special
+l_hotelbot	1	change people to three
+l_hotelbot	1	no i'm leaving next week saturday
+l_hotelbot	1	what is your adress
+l_hotelbot	1	update checkin to next week friday
+l_hotelbot	1	change people to six
+l_hotelbot	1	i want to arrive at another time
+l_hotelbot	1	sorry checkout is 12 january
+l_hotelbot	1	change my email
+l_hotelbot	1	help me navigate to your location
+l_hotelbot	1	could i get a room for next week
+l_hotelbot	1	change my email address now if you can
+l_hotelbot	1	update checkin to next week instead
+l_hotelbot	1	i need a room next week friday
+l_hotelbot	1	checking out tomorrow
+l_hotelbot	1	i want to arrive on april 15
+l_hotelbot	1	i want a room for six instead
+l_hotelbot	1	i dont understand what to do
+l_hotelbot	1	help
+q_2129612763787673_en	20.1	are dogs allowed
+q_2129612763787673_en	20.1	are dogs allowed
+q_2129612763787673_en	20.1	are dogs allowed
+q_2129612763787673_en	20.1	are dogs allowed
+q_2129612763787673_en	20.1	are dogs allowed
+q_2129612763787673_en	20.1	are dogs allowed
+q_2129612763787673_en	20.1	are dogs allowed
+q_2129612763787673_en	20.1	are dogs allowed
+q_2129612763787673_en	20.1	are dogs allowed
+q_2129612763787673_en	20.1	are dogs allowed
+q_2129612763787673_nl	15.46154	Zijn honden toegelaten op de kamer
+q_2129612763787673_nl	15.46154	Mag ik mijn hond meenemen
+q_2129612763787673_nl	15.46154	Zijn honden toegelaten
+q_2129612763787673_nl	15.46154	Is mijn hond toegelaten in het hotel
+q_2129612763787673_nl	15.46154	We hebben twee honden, is dat een probleem
+q_2129612763787673_nl	15.46154	Zijn honden toegelaten op de kamer
+q_2129612763787673_nl	15.46154	Mag ik mijn hond meenemen
+q_2129612763787673_nl	15.46154	Zijn honden toegelaten
+q_2129612763787673_nl	15.46154	Is mijn hond toegelaten in het hotel
+q_2129612763787673_nl	15.46154	Zijn honden toegelaten op de kamer
+q_2129612763787673_nl	15.46154	Mag ik mijn hond meenemen
+q_2129612763787673_nl	15.46154	Zijn honden toegelaten
+q_2129612763787673_nl	15.46154	Is mijn hond toegelaten in het hotel

@@ -1,0 +1,71 @@
+Label	Weight	Text
+l_hotelbot	3.960784	i want to do something else
+l_hotelbot	3.960784	hi
+l_hotelbot	3.960784	change my checkin
+l_hotelbot	3.960784	i want to arrive next week monday instead
+l_hotelbot	3.960784	change checkin to next week
+l_hotelbot	3.960784	where is it
+l_hotelbot	3.960784	can i get a room for tomorrow
+l_hotelbot	3.960784	could i change my email address
+l_hotelbot	3.960784	update my email
+l_hotelbot	3.960784	where can i find the hotel
+l_hotelbot	3.960784	nothing meaningfull said
+l_hotelbot	3.960784	can i change my leaving date
+l_hotelbot	3.960784	can i book another room for myself next week
+l_hotelbot	3.960784	change my checkout to april 15 instead
+l_hotelbot	3.960784	i want to arrive on another day
+l_hotelbot	3.960784	i need a room for two people and i want to arrive april 15
+l_hotelbot	3.960784	i want to book a room for two persons tonight
+l_hotelbot	3.960784	update my email to bla@test.com
+l_hotelbot	3.960784	checking in on april 15
+l_hotelbot	3.960784	i need help
+l_hotelbot	3.960784	i want a room on april 15
+l_hotelbot	3.960784	i want a room for tomorow
+l_hotelbot	3.960784	i want a route to your location
+l_hotelbot	3.960784	i want to checkout on next week thursday instead
+l_hotelbot	3.960784	cancel this
+l_hotelbot	3.960784	change leaving date to next friday
+l_hotelbot	3.960784	could you change my email to another one
+l_hotelbot	3.960784	update my email address please
+l_hotelbot	3.960784	i need a room for five instead
+l_hotelbot	7.921568	what is the location
+l_hotelbot	3.960784	i need to checkout on thursday
+l_hotelbot	3.960784	i want to get a room for next week
+l_hotelbot	3.960784	i want to call a person
+l_hotelbot	3.960784	i want to leave on 23/04.2019 instead
+l_hotelbot	3.960784	i checkin tomorrow instead
+l_hotelbot	3.960784	help me
+l_hotelbot	3.960784	please cancel
+l_hotelbot	3.960784	meaningless
+l_hotelbot	3.960784	could i update my email
+l_hotelbot	3.960784	where is the hotel
+l_hotelbot	3.960784	change my checkout
+l_hotelbot	3.960784	actually i want to bring six people
+l_hotelbot	3.960784	update room size to four
+l_hotelbot	3.960784	i want to move to your location
+l_hotelbot	3.960784	i want to checkout next week thursday instead
+l_hotelbot	3.960784	i want to book a room in january for myself and my partner
+l_hotelbot	3.960784	how can we find you
+l_hotelbot	3.960784	i want to checkout next week friday instead
+l_hotelbot	3.960784	no a room for six
+l_hotelbot	3.960784	update my arriving date
+q_2129612763787673_en	20.2	can i take my dog
+q_2129612763787673_en	20.2	can i take my dog
+q_2129612763787673_en	20.2	can i take my dog
+q_2129612763787673_en	20.2	can i take my dog
+q_2129612763787673_en	20.2	can i take my dog
+q_2129612763787673_en	20.2	can i take my dog
+q_2129612763787673_en	20.2	can i take my dog
+q_2129612763787673_en	20.2	can i take my dog
+q_2129612763787673_en	20.2	can i take my dog
+q_2129612763787673_en	20.2	can i take my dog
+q_2129612763787673_nl	20.2	Zijn honden toegelaten
+q_2129612763787673_nl	20.2	Zijn honden toegelaten
+q_2129612763787673_nl	20.2	Zijn honden toegelaten
+q_2129612763787673_nl	20.2	Zijn honden toegelaten
+q_2129612763787673_nl	20.2	Zijn honden toegelaten
+q_2129612763787673_nl	20.2	Zijn honden toegelaten
+q_2129612763787673_nl	20.2	Zijn honden toegelaten
+q_2129612763787673_nl	20.2	Zijn honden toegelaten
+q_2129612763787673_nl	20.2	Zijn honden toegelaten
+q_2129612763787673_nl	20.2	Zijn honden toegelaten

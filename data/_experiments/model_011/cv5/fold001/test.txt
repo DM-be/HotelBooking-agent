@@ -1,0 +1,71 @@
+Label	Weight	Text
+l_hotelbot	3.865385	i want to change my checkin to next week friday
+l_hotelbot	3.865385	nice to meet you
+l_hotelbot	3.865385	checkout next week instead
+l_hotelbot	3.865385	no sorry checkin should be april 15
+l_hotelbot	3.865385	can i change my checkin to next week thursday
+l_hotelbot	3.865385	i want to change my arrival time
+l_hotelbot	3.865385	are rooms available on april 12
+l_hotelbot	3.865385	can i book for tonight
+l_hotelbot	3.865385	can you give me a map to your location
+l_hotelbot	3.865385	i want to arrive tomorrow instead
+l_hotelbot	3.865385	no i want a room for two
+l_hotelbot	3.865385	update room size to two
+l_hotelbot	3.865385	can i update my arriving date
+l_hotelbot	3.865385	a random sentence
+l_hotelbot	3.865385	update checking out to next sunday
+l_hotelbot	3.865385	sorry change email
+l_hotelbot	3.865385	can i change my checkin
+l_hotelbot	3.865385	checking in on tomorrow
+l_hotelbot	3.865385	where in the city can i visit you
+l_hotelbot	3.865385	i want to leave next week instead
+l_hotelbot	3.865385	i want a room for three instead
+l_hotelbot	3.865385	i want to checkin on april 15 instead
+l_hotelbot	3.865385	set checkin to next week thursday
+l_hotelbot	3.865385	change the room for three please
+l_hotelbot	3.865385	book me a room for three
+l_hotelbot	3.865385	i made a mistake in checking out
+l_hotelbot	7.730769	whats your number
+l_hotelbot	3.865385	i want to come next week instead
+l_hotelbot	3.865385	i want a room on sunday
+l_hotelbot	3.865385	change my arrivaldate to 25/02/2019
+l_hotelbot	3.865385	update room to three
+l_hotelbot	3.865385	can i call the hotel
+l_hotelbot	3.865385	i want to leave next week
+l_hotelbot	3.865385	i leave next sunday instead
+l_hotelbot	3.865385	could i change my arrival date to april 22 instead
+l_hotelbot	3.865385	change room to 6 people
+l_hotelbot	3.865385	need a room for five tomorrow
+l_hotelbot	3.865385	change my arrival date
+l_hotelbot	3.865385	i want to arrive on april 15 instead
+l_hotelbot	3.865385	no checking out is wrong
+l_hotelbot	3.865385	change room to 2
+l_hotelbot	7.730769	change checkout to april 22
+l_hotelbot	3.865385	change the number of people to two
+l_hotelbot	3.865385	need a room
+l_hotelbot	3.865385	where is the bed and breakfast
+l_hotelbot	3.865385	what can you do
+l_hotelbot	3.865385	no leaving is wrong
+l_hotelbot	3.865385	can i change when i leave
+l_hotelbot	3.865385	can i change my checkin to tomorrow
+l_hotelbot	3.865385	change when i arrive to the first of next month
+q_2129612763787673_en	20.1	can i take my dog
+q_2129612763787673_en	20.1	can i take my dog
+q_2129612763787673_en	20.1	can i take my dog
+q_2129612763787673_en	20.1	can i take my dog
+q_2129612763787673_en	20.1	can i take my dog
+q_2129612763787673_en	20.1	can i take my dog
+q_2129612763787673_en	20.1	can i take my dog
+q_2129612763787673_en	20.1	can i take my dog
+q_2129612763787673_en	20.1	can i take my dog
+q_2129612763787673_en	20.1	can i take my dog
+q_2129612763787673_nl	20.1	Mag ik mijn hond meenemen
+q_2129612763787673_nl	20.1	Mag ik mijn hond meenemen
+q_2129612763787673_nl	20.1	Mag ik mijn hond meenemen
+q_2129612763787673_nl	20.1	Mag ik mijn hond meenemen
+q_2129612763787673_nl	20.1	Mag ik mijn hond meenemen
+q_2129612763787673_nl	20.1	Mag ik mijn hond meenemen
+q_2129612763787673_nl	20.1	Mag ik mijn hond meenemen
+q_2129612763787673_nl	20.1	Mag ik mijn hond meenemen
+q_2129612763787673_nl	20.1	Mag ik mijn hond meenemen
+q_2129612763787673_nl	20.1	Mag ik mijn hond meenemen

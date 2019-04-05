@@ -1,0 +1,71 @@
+Label	Weight	Text
+l_hotelbot	4.06	i want to leave next week friday instead
+l_hotelbot	4.06	call us
+l_hotelbot	4.06	set checkin to april 15
+l_hotelbot	4.06	could you give me a route to your location
+l_hotelbot	4.06	update my leaving date
+l_hotelbot	4.06	i checkin on april 15
+l_hotelbot	4.06	what's your address
+l_hotelbot	4.06	change room size
+l_hotelbot	4.06	i need a room for five
+l_hotelbot	4.06	i want a room for three
+l_hotelbot	4.06	how late can i arrive tomorrow
+l_hotelbot	4.06	change people to two
+l_hotelbot	4.06	change my arrival time
+l_hotelbot	4.06	could i change my checking in date to april 15
+l_hotelbot	4.06	change room to 2 persons
+l_hotelbot	4.06	i want to cancel
+l_hotelbot	4.06	change the checking out date
+l_hotelbot	4.06	no we want a room for seven
+l_hotelbot	4.06	cancel
+l_hotelbot	4.06	change my arrivaldate to next week
+l_hotelbot	4.06	the checkin is april 15
+l_hotelbot	4.06	i mistyped my email adres it is dennistest@hotmail.com instead of the other
+l_hotelbot	4.06	i need a map to your hotel
+l_hotelbot	4.06	could you give me a route to where you are
+l_hotelbot	4.06	i need directions to your hotel
+l_hotelbot	4.06	i want to call you
+l_hotelbot	4.06	i want to change when i arrive
+l_hotelbot	4.06	update room size to five people
+l_hotelbot	4.06	update the arrival date please
+l_hotelbot	4.06	i want to book a room for next week
+l_hotelbot	4.06	actually i mean six people
+l_hotelbot	4.06	change my email to blabla@test.com
+l_hotelbot	4.06	can we call the hotel
+l_hotelbot	4.06	room for three instead
+l_hotelbot	4.06	i want to book a room for three tomorrow
+l_hotelbot	4.06	change my email address
+l_hotelbot	4.06	can you give me a map to the hotel>
+l_hotelbot	4.06	can we call
+l_hotelbot	4.06	change the number of people to seven
+l_hotelbot	4.06	checkout is wrong
+l_hotelbot	4.06	i want to book a room tomorrow
+l_hotelbot	4.06	can i get your adress
+l_hotelbot	4.06	i want to book a room for myself and my partner next week.
+l_hotelbot	4.06	checking out on next week thursday
+l_hotelbot	4.06	could you help me move to your location
+l_hotelbot	4.06	help me book another room for five
+l_hotelbot	4.06	i made a mistake, can i change my arrivaldate
+l_hotelbot	4.06	could i leave next week instead
+l_hotelbot	4.06	need a room for two
+l_hotelbot	4.06	i leave on april 15 instead
+q_2129612763787673_en	20.3	are dogs allowed
+q_2129612763787673_en	20.3	are dogs allowed
+q_2129612763787673_en	20.3	are dogs allowed
+q_2129612763787673_en	20.3	are dogs allowed
+q_2129612763787673_en	20.3	are dogs allowed
+q_2129612763787673_en	20.3	are dogs allowed
+q_2129612763787673_en	20.3	are dogs allowed
+q_2129612763787673_en	20.3	are dogs allowed
+q_2129612763787673_en	20.3	are dogs allowed
+q_2129612763787673_en	20.3	are dogs allowed
+q_2129612763787673_nl	20.3	Zijn honden toegelaten op de kamer
+q_2129612763787673_nl	20.3	Zijn honden toegelaten op de kamer
+q_2129612763787673_nl	20.3	Zijn honden toegelaten op de kamer
+q_2129612763787673_nl	20.3	Zijn honden toegelaten op de kamer
+q_2129612763787673_nl	20.3	Zijn honden toegelaten op de kamer
+q_2129612763787673_nl	20.3	Zijn honden toegelaten op de kamer
+q_2129612763787673_nl	20.3	Zijn honden toegelaten op de kamer
+q_2129612763787673_nl	20.3	Zijn honden toegelaten op de kamer
+q_2129612763787673_nl	20.3	Zijn honden toegelaten op de kamer
+q_2129612763787673_nl	20.3	Zijn honden toegelaten op de kamer
