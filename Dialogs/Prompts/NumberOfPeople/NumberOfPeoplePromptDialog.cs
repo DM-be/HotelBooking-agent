@@ -51,7 +51,7 @@ namespace HotelBot.Dialogs.Prompts.NumberOfPeople
             if (sc.Options != null)
             {
                 var dialogOptions = (DialogOptions)sc.Options;
-                updated = dialogOptions.UpdatedNumberOfPeople;
+                updated = dialogOptions.UpdatedNumberOfPeople; //todo: fix this --> this wont be set, only here, read only object 
             }
 
             var _state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());

@@ -12,10 +12,8 @@ using HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms;
 using HotelBot.Models.Wrappers;
 using HotelBot.Services;
 using HotelBot.StateAccessors;
-using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Dialogs.Choices;
-using Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments;
 
 namespace HotelBot.Dialogs.FetchAvailableRooms
 {
@@ -32,11 +30,11 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             InitialDialogId = nameof(FetchAvailableRoomsDialog);
             var fetchAvailableRoomsWaterfallSteps = new WaterfallStep []
             {
-                SendIntroAndPromptHelp, AskForNumberOfPeople, AskForArrivalDate, AskForLeavingDate, PromptFetchRoomsConfirmationPrompt, ProcessFetchRoomsConfirmationPrompt,
-                RespondToContinueOrUpdate, RespondToNewRequest
+                SendIntroAndPromptHelp, AskForNumberOfPeople, AskForArrivalDate, AskForLeavingDate, PromptFetchRoomsConfirmationPrompt,
+                ProcessFetchRoomsConfirmationPrompt, RespondToContinueOrUpdate, RespondToNewRequest
             };
 
-          
+
             AddDialog(new WaterfallDialog(InitialDialogId, fetchAvailableRoomsWaterfallSteps));
             AddDialog(new ArrivalDatePromptDialog(accessors));
             AddDialog(new ChoicePrompt(nameof(ChoicePrompt)));
@@ -51,12 +49,9 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
 
         public async Task<DialogTurnResult> SendIntroAndPromptHelp(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-            if (sc.Options == null)
-            {
+            var dialogOptions = sc.Options as DialogOptions;
+            if (dialogOptions.SkipIntroduction != null && dialogOptions.SkipIntroduction == false)
                 return await sc.BeginDialogAsync(nameof(FetchAvailableRoomsIntroductionPrompt));
-
-            }
-
             return await sc.NextAsync();
 
         }
@@ -133,7 +128,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             {
                 case FetchAvailableRoomsChoices.ChangeSearch:
 
-                    return await sc.BeginDialogAsync(nameof(UpdateStateChoicePrompt));
+                    return await sc.BeginDialogAsync(nameof(UpdateStateChoicePrompt), sc.Options);
                 case FetchAvailableRoomsChoices.StartOver:
                 {
                     var emptyState = new FetchAvailableRoomsState();
@@ -150,7 +145,9 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                     var dialogOptions = new DialogOptions
                     {
                         Rerouted = false,
-                        SkipConfirmation = true
+                        SkipConfirmation = true,
+                        SkipIntroduction = true
+
                     };
                     return await sc.ReplaceDialogAsync(InitialDialogId, dialogOptions);
                 }
@@ -178,7 +175,9 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             var dialogOptions = new DialogOptions
             {
                 SkipConfirmation = true,
-                Rerouted = false
+                Rerouted = false,
+                SkipIntroduction = true
+
             };
             switch (choice.Value)
             {

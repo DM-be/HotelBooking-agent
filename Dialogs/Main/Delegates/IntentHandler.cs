@@ -5,6 +5,7 @@ using HotelBot.Dialogs.Prompts.UpdateState;
 using HotelBot.Dialogs.Shared.RecognizerDialogs;
 using HotelBot.Extensions;
 using HotelBot.Models.LUIS;
+using HotelBot.Models.Wrappers;
 using HotelBot.Shared.Helpers;
 using HotelBot.StateAccessors;
 using Microsoft.Bot.Builder;
@@ -47,8 +48,11 @@ namespace HotelBot.Dialogs.Main.Delegates
 
             // set initial book a room state with captured entities in the book a room intent  
             SetInitialFetchAvailableRoomsState(fetchAvailableRoomsState, luisResult);
-          
-            await dc.BeginDialogAsync(nameof(FetchAvailableRoomsDialog));
+            var dialogOptions = new DialogOptions
+            {
+                SkipIntroduction = false
+            };
+            await dc.BeginDialogAsync(nameof(FetchAvailableRoomsDialog), dialogOptions);
         }
 
         private static async Task CancelDialogs(DialogContext dc, TemplateManager responder)

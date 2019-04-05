@@ -112,8 +112,8 @@ namespace HotelBot.Dialogs.RoomDetail
                     var dialogOptions = new DialogOptions
                     {
                         Rerouted = true,
-                        SkipConfirmation = false
-
+                        SkipConfirmation = false,
+                        SkipIntroduction = true
                     };
                     var dialogResult = new DialogResult
                     {
@@ -126,6 +126,7 @@ namespace HotelBot.Dialogs.RoomDetail
                     var dialogOpts = sc.Options as DialogOptions;
                     dialogOpts.Rerouted = false;
                     dialogOpts.Looped = true;
+
                     return await sc.ReplaceDialogAsync(InitialDialogId, dialogOpts);
                 case RoomDetailChoices.NoThanks:
                     return await sc.EndDialogAsync();
