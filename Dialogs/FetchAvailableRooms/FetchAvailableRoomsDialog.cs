@@ -34,7 +34,6 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                 ProcessFetchRoomsConfirmationPrompt, RespondToContinueOrUpdate, RespondToNewRequest
             };
 
-
             AddDialog(new WaterfallDialog(InitialDialogId, fetchAvailableRoomsWaterfallSteps));
             AddDialog(new ArrivalDatePromptDialog(accessors));
             AddDialog(new ChoicePrompt(nameof(ChoicePrompt)));
@@ -55,9 +54,6 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             return await sc.NextAsync();
 
         }
-
-
-
 
         public async Task<DialogTurnResult> AskForNumberOfPeople(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
@@ -88,8 +84,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             if (sc.Options != null)
             {
                 dialogOptions = (DialogOptions) sc.Options;
-                var confirmed = true;
-                if (dialogOptions.SkipConfirmation) return await sc.NextAsync(confirmed);
+                if (dialogOptions.SkipConfirmation) return await sc.NextAsync(dialogOptions.SkipConfirmation);
             }
 
             return await sc.BeginDialogAsync(nameof(ConfirmFetchRoomsPrompt), dialogOptions);
@@ -125,23 +120,29 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                     var emptyState = new FetchAvailableRoomsState();
                     _accessors.FetchAvailableRoomsStateAccessor.SetAsync(sc.Context, emptyState);
                     await sc.Context.SendActivityAsync("Ok, let's start over");
-                    return await sc.ReplaceDialogAsync(InitialDialogId, sc.Options);
+                    var dialogOptions = new DialogOptions
+                    {
+                        SkipIntroduction = true,
+                        Rerouted = false,
+
+                    };
+                    return await sc.ReplaceDialogAsync(InitialDialogId, dialogOptions);
                 }
                 case FetchAvailableRoomsChoices.NoThanks:
                     await sc.Context.SendActivityAsync("You're welcome");
                     return await sc.EndDialogAsync();
                     break;
-                case FetchAvailableRoomsChoices.Nevermind:
-                {
-                    var dialogOptions = new DialogOptions
-                    {
-                        Rerouted = false,
-                        SkipConfirmation = true,
-                        SkipIntroduction = true
+                //case FetchAvailableRoomsChoices.Nevermind:
+                //{
+                //    var dialogOptions = new DialogOptions
+                //    {
+                //        Rerouted = false,
+                //        SkipConfirmation = true,
+                //        SkipIntroduction = true
 
-                    };
-                    return await sc.ReplaceDialogAsync(InitialDialogId, dialogOptions);
-                }
+                //    };
+                //    return await sc.ReplaceDialogAsync(InitialDialogId, dialogOptions);
+                //}
             }
 
             return null;

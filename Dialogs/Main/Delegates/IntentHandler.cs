@@ -2,13 +2,11 @@
 using System.Threading.Tasks;
 using HotelBot.Dialogs.FetchAvailableRooms;
 using HotelBot.Dialogs.Prompts.UpdateState;
-using HotelBot.Dialogs.Shared.RecognizerDialogs;
 using HotelBot.Extensions;
 using HotelBot.Models.LUIS;
 using HotelBot.Models.Wrappers;
 using HotelBot.Shared.Helpers;
 using HotelBot.StateAccessors;
-using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.TemplateManager;
 using Microsoft.Recognizers.Text.DataTypes.TimexExpression;
@@ -21,7 +19,8 @@ namespace HotelBot.Dialogs.Main.Delegates
         public readonly MainIntentHandlerDelegates MainIntentHandlerDelegates = new MainIntentHandlerDelegates
         {
             {
-                HotelBotLuis.Intent.Book_A_Room, (dc, responder, facebookHelper, accessors, luisResult) => BeginFetchAvailableRoomsDialog(dc, accessors, luisResult)
+                HotelBotLuis.Intent.Book_A_Room,
+                (dc, responder, facebookHelper, accessors, luisResult) => BeginFetchAvailableRoomsDialog(dc, accessors, luisResult)
             },
             {
                 HotelBotLuis.Intent.Cancel, (dc, responder, facebookHelper, accessors, luisResult) => CancelDialogs(dc, responder)

@@ -32,17 +32,22 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms
 
         protected override async Task<InterruptionStatus> OnDialogInterruptionAsync(DialogContext dc, CancellationToken cancellationToken)
         {
+           
+            var skipRecognize = (dc.ActiveDialog.Id == nameof(UpdateStateChoicePrompt)) | 
+                                (dc.ActiveDialog.Id == nameof(FetchAvailableRoomsIntroductionPrompt)); // allow intent recognition on yes/no? --> choiceprompt
+            if (skipRecognize)
+            {
+                return InterruptionStatus.NoAction;
+            }
+
             // check luis intent
             _services.LuisServices.TryGetValue("hotelbot", out var luisService);
             if (luisService == null) throw new Exception("The specified LUIS Model could not be found in your Bot Services configuration.");
             var luisResult = await luisService.RecognizeAsync<HotelBotLuis>(dc.Context, cancellationToken);
             var intent = luisResult.TopIntent().intent;
-            var isChoiceOptionUtterance = (dc.ActiveDialog.Id == nameof(UpdateStateChoicePrompt)) | (dc.ActiveDialog.Id == nameof(ChoicePrompt));
-            var isIntroductionChoice = (dc.ActiveDialog.Id == nameof(FetchAvailableRoomsIntroductionPrompt));
 
 
-            // Only triggers interruption if confidence level is high
-            if (luisResult.TopIntent().score > 0.80 && !isIntroductionChoice)
+            if (luisResult.TopIntent().score > 0.80)
                 switch (intent)
                 {
                     case HotelBotLuis.Intent.Cancel:
@@ -63,7 +68,8 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms
                         var dialogOptions = new DialogOptions
                         {
                             LuisResult = luisResult,
-                            SkipConfirmation = isChoiceOptionUtterance
+
+                            SkipConfirmation = false
                         };
 
 
