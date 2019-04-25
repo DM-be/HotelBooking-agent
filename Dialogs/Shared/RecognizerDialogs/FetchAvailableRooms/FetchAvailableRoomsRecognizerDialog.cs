@@ -5,6 +5,7 @@ using HotelBot.Dialogs.Cancel;
 using HotelBot.Dialogs.FetchAvailableRooms;
 using HotelBot.Dialogs.Prompts.FetchAvailableRoomsIntroduction;
 using HotelBot.Dialogs.Prompts.UpdateState;
+using HotelBot.Extensions;
 using HotelBot.Models.LUIS;
 using HotelBot.Models.Wrappers;
 using HotelBot.Services;
@@ -69,8 +70,7 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms
                         var dialogOptions = new DialogOptions
                         {
                             LuisResult = luisResult,
-
-                            SkipConfirmation = false
+                            SkipConfirmation = dc.IsUpdateStateChoicePrompt()
                         };
 
 
