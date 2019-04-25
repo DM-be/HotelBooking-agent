@@ -1,33 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.FetchAvailableRooms;
 using HotelBot.Dialogs.RoomDetail;
+using HotelBot.Models.Wrappers;
+using HotelBot.Services;
 using HotelBot.StateAccessors;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Dialogs.Choices;
 
-namespace HotelBot.Dialogs.Prompts.RoomDetailActions
+namespace HotelBot.Dialogs.Prompts.RoomDetailChoices
 {
-    public class RoomDetailChoicesPrompt : ComponentDialog
+    public class RoomDetailChoicesPrompt: ComponentDialog
     {
-        private static readonly FetchAvailableRoomsResponses _responder = new FetchAvailableRoomsResponses();
+        //todo: refactor into own responses!
+        private static readonly RoomDetailResponses _responder = new RoomDetailResponses();
         private readonly StateBotAccessors _accessors;
+        private readonly BotServices _services;
 
-        public RoomDetailChoicesPrompt(StateBotAccessors accessors) : base(nameof(RoomDetailChoicesPrompt))
+        public RoomDetailChoicesPrompt(BotServices services, StateBotAccessors accessors): base(nameof(RoomDetailChoicesPrompt))
         {
             InitialDialogId = nameof(RoomDetailChoicesPrompt);
             _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
-            var RoomDetailActionsWaterfallsteps = new WaterfallStep[]
+            _services = services ?? throw new ArgumentNullException(nameof(services));
+            var RoomDetailActionsWaterfallsteps = new WaterfallStep []
             {
                 PromptChoices, ProcessChoice
             };
 
             AddDialog(new WaterfallDialog(InitialDialogId, RoomDetailActionsWaterfallsteps));
             AddDialog(new ChoicePrompt(nameof(ChoicePrompt)));
+            AddDialog(new FetchAvailableRoomsDialog(services, accessors));
 
 
         }
@@ -59,8 +64,14 @@ namespace HotelBot.Dialogs.Prompts.RoomDetailActions
             switch (choice.Value)
             {
                 case "View other rooms":
-                    
-                    return await sc.ReplaceDialogAsync(nameof(FetchAvailableRoomsDialog));
+                    var dialogOptions = new DialogOptions
+                    {
+                        Rerouted = true,
+                        SkipConfirmation = false,
+                        SkipIntroduction = true
+                    };
+
+                    return await sc.ReplaceDialogAsync(nameof(FetchAvailableRoomsDialog), dialogOptions);
 
                 case "Rates":
                     await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendRates, state.RoomDetailDto);

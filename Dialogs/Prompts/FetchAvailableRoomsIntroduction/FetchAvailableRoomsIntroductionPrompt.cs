@@ -67,7 +67,7 @@ namespace HotelBot.Dialogs.Prompts.FetchAvailableRoomsIntroduction
                 }
 
             // not castable and not recognized --> loop dialog
-            await sc.Context.SendActivityAsync("sorry I didn't understand");
+            await sc.Context.SendActivityAsync("Sorry I didn't understand");
             // loop
             return await sc.ReplaceDialogAsync(InitialDialogId);
         }

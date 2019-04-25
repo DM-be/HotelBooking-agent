@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.Prompts.ArrivalDate;
@@ -112,6 +109,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             };
             return await sc.NextAsync(foundChoice);
         }
+
         public async Task<DialogTurnResult> RespondToContinueOrUpdate(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             var choice = sc.Result as FoundChoice;
@@ -127,7 +125,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                     var dialogOptions = new DialogOptions
                     {
                         SkipIntroduction = true,
-                        Rerouted = false,
+                        Rerouted = false
 
                     };
                     return await sc.ReplaceDialogAsync(InitialDialogId, dialogOptions);
@@ -196,7 +194,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
 
         public class FetchAvailableRoomsChoices
         {
-           
+
             public const string Checkin = "Checkin";
             public const string Checkout = "Checkout";
             public const string NumberOfPeople = "Number of people";
@@ -204,18 +202,13 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             public const string ChangeSearch = "Change search";
             public const string Nevermind = "Nevermind";
             public const string NoThanks = "No thanks";
-            public static readonly ReadOnlyCollection<string> Choices =
-                new ReadOnlyCollection<string>(new[]
-                {
-                    Checkin,
-                    Checkout,
-                    NumberOfPeople,
-                    StartOver,
-                    ChangeSearch,
-                    Nevermind,
-                    NoThanks
-                });
 
+            public static readonly ReadOnlyCollection<string> Choices =
+                new ReadOnlyCollection<string>(
+                    new []
+                    {
+                        Checkin, Checkout, NumberOfPeople, StartOver, ChangeSearch, Nevermind, NoThanks
+                    });
         }
     }
 }

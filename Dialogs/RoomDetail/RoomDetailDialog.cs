@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.FetchAvailableRooms;
-using HotelBot.Dialogs.Prompts.RoomDetailActions;
+using HotelBot.Dialogs.Prompts.RoomDetailChoices;
 using HotelBot.Dialogs.Shared.RecognizerDialogs.RoomDetail;
 using HotelBot.Models.DTO;
 using HotelBot.Models.Wrappers;
@@ -37,12 +37,12 @@ namespace HotelBot.Dialogs.RoomDetail
 
             var roomDetailWaterfallSteps = new WaterfallStep []
             {
-                FetchSelectedRoomDetail, PromptRoomChoices, ProcessChoice
+                FetchSelectedRoomDetail, PromptRoomChoices
             };
 
             AddDialog(new WaterfallDialog(InitialDialogId, roomDetailWaterfallSteps));
             AddDialog(new FetchAvailableRoomsDialog(services, accessors));
-            AddDialog(new RoomDetailChoicesPrompt(accessors));
+            AddDialog(new RoomDetailChoicesPrompt(services, accessors));
             AddDialog(new ChoicePrompt(nameof(ChoicePrompt)));
 
 
@@ -60,9 +60,13 @@ namespace HotelBot.Dialogs.RoomDetail
             {
                 state.RoomDetailDto = new RoomDetailDto();
                 state.RoomDetailDto = await requestHandler.FetchRoomDetail(dialogOptions.RoomAction.Id);
-                await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendDescription, state.RoomDetailDto);
-                await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendImages, state.RoomDetailDto);
-                await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendLowestRate, state.RoomDetailDto);
+                if (dialogOptions.RoomAction.Action == "info")
+                {
+                    await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendDescription, state.RoomDetailDto);
+                    await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendImages, state.RoomDetailDto);
+                    await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendLowestRate, state.RoomDetailDto);
+                }
+
             }
 
             return await sc.NextAsync();
@@ -70,74 +74,48 @@ namespace HotelBot.Dialogs.RoomDetail
 
         public async Task<DialogTurnResult> PromptRoomChoices(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-
-            Activity promptTemplate;
-            var choices = new List<string>
-            {
-                RoomDetailChoices.ViewOtherRooms,
-                RoomDetailChoices.NoThanks
-            };
-            var dialogOptions = sc.Options as DialogOptions;
-            if (dialogOptions.Looped)
-            {
-                promptTemplate = await _responder.RenderTemplate(
-                    sc.Context,
-                    sc.Context.Activity.Locale,
-                    RoomDetailResponses.ResponseIds.RoomChoicesPromptLooped);
-            }
-            else
-            {
-                promptTemplate = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, RoomDetailResponses.ResponseIds.RoomChoicesPrompt);
-                choices.Insert(0, RoomDetailChoices.ShowRates);
-            }
-
-            return await sc.PromptAsync(
-                nameof(ChoicePrompt),
-                new PromptOptions
-                {
-                    Prompt = promptTemplate,
-                    Choices = ChoiceFactory.ToChoices(
-                        choices)
-                },
-                cancellationToken);
+            return await sc.BeginDialogAsync(nameof(RoomDetailChoicesPrompt));
         }
 
 
 
-        public async Task<DialogTurnResult> ProcessChoice(WaterfallStepContext sc, CancellationToken cancellationToken)
-        {
-            var state = await _accessors.RoomDetailStateAccessor.GetAsync(sc.Context, () => new RoomDetailState());
-            var choice = sc.Result as FoundChoice;
-            switch (choice.Value)
-            {
-                case RoomDetailChoices.ViewOtherRooms:
-                    var dialogOptions = new DialogOptions
-                    {
-                        Rerouted = true,
-                        SkipConfirmation = false,
-                        SkipIntroduction = true
-                    };
-                    var dialogResult = new DialogResult
-                    {
-                        PreviousOptions = dialogOptions,
-                        TargetDialog = nameof(FetchAvailableRoomsDialog)
-                    };
-                    return await sc.EndDialogAsync(dialogResult);
-                case RoomDetailChoices.ShowRates:
-                    await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendRates, state.RoomDetailDto);
-                    var dialogOpts = sc.Options as DialogOptions;
-                    dialogOpts.Rerouted = false;
-                    dialogOpts.Looped = true;
+        //public async Task<DialogTurnResult> ProcessChoice(WaterfallStepContext sc, CancellationToken cancellationToken)
+        //{
+        //    var state = await _accessors.RoomDetailStateAccessor.GetAsync(sc.Context, () => new RoomDetailState());
+        //    var choice = sc.Result as FoundChoice;
+        //    switch (choice.Value)
+        //    {
+        //        case RoomDetailChoices.ViewOtherRooms:
+        //            var dialogOptions = new DialogOptions
+        //            {
+        //                Rerouted = true,
+        //                SkipConfirmation = false,
+        //                SkipIntroduction = true
+        //            };
+        //            var dialogResult = new DialogResult
+        //            {
+        //                PreviousOptions = dialogOptions,
+        //                TargetDialog = nameof(FetchAvailableRoomsDialog)
+        //            };
+        //            return await sc.EndDialogAsync(dialogResult);
+        //        case RoomDetailChoices.ShowRates:
+        //            // start show rates prompt
 
-                    return await sc.ReplaceDialogAsync(InitialDialogId, dialogOpts);
-                case RoomDetailChoices.NoThanks:
-                    return await sc.EndDialogAsync();
 
-            }
+        //            await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendRates, state.RoomDetailDto);
+        //            var dialogOpts = sc.Options as DialogOptions;
+        //            dialogOpts.Rerouted = false;
+        //            dialogOpts.Looped = true;
 
-            return null;
+        //            return await sc.ReplaceDialogAsync(InitialDialogId, dialogOpts);
+        //        case RoomDetailChoices.NoThanks:
+        //            return await sc.EndDialogAsync();
 
-        }
+        //    }
+
+        //    return null;
+
+        //}
 
 
         public class RoomDetailChoices
