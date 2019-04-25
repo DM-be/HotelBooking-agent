@@ -83,7 +83,7 @@ namespace HotelBot.Dialogs.RoomOverview
         {
             // check if room still available --> a get request for the room (backend returns null if not available)
 
-            return null;
+            return EndOfTurn;
         }
 
         public async Task<DialogTurnResult> PromptModify(WaterfallStepContext sc, CancellationToken cancellationToken)
