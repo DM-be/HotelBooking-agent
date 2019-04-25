@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.Prompts.ArrivalDate;
@@ -192,14 +196,26 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
 
         public class FetchAvailableRoomsChoices
         {
+           
             public const string Checkin = "Checkin";
             public const string Checkout = "Checkout";
             public const string NumberOfPeople = "Number of people";
-
             public const string StartOver = "Start over";
             public const string ChangeSearch = "Change search";
             public const string Nevermind = "Nevermind";
             public const string NoThanks = "No thanks";
+            public static readonly ReadOnlyCollection<string> Choices =
+                new ReadOnlyCollection<string>(new[]
+                {
+                    Checkin,
+                    Checkout,
+                    NumberOfPeople,
+                    StartOver,
+                    ChangeSearch,
+                    Nevermind,
+                    NoThanks
+                });
+
         }
     }
 }
