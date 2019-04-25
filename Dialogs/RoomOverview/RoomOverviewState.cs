@@ -10,7 +10,7 @@ namespace HotelBot.Dialogs.RoomOverview
     {
         public int Id { get; set; }
         public bool Confirmed { get; set; } = false; // paid for? use in cosmos db --> allow or dissallow updating booking objects 
-        public List<RoomDetailDto> Rooms { get; set; }
+        public List<SelectedRoom> SelectedRooms { get; set; } = new List<SelectedRoom>();
 
         // add extra properties like the name of booker - selected checkin time. 
         // userprofile property

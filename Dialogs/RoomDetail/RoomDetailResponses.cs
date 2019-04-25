@@ -97,8 +97,9 @@ namespace HotelBot.Dialogs.RoomDetail
                             Value = JsonConvert.SerializeObject(
                                 new RoomAction
                                 {
-                                    Id = "FAKEID",
-                                    Action = "info"
+                                    Id = roomDetailDto.Id,
+                                    Action = "book",
+                                    SelectedRate = roomDetailDto.Rates[i]
                                 }),
                             Title = $"Book for €{roomDetailDto.Rates[i].Price}",
                             Text = "show me more info for x room"

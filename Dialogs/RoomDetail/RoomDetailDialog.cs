@@ -54,6 +54,8 @@ namespace HotelBot.Dialogs.RoomDetail
             var dialogOptions = sc.Options as DialogOptions;
             var requestHandler = new RequestHandler();
             var state = await _accessors.RoomDetailStateAccessor.GetAsync(sc.Context, () => new RoomDetailState());
+
+            //check on rerouted --> avoid replace dialog sending another get request 
             if (dialogOptions.Rerouted)
             {
                 state.RoomDetailDto = new RoomDetailDto();

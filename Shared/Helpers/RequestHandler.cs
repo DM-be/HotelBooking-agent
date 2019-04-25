@@ -63,5 +63,7 @@ namespace HotelBot.Shared.Helpers
             return roomDetailDto;
 
         }
+
+
     }
 }

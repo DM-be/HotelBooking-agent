@@ -1,6 +1,7 @@
 ﻿using System;
 using HotelBot.Dialogs.FetchAvailableRooms;
 using HotelBot.Dialogs.RoomDetail;
+using HotelBot.Dialogs.RoomOverview;
 using HotelBot.StateProperties;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
@@ -23,6 +24,8 @@ namespace HotelBot.StateAccessors
 
         public static string RoomDetailName { get; } = "RoomDetail";
 
+        public static string RoomOverviewName { get; } = "RoomOverview";
+
         public IStatePropertyAccessor<UserProfile> UserProfileAccessor { get; set; }
 
         public IStatePropertyAccessor<ConversationData> ConversationDataAccessor { get; set; }
@@ -32,6 +35,8 @@ namespace HotelBot.StateAccessors
         public IStatePropertyAccessor<FetchAvailableRoomsState> FetchAvailableRoomsStateAccessor { get; set; }
 
         public IStatePropertyAccessor<RoomDetailState> RoomDetailStateAccessor { get; set; }
+
+        public IStatePropertyAccessor<RoomOverviewState> RoomOverviewStateAccessor { get; set; }
 
         public ConversationState ConversationState { get; }
         public UserState UserState { get; }

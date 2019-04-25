@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.RoomDetail;
+using HotelBot.Dialogs.RoomOverview;
 using HotelBot.Extensions;
 using HotelBot.Models.Wrappers;
 using Microsoft.Bot.Builder.Dialogs;
@@ -42,7 +43,11 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
                             Rerouted = true
                         };
                         await innerDc.CancelAllDialogsAsync();
-                        await innerDc.BeginDialogAsync(nameof(RoomDetailDialog), dialogOptions);
+
+                        //todo: refactor with consts
+                        if (roomAction.Action == "book") await innerDc.BeginDialogAsync(nameof(RoomOverviewDialog), dialogOptions);
+
+                        if (roomAction.Action == "info") await innerDc.BeginDialogAsync(nameof(RoomDetailDialog), dialogOptions);
 
 
                     }
