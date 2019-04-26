@@ -134,18 +134,17 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                 case FetchAvailableRoomsChoices.NoThanks:
                     await sc.Context.SendActivityAsync("You're welcome");
                     return await sc.EndDialogAsync();
-                    break;
-                //case FetchAvailableRoomsChoices.Nevermind:
-                //{
-                //    var dialogOptions = new DialogOptions
-                //    {
-                //        Rerouted = false,
-                //        SkipConfirmation = true,
-                //        SkipIntroduction = true
+                case FetchAvailableRoomsChoices.Nevermind:
+                {
+                    var dialogOptions = new DialogOptions
+                    {
+                        Rerouted = false,
+                        SkipConfirmation = true,
+                        SkipIntroduction = true
 
-                //    };
-                //    return await sc.ReplaceDialogAsync(InitialDialogId, dialogOptions);
-                //}
+                    };
+                    return await sc.ReplaceDialogAsync(InitialDialogId, dialogOptions);
+                }
             }
 
             return null;
@@ -192,6 +191,12 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             return null;
         }
 
+        protected override Task OnRepromptDialogAsync(ITurnContext turnContext, DialogInstance instance,
+            CancellationToken cancellationToken = new CancellationToken())
+        {
+            return base.OnRepromptDialogAsync(turnContext, instance, cancellationToken);
+        }
+
 
         public class FetchAvailableRoomsChoices
         {
@@ -211,13 +216,5 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                         Checkin, Checkout, NumberOfPeople, StartOver, ChangeSearch, Nevermind, NoThanks
                     });
         }
-
-        protected override Task OnRepromptDialogAsync(ITurnContext turnContext, DialogInstance instance, CancellationToken cancellationToken = new CancellationToken())
-        {
-            return base.OnRepromptDialogAsync(turnContext, instance, cancellationToken);
-        }
-
-
-
     }
 }
