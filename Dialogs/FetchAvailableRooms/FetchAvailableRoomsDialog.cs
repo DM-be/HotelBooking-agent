@@ -13,7 +13,6 @@ using HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms;
 using HotelBot.Models.Wrappers;
 using HotelBot.Services;
 using HotelBot.StateAccessors;
-using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Dialogs.Choices;
 
@@ -103,7 +102,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                 return await sc.BeginDialogAsync(nameof(ContinueOrUpdatePrompt));
             }
 
-            // when user presses no --> skip this step manually with a change search foundchoice
+            // when a user taps no, we can assume he wants to change a value
             var foundChoice = new FoundChoice
             {
                 Value = FetchAvailableRoomsChoices.ChangeSearch
@@ -113,90 +112,78 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
 
         public async Task<DialogTurnResult> RespondToContinueOrUpdate(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-            var choice = sc.Result as FoundChoice;
-            switch (choice.Value)
+            if (sc.Result != null)
             {
-                case FetchAvailableRoomsChoices.ChangeSearch:
-                    return await sc.BeginDialogAsync(nameof(UpdateStateChoicePrompt), sc.Options);
-                case FetchAvailableRoomsChoices.StartOver:
+                var choice = sc.Result as FoundChoice;
+                switch (choice.Value)
                 {
-                    var emptyState = new FetchAvailableRoomsState();
-                    _accessors.FetchAvailableRoomsStateAccessor.SetAsync(sc.Context, emptyState);
-                    await sc.Context.SendActivityAsync("Ok, let's start over");
-                    var dialogOptions = new DialogOptions
+                    case FetchAvailableRoomsChoices.ChangeSearch:
+                        return await sc.BeginDialogAsync(nameof(UpdateStateChoicePrompt), sc.Options);
+                    case FetchAvailableRoomsChoices.StartOver:
                     {
-                        SkipIntroduction = true,
-                        Rerouted = false
+                        var emptyState = new FetchAvailableRoomsState();
+                        _accessors.FetchAvailableRoomsStateAccessor.SetAsync(sc.Context, emptyState);
+                        await sc.Context.SendActivityAsync("Ok, let's start over");
+                        var dialogOptions = new DialogOptions
+                        {
+                            SkipConfirmation = false, // start over and prompt for confirmation again 
+                            SkipIntroduction = true,
+                            Rerouted = false
 
-                    };
-                    return await sc.ReplaceDialogAsync(InitialDialogId, dialogOptions);
-                }
-                case FetchAvailableRoomsChoices.NoThanks:
-                    await sc.Context.SendActivityAsync("You're welcome");
-                    return await sc.EndDialogAsync();
-                case FetchAvailableRoomsChoices.Nevermind:
-                {
-                    var dialogOptions = new DialogOptions
-                    {
-                        Rerouted = false,
-                        SkipConfirmation = true,
-                        SkipIntroduction = true
-
-                    };
-                    return await sc.ReplaceDialogAsync(InitialDialogId, dialogOptions);
+                        };
+                        return await sc.ReplaceDialogAsync(InitialDialogId, dialogOptions);
+                    }
+                    case FetchAvailableRoomsChoices.NoThanks:
+                        await sc.Context.SendActivityAsync("You're welcome");
+                        return await sc.EndDialogAsync();
                 }
             }
 
-            return null;
+            // this is incase state is manually updated in the previous dialog (ContinueOrUpdatePrompt) 
+            var dialogOpts = new DialogOptions
+            {
+                Rerouted = false,
+                SkipConfirmation = true,
+                SkipIntroduction = true
+
+            };
+            return await sc.ReplaceDialogAsync(InitialDialogId, dialogOpts);
         }
 
 
 
         public async Task<DialogTurnResult> RespondToNewRequest(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-
-
-            var choice = sc.Result as FoundChoice;
-            var oldDialogOptions = new DialogOptions
-            {
-                Rerouted = false,
-                SkipConfirmation = false
-
-            };
-            if (sc.Options != null) oldDialogOptions = (DialogOptions) sc.Options;
-
-            var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
             var dialogOptions = new DialogOptions
             {
-                SkipConfirmation = true,
+                SkipConfirmation =
+                    true, // skip the confirmation in the middle of the dialog (at the end we assume that the user only makes a single adjustment to one value or selects the startover opton instead)
                 Rerouted = false,
                 SkipIntroduction = true
 
             };
-            switch (choice.Value)
+            if (sc.Result != null)
             {
-                case FetchAvailableRoomsChoices.Checkin:
-                    state.ArrivalDate = null;
-                    return await sc.ReplaceDialogAsync(InitialDialogId, dialogOptions);
-                case FetchAvailableRoomsChoices.Checkout:
-                    state.LeavingDate = null;
-                    return await sc.ReplaceDialogAsync(InitialDialogId, dialogOptions);
-                case FetchAvailableRoomsChoices.NumberOfPeople:
-                    state.NumberOfPeople = null;
-                    return await sc.ReplaceDialogAsync(InitialDialogId, dialogOptions);
-                case "none":
-                    return await sc.ReplaceDialogAsync(InitialDialogId, dialogOptions);
+                var choice = sc.Result as FoundChoice;
+                var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
+                switch (choice.Value)
+                {
+                    case FetchAvailableRoomsChoices.Checkin:
+                        state.ArrivalDate = null;
+                        return await sc.ReplaceDialogAsync(InitialDialogId, dialogOptions);
+                    case FetchAvailableRoomsChoices.Checkout:
+                        state.LeavingDate = null;
+                        return await sc.ReplaceDialogAsync(InitialDialogId, dialogOptions);
+                    case FetchAvailableRoomsChoices.NumberOfPeople:
+                        state.NumberOfPeople = null;
+                        return await sc.ReplaceDialogAsync(InitialDialogId, dialogOptions);
+                }
             }
 
-            return null;
+            // this occurs after luis detects and updates a property via updatestatechoiceprompt
+            // uses its resumedialog to end with sc.result = null --> ending here
+            return await sc.ReplaceDialogAsync(InitialDialogId, dialogOptions);
         }
-
-        protected override Task OnRepromptDialogAsync(ITurnContext turnContext, DialogInstance instance,
-            CancellationToken cancellationToken = new CancellationToken())
-        {
-            return base.OnRepromptDialogAsync(turnContext, instance, cancellationToken);
-        }
-
 
         public class FetchAvailableRoomsChoices
         {
@@ -206,14 +193,13 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             public const string NumberOfPeople = "Number of people";
             public const string StartOver = "Start over";
             public const string ChangeSearch = "Change search";
-            public const string Nevermind = "Nevermind";
             public const string NoThanks = "No thanks";
 
             public static readonly ReadOnlyCollection<string> Choices =
                 new ReadOnlyCollection<string>(
                     new []
                     {
-                        Checkin, Checkout, NumberOfPeople, StartOver, ChangeSearch, Nevermind, NoThanks
+                        Checkin, Checkout, NumberOfPeople, StartOver, ChangeSearch, NoThanks
                     });
         }
     }

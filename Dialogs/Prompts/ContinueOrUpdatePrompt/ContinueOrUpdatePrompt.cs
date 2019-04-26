@@ -61,22 +61,22 @@ namespace HotelBot.Dialogs.Prompts.ContinueOrUpdatePrompt
 
         // end the dialog on resume with nevermind choice --> loops the calling waterfalldialog. 
 
+
+
+        // when we are in this step of the dialog we can also use LUIS to update our search
+        // it will call a updatestateprompt with a yes or no response
+        // when this resumes we use the recognized text (will always be the string Yes) to manually end the dialog on resume.
+        // we assume that when state is updated, a user will want to see new results
+
         public override async Task<DialogTurnResult> ResumeDialogAsync(DialogContext dc, DialogReason reason, object result = null,
             CancellationToken cancellationToken = new CancellationToken())
         {
-            // a confirm dialog always sets this to yes or no depending on the recognized result.
-            var text = dc.Context.Activity.Text;
-            if (text == "Yes")
+            var updated = (bool) result;
+            if (updated)
             {
-
-                var foundChoice = new FoundChoice
-                {
-                    Value = FetchAvailableRoomsDialog.FetchAvailableRoomsChoices.Nevermind
-                };
-                return await dc.EndDialogAsync(foundChoice);
+                return await dc.EndDialogAsync();
             }
-
-            // the non overriden function in case of a no response --> reprompts this dialog. 
+            // the non overriden function in case the state property was not updated--> reprompts this dialog. 
             await RepromptDialogAsync(dc.Context, dc.ActiveDialog, cancellationToken).ConfigureAwait(false);
             return EndOfTurn;
         }

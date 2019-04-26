@@ -98,6 +98,7 @@ namespace HotelBot.Dialogs.Prompts.UpdateState
         {
             var confirmed = (bool) sc.Result;
             if (confirmed) return await UpdateState(sc); // updates in delegate and ends after
+           
             return await sc.EndDialogAsync();
         }
 

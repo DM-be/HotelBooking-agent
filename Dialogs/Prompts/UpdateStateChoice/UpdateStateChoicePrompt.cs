@@ -65,16 +65,17 @@ namespace HotelBot.Dialogs.Prompts.UpdateStateChoice
         // ie --> would you change something --> yes i want to update my arrival date to x --> skips updatestateprompt confirmation
         // --> this prompt resumes --> overrides into an endDialog.
 
+        // the underlying luis can trigger and updatestate prompt, state would be set directly.
+        // the updatestate prompt ends and this resumedialog function is called.
+        // the only updates to state this dialog can do is the 3 options prompted, because this current prompt is a statechoiceprompt, confirmation will also be skipped.
+        // calling resume should end the dialog and skip this entirely, we pass a new found choice to the underlying dialog (fetchavailableroomsdialog)
+
 
         public override Task<DialogTurnResult> ResumeDialogAsync(DialogContext dc, DialogReason reason, object result = null,
             CancellationToken cancellationToken = new CancellationToken())
         {
 
-            var foundChoice = new FoundChoice
-            {
-                Value = "none"
-            };
-            return dc.EndDialogAsync(foundChoice);
+            return dc.EndDialogAsync();
         }
     }
 }

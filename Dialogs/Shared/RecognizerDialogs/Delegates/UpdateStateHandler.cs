@@ -41,7 +41,8 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates
                 state.Email = luisResult.Entities.email.First();
                 var responder = new EmailResponses();
                 await responder.ReplyWith(sc.Context, EmailResponses.ResponseIds.HaveUpdatedEmail, state.Email);
-                return await sc.EndDialogAsync();
+                var updated = true;
+                return await sc.EndDialogAsync(updated);
 
             }
 
@@ -59,10 +60,11 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates
                     sc.Context,
                     ArrivalDateResponses.ResponseIds.HaveUpdatedArrivalDate,
                     state.ArrivalDate.ToNaturalLanguage(DateTime.Now));
-                return await sc.EndDialogAsync();
+                var updated = true;
+                return await sc.EndDialogAsync(updated);
             }
 
-            var dialogOptions = (DialogOptions)sc.Options;
+            var dialogOptions = (DialogOptions) sc.Options;
             dialogOptions.UpdatedArrivalDate = true;
 
             return await sc.BeginDialogAsync(nameof(ArrivalDatePromptDialog), dialogOptions);
@@ -80,9 +82,11 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates
                     sc.Context,
                     DepartureDateResponses.ResponseIds.HaveUpdatedDepartureDate,
                     state.LeavingDate.ToNaturalLanguage(DateTime.Now));
-                return await sc.EndDialogAsync();
+                var updated = true;
+                return await sc.EndDialogAsync(updated);
             }
-            var dialogOptions = (DialogOptions)sc.Options;
+
+            var dialogOptions = (DialogOptions) sc.Options;
             dialogOptions.UpdatedLeavingDate = true;
 
             return await sc.BeginDialogAsync(nameof(DepartureDatePromptDialog), dialogOptions);
@@ -95,9 +99,11 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates
                 state.NumberOfPeople = luisResult.Entities.number.First();
                 var responder = new NumberOfPeopleResponses();
                 await responder.ReplyWith(sc.Context, NumberOfPeopleResponses.ResponseIds.HaveUpdatedNumberOfPeople, state.NumberOfPeople);
-                return await sc.EndDialogAsync();
+                var updated = true;
+                return await sc.EndDialogAsync(updated);
             }
-            var dialogOptions = (DialogOptions)sc.Options;
+
+            var dialogOptions = (DialogOptions) sc.Options;
             dialogOptions.UpdatedNumberOfPeople = true;
 
             return await sc.BeginDialogAsync(nameof(NumberOfPeoplePromptDialog), dialogOptions);
@@ -105,4 +111,3 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates
         }
     }
 }
-
