@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.FetchAvailableRooms;
@@ -34,7 +35,6 @@ namespace HotelBot.Dialogs.Prompts.RoomDetailChoices
             AddDialog(new ChoicePrompt(nameof(ChoicePrompt)));
             AddDialog(new FetchAvailableRoomsDialog(services, accessors));
 
-
         }
 
 
@@ -50,8 +50,8 @@ namespace HotelBot.Dialogs.Prompts.RoomDetailChoices
                         {
                             "View other rooms",
                             "Rates",
-                            "Pictures"
-
+                            "Pictures",
+                            "Exit"
                         })
                 },
                 cancellationToken);
@@ -70,15 +70,19 @@ namespace HotelBot.Dialogs.Prompts.RoomDetailChoices
                         SkipConfirmation = false,
                         SkipIntroduction = true
                     };
-
+                    // clear state and run fetchavailableroomsdialog again
+                    await _accessors.RoomDetailStateAccessor.SetAsync(sc.Context, new RoomDetailState());
                     return await sc.ReplaceDialogAsync(nameof(FetchAvailableRoomsDialog), dialogOptions);
-
+                    
                 case "Rates":
                     await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendRates, state.RoomDetailDto);
                     return await sc.ReplaceDialogAsync(InitialDialogId);
                 case "Pictures":
                     await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendImages, state.RoomDetailDto);
                     return await sc.ReplaceDialogAsync(InitialDialogId);
+                case "Exit":
+                    // end and prompt and end on waterfall above. 
+                    return await sc.EndDialogAsync();
             }
 
             return null;

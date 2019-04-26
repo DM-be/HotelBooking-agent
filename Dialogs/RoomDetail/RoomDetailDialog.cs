@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.FetchAvailableRooms;
@@ -11,8 +10,6 @@ using HotelBot.Services;
 using HotelBot.Shared.Helpers;
 using HotelBot.StateAccessors;
 using Microsoft.Bot.Builder.Dialogs;
-using Microsoft.Bot.Builder.Dialogs.Choices;
-using Microsoft.Bot.Schema;
 
 namespace HotelBot.Dialogs.RoomDetail
 {
@@ -54,21 +51,21 @@ namespace HotelBot.Dialogs.RoomDetail
             var dialogOptions = sc.Options as DialogOptions;
             var requestHandler = new RequestHandler();
             var state = await _accessors.RoomDetailStateAccessor.GetAsync(sc.Context, () => new RoomDetailState());
+            state.RoomDetailDto = new RoomDetailDto();
+            state.RoomDetailDto = await requestHandler.FetchRoomDetail(dialogOptions.RoomAction.Id);
 
+            //todo: refactor and remove rerouted check
             //check on rerouted --> avoid replace dialog sending another get request 
-            if (dialogOptions.Rerouted)
+            if (dialogOptions.RoomAction.Action == "info")
             {
-                state.RoomDetailDto = new RoomDetailDto();
-                state.RoomDetailDto = await requestHandler.FetchRoomDetail(dialogOptions.RoomAction.Id);
-                if (dialogOptions.RoomAction.Action == "info")
-                {
-                    await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendDescription, state.RoomDetailDto);
-                    await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendImages, state.RoomDetailDto);
-                    await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendLowestRate, state.RoomDetailDto);
-                }
-
+                await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendDescription, state.RoomDetailDto);
+                await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendImages, state.RoomDetailDto);
+                await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendLowestRate, state.RoomDetailDto);
+                return await sc.NextAsync();
             }
 
+            // user wants to book directly, send rates.
+            await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendRates, state.RoomDetailDto);
             return await sc.NextAsync();
         }
 

@@ -44,10 +44,7 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
                         };
                         await innerDc.CancelAllDialogsAsync();
 
-                        //todo: refactor with consts
-                        if (roomAction.Action == "book") await innerDc.BeginDialogAsync(nameof(RoomOverviewDialog), dialogOptions);
-
-                        if (roomAction.Action == "info") await innerDc.BeginDialogAsync(nameof(RoomDetailDialog), dialogOptions);
+                        if (roomAction.Action == "info" | roomAction.Action == "book") await innerDc.BeginDialogAsync(nameof(RoomDetailDialog), dialogOptions);
 
 
                     }

@@ -170,9 +170,6 @@ namespace HotelBot
                         logger.LogError($"Exception caught : {exception}");
                         await context.SendActivityAsync("Sorry, it looks like something went wrong.");
                     };
-
-
-                    options.Middleware.Add(new SetConversationDataMiddleware(stateBotAccessors));
                     options.Middleware.Add(new SetUserProfileMiddleware(stateBotAccessors));
                     options.Middleware.Add(new SetLocaleMiddleware(stateBotAccessors));
                     options.Middleware.Add(new FacebookMiddleware());

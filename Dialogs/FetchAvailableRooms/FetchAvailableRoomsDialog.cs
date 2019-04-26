@@ -13,6 +13,7 @@ using HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms;
 using HotelBot.Models.Wrappers;
 using HotelBot.Services;
 using HotelBot.StateAccessors;
+using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Dialogs.Choices;
 
@@ -210,5 +211,13 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                         Checkin, Checkout, NumberOfPeople, StartOver, ChangeSearch, Nevermind, NoThanks
                     });
         }
+
+        protected override Task OnRepromptDialogAsync(ITurnContext turnContext, DialogInstance instance, CancellationToken cancellationToken = new CancellationToken())
+        {
+            return base.OnRepromptDialogAsync(turnContext, instance, cancellationToken);
+        }
+
+
+
     }
 }

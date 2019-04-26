@@ -8,7 +8,7 @@ namespace HotelBot.Models.Wrappers
 
         public bool SkipIntroduction { get; set; }
         public bool Rerouted { get; set; }
-
+        
         public bool Looped { get; set; }
 
         public RoomAction RoomAction { get; set; }

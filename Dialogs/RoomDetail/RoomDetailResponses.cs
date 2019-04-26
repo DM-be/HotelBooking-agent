@@ -33,12 +33,12 @@ namespace HotelBot.Dialogs.RoomDetail
                 },
                 {
                     ResponseIds.RoomChoicesPrompt, (context, data) =>
-                       MessageFactory.Text(RoomDetailStrings.ROOM_CHOICES_PROMPT)
+                        MessageFactory.Text(RoomDetailStrings.ROOM_CHOICES_PROMPT)
                 },
                 {
                     ResponseIds.RoomChoicesPromptLooped, (context, data) =>
                         MessageFactory.Text(RoomDetailStrings.ROOM_CHOICES_PROMPT_LOOPED)
-                },
+                }
 
 
             }
@@ -133,15 +133,11 @@ namespace HotelBot.Dialogs.RoomDetail
         {
             public const string SendImages = "sendImages";
             public const string SendDescription = "sendDescription";
-            public const string SendExtraInfo = "sendExtraInfo";
             public const string SendRates = "sendRates";
             public const string SendLowestRate = "sendLowestRate";
 
             public const string RoomChoicesPrompt = "roomChoicesPrompt";
             public const string RoomChoicesPromptLooped = "roomChoisesPromptLooped";
-
-
-
         }
     }
 }
