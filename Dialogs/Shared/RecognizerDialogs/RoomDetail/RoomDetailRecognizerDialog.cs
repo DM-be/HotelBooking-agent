@@ -3,9 +3,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.Cancel;
 using HotelBot.Dialogs.FetchAvailableRooms;
+using HotelBot.Dialogs.Prompts.FetchAvailableRoomsIntroduction;
 using HotelBot.Dialogs.Prompts.UpdateState;
 using HotelBot.Extensions;
 using HotelBot.Models.LUIS;
+using HotelBot.Models.Wrappers;
 using HotelBot.Services;
 using HotelBot.StateAccessors;
 using Microsoft.Bot.Builder.Dialogs;
@@ -29,17 +31,28 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.RoomDetail
 
         protected override async Task<InterruptionStatus> OnDialogInterruptionAsync(DialogContext dc, CancellationToken cancellationToken)
         {
-            // check luis intent
+
+            var text = dc.Context.Activity.Text;
+            if (text == "changenow")
+            {
+                // assume show room overview route for now
+                return await OnReroute(dc);
+            }
+
+            if (FetchAvailableRoomsDialog.FetchAvailableRoomsChoices.Choices.Contains(text))
+            {
+                return InterruptionStatus.NoAction;
+            }
+
+
+
             _services.LuisServices.TryGetValue("hotelbot", out var luisService);
             if (luisService == null) throw new Exception("The specified LUIS Model could not be found in your Bot Services configuration.");
             var luisResult = await luisService.RecognizeAsync<HotelBotLuis>(dc.Context, cancellationToken);
             var intent = luisResult.TopIntent().intent;
 
             // Only triggers interruption if confidence level is high
-            if (luisResult.TopIntent().score > 0.75)
-            {
-                // Add the luis result (intent and entities) for further processing in the derived dialog
-
+            if (luisResult.TopIntent().score > 0.80)
                 switch (intent)
                 {
                     case HotelBotLuis.Intent.Cancel:
@@ -60,7 +73,6 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.RoomDetail
                         return await OnUpdate(dc, isDateUpdateIntent);
                     }
                 }
-            }
 
             // call the non overriden continue dialog in componentdialog
             return InterruptionStatus.NoAction;
@@ -80,6 +92,12 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.RoomDetail
             // Else, continue
             return InterruptionStatus.NoAction;
         }
+
+        protected virtual async Task<InterruptionStatus> OnReroute(DialogContext dc)
+        {
+            return InterruptionStatus.Route;
+        }
+
 
 
         protected virtual async Task<InterruptionStatus> OnHelp(DialogContext dc)

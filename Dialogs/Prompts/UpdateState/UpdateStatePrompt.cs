@@ -29,7 +29,7 @@ namespace HotelBot.Dialogs.Prompts.UpdateState
 
             var updateStateWaterfallSteps = new WaterfallStep []
             {
-                ValidateTimeStep, PromptConfirm, EndConfirm,
+                ValidateTimeStep, PromptConfirm, EndConfirm
             };
 
             AddDialog(new WaterfallDialog(InitialDialogId, updateStateWaterfallSteps));
@@ -83,7 +83,7 @@ namespace HotelBot.Dialogs.Prompts.UpdateState
 
             dynamic data = new
             {
-                LuisResult = dialogOptions.LuisResult,
+                dialogOptions.LuisResult,
                 State = fetchAvailableRoomsState
             };
             return await sc.PromptAsync(
@@ -98,7 +98,7 @@ namespace HotelBot.Dialogs.Prompts.UpdateState
         {
             var confirmed = (bool) sc.Result;
             if (confirmed) return await UpdateState(sc); // updates in delegate and ends after
-           
+
             return await sc.EndDialogAsync();
         }
 
@@ -117,7 +117,7 @@ namespace HotelBot.Dialogs.Prompts.UpdateState
             }
 
             //TODO: would never be thrown because of strongly typed hotelluis class....
-           throw new ArgumentNullException("No matching intent found");
+            throw new ArgumentNullException("No matching intent found");
 
         }
 

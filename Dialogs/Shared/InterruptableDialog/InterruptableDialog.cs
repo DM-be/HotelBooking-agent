@@ -1,5 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using HotelBot.Dialogs.FetchAvailableRooms;
+using HotelBot.Models.Wrappers;
 using Microsoft.Bot.Builder.Dialogs;
 
 namespace HotelBot.Dialogs.Shared
@@ -27,6 +29,20 @@ namespace HotelBot.Dialogs.Shared
             {
                 // Stack is already waiting for a response, shelve inner stack
                 return EndOfTurn;
+            }
+
+            if (status == InterruptionStatus.Route)
+            {
+                var dialogResult = new DialogResult
+                {
+                    PreviousOptions = new DialogOptions(),
+                    TargetDialog = nameof(FetchAvailableRoomsDialog)
+                };
+
+
+               return await dc.EndDialogAsync(dialogResult);
+              // return new DialogTurnResult(DialogTurnStatus.Waiting);
+
             }
 
             // status is no action when sending "no"

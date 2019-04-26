@@ -33,6 +33,8 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms
         protected override async Task<InterruptionStatus> OnDialogInterruptionAsync(DialogContext dc, CancellationToken cancellationToken)
         {
             // we check on the list of choices and ignore these for the luis recognizer. 
+            
+            
             var text = dc.Context.Activity.Text;
             if (FetchAvailableRoomsDialog.FetchAvailableRoomsChoices.Choices.Contains(text))
             {
