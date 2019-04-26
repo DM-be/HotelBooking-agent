@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.FetchAvailableRooms;
@@ -72,8 +71,16 @@ namespace HotelBot.Dialogs.Prompts.RoomDetailChoices
                     };
                     // clear state and run fetchavailableroomsdialog again
                     await _accessors.RoomDetailStateAccessor.SetAsync(sc.Context, new RoomDetailState());
-                    return await sc.ReplaceDialogAsync(nameof(FetchAvailableRoomsDialog), dialogOptions);
-                    
+                    var dialogResult = new DialogResult
+                    {
+                        PreviousOptions = dialogOptions,
+                        TargetDialog = nameof(FetchAvailableRoomsDialog)
+                    };
+                    return await sc.EndDialogAsync(dialogResult);
+
+
+                 //   return await sc.ReplaceDialogAsync(nameof(FetchAvailableRoomsDialog), dialogOptions);
+
                 case "Rates":
                     await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendRates, state.RoomDetailDto);
                     return await sc.ReplaceDialogAsync(InitialDialogId);
