@@ -13,6 +13,7 @@ using HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms;
 using HotelBot.Models.Wrappers;
 using HotelBot.Services;
 using HotelBot.StateAccessors;
+using HotelBot.StateProperties;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Dialogs.Choices;
 
@@ -49,9 +50,13 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
 
         public async Task<DialogTurnResult> SendOptionalIntroduction(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-            var dialogOptions = sc.Options as DialogOptions;
-            if (dialogOptions.SkipIntroduction != null && dialogOptions.SkipIntroduction == false)
+            var userProfile = await _accessors.UserProfileAccessor.GetAsync(sc.Context, () => new UserProfile());
+            if (userProfile != null && userProfile.SendFetchAvailableRoomsIntroduction)
+            {
+                userProfile.SendFetchAvailableRoomsIntroduction = false;
                 return await sc.BeginDialogAsync(nameof(FetchAvailableRoomsIntroductionPrompt));
+            }
+
             return await sc.NextAsync();
 
         }
@@ -142,7 +147,6 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                         var dialogOptions = new DialogOptions
                         {
                             SkipConfirmation = false, // start over and prompt for confirmation again 
-                            SkipIntroduction = true
                         };
                         return await sc.ReplaceDialogAsync(InitialDialogId, dialogOptions);
                     }
@@ -156,8 +160,6 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             var dialogOpts = new DialogOptions
             {
                 SkipConfirmation = true,
-                SkipIntroduction = true
-
             };
             return await sc.ReplaceDialogAsync(InitialDialogId, dialogOpts);
         }
@@ -170,8 +172,6 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             {
                 SkipConfirmation =
                     true, // skip the confirmation in the middle of the dialog (at the end we assume that the user only makes a single adjustment to one value or selects the startover option instead
-                SkipIntroduction = true
-
             };
             if (sc.Result != null)
             {

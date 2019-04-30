@@ -55,6 +55,7 @@ namespace HotelBot.Dialogs.Prompts.FetchAvailableRoomsIntroduction
             var foundChoice = sc.Result as FoundChoice;
 
             if (foundChoice != null)
+            {
                 switch (foundChoice.Value)
                 {
                     case "OK":
@@ -65,6 +66,8 @@ namespace HotelBot.Dialogs.Prompts.FetchAvailableRoomsIntroduction
                         await _responder.ReplyWith(sc.Context, FetchAvailableRoomsResponses.ResponseIds.SendStart);
                         return await sc.EndDialogAsync();
                 }
+
+            }
 
             // not castable and not recognized --> loop dialog
             await sc.Context.SendActivityAsync("Sorry I didn't understand");

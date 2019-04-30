@@ -96,7 +96,6 @@ namespace HotelBot.Dialogs.RoomOverview
                     case RoomOverviewChoices.ContinueToPayment:
                         return await sc.NextAsync();
                     case RoomOverviewChoices.AddAnotherRoom:
-                        dialogOptions.SkipIntroduction = true;
                         var dialogResult = new DialogResult
                         {
                             PreviousOptions = dialogOptions,

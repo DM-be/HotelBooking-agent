@@ -47,11 +47,8 @@ namespace HotelBot.Dialogs.Main.Delegates
 
             // set initial book a room state with captured entities in the book a room intent  
             SetInitialFetchAvailableRoomsState(fetchAvailableRoomsState, luisResult);
-            var dialogOptions = new DialogOptions
-            {
-                SkipIntroduction = false
-            };
-            await dc.BeginDialogAsync(nameof(FetchAvailableRoomsDialog), dialogOptions);
+    
+            await dc.BeginDialogAsync(nameof(FetchAvailableRoomsDialog));
         }
 
         private static async Task CancelDialogs(DialogContext dc, TemplateManager responder)

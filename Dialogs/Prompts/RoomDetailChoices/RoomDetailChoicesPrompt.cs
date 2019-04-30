@@ -68,7 +68,6 @@ namespace HotelBot.Dialogs.Prompts.RoomDetailChoices
                     var dialogOptions = new DialogOptions
                     {
                         SkipConfirmation = false,
-                        SkipIntroduction = true
                     };
                     // clear state and run fetchavailableroomsdialog again
                     await _accessors.RoomDetailStateAccessor.SetAsync(sc.Context, new RoomDetailState());
