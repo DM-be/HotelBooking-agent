@@ -3,7 +3,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.Cancel;
 using HotelBot.Dialogs.FetchAvailableRooms;
-using HotelBot.Dialogs.Prompts.FetchAvailableRoomsIntroduction;
 using HotelBot.Dialogs.Prompts.UpdateState;
 using HotelBot.Extensions;
 using HotelBot.Models.LUIS;
@@ -33,17 +32,9 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.RoomDetail
         {
 
             var text = dc.Context.Activity.Text;
-            if (text == "changenow")
-            {
-                // assume show room overview route for now
-                return await OnReroute(dc);
-            }
+            if (text == "changenow") return await OnReroute(dc, HotelBotLuis.Intent.Book_A_Room);
 
-            if (FetchAvailableRoomsDialog.FetchAvailableRoomsChoices.Choices.Contains(text))
-            {
-                return InterruptionStatus.NoAction;
-            }
-
+            if (FetchAvailableRoomsDialog.FetchAvailableRoomsChoices.Choices.Contains(text)) return InterruptionStatus.NoAction;
 
 
             _services.LuisServices.TryGetValue("hotelbot", out var luisService);
@@ -55,6 +46,9 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.RoomDetail
             if (luisResult.TopIntent().score > 0.80)
                 switch (intent)
                 {
+
+                    //todo: add routing intents --> finding available rooms + show booked rooms 
+
                     case HotelBotLuis.Intent.Cancel:
                     {
                         return await OnCancel(dc);
@@ -63,6 +57,10 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.RoomDetail
                     {
                         // todo: provide contextual help
                         return await OnHelp(dc);
+                    }
+                    case HotelBotLuis.Intent.Book_A_Room:
+                    {
+                        return await OnReroute(dc, intent);
                     }
                     case HotelBotLuis.Intent.Update_ArrivalDate:
                     case HotelBotLuis.Intent.Update_Leaving_Date:
@@ -93,9 +91,29 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.RoomDetail
             return InterruptionStatus.NoAction;
         }
 
-        protected virtual async Task<InterruptionStatus> OnReroute(DialogContext dc)
+        protected virtual async Task<InterruptionStatus> OnReroute(DialogContext dc, HotelBotLuis.Intent intent)
         {
-            return InterruptionStatus.Route;
+            // do not reroute to active dialog
+            // add targetdialog to turnstate
+            if (intent == HotelBotLuis.Intent.Book_A_Room)
+            {
+                var targetDialog = nameof(FetchAvailableRoomsDialog);
+                if (targetDialog != dc.ActiveDialog.Id)
+                {
+                    var dialogResult = new DialogResult
+                    {
+                        PreviousOptions = new DialogOptions(),
+                        TargetDialog = nameof(FetchAvailableRoomsDialog)
+                    };
+
+                    dc.Context.TurnState.Add("dialogResult", dialogResult);
+                    return InterruptionStatus.Route;
+                }
+            }
+            // and so on --> refactor into dictionary
+
+            // continue if intent matches same dialog
+            return InterruptionStatus.NoAction;
         }
 
 
