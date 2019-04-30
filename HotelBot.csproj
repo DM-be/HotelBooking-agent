@@ -88,6 +88,11 @@
      <AutoGen>True</AutoGen>
      <DependentUpon>RoomDetailStrings.resx</DependentUpon>
    </Compile>
+   <Compile Update="Dialogs\RoomOverview\Resources\RoomOverviewStrings.Designer.cs">
+     <DesignTime>True</DesignTime>
+     <AutoGen>True</AutoGen>
+     <DependentUpon>RoomOverviewStrings.resx</DependentUpon>
+   </Compile>
    <Compile Update="Dialogs\Shared\PromptValidators\Resources\ValidatorStrings.Designer.cs">
      <DesignTime>True</DesignTime>
      <AutoGen>True</AutoGen>
@@ -151,6 +156,10 @@
    <EmbeddedResource Update="Dialogs\RoomDetail\Resources\RoomDetailStrings.resx">
      <Generator>PublicResXFileCodeGenerator</Generator>
      <LastGenOutput>RoomDetailStrings.Designer.cs</LastGenOutput>
+   </EmbeddedResource>
+   <EmbeddedResource Update="Dialogs\RoomOverview\Resources\RoomOverviewStrings.resx">
+     <Generator>PublicResXFileCodeGenerator</Generator>
+     <LastGenOutput>RoomOverviewStrings.Designer.cs</LastGenOutput>
    </EmbeddedResource>
    <EmbeddedResource Update="Dialogs\Shared\PromptValidators\Resources\ValidatorStrings.resx">
      <Generator>PublicResXFileCodeGenerator</Generator>

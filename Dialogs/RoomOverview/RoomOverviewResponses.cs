@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using HotelBot.Dialogs.FetchAvailableRooms;
 using HotelBot.Dialogs.FetchAvailableRooms.Resources;
+using HotelBot.Dialogs.RoomOverview.Resources;
 using HotelBot.Models.Wrappers;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.TemplateManager;
@@ -17,15 +18,23 @@ namespace HotelBot.Dialogs.RoomOverview
             ["default"] = new TemplateIdMap
             {
 
+
                 {
-                    FetchAvailableRoomsResponses.ResponseIds.LeavingDatePrompt, (context, data) =>
+                    ResponseIds.RoomAdded, (context, data) =>
                         MessageFactory.Text(
-                            FetchAvailableRoomsStrings.LEAVINGDATE_PROMPT,
-                            FetchAvailableRoomsStrings.LEAVINGDATE_PROMPT,
+                            RoomOverviewStrings.ROOM_ADDED,
+                            RoomOverviewStrings.ROOM_ADDED,
                             InputHints.IgnoringInput)
                 },
                 {
-                    RoomOverviewResponses.ResponseIds.ShowOverview, (context, data) =>
+                    ResponseIds.ContinueOrAddMoreRooms, (context, data) =>
+                        MessageFactory.Text(
+                            RoomOverviewStrings.CONTINUE_OR_ADD_MORE_ROOMS,
+                            RoomOverviewStrings.CONTINUE_OR_ADD_MORE_ROOMS,
+                            InputHints.IgnoringInput)
+                },
+                {
+                    ResponseIds.ShowOverview, (context, data) =>
                         SendRoomsOverviewCarousel(context, data)
                 }
 
@@ -135,6 +144,9 @@ namespace HotelBot.Dialogs.RoomOverview
         public class ResponseIds
         {
             public const string ShowOverview = "showOverview";
+            public const string RoomAdded = "roomAdded";
+            public const string ConfirmInfo = "confirmInfo";
+            public const string ContinueOrAddMoreRooms = "continueOrAddMoreRooms";
         }
     }
 

@@ -139,7 +139,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                 }
             }
 
-            // this is incase state is manually updated in the previous dialog (ContinueOrUpdatePrompt) 
+            // this is in case state is manually updated in the previous dialog (ContinueOrUpdatePrompt) 
             var dialogOpts = new DialogOptions
             {
                 Rerouted = false,

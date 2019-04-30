@@ -1,17 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.FetchAvailableRooms;
-using HotelBot.Dialogs.RoomDetail;
+using HotelBot.Dialogs.Prompts.ContinueOrAddMoreRooms;
 using HotelBot.Dialogs.Shared.CustomDialog;
 using HotelBot.Dialogs.Shared.PromptValidators;
-using HotelBot.Models.DTO;
 using HotelBot.Models.Wrappers;
 using HotelBot.Services;
 using HotelBot.Shared.Helpers;
 using HotelBot.StateAccessors;
 using Microsoft.Bot.Builder.Dialogs;
+using Microsoft.Bot.Builder.Dialogs.Choices;
 
 namespace HotelBot.Dialogs.RoomOverview
 {
@@ -19,7 +18,7 @@ namespace HotelBot.Dialogs.RoomOverview
     public class RoomOverviewDialog: RoomOverviewRecognizerDialog
     {
 
-        private static RoomOverviewResponses _responder =  new RoomOverviewResponses();
+        private static readonly RoomOverviewResponses _responder = new RoomOverviewResponses();
         private readonly StateBotAccessors _accessors;
         private readonly PromptValidators _promptValidators = new PromptValidators();
         private readonly BotServices _services;
@@ -36,11 +35,12 @@ namespace HotelBot.Dialogs.RoomOverview
             // send overview
             // send prompt asking to modify, update or confirm  (also implement in luis)
             // when confirmed --> send link to do "payment" --> no sql set backend validated boolean to true after payment via api? 
-            var sendOverview = new WaterfallStep []
+            var RoomOverviewWaterfallsteps = new WaterfallStep []
             {
-                FetchSelectedRoomDetailAndAddToState, ShowOverview, PromptModify
+                FetchSelectedRoomDetailAndAddToState, PromptContinueOrFindMoreRooms, ProcessResultContinueOrAddMoreRoomsPrompt, ShowOverview
             };
-            AddDialog(new WaterfallDialog(InitialDialogId, sendOverview));
+            AddDialog(new WaterfallDialog(InitialDialogId, RoomOverviewWaterfallsteps));
+            AddDialog(new ContinueOrAddMoreRoomsPrompt(accessors));
 
 
         }
@@ -56,7 +56,7 @@ namespace HotelBot.Dialogs.RoomOverview
             //check on rerouted --> avoid replace dialog sending another get request 
             if (dialogOptions.Rerouted)
             {
-      
+
 
                 var roomDetailDto = await requestHandler.FetchRoomDetail(dialogOptions.RoomAction.Id);
                 var selectedRate = dialogOptions.RoomAction.SelectedRate;
@@ -68,11 +68,56 @@ namespace HotelBot.Dialogs.RoomOverview
                 };
                 state.SelectedRooms.Add(selectedRoom);
 
-                await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.ShowOverview, state);
-      
+                await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.RoomAdded, state);
+                return await sc.NextAsync();
             }
+
             return await sc.NextAsync();
         }
+
+        public async Task<DialogTurnResult> PromptContinueOrFindMoreRooms(WaterfallStepContext sc, CancellationToken cancellationToken)
+
+        {
+            // room is added succesfully --> continue to showoverview + payment step or fetch other rooms? (redirect with dialogresult to fetchavailablerooms dialog)
+            return await sc.BeginDialogAsync(nameof(ContinueOrAddMoreRoomsPrompt));
+
+        }
+
+
+        public async Task<DialogTurnResult> ProcessResultContinueOrAddMoreRoomsPrompt(WaterfallStepContext sc, CancellationToken cancellationToken)
+
+        {
+            var dialogOptions = new DialogOptions();
+
+            if (sc.Options != null) dialogOptions = (DialogOptions) sc.Options;
+
+            if (sc.Result != null)
+            {
+                var choice = sc.Result as FoundChoice;
+
+                switch (choice.Value)
+
+                {
+                    case RoomOverviewChoices.ContinueToPayment:
+                        return await sc.NextAsync();
+                    case RoomOverviewChoices.AddAnotherRoom:
+                        var dialogResult = new DialogResult
+                        {
+                            PreviousOptions = dialogOptions,
+                            TargetDialog = nameof(FetchAvailableRoomsDialog)
+
+                        };
+                        return await sc.EndDialogAsync(dialogResult);
+
+                }
+            }
+
+            return null;
+
+        }
+
+
+
 
 
 
@@ -80,16 +125,17 @@ namespace HotelBot.Dialogs.RoomOverview
         public async Task<DialogTurnResult> ShowOverview(WaterfallStepContext sc, CancellationToken cancellationToken)
 
         {
-            // check if room still available --> a get request for the room (backend returns null if not available)
-
+            var state = await _accessors.RoomOverviewStateAccessor.GetAsync(sc.Context, () => new RoomOverviewState());
+            await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.ShowOverview, state);
             return EndOfTurn;
+
+
         }
 
-        public async Task<DialogTurnResult> PromptModify(WaterfallStepContext sc, CancellationToken cancellationToken)
-
+        public class RoomOverviewChoices
         {
-            return null;
-
+            public const string AddAnotherRoom = "Add another room";
+            public const string ContinueToPayment = "Continue to payment"; // maybe confirm instead of payment 
         }
     }
 }
