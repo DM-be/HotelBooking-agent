@@ -52,7 +52,7 @@ namespace HotelBot.Dialogs.RoomDetail
             var requestHandler = new RequestHandler();
             var state = await _accessors.RoomDetailStateAccessor.GetAsync(sc.Context, () => new RoomDetailState());
             state.RoomDetailDto = new RoomDetailDto();
-            state.RoomDetailDto = await requestHandler.FetchRoomDetail(dialogOptions.RoomAction.Id);
+            state.RoomDetailDto = await requestHandler.FetchRoomDetail(dialogOptions.RoomAction.RoomId);
 
             //todo: refactor and remove rerouted check
             //check on rerouted --> avoid replace dialog sending another get request 

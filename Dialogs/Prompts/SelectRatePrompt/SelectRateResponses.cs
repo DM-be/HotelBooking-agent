@@ -50,9 +50,10 @@ namespace HotelBot.Dialogs.Prompts.SelectRatePrompt
                             Value = JsonConvert.SerializeObject(
                                 new RoomAction
                                 {
-                                    Id = roomDetailDto.Id,
-                                    Action = "book",
+                                    RoomId = roomDetailDto.Id,
+                                    Action = "selectRoomWithRate",
                                     SelectedRate = roomDetailDto.Rates[i]
+                                    
                                 }),
                             Title = $"Book for €{roomDetailDto.Rates[i].Price}",
                             Text = "show me more info for x room"

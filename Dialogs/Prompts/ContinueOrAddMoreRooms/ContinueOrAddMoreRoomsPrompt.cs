@@ -46,6 +46,7 @@ namespace HotelBot.Dialogs.Prompts.ContinueOrAddMoreRooms
                         {
                             RoomOverviewDialog.RoomOverviewChoices.AddAnotherRoom,
                             RoomOverviewDialog.RoomOverviewChoices.ContinueToPayment,
+                            RoomOverviewDialog.RoomOverviewChoices.ShowOverview,
                         })
                 },
                 cancellationToken);

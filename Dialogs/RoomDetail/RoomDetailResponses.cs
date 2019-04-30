@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using HotelBot.Dialogs.RoomDetail.Resources;
+using HotelBot.Dialogs.RoomOverview;
 using HotelBot.Models.DTO;
 using HotelBot.Models.Wrappers;
 using Microsoft.Bot.Builder;
@@ -99,7 +100,7 @@ namespace HotelBot.Dialogs.RoomDetail
                             Value = JsonConvert.SerializeObject(
                                 new RoomAction
                                 {
-                                    Id = roomDetailDto.Id,
+                                    RoomId = roomDetailDto.Id,
                                     Action = "selectRoomWithRate",
                                     SelectedRate = roomDetailDto.Rates[i]
                                 }),

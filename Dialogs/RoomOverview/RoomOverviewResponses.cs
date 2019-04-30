@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using HotelBot.Dialogs.FetchAvailableRooms;
 using HotelBot.Dialogs.FetchAvailableRooms.Resources;
 using HotelBot.Dialogs.RoomOverview.Resources;
 using HotelBot.Models.Wrappers;
@@ -17,8 +16,6 @@ namespace HotelBot.Dialogs.RoomOverview
         {
             ["default"] = new TemplateIdMap
             {
-
-
                 {
                     ResponseIds.RoomAdded, (context, data) =>
                         MessageFactory.Text(
@@ -91,10 +88,22 @@ namespace HotelBot.Dialogs.RoomOverview
                         Value = JsonConvert.SerializeObject(
                             new RoomAction
                             {
-                                Id = selectedRoom.RoomDetailDto.Id,
+                                RoomId = selectedRoom.RoomDetailDto.Id,
                                 Action = "info"
                             }),
                         Title = "\t More info \t"
+                    },
+                    new CardAction
+                    {
+                        Type = ActionTypes.MessageBack,
+                        Value = JsonConvert.SerializeObject(
+                            new RoomAction
+                            {
+                                RoomId = selectedRoom.RoomDetailDto.Id,
+                                Action = "remove",
+                                SelectedRate = selectedRoom.SelectedRate
+                            }),
+                        Title = "\t Remove \t"
                     }
 
                 }
@@ -147,6 +156,7 @@ namespace HotelBot.Dialogs.RoomOverview
             public const string RoomAdded = "roomAdded";
             public const string ConfirmInfo = "confirmInfo";
             public const string ContinueOrAddMoreRooms = "continueOrAddMoreRooms";
+            public const string SendPaymentCard = "sendPaymentCard";
         }
     }
 

@@ -1,5 +1,8 @@
-﻿namespace HotelBot.Models.DTO
+﻿using System;
+
+namespace HotelBot.Models.DTO
 {
+    [Serializable]
     public class RoomRate
     {
 

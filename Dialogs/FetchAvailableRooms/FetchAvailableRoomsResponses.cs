@@ -186,7 +186,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                             Value = JsonConvert.SerializeObject(
                                 new RoomAction
                                 {
-                                    Id = rooms[i].id,
+                                    RoomId = rooms[i].id,
                                     Action = "book"
                                 }),
                             // todo: button formatting.....
@@ -201,7 +201,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                             Value = JsonConvert.SerializeObject(
                                 new RoomAction
                                 {
-                                    Id = rooms[i].id,
+                                    RoomId = rooms[i].id,
                                     Action = "info"
                                 }),
                             Title = "\t More info \t"

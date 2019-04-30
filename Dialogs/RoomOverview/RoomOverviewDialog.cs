@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.FetchAvailableRooms;
@@ -34,7 +35,7 @@ namespace HotelBot.Dialogs.RoomOverview
 
             // send overview
             // send prompt asking to modify, update or confirm  (also implement in luis)
-            // when confirmed --> send link to do "payment" --> no sql set backend validated boolean to true after payment via api? 
+            // when confirmed --> send link to do "payment" --> no sql set backend validated boolean to true after payment via api?
             var RoomOverviewWaterfallsteps = new WaterfallStep []
             {
                 FetchSelectedRoomDetailAndAddToState, PromptContinueOrFindMoreRooms, ProcessResultContinueOrAddMoreRoomsPrompt, ShowOverview
@@ -54,10 +55,10 @@ namespace HotelBot.Dialogs.RoomOverview
             var requestHandler = new RequestHandler();
             var state = await _accessors.RoomOverviewStateAccessor.GetAsync(sc.Context, () => new RoomOverviewState());
 
-            if (dialogOptions.RoomAction != null)
+            if (dialogOptions.RoomAction.Action != null && dialogOptions.RoomAction.Action == "selectRoomWithRate")
             {
                 //todo: add alternate flow if room is unavailable (could be an action button tapped from hours/days before)
-                var roomDetailDto = await requestHandler.FetchRoomDetail(dialogOptions.RoomAction.Id);
+                var roomDetailDto = await requestHandler.FetchRoomDetail(dialogOptions.RoomAction.RoomId); // fetch to check availability
                 var selectedRate = dialogOptions.RoomAction.SelectedRate;
                 var selectedRoom = new SelectedRoom
                 {
@@ -68,6 +69,15 @@ namespace HotelBot.Dialogs.RoomOverview
                 await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.RoomAdded, state);
                 var succes = true;  //todo: think about alternate flow and this var to skip the prompt
                 return await sc.NextAsync(succes);
+            }
+
+            if (dialogOptions.RoomAction.Action != null && dialogOptions.RoomAction.Action == "remove")
+            {
+                var roomId = dialogOptions.RoomAction.RoomId;
+                var selectedRate = dialogOptions.RoomAction.SelectedRate.Price;
+                var toRemove = state.SelectedRooms.Where(x => x.RoomDetailDto.Id == roomId && x.SelectedRate.Price == selectedRate).First();
+                state.SelectedRooms.Remove(toRemove);
+                return await sc.NextAsync();
             }
 
             return await sc.NextAsync();
@@ -103,6 +113,10 @@ namespace HotelBot.Dialogs.RoomOverview
 
                         };
                         return await sc.EndDialogAsync(dialogResult);
+                    case RoomOverviewChoices.ShowOverview:
+                        return await sc.NextAsync();
+                    //todo: fix with replacedialogloop 
+
 
                 }
             }
@@ -123,6 +137,7 @@ namespace HotelBot.Dialogs.RoomOverview
             var state = await _accessors.RoomOverviewStateAccessor.GetAsync(sc.Context, () => new RoomOverviewState());
             await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.ShowOverview, state);
             return EndOfTurn;
+            // switch on payment still needed and what else?
 
 
         }
@@ -130,7 +145,8 @@ namespace HotelBot.Dialogs.RoomOverview
         public class RoomOverviewChoices
         {
             public const string AddAnotherRoom = "Add another room";
-            public const string ContinueToPayment = "Continue to payment"; // maybe confirm instead of payment 
+            public const string ContinueToPayment = "Continue to payment"; // maybe confirm instead of payment
+            public const string ShowOverview = "Show current overview";
         }
     }
 }

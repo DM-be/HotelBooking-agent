@@ -46,10 +46,11 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
 
                         // todo: rename book --> now name of button (used to skip info in roomdetaildialog)
                         if (roomAction.Action == "info" | roomAction.Action == "book") await innerDc.BeginDialogAsync(nameof(RoomDetailDialog), dialogOptions);
-                        else if (roomAction.Action == "selectRoomWithRate")
+                        else if (roomAction.Action == "selectRoomWithRate" | roomAction.Action == "remove")
                         {
                             await innerDc.BeginDialogAsync(nameof(RoomOverviewDialog), dialogOptions);
                         }
+
 
 
                     }
