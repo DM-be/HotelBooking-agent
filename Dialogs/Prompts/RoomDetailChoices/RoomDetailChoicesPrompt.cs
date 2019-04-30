@@ -43,14 +43,14 @@ namespace HotelBot.Dialogs.Prompts.RoomDetailChoices
                 nameof(ChoicePrompt),
                 new PromptOptions
                 {
-                    Prompt = MessageFactory.Text("Ask me questions about the room or pick an option"),
+                    Prompt = MessageFactory.Text("Would you like to view anything else from this room?"),
                     Choices = ChoiceFactory.ToChoices(
                         new List<string>
                         {
-                            "View other rooms",
                             "Rates",
                             "Pictures",
-                            "Exit"
+                            "Show me other rooms",
+                            "No thanks"
                         })
                 },
                 cancellationToken);
@@ -62,7 +62,7 @@ namespace HotelBot.Dialogs.Prompts.RoomDetailChoices
             var choice = sc.Result as FoundChoice;
             switch (choice.Value)
             {
-                case "View other rooms":
+                case "Show me other rooms":
                     var dialogOptions = new DialogOptions
                     {
                         Rerouted = true,
@@ -87,8 +87,8 @@ namespace HotelBot.Dialogs.Prompts.RoomDetailChoices
                 case "Pictures":
                     await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendImages, state.RoomDetailDto);
                     return await sc.ReplaceDialogAsync(InitialDialogId);
-                case "Exit":
-                    // end and prompt and end on waterfall above. 
+                case "No thanks":
+                    // end and prompt and end on waterfall above
                     return await sc.EndDialogAsync();
             }
 

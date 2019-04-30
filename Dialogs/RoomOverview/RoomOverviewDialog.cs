@@ -38,7 +38,7 @@ namespace HotelBot.Dialogs.RoomOverview
             // when confirmed --> send link to do "payment" --> no sql set backend validated boolean to true after payment via api? 
             var sendOverview = new WaterfallStep []
             {
-                FetchSelectedRoomDetail, ShowOverview, PromptModify
+                FetchSelectedRoomDetailAndAddToState, ShowOverview, PromptModify
             };
             AddDialog(new WaterfallDialog(InitialDialogId, sendOverview));
 
@@ -46,7 +46,7 @@ namespace HotelBot.Dialogs.RoomOverview
         }
 
 
-        public async Task<DialogTurnResult> FetchSelectedRoomDetail(WaterfallStepContext sc, CancellationToken cancellationToken)
+        public async Task<DialogTurnResult> FetchSelectedRoomDetailAndAddToState(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
 
             var dialogOptions = sc.Options as DialogOptions;
@@ -71,7 +71,6 @@ namespace HotelBot.Dialogs.RoomOverview
                 await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.ShowOverview, state);
       
             }
-
             return await sc.NextAsync();
         }
 
