@@ -88,8 +88,8 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                         SendOverview(context, data)
                 },
                 {
-                    ResponseIds.ReroutedOverview, (context, data) =>
-                        SendReroutedOverview(context, data)
+                    ResponseIds.CachedOverview, (context, data) =>
+                        SendCachedOverview(context, data)
                 },
                 {
                     ResponseIds.SpecificTimePrompt, (context, data) =>
@@ -334,9 +334,9 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             return MessageFactory.Text(message);
         }
 
-        public static IMessageActivity SendReroutedOverview(ITurnContext context, FetchAvailableRoomsState state)
+        public static IMessageActivity SendCachedOverview(ITurnContext context, FetchAvailableRoomsState state)
         {
-            var message = string.Format(FetchAvailableRoomsStrings.REROUTED_STATE_OVERVIEW, state.NumberOfPeople, state.ArrivalDate, state.LeavingDate);
+            var message = string.Format(FetchAvailableRoomsStrings.CACHED_STATE_OVERVIEW, state.NumberOfPeople, state.ArrivalDate, state.LeavingDate);
             return MessageFactory.Text(message);
         }
 
@@ -395,7 +395,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             public const string Help = "help";
 
             public const string Overview = "overview";
-            public const string ReroutedOverview = "reroutedOverview";
+            public const string CachedOverview = "cachedOverview";
             public const string SendRoomsCarousel = "sendRoomsCarousel";
             public const string SendRoomDetail = "sendRoomDetail";
             public const string ContinueOrUpdate = "continueOrUpdate";

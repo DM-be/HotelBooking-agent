@@ -46,6 +46,7 @@ namespace HotelBot.Dialogs.RoomOverview
         }
 
 
+        // check roomaction and add room to state if it is not null
         public async Task<DialogTurnResult> FetchSelectedRoomDetailAndAddToState(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
 
@@ -53,23 +54,20 @@ namespace HotelBot.Dialogs.RoomOverview
             var requestHandler = new RequestHandler();
             var state = await _accessors.RoomOverviewStateAccessor.GetAsync(sc.Context, () => new RoomOverviewState());
 
-            //check on rerouted --> avoid replace dialog sending another get request 
-            if (dialogOptions.Rerouted)
+            if (dialogOptions.RoomAction != null)
             {
-
-
+                //todo: add alternate flow if room is unavailable (could be an action button tapped from hours/days before)
                 var roomDetailDto = await requestHandler.FetchRoomDetail(dialogOptions.RoomAction.Id);
                 var selectedRate = dialogOptions.RoomAction.SelectedRate;
-
                 var selectedRoom = new SelectedRoom
                 {
                     RoomDetailDto = roomDetailDto,
                     SelectedRate = selectedRate
                 };
                 state.SelectedRooms.Add(selectedRoom);
-
                 await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.RoomAdded, state);
-                return await sc.NextAsync();
+                var succes = true;  //todo: think about alternate flow and this var to skip the prompt
+                return await sc.NextAsync(succes);
             }
 
             return await sc.NextAsync();
@@ -78,12 +76,9 @@ namespace HotelBot.Dialogs.RoomOverview
         public async Task<DialogTurnResult> PromptContinueOrFindMoreRooms(WaterfallStepContext sc, CancellationToken cancellationToken)
 
         {
-            // room is added succesfully --> continue to showoverview + payment step or fetch other rooms? (redirect with dialogresult to fetchavailablerooms dialog)
-            return await sc.BeginDialogAsync(nameof(ContinueOrAddMoreRoomsPrompt));
-
+            if (sc.Result != null) return await sc.BeginDialogAsync(nameof(ContinueOrAddMoreRoomsPrompt));
+            return await sc.NextAsync();
         }
-
-
         public async Task<DialogTurnResult> ProcessResultContinueOrAddMoreRoomsPrompt(WaterfallStepContext sc, CancellationToken cancellationToken)
 
         {
@@ -113,7 +108,7 @@ namespace HotelBot.Dialogs.RoomOverview
                 }
             }
 
-            return null;
+            return await sc.NextAsync();
 
         }
 

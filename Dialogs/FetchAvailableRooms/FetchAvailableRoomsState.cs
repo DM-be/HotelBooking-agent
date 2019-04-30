@@ -14,6 +14,11 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
 
         public TimexProperty TempTimexProperty { get; set; } // used in delegates --> stores this in arrival/leaving
 
+        public bool IsComplete()
+        {
+            // manual check instead of reflection
+            return this.ArrivalDate != null && this.LeavingDate != null && this.NumberOfPeople != null;
+        }
 
 
     }

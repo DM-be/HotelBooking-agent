@@ -60,7 +60,12 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
         {
 
             var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
-            if (state.NumberOfPeople != null) return await sc.NextAsync();
+            if (state.NumberOfPeople != null)
+            {
+                sc.Context.TurnState["cachedState"] = state;
+                return await sc.NextAsync();
+            }
+
 
             return await sc.BeginDialogAsync(nameof(NumberOfPeoplePromptDialog));
         }
@@ -68,14 +73,24 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
         public async Task<DialogTurnResult> AskForArrivalDate(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
-            if (state.ArrivalDate != null) return await sc.NextAsync();
+            if (state.ArrivalDate != null)
+            {
+                sc.Context.TurnState["cachedState"] = state;
+                return await sc.NextAsync();
+            }
+
             return await sc.BeginDialogAsync(nameof(ArrivalDatePromptDialog));
         }
 
         public async Task<DialogTurnResult> AskForLeavingDate(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
-            if (state.LeavingDate != null) return await sc.NextAsync();
+            if (state.LeavingDate != null)
+            {
+                sc.Context.TurnState["cachedState"] = state;
+                return await sc.NextAsync();
+            }
+
             return await sc.BeginDialogAsync(nameof(DepartureDatePromptDialog));
         }
 
@@ -127,9 +142,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                         var dialogOptions = new DialogOptions
                         {
                             SkipConfirmation = false, // start over and prompt for confirmation again 
-                            SkipIntroduction = true,
-                            Rerouted = false
-
+                            SkipIntroduction = true
                         };
                         return await sc.ReplaceDialogAsync(InitialDialogId, dialogOptions);
                     }
@@ -142,7 +155,6 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             // this is in case state is manually updated in the previous dialog (ContinueOrUpdatePrompt) 
             var dialogOpts = new DialogOptions
             {
-                Rerouted = false,
                 SkipConfirmation = true,
                 SkipIntroduction = true
 
@@ -157,8 +169,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             var dialogOptions = new DialogOptions
             {
                 SkipConfirmation =
-                    true, // skip the confirmation in the middle of the dialog (at the end we assume that the user only makes a single adjustment to one value or selects the startover option instead)
-                Rerouted = false,
+                    true, // skip the confirmation in the middle of the dialog (at the end we assume that the user only makes a single adjustment to one value or selects the startover option instead
                 SkipIntroduction = true
 
             };

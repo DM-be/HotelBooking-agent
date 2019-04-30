@@ -7,13 +7,7 @@ namespace HotelBot.Models.Wrappers
         public bool SkipConfirmation { get; set; }
 
         public bool SkipIntroduction { get; set; }
-        public bool Rerouted { get; set; }
-        
-        public bool Looped { get; set; }
-
         public RoomAction RoomAction { get; set; }
-
-
 
         // todo: refactor into dictionary when to many properties?
         public bool UpdatedNumberOfPeople { get; set; }
@@ -23,6 +17,5 @@ namespace HotelBot.Models.Wrappers
         public bool UpdatedLeavingDate { get; set; }
 
         public HotelBotLuis LuisResult { get; set; }
-
     }
 }

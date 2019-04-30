@@ -67,7 +67,6 @@ namespace HotelBot.Dialogs.Prompts.RoomDetailChoices
                 case RoomDetailDialog.RoomDetailChoices.ShowMeOtherRooms:
                     var dialogOptions = new DialogOptions
                     {
-                        Rerouted = true,
                         SkipConfirmation = false,
                         SkipIntroduction = true
                     };

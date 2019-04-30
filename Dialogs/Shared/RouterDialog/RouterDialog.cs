@@ -40,7 +40,6 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
                         var dialogOptions = new DialogOptions
                         {
                             RoomAction = roomAction,
-                            Rerouted = true
                         };
                         // clear existing stack (button with action tapped)
                         await innerDc.CancelAllDialogsAsync();

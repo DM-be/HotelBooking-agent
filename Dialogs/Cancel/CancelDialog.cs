@@ -48,7 +48,7 @@ namespace HotelBot.Dialogs.Cancel
             {
                 // If user chose to cancel
                 await _responder.ReplyWith(outerDc.Context, CancelResponses.ResponseIds.CancelConfirmedMessage);
-                // clears all saved state in the conversationstate
+                // todo: only clear relevant state --> check per dialog
                 await _accessors.ConversationState.ClearStateAsync(outerDc.Context, cancellationToken).ConfigureAwait(false);
                 // Cancel all in outer stack of component i.e. the stack the component belongs to
                 return await outerDc.CancelAllDialogsAsync();

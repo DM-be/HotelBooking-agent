@@ -61,6 +61,15 @@ namespace HotelBot.Dialogs.FetchAvailableRooms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Last time you looked for a room for {0} people between {1} and {2}. Is this still what you are looking for?.
+        /// </summary>
+        public static string CACHED_STATE_OVERVIEW {
+            get {
+                return ResourceManager.GetString("CACHED_STATE_OVERVIEW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tap the buttons in the card to continue. I can search for rooms again if you would like. .
         /// </summary>
         public static string CONTINUE_OR_UPDATE {
@@ -129,15 +138,6 @@ namespace HotelBot.Dialogs.FetchAvailableRooms.Resources {
         public static string NOT_RECOGNIZED_DATE {
             get {
                 return ResourceManager.GetString("NOT_RECOGNIZED_DATE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Last time you looked for a room for {0} people between {1} and {2}. Is this still what you are looking for?.
-        /// </summary>
-        public static string REROUTED_STATE_OVERVIEW {
-            get {
-                return ResourceManager.GetString("REROUTED_STATE_OVERVIEW", resourceCulture);
             }
         }
         

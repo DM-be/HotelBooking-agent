@@ -15,11 +15,8 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
 
     {
 
-        protected const string LuisResultBookARoomKey = "LuisResult_RoomOverview";
 
         private readonly StateBotAccessors _accessors;
-
-        // Fields
         private readonly BotServices _services;
 
         public RoomOverviewRecognizerDialog(BotServices services, StateBotAccessors accessors, string dialogId)
