@@ -157,7 +157,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             var dialogOptions = new DialogOptions
             {
                 SkipConfirmation =
-                    true, // skip the confirmation in the middle of the dialog (at the end we assume that the user only makes a single adjustment to one value or selects the startover opton instead)
+                    true, // skip the confirmation in the middle of the dialog (at the end we assume that the user only makes a single adjustment to one value or selects the startover option instead)
                 Rerouted = false,
                 SkipIntroduction = true
 
