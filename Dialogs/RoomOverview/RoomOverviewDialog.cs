@@ -75,8 +75,10 @@ namespace HotelBot.Dialogs.RoomOverview
             {
                 var roomId = dialogOptions.RoomAction.RoomId;
                 var selectedRate = dialogOptions.RoomAction.SelectedRate.Price;
+                // todo: implement better removal... 
                 var toRemove = state.SelectedRooms.Where(x => x.RoomDetailDto.Id == roomId && x.SelectedRate.Price == selectedRate).First();
                 state.SelectedRooms.Remove(toRemove);
+                await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.RoomRemoved);
                 return await sc.NextAsync();
             }
 
@@ -146,7 +148,7 @@ namespace HotelBot.Dialogs.RoomOverview
         {
             public const string AddAnotherRoom = "Add another room";
             public const string ContinueToPayment = "Continue to payment"; // maybe confirm instead of payment
-            public const string ShowOverview = "Show current overview";
+            public const string ShowOverview = "Overview";
         }
     }
 }

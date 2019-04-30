@@ -24,6 +24,13 @@ namespace HotelBot.Dialogs.RoomOverview
                             InputHints.IgnoringInput)
                 },
                 {
+                    ResponseIds.RoomRemoved, (context, data) =>
+                        MessageFactory.Text(
+                            RoomOverviewStrings.ROOM_REMOVED,
+                            RoomOverviewStrings.ROOM_REMOVED,
+                            InputHints.IgnoringInput)
+                },
+                {
                     ResponseIds.ContinueOrAddMoreRooms, (context, data) =>
                         MessageFactory.Text(
                             RoomOverviewStrings.CONTINUE_OR_ADD_MORE_ROOMS,
@@ -157,6 +164,7 @@ namespace HotelBot.Dialogs.RoomOverview
             public const string ConfirmInfo = "confirmInfo";
             public const string ContinueOrAddMoreRooms = "continueOrAddMoreRooms";
             public const string SendPaymentCard = "sendPaymentCard";
+            public const string RoomRemoved = "roomRemoved";
         }
     }
 

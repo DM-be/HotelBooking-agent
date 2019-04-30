@@ -126,4 +126,7 @@
   <data name="ROOM_ADDED" xml:space="preserve">
     <value>Ok, I added the room to your order.</value>
   </data>
+  <data name="ROOM_REMOVED" xml:space="preserve">
+    <value>Ok, I removed that room.</value>
+  </data>
 </root>

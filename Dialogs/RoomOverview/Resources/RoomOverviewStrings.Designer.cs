@@ -86,5 +86,14 @@ namespace HotelBot.Dialogs.RoomOverview.Resources {
                 return ResourceManager.GetString("ROOM_ADDED", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok, I removed that room..
+        /// </summary>
+        public static string ROOM_REMOVED {
+            get {
+                return ResourceManager.GetString("ROOM_REMOVED", resourceCulture);
+            }
+        }
     }
 }
