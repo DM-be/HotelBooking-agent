@@ -98,7 +98,7 @@ namespace HotelBot.Dialogs.RoomDetail
                                 new RoomAction
                                 {
                                     Id = roomDetailDto.Id,
-                                    Action = "book",
+                                    Action = "selectRoomWithRate",
                                     SelectedRate = roomDetailDto.Rates[i]
                                 }),
                             Title = $"Book for €{roomDetailDto.Rates[i].Price}",

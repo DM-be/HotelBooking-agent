@@ -91,6 +91,8 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.RoomDetail
             return InterruptionStatus.NoAction;
         }
 
+
+        //todo: expand with other intents, show previous room etc
         protected virtual async Task<InterruptionStatus> OnReroute(DialogContext dc, HotelBotLuis.Intent intent)
         {
             // do not reroute to active dialog

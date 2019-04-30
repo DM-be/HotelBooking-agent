@@ -97,7 +97,7 @@ namespace HotelBot.Dialogs.RoomOverview
         public static string BuildHeroCardText(SelectedRoom selectedRoom)
         {
             // calculate total price etc etc
-            var message = $"Total: €{selectedRoom.Total}\n";
+            var message = $"Rate: €{selectedRoom.SelectedRate.Price}\n";
             message += selectedRoom.RoomDetailDto.ShortDescription;
             message += " \n";
             message += GetSmokingString(selectedRoom.RoomDetailDto.SmokingAllowed);
