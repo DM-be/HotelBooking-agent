@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.FetchAvailableRooms;
+using HotelBot.Dialogs.Prompts.RoomDetailChoices.Resources;
 using HotelBot.Dialogs.RoomDetail;
 using HotelBot.Models.Wrappers;
 using HotelBot.Services;
@@ -43,14 +44,15 @@ namespace HotelBot.Dialogs.Prompts.RoomDetailChoices
                 nameof(ChoicePrompt),
                 new PromptOptions
                 {
-                    Prompt = MessageFactory.Text("Would you like to view anything else from this room?"),
+
+                    Prompt = MessageFactory.Text(RoomDetailChoicesStrings.PROMPT_CHOICES),
                     Choices = ChoiceFactory.ToChoices(
                         new List<string>
                         {
-                            "Rates",
-                            "Pictures",
-                            "Show me other rooms",
-                            "No thanks"
+                            RoomDetailDialog.RoomDetailChoices.Rates,
+                            RoomDetailDialog.RoomDetailChoices.Pictures,
+                            RoomDetailDialog.RoomDetailChoices.ShowMeOtherRooms,
+                            RoomDetailDialog.RoomDetailChoices.NoThanks
                         })
                 },
                 cancellationToken);
@@ -62,7 +64,7 @@ namespace HotelBot.Dialogs.Prompts.RoomDetailChoices
             var choice = sc.Result as FoundChoice;
             switch (choice.Value)
             {
-                case "Show me other rooms":
+                case RoomDetailDialog.RoomDetailChoices.ShowMeOtherRooms:
                     var dialogOptions = new DialogOptions
                     {
                         Rerouted = true,
@@ -78,16 +80,13 @@ namespace HotelBot.Dialogs.Prompts.RoomDetailChoices
                     };
                     return await sc.EndDialogAsync(dialogResult);
 
-
-                 //   return await sc.ReplaceDialogAsync(nameof(FetchAvailableRoomsDialog), dialogOptions);
-
-                case "Rates":
+                case RoomDetailDialog.RoomDetailChoices.Rates:
                     await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendRates, state.RoomDetailDto);
                     return await sc.ReplaceDialogAsync(InitialDialogId);
-                case "Pictures":
+                case RoomDetailDialog.RoomDetailChoices.Pictures:
                     await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendImages, state.RoomDetailDto);
                     return await sc.ReplaceDialogAsync(InitialDialogId);
-                case "No thanks":
+                case RoomDetailDialog.RoomDetailChoices.NoThanks:
                     // end and prompt and end on waterfall above
                     await sc.Context.SendActivityAsync("You're welcome.");
                     return await sc.EndDialogAsync();

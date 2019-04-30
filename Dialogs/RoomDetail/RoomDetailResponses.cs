@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using HotelBot.Dialogs.RoomDetail.Resources;
 using HotelBot.Models.DTO;
 using HotelBot.Models.Wrappers;
@@ -51,6 +52,7 @@ namespace HotelBot.Dialogs.RoomDetail
             Register(new DictionaryRenderer(_responseTemplates));
         }
 
+
         public static IMessageActivity SendImages(ITurnContext context, dynamic data)
         {
             var roomDetailDto = data as RoomDetailDto;
@@ -59,8 +61,8 @@ namespace HotelBot.Dialogs.RoomDetail
                 imageCards[i] = new HeroCard
                 {
                     Title = roomDetailDto.Title,
-                    Subtitle = string.Empty,
-                    Text = string.Empty,
+                    Subtitle = String.Empty,
+                    Text = String.Empty,
                     Images = new List<CardImage>
                     {
                         new CardImage(roomDetailDto.RoomImages[i].ImageUrl)
@@ -116,6 +118,7 @@ namespace HotelBot.Dialogs.RoomDetail
             return reply;
         }
 
+
         public static IMessageActivity SendDescription(ITurnContext context, dynamic data)
         {
             var selectedRoomDetailDto = data as RoomDetailDto;
@@ -139,5 +142,6 @@ namespace HotelBot.Dialogs.RoomDetail
             public const string RoomChoicesPrompt = "roomChoicesPrompt";
             public const string RoomChoicesPromptLooped = "roomChoisesPromptLooped";
         }
+
     }
 }

@@ -74,52 +74,12 @@ namespace HotelBot.Dialogs.RoomDetail
             return await sc.BeginDialogAsync(nameof(RoomDetailChoicesPrompt));
         }
 
-
-
-        //public async Task<DialogTurnResult> ProcessChoice(WaterfallStepContext sc, CancellationToken cancellationToken)
-        //{
-        //    var state = await _accessors.RoomDetailStateAccessor.GetAsync(sc.Context, () => new RoomDetailState());
-        //    var choice = sc.Result as FoundChoice;
-        //    switch (choice.Value)
-        //    {
-        //        case RoomDetailChoices.ViewOtherRooms:
-        //            var dialogOptions = new DialogOptions
-        //            {
-        //                Rerouted = true,
-        //                SkipConfirmation = false,
-        //                SkipIntroduction = true
-        //            };
-        //            var dialogResult = new DialogResult
-        //            {
-        //                PreviousOptions = dialogOptions,
-        //                TargetDialog = nameof(FetchAvailableRoomsDialog)
-        //            };
-        //            return await sc.EndDialogAsync(dialogResult);
-        //        case RoomDetailChoices.ShowRates:
-        //            // start show rates prompt
-
-
-        //            await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendRates, state.RoomDetailDto);
-        //            var dialogOpts = sc.Options as DialogOptions;
-        //            dialogOpts.Rerouted = false;
-        //            dialogOpts.Looped = true;
-
-        //            return await sc.ReplaceDialogAsync(InitialDialogId, dialogOpts);
-        //        case RoomDetailChoices.NoThanks:
-        //            return await sc.EndDialogAsync();
-
-        //    }
-
-        //    return null;
-
-        //}
-
-
         public class RoomDetailChoices
         {
-            public const string ViewOtherRooms = "New search";
-            public const string ShowRates = "View rates";
+            public const string ShowMeOtherRooms = "Show me other rooms";
+            public const string Rates = "Rates";
             public const string NoThanks = "No thanks";
+            public const string Pictures = "Pictures";
         }
     }
 }
