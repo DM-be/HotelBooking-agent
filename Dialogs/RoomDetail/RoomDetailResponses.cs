@@ -72,7 +72,7 @@ namespace HotelBot.Dialogs.RoomDetail
                     }
                 };
             var reply = context.Activity.CreateReply();
-            reply.Text = "Here are some more pictures";
+            reply.Text = "Tap these pictures to enlarge.";
             var attachments = new List<Attachment>();
             foreach (var heroCard in imageCards) attachments.Add(heroCard.ToAttachment());
             reply.AttachmentLayout = "carousel";
@@ -125,7 +125,7 @@ namespace HotelBot.Dialogs.RoomDetail
         public static IMessageActivity SendLowestRate(ITurnContext context, dynamic data)
         {
             var selectedRoomDetailDto = data as RoomDetailDto;
-            var message = $"This rooms lowest rate is {selectedRoomDetailDto.LowestRate} EUR";
+            var message = $"This rooms is available starting from {selectedRoomDetailDto.LowestRate} EUR.";
             return MessageFactory.Text(message);
         }
 

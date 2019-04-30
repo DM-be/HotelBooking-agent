@@ -89,6 +89,7 @@ namespace HotelBot.Dialogs.Prompts.RoomDetailChoices
                     return await sc.ReplaceDialogAsync(InitialDialogId);
                 case "No thanks":
                     // end and prompt and end on waterfall above
+                    await sc.Context.SendActivityAsync("You're welcome.");
                     return await sc.EndDialogAsync();
             }
 

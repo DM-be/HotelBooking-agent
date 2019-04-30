@@ -134,7 +134,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                         return await sc.ReplaceDialogAsync(InitialDialogId, dialogOptions);
                     }
                     case FetchAvailableRoomsChoices.NoThanks:
-                        await sc.Context.SendActivityAsync("You're welcome");
+                        await sc.Context.SendActivityAsync("You're welcome.");
                         return await sc.EndDialogAsync();
                 }
             }

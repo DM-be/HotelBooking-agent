@@ -214,7 +214,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             var reply = context.Activity.CreateReply();
 
             reply.Text =
-                $"Here are our available rooms between {bookARoomState.ArrivalDate} and {bookARoomState.LeavingDate} for {bookARoomState.NumberOfPeople.ToString()} people.";
+                $"These are our available rooms between {bookARoomState.ArrivalDate} and {bookARoomState.LeavingDate} for {bookARoomState.NumberOfPeople.ToString()} people.";
             var attachments = new List<Attachment>();
 
             foreach (var heroCard in heroCards) attachments.Add(heroCard.ToAttachment());
