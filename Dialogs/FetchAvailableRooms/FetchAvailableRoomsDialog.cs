@@ -9,6 +9,7 @@ using HotelBot.Dialogs.Prompts.DepartureDate;
 using HotelBot.Dialogs.Prompts.FetchAvailableRoomsIntroduction;
 using HotelBot.Dialogs.Prompts.NumberOfPeople;
 using HotelBot.Dialogs.Prompts.UpdateStateChoice;
+using HotelBot.Dialogs.RoomOverview;
 using HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms;
 using HotelBot.Models.Wrappers;
 using HotelBot.Services;
@@ -146,20 +147,26 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                         await sc.Context.SendActivityAsync("Ok, let's start over");
                         var dialogOptions = new DialogOptions
                         {
-                            SkipConfirmation = false, // start over and prompt for confirmation again 
+                            SkipConfirmation = false // start over and prompt for confirmation again 
                         };
                         return await sc.ReplaceDialogAsync(InitialDialogId, dialogOptions);
                     }
                     case FetchAvailableRoomsChoices.NoThanks:
                         await sc.Context.SendActivityAsync("You're welcome.");
                         return await sc.EndDialogAsync();
+                    case FetchAvailableRoomsChoices.RoomOverview:
+                        var dialogResult = new DialogResult
+                        {
+                            TargetDialog = nameof(RoomOverviewDialog)
+                        };
+                        return await sc.EndDialogAsync(dialogResult);
                 }
             }
 
             // this is in case state is manually updated in the previous dialog (ContinueOrUpdatePrompt) 
             var dialogOpts = new DialogOptions
             {
-                SkipConfirmation = true,
+                SkipConfirmation = true
             };
             return await sc.ReplaceDialogAsync(InitialDialogId, dialogOpts);
         }
@@ -171,7 +178,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             var dialogOptions = new DialogOptions
             {
                 SkipConfirmation =
-                    true, // skip the confirmation in the middle of the dialog (at the end we assume that the user only makes a single adjustment to one value or selects the startover option instead
+                    true // skip the confirmation in the middle of the dialog (at the end we assume that the user only makes a single adjustment to one value or selects the startover option instead
             };
             if (sc.Result != null)
             {
@@ -188,6 +195,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                     case FetchAvailableRoomsChoices.NumberOfPeople:
                         state.NumberOfPeople = null;
                         return await sc.ReplaceDialogAsync(InitialDialogId, dialogOptions);
+                   
                 }
             }
 
@@ -206,11 +214,13 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             public const string ChangeSearch = "Change search";
             public const string NoThanks = "No thanks";
 
+            public const string RoomOverview = "Order overview";
+
             public static readonly ReadOnlyCollection<string> Choices =
                 new ReadOnlyCollection<string>(
                     new []
                     {
-                        Checkin, Checkout, NumberOfPeople, StartOver, ChangeSearch, NoThanks
+                        Checkin, Checkout, NumberOfPeople, StartOver, ChangeSearch, NoThanks, RoomOverview
                     });
         }
     }

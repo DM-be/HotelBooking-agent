@@ -39,18 +39,16 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
                         var roomAction = JsonConvert.DeserializeObject<RoomAction>(activity.Value.ToString());
                         var dialogOptions = new DialogOptions
                         {
-                            RoomAction = roomAction,
+                            RoomAction = roomAction
                         };
                         // clear existing stack (button with action tapped)
                         await innerDc.CancelAllDialogsAsync();
 
                         // todo: rename book --> now name of button (used to skip info in roomdetaildialog)
-                        if (roomAction.Action == "info" | roomAction.Action == "book") await innerDc.BeginDialogAsync(nameof(RoomDetailDialog), dialogOptions);
-                        else if (roomAction.Action == "selectRoomWithRate" | roomAction.Action == "remove" | roomAction.Action == "viewDetails")
-                        {
+                        if ((roomAction.Action == "info") | (roomAction.Action == "book"))
+                            await innerDc.BeginDialogAsync(nameof(RoomDetailDialog), dialogOptions);
+                        else if ((roomAction.Action == "selectRoomWithRate") | (roomAction.Action == "remove") | (roomAction.Action == "viewDetails"))
                             await innerDc.BeginDialogAsync(nameof(RoomOverviewDialog), dialogOptions);
-                        }
-
 
 
                     }
@@ -63,6 +61,9 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
                             var dialogResult = (DialogResult) result.Result;
                             if (dialogResult.TargetDialog != null)
                             {
+                                //todo: always pass previous options or? 
+                                if (dialogResult.PreviousOptions == null) dialogResult.PreviousOptions = new DialogOptions();
+
                                 await innerDc.BeginDialogAsync(dialogResult.TargetDialog, dialogResult.PreviousOptions);
 
                                 return EndOfTurn;

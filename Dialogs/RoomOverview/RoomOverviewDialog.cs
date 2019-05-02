@@ -56,37 +56,34 @@ namespace HotelBot.Dialogs.RoomOverview
             var requestHandler = new RequestHandler();
             var state = await _accessors.RoomOverviewStateAccessor.GetAsync(sc.Context, () => new RoomOverviewState());
 
-
-            if (dialogOptions.RoomAction.Action != null && dialogOptions.RoomAction.Action == "selectRoomWithRate")
+            if (dialogOptions.RoomAction != null)
             {
-                //todo: add alternate flow if room is unavailable (could be an action button tapped from hours/days before)
-                var roomDetailDto = await requestHandler.FetchRoomDetail(dialogOptions.RoomAction.RoomId); // fetch to check availability
-                var selectedRate = dialogOptions.RoomAction.SelectedRate;
-                var selectedRoom = new SelectedRoom
+                if (dialogOptions.RoomAction.Action != null && dialogOptions.RoomAction.Action == "selectRoomWithRate")
                 {
-                    RoomDetailDto = roomDetailDto,
-                    SelectedRate = selectedRate
-                };
-                state.SelectedRooms.Add(selectedRoom);
-                await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.RoomAdded, state);
+                    //todo: add alternate flow if room is unavailable (could be an action button tapped from hours/days before)
+                    var roomDetailDto = await requestHandler.FetchRoomDetail(dialogOptions.RoomAction.RoomId); // fetch to check availability
+                    var selectedRate = dialogOptions.RoomAction.SelectedRate;
+                    var selectedRoom = new SelectedRoom
+                    {
+                        RoomDetailDto = roomDetailDto,
+                        SelectedRate = selectedRate
+                    };
+                    state.SelectedRooms.Add(selectedRoom);
+                    await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.RoomAdded, state);
+                }
+
+                if (dialogOptions.RoomAction.Action != null && dialogOptions.RoomAction.Action == "remove")
+                {
+                    var roomId = dialogOptions.RoomAction.RoomId;
+                    var selectedRate = dialogOptions.RoomAction.SelectedRate.Price;
+                    // todo: implement better removal... 
+                    var toRemove = state.SelectedRooms.Where(x => x.RoomDetailDto.Id == roomId && x.SelectedRate.Price == selectedRate).First();
+                    state.SelectedRooms.Remove(toRemove);
+                    await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.RoomRemoved);
+                }
+
             }
 
-            if (dialogOptions.RoomAction.Action != null && dialogOptions.RoomAction.Action == "remove")
-            {
-                var roomId = dialogOptions.RoomAction.RoomId;
-                var selectedRate = dialogOptions.RoomAction.SelectedRate.Price;
-                // todo: implement better removal... 
-                var toRemove = state.SelectedRooms.Where(x => x.RoomDetailDto.Id == roomId && x.SelectedRate.Price == selectedRate).First();
-                state.SelectedRooms.Remove(toRemove);
-                await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.RoomRemoved);
-            }
-
-
-            if (dialogOptions.RoomAction.Action != null && dialogOptions.RoomAction.Action == "viewDetails")
-            {
-                var skipToOverview = true;
-
-            }
 
             return await sc.NextAsync();
 
@@ -96,11 +93,7 @@ namespace HotelBot.Dialogs.RoomOverview
 
         {
             var state = await _accessors.RoomOverviewStateAccessor.GetAsync(sc.Context, () => new RoomOverviewState());
-            if (state.SelectedRooms.Count != 0)
-            {
-                await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.CompleteOverview, state);
-            }
-
+            if (state.SelectedRooms.Count != 0) await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.CompleteOverview, state);
 
 
             return await sc.BeginDialogAsync(nameof(ContinueOrAddMoreRoomsPrompt));

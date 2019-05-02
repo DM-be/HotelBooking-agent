@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.FetchAvailableRooms;
+using HotelBot.Dialogs.RoomOverview;
 using HotelBot.StateAccessors;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Dialogs.Choices;
@@ -32,6 +33,20 @@ namespace HotelBot.Dialogs.Prompts.ContinueOrUpdatePrompt
 
         private async Task<DialogTurnResult> PromptContinueOrUpdate(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
+
+            var state = await _accessors.RoomOverviewStateAccessor.GetAsync(sc.Context, () => new RoomOverviewState());
+
+            var choices = new List<string>
+            {
+
+                FetchAvailableRoomsDialog.FetchAvailableRoomsChoices.StartOver,
+                FetchAvailableRoomsDialog.FetchAvailableRoomsChoices.ChangeSearch,
+                FetchAvailableRoomsDialog.FetchAvailableRoomsChoices.NoThanks
+            };
+
+            if (state.SelectedRooms != null && state.SelectedRooms.Count != 0)
+                choices.Add(FetchAvailableRoomsDialog.FetchAvailableRoomsChoices.RoomOverview);
+
             return await sc.PromptAsync(
                 nameof(ChoicePrompt),
                 new PromptOptions
@@ -41,12 +56,7 @@ namespace HotelBot.Dialogs.Prompts.ContinueOrUpdatePrompt
                         sc.Context.Activity.Locale,
                         FetchAvailableRoomsResponses.ResponseIds.ContinueOrUpdate),
                     Choices = ChoiceFactory.ToChoices(
-                        new List<string>
-                        {
-                            FetchAvailableRoomsDialog.FetchAvailableRoomsChoices.StartOver,
-                            FetchAvailableRoomsDialog.FetchAvailableRoomsChoices.ChangeSearch,
-                            FetchAvailableRoomsDialog.FetchAvailableRoomsChoices.NoThanks
-                        })
+                        choices)
                 },
                 cancellationToken);
         }
@@ -72,10 +82,7 @@ namespace HotelBot.Dialogs.Prompts.ContinueOrUpdatePrompt
             CancellationToken cancellationToken = new CancellationToken())
         {
             var updated = (bool) result;
-            if (updated)
-            {
-                return await dc.EndDialogAsync();
-            }
+            if (updated) return await dc.EndDialogAsync();
             // the non overriden function in case the state property was not updated--> reprompts this dialog. 
             await RepromptDialogAsync(dc.Context, dc.ActiveDialog, cancellationToken).ConfigureAwait(false);
             return EndOfTurn;
