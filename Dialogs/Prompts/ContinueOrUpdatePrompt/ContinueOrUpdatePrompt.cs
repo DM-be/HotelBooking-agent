@@ -40,7 +40,7 @@ namespace HotelBot.Dialogs.Prompts.ContinueOrUpdatePrompt
             {
 
                 FetchAvailableRoomsDialog.FetchAvailableRoomsChoices.StartOver,
-                FetchAvailableRoomsDialog.FetchAvailableRoomsChoices.ChangeSearch,
+                FetchAvailableRoomsDialog.FetchAvailableRoomsChoices.UpdateSearch,
                 FetchAvailableRoomsDialog.FetchAvailableRoomsChoices.NoThanks
             };
 

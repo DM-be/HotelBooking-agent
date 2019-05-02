@@ -11,6 +11,7 @@ using HotelBot.StateAccessors;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Dialogs.Choices;
+using Microsoft.Graph;
 
 namespace HotelBot.Dialogs.Prompts.RoomDetailChoices
 {
@@ -40,6 +41,27 @@ namespace HotelBot.Dialogs.Prompts.RoomDetailChoices
 
         private async Task<DialogTurnResult> PromptChoices(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
+            var choices = new List<string>
+            {
+                RoomDetailDialog.RoomDetailChoices.ViewOtherRooms,
+                RoomDetailDialog.RoomDetailChoices.NoThanks
+            };
+
+            // only 2 options:
+            // A: from info: saw pictures but not rate (true)
+            // B from book: saw rate but no pictures
+            var addRateToChoices = (bool) sc.Options;
+            if (addRateToChoices) // add rate at start
+            {
+                choices.Insert(0, RoomDetailDialog.RoomDetailChoices.Rates);
+            }
+            else
+            {
+                choices.Insert(0, RoomDetailDialog.RoomDetailChoices.Pictures);
+            }
+
+
+
             return await sc.PromptAsync(
                 nameof(ChoicePrompt),
                 new PromptOptions
@@ -47,13 +69,7 @@ namespace HotelBot.Dialogs.Prompts.RoomDetailChoices
 
                     Prompt = MessageFactory.Text(RoomDetailChoicesStrings.PROMPT_CHOICES),
                     Choices = ChoiceFactory.ToChoices(
-                        new List<string>
-                        {
-                            RoomDetailDialog.RoomDetailChoices.Rates,
-                            RoomDetailDialog.RoomDetailChoices.Pictures,
-                            RoomDetailDialog.RoomDetailChoices.ShowMeOtherRooms,
-                            RoomDetailDialog.RoomDetailChoices.NoThanks
-                        })
+                        choices)
                 },
                 cancellationToken);
         }
@@ -64,7 +80,7 @@ namespace HotelBot.Dialogs.Prompts.RoomDetailChoices
             var choice = sc.Result as FoundChoice;
             switch (choice.Value)
             {
-                case RoomDetailDialog.RoomDetailChoices.ShowMeOtherRooms:
+                case RoomDetailDialog.RoomDetailChoices.ViewOtherRooms:
                     var dialogOptions = new DialogOptions
                     {
                         SkipConfirmation = false,
@@ -73,17 +89,17 @@ namespace HotelBot.Dialogs.Prompts.RoomDetailChoices
                     await _accessors.RoomDetailStateAccessor.SetAsync(sc.Context, new RoomDetailState());
                     var dialogResult = new DialogResult
                     {
-                        PreviousOptions = dialogOptions,
+                        PreviousOptions = dialogOptions, //todo: check why
                         TargetDialog = nameof(FetchAvailableRoomsDialog)
                     };
                     return await sc.EndDialogAsync(dialogResult);
 
                 case RoomDetailDialog.RoomDetailChoices.Rates:
                     await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendRates, state.RoomDetailDto);
-                    return await sc.ReplaceDialogAsync(InitialDialogId);
+                    return await sc.ReplaceDialogAsync(InitialDialogId, false); // add rate to choice
                 case RoomDetailDialog.RoomDetailChoices.Pictures:
                     await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendImages, state.RoomDetailDto);
-                    return await sc.ReplaceDialogAsync(InitialDialogId);
+                    return await sc.ReplaceDialogAsync(InitialDialogId, true);
                 case RoomDetailDialog.RoomDetailChoices.NoThanks:
                     // end and prompt and end on waterfall above
                     await sc.Context.SendActivityAsync("You're welcome.");

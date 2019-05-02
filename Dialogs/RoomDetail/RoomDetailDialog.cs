@@ -53,7 +53,7 @@ namespace HotelBot.Dialogs.RoomDetail
             var state = await _accessors.RoomDetailStateAccessor.GetAsync(sc.Context, () => new RoomDetailState());
             state.RoomDetailDto = new RoomDetailDto();
             state.RoomDetailDto = await requestHandler.FetchRoomDetail(dialogOptions.RoomAction.RoomId);
-
+            bool addRatesToChoices;
             //todo: refactor and remove rerouted check
             //check on rerouted --> avoid replace dialog sending another get request 
             if (dialogOptions.RoomAction.Action == "info")
@@ -61,22 +61,25 @@ namespace HotelBot.Dialogs.RoomDetail
                 await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendDescription, state.RoomDetailDto);
                 await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendImages, state.RoomDetailDto);
                 await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendLowestRate, state.RoomDetailDto);
-                return await sc.NextAsync();
+                addRatesToChoices = true;
+                return await sc.NextAsync(addRatesToChoices);
             }
 
             // user wants to book directly, send rates.
+            addRatesToChoices = false;
             await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendRates, state.RoomDetailDto);
-            return await sc.NextAsync();
+            return await sc.NextAsync(addRatesToChoices);
         }
 
         public async Task<DialogTurnResult> PromptRoomChoices(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-            return await sc.BeginDialogAsync(nameof(RoomDetailChoicesPrompt));
+            bool addRatesToChoices = (bool) sc.Result;
+            return await sc.BeginDialogAsync(nameof(RoomDetailChoicesPrompt), addRatesToChoices);
         }
 
         public class RoomDetailChoices
         {
-            public const string ShowMeOtherRooms = "Show me other rooms";
+            public const string ViewOtherRooms = "View other rooms";
             public const string Rates = "Rates";
             public const string NoThanks = "No thanks";
             public const string Pictures = "Pictures";

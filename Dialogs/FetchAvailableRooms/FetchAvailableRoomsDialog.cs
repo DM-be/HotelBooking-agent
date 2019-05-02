@@ -126,7 +126,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             // when a user taps no, we can assume he wants to change a value
             var foundChoice = new FoundChoice
             {
-                Value = FetchAvailableRoomsChoices.ChangeSearch
+                Value = FetchAvailableRoomsChoices.UpdateSearch
             };
             return await sc.NextAsync(foundChoice);
         }
@@ -138,7 +138,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                 var choice = sc.Result as FoundChoice;
                 switch (choice.Value)
                 {
-                    case FetchAvailableRoomsChoices.ChangeSearch:
+                    case FetchAvailableRoomsChoices.UpdateSearch:
                         return await sc.BeginDialogAsync(nameof(UpdateStateChoicePrompt), sc.Options);
                     case FetchAvailableRoomsChoices.StartOver:
                     {
@@ -211,7 +211,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             public const string Checkout = "Checkout";
             public const string NumberOfPeople = "Number of people";
             public const string StartOver = "Start over";
-            public const string ChangeSearch = "Change search";
+            public const string UpdateSearch = "Update search";
             public const string NoThanks = "No thanks";
 
             public const string RoomOverview = "Order overview";
@@ -220,7 +220,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                 new ReadOnlyCollection<string>(
                     new []
                     {
-                        Checkin, Checkout, NumberOfPeople, StartOver, ChangeSearch, NoThanks, RoomOverview
+                        Checkin, Checkout, NumberOfPeople, StartOver, UpdateSearch, NoThanks, RoomOverview
                     });
         }
     }
