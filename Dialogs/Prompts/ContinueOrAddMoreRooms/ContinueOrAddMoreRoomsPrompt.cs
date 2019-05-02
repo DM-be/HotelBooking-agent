@@ -35,9 +35,8 @@ namespace HotelBot.Dialogs.Prompts.ContinueOrAddMoreRooms
             var templateId = RoomOverviewResponses.ResponseIds.ContinueOrAddMoreRooms;
             var choices = new List<string>
             {
-                RoomOverviewDialog.RoomOverviewChoices.AddAnotherRoom,
-                RoomOverviewDialog.RoomOverviewChoices.ContinueToPayment,
-                RoomOverviewDialog.RoomOverviewChoices.ShowOverview
+                RoomOverviewDialog.RoomOverviewChoices.AddARoom,
+                RoomOverviewDialog.RoomOverviewChoices.NoThankyou
             };
 
             if (state.SelectedRooms.Count == 0)

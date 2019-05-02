@@ -70,7 +70,7 @@ namespace HotelBot.Dialogs.RoomOverview.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you want to add another room or continue to payment? .
+        ///   Looks up a localized string similar to Tap confirm to proceed to payment. Do you want to add another room?.
         /// </summary>
         public static string CONTINUE_OR_ADD_MORE_ROOMS {
             get {

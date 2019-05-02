@@ -44,12 +44,11 @@ namespace HotelBot.Dialogs.RoomOverview
                             RoomOverviewStrings.NO_SELECTED_ROOMS,
                             InputHints.IgnoringInput)
                 },
-               
+
                 {
                     ResponseIds.CompleteOverview, (context, data) =>
                         CompleteOverview(context, data)
                 }
-
 
 
             }
@@ -59,8 +58,6 @@ namespace HotelBot.Dialogs.RoomOverview
         {
             Register(new DictionaryRenderer(_responseTemplates));
         }
-
-
 
         public static IMessageActivity CompleteOverview(ITurnContext context, dynamic data)
         {
@@ -79,27 +76,6 @@ namespace HotelBot.Dialogs.RoomOverview
             reply.Attachments = attachments;
             return reply;
         }
-
-
-        // could be pending or confirmed payment
-        public static IMessageActivity DetailedRoomsOverview(ITurnContext context, dynamic data)
-        {
-
-            var roomOverviewState = data as RoomOverviewState;
-            var selectedRooms = roomOverviewState.SelectedRooms;
-            var heroCards = new List<HeroCard>();
-            foreach (var selectedRoom in selectedRooms) heroCards.Add(BuildDetailedRoomHeroCard(selectedRoom));
-            var reply = context.Activity.CreateReply();
-            reply.Text =
-                "Here are your selected rooms";
-            var attachments = new List<Attachment>();
-            foreach (var heroCard in heroCards) attachments.Add(heroCard.ToAttachment());
-            reply.AttachmentLayout = "carousel";
-            reply.Attachments = attachments;
-            return reply;
-        }
-
-
 
         // todo: rename 
         private static HeroCard BuildDetailedRoomHeroCard(SelectedRoom selectedRoom)
@@ -151,7 +127,7 @@ namespace HotelBot.Dialogs.RoomOverview
             {
                 Title = "Rooms order overview", //todo: better title
                 Subtitle = BuildHeroCardTextCompactOverview(selectedRooms),
-                Images =  new List<CardImage>
+                Images = new List<CardImage>
                 {
                     new CardImage
                     {
@@ -170,7 +146,7 @@ namespace HotelBot.Dialogs.RoomOverview
                                 Action = "info"
                             }),
                         Title = "\t Confirm \t"
-                    },
+                    }
                 }
 
             };
@@ -196,17 +172,18 @@ namespace HotelBot.Dialogs.RoomOverview
         public static string BuildHeroCardTextCompactOverview(List<SelectedRoom> selectedRooms)
         {
             var numberOfRooms = selectedRooms.Count;
-            int numberOfPeople = 0;
-            int totalPrice = 0;
+            var numberOfPeople = 0;
+            var totalPrice = 0;
             var cardImages = new List<CardImage>();
 
-            for (int i = 0; i < selectedRooms.Count; i++)
+            for (var i = 0; i < selectedRooms.Count; i++)
             {
                 numberOfPeople += selectedRooms[i].RoomDetailDto.Capacity;
                 totalPrice += selectedRooms[i].SelectedRate.Price;
                 cardImages.Add(new CardImage(selectedRooms[i].RoomDetailDto.RoomImages[i].ImageUrl));
             }
-            string message = "";
+
+            var message = "";
             message += $"Number of rooms: {numberOfRooms} \n";
             message += $"Number of people: {numberOfPeople} \n";
             message += $"Current total: €{totalPrice}\n";
@@ -245,14 +222,8 @@ namespace HotelBot.Dialogs.RoomOverview
             public const string DetailedRoomsOverview = "detailedRoomsOverview";
             public const string CompleteOverview = "completeOverview";
             public const string RoomAdded = "roomAdded";
-            public const string ConfirmInfo = "confirmInfo";
-
-            public const string CompactRoomsOverview = "compactRoomsOverview";
-
             public const string ContinueOrAddMoreRooms = "continueOrAddMoreRooms";
             public const string NoSelectedRooms = "noSelectedRooms";
-
-            public const string SendPaymentCard = "sendPaymentCard";
             public const string RoomRemoved = "roomRemoved";
         }
     }

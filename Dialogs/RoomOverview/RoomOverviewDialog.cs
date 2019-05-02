@@ -38,7 +38,7 @@ namespace HotelBot.Dialogs.RoomOverview
             // when confirmed --> send link to do "payment" --> no sql set backend validated boolean to true after payment via api?
             var RoomOverviewWaterfallsteps = new WaterfallStep []
             {
-                FetchSelectedRoomDetailAndAddToState, PromptContinueOrFindMoreRooms, ProcessResultContinueOrAddMoreRoomsPrompt, ShowOverview
+                FetchSelectedRoomDetailAndAddToState, PromptContinueOrFindMoreRooms, ProcessResultContinueOrAddMoreRoomsPrompt
             };
             AddDialog(new WaterfallDialog(InitialDialogId, RoomOverviewWaterfallsteps));
             AddDialog(new ContinueOrAddMoreRoomsPrompt(accessors));
@@ -119,9 +119,11 @@ namespace HotelBot.Dialogs.RoomOverview
                 switch (choice.Value)
 
                 {
-                    case RoomOverviewChoices.ContinueToPayment:
+                    case RoomOverviewChoices.NoThankyou:
                         return await sc.NextAsync();
-                    case RoomOverviewChoices.AddAnotherRoom:
+                    // todo: prompt asking to start payment dialog
+                    // if no: give user feedback: order is not confirmed, can come back etc,... cancel to maindialog
+                    case RoomOverviewChoices.AddARoom:
                     case RoomOverviewChoices.FindRoom:
                         var dialogResult = new DialogResult
                         {
@@ -130,11 +132,6 @@ namespace HotelBot.Dialogs.RoomOverview
 
                         };
                         return await sc.EndDialogAsync(dialogResult);
-                    case RoomOverviewChoices.ShowOverview:
-                        return await sc.ReplaceDialogAsync(InitialDialogId, null);
-                    //todo: fix with replacedialogloop 
-
-
                 }
             }
 
@@ -143,28 +140,11 @@ namespace HotelBot.Dialogs.RoomOverview
         }
 
 
-
-
-
-
-
-        public async Task<DialogTurnResult> ShowOverview(WaterfallStepContext sc, CancellationToken cancellationToken)
-
-        {
-            var state = await _accessors.RoomOverviewStateAccessor.GetAsync(sc.Context, () => new RoomOverviewState());
-            await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.DetailedRoomsOverview, state);
-            return EndOfTurn;
-            // switch on payment still needed and what else?
-
-
-        }
-
         public class RoomOverviewChoices
         {
-            public const string AddAnotherRoom = "Add another room";
+            public const string AddARoom = "Add a room";
             public const string FindRoom = "Find a room";
-            public const string ContinueToPayment = "Continue to payment"; // maybe confirm instead of payment
-            public const string ShowOverview = "Overview";
+            public const string NoThankyou = "No thank you";
         }
     }
 }
