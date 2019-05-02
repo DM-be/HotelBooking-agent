@@ -32,6 +32,8 @@ namespace HotelBot.Models.DTO
 
         public List<RoomRate> Rates { get; set; }
 
+        public int Capacity { get; set; }
+
         public string ReservationAgreement { get; set; } // Onderstaand treft u de voorwaarden aan die bij annulering van kracht zijn....... 
     }
 }

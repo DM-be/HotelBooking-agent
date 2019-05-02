@@ -67,8 +67,6 @@ namespace HotelBot.Dialogs.RoomOverview
                 };
                 state.SelectedRooms.Add(selectedRoom);
                 await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.RoomAdded, state);
-                var succes = true;  //todo: think about alternate flow and this var to skip the prompt
-                return await sc.NextAsync(succes);
             }
 
             if (dialogOptions.RoomAction.Action != null && dialogOptions.RoomAction.Action == "remove")
@@ -79,17 +77,17 @@ namespace HotelBot.Dialogs.RoomOverview
                 var toRemove = state.SelectedRooms.Where(x => x.RoomDetailDto.Id == roomId && x.SelectedRate.Price == selectedRate).First();
                 state.SelectedRooms.Remove(toRemove);
                 await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.RoomRemoved);
-                return await sc.NextAsync();
             }
 
             return await sc.NextAsync();
+
         }
 
         public async Task<DialogTurnResult> PromptContinueOrFindMoreRooms(WaterfallStepContext sc, CancellationToken cancellationToken)
 
         {
-            if (sc.Result != null) return await sc.BeginDialogAsync(nameof(ContinueOrAddMoreRoomsPrompt));
-            return await sc.NextAsync();
+            return await sc.BeginDialogAsync(nameof(ContinueOrAddMoreRoomsPrompt));
+
         }
         public async Task<DialogTurnResult> ProcessResultContinueOrAddMoreRoomsPrompt(WaterfallStepContext sc, CancellationToken cancellationToken)
 

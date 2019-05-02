@@ -30,7 +30,8 @@ interface RoomDetailDto {
     rates: Rate []
     lowestRate: number,
     bedDescription: string,
-    squareFeet: number
+    squareFeet: number,
+    capacity: number,
 }
 
 interface RoomImage {
@@ -133,6 +134,7 @@ export const fetchRoomDetail = functions.https.onRequest(async(req, res) => {
         reservationAgreement: room.reservationAgreement,
         smokingAllowed: room.smokingAllowed,
         rates: room.rates,
+        capacity: room.capacity
         
     }
     res.send(roomDetailDto);

@@ -18,10 +18,7 @@ namespace HotelBot.Dialogs.RoomOverview
             {
                 {
                     ResponseIds.RoomAdded, (context, data) =>
-                        MessageFactory.Text(
-                            RoomOverviewStrings.ROOM_ADDED,
-                            RoomOverviewStrings.ROOM_ADDED,
-                            InputHints.IgnoringInput)
+                        RoomAddedMessage(context, data)
                 },
                 {
                     ResponseIds.RoomRemoved, (context, data) =>
@@ -73,14 +70,64 @@ namespace HotelBot.Dialogs.RoomOverview
             return reply;
         }
 
+        public static IMessageActivity RoomAddedMessage(ITurnContext context, dynamic data)
+        {
 
 
+            var heroCard = new HeroCard
+            {
+                Title = "Rooms order overview", //todo: better title
+                Subtitle = BuildHeroCardTextGeneralOverview(data as RoomOverviewState),
+                Buttons = new List<CardAction>
+                {
+                    new CardAction
+                    {
+                        Type = ActionTypes.MessageBack,
+                        Value = JsonConvert.SerializeObject(
+                            new RoomAction
+                            {
+                                RoomId = "test",
+                                Action = "info"
+                            }),
+                        Title = "\t Confirm \t"
+                    },
+                    new CardAction
+                    {
+                        Type = ActionTypes.MessageBack,
+                        Value = JsonConvert.SerializeObject(
+                            new RoomAction
+                            {
+                                RoomId = "test",
+                                Action = "info"
+                            }),
+                        Title = "\t View details \t"
+                    },
+                }
+                
+            };
+            var reply = context.Activity.CreateReply();
+            reply.Text =
+                "Here is your order overview";
+            var attachments = new List<Attachment>();
+            attachments.Add(heroCard.ToAttachment());
+            reply.Attachments = attachments;
+            return reply;
+
+
+
+
+        }
+
+
+
+
+        // todo: rename 
         private static HeroCard BuildHeroCard(SelectedRoom selectedRoom)
         {
             return new HeroCard
             {
                 Title = selectedRoom.RoomDetailDto.Title,
-                Text = BuildHeroCardText(selectedRoom),
+                Text = BuildHeroCardTextPerRoomOverview(selectedRoom),
                 Images = new List<CardImage>
                 {
                     //todo: refactor
@@ -119,7 +166,7 @@ namespace HotelBot.Dialogs.RoomOverview
         }
 
 
-        public static string BuildHeroCardText(SelectedRoom selectedRoom)
+        public static string BuildHeroCardTextPerRoomOverview(SelectedRoom selectedRoom)
         {
             // calculate total price etc etc
             var message = $"Rate: €{selectedRoom.SelectedRate.Price}\n";
@@ -132,6 +179,30 @@ namespace HotelBot.Dialogs.RoomOverview
             return message;
 
         }
+
+
+        public static string BuildHeroCardTextGeneralOverview(RoomOverviewState state)
+        {
+            var numberOfRooms = state.SelectedRooms.Count;
+            int numberOfPeople = 0;
+            int totalPrice = 0;
+            var cardImages = new List<CardImage>();
+
+            for (int i = 0; i < state.SelectedRooms.Count; i++)
+            {
+                numberOfPeople += state.SelectedRooms[i].RoomDetailDto.Capacity;
+                totalPrice += state.SelectedRooms[i].SelectedRate.Price;
+                cardImages.Add(new CardImage(state.SelectedRooms[i].RoomDetailDto.RoomImages[i].ImageUrl));
+            }
+            string message = "";
+            message += $"Number of rooms: {numberOfRooms} \n";
+            message += $"Number of people: {numberOfPeople} \n";
+            message += $"Current total: €{totalPrice}\n";
+            return message;
+
+        }
+
+
 
         //TODO: update into own responses or add shared resources for emoticons? 
         private static string GetSmokingString(bool smoking)
