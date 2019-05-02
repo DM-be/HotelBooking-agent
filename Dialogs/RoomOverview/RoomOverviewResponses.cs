@@ -44,6 +44,13 @@ namespace HotelBot.Dialogs.RoomOverview
                             RoomOverviewStrings.NO_SELECTED_ROOMS,
                             InputHints.IgnoringInput)
                 },
+                {
+                    ResponseIds.UnconfirmedPayment, (context, data) =>
+                        MessageFactory.Text(
+                            RoomOverviewStrings.UNCONFIRMED_PAYMENT_CONFIRM_OR_CANCEL,
+                            RoomOverviewStrings.UNCONFIRMED_PAYMENT_CONFIRM_OR_CANCEL,
+                            InputHints.IgnoringInput)
+                },
 
                 {
                     ResponseIds.CompleteOverview, (context, data) =>
@@ -225,6 +232,7 @@ namespace HotelBot.Dialogs.RoomOverview
             public const string ContinueOrAddMoreRooms = "continueOrAddMoreRooms";
             public const string NoSelectedRooms = "noSelectedRooms";
             public const string RoomRemoved = "roomRemoved";
+            public const string UnconfirmedPayment = "unconfirmedPayment";
         }
     }
 

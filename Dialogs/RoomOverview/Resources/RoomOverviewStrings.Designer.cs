@@ -104,5 +104,14 @@ namespace HotelBot.Dialogs.RoomOverview.Resources {
                 return ResourceManager.GetString("ROOM_REMOVED", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your order is still unconfirmed, please confirm or cancel your order. .
+        /// </summary>
+        public static string UNCONFIRMED_PAYMENT_CONFIRM_OR_CANCEL {
+            get {
+                return ResourceManager.GetString("UNCONFIRMED_PAYMENT_CONFIRM_OR_CANCEL", resourceCulture);
+            }
+        }
     }
 }

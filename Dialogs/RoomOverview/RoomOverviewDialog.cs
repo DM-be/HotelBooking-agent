@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -38,10 +39,11 @@ namespace HotelBot.Dialogs.RoomOverview
             // when confirmed --> send link to do "payment" --> no sql set backend validated boolean to true after payment via api?
             var RoomOverviewWaterfallsteps = new WaterfallStep []
             {
-                FetchSelectedRoomDetailAndAddToState, PromptContinueOrFindMoreRooms, ProcessResultContinueOrAddMoreRoomsPrompt
+                FetchSelectedRoomDetailAndAddToState, PromptContinueOrFindMoreRooms, ProcessResultContinueOrAddMoreRoomsPrompt, ProcessChoicePrompt
             };
             AddDialog(new WaterfallDialog(InitialDialogId, RoomOverviewWaterfallsteps));
             AddDialog(new ContinueOrAddMoreRoomsPrompt(accessors));
+            AddDialog(new ChoicePrompt(nameof(ChoicePrompt)));
 
 
         }
@@ -125,7 +127,24 @@ namespace HotelBot.Dialogs.RoomOverview
 
                 {
                     case RoomOverviewChoices.NoThankyou:
-                        return await sc.NextAsync();
+                        await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.UnconfirmedPayment);
+                        return await sc.PromptAsync(
+                            nameof(ChoicePrompt),
+                            new PromptOptions
+                            {
+                                Prompt = await _responder.RenderTemplate(
+                                    sc.Context,
+                                    sc.Context.Activity.Locale,
+                                    RoomOverviewResponses.ResponseIds.UnconfirmedPayment),
+                                Choices = ChoiceFactory.ToChoices(
+                                    new List<string>
+                                    {
+                                        "Confirm",
+                                        "Cancel"
+                                    })
+                            });
+
+
                     // todo: prompt asking to start payment dialog
                     // if no: give user feedback: order is not confirmed, can come back etc,... cancel to maindialog
                     case RoomOverviewChoices.AddARoom:
@@ -143,6 +162,27 @@ namespace HotelBot.Dialogs.RoomOverview
             return await sc.NextAsync();
 
         }
+
+        public async Task<DialogTurnResult> ProcessChoicePrompt(WaterfallStepContext sc, CancellationToken cancellationToken)
+
+        {
+
+
+            var choice = sc.Result as FoundChoice;
+            switch (choice.Value)
+            {
+                case "Confirm":
+                    return null;
+                case "Cancel":
+                    return await sc.EndDialogAsync(null);
+            }
+
+            return null;
+        }
+
+
+
+
 
 
         public class RoomOverviewChoices

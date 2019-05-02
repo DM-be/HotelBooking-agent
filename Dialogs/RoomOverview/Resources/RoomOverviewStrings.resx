@@ -132,4 +132,7 @@
   <data name="ROOM_REMOVED" xml:space="preserve">
     <value>Ok, I removed that room.</value>
   </data>
+  <data name="UNCONFIRMED_PAYMENT_CONFIRM_OR_CANCEL" xml:space="preserve">
+    <value>Your order is still unconfirmed, please confirm or cancel your order. </value>
+  </data>
 </root>
