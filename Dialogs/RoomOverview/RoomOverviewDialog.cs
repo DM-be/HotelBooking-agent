@@ -79,6 +79,13 @@ namespace HotelBot.Dialogs.RoomOverview
                 await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.RoomRemoved);
             }
 
+
+            if (dialogOptions.RoomAction.Action != null && dialogOptions.RoomAction.Action == "viewDetails")
+            {
+                var skipToOverview = true;
+                return await sc.NextAsync(skipToOverview);
+            }
+
             return await sc.NextAsync();
 
         }
@@ -86,12 +93,21 @@ namespace HotelBot.Dialogs.RoomOverview
         public async Task<DialogTurnResult> PromptContinueOrFindMoreRooms(WaterfallStepContext sc, CancellationToken cancellationToken)
 
         {
+            if (sc.Result != null && (bool) sc.Result) return await sc.NextAsync(sc.Result);
+
             return await sc.BeginDialogAsync(nameof(ContinueOrAddMoreRoomsPrompt));
 
         }
+
+
+
         public async Task<DialogTurnResult> ProcessResultContinueOrAddMoreRoomsPrompt(WaterfallStepContext sc, CancellationToken cancellationToken)
 
         {
+
+
+            if (sc.Result != null && sc.Result.GetType() == typeof(bool)) return await sc.NextAsync();
+
             var dialogOptions = new DialogOptions();
 
             if (sc.Options != null) dialogOptions = (DialogOptions) sc.Options;
@@ -99,13 +115,13 @@ namespace HotelBot.Dialogs.RoomOverview
             if (sc.Result != null)
             {
                 var choice = sc.Result as FoundChoice;
-
                 switch (choice.Value)
 
                 {
                     case RoomOverviewChoices.ContinueToPayment:
                         return await sc.NextAsync();
                     case RoomOverviewChoices.AddAnotherRoom:
+                    case RoomOverviewChoices.FindRoom:
                         var dialogResult = new DialogResult
                         {
                             PreviousOptions = dialogOptions,
@@ -145,6 +161,7 @@ namespace HotelBot.Dialogs.RoomOverview
         public class RoomOverviewChoices
         {
             public const string AddAnotherRoom = "Add another room";
+            public const string FindRoom = "Find a room";
             public const string ContinueToPayment = "Continue to payment"; // maybe confirm instead of payment
             public const string ShowOverview = "Overview";
         }

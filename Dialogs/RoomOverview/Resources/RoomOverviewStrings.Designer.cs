@@ -79,6 +79,15 @@ namespace HotelBot.Dialogs.RoomOverview.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You have not selected any rooms yet, start with adding a new room to your order. .
+        /// </summary>
+        public static string NO_SELECTED_ROOMS {
+            get {
+                return ResourceManager.GetString("NO_SELECTED_ROOMS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ok, I added the room to your order..
         /// </summary>
         public static string ROOM_ADDED {

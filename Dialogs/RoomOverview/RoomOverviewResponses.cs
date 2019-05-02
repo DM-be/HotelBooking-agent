@@ -35,6 +35,13 @@ namespace HotelBot.Dialogs.RoomOverview
                             InputHints.IgnoringInput)
                 },
                 {
+                    ResponseIds.NoSelectedRooms, (context, data) =>
+                        MessageFactory.Text(
+                            RoomOverviewStrings.NO_SELECTED_ROOMS,
+                            RoomOverviewStrings.NO_SELECTED_ROOMS,
+                            InputHints.IgnoringInput)
+                },
+                {
                     ResponseIds.ShowOverview, (context, data) =>
                         SendRoomsOverviewCarousel(context, data)
                 }
@@ -98,7 +105,7 @@ namespace HotelBot.Dialogs.RoomOverview
                             new RoomAction
                             {
                                 RoomId = "test",
-                                Action = "info"
+                                Action = "viewDetails"
                             }),
                         Title = "\t View details \t"
                     },
@@ -233,7 +240,10 @@ namespace HotelBot.Dialogs.RoomOverview
             public const string ShowOverview = "showOverview";
             public const string RoomAdded = "roomAdded";
             public const string ConfirmInfo = "confirmInfo";
+
             public const string ContinueOrAddMoreRooms = "continueOrAddMoreRooms";
+            public const string NoSelectedRooms = "noSelectedRooms";
+
             public const string SendPaymentCard = "sendPaymentCard";
             public const string RoomRemoved = "roomRemoved";
         }

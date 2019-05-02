@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using HotelBot.Dialogs.FetchAvailableRooms;
 using HotelBot.Dialogs.RoomOverview;
 using HotelBot.StateAccessors;
 using Microsoft.Bot.Builder.Dialogs;
@@ -16,11 +14,11 @@ namespace HotelBot.Dialogs.Prompts.ContinueOrAddMoreRooms
         private static readonly RoomOverviewResponses _responder = new RoomOverviewResponses();
         private readonly StateBotAccessors _accessors;
 
-        public ContinueOrAddMoreRoomsPrompt(StateBotAccessors accessors) : base(nameof(ContinueOrAddMoreRoomsPrompt))
+        public ContinueOrAddMoreRoomsPrompt(StateBotAccessors accessors): base(nameof(ContinueOrAddMoreRoomsPrompt))
         {
             InitialDialogId = nameof(ContinueOrAddMoreRoomsPrompt);
             _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
-            var ContinueOrAddMoreRoomsWaterfallSteps = new WaterfallStep[]
+            var ContinueOrAddMoreRoomsWaterfallSteps = new WaterfallStep []
             {
                 PromptContinueOrAddMoreRooms, EndWithResult
             };
@@ -33,6 +31,26 @@ namespace HotelBot.Dialogs.Prompts.ContinueOrAddMoreRooms
 
         private async Task<DialogTurnResult> PromptContinueOrAddMoreRooms(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
+            var state = await _accessors.RoomOverviewStateAccessor.GetAsync(sc.Context, () => new RoomOverviewState());
+            var templateId = RoomOverviewResponses.ResponseIds.ContinueOrAddMoreRooms;
+            var choices = new List<string>
+            {
+                RoomOverviewDialog.RoomOverviewChoices.AddAnotherRoom,
+                RoomOverviewDialog.RoomOverviewChoices.ContinueToPayment,
+                RoomOverviewDialog.RoomOverviewChoices.ShowOverview
+            };
+
+            if (state.SelectedRooms.Count == 0)
+            {
+                templateId = RoomOverviewResponses.ResponseIds.NoSelectedRooms;
+                choices = new List<string>
+                {
+                    RoomOverviewDialog.RoomOverviewChoices.FindRoom
+
+                };
+
+            }
+
             return await sc.PromptAsync(
                 nameof(ChoicePrompt),
                 new PromptOptions
@@ -40,14 +58,8 @@ namespace HotelBot.Dialogs.Prompts.ContinueOrAddMoreRooms
                     Prompt = await _responder.RenderTemplate(
                         sc.Context,
                         sc.Context.Activity.Locale,
-                        RoomOverviewResponses.ResponseIds.ContinueOrAddMoreRooms),
-                    Choices = ChoiceFactory.ToChoices(
-                        new List<string>
-                        {
-                            RoomOverviewDialog.RoomOverviewChoices.AddAnotherRoom,
-                            RoomOverviewDialog.RoomOverviewChoices.ContinueToPayment,
-                            RoomOverviewDialog.RoomOverviewChoices.ShowOverview,
-                        })
+                        templateId),
+                    Choices = ChoiceFactory.ToChoices(choices)
                 },
                 cancellationToken);
         }

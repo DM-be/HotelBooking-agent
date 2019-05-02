@@ -123,6 +123,9 @@
   <data name="CONTINUE_OR_ADD_MORE_ROOMS" xml:space="preserve">
     <value>Do you want to add another room or continue to payment? </value>
   </data>
+  <data name="NO_SELECTED_ROOMS" xml:space="preserve">
+    <value>You have not selected any rooms yet, start with adding a new room to your order. </value>
+  </data>
   <data name="ROOM_ADDED" xml:space="preserve">
     <value>Ok, I added the room to your order.</value>
   </data>
