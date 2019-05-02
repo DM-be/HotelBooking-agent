@@ -77,9 +77,14 @@ namespace HotelBot.Dialogs.RoomOverview
                     var roomId = dialogOptions.RoomAction.RoomId;
                     var selectedRate = dialogOptions.RoomAction.SelectedRate.Price;
                     // todo: implement better removal... 
-                    var toRemove = state.SelectedRooms.Where(x => x.RoomDetailDto.Id == roomId && x.SelectedRate.Price == selectedRate).First();
-                    state.SelectedRooms.Remove(toRemove);
-                    await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.RoomRemoved);
+                    var toRemove = state.SelectedRooms.Where(x => x.RoomDetailDto.Id == roomId && x.SelectedRate.Price == selectedRate);
+                    if (toRemove.Count() > 0)
+                    {
+                        state.SelectedRooms.Remove(toRemove.First());
+                        await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.RoomRemoved);
+                    }
+
+
                 }
 
             }
