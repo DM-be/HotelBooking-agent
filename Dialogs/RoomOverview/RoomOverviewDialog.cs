@@ -51,9 +51,11 @@ namespace HotelBot.Dialogs.RoomOverview
         public async Task<DialogTurnResult> FetchSelectedRoomDetailAndAddToState(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
 
+
             var dialogOptions = sc.Options as DialogOptions;
             var requestHandler = new RequestHandler();
             var state = await _accessors.RoomOverviewStateAccessor.GetAsync(sc.Context, () => new RoomOverviewState());
+
 
             if (dialogOptions.RoomAction.Action != null && dialogOptions.RoomAction.Action == "selectRoomWithRate")
             {
@@ -83,7 +85,7 @@ namespace HotelBot.Dialogs.RoomOverview
             if (dialogOptions.RoomAction.Action != null && dialogOptions.RoomAction.Action == "viewDetails")
             {
                 var skipToOverview = true;
-                return await sc.NextAsync(skipToOverview);
+
             }
 
             return await sc.NextAsync();
@@ -93,7 +95,13 @@ namespace HotelBot.Dialogs.RoomOverview
         public async Task<DialogTurnResult> PromptContinueOrFindMoreRooms(WaterfallStepContext sc, CancellationToken cancellationToken)
 
         {
-            if (sc.Result != null && (bool) sc.Result) return await sc.NextAsync(sc.Result);
+            var state = await _accessors.RoomOverviewStateAccessor.GetAsync(sc.Context, () => new RoomOverviewState());
+            if (state.SelectedRooms.Count != 0)
+            {
+                await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.CompleteOverview, state);
+            }
+
+
 
             return await sc.BeginDialogAsync(nameof(ContinueOrAddMoreRoomsPrompt));
 
@@ -130,7 +138,7 @@ namespace HotelBot.Dialogs.RoomOverview
                         };
                         return await sc.EndDialogAsync(dialogResult);
                     case RoomOverviewChoices.ShowOverview:
-                        return await sc.NextAsync();
+                        return await sc.ReplaceDialogAsync(InitialDialogId, null);
                     //todo: fix with replacedialogloop 
 
 
@@ -151,7 +159,7 @@ namespace HotelBot.Dialogs.RoomOverview
 
         {
             var state = await _accessors.RoomOverviewStateAccessor.GetAsync(sc.Context, () => new RoomOverviewState());
-            await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.ShowOverview, state);
+            await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.DetailedRoomsOverview, state);
             return EndOfTurn;
             // switch on payment still needed and what else?
 

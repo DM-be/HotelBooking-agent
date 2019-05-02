@@ -18,7 +18,10 @@ namespace HotelBot.Dialogs.RoomOverview
             {
                 {
                     ResponseIds.RoomAdded, (context, data) =>
-                        RoomAddedMessage(context, data)
+                        MessageFactory.Text(
+                            RoomOverviewStrings.ROOM_ADDED,
+                            RoomOverviewStrings.ROOM_ADDED,
+                            InputHints.IgnoringInput)
                 },
                 {
                     ResponseIds.RoomRemoved, (context, data) =>
@@ -41,10 +44,12 @@ namespace HotelBot.Dialogs.RoomOverview
                             RoomOverviewStrings.NO_SELECTED_ROOMS,
                             InputHints.IgnoringInput)
                 },
+               
                 {
-                    ResponseIds.ShowOverview, (context, data) =>
-                        SendRoomsOverviewCarousel(context, data)
+                    ResponseIds.CompleteOverview, (context, data) =>
+                        CompleteOverview(context, data)
                 }
+
 
 
             }
@@ -57,16 +62,33 @@ namespace HotelBot.Dialogs.RoomOverview
 
 
 
-        // could be pending or confirmed payment
-        public static IMessageActivity SendRoomsOverviewCarousel(ITurnContext context, dynamic data)
+        public static IMessageActivity CompleteOverview(ITurnContext context, dynamic data)
         {
 
             var roomOverviewState = data as RoomOverviewState;
             var selectedRooms = roomOverviewState.SelectedRooms;
-
             var heroCards = new List<HeroCard>();
-            var url = "https://www.google.com";
-            foreach (var selectedRoom in selectedRooms) heroCards.Add(BuildHeroCard(selectedRoom));
+            heroCards.Add(BuildCompactHeroCard(selectedRooms));
+            foreach (var selectedRoom in selectedRooms) heroCards.Add(BuildDetailedRoomHeroCard(selectedRoom));
+            var reply = context.Activity.CreateReply();
+            reply.Text =
+                "Here is your complete overview:";
+            var attachments = new List<Attachment>();
+            foreach (var heroCard in heroCards) attachments.Add(heroCard.ToAttachment());
+            reply.AttachmentLayout = "carousel";
+            reply.Attachments = attachments;
+            return reply;
+        }
+
+
+        // could be pending or confirmed payment
+        public static IMessageActivity DetailedRoomsOverview(ITurnContext context, dynamic data)
+        {
+
+            var roomOverviewState = data as RoomOverviewState;
+            var selectedRooms = roomOverviewState.SelectedRooms;
+            var heroCards = new List<HeroCard>();
+            foreach (var selectedRoom in selectedRooms) heroCards.Add(BuildDetailedRoomHeroCard(selectedRoom));
             var reply = context.Activity.CreateReply();
             reply.Text =
                 "Here are your selected rooms";
@@ -77,64 +99,15 @@ namespace HotelBot.Dialogs.RoomOverview
             return reply;
         }
 
-        public static IMessageActivity RoomAddedMessage(ITurnContext context, dynamic data)
-        {
-
-
-            var heroCard = new HeroCard
-            {
-                Title = "Rooms order overview", //todo: better title
-                Subtitle = BuildHeroCardTextGeneralOverview(data as RoomOverviewState),
-                Buttons = new List<CardAction>
-                {
-                    new CardAction
-                    {
-                        Type = ActionTypes.MessageBack,
-                        Value = JsonConvert.SerializeObject(
-                            new RoomAction
-                            {
-                                RoomId = "test",
-                                Action = "info"
-                            }),
-                        Title = "\t Confirm \t"
-                    },
-                    new CardAction
-                    {
-                        Type = ActionTypes.MessageBack,
-                        Value = JsonConvert.SerializeObject(
-                            new RoomAction
-                            {
-                                RoomId = "test",
-                                Action = "viewDetails"
-                            }),
-                        Title = "\t View details \t"
-                    },
-                }
-                
-            };
-            var reply = context.Activity.CreateReply();
-            reply.Text =
-                "Here is your order overview";
-            var attachments = new List<Attachment>();
-            attachments.Add(heroCard.ToAttachment());
-            reply.Attachments = attachments;
-            return reply;
-
-
-
-
-        }
-
-
 
 
         // todo: rename 
-        private static HeroCard BuildHeroCard(SelectedRoom selectedRoom)
+        private static HeroCard BuildDetailedRoomHeroCard(SelectedRoom selectedRoom)
         {
             return new HeroCard
             {
                 Title = selectedRoom.RoomDetailDto.Title,
-                Text = BuildHeroCardTextPerRoomOverview(selectedRoom),
+                Text = BuildHeroCardTextDetailedOverview(selectedRoom),
                 Images = new List<CardImage>
                 {
                     //todo: refactor
@@ -172,8 +145,40 @@ namespace HotelBot.Dialogs.RoomOverview
             };
         }
 
+        private static HeroCard BuildCompactHeroCard(List<SelectedRoom> selectedRooms)
+        {
+            return new HeroCard
+            {
+                Title = "Rooms order overview", //todo: better title
+                Subtitle = BuildHeroCardTextCompactOverview(selectedRooms),
+                Images =  new List<CardImage>
+                {
+                    new CardImage
+                    {
+                        Url = "http://www.hoteldepauw.be/hoteldepauw/assets/pirate/images/cover/cover.jpg"
+                    }
+                },
+                Buttons = new List<CardAction>
+                {
+                    new CardAction
+                    {
+                        Type = ActionTypes.MessageBack,
+                        Value = JsonConvert.SerializeObject(
+                            new RoomAction
+                            {
+                                RoomId = "test",
+                                Action = "info"
+                            }),
+                        Title = "\t Confirm \t"
+                    },
+                }
 
-        public static string BuildHeroCardTextPerRoomOverview(SelectedRoom selectedRoom)
+            };
+        }
+
+
+
+        public static string BuildHeroCardTextDetailedOverview(SelectedRoom selectedRoom)
         {
             // calculate total price etc etc
             var message = $"Rate: €{selectedRoom.SelectedRate.Price}\n";
@@ -188,18 +193,18 @@ namespace HotelBot.Dialogs.RoomOverview
         }
 
 
-        public static string BuildHeroCardTextGeneralOverview(RoomOverviewState state)
+        public static string BuildHeroCardTextCompactOverview(List<SelectedRoom> selectedRooms)
         {
-            var numberOfRooms = state.SelectedRooms.Count;
+            var numberOfRooms = selectedRooms.Count;
             int numberOfPeople = 0;
             int totalPrice = 0;
             var cardImages = new List<CardImage>();
 
-            for (int i = 0; i < state.SelectedRooms.Count; i++)
+            for (int i = 0; i < selectedRooms.Count; i++)
             {
-                numberOfPeople += state.SelectedRooms[i].RoomDetailDto.Capacity;
-                totalPrice += state.SelectedRooms[i].SelectedRate.Price;
-                cardImages.Add(new CardImage(state.SelectedRooms[i].RoomDetailDto.RoomImages[i].ImageUrl));
+                numberOfPeople += selectedRooms[i].RoomDetailDto.Capacity;
+                totalPrice += selectedRooms[i].SelectedRate.Price;
+                cardImages.Add(new CardImage(selectedRooms[i].RoomDetailDto.RoomImages[i].ImageUrl));
             }
             string message = "";
             message += $"Number of rooms: {numberOfRooms} \n";
@@ -237,9 +242,12 @@ namespace HotelBot.Dialogs.RoomOverview
 
         public class ResponseIds
         {
-            public const string ShowOverview = "showOverview";
+            public const string DetailedRoomsOverview = "detailedRoomsOverview";
+            public const string CompleteOverview = "completeOverview";
             public const string RoomAdded = "roomAdded";
             public const string ConfirmInfo = "confirmInfo";
+
+            public const string CompactRoomsOverview = "compactRoomsOverview";
 
             public const string ContinueOrAddMoreRooms = "continueOrAddMoreRooms";
             public const string NoSelectedRooms = "noSelectedRooms";
