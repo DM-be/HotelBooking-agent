@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using HotelBot.Dialogs.RoomDetail.Resources;
-using HotelBot.Dialogs.RoomOverview;
+﻿using System.Collections.Generic;
 using HotelBot.Models.DTO;
 using HotelBot.Models.Wrappers;
 using Microsoft.Bot.Builder;
@@ -32,14 +29,6 @@ namespace HotelBot.Dialogs.RoomDetail
                 {
                     ResponseIds.SendLowestRate, (context, data) =>
                         SendLowestRate(context, data)
-                },
-                {
-                    ResponseIds.RoomChoicesPrompt, (context, data) =>
-                        MessageFactory.Text(RoomDetailStrings.ROOM_CHOICES_PROMPT)
-                },
-                {
-                    ResponseIds.RoomChoicesPromptLooped, (context, data) =>
-                        MessageFactory.Text(RoomDetailStrings.ROOM_CHOICES_PROMPT_LOOPED)
                 }
 
 
@@ -62,8 +51,6 @@ namespace HotelBot.Dialogs.RoomDetail
                 imageCards[i] = new HeroCard
                 {
                     Title = roomDetailDto.Title,
-                    Subtitle = String.Empty,
-                    Text = String.Empty,
                     Images = new List<CardImage>
                     {
                         new CardImage(roomDetailDto.RoomImages[i].ImageUrl)
@@ -75,7 +62,7 @@ namespace HotelBot.Dialogs.RoomDetail
                     }
                 };
             var reply = context.Activity.CreateReply();
-            reply.Text = "Tap these pictures to enlarge.";
+            reply.Text = "Tap the pictures to enlarge them.";
             var attachments = new List<Attachment>();
             foreach (var heroCard in imageCards) attachments.Add(heroCard.ToAttachment());
             reply.AttachmentLayout = "carousel";
@@ -129,7 +116,7 @@ namespace HotelBot.Dialogs.RoomDetail
         public static IMessageActivity SendLowestRate(ITurnContext context, dynamic data)
         {
             var selectedRoomDetailDto = data as RoomDetailDto;
-            var message = $"This rooms is available starting from {selectedRoomDetailDto.LowestRate} EUR.";
+            var message = $"This room is available starting from €{selectedRoomDetailDto.LowestRate}.";
             return MessageFactory.Text(message);
         }
 
@@ -139,10 +126,6 @@ namespace HotelBot.Dialogs.RoomDetail
             public const string SendDescription = "sendDescription";
             public const string SendRates = "sendRates";
             public const string SendLowestRate = "sendLowestRate";
-
-            public const string RoomChoicesPrompt = "roomChoicesPrompt";
-            public const string RoomChoicesPromptLooped = "roomChoisesPromptLooped";
         }
-
     }
 }
