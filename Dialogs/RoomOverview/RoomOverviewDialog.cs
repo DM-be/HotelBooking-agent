@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -127,7 +128,7 @@ namespace HotelBot.Dialogs.RoomOverview
 
                 {
                     case RoomOverviewChoices.NoThankyou:
-                        await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.UnconfirmedPayment);
+                 
                         return await sc.PromptAsync(
                             nameof(ChoicePrompt),
                             new PromptOptions
@@ -139,14 +140,12 @@ namespace HotelBot.Dialogs.RoomOverview
                                 Choices = ChoiceFactory.ToChoices(
                                     new List<string>
                                     {
-                                        "Confirm",
-                                        "Cancel"
+                                        RoomOverviewChoices.Confirm,
+                                        RoomOverviewChoices.Cancel
+                                        
                                     })
                             });
-
-
-                    // todo: prompt asking to start payment dialog
-                    // if no: give user feedback: order is not confirmed, can come back etc,... cancel to maindialog
+                       
                     case RoomOverviewChoices.AddARoom:
                     case RoomOverviewChoices.FindRoom:
                         var dialogResult = new DialogResult
@@ -166,17 +165,14 @@ namespace HotelBot.Dialogs.RoomOverview
         public async Task<DialogTurnResult> ProcessChoicePrompt(WaterfallStepContext sc, CancellationToken cancellationToken)
 
         {
-
-
             var choice = sc.Result as FoundChoice;
             switch (choice.Value)
             {
-                case "Confirm":
+                case RoomOverviewChoices.Confirm:
                     return null;
-                case "Cancel":
+                case RoomOverviewChoices.Cancel:
                     return await sc.EndDialogAsync(null);
             }
-
             return null;
         }
 
@@ -190,6 +186,15 @@ namespace HotelBot.Dialogs.RoomOverview
             public const string AddARoom = "Add a room";
             public const string FindRoom = "Find a room";
             public const string NoThankyou = "No thank you";
+            public const string Cancel = "Cancel";
+            public const string Confirm = "Confirm";
+
+            public static readonly ReadOnlyCollection<string> Choices =
+                new ReadOnlyCollection<string>(
+                    new[]
+                    {
+                        AddARoom, FindRoom, NoThankyou, Cancel, Confirm
+                    });
         }
     }
 }

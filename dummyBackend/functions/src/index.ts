@@ -157,45 +157,49 @@ export const createRoom = functions.https.onRequest(async(req, res) => {
 })
 
 
-// // refactor into something generic for reuse or delete and use json with createroom
-// async function generateRoomObject(availableDateString: string, checkinTime: string, checkoutTime: string ) {
-//     const availableDate = new Date(availableDateString);
-//     const checkinDate = new Date(checkinTime);
-//     const checkoutDate = new Date(checkoutTime);
-//     const room: Room = {
-//         availableDate,
-//         description: "room with a view",
-//         title: "2 star hotel",
-//         smokingAllowed: false,
-//         reservationAgreement: "a test reservation agreement",
+// refactor into something generic for reuse or delete and use json with createroom
+async function generateRoomObject(availableDateString: string, checkinTime: string, checkoutTime: string ) {
+    const availableDate = new Date(availableDateString);
+    const checkinDate = new Date(checkinTime);
+    const checkoutDate = new Date(checkoutTime);
+    const room: Room = {
+        bedDescription: "",
+        capacity: 2,
+         shortDescription: "a short description",
+         squareFeet: 22,
+        availableDate,
+        description: "room with a view",
+        title: "2 star hotel",
+        smokingAllowed: false,
+        reservationAgreement: "a test reservation agreement",
        
-//         images: [
-//             {
-//                 imageUrl: "https://images.trvl-media.com/hotels/1000000/920000/911900/911814/37eb7948_z.jpg"
-//             },
-//             {
-//                 imageUrl: "https://images.trvl-media.com/hotels/1000000/920000/911900/911814/d4a1d9da_z.jpg"
-//             },
-//             {
-//                 imageUrl: "https://images.trvl-media.com/hotels/1000000/920000/911900/911814/0b52db98_z.jpg"
-//             },
-//             {
-//                 imageUrl: "https://images.trvl-media.com/hotels/1000000/920000/911900/911814/8742452f_z.jpg"
-//             },
+        images: [
+            {
+                imageUrl: "https://images.trvl-media.com/hotels/1000000/920000/911900/911814/37eb7948_z.jpg"
+            },
+            {
+                imageUrl: "https://images.trvl-media.com/hotels/1000000/920000/911900/911814/d4a1d9da_z.jpg"
+            },
+            {
+                imageUrl: "https://images.trvl-media.com/hotels/1000000/920000/911900/911814/0b52db98_z.jpg"
+            },
+            {
+                imageUrl: "https://images.trvl-media.com/hotels/1000000/920000/911900/911814/8742452f_z.jpg"
+            },
             
         
-//         ],
-//         rates: [],
-//         thumbnail: {
-//             imageUrl: "https://images.trvl-media.com/hotels/1000000/920000/911900/911814/37eb7948_z.jpg"
-//         },
-//         wheelChairAccessible: false,
-//         checkinTime: new Timestamp(checkinDate.getSeconds(), checkinDate.getMilliseconds()),
-//         checkoutTime: new Timestamp(checkoutDate.getSeconds(), checkoutDate.getMilliseconds()),
-//     }
-//     const roomsRef = admin.firestore().collection('rooms');
-//     await roomsRef.add(room);
-// }
+        ],
+        rates: [],
+        thumbnail: {
+            imageUrl: "https://images.trvl-media.com/hotels/1000000/920000/911900/911814/37eb7948_z.jpg"
+        },
+        wheelChairAccessible: false,
+        checkinTime: new Timestamp(checkinDate.getSeconds(), checkinDate.getMilliseconds()),
+        checkoutTime: new Timestamp(checkoutDate.getSeconds(), checkoutDate.getMilliseconds()),
+    }
+    const roomsRef = admin.firestore().collection('rooms');
+    await roomsRef.add(room);
+}
 
 
 function generateTitle() {

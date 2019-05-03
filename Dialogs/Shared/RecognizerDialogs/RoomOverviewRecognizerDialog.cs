@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using HotelBot.Dialogs.FetchAvailableRooms;
 using HotelBot.Dialogs.Cancel;
+using HotelBot.Dialogs.FetchAvailableRooms;
+using HotelBot.Dialogs.RoomOverview;
 using HotelBot.Models.LUIS;
 using HotelBot.Services;
 using HotelBot.StateAccessors;
@@ -32,7 +33,9 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
 
         protected override async Task<InterruptionStatus> OnDialogInterruptionAsync(DialogContext dc, CancellationToken cancellationToken)
         {
-            // check luis intent
+            var text = dc.Context.Activity.Text;
+            if (RoomOverviewDialog.RoomOverviewChoices.Choices.Contains(text)) return InterruptionStatus.NoAction;
+
             _services.LuisServices.TryGetValue("hotelbot", out var luisService);
 
             if (luisService == null) throw new Exception("The specified LUIS Model could not be found in your Bot Services configuration.");
@@ -43,11 +46,6 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
 
             // Only triggers interruption if confidence level is high
             if (luisResult.TopIntent().score > 0.75)
-            {
-
-                // Add the luis result (intent and entities) for further processing in the derived dialog
-
-
                 switch (intent)
                 {
                     case HotelBotLuis.Intent.Cancel:
@@ -62,7 +60,6 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
                     }
 
                 }
-            }
 
             // call the non overriden continue dialog in componentdialog
             return InterruptionStatus.NoAction;
@@ -96,6 +93,7 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
             return InterruptionStatus.Interrupted;
         }
     }
+
 
 
 
