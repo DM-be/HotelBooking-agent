@@ -187,7 +187,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                                 new RoomAction
                                 {
                                     RoomId = rooms[i].id,
-                                    Action = "book"
+                                    Action = RoomAction.Actions.Book
                                 }),
                             // todo: button formatting.....
                             Title = "\t Book \t"
@@ -202,7 +202,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                                 new RoomAction
                                 {
                                     RoomId = rooms[i].id,
-                                    Action = "info"
+                                    Action = RoomAction.Actions.Info
                                 }),
                             Title = "\t More info \t"
                         }
@@ -377,10 +377,6 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             return mes;
         }
 
-
-
-
-
         // todo: cleanup!
 
         public class ResponseIds
@@ -389,11 +385,8 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             public const string LeavingDatePrompt = "leavingDatePrompt";
             public const string IncorrectDate = "incorrectDate";
             public const string NotRecognizedDate = "notRecognizedDate";
-
             public const string SpecificTimePrompt = "specificTimePrompt";
-
             public const string Help = "help";
-
             public const string Overview = "overview";
             public const string CachedOverview = "cachedOverview";
             public const string SendRoomsCarousel = "sendRoomsCarousel";
@@ -402,23 +395,13 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             public const string UpdatePrompt = "updatePrompt";
 
             public const string UpdateSavedState = "updateSavedState";
-
-
             public const string SendIntroduction = "sendIntroduction";
             public const string SendStart = "sendStart";
-
-
-
-
             public const string SendMoreInfo = "sendMoreInfo";
 
-
-
-            // intents
-
-            public const string UpdateEmail = "Update_email"; // todo: update in LUIS
+            public const string UpdateEmail = "Update_email";
             public const string UpdateArrivalDate = "Update_ArrivalDate";
-            public const string UpdateLeavingDate = "Update_Leaving_Date"; // todo: update in LUIS
+            public const string UpdateLeavingDate = "Update_Leaving_Date";
             public const string UpdateNumberOfPeople = "Update_Number_Of_People";
         }
     }

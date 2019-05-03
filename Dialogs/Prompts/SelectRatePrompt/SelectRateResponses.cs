@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using HotelBot.Dialogs.Prompts.NumberOfPeople;
-using HotelBot.Dialogs.Prompts.NumberOfPeople.Resources;
+﻿using System.Collections.Generic;
 using HotelBot.Models.DTO;
 using HotelBot.Models.Wrappers;
 using Microsoft.Bot.Builder;
@@ -13,7 +8,8 @@ using Newtonsoft.Json;
 
 namespace HotelBot.Dialogs.Prompts.SelectRatePrompt
 {
-    public class SelectRateResponses : TemplateManager
+    //TODO: remove or move into this file?
+    public class SelectRateResponses: TemplateManager
     {
 
         private static readonly LanguageTemplateDictionary _responseTemplates = new LanguageTemplateDictionary
@@ -23,7 +19,7 @@ namespace HotelBot.Dialogs.Prompts.SelectRatePrompt
                 {
                     ResponseIds.SendRates, (context, data) =>
                         SendRates(context, data)
-                },
+                }
 
             }
 
@@ -33,6 +29,7 @@ namespace HotelBot.Dialogs.Prompts.SelectRatePrompt
         {
             Register(new DictionaryRenderer(_responseTemplates));
         }
+
         public static IMessageActivity SendRates(ITurnContext context, dynamic data)
         {
             var roomDetailDto = data as RoomDetailDto;
@@ -51,12 +48,11 @@ namespace HotelBot.Dialogs.Prompts.SelectRatePrompt
                                 new RoomAction
                                 {
                                     RoomId = roomDetailDto.Id,
-                                    Action = "selectRoomWithRate",
+                                    Action = RoomAction.Actions.SelectRoomWithRate,
                                     SelectedRate = roomDetailDto.Rates[i]
-                                    
+
                                 }),
-                            Title = $"Book for €{roomDetailDto.Rates[i].Price}",
-                            Text = "show me more info for x room"
+                            Title = $"Book for €{roomDetailDto.Rates[i].Price}"
 
                         }
                     }
@@ -74,8 +70,6 @@ namespace HotelBot.Dialogs.Prompts.SelectRatePrompt
         public class ResponseIds
         {
             public const string SendRates = "sendRates";
-  
         }
-
     }
 }

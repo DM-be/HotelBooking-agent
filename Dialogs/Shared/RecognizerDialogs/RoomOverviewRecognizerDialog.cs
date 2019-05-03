@@ -2,7 +2,6 @@
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.Cancel;
-using HotelBot.Dialogs.FetchAvailableRooms;
 using HotelBot.Dialogs.RoomOverview;
 using HotelBot.Models.LUIS;
 using HotelBot.Services;
@@ -86,21 +85,13 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
         protected virtual async Task<InterruptionStatus> OnHelp(DialogContext dc)
         {
             // todo: update to room overview help
-            var view = new FetchAvailableRoomsResponses();
-            await view.ReplyWith(dc.Context, FetchAvailableRoomsResponses.ResponseIds.Help);
+            var view = new RoomOverviewResponses();
+            await view.ReplyWith(dc.Context, RoomOverviewResponses.ResponseIds.RoomRemoved);
 
             // Signal the conversation was interrupted and should immediately continue
             return InterruptionStatus.Interrupted;
         }
     }
 
-
-
-
-    public class DialogIds
-    {
-        public const string ConfirmWaterfall = "confirmWaterfall";
-        public const string DateConfirmWaterfall = "dateConfirmWaterfall";
-    }
 
 }

@@ -32,17 +32,10 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms
 
         protected override async Task<InterruptionStatus> OnDialogInterruptionAsync(DialogContext dc, CancellationToken cancellationToken)
         {
-            // we check on the list of choices and ignore these for the luis recognizer. 
-            
-            
             var text = dc.Context.Activity.Text;
-            if (FetchAvailableRoomsDialog.FetchAvailableRoomsChoices.Choices.Contains(text))
-            {
-                return InterruptionStatus.NoAction;
-            }
+            if (FetchAvailableRoomsDialog.FetchAvailableRoomsChoices.Choices.Contains(text)) return InterruptionStatus.NoAction;
 
-            var skipRecognize = (
-                dc.ActiveDialog.Id == nameof(FetchAvailableRoomsIntroductionPrompt)); // allow intent recognition on yes/no? --> choiceprompt
+            var skipRecognize = dc.ActiveDialog.Id == nameof(FetchAvailableRoomsIntroductionPrompt); // allow intent recognition on yes/no? --> choiceprompt
             if (skipRecognize) return InterruptionStatus.NoAction;
 
             // check luis intent
@@ -112,15 +105,8 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms
 
         protected virtual async Task<InterruptionStatus> OnUpdate(DialogContext dc, DialogOptions options)
         {
-            // do not restart this running dialog
             if (dc.ActiveDialog.Id != nameof(UpdateStatePrompt))
             {
-                // example: in dialog number prompt --> i want to update my email, this prompt is a dialog pushed on the stack
-                // --> old comment: to handle this interruption and start the correct new waterfall, we need to cancel the stack: bookaroomdialog>numberprompt
-                // --> old comment: await dc.CancelAllDialogsAsync(); // removes entire stack
-                // begin our own new dialogwaterfall step
-
-
                 await dc.BeginDialogAsync(nameof(UpdateStatePrompt), options);
 
                 return InterruptionStatus.Waiting;

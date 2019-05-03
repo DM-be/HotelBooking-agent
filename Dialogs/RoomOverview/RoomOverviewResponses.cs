@@ -106,7 +106,7 @@ namespace HotelBot.Dialogs.RoomOverview
                             new RoomAction
                             {
                                 RoomId = selectedRoom.RoomDetailDto.Id,
-                                Action = "info"
+                                Action = RoomAction.Actions.Info
                             }),
                         Title = "\t More info \t"
                     },
@@ -117,7 +117,7 @@ namespace HotelBot.Dialogs.RoomOverview
                             new RoomAction
                             {
                                 RoomId = selectedRoom.RoomDetailDto.Id,
-                                Action = "remove",
+                                Action = RoomAction.Actions.Remove,
                                 SelectedRate = selectedRoom.SelectedRate
                             }),
                         Title = "\t Remove \t"
@@ -150,7 +150,7 @@ namespace HotelBot.Dialogs.RoomOverview
                             new RoomAction
                             {
                                 RoomId = "test",
-                                Action = "info"
+                                Action = RoomAction.Actions.Confirm
                             }),
                         Title = "\t Confirm \t"
                     }
@@ -198,8 +198,6 @@ namespace HotelBot.Dialogs.RoomOverview
 
         }
 
-
-
         //TODO: update into own responses or add shared resources for emoticons? 
         private static string GetSmokingString(bool smoking)
         {
@@ -223,10 +221,8 @@ namespace HotelBot.Dialogs.RoomOverview
             return mes;
         }
 
-
         public class ResponseIds
         {
-            public const string DetailedRoomsOverview = "detailedRoomsOverview";
             public const string CompleteOverview = "completeOverview";
             public const string RoomAdded = "roomAdded";
             public const string ContinueOrAddMoreRooms = "continueOrAddMoreRooms";

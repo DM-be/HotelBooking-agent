@@ -33,11 +33,6 @@ namespace HotelBot.Dialogs.RoomOverview
             _services = services ?? throw new ArgumentNullException(nameof(services));
             _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
             InitialDialogId = nameof(RoomOverviewDialog);
-
-
-            // send overview
-            // send prompt asking to modify, update or confirm  (also implement in luis)
-            // when confirmed --> send link to do "payment" --> no sql set backend validated boolean to true after payment via api?
             var RoomOverviewWaterfallsteps = new WaterfallStep []
             {
                 FetchSelectedRoomDetailAndAddToState, PromptContinueOrFindMoreRooms, ProcessResultContinueOrAddMoreRoomsPrompt, ProcessChoicePrompt
@@ -54,44 +49,17 @@ namespace HotelBot.Dialogs.RoomOverview
         public async Task<DialogTurnResult> FetchSelectedRoomDetailAndAddToState(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
 
-
             var dialogOptions = sc.Options as DialogOptions;
-            var requestHandler = new RequestHandler();
             var state = await _accessors.RoomOverviewStateAccessor.GetAsync(sc.Context, () => new RoomOverviewState());
 
             if (dialogOptions.RoomAction != null)
             {
-                if (dialogOptions.RoomAction.Action != null && dialogOptions.RoomAction.Action == "selectRoomWithRate")
-                {
-                    //todo: add alternate flow if room is unavailable (could be an action button tapped from hours/days before)
-                    var roomDetailDto = await requestHandler.FetchRoomDetail(dialogOptions.RoomAction.RoomId); // fetch to check availability
-                    var selectedRate = dialogOptions.RoomAction.SelectedRate;
-                    var selectedRoom = new SelectedRoom
-                    {
-                        RoomDetailDto = roomDetailDto,
-                        SelectedRate = selectedRate
-                    };
-                    state.SelectedRooms.Add(selectedRoom);
-                    await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.RoomAdded, state);
-                }
+                if (dialogOptions.RoomAction.Action != null && dialogOptions.RoomAction.Action == RoomAction.Actions.SelectRoomWithRate)
+                    await AddRoom(state, dialogOptions, sc);
 
-                if (dialogOptions.RoomAction.Action != null && dialogOptions.RoomAction.Action == "remove")
-                {
-                    var roomId = dialogOptions.RoomAction.RoomId;
-                    var selectedRate = dialogOptions.RoomAction.SelectedRate.Price;
-                    // todo: implement better removal... 
-                    var toRemove = state.SelectedRooms.Where(x => x.RoomDetailDto.Id == roomId && x.SelectedRate.Price == selectedRate);
-                    if (toRemove.Count() > 0)
-                    {
-                        state.SelectedRooms.Remove(toRemove.First());
-                        await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.RoomRemoved);
-                    }
-
-
-                }
-
+                if (dialogOptions.RoomAction.Action != null && dialogOptions.RoomAction.Action == RoomAction.Actions.Remove)
+                    await RemoveRoom(state, dialogOptions, sc);
             }
-
 
             return await sc.NextAsync();
 
@@ -102,25 +70,17 @@ namespace HotelBot.Dialogs.RoomOverview
         {
             var state = await _accessors.RoomOverviewStateAccessor.GetAsync(sc.Context, () => new RoomOverviewState());
             if (state.SelectedRooms.Count != 0) await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.CompleteOverview, state);
-
-
             return await sc.BeginDialogAsync(nameof(ContinueOrAddMoreRoomsPrompt));
 
         }
-
-
 
         public async Task<DialogTurnResult> ProcessResultContinueOrAddMoreRoomsPrompt(WaterfallStepContext sc, CancellationToken cancellationToken)
 
         {
 
-
             if (sc.Result != null && sc.Result.GetType() == typeof(bool)) return await sc.NextAsync();
-
             var dialogOptions = new DialogOptions();
-
             if (sc.Options != null) dialogOptions = (DialogOptions) sc.Options;
-
             if (sc.Result != null)
             {
                 var choice = sc.Result as FoundChoice;
@@ -128,7 +88,7 @@ namespace HotelBot.Dialogs.RoomOverview
 
                 {
                     case RoomOverviewChoices.NoThankyou:
-                 
+
                         return await sc.PromptAsync(
                             nameof(ChoicePrompt),
                             new PromptOptions
@@ -142,10 +102,10 @@ namespace HotelBot.Dialogs.RoomOverview
                                     {
                                         RoomOverviewChoices.Confirm,
                                         RoomOverviewChoices.Cancel
-                                        
+
                                     })
                             });
-                       
+
                     case RoomOverviewChoices.AddARoom:
                     case RoomOverviewChoices.FindRoom:
                         var dialogResult = new DialogResult
@@ -173,7 +133,37 @@ namespace HotelBot.Dialogs.RoomOverview
                 case RoomOverviewChoices.Cancel:
                     return await sc.EndDialogAsync(null);
             }
+
             return null;
+        }
+
+
+        private async Task AddRoom(RoomOverviewState state, DialogOptions dialogOptions, WaterfallStepContext sc)
+        {
+            var requestHandler = new RequestHandler();
+            //todo: add alternate flow if room is unavailable (could be an action button tapped from hours/days before)
+            var roomDetailDto = await requestHandler.FetchRoomDetail(dialogOptions.RoomAction.RoomId); // fetch to check availability
+            var selectedRate = dialogOptions.RoomAction.SelectedRate;
+            var selectedRoom = new SelectedRoom
+            {
+                RoomDetailDto = roomDetailDto,
+                SelectedRate = selectedRate
+            };
+            state.SelectedRooms.Add(selectedRoom);
+            await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.RoomAdded, state);
+        }
+
+        private async Task RemoveRoom(RoomOverviewState state, DialogOptions dialogOptions, WaterfallStepContext sc)
+        {
+            var roomId = dialogOptions.RoomAction.RoomId;
+            var selectedRate = dialogOptions.RoomAction.SelectedRate.Price;
+            // todo: implement better removal... 
+            var toRemove = state.SelectedRooms.Where(x => x.RoomDetailDto.Id == roomId && x.SelectedRate.Price == selectedRate);
+            if (toRemove.Count() > 0)
+            {
+                state.SelectedRooms.Remove(toRemove.First());
+                await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.RoomRemoved);
+            }
         }
 
 
@@ -191,7 +181,7 @@ namespace HotelBot.Dialogs.RoomOverview
 
             public static readonly ReadOnlyCollection<string> Choices =
                 new ReadOnlyCollection<string>(
-                    new[]
+                    new []
                     {
                         AddARoom, FindRoom, NoThankyou, Cancel, Confirm
                     });
