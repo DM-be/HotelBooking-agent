@@ -1,4 +1,5 @@
 ﻿using System;
+using HotelBot.Dialogs.ConfirmOrder;
 using HotelBot.Dialogs.FetchAvailableRooms;
 using HotelBot.Dialogs.RoomDetail;
 using HotelBot.Dialogs.RoomOverview;
@@ -26,6 +27,8 @@ namespace HotelBot.StateAccessors
 
         public static string RoomOverviewName { get; } = "RoomOverview";
 
+        public static string ConfirmOrderName { get; } = "ConfirmOrder";
+
         public IStatePropertyAccessor<UserProfile> UserProfileAccessor { get; set; }
 
         public IStatePropertyAccessor<ConversationData> ConversationDataAccessor { get; set; }
@@ -37,6 +40,8 @@ namespace HotelBot.StateAccessors
         public IStatePropertyAccessor<RoomDetailState> RoomDetailStateAccessor { get; set; }
 
         public IStatePropertyAccessor<RoomOverviewState> RoomOverviewStateAccessor { get; set; }
+
+        public IStatePropertyAccessor<ConfirmOrderState> ConfirmOrderStateAccessor { get; set; }
 
         public ConversationState ConversationState { get; }
         public UserState UserState { get; }

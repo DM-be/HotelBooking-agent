@@ -4,6 +4,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using HotelBot.Dialogs.ConfirmOrder;
 using HotelBot.Dialogs.FetchAvailableRooms;
 using HotelBot.Dialogs.RoomDetail;
 using HotelBot.Dialogs.RoomOverview;
@@ -146,10 +147,11 @@ namespace HotelBot
                     conversationState.CreateProperty<ConversationData>(StateBotAccessors.ConversationDataName),
                 UserProfileAccessor = userState.CreateProperty<UserProfile>(StateBotAccessors.UserProfileName),
                 DialogStateAccessor = conversationState.CreateProperty<DialogState>(StateBotAccessors.DialogStateName),
-                FetchAvailableRoomsStateAccessor = 
+                FetchAvailableRoomsStateAccessor =
                     conversationState.CreateProperty<FetchAvailableRoomsState>(StateBotAccessors.FetchAvailableRoomsName),
                 RoomDetailStateAccessor = conversationState.CreateProperty<RoomDetailState>(StateBotAccessors.RoomDetailName),
-                RoomOverviewStateAccessor = conversationState.CreateProperty<RoomOverviewState>(StateBotAccessors.RoomOverviewName)
+                RoomOverviewStateAccessor = conversationState.CreateProperty<RoomOverviewState>(StateBotAccessors.RoomOverviewName),
+                ConfirmOrderStateAccessor = conversationState.CreateProperty<ConfirmOrderState>(StateBotAccessors.ConfirmOrderName)
             };
 
             services.AddSingleton(stateBotAccessors);
@@ -175,7 +177,7 @@ namespace HotelBot
                     options.Middleware.Add(new FacebookMiddleware());
                     options.Middleware.Add(new ShowTypingMiddleware());
                     options.Middleware.Add(new AutoSaveStateMiddleware(userState, conversationState));
-                     
+
                 });
         }
 
