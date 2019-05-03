@@ -144,6 +144,9 @@
   <data name="QUICK_REPLY_ASK_LOCATION" xml:space="preserve">
     <value>Could you send me your location?</value>
   </data>
+  <data name="QUICK_REPLY_ASK_NUMBER" xml:space="preserve">
+    <value>Could you send me your phone number? </value>
+  </data>
   <data name="QUICK_REPLY_BUTTON_BOOK_A_ROOM" xml:space="preserve">
     <value>Book</value>
   </data>

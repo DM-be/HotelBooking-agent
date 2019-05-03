@@ -142,6 +142,15 @@ namespace HotelBot.Shared.Helpers.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Could you send me your phone number? .
+        /// </summary>
+        public static string QUICK_REPLY_ASK_NUMBER {
+            get {
+                return ResourceManager.GetString("QUICK_REPLY_ASK_NUMBER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Book.
         /// </summary>
         public static string QUICK_REPLY_BUTTON_BOOK_A_ROOM {

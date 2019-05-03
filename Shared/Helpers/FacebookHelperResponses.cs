@@ -107,7 +107,7 @@ namespace HotelBot.Shared.Helpers
         {
             var facebookMessage = new FacebookMessage
             {
-                Text = FacebookStrings.QUICK_REPLY_ASK_EMAIL,
+                Text = FacebookStrings.QUICK_REPLY_ASK_NUMBER,
                 QuickReplies = new []
                 {
                     new FacebookQuickReply
