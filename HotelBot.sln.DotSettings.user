@@ -12,4 +12,5 @@
 	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/AutoDetectedNamingRules/=TypesAndNamespaces/@EntryIndexedValue">&lt;Policy Inspect="True" Prefix="" Suffix="" Style="AaBb" /&gt;</s:String>
 	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;&#xD;
   &lt;Assembly Path="C:\Users\dennis.morent\.nuget\packages\microsoft.recognizers.text.datetime\1.1.5\lib\netstandard2.0\Microsoft.Recognizers.Text.DateTime.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Users\dennis.morent\.nuget\packages\microsoft.recognizers.text\1.1.4\lib\netstandard2.0\Microsoft.Recognizers.Text.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String></wpf:ResourceDictionary>

@@ -5,12 +5,19 @@ using HotelBot.Dialogs.Shared.PromptValidators;
 using HotelBot.Shared.Helpers;
 using HotelBot.StateAccessors;
 using Microsoft.Bot.Builder.Dialogs;
+using Microsoft.Recognizers.Text;
+using Microsoft.Recognizers.Text;
+using Microsoft.Recognizers.Text.DateTime;
+using Microsoft.Recognizers.Text.Number;
+using Microsoft.Recognizers.Text.NumberWithUnit;
+using Microsoft.Recognizers.Text.Utilities;
+
 
 namespace HotelBot.Dialogs.Prompts.Email
 {
     public class EmailPromptDialog: ComponentDialog
     {
-        private static readonly EmailResponses _responder = new EmailResponses();
+        private static readonly PromptValidatorResponses _responder = new PromptValidatorResponses();
         private readonly StateBotAccessors _accessors;
         private readonly PromptValidators _promptValidators = new PromptValidators();
 
@@ -40,7 +47,15 @@ namespace HotelBot.Dialogs.Prompts.Email
 
         private async Task<DialogTurnResult> FinishEmailDialog(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
+
+            
             var email = (string) sc.Result; //todo: add validation
+            if (!PromptValidators.IsValidEmailAddress(email))
+            {
+                await _responder.ReplyWith(sc.Context, PromptValidatorResponses.ResponseIds.InvalidEmail);
+                return await sc.ReplaceDialogAsync(InitialDialogId);
+            }
+
             return await sc.EndDialogAsync(email);
         }
     }

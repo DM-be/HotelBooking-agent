@@ -121,7 +121,7 @@
     <value>Sorry, provide me a specific date.</value>
   </data>
   <data name="INVALID_EMAIL" xml:space="preserve">
-    <value>Sorry, that is not a valid email adress. Could you provide me one? </value>
+    <value>Sorry, that is not a valid email adress. </value>
   </data>
   <data name="NOT_IN_THE_PAST_DATE" xml:space="preserve">
     <value>Sorry, the date you gave cannot be in the past.</value>
