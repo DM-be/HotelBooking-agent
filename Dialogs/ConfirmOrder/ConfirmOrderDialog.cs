@@ -99,6 +99,7 @@ namespace HotelBot.Dialogs.ConfirmOrder
             var state = await _accessors.ConfirmOrderStateAccessor.GetAsync(sc.Context, () => new ConfirmOrderState());
 
             state.Number = phoneNumber;
+            await _responder.ReplyWith(sc.Context, ConfirmOrderResponses.ResponseIds.SendPaymentCard, state);
             return EndOfTurn;
 
         }

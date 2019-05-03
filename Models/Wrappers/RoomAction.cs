@@ -15,9 +15,10 @@ namespace HotelBot.Models.Wrappers
             public const string Remove = "remove";
             public const string SelectRoomWithRate = "selectRoomWithRate";
             public const string Confirm = "confirm";
+            public const string Paid = "paid"; // a fake paid callback 
         }
     }
 
-    
+
 
 }
