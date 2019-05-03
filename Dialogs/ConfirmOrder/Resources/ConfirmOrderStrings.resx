@@ -121,6 +121,6 @@
     <value />
   </data>
   <data name="USE_FACEBOOK_NAME_QUESTION" xml:space="preserve">
-    <value>Do you want to book this under your name {0} ?</value>
+    <value>Do you want to confirm this order using your Facebook name: {0} ?</value>
   </data>
 </root>

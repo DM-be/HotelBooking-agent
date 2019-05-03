@@ -23,9 +23,10 @@ namespace HotelBot.Dialogs.ConfirmOrder
             InitialDialogId = nameof(ConfirmOrderDialog);
             var confirmOrderWaterfallSteps = new WaterfallStep []
             {
-                InitialStep
+                InitialStep, ProcessNamePrompt
             };
             AddDialog(new WaterfallDialog(InitialDialogId, confirmOrderWaterfallSteps));
+           
 
         }
 
@@ -36,9 +37,29 @@ namespace HotelBot.Dialogs.ConfirmOrder
 
             var userProfile = await _accessors.UserProfileAccessor.GetAsync(sc.Context, () => new UserProfile());
             var fullName = userProfile.FacebookProfileData.Name;
+            return await sc.PromptAsync(
+                nameof(ConfirmPrompt),
+                new PromptOptions
+                {
+                    Prompt = await _responder.RenderTemplate(
+                        sc.Context,
+                        sc.Context.Activity.Locale,
+                        ConfirmOrderResponses.ResponseIds.UseFacebookName,
+                        fullName)
+                });
 
-            await _responder.ReplyWith(sc.Context, ConfirmOrderResponses.ResponseIds.UseFacebookName, fullName);
-            return EndOfTurn;
         }
+
+        public async Task<DialogTurnResult> ProcessNamePrompt(WaterfallStepContext sc, CancellationToken cancellationToken)
+        {
+            var confirmed = (bool) sc.Result;
+            if (confirmed)
+            {
+                return await sc.NextAsync();
+            }
+            // prompt name PROMPT and save to state 
+            return null; 
+        }
+
     }
 }

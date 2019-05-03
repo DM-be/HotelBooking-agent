@@ -70,7 +70,7 @@ namespace HotelBot.Dialogs.ConfirmOrder.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you want to book this under your name {0} ?.
+        ///   Looks up a localized string similar to Do you want to confirm this order using your Facebook name: {0} ?.
         /// </summary>
         public static string USE_FACEBOOK_NAME_QUESTION {
             get {
