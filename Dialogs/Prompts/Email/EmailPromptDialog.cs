@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using HotelBot.Dialogs.FetchAvailableRooms;
 using HotelBot.Dialogs.Shared.PromptValidators;
+using HotelBot.Shared.Helpers;
 using HotelBot.StateAccessors;
 using Microsoft.Bot.Builder.Dialogs;
 
@@ -25,42 +25,23 @@ namespace HotelBot.Dialogs.Prompts.Email
             };
 
             AddDialog(new WaterfallDialog(InitialDialogId, askForEmailWaterfallSteps));
-            AddDialog(new TextPrompt(DialogIds.EmailPrompt, _promptValidators.EmailValidatorAsync));
+
         }
 
 
         private async Task<DialogTurnResult> AskForEmail(WaterfallStepContext sc, CancellationToken cancellationToken)
+
+
         {
-            return await sc.PromptAsync(
-                DialogIds.EmailPrompt,
-                new PromptOptions
-                {
-                    Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, EmailResponses.ResponseIds.EmailPrompt)
-                },
-                cancellationToken);
+            var facebookHelper = new FacebookHelper();
+            await facebookHelper.SendEmailQuickReply(sc.Context);
+            return new DialogTurnResult(DialogTurnStatus.Waiting);
         }
 
         private async Task<DialogTurnResult> FinishEmailDialog(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-
-            var email = (string) sc.Result; // is never null because of validation
-            var updated = false;
-            if (sc.Options != null) updated = (bool) sc.Options; // usually true
-
-            var _state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
-            _state.Email = email;
-
-            if (updated)
-                await _responder.ReplyWith(sc.Context, EmailResponses.ResponseIds.HaveUpdatedEmail, email);
-            else
-                await _responder.ReplyWith(sc.Context, EmailResponses.ResponseIds.HaveEmail, email);
-
-            return await sc.EndDialogAsync();
-        }
-
-        private class DialogIds
-        {
-            public const string EmailPrompt = "emailPrompt";
+            var email = (string) sc.Result; //todo: add validation
+            return await sc.EndDialogAsync(email);
         }
     }
 }

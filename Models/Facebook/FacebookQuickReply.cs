@@ -13,6 +13,8 @@ namespace HotelBot.Models.Facebook
     {
 
         public const string LocationQuickReplyPayload = "location";
+        public const string EmailQuickReplyPayload = "user_email";
+        public const string PhoneNumberQuickReplyPayload = "user_phone_number";
         public const string CallUsReplyPayload = "call";
         public const string BookARoomPayload = "book";
 

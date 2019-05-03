@@ -19,6 +19,17 @@ namespace HotelBot.Shared.Helpers
             await _responder.ReplyWith(context, FacebookHelperResponses.ResponseIds.SendLocationQuickReply);
         }
 
+        public async Task SendEmailQuickReply(ITurnContext context)
+        {
+            await _responder.ReplyWith(context, FacebookHelperResponses.ResponseIds.SendEmailQuickReply);
+        }
+
+        public async Task SendPhoneNumberQuickReply(ITurnContext context)
+        {
+            await _responder.ReplyWith(context, FacebookHelperResponses.ResponseIds.SendPhoneNumberQuickReply);
+        }
+
+
         public async Task SendWelcomeMessage(ITurnContext context)
         {
             await _responder.ReplyWith(context, FacebookHelperResponses.ResponseIds.Welcome);

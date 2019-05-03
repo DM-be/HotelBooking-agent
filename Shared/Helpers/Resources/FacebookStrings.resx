@@ -138,6 +138,9 @@
   <data name="HEROCARD_REPLY_TEXT_DIRECTION" xml:space="preserve">
     <value>I have found the most efficient route for you.</value>
   </data>
+  <data name="QUICK_REPLY_ASK_EMAIL" xml:space="preserve">
+    <value>Could I have your email?</value>
+  </data>
   <data name="QUICK_REPLY_ASK_LOCATION" xml:space="preserve">
     <value>Could you send me your location?</value>
   </data>

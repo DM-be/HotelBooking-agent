@@ -1,15 +1,15 @@
-﻿using HotelBot.Models.Facebook;
+﻿using System.Collections.Generic;
+using HotelBot.Models.Facebook;
 using HotelBot.Shared.Helpers.Resources;
 using HotelBot.Shared.QuickReplies.Resources;
 using HotelBot.Shared.Welcome.Resources;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.TemplateManager;
 using Microsoft.Bot.Schema;
-using System.Collections.Generic;
 
 namespace HotelBot.Shared.Helpers
 {
-    public class FacebookHelperResponses : TemplateManager
+    public class FacebookHelperResponses: TemplateManager
     {
         private static readonly LanguageTemplateDictionary _responseTemplates = new LanguageTemplateDictionary
         {
@@ -17,41 +17,43 @@ namespace HotelBot.Shared.Helpers
             ["default"] = new TemplateIdMap
             {
                 {
-                    ResponseIds.SendLocationQuickReply,
-                    (context, data) =>
+                    ResponseIds.SendLocationQuickReply, (context, data) =>
                         BuildLocationQuickReply(context, data)
                 },
                 {
-                    ResponseIds.SendGetStartedQuickReplies,
-                    (context, data) =>
-                        BuildGettingStartedQuickReplies(context, data)
+                    ResponseIds.SendPhoneNumberQuickReply, (context, data) =>
+                        BuildPhoneNumberQuickReply(context, data)
                 },
                 {
-                    ResponseIds.SendDirections,
-                    (context, data) =>
+                    ResponseIds.SendEmailQuickReply, (context, data) =>
+                        BuildEmailQuickReply(context, data)
+                },
+                {
+                    ResponseIds.SendGetStartedQuickReplies, (context, data) =>
+                        BuildGettingStartedQuickReplies(context, data)
+                },
+
+                {
+                    ResponseIds.SendDirections, (context, data) =>
                         BuildDirectionsCard(context, data)
                 },
                 {
-                    ResponseIds.SendDirectionsWithoutOrigin,
-                    (context, data) =>
+                    ResponseIds.SendDirectionsWithoutOrigin, (context, data) =>
                         BuildDirectionsCardWithoutOrigin(context, data)
                 },
                 {
-                    ResponseIds.CallUs,
-                    (context, data) =>
+                    ResponseIds.CallUs, (context, data) =>
                         BuildCallMessage(context, data)
                 },
                 {
-                    ResponseIds.Welcome,
-                    (context, data) =>
+                    ResponseIds.Welcome, (context, data) =>
                         MessageFactory.Text(
                             WelcomeStrings.WELCOME_MESSAGE,
                             WelcomeStrings.WELCOME_MESSAGE,
                             InputHints.AcceptingInput)
                 },
                 {
-                    ResponseIds.Functionality,
-                    (context, data) =>
+                    ResponseIds.Functionality, (context, data) =>
                         MessageFactory.Text(
                             WelcomeStrings.FUNCTIONALITY,
                             WelcomeStrings.FUNCTIONALITY,
@@ -70,7 +72,7 @@ namespace HotelBot.Shared.Helpers
             var facebookMessage = new FacebookMessage
             {
                 Text = FacebookStrings.QUICK_REPLY_ASK_LOCATION,
-                QuickReplies = new[]
+                QuickReplies = new []
                 {
                     new FacebookQuickReply
                     {
@@ -83,10 +85,46 @@ namespace HotelBot.Shared.Helpers
             return reply;
         }
 
+        public static IMessageActivity BuildEmailQuickReply(ITurnContext context, dynamic data)
+        {
+            var facebookMessage = new FacebookMessage
+            {
+                Text = FacebookStrings.QUICK_REPLY_ASK_EMAIL,
+                QuickReplies = new []
+                {
+                    new FacebookQuickReply
+                    {
+                        Content_Type = "user_email"
+                    }
+                }
+            };
+            var reply = context.Activity.CreateReply();
+            reply.ChannelData = facebookMessage;
+            return reply;
+        }
+
+        public static IMessageActivity BuildPhoneNumberQuickReply(ITurnContext context, dynamic data)
+        {
+            var facebookMessage = new FacebookMessage
+            {
+                Text = FacebookStrings.QUICK_REPLY_ASK_EMAIL,
+                QuickReplies = new []
+                {
+                    new FacebookQuickReply
+                    {
+                        Content_Type = "user_phone_number"
+                    }
+                }
+            };
+            var reply = context.Activity.CreateReply();
+            reply.ChannelData = facebookMessage;
+            return reply;
+        }
+
         public static IMessageActivity BuildGettingStartedQuickReplies(ITurnContext context, dynamic data)
         {
             var reply = context.Activity.CreateReply();
-            FacebookQuickReply[] quick_replies =
+            FacebookQuickReply [] quick_replies =
             {
                 new FacebookQuickReply
                 {
@@ -124,7 +162,10 @@ namespace HotelBot.Shared.Helpers
             {
                 Title = FacebookStrings.BUTTON_TITLE_CALL,
                 Subtitle = number,
-                Buttons = new List<CardAction> { new CardAction(ActionTypes.Call, FacebookStrings.BUTTON_TITLE_CALL, value: number) }
+                Buttons = new List<CardAction>
+                {
+                    new CardAction(ActionTypes.Call, FacebookStrings.BUTTON_TITLE_CALL, value: number)
+                }
             };
             var reply = context.Activity.CreateReply();
             reply.Attachments = new List<Attachment>
@@ -142,8 +183,14 @@ namespace HotelBot.Shared.Helpers
             var heroCard = new HeroCard
             {
                 Title = "Starhotel Bruges", // TODO: get from external source
-                Images = new List<CardImage> { new CardImage("https://img.hotelspecials.be/fc2fadf52703ae0181b289f84011bf6a.jpeg?w=250&h=200&c=1&quality=70") },
-                Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl, FacebookStrings.HEROCARD_BUTTON_DIRECTION_TITLE, value: url) }
+                Images = new List<CardImage>
+                {
+                    new CardImage("https://img.hotelspecials.be/fc2fadf52703ae0181b289f84011bf6a.jpeg?w=250&h=200&c=1&quality=70")
+                },
+                Buttons = new List<CardAction>
+                {
+                    new CardAction(ActionTypes.OpenUrl, FacebookStrings.HEROCARD_BUTTON_DIRECTION_TITLE, value: url)
+                }
             };
 
             var reply = context.Activity.CreateReply();
@@ -158,12 +205,18 @@ namespace HotelBot.Shared.Helpers
 
         public static IMessageActivity BuildDirectionsCardWithoutOrigin(ITurnContext context, FacebookAttachment attachment)
         {
-            var url = $"https://www.google.com/maps/dir/?api=1&destination=51.228557,3.231737";
+            var url = "https://www.google.com/maps/dir/?api=1&destination=51.228557,3.231737";
             var heroCard = new HeroCard
             {
                 Title = "Starhotel Bruges",
-                Images = new List<CardImage> { new CardImage("https://img.hotelspecials.be/fc2fadf52703ae0181b289f84011bf6a.jpeg?w=250&h=200&c=1&quality=70") },
-                Buttons = new List<CardAction> { new CardAction(ActionTypes.OpenUrl, FacebookStrings.HEROCARD_BUTTON_DIRECTION_TITLE, value: url) }
+                Images = new List<CardImage>
+                {
+                    new CardImage("https://img.hotelspecials.be/fc2fadf52703ae0181b289f84011bf6a.jpeg?w=250&h=200&c=1&quality=70")
+                },
+                Buttons = new List<CardAction>
+                {
+                    new CardAction(ActionTypes.OpenUrl, FacebookStrings.HEROCARD_BUTTON_DIRECTION_TITLE, value: url)
+                }
             };
 
             var reply = context.Activity.CreateReply();
@@ -187,6 +240,8 @@ namespace HotelBot.Shared.Helpers
             public const string SendDirections = "sendDirections";
             public const string SendDirectionsWithoutOrigin = "sendDirectionsWithoutOrigin";
             public const string CallUs = "callUs";
+            public const string SendEmailQuickReply = "sendEmailQuickReply";
+            public const string SendPhoneNumberQuickReply = "SendPhoneNumberQuickReply";
         }
     }
 }

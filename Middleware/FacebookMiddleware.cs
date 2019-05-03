@@ -74,8 +74,11 @@ namespace HotelBot.Middleware
         private void OnFacebookQuickReply(FacebookQuickReply quickReply, ITurnContext context)
         {
             if (quickReply.Payload.Equals(FacebookQuickReply.LocationQuickReplyPayload))
-
                 context.Activity.Text = FacebookStrings.CONTEXT_TEXT_DIRECTIONS;
+            else if (quickReply.Payload.Equals(FacebookQuickReply.EmailQuickReplyPayload))
+            {
+                var payload = quickReply.Payload;
+            }
             else if (quickReply.Payload.Equals(FacebookQuickReply.CallUsReplyPayload))
                 context.Activity.Text = FacebookStrings.CONTEXT_TEXT_CALL_US;
 
