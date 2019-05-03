@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using HotelBot.Dialogs.ConfirmOrder;
 using HotelBot.Dialogs.RoomDetail;
 using HotelBot.Dialogs.RoomOverview;
 using HotelBot.Extensions;
@@ -49,7 +50,10 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
                             await innerDc.BeginDialogAsync(nameof(RoomDetailDialog), dialogOptions);
                         else if ((roomAction.Action == "selectRoomWithRate") | (roomAction.Action == "remove") | (roomAction.Action == "viewDetails"))
                             await innerDc.BeginDialogAsync(nameof(RoomOverviewDialog), dialogOptions);
-
+                        else if (roomAction.Action == RoomAction.Actions.Confirm)
+                        {
+                            await innerDc.BeginDialogAsync(nameof(ConfirmOrderDialog));
+                        }
 
                     }
                     else if (!string.IsNullOrEmpty(activity.Text))

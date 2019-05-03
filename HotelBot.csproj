@@ -43,6 +43,11 @@
   </ItemGroup>
 
  <ItemGroup>
+   <Compile Update="Dialogs\ConfirmOrder\Resources\ConfirmOrderStrings.Designer.cs">
+     <DesignTime>True</DesignTime>
+     <AutoGen>True</AutoGen>
+     <DependentUpon>ConfirmOrderStrings.resx</DependentUpon>
+   </Compile>
    <Compile Update="Dialogs\FetchAvailableRooms\Resources\FetchAvailableRoomsStrings.Designer.cs">
      <DesignTime>True</DesignTime>
      <AutoGen>True</AutoGen>
@@ -121,6 +126,10 @@
  </ItemGroup>
 
  <ItemGroup>
+   <EmbeddedResource Update="Dialogs\ConfirmOrder\Resources\ConfirmOrderStrings.resx">
+     <Generator>PublicResXFileCodeGenerator</Generator>
+     <LastGenOutput>ConfirmOrderStrings.Designer.cs</LastGenOutput>
+   </EmbeddedResource>
    <EmbeddedResource Update="Dialogs\FetchAvailableRooms\Resources\FetchAvailableRoomsStrings.resx">
      <Generator>PublicResXFileCodeGenerator</Generator>
      <LastGenOutput>FetchAvailableRoomsStrings.Designer.cs</LastGenOutput>

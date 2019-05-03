@@ -149,7 +149,6 @@ namespace HotelBot.Dialogs.RoomOverview
                         Value = JsonConvert.SerializeObject(
                             new RoomAction
                             {
-                                RoomId = "test",
                                 Action = RoomAction.Actions.Confirm
                             }),
                         Title = "\t Confirm \t"
