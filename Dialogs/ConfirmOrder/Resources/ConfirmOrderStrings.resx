@@ -118,9 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="INTRO" xml:space="preserve">
-    <value />
+    <value>To complete your order we need some extra information. </value>
   </data>
-  <data name="USE_FACEBOOK_NAME_QUESTION" xml:space="preserve">
-    <value>Do you want to confirm this order using your Facebook name: {0} ?</value>
+  <data name="RESPOND_NAME" xml:space="preserve">
+    <value>Ok {0}, Could I have an email address to send a confirmation to? </value>
   </data>
 </root>

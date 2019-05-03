@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using HotelBot.Dialogs.ConfirmOrder.Resources;
 using HotelBot.Models.Facebook;
 using HotelBot.Shared.Helpers.Resources;
 using HotelBot.Shared.QuickReplies.Resources;
@@ -23,6 +24,10 @@ namespace HotelBot.Shared.Helpers
                 {
                     ResponseIds.SendPhoneNumberQuickReply, (context, data) =>
                         BuildPhoneNumberQuickReply(context, data)
+                },
+                {
+                    ResponseIds.SendFullNameQuickReply, (context, data) =>
+                        BuildFullNameQuickReply(context, data)
                 },
                 {
                     ResponseIds.SendEmailQuickReply, (context, data) =>
@@ -89,7 +94,7 @@ namespace HotelBot.Shared.Helpers
         {
             var facebookMessage = new FacebookMessage
             {
-                Text = FacebookStrings.QUICK_REPLY_ASK_EMAIL,
+                Text = string.Format(ConfirmOrderStrings.RESPOND_NAME, data),
                 QuickReplies = new []
                 {
                     new FacebookQuickReply
@@ -120,6 +125,27 @@ namespace HotelBot.Shared.Helpers
             reply.ChannelData = facebookMessage;
             return reply;
         }
+
+        public static IMessageActivity BuildFullNameQuickReply(ITurnContext context, dynamic data)
+        {
+            var facebookMessage = new FacebookMessage
+            {
+                Text = "What name should we use to confirm this booking?",
+                QuickReplies = new []
+                {
+                    new FacebookQuickReply
+                    {
+                        Content_Type = "text",
+                        Title = data,
+                        Payload = data
+                    }
+                }
+            };
+            var reply = context.Activity.CreateReply();
+            reply.ChannelData = facebookMessage;
+            return reply;
+        }
+
 
         public static IMessageActivity BuildGettingStartedQuickReplies(ITurnContext context, dynamic data)
         {
@@ -242,6 +268,7 @@ namespace HotelBot.Shared.Helpers
             public const string CallUs = "callUs";
             public const string SendEmailQuickReply = "sendEmailQuickReply";
             public const string SendPhoneNumberQuickReply = "SendPhoneNumberQuickReply";
+            public const string SendFullNameQuickReply = "SendFullNameQuickReply";
         }
     }
 }

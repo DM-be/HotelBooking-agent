@@ -19,7 +19,6 @@ namespace HotelBot.Dialogs.Prompts.Email
     {
         private static readonly PromptValidatorResponses _responder = new PromptValidatorResponses();
         private readonly StateBotAccessors _accessors;
-        private readonly PromptValidators _promptValidators = new PromptValidators();
 
         public EmailPromptDialog(StateBotAccessors accessors)
             : base(nameof(EmailPromptDialog))
@@ -40,8 +39,9 @@ namespace HotelBot.Dialogs.Prompts.Email
 
 
         {
+            var firstName = sc.Options;
             var facebookHelper = new FacebookHelper();
-            await facebookHelper.SendEmailQuickReply(sc.Context);
+            await facebookHelper.SendEmailQuickReply(sc.Context, firstName);
             return new DialogTurnResult(DialogTurnStatus.Waiting);
         }
 

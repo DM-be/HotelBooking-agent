@@ -61,7 +61,7 @@ namespace HotelBot.Dialogs.ConfirmOrder.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to To complete your order we need some extra information. .
         /// </summary>
         public static string INTRO {
             get {
@@ -70,11 +70,11 @@ namespace HotelBot.Dialogs.ConfirmOrder.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you want to confirm this order using your Facebook name: {0} ?.
+        ///   Looks up a localized string similar to Ok {0}, Could I have an email address to send a confirmation to? .
         /// </summary>
-        public static string USE_FACEBOOK_NAME_QUESTION {
+        public static string RESPOND_NAME {
             get {
-                return ResourceManager.GetString("USE_FACEBOOK_NAME_QUESTION", resourceCulture);
+                return ResourceManager.GetString("RESPOND_NAME", resourceCulture);
             }
         }
     }

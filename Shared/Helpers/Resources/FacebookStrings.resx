@@ -139,13 +139,13 @@
     <value>I have found the most efficient route for you.</value>
   </data>
   <data name="QUICK_REPLY_ASK_EMAIL" xml:space="preserve">
-    <value>Could I have your email?</value>
+    <value>To what email address could I send a confirmation email?</value>
   </data>
   <data name="QUICK_REPLY_ASK_LOCATION" xml:space="preserve">
     <value>Could you send me your location?</value>
   </data>
   <data name="QUICK_REPLY_ASK_NUMBER" xml:space="preserve">
-    <value>Could you send me your phone number? </value>
+    <value>We need your phone number in case of emergencies. </value>
   </data>
   <data name="QUICK_REPLY_BUTTON_BOOK_A_ROOM" xml:space="preserve">
     <value>Book</value>

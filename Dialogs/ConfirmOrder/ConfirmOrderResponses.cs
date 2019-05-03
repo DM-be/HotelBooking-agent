@@ -12,13 +12,7 @@ namespace HotelBot.Dialogs.ConfirmOrder
         {
             ["default"] = new TemplateIdMap
             {
-                {
-                    ResponseIds.UseFacebookName, (context, data) =>
-                        MessageFactory.Text(
-                            text: string.Format(ConfirmOrderStrings.USE_FACEBOOK_NAME_QUESTION, data),
-                            ssml: string.Format(ConfirmOrderStrings.USE_FACEBOOK_NAME_QUESTION, data),
-                            inputHint: InputHints.IgnoringInput)
-                }
+                
             }
         };
 
@@ -31,6 +25,8 @@ namespace HotelBot.Dialogs.ConfirmOrder
         {
             public const string UseFacebookName = "useFacebookName";
         }
+
+
     }
 
 }

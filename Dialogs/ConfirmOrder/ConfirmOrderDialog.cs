@@ -43,30 +43,26 @@ namespace HotelBot.Dialogs.ConfirmOrder
 
             var userProfile = await _accessors.UserProfileAccessor.GetAsync(sc.Context, () => new UserProfile());
             var fullName = userProfile.FacebookProfileData.Name;
-            return await sc.PromptAsync(
-                nameof(ConfirmPrompt),
-                new PromptOptions
-                {
-                    Prompt = await _responder.RenderTemplate(
-                        sc.Context,
-                        sc.Context.Activity.Locale,
-                        ConfirmOrderResponses.ResponseIds.UseFacebookName,
-                        fullName)
-                });
+            var facebookHelper = new FacebookHelper();
+            await facebookHelper.SendFullNameQuickReply(sc.Context, fullName);
+            return new DialogTurnResult(DialogTurnStatus.Waiting);
 
         }
 
         public async Task<DialogTurnResult> ProcessNamePrompt(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-            var confirmed = (bool) sc.Result;
-            if (confirmed) return await sc.NextAsync();
+            var name = (string) sc.Result;
+            var firstName = name.Split(' ')[0];
+
+        //    if (confirmed) return await sc.NextAsync();
             // prompt name PROMPT and save to state 
-            return await sc.NextAsync();
+            return await sc.NextAsync(firstName);
         }
 
         public async Task<DialogTurnResult> PromptEmail(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-            return await sc.BeginDialogAsync(nameof(EmailPromptDialog));
+            var firstName = sc.Result;
+            return await sc.BeginDialogAsync(nameof(EmailPromptDialog), firstName);
         }
 
         public async Task<DialogTurnResult> ProcessEmail(WaterfallStepContext sc, CancellationToken cancellationToken)

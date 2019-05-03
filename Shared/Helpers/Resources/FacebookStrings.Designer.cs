@@ -124,7 +124,7 @@ namespace HotelBot.Shared.Helpers.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Could I have your email?.
+        ///   Looks up a localized string similar to To what email address could I send a confirmation email?.
         /// </summary>
         public static string QUICK_REPLY_ASK_EMAIL {
             get {
@@ -142,7 +142,7 @@ namespace HotelBot.Shared.Helpers.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Could you send me your phone number? .
+        ///   Looks up a localized string similar to We need your phone number in case of emergencies. .
         /// </summary>
         public static string QUICK_REPLY_ASK_NUMBER {
             get {
