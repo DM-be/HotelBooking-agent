@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using HotelBot.Dialogs.FetchAvailableRooms;
 using HotelBot.Dialogs.Prompts.ContinueOrAddMoreRooms;
 using HotelBot.Dialogs.Shared.CustomDialog;
-using HotelBot.Dialogs.Shared.PromptValidators;
 using HotelBot.Models.Wrappers;
 using HotelBot.Services;
 using HotelBot.Shared.Helpers;
@@ -23,8 +22,7 @@ namespace HotelBot.Dialogs.RoomOverview
 
         private static readonly RoomOverviewResponses _responder = new RoomOverviewResponses();
         private readonly StateBotAccessors _accessors;
-        private readonly PromptValidators _promptValidators = new PromptValidators();
-        private readonly BotServices _services;
+        private readonly BotServices _services; //todo: services still needed? 
 
 
         public RoomOverviewDialog(BotServices services, StateBotAccessors accessors)
@@ -33,11 +31,11 @@ namespace HotelBot.Dialogs.RoomOverview
             _services = services ?? throw new ArgumentNullException(nameof(services));
             _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
             InitialDialogId = nameof(RoomOverviewDialog);
-            var RoomOverviewWaterfallsteps = new WaterfallStep []
+            var roomOverviewWaterfallSteps = new WaterfallStep []
             {
                 FetchSelectedRoomDetailAndAddToState, PromptContinueOrFindMoreRooms, ProcessResultContinueOrAddMoreRoomsPrompt, ProcessChoicePrompt
             };
-            AddDialog(new WaterfallDialog(InitialDialogId, RoomOverviewWaterfallsteps));
+            AddDialog(new WaterfallDialog(InitialDialogId, roomOverviewWaterfallSteps));
             AddDialog(new ContinueOrAddMoreRoomsPrompt(accessors));
             AddDialog(new ChoicePrompt(nameof(ChoicePrompt)));
 
