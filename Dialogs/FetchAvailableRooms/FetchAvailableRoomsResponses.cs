@@ -161,7 +161,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                     Departure = bookARoomState.LeavingDate.ToString()
                 };
             var rooms = requestHandler.FetchMatchingRooms(requestData).Result;
-            var heroCards = new HeroCard[2];
+            var heroCards = new HeroCard[rooms.Length];
             var url = "https://www.google.com";
             for (var i = 0; i < rooms.Length; i++)
                 heroCards[i] = new HeroCard

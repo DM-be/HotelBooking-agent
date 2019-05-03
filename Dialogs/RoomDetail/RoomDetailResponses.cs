@@ -46,7 +46,7 @@ namespace HotelBot.Dialogs.RoomDetail
         public static IMessageActivity SendImages(ITurnContext context, dynamic data)
         {
             var roomDetailDto = data as RoomDetailDto;
-            var imageCards = new HeroCard[4];
+            var imageCards = new HeroCard[roomDetailDto.RoomImages.Count];
             for (var i = 0; i < roomDetailDto.RoomImages.Count; i++)
                 imageCards[i] = new HeroCard
                 {
@@ -73,7 +73,7 @@ namespace HotelBot.Dialogs.RoomDetail
         public static IMessageActivity SendRates(ITurnContext context, dynamic data)
         {
             var roomDetailDto = data as RoomDetailDto;
-            var rateCards = new HeroCard[2];
+            var rateCards = new HeroCard[roomDetailDto.Rates.Count];
             for (var i = 0; i < roomDetailDto.Rates.Count; i++)
                 rateCards[i] = new HeroCard
                 {
