@@ -16,12 +16,16 @@ namespace HotelBot.Shared.Helpers
         {
             FetchMatchingRoomsUrl = "https://us-central1-roomsbackend.cloudfunctions.net/fetchMatchingRooms";
             FetchRoomDetailUrl = "https://us-central1-roomsbackend.cloudfunctions.net/fetchRoomDetail";
+            ReceiptUrl =
+                "https://graph.facebook.com/v2.6/me/messages?access_token=EAAZAwdCH6kA4BALmrXAxNUYIUfqaH01Lx3bsNDFlQZCgRolXq0yErVZABhdRHuZCkGjTuHGZCZBzhcWDCRVGOIXf6v5Yckz0MidVUJg8EXbWWXeaDhaGVR19CXtZBao64Y09N5IWWZBNMbQOa23Dt222YW8NwgdpNVWZBDjVOh5qXZCAZDZD";
         }
 
 
         // url for backend
         public string FetchMatchingRoomsUrl { get; set; }
         public string FetchRoomDetailUrl { get; set; }
+
+        public string ReceiptUrl { get; set; }
 
 
 
@@ -61,6 +65,20 @@ namespace HotelBot.Shared.Helpers
             }
 
             return roomDetailDto;
+
+        }
+
+
+
+        // returns general room cards // fake it for now.
+        public async Task PostReceipt(dynamic data)
+        {
+            var client = new HttpClient();
+            var path = ReceiptUrl;
+            var content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
+            var response = await client.PostAsync(path, content);
+            if (response.IsSuccessStatusCode)
+                return;
 
         }
 

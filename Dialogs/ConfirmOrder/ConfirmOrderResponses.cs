@@ -1,9 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using HotelBot.Models.Facebook;
 using HotelBot.Models.Wrappers;
+using HotelBot.Shared.Helpers;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.TemplateManager;
 using Microsoft.Bot.Schema;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace HotelBot.Dialogs.ConfirmOrder
 {
@@ -16,6 +20,10 @@ namespace HotelBot.Dialogs.ConfirmOrder
                 {
                     ResponseIds.SendPaymentCard, (context, data) =>
                         SendPaymentCard(context, data)
+                },
+                {
+                    ResponseIds.SendReceipt, (context, data) =>
+                        SendReceiptCard(context, data)
                 }
             }
         };
@@ -39,6 +47,74 @@ namespace HotelBot.Dialogs.ConfirmOrder
             reply.AttachmentLayout = "carousel";
             reply.Attachments = attachments;
             return reply;
+        }
+
+        public static IMessageActivity SendReceiptCard(ITurnContext context, dynamic data)
+        {
+            var facebookMessage = new FacebookMessage
+
+            {
+
+
+                Attachment = new FacebookAttachment
+                {
+                    Type = "template",
+                    FacebookPayload = new FacebookPayload
+                    {
+                        Template_Type = "receipt",
+                        RecipientName = "testname",
+                        OrderNumber = "123456",
+                        Currency = "EUR",
+                        PaymentMethod = "MASTERCARD",
+                        OrderUrl = "http://google.com",
+                        Timestamp = "1428444852",
+                        FacebookSummary = new FacebookSummary
+                        {
+                            Subtotal = 75.00,
+                            TotalTax = 21.00,
+                            TotalCost = 100.00
+
+                        },
+                        FacebookElements = new[]
+                       {
+                            new FacebookElement
+                            {
+                                Title = "test title",
+                                Currency = "EUR",
+                                ImageUrl =
+                                    "https://static01.nyt.com/images/2019/03/24/travel/24trending-shophotels1/24trending-shophotels1-superJumbo.jpg?quality=90&auto=webp",
+                                Price = 25.00,
+                                Quantity = 1,
+                                Subtitle = "test subtitle"
+
+
+                            },
+                            new FacebookElement
+                            {
+                                Title = "test title",
+                                Currency = "EUR",
+                                ImageUrl =
+                                    "https://static01.nyt.com/images/2019/03/24/travel/24trending-shophotels1/24trending-shophotels1-superJumbo.jpg?quality=90&auto=webp",
+                                Price = 25.00,
+                                Quantity = 1,
+                                Subtitle = "test subtitle"
+
+
+                            }
+                        }
+                    },
+
+
+                }
+
+            };
+
+            var reply = context.Activity.CreateReply();
+            reply.ChannelData = facebookMessage;
+            return reply;
+
+
+
         }
 
 
@@ -66,6 +142,32 @@ namespace HotelBot.Dialogs.ConfirmOrder
             };
         }
 
+
+        private static ReceiptCard BuildReceiptCard(ConfirmOrderState confirmOrderState)
+        {
+            return new ReceiptCard
+            {
+
+                Title = "test",
+                Total = "100",
+                Tax = "20",
+                Items = new List<ReceiptItem>
+                {
+                    new ReceiptItem
+                    {
+                        Title = "test",
+                        Text = "TEST",
+                        Subtitle = "TEST",
+                        Price = "100",
+                        Quantity = "10"
+
+                    }
+                }
+            };
+        }
+
+
+
         public static string BuildPaymentHeroCardText(ConfirmOrderState confirmOrderState)
         {
             var selectedRooms = confirmOrderState.RoomOverviewState.SelectedRooms;
@@ -86,9 +188,9 @@ namespace HotelBot.Dialogs.ConfirmOrder
             var message = "";
             message += $"Number of rooms: {numberOfRooms} \n";
             message += $"Number of people: {numberOfPeople} \n";
-            message += $"Confirmation Name: {confirmOrderState.FullName} \n";
-            message += $"Confirmation Email: {confirmOrderState.Email} \n";
-            message += $"Emergency number: {confirmOrderState.Number} \n";
+            message += $"Name: {confirmOrderState.FullName} \n";
+            message += $"Email: {confirmOrderState.Email} \n";
+            message += $"Number: {confirmOrderState.Number} \n";
             message += $"Total: €{totalPrice}\n";
             return message;
 
@@ -97,9 +199,13 @@ namespace HotelBot.Dialogs.ConfirmOrder
 
 
 
+
+
+
         public class ResponseIds
         {
             public const string SendPaymentCard = "sendPaymentCard";
+            public const string SendReceipt = "sendReceipt";
         }
     }
 
