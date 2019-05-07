@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using HotelBot.Models.Facebook;
 using HotelBot.Models.Wrappers;
 using HotelBot.Shared.Helpers;
+using HotelBot.StateProperties;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.TemplateManager;
 using Microsoft.Bot.Schema;
@@ -51,57 +54,45 @@ namespace HotelBot.Dialogs.ConfirmOrder
 
         public static IMessageActivity SendReceiptCard(ITurnContext context, dynamic data)
         {
+            var confirmOrderState = data[0] as ConfirmOrderState;
+            var userProfileState = data[1] as UserProfile;
+            var facebookElements = new List<FacebookElement>();
+            int totalCost = 0;
+            foreach (var selectedRoom in confirmOrderState.RoomOverviewState.SelectedRooms)
+            {
+                facebookElements.Add(
+                    new FacebookElement
+                    {
+                        Title = selectedRoom.RoomDetailDto.Title,
+                        Subtitle = selectedRoom.RoomDetailDto.ShortDescription,
+                        Price = selectedRoom.SelectedRate.Price,
+                        Quantity = 1,
+                        ImageUrl = selectedRoom.RoomDetailDto.RoomImages[0].ImageUrl,
+                        Currency = "EUR"
+                    });
+                totalCost += selectedRoom.SelectedRate.Price;
+            }
+
             var facebookMessage = new FacebookMessage
 
-            {
-
-
+            {            
                 Attachment = new FacebookAttachment
                 {
                     Type = "template",
                     FacebookPayload = new FacebookPayload
                     {
                         Template_Type = "receipt",
-                        RecipientName = "testname",
-                        OrderNumber = "123456",
+                        RecipientName = userProfileState.FacebookProfileData.Name,
+                        OrderNumber = "order-565678",
                         Currency = "EUR",
-                        PaymentMethod = "MASTERCARD",
+                        PaymentMethod = "Mastercard",
                         OrderUrl = "http://google.com",
-                        Timestamp = "1428444852",
+                        Timestamp = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds().ToString(),
                         FacebookSummary = new FacebookSummary
                         {
-                            Subtotal = 75.00,
-                            TotalTax = 21.00,
-                            TotalCost = 100.00
-
+                            TotalCost = totalCost
                         },
-                        FacebookElements = new[]
-                       {
-                            new FacebookElement
-                            {
-                                Title = "test title",
-                                Currency = "EUR",
-                                ImageUrl =
-                                    "https://static01.nyt.com/images/2019/03/24/travel/24trending-shophotels1/24trending-shophotels1-superJumbo.jpg?quality=90&auto=webp",
-                                Price = 25.00,
-                                Quantity = 1,
-                                Subtitle = "test subtitle"
-
-
-                            },
-                            new FacebookElement
-                            {
-                                Title = "test title",
-                                Currency = "EUR",
-                                ImageUrl =
-                                    "https://static01.nyt.com/images/2019/03/24/travel/24trending-shophotels1/24trending-shophotels1-superJumbo.jpg?quality=90&auto=webp",
-                                Price = 25.00,
-                                Quantity = 1,
-                                Subtitle = "test subtitle"
-
-
-                            }
-                        }
+                        FacebookElements = facebookElements
                     },
 
 

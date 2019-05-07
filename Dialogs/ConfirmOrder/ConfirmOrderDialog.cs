@@ -96,10 +96,17 @@ namespace HotelBot.Dialogs.ConfirmOrder
         {
             // needs validation 
             var phoneNumber = sc.Result as string;
-            var state = await _accessors.ConfirmOrderStateAccessor.GetAsync(sc.Context, () => new ConfirmOrderState());
+            var roomOrderState = await _accessors.ConfirmOrderStateAccessor.GetAsync(sc.Context, () => new ConfirmOrderState());
+            roomOrderState.Number = phoneNumber;
 
-            state.Number = phoneNumber;
-            await _responder.ReplyWith(sc.Context, ConfirmOrderResponses.ResponseIds.SendReceipt, state);
+            var userProfileState = await _accessors.UserProfileAccessor.GetAsync(sc.Context, () => new UserProfile());
+
+            dynamic[] data = 
+            {
+                roomOrderState, userProfileState 
+            };
+          
+            await _responder.ReplyWith(sc.Context, ConfirmOrderResponses.ResponseIds.SendReceipt, data);
             return EndOfTurn;
 
         }

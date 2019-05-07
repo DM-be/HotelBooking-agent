@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace HotelBot.Models.Facebook
@@ -71,6 +72,6 @@ namespace HotelBot.Models.Facebook
 
         [JsonProperty("summary")] public FacebookSummary FacebookSummary { get; set; }
 
-        [JsonProperty("elements")] public FacebookElement [] FacebookElements { get; set; }
+        [JsonProperty("elements")] public List<FacebookElement> FacebookElements { get; set; }
     }
 }
