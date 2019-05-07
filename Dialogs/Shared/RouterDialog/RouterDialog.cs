@@ -44,24 +44,24 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
                         };
                         // clear existing stack (button with action tapped)
                         await innerDc.CancelAllDialogsAsync();
-
-                        //TODO: refactor into delegates
-
-                        // todo: rename book --> now name of button (used to skip info in roomdetaildialog)
-                        if ((roomAction.Action == "info") | (roomAction.Action == "book"))
-                            await innerDc.BeginDialogAsync(nameof(RoomDetailDialog), dialogOptions);
-                        else if ((roomAction.Action == RoomAction.Actions.SelectRoomWithRate) | (roomAction.Action == RoomAction.Actions.Remove) | (roomAction.Action == "viewDetails"))
-                            await innerDc.BeginDialogAsync(nameof(RoomOverviewDialog), dialogOptions);
-                        else if (roomAction.Action == RoomAction.Actions.Confirm)
+                        switch (roomAction.Action)
                         {
-                            await innerDc.BeginDialogAsync(nameof(ConfirmOrderDialog));
+                            case RoomAction.Actions.Info:
+                            case RoomAction.Actions.Book:
+                                await innerDc.BeginDialogAsync(nameof(RoomDetailDialog), dialogOptions);
+                                break;
+                            case RoomAction.Actions.SelectRoomWithRate:
+                            case RoomAction.Actions.Remove:
+                            case RoomAction.Actions.ViewDetails:
+                                await innerDc.BeginDialogAsync(nameof(RoomOverviewDialog), dialogOptions);
+                                break;
+                            case RoomAction.Actions.Confirm:
+                                await innerDc.BeginDialogAsync(nameof(ConfirmOrderDialog));
+                                break;
+                            case RoomAction.Actions.Paid:
+                                await innerDc.BeginDialogAsync(nameof(ConfirmOrderDialog), true);
+                                break;
                         }
-                        else if(roomAction.Action == RoomAction.Actions.Paid)
-                        {
-                            var paid = true;
-                            await innerDc.BeginDialogAsync(nameof(ConfirmOrderDialog), paid); // skips steps until confirmation
-                        }
-
                     }
                     else if (!string.IsNullOrEmpty(activity.Text))
                     {
