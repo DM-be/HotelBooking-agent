@@ -9,5 +9,7 @@ namespace HotelBot.Dialogs.ConfirmOrder
         public string FullName { get; set; }
 
         public RoomOverviewState RoomOverviewState { get; set; }
+
+        public bool PaymentConfirmed { get; set; } = false; 
     }
 }

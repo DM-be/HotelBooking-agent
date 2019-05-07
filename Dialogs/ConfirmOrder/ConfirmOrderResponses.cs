@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using HotelBot.Dialogs.ConfirmOrder.Resources;
+using HotelBot.Dialogs.RoomOverview.Resources;
 using HotelBot.Models.Facebook;
 using HotelBot.Models.Wrappers;
-using HotelBot.Shared.Helpers;
 using HotelBot.StateProperties;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.TemplateManager;
 using Microsoft.Bot.Schema;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace HotelBot.Dialogs.ConfirmOrder
 {
@@ -27,10 +25,26 @@ namespace HotelBot.Dialogs.ConfirmOrder
                 {
                     ResponseIds.SendReceipt, (context, data) =>
                         SendReceiptCard(context, data)
-                }
+                },
+                {
+                    ResponseIds.AfterConfirmation, (context, data) =>
+                        MessageFactory.Text(
+                            ConfirmOrderStrings.AFTER_CONFIRMATION,
+                            ConfirmOrderStrings.AFTER_CONFIRMATION,
+                            InputHints.IgnoringInput)
+                },
+                
             }
         };
 
+
+
+
+        /*
+         *
+         *    
+         *
+         */
         public ConfirmOrderResponses()
         {
             Register(new DictionaryRenderer(_responseTemplates));
@@ -57,7 +71,7 @@ namespace HotelBot.Dialogs.ConfirmOrder
             var confirmOrderState = data[0] as ConfirmOrderState;
             var userProfileState = data[1] as UserProfile;
             var facebookElements = new List<FacebookElement>();
-            int totalCost = 0;
+            var totalCost = 0;
             foreach (var selectedRoom in confirmOrderState.RoomOverviewState.SelectedRooms)
             {
                 facebookElements.Add(
@@ -75,7 +89,7 @@ namespace HotelBot.Dialogs.ConfirmOrder
 
             var facebookMessage = new FacebookMessage
 
-            {            
+            {
                 Attachment = new FacebookAttachment
                 {
                     Type = "template",
@@ -93,7 +107,7 @@ namespace HotelBot.Dialogs.ConfirmOrder
                             TotalCost = totalCost
                         },
                         FacebookElements = facebookElements
-                    },
+                    }
 
 
                 }
@@ -103,7 +117,6 @@ namespace HotelBot.Dialogs.ConfirmOrder
             var reply = context.Activity.CreateReply();
             reply.ChannelData = facebookMessage;
             return reply;
-
 
 
         }
@@ -197,6 +210,7 @@ namespace HotelBot.Dialogs.ConfirmOrder
         {
             public const string SendPaymentCard = "sendPaymentCard";
             public const string SendReceipt = "sendReceipt";
+            public const string AfterConfirmation = "afterConfirmation";
         }
     }
 

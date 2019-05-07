@@ -61,6 +61,15 @@ namespace HotelBot.Dialogs.ConfirmOrder.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Thank you for booking, would you like to see an overview?.
+        /// </summary>
+        public static string AFTER_CONFIRMATION {
+            get {
+                return ResourceManager.GetString("AFTER_CONFIRMATION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to To complete your order we need some extra information. .
         /// </summary>
         public static string INTRO {

@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AFTER_CONFIRMATION" xml:space="preserve">
+    <value>Thank you for booking, would you like to see an overview?</value>
+  </data>
   <data name="INTRO" xml:space="preserve">
     <value>To complete your order we need some extra information. </value>
   </data>

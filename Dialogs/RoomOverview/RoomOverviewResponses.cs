@@ -55,6 +55,11 @@ namespace HotelBot.Dialogs.RoomOverview
                 {
                     ResponseIds.CompleteOverview, (context, data) =>
                         CompleteOverview(context, data)
+                },
+
+                {
+                    ResponseIds.ConfirmedPaymentOverview, (context, data) =>
+                        ConfirmedPaymentOverview(context, data)
                 }
 
 
@@ -84,32 +89,42 @@ namespace HotelBot.Dialogs.RoomOverview
             return reply;
         }
 
-        // todo: rename 
-        private static HeroCard BuildDetailedRoomHeroCard(SelectedRoom selectedRoom)
+        public static IMessageActivity ConfirmedPaymentOverview(ITurnContext context, dynamic data)
         {
-            return new HeroCard
-            {
-                Title = selectedRoom.RoomDetailDto.Title,
-                Text = BuildHeroCardTextDetailedOverview(selectedRoom),
-                Images = new List<CardImage>
-                {
-                    //todo: refactor
-                    new CardImage(selectedRoom.RoomDetailDto.RoomImages[0].ImageUrl)
-                },
 
-                Buttons = new List<CardAction>
+            var roomOverviewState = data as RoomOverviewState;
+            var selectedRooms = roomOverviewState.SelectedRooms;
+            var heroCards = new List<HeroCard>();
+            foreach (var selectedRoom in selectedRooms) heroCards.Add(BuildDetailedRoomHeroCard(selectedRoom, false));
+            var reply = context.Activity.CreateReply();
+            reply.Text =
+                "Thank you for booking with us, here is an overview of your booked rooms";
+            var attachments = new List<Attachment>();
+            foreach (var heroCard in heroCards) attachments.Add(heroCard.ToAttachment());
+            reply.AttachmentLayout = "carousel";
+            reply.Attachments = attachments;
+            return reply;
+        }
+
+
+        // todo: rename 
+        private static HeroCard BuildDetailedRoomHeroCard(SelectedRoom selectedRoom, bool AddRemove = true)
+        {
+            var cardActions = new List<CardAction>();
+            cardActions.Add(
+                new CardAction
                 {
-                    new CardAction
-                    {
-                        Type = ActionTypes.MessageBack,
-                        Value = JsonConvert.SerializeObject(
-                            new RoomAction
-                            {
-                                RoomId = selectedRoom.RoomDetailDto.Id,
-                                Action = RoomAction.Actions.Info
-                            }),
-                        Title = "\t More info \t"
-                    },
+                    Type = ActionTypes.MessageBack,
+                    Value = JsonConvert.SerializeObject(
+                        new RoomAction
+                        {
+                            RoomId = selectedRoom.RoomDetailDto.Id,
+                            Action = RoomAction.Actions.Info
+                        }),
+                    Title = "\t More info \t"
+                });
+            if (AddRemove)
+                cardActions.Add(
                     new CardAction
                     {
                         Type = ActionTypes.MessageBack,
@@ -121,9 +136,19 @@ namespace HotelBot.Dialogs.RoomOverview
                                 SelectedRate = selectedRoom.SelectedRate
                             }),
                         Title = "\t Remove \t"
-                    }
+                    });
 
-                }
+            return new HeroCard
+            {
+                Title = selectedRoom.RoomDetailDto.Title,
+                Text = BuildHeroCardTextDetailedOverview(selectedRoom),
+                Images = new List<CardImage>
+                {
+                    //todo: refactor
+                    new CardImage(selectedRoom.RoomDetailDto.RoomImages[0].ImageUrl)
+                },
+
+                Buttons = cardActions
 
             };
         }
@@ -228,6 +253,7 @@ namespace HotelBot.Dialogs.RoomOverview
             public const string NoSelectedRooms = "noSelectedRooms";
             public const string RoomRemoved = "roomRemoved";
             public const string UnconfirmedPayment = "unconfirmedPayment";
+            public const string ConfirmedPaymentOverview = "confirmedPaymentOverview";
         }
     }
 

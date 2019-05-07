@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using HotelBot.Dialogs.ConfirmOrder;
 using HotelBot.Dialogs.FetchAvailableRooms;
 using HotelBot.Dialogs.Prompts.ContinueOrAddMoreRooms;
 using HotelBot.Dialogs.Shared.CustomDialog;
@@ -66,8 +67,15 @@ namespace HotelBot.Dialogs.RoomOverview
         public async Task<DialogTurnResult> PromptContinueOrFindMoreRooms(WaterfallStepContext sc, CancellationToken cancellationToken)
 
         {
-            var state = await _accessors.RoomOverviewStateAccessor.GetAsync(sc.Context, () => new RoomOverviewState());
-            if (state.SelectedRooms.Count != 0) await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.CompleteOverview, state);
+            var roomOverviewState = await _accessors.RoomOverviewStateAccessor.GetAsync(sc.Context, () => new RoomOverviewState());
+            var confirmOrderState = await _accessors.ConfirmOrderStateAccessor.GetAsync(sc.Context, () => new ConfirmOrderState());
+            if (confirmOrderState.PaymentConfirmed)
+            {
+                await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.ConfirmedPaymentOverview, roomOverviewState);
+                return await sc.EndDialogAsync(new DialogTurnResult(DialogTurnStatus.Complete)); // end it --> go to main (cancelling prompts etc go here)
+            }
+
+            if (roomOverviewState.SelectedRooms.Count != 0) await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.CompleteOverview, roomOverviewState);
             return await sc.BeginDialogAsync(nameof(ContinueOrAddMoreRoomsPrompt));
 
         }

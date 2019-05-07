@@ -1,14 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.Prompts.Email;
 using HotelBot.Dialogs.RoomOverview;
 using HotelBot.Dialogs.Shared.RecognizerDialogs.ConfirmOrder;
+using HotelBot.Models.Wrappers;
 using HotelBot.Services;
 using HotelBot.Shared.Helpers;
 using HotelBot.StateAccessors;
 using HotelBot.StateProperties;
 using Microsoft.Bot.Builder.Dialogs;
+using Microsoft.Bot.Builder.Dialogs.Choices;
 
 namespace HotelBot.Dialogs.ConfirmOrder
 {
@@ -26,10 +30,11 @@ namespace HotelBot.Dialogs.ConfirmOrder
             InitialDialogId = nameof(ConfirmOrderDialog);
             var confirmOrderWaterfallSteps = new WaterfallStep []
             {
-                InitialStep, ProcessNamePrompt, PromptEmail, ProcessEmail, PromptNumber, ProcessNumber, SendConfirmation
+                InitialStep, ProcessNamePrompt, PromptEmail, ProcessEmail, PromptNumber, ProcessNumber, SendConfirmation, ProcessAfterConfirmation
             };
             AddDialog(new WaterfallDialog(InitialDialogId, confirmOrderWaterfallSteps));
             AddDialog(new EmailPromptDialog(accessors));
+            AddDialog(new ChoicePrompt(nameof(ChoicePrompt)));
 
 
         }
@@ -125,8 +130,60 @@ namespace HotelBot.Dialogs.ConfirmOrder
 
             await _responder.ReplyWith(sc.Context, ConfirmOrderResponses.ResponseIds.SendReceipt, data);
             // end and propose location, wifi password, number etc? give more info after confirmation of payment
-            return EndOfTurn;
+            roomOrderState.PaymentConfirmed = true;
 
+            return await sc.PromptAsync(
+                nameof(ChoicePrompt),
+                new PromptOptions
+                {
+                    Prompt = await _responder.RenderTemplate(
+                        sc.Context,
+                        sc.Context.Activity.Locale,
+                        ConfirmOrderResponses.ResponseIds.AfterConfirmation),
+                    Choices = ChoiceFactory.ToChoices(
+                        new List<string>
+                        {
+                            ConfirmOrderChoices.RoomOverview
+
+                        })
+                });
+        }
+
+        public async Task<DialogTurnResult> ProcessAfterConfirmation(WaterfallStepContext sc, CancellationToken cancellationToken)
+        {
+            var dialogOptions = new DialogOptions();
+            if (sc.Result != null)
+            {
+                var choice = sc.Result as FoundChoice;
+                switch (choice.Value)
+
+                {
+                    case ConfirmOrderChoices.RoomOverview:
+
+                        var dialogResult = new DialogResult
+                        {
+                            PreviousOptions = dialogOptions,
+                            TargetDialog = nameof(RoomOverviewDialog)
+
+                        };
+                        return await sc.EndDialogAsync(dialogResult);
+                }
+            }
+
+            return null;
+        }
+
+        public class ConfirmOrderChoices
+        {
+            public const string RoomOverview = "Room overview";
+
+
+            public static readonly ReadOnlyCollection<string> Choices =
+                new ReadOnlyCollection<string>(
+                    new []
+                    {
+                        RoomOverview
+                    });
         }
     }
 }
