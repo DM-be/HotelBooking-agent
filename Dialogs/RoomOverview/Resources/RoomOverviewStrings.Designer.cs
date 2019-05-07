@@ -70,7 +70,7 @@ namespace HotelBot.Dialogs.RoomOverview.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tap confirm to proceed to payment. Do you want to add another room?.
+        ///   Looks up a localized string similar to Tap confirm to proceed to payment or add another room..
         /// </summary>
         public static string CONTINUE_OR_ADD_MORE_ROOMS {
             get {
@@ -84,6 +84,15 @@ namespace HotelBot.Dialogs.RoomOverview.Resources {
         public static string NO_SELECTED_ROOMS {
             get {
                 return ResourceManager.GetString("NO_SELECTED_ROOMS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry, I didn&apos;t understand. You can proceed to payment by tapping confirm in the card. .
+        /// </summary>
+        public static string REPROMPT_UNCONFIRMED {
+            get {
+                return ResourceManager.GetString("REPROMPT_UNCONFIRMED", resourceCulture);
             }
         }
         

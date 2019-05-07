@@ -78,7 +78,9 @@ namespace HotelBot.Dialogs.Main
         protected override async Task CompleteAsync(DialogContext dc, dynamic Result, CancellationToken cancellationToken = default(CancellationToken))
         {
             // propagates to routerdialog in the await continueasync
-            await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.Completed);
+       //     await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.Completed);
+            // propagates to routerdialog in the await continueasync
+            await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.QuickReplies);
         }
     }
 }

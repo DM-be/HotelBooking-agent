@@ -4,7 +4,6 @@ using HotelBot.Dialogs.FetchAvailableRooms;
 using HotelBot.Dialogs.Prompts.UpdateState;
 using HotelBot.Extensions;
 using HotelBot.Models.LUIS;
-using HotelBot.Models.Wrappers;
 using HotelBot.Shared.Helpers;
 using HotelBot.StateAccessors;
 using Microsoft.Bot.Builder.Dialogs;
@@ -47,7 +46,7 @@ namespace HotelBot.Dialogs.Main.Delegates
 
             // set initial book a room state with captured entities in the book a room intent  
             SetInitialFetchAvailableRoomsState(fetchAvailableRoomsState, luisResult);
-    
+
             await dc.BeginDialogAsync(nameof(FetchAvailableRoomsDialog));
         }
 

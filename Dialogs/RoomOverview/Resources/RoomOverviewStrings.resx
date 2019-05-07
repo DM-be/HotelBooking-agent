@@ -121,10 +121,13 @@
     <value />
   </data>
   <data name="CONTINUE_OR_ADD_MORE_ROOMS" xml:space="preserve">
-    <value>Tap confirm to proceed to payment. Do you want to add another room?</value>
+    <value>Tap confirm to proceed to payment or add another room.</value>
   </data>
   <data name="NO_SELECTED_ROOMS" xml:space="preserve">
     <value>You have not selected any rooms yet, start with adding a new room to your order. </value>
+  </data>
+  <data name="REPROMPT_UNCONFIRMED" xml:space="preserve">
+    <value>Sorry, I didn't understand. You can proceed to payment by tapping confirm in the card. </value>
   </data>
   <data name="ROOM_ADDED" xml:space="preserve">
     <value>Ok, I added the room to your order.</value>

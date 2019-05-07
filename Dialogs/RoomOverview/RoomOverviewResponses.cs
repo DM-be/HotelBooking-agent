@@ -51,6 +51,13 @@ namespace HotelBot.Dialogs.RoomOverview
                             RoomOverviewStrings.UNCONFIRMED_PAYMENT_CONFIRM_OR_CANCEL,
                             InputHints.IgnoringInput)
                 },
+                {
+                    ResponseIds.RepromptUnconfirmed, (context, data) =>
+                        MessageFactory.Text(
+                            RoomOverviewStrings.REPROMPT_UNCONFIRMED,
+                            RoomOverviewStrings.REPROMPT_UNCONFIRMED,
+                            InputHints.IgnoringInput)
+                },
 
                 {
                     ResponseIds.CompleteOverview, (context, data) =>
@@ -61,6 +68,9 @@ namespace HotelBot.Dialogs.RoomOverview
                     ResponseIds.ConfirmedPaymentOverview, (context, data) =>
                         ConfirmedPaymentOverview(context, data)
                 }
+
+
+
 
 
             }
@@ -254,6 +264,7 @@ namespace HotelBot.Dialogs.RoomOverview
             public const string RoomRemoved = "roomRemoved";
             public const string UnconfirmedPayment = "unconfirmedPayment";
             public const string ConfirmedPaymentOverview = "confirmedPaymentOverview";
+            public const string RepromptUnconfirmed = "repromptUnconfirmed";
         }
     }
 

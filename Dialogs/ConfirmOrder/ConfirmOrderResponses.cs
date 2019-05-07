@@ -38,13 +38,7 @@ namespace HotelBot.Dialogs.ConfirmOrder
         };
 
 
-
-
-        /*
-         *
-         *    
-         *
-         */
+        
         public ConfirmOrderResponses()
         {
             Register(new DictionaryRenderer(_responseTemplates));

@@ -75,7 +75,7 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
                                 //todo: always pass previous options or? 
                                 if (dialogResult.PreviousOptions == null) dialogResult.PreviousOptions = new DialogOptions();
 
-                                var turnResult =  await innerDc.BeginDialogAsync(dialogResult.TargetDialog, dialogResult.PreviousOptions);
+                                var turnResult = await innerDc.BeginDialogAsync(dialogResult.TargetDialog, dialogResult.PreviousOptions);
                                 result.Status = turnResult.Status;
                             }
                         }

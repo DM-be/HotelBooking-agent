@@ -36,7 +36,6 @@ namespace HotelBot.Dialogs.Prompts.ContinueOrAddMoreRooms
             var choices = new List<string>
             {
                 RoomOverviewDialog.RoomOverviewChoices.AddARoom,
-                RoomOverviewDialog.RoomOverviewChoices.NoThankyou
             };
 
             if (state.SelectedRooms.Count == 0)
@@ -58,6 +57,10 @@ namespace HotelBot.Dialogs.Prompts.ContinueOrAddMoreRooms
                         sc.Context,
                         sc.Context.Activity.Locale,
                         templateId),
+                    RetryPrompt = await _responder.RenderTemplate(
+                        sc.Context,
+                        sc.Context.Activity.Locale,
+                        RoomOverviewResponses.ResponseIds.RepromptUnconfirmed),
                     Choices = ChoiceFactory.ToChoices(choices)
                 },
                 cancellationToken);
