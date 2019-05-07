@@ -124,7 +124,7 @@ namespace HotelBot.Dialogs.ConfirmOrder
                         Value = JsonConvert.SerializeObject(
                             new RoomAction
                             {
-                                Action = RoomAction.Actions.Confirm
+                                Action = RoomAction.Actions.Paid
                             }),
                         Title = "\t Pay \t"
                     }

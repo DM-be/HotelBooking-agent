@@ -24,12 +24,9 @@ namespace HotelBot.Dialogs.ConfirmOrder
             _services = services ?? throw new ArgumentNullException(nameof(services));
             _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
             InitialDialogId = nameof(ConfirmOrderDialog);
-            // name -> email -> adress -> pay button
-
-
             var confirmOrderWaterfallSteps = new WaterfallStep []
             {
-                InitialStep, ProcessNamePrompt, PromptEmail, ProcessEmail, PromptNumber, ProcessNumber
+                InitialStep, ProcessNamePrompt, PromptEmail, ProcessEmail, PromptNumber, ProcessNumber, SendConfirmation
             };
             AddDialog(new WaterfallDialog(InitialDialogId, confirmOrderWaterfallSteps));
             AddDialog(new EmailPromptDialog(accessors));
@@ -41,6 +38,9 @@ namespace HotelBot.Dialogs.ConfirmOrder
 
         public async Task<DialogTurnResult> InitialStep(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
+            if (sc.Options != null) return await sc.NextAsync();
+
+
             //setup state object and overwrite roomoverviewstate
             var roomOverviewState = await _accessors.RoomOverviewStateAccessor.GetAsync(sc.Context, () => new RoomOverviewState());
             var confirmOrderState = await _accessors.ConfirmOrderStateAccessor.GetAsync(sc.Context, () => new ConfirmOrderState());
@@ -58,6 +58,8 @@ namespace HotelBot.Dialogs.ConfirmOrder
 
         public async Task<DialogTurnResult> ProcessNamePrompt(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
+            if (sc.Options != null) return await sc.NextAsync();
+
             var state = await _accessors.ConfirmOrderStateAccessor.GetAsync(sc.Context, () => new ConfirmOrderState());
             var name = (string) sc.Result;
             state.FullName = name;
@@ -70,12 +72,14 @@ namespace HotelBot.Dialogs.ConfirmOrder
 
         public async Task<DialogTurnResult> PromptEmail(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
+            if (sc.Options != null) return await sc.NextAsync();
             var firstName = sc.Result;
             return await sc.BeginDialogAsync(nameof(EmailPromptDialog), firstName);
         }
 
         public async Task<DialogTurnResult> ProcessEmail(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
+            if (sc.Options != null) return await sc.NextAsync();
 
             var state = await _accessors.ConfirmOrderStateAccessor.GetAsync(sc.Context, () => new ConfirmOrderState());
 
@@ -87,6 +91,7 @@ namespace HotelBot.Dialogs.ConfirmOrder
 
         public async Task<DialogTurnResult> PromptNumber(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
+            if (sc.Options != null) return await sc.NextAsync();
             var facebookHelper = new FacebookHelper();
             await facebookHelper.SendPhoneNumberQuickReply(sc.Context);
             return new DialogTurnResult(DialogTurnStatus.Waiting);
@@ -95,18 +100,31 @@ namespace HotelBot.Dialogs.ConfirmOrder
         public async Task<DialogTurnResult> ProcessNumber(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             // needs validation 
+            if (sc.Options != null) return await sc.NextAsync();
             var phoneNumber = sc.Result as string;
             var roomOrderState = await _accessors.ConfirmOrderStateAccessor.GetAsync(sc.Context, () => new ConfirmOrderState());
             roomOrderState.Number = phoneNumber;
 
+
+            await _responder.ReplyWith(sc.Context, ConfirmOrderResponses.ResponseIds.SendPaymentCard, roomOrderState);
+            return EndOfTurn;
+
+        }
+
+        public async Task<DialogTurnResult> SendConfirmation(WaterfallStepContext sc, CancellationToken cancellationToken)
+        {
+            // needs validation 
+
+            var roomOrderState = await _accessors.ConfirmOrderStateAccessor.GetAsync(sc.Context, () => new ConfirmOrderState());
             var userProfileState = await _accessors.UserProfileAccessor.GetAsync(sc.Context, () => new UserProfile());
 
-            dynamic[] data = 
+            dynamic [] data =
             {
-                roomOrderState, userProfileState 
+                roomOrderState, userProfileState
             };
-          
+
             await _responder.ReplyWith(sc.Context, ConfirmOrderResponses.ResponseIds.SendReceipt, data);
+            // end and propose location, wifi password, number etc? give more info after confirmation of payment
             return EndOfTurn;
 
         }

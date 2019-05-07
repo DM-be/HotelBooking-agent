@@ -45,6 +45,8 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
                         // clear existing stack (button with action tapped)
                         await innerDc.CancelAllDialogsAsync();
 
+                        //TODO: refactor into delegates
+
                         // todo: rename book --> now name of button (used to skip info in roomdetaildialog)
                         if ((roomAction.Action == "info") | (roomAction.Action == "book"))
                             await innerDc.BeginDialogAsync(nameof(RoomDetailDialog), dialogOptions);
@@ -53,6 +55,11 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
                         else if (roomAction.Action == RoomAction.Actions.Confirm)
                         {
                             await innerDc.BeginDialogAsync(nameof(ConfirmOrderDialog));
+                        }
+                        else if(roomAction.Action == RoomAction.Actions.Paid)
+                        {
+                            var paid = true;
+                            await innerDc.BeginDialogAsync(nameof(ConfirmOrderDialog), paid); // skips steps until confirmation
                         }
 
                     }
