@@ -142,7 +142,7 @@ namespace HotelBot.Shared.Helpers.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to We need your phone number in case of emergencies. .
+        ///   Looks up a localized string similar to We need your phone number in case of an emergency. .
         /// </summary>
         public static string QUICK_REPLY_ASK_NUMBER {
             get {

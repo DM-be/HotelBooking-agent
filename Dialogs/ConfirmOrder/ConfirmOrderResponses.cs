@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using HotelBot.Dialogs.ConfirmOrder.Resources;
-using HotelBot.Dialogs.RoomOverview.Resources;
+using HotelBot.Dialogs.RoomOverview;
 using HotelBot.Models.Facebook;
 using HotelBot.Models.Wrappers;
 using HotelBot.StateProperties;
@@ -32,13 +32,13 @@ namespace HotelBot.Dialogs.ConfirmOrder
                             ConfirmOrderStrings.AFTER_CONFIRMATION,
                             ConfirmOrderStrings.AFTER_CONFIRMATION,
                             InputHints.IgnoringInput)
-                },
-                
+                }
+
             }
         };
 
 
-        
+
         public ConfirmOrderResponses()
         {
             Register(new DictionaryRenderer(_responseTemplates));
@@ -48,11 +48,15 @@ namespace HotelBot.Dialogs.ConfirmOrder
         {
 
             var confirmOrderState = data as ConfirmOrderState;
+
             var heroCards = new List<HeroCard>();
             heroCards.Add(BuildPaymentHeroCard(confirmOrderState));
+            foreach (var selectedRoom in confirmOrderState.RoomOverviewState.SelectedRooms)
+                heroCards.Add(RoomOverviewResponses.BuildDetailedRoomHeroCard(selectedRoom));
+
             var reply = context.Activity.CreateReply();
             reply.Text =
-                "Your confirmation overview:";
+                "Your booking overview:";
             var attachments = new List<Attachment>();
             foreach (var heroCard in heroCards) attachments.Add(heroCard.ToAttachment());
             reply.AttachmentLayout = "carousel";
@@ -102,8 +106,6 @@ namespace HotelBot.Dialogs.ConfirmOrder
                         },
                         FacebookElements = facebookElements
                     }
-
-
                 }
 
             };
@@ -120,7 +122,7 @@ namespace HotelBot.Dialogs.ConfirmOrder
         {
             return new HeroCard
             {
-                Title = "Payment confirmation overview", //todo: better title
+                Title = "Booking confirmation overview", //todo: better title
                 Subtitle = BuildPaymentHeroCardText(confirmOrderState),
 
                 Buttons = new List<CardAction>
@@ -135,69 +137,40 @@ namespace HotelBot.Dialogs.ConfirmOrder
                             }),
                         Title = "\t Pay \t"
                     }
-                }
-
-            };
-        }
-
-
-        private static ReceiptCard BuildReceiptCard(ConfirmOrderState confirmOrderState)
-        {
-            return new ReceiptCard
-            {
-
-                Title = "test",
-                Total = "100",
-                Tax = "20",
-                Items = new List<ReceiptItem>
+                },
+                Images = new List<CardImage>
                 {
-                    new ReceiptItem
+                    new CardImage
                     {
-                        Title = "test",
-                        Text = "TEST",
-                        Subtitle = "TEST",
-                        Price = "100",
-                        Quantity = "10"
-
+                        Url = "https://freerangestock.com/sample/118792/tablet-and-hand-digital-payment-icon-vector.jpg",
                     }
-                }
+                },
+                
+
+
             };
         }
-
 
 
         public static string BuildPaymentHeroCardText(ConfirmOrderState confirmOrderState)
         {
             var selectedRooms = confirmOrderState.RoomOverviewState.SelectedRooms;
-
-
-            var numberOfRooms = selectedRooms.Count;
             var numberOfPeople = 0;
             var totalPrice = 0;
-            var cardImages = new List<CardImage>();
-
             for (var i = 0; i < selectedRooms.Count; i++)
             {
                 numberOfPeople += selectedRooms[i].RoomDetailDto.Capacity;
                 totalPrice += selectedRooms[i].SelectedRate.Price;
-                cardImages.Add(new CardImage(selectedRooms[i].RoomDetailDto.RoomImages[i].ImageUrl));
             }
 
             var message = "";
-            message += $"Number of rooms: {numberOfRooms} \n";
-            message += $"Number of people: {numberOfPeople} \n";
-            message += $"Name: {confirmOrderState.FullName} \n";
-            message += $"Email: {confirmOrderState.Email} \n";
-            message += $"Number: {confirmOrderState.Number} \n";
+            message += $"{confirmOrderState.FullName} \n";
+            message += $"{confirmOrderState.Email} \n";
+            message += $"{confirmOrderState.Number} \n";
             message += $"Total: €{totalPrice}\n";
             return message;
 
         }
-
-
-
-
-
 
 
         public class ResponseIds

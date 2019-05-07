@@ -118,7 +118,7 @@ namespace HotelBot.Dialogs.RoomOverview
 
 
         // todo: rename 
-        private static HeroCard BuildDetailedRoomHeroCard(SelectedRoom selectedRoom, bool AddRemove = true)
+        public static HeroCard BuildDetailedRoomHeroCard(SelectedRoom selectedRoom, bool AddRemove = true)
         {
             var cardActions = new List<CardAction>();
             cardActions.Add(
