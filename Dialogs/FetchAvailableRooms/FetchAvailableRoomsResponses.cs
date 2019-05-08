@@ -220,7 +220,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             foreach (var heroCard in heroCards) attachments.Add(heroCard.ToAttachment());
 
 
-            reply.AttachmentLayout = "carousel";
+            reply.AttachmentLayout = AttachmentLayoutTypes.Carousel;
             reply.Attachments = attachments;
             return reply;
         }
@@ -242,7 +242,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             reply.Text = "Here are more pictures of the room.";
             var attachments = new List<Attachment>();
             foreach (var heroCard in imageCards) attachments.Add(heroCard.ToAttachment());
-            reply.AttachmentLayout = "carousel";
+            reply.AttachmentLayout = AttachmentLayoutTypes.Carousel;
             reply.Attachments = attachments;
             return reply;
         }

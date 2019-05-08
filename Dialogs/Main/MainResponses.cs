@@ -10,55 +10,55 @@ namespace HotelBot.Dialogs.Main
 {
     public class MainResponses: TemplateManager
     {
-        private static LanguageTemplateDictionary _responseTemplates = new LanguageTemplateDictionary
+        private static readonly LanguageTemplateDictionary _responseTemplates = new LanguageTemplateDictionary
         {
             ["default"] = new TemplateIdMap
             {
-                { ResponseIds.Cancelled,
-                    (context, data) =>
+                {
+                    ResponseIds.Cancelled, (context, data) =>
                         MessageFactory.Text(
-                            text: MainStrings.CANCELLED,
-                            ssml: MainStrings.CANCELLED,
-                            inputHint: InputHints.AcceptingInput)
+                            MainStrings.CANCELLED,
+                            MainStrings.CANCELLED,
+                            InputHints.AcceptingInput)
                 },
-                { ResponseIds.Completed,
-                    (context, data) =>
+                {
+                    ResponseIds.Completed, (context, data) =>
                         MessageFactory.Text(
-                            text: MainStrings.COMPLETED,
-                            ssml: MainStrings.COMPLETED,
-                            inputHint: InputHints.AcceptingInput)
+                            MainStrings.COMPLETED,
+                            MainStrings.COMPLETED,
+                            InputHints.AcceptingInput)
                 },
-                { ResponseIds.Confused,
-                    (context, data) =>
+                {
+                    ResponseIds.Confused, (context, data) =>
                         MessageFactory.Text(
-                            text: MainStrings.CONFUSED,
-                            ssml: MainStrings.CONFUSED,
-                            inputHint: InputHints.AcceptingInput)
+                            MainStrings.CONFUSED,
+                            MainStrings.CONFUSED,
+                            InputHints.AcceptingInput)
                 },
-                { ResponseIds.Greeting,
-                    (context, data) =>
+                {
+                    ResponseIds.Greeting, (context, data) =>
                         MessageFactory.Text(
-                            text: MainStrings.GREETING,
-                            ssml: MainStrings.GREETING,
-                            inputHint: InputHints.AcceptingInput)
+                            MainStrings.GREETING,
+                            MainStrings.GREETING,
+                            InputHints.AcceptingInput)
                 },
-                { ResponseIds.Help,
-                    (context, data) =>
+                {
+                    ResponseIds.Help, (context, data) =>
                         MessageFactory.Text(
-                            text: MainStrings.HELP,
-                            ssml: MainStrings.HELP,
-                            inputHint: InputHints.AcceptingInput)
+                            MainStrings.HELP,
+                            MainStrings.HELP,
+                            InputHints.AcceptingInput)
                 },
-                { ResponseIds.ConfirmedPaymentQuickReplies,
-                    (context, data) =>
+                {
+                    ResponseIds.ConfirmedPaymentQuickReplies, (context, data) =>
                         SendConfirmedPaymentQuickReplies(context, data)
                 },
-                { ResponseIds.UnconfirmedPaymentQuickReplies,
-                    (context, data) =>
+                {
+                    ResponseIds.UnconfirmedPaymentQuickReplies, (context, data) =>
                         SendUnconfirmedPaymentQuickReplies(context, data)
                 },
-                { ResponseIds.EmptyRoomOverviewStateQuickReplies,
-                    (context, data) =>
+                {
+                    ResponseIds.EmptyRoomOverviewStateQuickReplies, (context, data) =>
                         SendEmptyRoomOverviewStateQuickReplies(context, data)
                 },
 
@@ -108,7 +108,7 @@ namespace HotelBot.Dialogs.Main
             var facebookMessage = new FacebookMessage
             {
                 Text = "What would you like to do next?",
-                QuickReplies = new[]
+                QuickReplies = new []
                 {
                     new FacebookQuickReply
                     {
@@ -147,7 +147,7 @@ namespace HotelBot.Dialogs.Main
             var facebookMessage = new FacebookMessage
             {
                 Text = "What would you like to do next?",
-                QuickReplies = new[]
+                QuickReplies = new []
                 {
                     new FacebookQuickReply
                     {
@@ -157,9 +157,9 @@ namespace HotelBot.Dialogs.Main
                     },
                     new FacebookQuickReply
                     {
-                    Content_Type = "text",
-                    Title = "Booking overview",
-                    Payload = "test"
+                        Content_Type = "text",
+                        Title = "Booking overview",
+                        Payload = "test"
                     },
                     new FacebookQuickReply
                     {
@@ -188,7 +188,7 @@ namespace HotelBot.Dialogs.Main
             var facebookMessage = new FacebookMessage
             {
                 Text = "Do you have any more questions about our hotel or services?",
-                QuickReplies = new[]
+                QuickReplies = new []
                 {
                     new FacebookQuickReply
                     {
@@ -204,9 +204,9 @@ namespace HotelBot.Dialogs.Main
                     },
                     new FacebookQuickReply
                     {
-                    Title = "Booking overview",
-                    Content_Type = "text",
-                    Payload = "none"
+                        Title = "Booking overview",
+                        Content_Type = "text",
+                        Payload = "none"
                     },
                     new FacebookQuickReply
                     {
@@ -234,17 +234,11 @@ namespace HotelBot.Dialogs.Main
             public const string Greeting = "greeting";
             public const string Help = "help";
             public const string Intro = "intro";
-            public const string BasicQuickReplies = "basicQuickReplies";
-            public const string AfterPaymentQuickReplies = "afterPaymentQuickReplies";
             public const string SendCallCard = "sendCallCard";
-
             public const string ConfirmedPaymentQuickReplies = "confirmedPaymentQuickReplies";
             public const string UnconfirmedPaymentQuickReplies = "unconfirmedPaymentQuickReplies";
             public const string EmptyRoomOverviewStateQuickReplies = "emptyRoomOverviewStateQuickReplies";
-
         }
-
-
     }
 
 }

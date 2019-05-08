@@ -57,7 +57,7 @@ namespace HotelBot.Dialogs.ConfirmOrder
             var reply = context.Activity.CreateReply();
             var attachments = new List<Attachment>();
             foreach (var heroCard in heroCards) attachments.Add(heroCard.ToAttachment());
-            reply.AttachmentLayout = "carousel";
+            reply.AttachmentLayout = AttachmentLayoutTypes.Carousel;
             reply.Attachments = attachments;
             return reply;
         }
