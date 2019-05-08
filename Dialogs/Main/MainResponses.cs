@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using HotelBot.Dialogs.Main.Resources;
 using HotelBot.Models.Facebook;
+using HotelBot.Shared.Helpers.Resources;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.TemplateManager;
 using Microsoft.Bot.Schema;
@@ -48,9 +49,13 @@ namespace HotelBot.Dialogs.Main
                             ssml: MainStrings.HELP,
                             inputHint: InputHints.AcceptingInput)
                 },
-                { ResponseIds.QuickReplies,
+                { ResponseIds.BasicQuickReplies,
                     (context, data) =>
-                       SendQuickReplies(context, data)
+                        SendBasicQuickReplies(context, data)
+                },
+                { ResponseIds.AfterPaymentQuickReplies,
+                    (context, data) =>
+                        SendAfterPaymentQuickReplies(context, data)
                 },
 
             }
@@ -60,11 +65,11 @@ namespace HotelBot.Dialogs.Main
         {
             Register(new DictionaryRenderer(_responseTemplates));
         }
-        public static IMessageActivity SendQuickReplies(ITurnContext context, dynamic data)
+        public static IMessageActivity SendBasicQuickReplies(ITurnContext context, dynamic data)
         {
             var facebookMessage = new FacebookMessage
             {
-                Text = "What would you like to next?",
+                Text = "What would you like to do next?",
                 QuickReplies = new[]
                 {
                     new FacebookQuickReply
@@ -81,6 +86,40 @@ namespace HotelBot.Dialogs.Main
         }
 
 
+        public static IMessageActivity SendAfterPaymentQuickReplies(ITurnContext context, dynamic data)
+        {
+            var facebookMessage = new FacebookMessage
+            {
+                Text = "Do you have any more questions about our hotel or services?",
+                QuickReplies = new[]
+                {
+                    new FacebookQuickReply
+                    {
+                        Title = FacebookStrings.QUICK_REPLY_BUTTON_DIRECTION,
+                        Content_Type = "text",
+                        Payload = "location"
+                    },
+                    new FacebookQuickReply
+                    {
+                        Title = FacebookStrings.QUICK_REPLY_BUTTON_CALL,
+                        Content_Type = "text",
+                        Payload = "call"
+                    },
+                    new FacebookQuickReply
+                    {
+                    Title = "Room overview",
+                    Content_Type = "text",
+                    Payload = "none"
+                    }
+                }
+            };
+            var reply = context.Activity.CreateReply();
+            reply.ChannelData = facebookMessage;
+            return reply;
+        }
+
+
+
 
 
         public class ResponseIds
@@ -92,7 +131,8 @@ namespace HotelBot.Dialogs.Main
             public const string Greeting = "greeting";
             public const string Help = "help";
             public const string Intro = "intro";
-            public const string QuickReplies = "quickreplies";
+            public const string BasicQuickReplies = "basicQuickReplies";
+            public const string AfterPaymentQuickReplies = "afterPaymentQuickReplies";
         }
 
 

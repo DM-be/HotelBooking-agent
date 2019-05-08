@@ -1,13 +1,16 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.ConfirmOrder;
+using HotelBot.Dialogs.Prompts.LocationPrompt;
 using HotelBot.Dialogs.RoomDetail;
 using HotelBot.Dialogs.RoomOverview;
 using HotelBot.Extensions;
+using HotelBot.Models.Facebook;
 using HotelBot.Models.Wrappers;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Schema;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace HotelBot.Dialogs.Shared.RouterDialog
 {
@@ -27,6 +30,8 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
             CancellationToken cancellationToken = default(CancellationToken))
         {
             var activity = innerDc.Context.Activity;
+
+            // if recieved fb attachment
 
             if (activity.IsGetStartedPostBack() | activity.IsStartActivity()) await OnStartAsync(innerDc);
 
@@ -87,11 +92,30 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
                                 result.Status = turnResult.Status;
                             }
                         }
+                    }
+                    else
+                    {
 
-                        // continue handling the result and route accordingly
-                        await OnDialogTurnStatus(result, innerDc);
+                        // message and value is null --> recieved an attachment. 
+
+                        var channelData = activity.ChannelData;
+                        var facebookPayload = (channelData as JObject)?.ToObject<FacebookPayload>();
+                        if (facebookPayload != null)
+                        {
+                            // only one attachment supported: location
+                            await innerDc.CancelAllDialogsAsync();
+                            var facebookCoordinates = facebookPayload.Message.Attachments[0].FacebookPayload.Coordinates;
+                            result = await innerDc.BeginDialogAsync(nameof(LocationPromptDialog), facebookCoordinates);
+
+                        }
+
 
                     }
+
+
+                    // continue handling the result and route accordingly
+                    await OnDialogTurnStatus(result, innerDc);
+
 
                     break;
                 }

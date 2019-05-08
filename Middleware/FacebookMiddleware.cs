@@ -55,7 +55,11 @@ namespace HotelBot.Middleware
         {
             foreach (var attachment in attachments)
                 if (attachment.Type.Equals(FacebookAttachment.Location))
-                    await facebookHelper.SendDirections(context, attachment);
+                {
+                    context.TurnState.Add("TEST", attachment);
+                }
+
+            //await facebookHelper.SendDirections(context, attachment);
         }
 
         private async void OnFacebookPostBack(FacebookPostback postBack, ITurnContext context)

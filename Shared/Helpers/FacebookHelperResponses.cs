@@ -208,7 +208,7 @@ namespace HotelBot.Shared.Helpers
             var url = $"https://www.google.com/maps/dir/?api=1&origin={latCoordinatesLat},{longCoordinatesLong}&destination=51.228557,3.231737";
             var heroCard = new HeroCard
             {
-                Title = "Starhotel Bruges", // TODO: get from external source
+                Title = "Starhotel Bruges",
                 Images = new List<CardImage>
                 {
                     new CardImage("https://img.hotelspecials.be/fc2fadf52703ae0181b289f84011bf6a.jpeg?w=250&h=200&c=1&quality=70")

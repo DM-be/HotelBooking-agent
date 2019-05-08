@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using HotelBot.Dialogs.ConfirmOrder;
 using HotelBot.Dialogs.FetchAvailableRooms;
 using HotelBot.Dialogs.Main.Delegates;
+using HotelBot.Dialogs.Prompts.LocationPrompt;
 using HotelBot.Dialogs.RoomDetail;
 using HotelBot.Dialogs.RoomOverview;
 using HotelBot.Dialogs.Shared.RouterDialog;
@@ -37,6 +38,7 @@ namespace HotelBot.Dialogs.Main
             AddDialog(new RoomOverviewDialog(_services, _accessors));
             AddDialog(new RoomDetailDialog(_services, accessors));
             AddDialog(new ConfirmOrderDialog(_services, accessors));
+            AddDialog(new LocationPromptDialog(accessors));
         }
 
         protected override async Task RouteAsync(DialogContext dc, CancellationToken cancellationToken = default(CancellationToken))
@@ -79,17 +81,19 @@ namespace HotelBot.Dialogs.Main
         protected override async Task CompleteAsync(DialogContext dc, dynamic Result, CancellationToken cancellationToken = default(CancellationToken))
         {
             // propagates to routerdialog in the await continueasync
-       //     await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.Completed);
+            //await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.Completed);
             // propagates to routerdialog in the await continueasync
-            await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.QuickReplies);
             var result = Result as DialogTurnResult;
             var dialogResult = result.Result as DialogResult;
-            if (dialogResult.PreviousOptions != null)
+            if (result != null && dialogResult != null)
             {
-                if (dialogResult.PreviousOptions.ConfirmedPayment)
-                {
-                    await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.Confused);
-                }
+                if (dialogResult.PreviousOptions != null)
+                    if (dialogResult.PreviousOptions.ConfirmedPayment)
+                        await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.AfterPaymentQuickReplies);
+            }
+            else
+            {
+                await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.BasicQuickReplies);
             }
 
         }

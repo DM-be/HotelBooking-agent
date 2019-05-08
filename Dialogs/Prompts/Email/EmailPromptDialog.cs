@@ -5,13 +5,6 @@ using HotelBot.Dialogs.Shared.PromptValidators;
 using HotelBot.Shared.Helpers;
 using HotelBot.StateAccessors;
 using Microsoft.Bot.Builder.Dialogs;
-using Microsoft.Recognizers.Text;
-using Microsoft.Recognizers.Text;
-using Microsoft.Recognizers.Text.DateTime;
-using Microsoft.Recognizers.Text.Number;
-using Microsoft.Recognizers.Text.NumberWithUnit;
-using Microsoft.Recognizers.Text.Utilities;
-
 
 namespace HotelBot.Dialogs.Prompts.Email
 {
@@ -48,7 +41,7 @@ namespace HotelBot.Dialogs.Prompts.Email
         private async Task<DialogTurnResult> FinishEmailDialog(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
 
-            
+
             var email = (string) sc.Result; //todo: add validation
             if (!PromptValidators.IsValidEmailAddress(email))
             {

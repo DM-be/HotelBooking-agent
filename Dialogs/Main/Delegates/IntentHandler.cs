@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.FetchAvailableRooms;
+using HotelBot.Dialogs.Prompts.LocationPrompt;
 using HotelBot.Dialogs.Prompts.UpdateState;
 using HotelBot.Extensions;
 using HotelBot.Models.LUIS;
@@ -67,7 +68,7 @@ namespace HotelBot.Dialogs.Main.Delegates
 
         private static async Task SendLocation(DialogContext dc, FacebookHelper facebookHelper)
         {
-            await facebookHelper.SendDirectionsWithoutOrigin(dc.Context, null);
+            await dc.BeginDialogAsync(nameof(LocationPromptDialog));
         }
 
         private static async Task SendNumber(DialogContext dc, FacebookHelper facebookHelper)
