@@ -48,34 +48,11 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
                         {
                             RoomAction = roomAction
                         };
-                        // clear existing stack (button with action tapped)
-                        await innerDc.CancelAllDialogsAsync();
-
-                        switch (roomAction.Action)
-                        {
-                            case RoomAction.Actions.Info:
-                            case RoomAction.Actions.Book:
-                                result = await innerDc.BeginDialogAsync(nameof(RoomDetailDialog), dialogOptions);
-                                break;
-                            case RoomAction.Actions.SelectRoomWithRate:
-                            case RoomAction.Actions.Remove:
-                            case RoomAction.Actions.ViewDetails:
-                                result = await innerDc.BeginDialogAsync(nameof(RoomOverviewDialog), dialogOptions);
-                                break;
-                            case RoomAction.Actions.Confirm:
-                                result = await innerDc.BeginDialogAsync(nameof(ConfirmOrderDialog));
-                                break;
-                            case RoomAction.Actions.Paid:
-                                dialogOptions.ConfirmedPayment = true;
-                                result = await innerDc.BeginDialogAsync(nameof(ConfirmOrderDialog), dialogOptions);
-                                break;
-                        }
-
-                        // continue handling the result and route accordingly
-                        await OnDialogTurnStatus(result, innerDc);
+                        await innerDc.CancelAllDialogsAsync(); // clear existing stack (button with action tapped)
+                        result = await BeginDialogBasedOnAction(innerDc, roomAction, dialogOptions);
                     }
 
-                    // case responding to choices and switching a dialog in the same turnS
+                    // case responding to choices and switching a dialog in the same turn
                     else if (!string.IsNullOrEmpty(activity.Text))
                     {
                         result = await innerDc.ContinueDialogAsync();
@@ -85,9 +62,7 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
                             var dialogResult = (DialogResult) result.Result;
                             if (dialogResult.TargetDialog != null)
                             {
-                                //todo: always pass previous options or? 
                                 if (dialogResult.PreviousOptions == null) dialogResult.PreviousOptions = new DialogOptions();
-
                                 var turnResult = await innerDc.BeginDialogAsync(dialogResult.TargetDialog, dialogResult.PreviousOptions);
                                 result.Status = turnResult.Status;
                             }
@@ -95,9 +70,7 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
                     }
                     else
                     {
-
                         // message and value is null --> recieved an attachment. 
-
                         var channelData = activity.ChannelData;
                         var facebookPayload = (channelData as JObject)?.ToObject<FacebookPayload>();
                         if (facebookPayload != null)
@@ -106,17 +79,11 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
                             await innerDc.CancelAllDialogsAsync();
                             var facebookCoordinates = facebookPayload.Message.Attachments[0].FacebookPayload.Coordinates;
                             result = await innerDc.BeginDialogAsync(nameof(LocationPromptDialog), facebookCoordinates);
-
                         }
-
-
                     }
-
 
                     // continue handling the result and route accordingly
                     await OnDialogTurnStatus(result, innerDc);
-
-
                     break;
                 }
 
@@ -223,6 +190,28 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
                     break;
                 }
             }
+        }
+
+        private async Task<DialogTurnResult> BeginDialogBasedOnAction(DialogContext context, RoomAction action, DialogOptions options)
+        {
+            switch (action.Action)
+            {
+                case RoomAction.Actions.Info:
+                case RoomAction.Actions.Book:
+                    return await context.BeginDialogAsync(nameof(RoomDetailDialog), options);
+                case RoomAction.Actions.SelectRoomWithRate:
+                case RoomAction.Actions.Remove:
+                case RoomAction.Actions.ViewDetails:
+                    return await context.BeginDialogAsync(nameof(RoomOverviewDialog), options);
+                case RoomAction.Actions.Confirm:
+                    return await context.BeginDialogAsync(nameof(ConfirmOrderDialog));
+                case RoomAction.Actions.Paid:
+                    options.ConfirmedPayment = true;
+                    return await context.BeginDialogAsync(nameof(ConfirmOrderDialog), options);
+            }
+
+            return null;
+
         }
     }
 
