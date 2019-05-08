@@ -96,6 +96,7 @@ namespace HotelBot.Dialogs.Main
                 await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.BasicQuickReplies);
             }
 
+
         }
     }
 }

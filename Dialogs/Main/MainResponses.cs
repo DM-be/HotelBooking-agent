@@ -57,6 +57,11 @@ namespace HotelBot.Dialogs.Main
                     (context, data) =>
                         SendAfterPaymentQuickReplies(context, data)
                 },
+                {
+                    ResponseIds.SendCallCard, (context, data) =>
+                        BuildCallMessage(context)
+
+                }
 
             }
         };
@@ -65,6 +70,27 @@ namespace HotelBot.Dialogs.Main
         {
             Register(new DictionaryRenderer(_responseTemplates));
         }
+
+        public static IMessageActivity BuildCallMessage(ITurnContext context)
+        {
+            var number = "tel: +15 105 551 234";
+            var heroCard = new HeroCard
+            {
+                Title = FacebookStrings.BUTTON_TITLE_CALL,
+                Subtitle = number,
+                Buttons = new List<CardAction>
+                {
+                    new CardAction(ActionTypes.Call, FacebookStrings.BUTTON_TITLE_CALL, value: number)
+                }
+            };
+            var reply = context.Activity.CreateReply();
+            reply.Attachments = new List<Attachment>
+            {
+                heroCard.ToAttachment()
+            };
+            return reply;
+        }
+
         public static IMessageActivity SendBasicQuickReplies(ITurnContext context, dynamic data)
         {
             var facebookMessage = new FacebookMessage
@@ -133,6 +159,7 @@ namespace HotelBot.Dialogs.Main
             public const string Intro = "intro";
             public const string BasicQuickReplies = "basicQuickReplies";
             public const string AfterPaymentQuickReplies = "afterPaymentQuickReplies";
+            public const string SendCallCard = "sendCallCard";
         }
 
 

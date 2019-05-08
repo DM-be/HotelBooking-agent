@@ -37,15 +37,6 @@ namespace HotelBot.Shared.Helpers
                     ResponseIds.SendGetStartedQuickReplies, (context, data) =>
                         BuildGettingStartedQuickReplies(context, data)
                 },
-
-                {
-                    ResponseIds.SendDirections, (context, data) =>
-                        BuildDirectionsCard(context, data)
-                },
-                {
-                    ResponseIds.SendDirectionsWithoutOrigin, (context, data) =>
-                        BuildDirectionsCardWithoutOrigin(context, data)
-                },
                 {
                     ResponseIds.CallUs, (context, data) =>
                         BuildCallMessage(context, data)
@@ -146,7 +137,7 @@ namespace HotelBot.Shared.Helpers
             return reply;
         }
 
-
+        //TODO: move into main dialog 
         public static IMessageActivity BuildGettingStartedQuickReplies(ITurnContext context, dynamic data)
         {
             var reply = context.Activity.CreateReply();
@@ -201,60 +192,6 @@ namespace HotelBot.Shared.Helpers
             return reply;
         }
 
-        public static IMessageActivity BuildDirectionsCard(ITurnContext context, FacebookAttachment attachment)
-        {
-            var latCoordinatesLat = attachment.FacebookPayload.Coordinates.Lat;
-            var longCoordinatesLong = attachment.FacebookPayload.Coordinates.Long;
-            var url = $"https://www.google.com/maps/dir/?api=1&origin={latCoordinatesLat},{longCoordinatesLong}&destination=51.228557,3.231737";
-            var heroCard = new HeroCard
-            {
-                Title = "Starhotel Bruges",
-                Images = new List<CardImage>
-                {
-                    new CardImage("https://img.hotelspecials.be/fc2fadf52703ae0181b289f84011bf6a.jpeg?w=250&h=200&c=1&quality=70")
-                },
-                Buttons = new List<CardAction>
-                {
-                    new CardAction(ActionTypes.OpenUrl, FacebookStrings.HEROCARD_BUTTON_DIRECTION_TITLE, value: url)
-                }
-            };
-
-            var reply = context.Activity.CreateReply();
-            reply.Text = FacebookStrings.HEROCARD_REPLY_TEXT_DIRECTION;
-            reply.Attachments = new List<Attachment>
-            {
-                heroCard.ToAttachment()
-            };
-            return reply;
-        }
-
-
-        public static IMessageActivity BuildDirectionsCardWithoutOrigin(ITurnContext context, FacebookAttachment attachment)
-        {
-            var url = "https://www.google.com/maps/dir/?api=1&destination=51.228557,3.231737";
-            var heroCard = new HeroCard
-            {
-                Title = "Starhotel Bruges",
-                Images = new List<CardImage>
-                {
-                    new CardImage("https://img.hotelspecials.be/fc2fadf52703ae0181b289f84011bf6a.jpeg?w=250&h=200&c=1&quality=70")
-                },
-                Buttons = new List<CardAction>
-                {
-                    new CardAction(ActionTypes.OpenUrl, FacebookStrings.HEROCARD_BUTTON_DIRECTION_TITLE, value: url)
-                }
-            };
-
-            var reply = context.Activity.CreateReply();
-            reply.Text = "Our adres is Tijl Uilenspiegelstraat 9, 8000 Brugge";
-            reply.Attachments = new List<Attachment>
-            {
-                heroCard.ToAttachment()
-            };
-            return reply;
-        }
-
-
         public class ResponseIds
         {
             // Constants
@@ -263,8 +200,6 @@ namespace HotelBot.Shared.Helpers
             public const string SendLocationQuickReply = "sendLocationQuickReply";
             public const string Functionality = "functionality";
             public const string Welcome = "welcome";
-            public const string SendDirections = "sendDirections";
-            public const string SendDirectionsWithoutOrigin = "sendDirectionsWithoutOrigin";
             public const string CallUs = "callUs";
             public const string SendEmailQuickReply = "sendEmailQuickReply";
             public const string SendPhoneNumberQuickReply = "SendPhoneNumberQuickReply";

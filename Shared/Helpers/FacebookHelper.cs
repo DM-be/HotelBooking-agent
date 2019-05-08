@@ -45,26 +45,5 @@ namespace HotelBot.Shared.Helpers
         {
             await _responder.ReplyWith(context, FacebookHelperResponses.ResponseIds.Functionality);
         }
-
-        public async Task SendDirections(ITurnContext context, dynamic data)
-        {
-
-            await _responder.ReplyWith(context, FacebookHelperResponses.ResponseIds.SendDirections, data);
-
-        }
-
-        public async Task SendDirectionsWithoutOrigin(ITurnContext context, dynamic data)
-        {
-
-            await _responder.ReplyWith(context, FacebookHelperResponses.ResponseIds.SendDirectionsWithoutOrigin, data);
-
-        }
-
-        public async Task SendCallMessage(ITurnContext context)
-        {
-
-            await _responder.ReplyWith(context, FacebookHelperResponses.ResponseIds.CallUs);
-
-        }
     }
 }

@@ -23,11 +23,6 @@ namespace HotelBot.Dialogs.Prompts.LocationPrompt
                             InputHints.AcceptingInput)
                 },
                 {
-                    ResponseIds.SendLocation, (context, data) =>
-                        BuildLocationCard(context)
-
-                },
-                {
                     ResponseIds.SendNavigation, (context, data) =>
                         BuildNavigationCard(context, data)
                 },
@@ -35,8 +30,6 @@ namespace HotelBot.Dialogs.Prompts.LocationPrompt
                     ResponseIds.SendLocationQuickReply, (context, data) =>
                         BuildLocationQuickReply(context, data)
                 }
-
-
             }
         };
 
@@ -92,36 +85,10 @@ namespace HotelBot.Dialogs.Prompts.LocationPrompt
         }
 
 
-        public static IMessageActivity BuildLocationCard(ITurnContext context)
-        {
-            var url = "https://www.google.com/maps/dir/?api=1&destination=51.228557,3.231737";
-            var heroCard = new HeroCard
-            {
-                Title = "Starhotel Bruges",
-                Subtitle = "Tijl Uilenspiegelstraat 9, 8000 Brugge",
-                Images = new List<CardImage>
-                {
-                    new CardImage("https://img.hotelspecials.be/fc2fadf52703ae0181b289f84011bf6a.jpeg?w=250&h=200&c=1&quality=70")
-                },
-                Buttons = new List<CardAction>
-                {
-                    new CardAction(ActionTypes.OpenUrl, FacebookStrings.HEROCARD_BUTTON_DIRECTION_TITLE, value: url)
-                }
-            };
-
-            var reply = context.Activity.CreateReply();
-            reply.Text = "Our adres is Tijl Uilenspiegelstraat 9, 8000 Brugge";
-            reply.Attachments = new List<Attachment>
-            {
-                heroCard.ToAttachment()
-            };
-            return reply;
-        }
 
         public class ResponseIds
         {
             public const string SendNavigation = "sendNavigation";
-            public const string SendLocation = "sendLocation";
             public const string SendLocationQuickReply = "sendLocationQuickReply";
         }
     }

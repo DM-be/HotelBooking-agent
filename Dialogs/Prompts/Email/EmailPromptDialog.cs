@@ -29,8 +29,6 @@ namespace HotelBot.Dialogs.Prompts.Email
 
 
         private async Task<DialogTurnResult> AskForEmail(WaterfallStepContext sc, CancellationToken cancellationToken)
-
-
         {
             var firstName = sc.Options;
             var facebookHelper = new FacebookHelper();

@@ -32,7 +32,7 @@ namespace HotelBot.Dialogs.Main.Delegates
                 HotelBotLuis.Intent.Get_Location, (dc, responder, facebookHelper, accessors, luisResult) => SendLocation(dc, facebookHelper)
             },
             {
-                HotelBotLuis.Intent.Call_Us, (dc, responder, facebookHelper, accessors, luisResult) => SendNumber(dc, facebookHelper)
+                HotelBotLuis.Intent.Call_Us, (dc, responder, facebookHelper, accessors, luisResult) => BeginCallComponentDialog(dc)
             },
             {
                 HotelBotLuis.Intent.None, (dc, responder, facebookHelper, accessors, luisResult) => SendConfused(dc, responder)
@@ -71,9 +71,12 @@ namespace HotelBot.Dialogs.Main.Delegates
             await dc.BeginDialogAsync(nameof(LocationPromptDialog));
         }
 
-        private static async Task SendNumber(DialogContext dc, FacebookHelper facebookHelper)
+        private static async Task BeginCallComponentDialog(DialogContext dc)
         {
-            await facebookHelper.SendCallMessage(dc.Context);
+            var mainResponder = new MainResponses();
+            await mainResponder.ReplyWith(dc.Context, MainResponses.ResponseIds.SendCallCard);
+            await mainResponder.ReplyWith(dc.Context, MainResponses.ResponseIds.BasicQuickReplies);
+
         }
 
         private static async Task SendConfused(DialogContext dc, TemplateManager responder)
