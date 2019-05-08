@@ -49,14 +49,19 @@ namespace HotelBot.Dialogs.Main
                             ssml: MainStrings.HELP,
                             inputHint: InputHints.AcceptingInput)
                 },
-                { ResponseIds.BasicQuickReplies,
+                { ResponseIds.ConfirmedPaymentQuickReplies,
                     (context, data) =>
-                        SendBasicQuickReplies(context, data)
+                        SendConfirmedPaymentQuickReplies(context, data)
                 },
-                { ResponseIds.AfterPaymentQuickReplies,
+                { ResponseIds.UnconfirmedPaymentQuickReplies,
                     (context, data) =>
-                        SendAfterPaymentQuickReplies(context, data)
+                        SendUnconfirmedPaymentQuickReplies(context, data)
                 },
+                { ResponseIds.EmptyRoomOverviewStateQuickReplies,
+                    (context, data) =>
+                        SendEmptyRoomOverviewStateQuickReplies(context, data)
+                },
+
                 {
                     ResponseIds.SendCallCard, (context, data) =>
                         BuildCallMessage(context)
@@ -91,8 +96,15 @@ namespace HotelBot.Dialogs.Main
             return reply;
         }
 
-        public static IMessageActivity SendBasicQuickReplies(ITurnContext context, dynamic data)
+
+        // state is empty, there is nothing in the room overview, only prompt add a room
+        public static IMessageActivity SendEmptyRoomOverviewStateQuickReplies(ITurnContext context, dynamic data)
         {
+
+            // nothing in room overview 
+            //      * Find a room
+            //      * (call hotel)
+
             var facebookMessage = new FacebookMessage
             {
                 Text = "What would you like to do next?",
@@ -101,7 +113,58 @@ namespace HotelBot.Dialogs.Main
                     new FacebookQuickReply
                     {
                         Content_Type = "text",
-                        Title = "Book me a room",
+                        Title = "Find a room",
+                        Payload = "test"
+                    },
+                    new FacebookQuickReply
+                    {
+                        Content_Type = "text",
+                        Title = "Call us",
+                        Payload = "test"
+                    }
+
+                }
+            };
+            var reply = context.Activity.CreateReply();
+            reply.ChannelData = facebookMessage;
+            return reply;
+        }
+
+
+
+
+        // has rooms in room overview state, but is not confirmed with payment. 
+        public static IMessageActivity SendUnconfirmedPaymentQuickReplies(ITurnContext context, dynamic data)
+        {
+
+            // End dialog quick replies
+            // rooms in order not confirmed:
+            //      * Add a room
+            //      * Booking overview
+            //      * (call)
+            //      * (Confirm booking)
+
+            var facebookMessage = new FacebookMessage
+            {
+                Text = "What would you like to do next?",
+                QuickReplies = new[]
+                {
+                    new FacebookQuickReply
+                    {
+                        Content_Type = "text",
+                        Title = "Add a room",
+                        Payload = "test"
+                    },
+                    new FacebookQuickReply
+                    {
+                    Content_Type = "text",
+                    Title = "Booking overview",
+                    Payload = "test"
+                    },
+                    new FacebookQuickReply
+                    {
+                        Content_Type = "text",
+                        Title = "Confirm booking",
                         Payload = "test"
                     }
                 }
@@ -112,8 +175,16 @@ namespace HotelBot.Dialogs.Main
         }
 
 
-        public static IMessageActivity SendAfterPaymentQuickReplies(ITurnContext context, dynamic data)
+
+        //payment is confirmed 
+        public static IMessageActivity SendConfirmedPaymentQuickReplies(ITurnContext context, dynamic data)
         {
+
+            // (Book more rooms)
+            // get directions
+            // call hotel
+            // booking overview
+            // cancel bookings
             var facebookMessage = new FacebookMessage
             {
                 Text = "Do you have any more questions about our hotel or services?",
@@ -133,9 +204,15 @@ namespace HotelBot.Dialogs.Main
                     },
                     new FacebookQuickReply
                     {
-                    Title = "Room overview",
+                    Title = "Booking overview",
                     Content_Type = "text",
                     Payload = "none"
+                    },
+                    new FacebookQuickReply
+                    {
+                        Title = "Cancel booking", //todo: implement second dialog cancelling bookings
+                        Content_Type = "text",
+                        Payload = "none"
                     }
                 }
             };
@@ -160,6 +237,11 @@ namespace HotelBot.Dialogs.Main
             public const string BasicQuickReplies = "basicQuickReplies";
             public const string AfterPaymentQuickReplies = "afterPaymentQuickReplies";
             public const string SendCallCard = "sendCallCard";
+
+            public const string ConfirmedPaymentQuickReplies = "confirmedPaymentQuickReplies";
+            public const string UnconfirmedPaymentQuickReplies = "unconfirmedPaymentQuickReplies";
+            public const string EmptyRoomOverviewStateQuickReplies = "emptyRoomOverviewStateQuickReplies";
+
         }
 
 

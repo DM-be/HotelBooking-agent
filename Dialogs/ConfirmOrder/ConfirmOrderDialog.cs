@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.Prompts.Email;
@@ -11,7 +10,6 @@ using HotelBot.Shared.Helpers;
 using HotelBot.StateAccessors;
 using HotelBot.StateProperties;
 using Microsoft.Bot.Builder.Dialogs;
-using Microsoft.Bot.Builder.Dialogs.Choices;
 
 namespace HotelBot.Dialogs.ConfirmOrder
 {
@@ -45,12 +43,8 @@ namespace HotelBot.Dialogs.ConfirmOrder
 
             var dialogOptions = sc.Options as DialogOptions;
             if (dialogOptions != null)
-            {
                 if (dialogOptions.ConfirmedPayment)
-                {
                     return await sc.NextAsync();
-                }
-            }
 
 
             //setup state object and overwrite roomoverviewstate
@@ -72,12 +66,8 @@ namespace HotelBot.Dialogs.ConfirmOrder
         {
             var dialogOptions = sc.Options as DialogOptions;
             if (dialogOptions != null)
-            {
                 if (dialogOptions.ConfirmedPayment)
-                {
                     return await sc.NextAsync();
-                }
-            }
             var state = await _accessors.ConfirmOrderStateAccessor.GetAsync(sc.Context, () => new ConfirmOrderState());
             var name = (string) sc.Result;
             state.FullName = name;
@@ -89,12 +79,8 @@ namespace HotelBot.Dialogs.ConfirmOrder
         {
             var dialogOptions = sc.Options as DialogOptions;
             if (dialogOptions != null)
-            {
                 if (dialogOptions.ConfirmedPayment)
-                {
                     return await sc.NextAsync();
-                }
-            }
             var firstName = sc.Result;
             return await sc.BeginDialogAsync(nameof(EmailPromptDialog), firstName);
         }
@@ -103,12 +89,8 @@ namespace HotelBot.Dialogs.ConfirmOrder
         {
             var dialogOptions = sc.Options as DialogOptions;
             if (dialogOptions != null)
-            {
                 if (dialogOptions.ConfirmedPayment)
-                {
                     return await sc.NextAsync();
-                }
-            }
             var state = await _accessors.ConfirmOrderStateAccessor.GetAsync(sc.Context, () => new ConfirmOrderState());
             var email = sc.Result as string; //always valid because of emailpromptdialog
             state.Email = email;
@@ -119,12 +101,8 @@ namespace HotelBot.Dialogs.ConfirmOrder
         {
             var dialogOptions = sc.Options as DialogOptions;
             if (dialogOptions != null)
-            {
                 if (dialogOptions.ConfirmedPayment)
-                {
                     return await sc.NextAsync();
-                }
-            }
             var facebookHelper = new FacebookHelper();
             await facebookHelper.SendPhoneNumberQuickReply(sc.Context);
             return new DialogTurnResult(DialogTurnStatus.Waiting);
@@ -135,12 +113,8 @@ namespace HotelBot.Dialogs.ConfirmOrder
             // needs validation 
             var dialogOptions = sc.Options as DialogOptions;
             if (dialogOptions != null)
-            {
                 if (dialogOptions.ConfirmedPayment)
-                {
                     return await sc.NextAsync();
-                }
-            }
             var phoneNumber = sc.Result as string;
             var roomOrderState = await _accessors.ConfirmOrderStateAccessor.GetAsync(sc.Context, () => new ConfirmOrderState());
             roomOrderState.Number = phoneNumber;
@@ -162,16 +136,10 @@ namespace HotelBot.Dialogs.ConfirmOrder
             {
                 roomOrderState, userProfileState
             };
-
             await _responder.ReplyWith(sc.Context, ConfirmOrderResponses.ResponseIds.SendReceipt, data);
-            // end and propose location, wifi password, number etc? give more info after confirmation of payment
             roomOrderState.PaymentConfirmed = true;
             await _responder.ReplyWith(sc.Context, ConfirmOrderResponses.ResponseIds.AfterConfirmation);
-            var dialogResult = new DialogResult
-            {
-                PreviousOptions = sc.Options as DialogOptions
-            };
-            return await sc.EndDialogAsync(dialogResult); // passes in true after confirming payment --> oncompleteasync triggers other quick replies
+            return await sc.EndDialogAsync();
         }
     }
 }

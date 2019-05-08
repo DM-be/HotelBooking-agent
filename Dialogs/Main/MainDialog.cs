@@ -11,10 +11,10 @@ using HotelBot.Dialogs.RoomOverview;
 using HotelBot.Dialogs.Shared.RouterDialog;
 using HotelBot.Extensions;
 using HotelBot.Models.LUIS;
-using HotelBot.Models.Wrappers;
 using HotelBot.Services;
 using HotelBot.Shared.Helpers;
 using HotelBot.StateAccessors;
+using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 
 namespace HotelBot.Dialogs.Main
@@ -80,23 +80,28 @@ namespace HotelBot.Dialogs.Main
 
         protected override async Task CompleteAsync(DialogContext dc, dynamic Result, CancellationToken cancellationToken = default(CancellationToken))
         {
-            // propagates to routerdialog in the await continueasync
-            //await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.Completed);
-            // propagates to routerdialog in the await continueasync
-            var result = Result as DialogTurnResult;
-            var dialogResult = result.Result as DialogResult;
-            if (result != null && dialogResult != null)
+            await SendQuickRepliesBasedOnState(dc.Context, _accessors, _responder);
+
+        }
+
+        public static async Task SendQuickRepliesBasedOnState(ITurnContext context, StateBotAccessors accessors, MainResponses responder)
+        {
+            var roomOverviewState = await accessors.RoomOverviewStateAccessor.GetAsync(context, () => new RoomOverviewState());
+            var confirmOrderState = await accessors.ConfirmOrderStateAccessor.GetAsync(context, () => new ConfirmOrderState());
+
+            if (confirmOrderState.PaymentConfirmed)
             {
-                if (dialogResult.PreviousOptions != null)
-                    if (dialogResult.PreviousOptions.ConfirmedPayment)
-                        await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.AfterPaymentQuickReplies);
-            }
-            else
-            {
-                await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.BasicQuickReplies);
+                await responder.ReplyWith(context, MainResponses.ResponseIds.ConfirmedPaymentQuickReplies);
+                return;
             }
 
+            if (roomOverviewState.SelectedRooms.Count > 0)
+            {
+                await responder.ReplyWith(context, MainResponses.ResponseIds.UnconfirmedPaymentQuickReplies);
+                return;
+            }
 
+            await responder.ReplyWith(context, MainResponses.ResponseIds.EmptyRoomOverviewStateQuickReplies);
         }
     }
 }

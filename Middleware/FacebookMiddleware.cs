@@ -51,17 +51,18 @@ namespace HotelBot.Middleware
         {
         }
 
+        //todo: still needed?
         private async void OnFacebookAttachments(FacebookAttachment [] attachments, ITurnContext context)
         {
             foreach (var attachment in attachments)
                 if (attachment.Type.Equals(FacebookAttachment.Location))
                 {
-                    context.TurnState.Add("TEST", attachment);
-                }
 
-            //await facebookHelper.SendDirections(context, attachment);
+                }
         }
 
+
+        //TODO: update getting started with help messages etc etc 
         private async void OnFacebookPostBack(FacebookPostback postBack, ITurnContext context)
         {
             if (postBack.Payload.Equals(FacebookPostback.GetStartedPostback))
@@ -75,18 +76,26 @@ namespace HotelBot.Middleware
             // implement other postback logic before calling next
         }
 
+        //todo: is updating activity text manually needed?  
         private void OnFacebookQuickReply(FacebookQuickReply quickReply, ITurnContext context)
         {
             if (quickReply.Payload.Equals(FacebookQuickReply.LocationQuickReplyPayload))
+            {
                 context.Activity.Text = FacebookStrings.CONTEXT_TEXT_DIRECTIONS;
+            }
             else if (quickReply.Payload.Equals(FacebookQuickReply.EmailQuickReplyPayload))
             {
-                var payload = quickReply.Payload;
+              
             }
             else if (quickReply.Payload.Equals(FacebookQuickReply.CallUsReplyPayload))
+            {
                 context.Activity.Text = FacebookStrings.CONTEXT_TEXT_CALL_US;
+            }
 
-            else if (quickReply.Payload.Equals(FacebookQuickReply.BookARoomPayload)) context.Activity.Text = FacebookStrings.CONTEXT_TEXT_BOOK_A_ROOM;
+            else if (quickReply.Payload.Equals(FacebookQuickReply.BookARoomPayload))
+            {
+                context.Activity.Text = FacebookStrings.CONTEXT_TEXT_BOOK_A_ROOM;
+            }
 
         }
     }

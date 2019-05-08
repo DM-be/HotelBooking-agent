@@ -32,10 +32,11 @@ namespace HotelBot.Dialogs.Main.Delegates
                 HotelBotLuis.Intent.Get_Location, (dc, responder, facebookHelper, accessors, luisResult) => SendLocation(dc, facebookHelper)
             },
             {
-                HotelBotLuis.Intent.Call_Us, (dc, responder, facebookHelper, accessors, luisResult) => BeginCallComponentDialog(dc)
+                HotelBotLuis.Intent.Call_Us,
+                (dc, responder, facebookHelper, accessors, luisResult) => SendCallCardAndQuickRepliesBasedOnState(dc, responder, accessors)
             },
             {
-                HotelBotLuis.Intent.None, (dc, responder, facebookHelper, accessors, luisResult) => SendConfused(dc, responder)
+                HotelBotLuis.Intent.None, (dc, responder, facebookHelper, accessors, luisResult) => SendConfused(dc, responder, accessors)
             }
 
         };
@@ -71,17 +72,17 @@ namespace HotelBot.Dialogs.Main.Delegates
             await dc.BeginDialogAsync(nameof(LocationPromptDialog));
         }
 
-        private static async Task BeginCallComponentDialog(DialogContext dc)
+        private static async Task SendCallCardAndQuickRepliesBasedOnState(DialogContext dc, TemplateManager responder, StateBotAccessors accessors)
         {
-            var mainResponder = new MainResponses();
-            await mainResponder.ReplyWith(dc.Context, MainResponses.ResponseIds.SendCallCard);
-            await mainResponder.ReplyWith(dc.Context, MainResponses.ResponseIds.BasicQuickReplies);
+            await responder.ReplyWith(dc.Context, MainResponses.ResponseIds.SendCallCard);
+            await MainDialog.SendQuickRepliesBasedOnState(dc.Context, accessors, responder as MainResponses);
 
         }
 
-        private static async Task SendConfused(DialogContext dc, TemplateManager responder)
+        private static async Task SendConfused(DialogContext dc, TemplateManager responder, StateBotAccessors accessors)
         {
             await responder.ReplyWith(dc.Context, MainResponses.ResponseIds.Confused);
+            await MainDialog.SendQuickRepliesBasedOnState(dc.Context, accessors, responder as MainResponses);
         }
 
 
