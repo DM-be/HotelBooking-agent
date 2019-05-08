@@ -11,7 +11,7 @@ namespace HotelBot.Models.Wrappers
         public bool UpdatedArrivalDate { get; set; }
 
         public bool UpdatedLeavingDate { get; set; }
-
+        public bool ConfirmedPayment { get; set; } = false;
         public HotelBotLuis LuisResult { get; set; }
     }
 }

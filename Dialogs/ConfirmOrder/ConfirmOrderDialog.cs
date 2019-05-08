@@ -29,7 +29,7 @@ namespace HotelBot.Dialogs.ConfirmOrder
             InitialDialogId = nameof(ConfirmOrderDialog);
             var confirmOrderWaterfallSteps = new WaterfallStep []
             {
-                InitialStep, ProcessNamePrompt, PromptEmail, ProcessEmail, PromptNumber, ProcessNumber, SendConfirmation, ProcessAfterConfirmation
+                InitialStep, ProcessNamePrompt, PromptEmail, ProcessEmail, PromptNumber, ProcessNumber, SendConfirmation
             };
             AddDialog(new WaterfallDialog(InitialDialogId, confirmOrderWaterfallSteps));
             AddDialog(new EmailPromptDialog(accessors));
@@ -42,14 +42,21 @@ namespace HotelBot.Dialogs.ConfirmOrder
 
         public async Task<DialogTurnResult> InitialStep(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-            if (sc.Options != null) return await sc.NextAsync();
+
+            var dialogOptions = sc.Options as DialogOptions;
+            if (dialogOptions != null)
+            {
+                if (dialogOptions.ConfirmedPayment)
+                {
+                    return await sc.NextAsync();
+                }
+            }
 
 
             //setup state object and overwrite roomoverviewstate
             var roomOverviewState = await _accessors.RoomOverviewStateAccessor.GetAsync(sc.Context, () => new RoomOverviewState());
             var confirmOrderState = await _accessors.ConfirmOrderStateAccessor.GetAsync(sc.Context, () => new ConfirmOrderState());
             confirmOrderState.RoomOverviewState = roomOverviewState;
-
 
             // TODO: move quickreplies into confirmorderresponses?
             var userProfile = await _accessors.UserProfileAccessor.GetAsync(sc.Context, () => new UserProfile());
@@ -60,42 +67,64 @@ namespace HotelBot.Dialogs.ConfirmOrder
 
         }
 
+        //TODO: add name validation
         public async Task<DialogTurnResult> ProcessNamePrompt(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-            if (sc.Options != null) return await sc.NextAsync();
-
+            var dialogOptions = sc.Options as DialogOptions;
+            if (dialogOptions != null)
+            {
+                if (dialogOptions.ConfirmedPayment)
+                {
+                    return await sc.NextAsync();
+                }
+            }
             var state = await _accessors.ConfirmOrderStateAccessor.GetAsync(sc.Context, () => new ConfirmOrderState());
             var name = (string) sc.Result;
             state.FullName = name;
             var firstName = name.Split(' ')[0];
-
-            //    if (confirmed) return await sc.NextAsync();
-            // prompt name PROMPT and save to state 
             return await sc.NextAsync(firstName);
         }
 
         public async Task<DialogTurnResult> PromptEmail(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-            if (sc.Options != null) return await sc.NextAsync();
+            var dialogOptions = sc.Options as DialogOptions;
+            if (dialogOptions != null)
+            {
+                if (dialogOptions.ConfirmedPayment)
+                {
+                    return await sc.NextAsync();
+                }
+            }
             var firstName = sc.Result;
             return await sc.BeginDialogAsync(nameof(EmailPromptDialog), firstName);
         }
 
         public async Task<DialogTurnResult> ProcessEmail(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-            if (sc.Options != null) return await sc.NextAsync();
-
+            var dialogOptions = sc.Options as DialogOptions;
+            if (dialogOptions != null)
+            {
+                if (dialogOptions.ConfirmedPayment)
+                {
+                    return await sc.NextAsync();
+                }
+            }
             var state = await _accessors.ConfirmOrderStateAccessor.GetAsync(sc.Context, () => new ConfirmOrderState());
-
-            var email = sc.Result as string; //always valid email
+            var email = sc.Result as string; //always valid because of emailpromptdialog
             state.Email = email;
-
             return await sc.NextAsync();
         }
 
         public async Task<DialogTurnResult> PromptNumber(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-            if (sc.Options != null) return await sc.NextAsync();
+            var dialogOptions = sc.Options as DialogOptions;
+            if (dialogOptions != null)
+            {
+                if (dialogOptions.ConfirmedPayment)
+                {
+                    return await sc.NextAsync();
+                }
+            }
             var facebookHelper = new FacebookHelper();
             await facebookHelper.SendPhoneNumberQuickReply(sc.Context);
             return new DialogTurnResult(DialogTurnStatus.Waiting);
@@ -104,7 +133,14 @@ namespace HotelBot.Dialogs.ConfirmOrder
         public async Task<DialogTurnResult> ProcessNumber(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             // needs validation 
-            if (sc.Options != null) return await sc.NextAsync();
+            var dialogOptions = sc.Options as DialogOptions;
+            if (dialogOptions != null)
+            {
+                if (dialogOptions.ConfirmedPayment)
+                {
+                    return await sc.NextAsync();
+                }
+            }
             var phoneNumber = sc.Result as string;
             var roomOrderState = await _accessors.ConfirmOrderStateAccessor.GetAsync(sc.Context, () => new ConfirmOrderState());
             roomOrderState.Number = phoneNumber;
@@ -131,44 +167,11 @@ namespace HotelBot.Dialogs.ConfirmOrder
             // end and propose location, wifi password, number etc? give more info after confirmation of payment
             roomOrderState.PaymentConfirmed = true;
             await _responder.ReplyWith(sc.Context, ConfirmOrderResponses.ResponseIds.AfterConfirmation);
-            return await sc.EndDialogAsync();
-        }
-
-        public async Task<DialogTurnResult> ProcessAfterConfirmation(WaterfallStepContext sc, CancellationToken cancellationToken)
-        {
-            var dialogOptions = new DialogOptions();
-            if (sc.Result != null)
+            var dialogResult = new DialogResult
             {
-                var choice = sc.Result as FoundChoice;
-                switch (choice.Value)
-
-                {
-                    case ConfirmOrderChoices.RoomOverview:
-
-                        var dialogResult = new DialogResult
-                        {
-                            PreviousOptions = dialogOptions,
-                            TargetDialog = nameof(RoomOverviewDialog)
-
-                        };
-                        return await sc.EndDialogAsync(dialogResult);
-                }
-            }
-
-            return null;
-        }
-
-        public class ConfirmOrderChoices
-        {
-            public const string RoomOverview = "Room overview";
-
-
-            public static readonly ReadOnlyCollection<string> Choices =
-                new ReadOnlyCollection<string>(
-                    new []
-                    {
-                        RoomOverview
-                    });
+                PreviousOptions = sc.Options as DialogOptions
+            };
+            return await sc.EndDialogAsync(dialogResult); // passes in true after confirming payment --> oncompleteasync triggers other quick replies
         }
     }
 }

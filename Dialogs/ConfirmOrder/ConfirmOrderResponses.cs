@@ -142,10 +142,9 @@ namespace HotelBot.Dialogs.ConfirmOrder
                 {
                     new CardImage
                     {
-                        Url = "https://freerangestock.com/sample/118792/tablet-and-hand-digital-payment-icon-vector.jpg",
+                        Url = "https://freerangestock.com/sample/118792/tablet-and-hand-digital-payment-icon-vector.jpg"
                     }
-                },
-                
+                }
 
 
             };

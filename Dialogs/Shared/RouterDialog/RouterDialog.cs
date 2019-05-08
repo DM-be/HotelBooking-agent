@@ -61,7 +61,8 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
                                 result = await innerDc.BeginDialogAsync(nameof(ConfirmOrderDialog));
                                 break;
                             case RoomAction.Actions.Paid:
-                                result = await innerDc.BeginDialogAsync(nameof(ConfirmOrderDialog), true);
+                                dialogOptions.ConfirmedPayment = true;
+                                result = await innerDc.BeginDialogAsync(nameof(ConfirmOrderDialog), dialogOptions);
                                 break;
                         }
 
@@ -175,6 +176,7 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
 
         private async Task OnDialogTurnStatus(DialogTurnResult result, DialogContext innerDc)
         {
+
             switch (result.Status)
             {
                 case DialogTurnStatus.Empty:

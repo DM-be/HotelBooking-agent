@@ -10,6 +10,7 @@ using HotelBot.Dialogs.RoomOverview;
 using HotelBot.Dialogs.Shared.RouterDialog;
 using HotelBot.Extensions;
 using HotelBot.Models.LUIS;
+using HotelBot.Models.Wrappers;
 using HotelBot.Services;
 using HotelBot.Shared.Helpers;
 using HotelBot.StateAccessors;
@@ -81,6 +82,16 @@ namespace HotelBot.Dialogs.Main
        //     await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.Completed);
             // propagates to routerdialog in the await continueasync
             await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.QuickReplies);
+            var result = Result as DialogTurnResult;
+            var dialogResult = result.Result as DialogResult;
+            if (dialogResult.PreviousOptions != null)
+            {
+                if (dialogResult.PreviousOptions.ConfirmedPayment)
+                {
+                    await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.Confused);
+                }
+            }
+
         }
     }
 }
