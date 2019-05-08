@@ -55,8 +55,6 @@ namespace HotelBot.Dialogs.ConfirmOrder
                 heroCards.Add(RoomOverviewResponses.BuildDetailedRoomHeroCard(selectedRoom));
 
             var reply = context.Activity.CreateReply();
-            reply.Text =
-                "Your booking overview:";
             var attachments = new List<Attachment>();
             foreach (var heroCard in heroCards) attachments.Add(heroCard.ToAttachment());
             reply.AttachmentLayout = "carousel";

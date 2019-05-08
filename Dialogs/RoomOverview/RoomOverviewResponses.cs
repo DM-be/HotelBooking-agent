@@ -91,7 +91,7 @@ namespace HotelBot.Dialogs.RoomOverview
             foreach (var selectedRoom in selectedRooms) heroCards.Add(BuildDetailedRoomHeroCard(selectedRoom));
             var reply = context.Activity.CreateReply();
             reply.Text =
-                "Here is your complete overview:";
+                "Your current booking overview:";
             var attachments = new List<Attachment>();
             foreach (var heroCard in heroCards) attachments.Add(heroCard.ToAttachment());
             reply.AttachmentLayout = "carousel";
@@ -167,7 +167,7 @@ namespace HotelBot.Dialogs.RoomOverview
         {
             return new HeroCard
             {
-                Title = "Rooms order overview", //todo: better title
+                Title = "Booking order overview", //todo: better title
                 Subtitle = BuildHeroCardTextCompactOverview(selectedRooms),
                 Images = new List<CardImage>
                 {

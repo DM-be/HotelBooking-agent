@@ -121,7 +121,7 @@
     <value />
   </data>
   <data name="CONTINUE_OR_ADD_MORE_ROOMS" xml:space="preserve">
-    <value>Tap confirm to proceed to payment or add another room.</value>
+    <value>Tap confirm to confirm your booking with us or add another room. </value>
   </data>
   <data name="NO_SELECTED_ROOMS" xml:space="preserve">
     <value>You have not selected any rooms yet, start with adding a new room to your order. </value>

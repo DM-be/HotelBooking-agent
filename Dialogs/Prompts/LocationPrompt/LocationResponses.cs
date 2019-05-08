@@ -67,7 +67,7 @@ namespace HotelBot.Dialogs.Prompts.LocationPrompt
                 Subtitle = "Tijl Uilenspiegelstraat 9, 8000 Brugge",
                 Images = new List<CardImage>
                 {
-                    new CardImage("https://img.hotelspecials.be/fc2fadf52703ae0181b289f84011bf6a.jpeg?w=250&h=200&c=1&quality=70")
+                    new CardImage("http://www.hoteldepauw.be/hoteldepauw/assets/pirate/images/cover/cover.jpg")
                 },
                 Buttons = new List<CardAction>
                 {
