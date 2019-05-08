@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading;
 using System.Threading.Tasks;
@@ -131,22 +130,8 @@ namespace HotelBot.Dialogs.ConfirmOrder
             await _responder.ReplyWith(sc.Context, ConfirmOrderResponses.ResponseIds.SendReceipt, data);
             // end and propose location, wifi password, number etc? give more info after confirmation of payment
             roomOrderState.PaymentConfirmed = true;
-
-            return await sc.PromptAsync(
-                nameof(ChoicePrompt),
-                new PromptOptions
-                {
-                    Prompt = await _responder.RenderTemplate(
-                        sc.Context,
-                        sc.Context.Activity.Locale,
-                        ConfirmOrderResponses.ResponseIds.AfterConfirmation),
-                    Choices = ChoiceFactory.ToChoices(
-                        new List<string>
-                        {
-                            ConfirmOrderChoices.RoomOverview
-
-                        })
-                });
+            await _responder.ReplyWith(sc.Context, ConfirmOrderResponses.ResponseIds.AfterConfirmation);
+            return await sc.EndDialogAsync();
         }
 
         public async Task<DialogTurnResult> ProcessAfterConfirmation(WaterfallStepContext sc, CancellationToken cancellationToken)

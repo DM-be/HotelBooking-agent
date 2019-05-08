@@ -34,6 +34,7 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
             {
                 case ActivityTypes.Message:
                 {
+                    DialogTurnResult result = null;
                     if (activity.Value != null && !activity.IsGetStartedPostBack())
                     {
 
@@ -44,28 +45,34 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
                         };
                         // clear existing stack (button with action tapped)
                         await innerDc.CancelAllDialogsAsync();
+
                         switch (roomAction.Action)
                         {
                             case RoomAction.Actions.Info:
                             case RoomAction.Actions.Book:
-                                await innerDc.BeginDialogAsync(nameof(RoomDetailDialog), dialogOptions);
+                                result = await innerDc.BeginDialogAsync(nameof(RoomDetailDialog), dialogOptions);
                                 break;
                             case RoomAction.Actions.SelectRoomWithRate:
                             case RoomAction.Actions.Remove:
                             case RoomAction.Actions.ViewDetails:
-                                await innerDc.BeginDialogAsync(nameof(RoomOverviewDialog), dialogOptions);
+                                result = await innerDc.BeginDialogAsync(nameof(RoomOverviewDialog), dialogOptions);
                                 break;
                             case RoomAction.Actions.Confirm:
-                                await innerDc.BeginDialogAsync(nameof(ConfirmOrderDialog));
+                                result = await innerDc.BeginDialogAsync(nameof(ConfirmOrderDialog));
                                 break;
                             case RoomAction.Actions.Paid:
-                                await innerDc.BeginDialogAsync(nameof(ConfirmOrderDialog), true);
+                                result = await innerDc.BeginDialogAsync(nameof(ConfirmOrderDialog), true);
                                 break;
                         }
+
+                        // continue handling the result and route accordingly
+                        await OnDialogTurnStatus(result, innerDc);
                     }
+
+                    // case responding to choices and switching a dialog in the same turnS
                     else if (!string.IsNullOrEmpty(activity.Text))
                     {
-                        var result = await innerDc.ContinueDialogAsync();
+                        result = await innerDc.ContinueDialogAsync();
                         if (result.Result != null)
                         {
 
@@ -80,29 +87,9 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
                             }
                         }
 
+                        // continue handling the result and route accordingly
+                        await OnDialogTurnStatus(result, innerDc);
 
-                        switch (result.Status)
-                        {
-                            case DialogTurnStatus.Empty:
-                            {
-                                await RouteAsync(innerDc);
-                                break;
-                            }
-                            case DialogTurnStatus.Complete:
-                            {
-                                // in main dialog send completed message
-                                await CompleteAsync(innerDc, result);
-
-                                // End active dialog
-                                await innerDc.EndDialogAsync();
-                                break;
-                            }
-
-                            case DialogTurnStatus.Waiting:
-                            {
-                                break;
-                            }
-                        }
                     }
 
                     break;
@@ -123,6 +110,11 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
 
             return EndOfTurn;
         }
+
+
+
+
+
 
 
         /// <summary>
@@ -178,6 +170,33 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
         protected virtual Task OnStartAsync(DialogContext innerDc, CancellationToken cancellationToken = default(CancellationToken))
         {
             return Task.CompletedTask;
+        }
+
+
+        private async Task OnDialogTurnStatus(DialogTurnResult result, DialogContext innerDc)
+        {
+            switch (result.Status)
+            {
+                case DialogTurnStatus.Empty:
+                {
+                    await RouteAsync(innerDc);
+                    break;
+                }
+                case DialogTurnStatus.Complete:
+                {
+                    // in main dialog send completed message
+                    await CompleteAsync(innerDc, result);
+
+                    // End active dialog
+                    await innerDc.EndDialogAsync();
+                    break;
+                }
+
+                case DialogTurnStatus.Waiting:
+                {
+                    break;
+                }
+            }
         }
     }
 
