@@ -1,0 +1,88 @@
+Label	Weight	Text
+l_hotelbot	4.074627	help me
+l_hotelbot	4.074627	change my arrivaldate to 25/02/2019
+l_hotelbot	4.074627	i want to move to your location
+l_hotelbot	4.074627	can i view my booking
+l_hotelbot	4.074627	update room size to four
+l_hotelbot	4.074627	i want to change when i arrive
+l_hotelbot	4.074627	what did i book
+l_hotelbot	4.074627	can i call the hotel
+l_hotelbot	4.074627	not working help
+l_hotelbot	4.074627	change my leaving date to another date
+l_hotelbot	4.074627	could i change my checkin time to april 15
+l_hotelbot	4.074627	i want a room for tomorow
+l_hotelbot	4.074627	update checkin to next week instead
+l_hotelbot	4.074627	i don't want to talk to a bot
+l_hotelbot	4.074627	get me another room
+l_hotelbot	4.074627	get me a room for three
+l_hotelbot	4.074627	i checkin tomorrow instead
+l_hotelbot	4.074627	can we call
+l_hotelbot	4.074627	can i talk to a real person
+l_hotelbot	4.074627	i want to arrive on april 15
+l_hotelbot	4.074627	update room size to two
+l_hotelbot	4.074627	i do not want to talk to a bot
+l_hotelbot	4.074627	how smart are you
+l_hotelbot	4.074627	can i speak to someone else
+l_hotelbot	4.074627	checking in on april 15
+l_hotelbot	4.074627	i do not want a bot
+l_hotelbot	4.074627	change room size to 2
+l_hotelbot	4.074627	can you understand
+l_hotelbot	4.074627	change room size
+l_hotelbot	4.074627	hello i'm
+l_hotelbot	4.074627	update number of people
+l_hotelbot	4.074627	actually i want to bring six people
+l_hotelbot	4.074627	let me speak with someone real
+l_hotelbot	4.074627	update my email address please
+l_hotelbot	4.074627	how do i get there
+l_hotelbot	4.074627	help me book a room for three
+l_hotelbot	4.074627	i want to book a room for three tomorrow
+l_hotelbot	4.074627	i want to leave next week instead
+l_hotelbot	4.074627	change people to six
+l_hotelbot	4.074627	update the number of people to ten
+l_hotelbot	4.074627	can i view my rooms
+l_hotelbot	4.074627	i want to arrive on april 15 instead
+l_hotelbot	4.074627	change checkin to april 15
+l_hotelbot	4.074627	can i see my booked rooms
+l_hotelbot	4.074627	can i call you
+l_hotelbot	4.074627	please stop
+l_hotelbot	4.074627	i want a room for six instead
+l_hotelbot	4.074627	where can i find your number
+l_hotelbot	4.074627	i want to leave next week
+l_hotelbot	4.074627	update my leaving date
+l_hotelbot	4.074627	could i update my email
+l_hotelbot	4.074627	i don't understand
+l_hotelbot	4.074627	i want to arrive on another day
+l_hotelbot	4.074627	change the number of people to two
+l_hotelbot	4.074627	can i change my checkin to tomorrow
+l_hotelbot	4.074627	could i leave next week instead
+l_hotelbot	4.074627	i want to speak to support
+l_hotelbot	4.074627	i want to change my arrival time
+l_hotelbot	4.074627	i need a room for five
+l_hotelbot	4.074627	change leaving date to next friday
+l_hotelbot	4.074627	i do not understand what to do
+l_hotelbot	4.074627	what can you do for me
+l_hotelbot	4.074627	can i view current order
+l_hotelbot	4.074627	how many rooms do i have
+l_hotelbot	4.074627	change room to 2
+l_hotelbot	4.074627	set checkin to next week thursday
+l_hotelbot	4.074627	view order
+q_2129612763787673_en	27.3	are dogs allowed
+q_2129612763787673_en	27.3	are dogs allowed
+q_2129612763787673_en	27.3	are dogs allowed
+q_2129612763787673_en	27.3	are dogs allowed
+q_2129612763787673_en	27.3	are dogs allowed
+q_2129612763787673_en	27.3	are dogs allowed
+q_2129612763787673_en	27.3	are dogs allowed
+q_2129612763787673_en	27.3	are dogs allowed
+q_2129612763787673_en	27.3	are dogs allowed
+q_2129612763787673_en	27.3	are dogs allowed
+q_2129612763787673_nl	27.3	Mag ik mijn hond meenemen
+q_2129612763787673_nl	27.3	Mag ik mijn hond meenemen
+q_2129612763787673_nl	27.3	Mag ik mijn hond meenemen
+q_2129612763787673_nl	27.3	Mag ik mijn hond meenemen
+q_2129612763787673_nl	27.3	Mag ik mijn hond meenemen
+q_2129612763787673_nl	27.3	Mag ik mijn hond meenemen
+q_2129612763787673_nl	27.3	Mag ik mijn hond meenemen
+q_2129612763787673_nl	27.3	Mag ik mijn hond meenemen
+q_2129612763787673_nl	27.3	Mag ik mijn hond meenemen
+q_2129612763787673_nl	27.3	Mag ik mijn hond meenemen

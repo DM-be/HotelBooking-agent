@@ -1,0 +1,88 @@
+Label	Weight	Text
+l_hotelbot	3.927536	change when i arrive to the first of next month
+l_hotelbot	3.927536	what is the weather like
+l_hotelbot	3.927536	help me someone real
+l_hotelbot	3.927536	how do you work
+l_hotelbot	3.927536	i want to update my arrival to april 15
+l_hotelbot	3.927536	change my arrivaldate to next week
+l_hotelbot	3.927536	what rooms have i booked
+l_hotelbot	3.927536	update when i leave to another time
+l_hotelbot	3.927536	change my checkin
+l_hotelbot	3.927536	no checkout is 2 june
+l_hotelbot	3.927536	show booked rooms
+l_hotelbot	3.927536	i want to leave on 23/04.2019 instead
+l_hotelbot	3.927536	hi i'm john
+l_hotelbot	3.927536	i want a room for three instead
+l_hotelbot	3.927536	checking in april 15
+l_hotelbot	3.927536	we are arriving with seven insteda
+l_hotelbot	3.927536	change my email address now if you can
+l_hotelbot	3.927536	no checking out is wrong
+l_hotelbot	3.927536	checking out next thursday
+l_hotelbot	3.927536	can you do something smart
+l_hotelbot	3.927536	need a room for five tomorrow
+l_hotelbot	3.927536	i dont understand
+l_hotelbot	7.855072	where are you located
+l_hotelbot	3.927536	talk to a person
+l_hotelbot	3.927536	show order
+l_hotelbot	3.927536	what can you do
+l_hotelbot	3.927536	i want to update my checkin to april 15
+l_hotelbot	3.927536	change my arrival date
+l_hotelbot	3.927536	what can you understand
+l_hotelbot	3.927536	update checkout
+l_hotelbot	3.927536	change my email address
+l_hotelbot	3.927536	put me through to someone real
+l_hotelbot	3.927536	let me talk to someone else
+l_hotelbot	3.927536	can i change my leaving date
+l_hotelbot	3.927536	cancel now
+l_hotelbot	3.927536	where can i find the hotel
+l_hotelbot	3.927536	where in the city can i visit you
+l_hotelbot	3.927536	where is the bed and breakfast
+l_hotelbot	3.927536	sorry we are arriving with six people
+l_hotelbot	3.927536	i leave next sunday instead
+l_hotelbot	3.927536	i want to checkin on april 15 instead
+l_hotelbot	3.927536	show my order
+l_hotelbot	3.927536	i want to call the hotel
+l_hotelbot	3.927536	i want to change my arrivaldate
+l_hotelbot	3.927536	set checkin to april 15
+l_hotelbot	7.855072	update room size to 4
+l_hotelbot	3.927536	i do not understand
+l_hotelbot	3.927536	can you give me a map to the hotel>
+l_hotelbot	3.927536	sorry i made a mistake my email is blabla@test.com
+l_hotelbot	3.927536	can you help me with a room
+l_hotelbot	3.927536	actually its seven instead
+l_hotelbot	3.927536	show my booking
+l_hotelbot	3.927536	how can i find you
+l_hotelbot	3.927536	i don't understand what to do
+l_hotelbot	3.927536	update checkin to next week friday
+l_hotelbot	3.927536	no i'm leaving next week saturday
+l_hotelbot	3.927536	can i get a room for five on march 16
+l_hotelbot	3.927536	no sorry checkin should be april 15
+l_hotelbot	3.927536	what is your address
+l_hotelbot	3.927536	help me navigate to your location
+l_hotelbot	3.927536	need a room for three next sunday
+l_hotelbot	3.927536	i need someone real
+l_hotelbot	3.927536	what rooms have i got
+l_hotelbot	3.927536	please cancel
+l_hotelbot	3.927536	stop now
+l_hotelbot	3.927536	i need to speak to someone else
+l_hotelbot	3.927536	no checkout is march 15
+q_2129612763787673_en	27.1	can i take my dog
+q_2129612763787673_en	27.1	can i take my dog
+q_2129612763787673_en	27.1	can i take my dog
+q_2129612763787673_en	27.1	can i take my dog
+q_2129612763787673_en	27.1	can i take my dog
+q_2129612763787673_en	27.1	can i take my dog
+q_2129612763787673_en	27.1	can i take my dog
+q_2129612763787673_en	27.1	can i take my dog
+q_2129612763787673_en	27.1	can i take my dog
+q_2129612763787673_en	27.1	can i take my dog
+q_2129612763787673_nl	27.1	Zijn honden toegelaten
+q_2129612763787673_nl	27.1	Zijn honden toegelaten
+q_2129612763787673_nl	27.1	Zijn honden toegelaten
+q_2129612763787673_nl	27.1	Zijn honden toegelaten
+q_2129612763787673_nl	27.1	Zijn honden toegelaten
+q_2129612763787673_nl	27.1	Zijn honden toegelaten
+q_2129612763787673_nl	27.1	Zijn honden toegelaten
+q_2129612763787673_nl	27.1	Zijn honden toegelaten
+q_2129612763787673_nl	27.1	Zijn honden toegelaten
+q_2129612763787673_nl	27.1	Zijn honden toegelaten

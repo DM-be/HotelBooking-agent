@@ -7,7 +7,7 @@
     {
       "appId": "4dda25a6-5818-453d-9948-d4c46112f544",
       "authoringKey": "5248302fa0da4365907e347f0732b8c4",
-      "subscriptionKey": "fb0e00d3a5964977b1c4b1d941877a58",
+      "subscriptionKey": "5248302fa0da4365907e347f0732b8c4",
       "version": "0.1",
       "region": "westeurope",
       "type": "luis",
@@ -40,7 +40,7 @@
   ],
   "appId": "ed6bd627-3700-408b-a5e9-b654d28de2dc",
   "authoringKey": "5248302fa0da4365907e347f0732b8c4",
-  "subscriptionKey": "fb0e00d3a5964977b1c4b1d941877a58",
+  "subscriptionKey": "5248302fa0da4365907e347f0732b8c4",
   "version": "Dispatch",
   "region": "westeurope",
   "type": "dispatch",

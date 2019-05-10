@@ -72,7 +72,7 @@ namespace HotelBot.Dialogs.RoomOverview
             if (confirmOrderState.PaymentConfirmed)
             {
                 await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.ConfirmedPaymentOverview, roomOverviewState);
-                return await sc.EndDialogAsync(new DialogTurnResult(DialogTurnStatus.Complete)); // end it --> go to main (cancelling prompts etc go here)
+                return await sc.EndDialogAsync(); // end it --> go to main (cancelling prompts etc go here)
             }
 
             if (roomOverviewState.SelectedRooms.Count != 0) await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.CompleteOverview, roomOverviewState);

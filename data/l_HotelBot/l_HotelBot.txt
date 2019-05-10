@@ -3,6 +3,8 @@ actually i mean six people
 actually i want to bring six people
 actually its seven instead
 are rooms available on april 12
+are you intelligent
+are you smart
 book me a room for three
 call us
 call you
@@ -20,16 +22,33 @@ can i change when i will arrive
 can i get a room for five on march 16
 can i get a room for tomorrow
 can i get your adress
+can i message a real person
+can i message someone real
+can i see my booked rooms
+can i see my booking
+can i speak to a real person
+can i speak to someone else
+can i talk to a person
+can i talk to a real person
+can i talk to someone real
 can i update my arriving date
+can i view booking
+can i view current order
+can i view my booking
+can i view my rooms
 can we call
 can we call the hotel
 can you book me a room
+can you do something smart
 can you give me a map to the hotel>
 can you give me a map to your location
+can you help me book a hotel
+can you help me with a room
+can you understand me
+can you understand
 cancel
 cancel now
 cancel this
-cancel this booking
 change checkin to april 15
 change checkin to next week
 change checkout
@@ -75,6 +94,7 @@ checking out on next week thursday
 checking out tomorrow
 checkout is wrong
 checkout next week instead
+connect me to a person
 could i change my arrival date to april 22 instead
 could i change my checkin time to april 15
 could i change my checking in date to april 15
@@ -87,21 +107,42 @@ could you give me a route to where you are
 could you give me a route to your hotel
 could you give me a route to your location
 could you help me move to your location
+do you understand me
 get me a room for three
 get me another room
 hello
+hello i'm
 help
 help me
 help me book a room for three
 help me book another room for five
+help me i'm stuck
 help me navigate to your location
+help me someone real
 hi
+hi i'm john
+how can i find you
 how can we find you
+how do i get there
+how do i get to you
+how do you work
 how late can i arrive tomorrow
+how many rooms do i have
+how smart are you
 i checkin on april 15
 i checkin tomorrow instead
+i do not understand
+i do not understand what to do
+i do not want a bot
+i do not want to speak with you anymore
+i do not want to talk to a bot
 i dont understand
+i don't understand
 i dont understand what to do
+i don't understand what to do
+i dont want a bot
+i don't want to talk to a bot
+i don't want to talk to bot
 i leave next sunday instead
 i leave on april 15 instead
 i made a mistake in checking out
@@ -114,7 +155,9 @@ i need a room for two people and i want to arrive april 15
 i need a room next week friday
 i need directions to your hotel
 i need help
+i need someone real
 i need to checkout on thursday
+i need to speak to someone else
 i want a room for six instead
 i want a room for three
 i want a room for three instead
@@ -161,10 +204,19 @@ i want to leave on 23/04.2019 instead
 i want to leave tomorrow
 i want to move to your location
 i want to set another email
+i want to speak to an agent
+i want to speak to support
 i want to update checkout
 i want to update my arrival to april 15
 i want to update my checkin to april 15
 instead checkin on april 15
+let me speak to a human
+let me speak with someone real
+let me talk to a human
+let me talk to a real person
+let me talk to someone else
+let me talk to someone real
+let met talk to a person
 meaningless
 my email address is wrong, could i change it
 need a room
@@ -187,14 +239,28 @@ no leaving is wrong
 no sorry checkin should be april 15
 no we want a room for seven
 no we want a room for three
+not working help
 nothing
 nothing meaningfull said
 please cancel
 please stop
+put me through to a real person
+put me through to someone real
 room for three instead
 set checkin to april 15
 set checkin to next week thursday
 set checkin to next week wednesday
+show booked overview
+show booked rooms
+show booking
+show currently booked
+show me booked rooms
+show my booking
+show my order
+show order
+show overview rooms
+show rooms
+show rooms overview
 sorry change email
 sorry checkout is 12 january
 sorry i made a mistake my email is blabla@test.com
@@ -202,6 +268,7 @@ sorry we are arriving with six people
 stop
 stop doing this
 stop now
+talk to a person
 the checkin is april 15
 this is nothing special
 update arrival please
@@ -230,18 +297,34 @@ update the number of people to ten
 update the room to two people please
 update when i leave to 26 march
 update when i leave to another time
+view booking
+view booking order
+view current order
+view order
 we are arriving with seven insteda
-what can i ask you
+what can i do
 what can you do
+what can you do for me
+what can you understand
+what could you do for me
+what did i book
+what do you do
 what is the hotel number?>
 what is the location
 what is the location
+what is the point of this
 what is the weather like
 what is your address
 what is your adress
+what is your point
+what rooms have i booked
+what rooms have i booked before
+what rooms have i got
 what's your address
 whats your number
 whats your number
+whats your purpose
+where are you
 where are you located
 where are you located
 where can i find the hotel
@@ -249,5 +332,9 @@ where can i find your number
 where in the city are you
 where in the city can i visit you
 where is it
+where is it
 where is the bed and breakfast
 where is the hotel
+where is the hotel
+where is your location
+which rooms have i booked

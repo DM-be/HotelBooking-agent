@@ -27,9 +27,7 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates
             {
                 HotelBotLuis.Intent.Update_Number_Of_People, UpdateNumberOfPeople
             },
-            {
-                HotelBotLuis.Intent.Update_email, UpdateEmail
-            }
+            
         };
 
 

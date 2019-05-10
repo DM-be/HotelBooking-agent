@@ -1,0 +1,88 @@
+Label	Weight	Text
+l_hotelbot	4	can i see my booking
+l_hotelbot	4	no we want a room for three
+l_hotelbot	4	i want to come next week instead
+l_hotelbot	4	can we call the hotel
+l_hotelbot	4	update checking in to tomorrow
+l_hotelbot	4	can you book me a room
+l_hotelbot	4	call you
+l_hotelbot	4	help
+l_hotelbot	4	are you smart
+l_hotelbot	4	change my checkout to next week wednesday
+l_hotelbot	4	sorry change email
+l_hotelbot	4	i want to cancel
+l_hotelbot	4	can i get your adress
+l_hotelbot	4	can i change my checkin
+l_hotelbot	4	where are you
+l_hotelbot	4	change people to two
+l_hotelbot	4	change my checkout to april 15 instead
+l_hotelbot	4	i want to book a room for next week
+l_hotelbot	4	what do you do
+l_hotelbot	4	update the arrival date please
+l_hotelbot	4	checking in on tomorrow
+l_hotelbot	4	i need a room for five instead
+l_hotelbot	4	i need a room for two people and i want to arrive april 15
+l_hotelbot	4	can i change arrival date
+l_hotelbot	4	i want to change my arrival to may 15
+l_hotelbot	4	what is the hotel number?>
+l_hotelbot	4	checkout next week instead
+l_hotelbot	4	meaningless
+l_hotelbot	4	let met talk to a person
+l_hotelbot	4	i dont understand what to do
+l_hotelbot	4	update the room to two people please
+l_hotelbot	4	change room to 6 people
+l_hotelbot	4	could you give me a route to your hotel
+l_hotelbot	4	what is the point of this
+l_hotelbot	4	i want to get a room for next week
+l_hotelbot	4	cancel this
+l_hotelbot	4	what rooms have i booked before
+l_hotelbot	4	how late can i arrive tomorrow
+l_hotelbot	4	i want to checkout next week thursday instead
+l_hotelbot	4	update room size to five people
+l_hotelbot	4	can i message a real person
+l_hotelbot	4	call us
+l_hotelbot	4	i want to leave tomorrow
+l_hotelbot	4	i want to book a room tomorrow
+l_hotelbot	4	change my email to blabla@test.com
+l_hotelbot	4	view booking
+l_hotelbot	4	no a room for six
+l_hotelbot	4	what can i do
+l_hotelbot	4	i dont want a bot
+l_hotelbot	8	change checkout to april 22
+l_hotelbot	4	update my email address
+l_hotelbot	4	update my leaving date to the 4th please
+l_hotelbot	4	update my email to bla@test.com
+l_hotelbot	4	update number of people to two
+l_hotelbot	4	my email address is wrong, could i change it
+l_hotelbot	4	stop doing this
+l_hotelbot	4	could i get a room for next week
+l_hotelbot	4	i want to call a person
+l_hotelbot	4	i don't want to talk to bot
+l_hotelbot	4	i want to get a room for myself and my partner for tomorrow
+l_hotelbot	4	i want a route to your location
+l_hotelbot	4	the checkin is april 15
+l_hotelbot	4	no i want a room for two
+l_hotelbot	4	let me talk to a real person
+l_hotelbot	4	instead checkin on april 15
+l_hotelbot	4	nothing
+l_hotelbot	4	connect me to a person
+q_2129612763787673_en	27.2	can i take my dog
+q_2129612763787673_en	27.2	can i take my dog
+q_2129612763787673_en	27.2	can i take my dog
+q_2129612763787673_en	27.2	can i take my dog
+q_2129612763787673_en	27.2	can i take my dog
+q_2129612763787673_en	27.2	can i take my dog
+q_2129612763787673_en	27.2	can i take my dog
+q_2129612763787673_en	27.2	can i take my dog
+q_2129612763787673_en	27.2	can i take my dog
+q_2129612763787673_en	27.2	can i take my dog
+q_2129612763787673_nl	27.2	Mogen we onze hond meenemen
+q_2129612763787673_nl	27.2	Mogen we onze hond meenemen
+q_2129612763787673_nl	27.2	Mogen we onze hond meenemen
+q_2129612763787673_nl	27.2	Mogen we onze hond meenemen
+q_2129612763787673_nl	27.2	Mogen we onze hond meenemen
+q_2129612763787673_nl	27.2	Mogen we onze hond meenemen
+q_2129612763787673_nl	27.2	Mogen we onze hond meenemen
+q_2129612763787673_nl	27.2	Mogen we onze hond meenemen
+q_2129612763787673_nl	27.2	Mogen we onze hond meenemen
+q_2129612763787673_nl	27.2	Mogen we onze hond meenemen

@@ -31,16 +31,25 @@
       "name": "None"
     },
     {
+      "name": "Room_Overview"
+    },
+    {
+      "name": "Talk_To_Human"
+    },
+    {
       "name": "Update_ArrivalDate"
     },
     {
-      "name": "Update_email"
+      "name": "Update_Email"
     },
     {
       "name": "Update_Leaving_Date"
     },
     {
       "name": "Update_Number_Of_People"
+    },
+    {
+      "name": "What_Can_You_Do"
     }
   ],
   "entities": [],
@@ -69,6 +78,41 @@
     {
       "text": "a random sentence",
       "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "actually i mean six people",
+      "intent": "Update_Number_Of_People",
+      "entities": []
+    },
+    {
+      "text": "actually i want to bring six people",
+      "intent": "Update_Number_Of_People",
+      "entities": []
+    },
+    {
+      "text": "actually its seven instead",
+      "intent": "Update_Number_Of_People",
+      "entities": []
+    },
+    {
+      "text": "are rooms available on april 12?",
+      "intent": "Book_A_Room",
+      "entities": []
+    },
+    {
+      "text": "are you intelligent",
+      "intent": "What_Can_You_Do",
+      "entities": []
+    },
+    {
+      "text": "are you smart",
+      "intent": "What_Can_You_Do",
+      "entities": []
+    },
+    {
+      "text": "book me a room for three",
+      "intent": "Book_A_Room",
       "entities": []
     },
     {
@@ -107,6 +151,21 @@
       "entities": []
     },
     {
+      "text": "can i change my checkin",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "can i change my checkin to next week thursday?",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "can i change my checkin to tomorrow?",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
       "text": "can i change my leaving date?",
       "intent": "Update_Leaving_Date",
       "entities": []
@@ -122,6 +181,11 @@
       "entities": []
     },
     {
+      "text": "can i get a room for five on march 16?",
+      "intent": "Book_A_Room",
+      "entities": []
+    },
+    {
       "text": "can i get a room for tomorrow?",
       "intent": "Book_A_Room",
       "entities": []
@@ -132,8 +196,73 @@
       "entities": []
     },
     {
+      "text": "can i message a real person",
+      "intent": "Talk_To_Human",
+      "entities": []
+    },
+    {
+      "text": "can i message someone real",
+      "intent": "Talk_To_Human",
+      "entities": []
+    },
+    {
+      "text": "can i see my booked rooms",
+      "intent": "Room_Overview",
+      "entities": []
+    },
+    {
+      "text": "can i see my booking?",
+      "intent": "Room_Overview",
+      "entities": []
+    },
+    {
+      "text": "can i speak to a real person?",
+      "intent": "Talk_To_Human",
+      "entities": []
+    },
+    {
+      "text": "can i speak to someone else",
+      "intent": "Talk_To_Human",
+      "entities": []
+    },
+    {
+      "text": "can i talk to a person",
+      "intent": "Talk_To_Human",
+      "entities": []
+    },
+    {
+      "text": "can i talk to a real person",
+      "intent": "Talk_To_Human",
+      "entities": []
+    },
+    {
+      "text": "can i talk to someone real?",
+      "intent": "Talk_To_Human",
+      "entities": []
+    },
+    {
       "text": "can i update my arriving date?",
       "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "can i view booking",
+      "intent": "Room_Overview",
+      "entities": []
+    },
+    {
+      "text": "can i view current order?",
+      "intent": "Room_Overview",
+      "entities": []
+    },
+    {
+      "text": "can i view my booking?",
+      "intent": "Room_Overview",
+      "entities": []
+    },
+    {
+      "text": "can i view my rooms",
+      "intent": "Room_Overview",
       "entities": []
     },
     {
@@ -152,6 +281,11 @@
       "entities": []
     },
     {
+      "text": "can you do something smart",
+      "intent": "What_Can_You_Do",
+      "entities": []
+    },
+    {
       "text": "can you give me a map to the hotel>?",
       "intent": "Get_Directions",
       "entities": []
@@ -159,6 +293,26 @@
     {
       "text": "can you give me a map to your location?",
       "intent": "Get_Directions",
+      "entities": []
+    },
+    {
+      "text": "can you help me book a hotel",
+      "intent": "What_Can_You_Do",
+      "entities": []
+    },
+    {
+      "text": "can you help me with a room",
+      "intent": "What_Can_You_Do",
+      "entities": []
+    },
+    {
+      "text": "can you understand me",
+      "intent": "What_Can_You_Do",
+      "entities": []
+    },
+    {
+      "text": "can you understand?",
+      "intent": "What_Can_You_Do",
       "entities": []
     },
     {
@@ -177,8 +331,28 @@
       "entities": []
     },
     {
-      "text": "cancel this booking",
-      "intent": "Cancel",
+      "text": "change checkin to april 15",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "change checkin to next week",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "change checkout",
+      "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
+      "text": "change checkout to april 22",
+      "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
+      "text": "change checkout to april 23",
+      "intent": "Update_Leaving_Date",
       "entities": []
     },
     {
@@ -192,6 +366,16 @@
       "entities": []
     },
     {
+      "text": "change my arrival date",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "change my arrival time",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
       "text": "change my arrivaldate to 25/02/2019",
       "intent": "Update_ArrivalDate",
       "entities": []
@@ -202,8 +386,48 @@
       "entities": []
     },
     {
+      "text": "change my checkin",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "change my checkout",
+      "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
+      "text": "change my checkout to april 15 instead",
+      "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
+      "text": "change my checkout to next week wednesday",
+      "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
+      "text": "change my email",
+      "intent": "Update_Email",
+      "entities": []
+    },
+    {
+      "text": "change my email address",
+      "intent": "Update_Email",
+      "entities": []
+    },
+    {
+      "text": "change my email address now if you can",
+      "intent": "Update_Email",
+      "entities": []
+    },
+    {
       "text": "change my email to anothertesting@gmail.com",
-      "intent": "Update_email",
+      "intent": "Update_Email",
+      "entities": []
+    },
+    {
+      "text": "change my email to blabla@test.com",
+      "intent": "Update_Email",
       "entities": []
     },
     {
@@ -214,6 +438,61 @@
     {
       "text": "change my leaving date to another time",
       "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
+      "text": "change people to six",
+      "intent": "Update_Number_Of_People",
+      "entities": []
+    },
+    {
+      "text": "change people to three",
+      "intent": "Update_Number_Of_People",
+      "entities": []
+    },
+    {
+      "text": "change people to two",
+      "intent": "Update_Number_Of_People",
+      "entities": []
+    },
+    {
+      "text": "change room size",
+      "intent": "Update_Number_Of_People",
+      "entities": []
+    },
+    {
+      "text": "change room size to 2",
+      "intent": "Update_Number_Of_People",
+      "entities": []
+    },
+    {
+      "text": "change room to 2",
+      "intent": "Update_Number_Of_People",
+      "entities": []
+    },
+    {
+      "text": "change room to 2 persons",
+      "intent": "Update_Number_Of_People",
+      "entities": []
+    },
+    {
+      "text": "change room to 6 people",
+      "intent": "Update_Number_Of_People",
+      "entities": []
+    },
+    {
+      "text": "change the checking out date",
+      "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
+      "text": "change the checkout time",
+      "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
+      "text": "change the number of people to seven",
+      "intent": "Update_Number_Of_People",
       "entities": []
     },
     {
@@ -237,8 +516,68 @@
       "entities": []
     },
     {
+      "text": "checking in april 15",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "checking in on april 15",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "checking in on tomorrow",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "checking out next thursday",
+      "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
+      "text": "checking out on next week thursday",
+      "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
+      "text": "checking out tomorrow",
+      "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
+      "text": "checkout is wrong",
+      "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
+      "text": "checkout next week instead",
+      "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
+      "text": "connect me to a person",
+      "intent": "Talk_To_Human",
+      "entities": []
+    },
+    {
+      "text": "could i change my arrival date to april 22 instead?",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "could i change my checkin time to april 15?",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "could i change my checking in date to april 15?",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
       "text": "could i change my email address?",
-      "intent": "Update_email",
+      "intent": "Update_Email",
       "entities": []
     },
     {
@@ -253,12 +592,12 @@
     },
     {
       "text": "could i update my email?",
-      "intent": "Update_email",
+      "intent": "Update_Email",
       "entities": []
     },
     {
       "text": "could you change my email to another one?",
-      "intent": "Update_email",
+      "intent": "Update_Email",
       "entities": []
     },
     {
@@ -282,7 +621,27 @@
       "entities": []
     },
     {
+      "text": "do you understand me",
+      "intent": "What_Can_You_Do",
+      "entities": []
+    },
+    {
+      "text": "get me a room for three",
+      "intent": "Book_A_Room",
+      "entities": []
+    },
+    {
+      "text": "get me another room",
+      "intent": "Book_A_Room",
+      "entities": []
+    },
+    {
       "text": "hello",
+      "intent": "Greeting",
+      "entities": []
+    },
+    {
+      "text": "hello i'm",
       "intent": "Greeting",
       "entities": []
     },
@@ -297,8 +656,28 @@
       "entities": []
     },
     {
+      "text": "help me book a room for three",
+      "intent": "Book_A_Room",
+      "entities": []
+    },
+    {
+      "text": "help me book another room for five",
+      "intent": "Book_A_Room",
+      "entities": []
+    },
+    {
+      "text": "help me i'm stuck",
+      "intent": "Help",
+      "entities": []
+    },
+    {
       "text": "help me navigate to your location",
       "intent": "Get_Directions",
+      "entities": []
+    },
+    {
+      "text": "help me someone real",
+      "intent": "Talk_To_Human",
       "entities": []
     },
     {
@@ -307,8 +686,33 @@
       "entities": []
     },
     {
+      "text": "hi i'm john",
+      "intent": "Greeting",
+      "entities": []
+    },
+    {
+      "text": "how can i find you",
+      "intent": "Get_Location",
+      "entities": []
+    },
+    {
       "text": "how can we find you",
       "intent": "Get_Location",
+      "entities": []
+    },
+    {
+      "text": "how do i get there",
+      "intent": "Get_Directions",
+      "entities": []
+    },
+    {
+      "text": "how do i get to you",
+      "intent": "Get_Directions",
+      "entities": []
+    },
+    {
+      "text": "how do you work",
+      "intent": "What_Can_You_Do",
       "entities": []
     },
     {
@@ -317,8 +721,98 @@
       "entities": []
     },
     {
+      "text": "how many rooms do i have",
+      "intent": "Room_Overview",
+      "entities": []
+    },
+    {
+      "text": "how smart are you",
+      "intent": "What_Can_You_Do",
+      "entities": []
+    },
+    {
+      "text": "i checkin on april 15",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "i checkin tomorrow instead",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "i do not understand",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "i do not understand what to do",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "i do not want a bot",
+      "intent": "Talk_To_Human",
+      "entities": []
+    },
+    {
+      "text": "i do not want to speak with you anymore",
+      "intent": "Talk_To_Human",
+      "entities": []
+    },
+    {
+      "text": "i do not want to talk to a bot",
+      "intent": "Talk_To_Human",
+      "entities": []
+    },
+    {
       "text": "i dont understand",
       "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "i don't understand",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "i dont understand what to do",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "i don't understand what to do",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "i dont want a bot",
+      "intent": "Talk_To_Human",
+      "entities": []
+    },
+    {
+      "text": "i don't want to talk to a bot",
+      "intent": "Talk_To_Human",
+      "entities": []
+    },
+    {
+      "text": "i don't want to talk to bot",
+      "intent": "Talk_To_Human",
+      "entities": []
+    },
+    {
+      "text": "i leave next sunday instead",
+      "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
+      "text": "i leave on april 15 instead",
+      "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
+      "text": "i made a mistake in checking out",
+      "intent": "Update_Leaving_Date",
       "entities": []
     },
     {
@@ -328,7 +822,7 @@
     },
     {
       "text": "i mistyped my email adres it is dennistest@hotmail.com instead of the other",
-      "intent": "Update_email",
+      "intent": "Update_Email",
       "entities": []
     },
     {
@@ -337,8 +831,23 @@
       "entities": []
     },
     {
+      "text": "i need a room for five",
+      "intent": "Book_A_Room",
+      "entities": []
+    },
+    {
       "text": "i need a room for five instead",
       "intent": "Update_Number_Of_People",
+      "entities": []
+    },
+    {
+      "text": "i need a room for two people and i want to arrive april 15",
+      "intent": "Book_A_Room",
+      "entities": []
+    },
+    {
+      "text": "i need a room next week friday",
+      "intent": "Book_A_Room",
       "entities": []
     },
     {
@@ -352,7 +861,32 @@
       "entities": []
     },
     {
+      "text": "i need someone real",
+      "intent": "Talk_To_Human",
+      "entities": []
+    },
+    {
+      "text": "i need to checkout on thursday",
+      "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
+      "text": "i need to speak to someone else",
+      "intent": "Talk_To_Human",
+      "entities": []
+    },
+    {
       "text": "i want a room for six instead",
+      "intent": "Update_Number_Of_People",
+      "entities": []
+    },
+    {
+      "text": "i want a room for three",
+      "intent": "Update_Number_Of_People",
+      "entities": []
+    },
+    {
+      "text": "i want a room for three instead",
       "intent": "Update_Number_Of_People",
       "entities": []
     },
@@ -362,8 +896,48 @@
       "entities": []
     },
     {
+      "text": "i want a room on april 15",
+      "intent": "Book_A_Room",
+      "entities": []
+    },
+    {
+      "text": "i want a room on sunday",
+      "intent": "Book_A_Room",
+      "entities": []
+    },
+    {
       "text": "i want a route to your location",
       "intent": "Get_Directions",
+      "entities": []
+    },
+    {
+      "text": "i want to arrive at another time",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "i want to arrive next week monday instead",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "i want to arrive on another day",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "i want to arrive on april 15",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "i want to arrive on april 15 instead",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "i want to arrive on may 22 instead",
+      "intent": "Update_ArrivalDate",
       "entities": []
     },
     {
@@ -427,13 +1001,53 @@
       "entities": []
     },
     {
+      "text": "i want to change my arrival time",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "i want to change my arrival to may 15",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
       "text": "i want to change my arrivaldate",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "i want to change my checkin to next week friday",
       "intent": "Update_ArrivalDate",
       "entities": []
     },
     {
       "text": "i want to change when i arrive",
       "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "i want to checkin on april 15 instead",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "i want to checkin on next week thursday instead",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "i want to checkout next week friday instead",
+      "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
+      "text": "i want to checkout next week thursday instead",
+      "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
+      "text": "i want to checkout on next week thursday instead",
+      "intent": "Update_Leaving_Date",
       "entities": []
     },
     {
@@ -462,6 +1076,11 @@
       "entities": []
     },
     {
+      "text": "i want to leave next week friday instead",
+      "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
       "text": "i want to leave next week instead",
       "intent": "Update_Leaving_Date",
       "entities": []
@@ -482,8 +1101,193 @@
       "entities": []
     },
     {
+      "text": "i want to set another email",
+      "intent": "Update_Email",
+      "entities": []
+    },
+    {
+      "text": "i want to speak to an agent",
+      "intent": "Talk_To_Human",
+      "entities": []
+    },
+    {
+      "text": "i want to speak to support",
+      "intent": "Talk_To_Human",
+      "entities": []
+    },
+    {
+      "text": "i want to update checkout",
+      "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
+      "text": "i want to update my arrival to april 15",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "i want to update my checkin to april 15",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "instead checkin on april 15",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "let me speak to a human",
+      "intent": "Talk_To_Human",
+      "entities": []
+    },
+    {
+      "text": "let me speak with someone real",
+      "intent": "Talk_To_Human",
+      "entities": []
+    },
+    {
+      "text": "let me talk to a human",
+      "intent": "Talk_To_Human",
+      "entities": []
+    },
+    {
+      "text": "let me talk to a real person",
+      "intent": "Talk_To_Human",
+      "entities": []
+    },
+    {
+      "text": "let me talk to someone else",
+      "intent": "Talk_To_Human",
+      "entities": []
+    },
+    {
+      "text": "let me talk to someone real",
+      "intent": "Talk_To_Human",
+      "entities": []
+    },
+    {
+      "text": "let met talk to a person",
+      "intent": "Talk_To_Human",
+      "entities": []
+    },
+    {
+      "text": "meaningless",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "my email address is wrong, could i change it?",
+      "intent": "Update_Email",
+      "entities": []
+    },
+    {
+      "text": "need a room",
+      "intent": "Book_A_Room",
+      "entities": []
+    },
+    {
+      "text": "need a room for five tomorrow",
+      "intent": "Book_A_Room",
+      "entities": []
+    },
+    {
+      "text": "need a room for six next week friday",
+      "intent": "Book_A_Room",
+      "entities": []
+    },
+    {
+      "text": "need a room for three next sunday",
+      "intent": "Book_A_Room",
+      "entities": []
+    },
+    {
+      "text": "need a room for two",
+      "intent": "Book_A_Room",
+      "entities": []
+    },
+    {
       "text": "nice to meet you",
       "intent": "Greeting",
+      "entities": []
+    },
+    {
+      "text": "no a room for six",
+      "intent": "Update_Number_Of_People",
+      "entities": []
+    },
+    {
+      "text": "no checkin is april 15",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "no checking out is wrong",
+      "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
+      "text": "no checkout is 2 june",
+      "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
+      "text": "no checkout is march 15",
+      "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
+      "text": "no checkout is wrong",
+      "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
+      "text": "no i made a mistake, i want to checkin on april 15 instead",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "no i need a room for two",
+      "intent": "Update_Number_Of_People",
+      "entities": []
+    },
+    {
+      "text": "no i want a room for two",
+      "intent": "Update_Number_Of_People",
+      "entities": []
+    },
+    {
+      "text": "no i'm leaving next week saturday",
+      "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
+      "text": "no leaving is wrong",
+      "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
+      "text": "no sorry checkin should be april 15",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "no we want a room for seven",
+      "intent": "Update_Number_Of_People",
+      "entities": []
+    },
+    {
+      "text": "no we want a room for three",
+      "intent": "Update_Number_Of_People",
+      "entities": []
+    },
+    {
+      "text": "not working help",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "nothing",
+      "intent": "None",
       "entities": []
     },
     {
@@ -492,8 +1296,113 @@
       "entities": []
     },
     {
+      "text": "please cancel",
+      "intent": "Cancel",
+      "entities": []
+    },
+    {
+      "text": "please stop",
+      "intent": "Cancel",
+      "entities": []
+    },
+    {
+      "text": "put me through to a real person",
+      "intent": "Talk_To_Human",
+      "entities": []
+    },
+    {
+      "text": "put me through to someone real",
+      "intent": "Talk_To_Human",
+      "entities": []
+    },
+    {
+      "text": "room for three instead",
+      "intent": "Update_Number_Of_People",
+      "entities": []
+    },
+    {
+      "text": "set checkin to april 15",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "set checkin to next week thursday",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "set checkin to next week wednesday",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "show booked overview",
+      "intent": "Room_Overview",
+      "entities": []
+    },
+    {
+      "text": "show booked rooms",
+      "intent": "Room_Overview",
+      "entities": []
+    },
+    {
+      "text": "show booking",
+      "intent": "Room_Overview",
+      "entities": []
+    },
+    {
+      "text": "show currently booked",
+      "intent": "Room_Overview",
+      "entities": []
+    },
+    {
+      "text": "show me booked rooms",
+      "intent": "Room_Overview",
+      "entities": []
+    },
+    {
+      "text": "show my booking",
+      "intent": "Room_Overview",
+      "entities": []
+    },
+    {
+      "text": "show my order",
+      "intent": "Room_Overview",
+      "entities": []
+    },
+    {
+      "text": "show order",
+      "intent": "Room_Overview",
+      "entities": []
+    },
+    {
+      "text": "show overview rooms",
+      "intent": "Room_Overview",
+      "entities": []
+    },
+    {
+      "text": "show rooms",
+      "intent": "Room_Overview",
+      "entities": []
+    },
+    {
+      "text": "show rooms overview",
+      "intent": "Room_Overview",
+      "entities": []
+    },
+    {
+      "text": "sorry change email",
+      "intent": "Update_Email",
+      "entities": []
+    },
+    {
+      "text": "sorry checkout is 12 january",
+      "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
       "text": "sorry i made a mistake my email is blabla@test.com",
-      "intent": "Update_email",
+      "intent": "Update_Email",
       "entities": []
     },
     {
@@ -512,6 +1421,21 @@
       "entities": []
     },
     {
+      "text": "stop now",
+      "intent": "Cancel",
+      "entities": []
+    },
+    {
+      "text": "talk to a person",
+      "intent": "Talk_To_Human",
+      "entities": []
+    },
+    {
+      "text": "the checkin is april 15",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
       "text": "this is nothing special",
       "intent": "None",
       "entities": []
@@ -522,13 +1446,53 @@
       "entities": []
     },
     {
+      "text": "update checkin to next week friday",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "update checkin to next week instead",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "update checking in to tomorrow",
+      "intent": "Update_ArrivalDate",
+      "entities": []
+    },
+    {
+      "text": "update checking out to next sunday",
+      "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
+      "text": "update checkout",
+      "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
       "text": "update my arriving date",
       "intent": "Update_ArrivalDate",
       "entities": []
     },
     {
+      "text": "update my email",
+      "intent": "Update_Email",
+      "entities": []
+    },
+    {
+      "text": "update my email address",
+      "intent": "Update_Email",
+      "entities": []
+    },
+    {
+      "text": "update my email address please",
+      "intent": "Update_Email",
+      "entities": []
+    },
+    {
       "text": "update my email to bla@test.com",
-      "intent": "Update_email",
+      "intent": "Update_Email",
       "entities": []
     },
     {
@@ -539,6 +1503,46 @@
     {
       "text": "update my leaving date to the 4th please",
       "intent": "Update_Leaving_Date",
+      "entities": []
+    },
+    {
+      "text": "update number of people",
+      "intent": "Update_Number_Of_People",
+      "entities": []
+    },
+    {
+      "text": "update number of people to two",
+      "intent": "Update_Number_Of_People",
+      "entities": []
+    },
+    {
+      "text": "update room size to 4",
+      "intent": "Update_Number_Of_People",
+      "entities": []
+    },
+    {
+      "text": "update room size to 6",
+      "intent": "Update_Number_Of_People",
+      "entities": []
+    },
+    {
+      "text": "update room size to five people",
+      "intent": "Update_Number_Of_People",
+      "entities": []
+    },
+    {
+      "text": "update room size to four",
+      "intent": "Update_Number_Of_People",
+      "entities": []
+    },
+    {
+      "text": "update room size to two",
+      "intent": "Update_Number_Of_People",
+      "entities": []
+    },
+    {
+      "text": "update room to three",
+      "intent": "Update_Number_Of_People",
       "entities": []
     },
     {
@@ -567,13 +1571,63 @@
       "entities": []
     },
     {
-      "text": "what can i ask you",
-      "intent": "Help",
+      "text": "view booking",
+      "intent": "Room_Overview",
+      "entities": []
+    },
+    {
+      "text": "view booking order",
+      "intent": "Room_Overview",
+      "entities": []
+    },
+    {
+      "text": "view current order",
+      "intent": "Room_Overview",
+      "entities": []
+    },
+    {
+      "text": "view order",
+      "intent": "Room_Overview",
+      "entities": []
+    },
+    {
+      "text": "we are arriving with seven insteda",
+      "intent": "Update_Number_Of_People",
+      "entities": []
+    },
+    {
+      "text": "what can i do",
+      "intent": "What_Can_You_Do",
       "entities": []
     },
     {
       "text": "what can you do",
-      "intent": "Help",
+      "intent": "What_Can_You_Do",
+      "entities": []
+    },
+    {
+      "text": "what can you do for me",
+      "intent": "What_Can_You_Do",
+      "entities": []
+    },
+    {
+      "text": "what can you understand",
+      "intent": "What_Can_You_Do",
+      "entities": []
+    },
+    {
+      "text": "what could you do for me",
+      "intent": "What_Can_You_Do",
+      "entities": []
+    },
+    {
+      "text": "what did i book",
+      "intent": "Room_Overview",
+      "entities": []
+    },
+    {
+      "text": "what do you do",
+      "intent": "What_Can_You_Do",
       "entities": []
     },
     {
@@ -592,6 +1646,16 @@
       "entities": []
     },
     {
+      "text": "what is the point of this",
+      "intent": "What_Can_You_Do",
+      "entities": []
+    },
+    {
+      "text": "what is the weather like",
+      "intent": "None",
+      "entities": []
+    },
+    {
       "text": "what is your address?",
       "intent": "Get_Location",
       "entities": []
@@ -599,6 +1663,26 @@
     {
       "text": "what is your adress",
       "intent": "Get_Location",
+      "entities": []
+    },
+    {
+      "text": "what is your point",
+      "intent": "What_Can_You_Do",
+      "entities": []
+    },
+    {
+      "text": "what rooms have i booked",
+      "intent": "Room_Overview",
+      "entities": []
+    },
+    {
+      "text": "what rooms have i booked before?",
+      "intent": "Room_Overview",
+      "entities": []
+    },
+    {
+      "text": "what rooms have i got",
+      "intent": "Room_Overview",
       "entities": []
     },
     {
@@ -614,6 +1698,16 @@
     {
       "text": "whats your number?",
       "intent": "Call_Us",
+      "entities": []
+    },
+    {
+      "text": "whats your purpose",
+      "intent": "What_Can_You_Do",
+      "entities": []
+    },
+    {
+      "text": "where are you",
+      "intent": "Get_Location",
       "entities": []
     },
     {
@@ -647,6 +1741,11 @@
       "entities": []
     },
     {
+      "text": "where is it",
+      "intent": "Get_Location",
+      "entities": []
+    },
+    {
       "text": "where is it?",
       "intent": "Get_Location",
       "entities": []
@@ -657,8 +1756,23 @@
       "entities": []
     },
     {
+      "text": "where is the hotel",
+      "intent": "Get_Location",
+      "entities": []
+    },
+    {
       "text": "where is the hotel?",
       "intent": "Get_Location",
+      "entities": []
+    },
+    {
+      "text": "where is your location",
+      "intent": "Get_Location",
+      "entities": []
+    },
+    {
+      "text": "which rooms have i booked",
+      "intent": "Room_Overview",
       "entities": []
     }
   ],

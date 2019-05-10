@@ -57,7 +57,6 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms
                     }
                     case HotelBotLuis.Intent.Update_ArrivalDate:
                     case HotelBotLuis.Intent.Update_Leaving_Date:
-                    case HotelBotLuis.Intent.Update_email:
                     case HotelBotLuis.Intent.Update_Number_Of_People:
                     {
 
