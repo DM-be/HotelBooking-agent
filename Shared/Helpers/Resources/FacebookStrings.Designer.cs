@@ -106,7 +106,7 @@ namespace HotelBot.Shared.Helpers.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Navigate.
+        ///   Looks up a localized string similar to Follow route.
         /// </summary>
         public static string HEROCARD_BUTTON_DIRECTION_TITLE {
             get {

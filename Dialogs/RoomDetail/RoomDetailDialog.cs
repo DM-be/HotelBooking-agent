@@ -42,7 +42,6 @@ namespace HotelBot.Dialogs.RoomDetail
             AddDialog(new RoomDetailChoicesPrompt(services, accessors));
             AddDialog(new ChoicePrompt(nameof(ChoicePrompt)));
 
-
         }
 
         public async Task<DialogTurnResult> FetchSelectedRoomDetail(WaterfallStepContext sc, CancellationToken cancellationToken)
@@ -54,9 +53,7 @@ namespace HotelBot.Dialogs.RoomDetail
             state.RoomDetailDto = new RoomDetailDto();
             state.RoomDetailDto = await requestHandler.FetchRoomDetail(dialogOptions.RoomAction.RoomId);
             bool addRatesToChoices;
-            //todo: refactor and remove rerouted check
-            //check on rerouted --> avoid replace dialog sending another get request 
-            if (dialogOptions.RoomAction.Action == "info")
+            if (dialogOptions.RoomAction.Action == RoomAction.Actions.Info)
             {
                 await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendDescription, state.RoomDetailDto);
                 await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendImages, state.RoomDetailDto);
@@ -65,7 +62,6 @@ namespace HotelBot.Dialogs.RoomDetail
                 return await sc.NextAsync(addRatesToChoices);
             }
 
-            // user wants to book directly, send rates.
             addRatesToChoices = false;
             await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendRates, state.RoomDetailDto);
             return await sc.NextAsync(addRatesToChoices);

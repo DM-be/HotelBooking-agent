@@ -23,20 +23,9 @@ namespace HotelBot.Dialogs.Shared
             }
 
             // set to waiting when waiting for a response
-
             if (status == InterruptionStatus.Waiting) return EndOfTurn;
 
-            if (status == InterruptionStatus.Route)
-            {
-
-                var dialogResult = dc.Context.TurnState.Get<DialogResult>("dialogResult");
-
-                return await dc.EndDialogAsync(dialogResult);
-                // return new DialogTurnResult(DialogTurnStatus.Waiting);
-
-            }
-
-            // status is no action when sending "no"
+           
             return await base.OnContinueDialogAsync(dc, cancellationToken);
         }
 

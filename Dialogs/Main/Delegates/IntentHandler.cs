@@ -29,7 +29,7 @@ namespace HotelBot.Dialogs.Main.Delegates
                 HotelBotLuis.Intent.Get_Directions, (dc, responder, facebookHelper, accessors, luisResult) => SendDirections(dc, facebookHelper)
             },
             {
-                HotelBotLuis.Intent.Get_Location, (dc, responder, facebookHelper, accessors, luisResult) => SendLocation(dc, facebookHelper)
+                HotelBotLuis.Intent.Get_Location, (dc, responder, facebookHelper, accessors, luisResult) => SendLocation(dc)
             },
             {
                 HotelBotLuis.Intent.Call_Us,
@@ -44,21 +44,14 @@ namespace HotelBot.Dialogs.Main.Delegates
 
         private static async Task BeginFetchAvailableRoomsDialog(DialogContext dc, StateBotAccessors accessors, HotelBotLuis luisResult)
         {
-            var fetchAvailableRoomsState = await accessors.FetchAvailableRoomsStateAccessor.GetAsync(dc.Context, () => new FetchAvailableRoomsState());
-
-            // set initial book a room state with captured entities in the book a room intent  
+            var fetchAvailableRoomsState = await accessors.FetchAvailableRoomsStateAccessor.GetAsync(dc.Context, () => new FetchAvailableRoomsState()); 
             SetInitialFetchAvailableRoomsState(fetchAvailableRoomsState, luisResult);
-
             await dc.BeginDialogAsync(nameof(FetchAvailableRoomsDialog));
         }
 
         private static async Task CancelDialogs(DialogContext dc, TemplateManager responder)
         {
-
-            // send cancelled response
             await responder.ReplyWith(dc.Context, MainResponses.ResponseIds.Cancelled);
-
-            // Cancel any active dialogs on the stack
             await dc.CancelAllDialogsAsync();
         }
 
@@ -67,7 +60,7 @@ namespace HotelBot.Dialogs.Main.Delegates
             await facebookHelper.SendLocationQuickReply(dc.Context);
         }
 
-        private static async Task SendLocation(DialogContext dc, FacebookHelper facebookHelper)
+        private static async Task SendLocation(DialogContext dc)
         {
             await dc.BeginDialogAsync(nameof(LocationPromptDialog));
         }

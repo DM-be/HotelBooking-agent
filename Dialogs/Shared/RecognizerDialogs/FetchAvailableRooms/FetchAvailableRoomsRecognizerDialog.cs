@@ -35,10 +35,9 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms
             var text = dc.Context.Activity.Text;
             if (FetchAvailableRoomsDialog.FetchAvailableRoomsChoices.Choices.Contains(text)) return InterruptionStatus.NoAction;
 
-            var skipRecognize = dc.ActiveDialog.Id == nameof(FetchAvailableRoomsIntroductionPrompt); // allow intent recognition on yes/no? --> choiceprompt
+            var skipRecognize = dc.ActiveDialog.Id == nameof(FetchAvailableRoomsIntroductionPrompt); 
             if (skipRecognize) return InterruptionStatus.NoAction;
 
-            // check luis intent
             _services.LuisServices.TryGetValue("hotelbot", out var luisService);
             if (luisService == null) throw new Exception("The specified LUIS Model could not be found in your Bot Services configuration.");
             var luisResult = await luisService.RecognizeAsync<HotelBotLuis>(dc.Context, cancellationToken);
@@ -54,7 +53,6 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms
                     }
                     case HotelBotLuis.Intent.Help:
                     {
-                        // todo: provide contextual help
                         return await OnHelp(dc);
                     }
                     case HotelBotLuis.Intent.Update_ArrivalDate:
@@ -68,8 +66,6 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms
                             LuisResult = luisResult,
                             SkipConfirmation = dc.IsUpdateStateChoicePrompt()
                         };
-
-
                         return await OnUpdate(dc, dialogOptions);
                     }
                 }

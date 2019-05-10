@@ -189,10 +189,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                                     RoomId = rooms[i].id,
                                     Action = RoomAction.Actions.Book
                                 }),
-                            // todo: button formatting.....
                             Title = "\t Book \t"
-
-
                         },
 
                         new CardAction

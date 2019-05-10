@@ -76,7 +76,7 @@ namespace HotelBot.Dialogs.Prompts.LocationPrompt
             };
 
             var reply = context.Activity.CreateReply();
-            reply.Text = FacebookStrings.HEROCARD_REPLY_TEXT_DIRECTION;
+            reply.Text = "I have found you a route.";
             reply.Attachments = new List<Attachment>
             {
                 heroCard.ToAttachment()
