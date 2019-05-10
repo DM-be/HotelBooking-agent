@@ -46,6 +46,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             AddDialog(new UpdateStateChoicePrompt(accessors));
             AddDialog(new ContinueOrUpdatePrompt(accessors));
             AddDialog(new FetchAvailableRoomsIntroductionPrompt());
+            AddDialog(new RoomOverviewDialog(services, accessors));
         }
 
 

@@ -5,6 +5,7 @@ using HotelBot.Dialogs.Cancel;
 using HotelBot.Dialogs.FetchAvailableRooms;
 using HotelBot.Dialogs.Prompts.FetchAvailableRoomsIntroduction;
 using HotelBot.Dialogs.Prompts.UpdateState;
+using HotelBot.Dialogs.RoomOverview;
 using HotelBot.Extensions;
 using HotelBot.Models.LUIS;
 using HotelBot.Models.Wrappers;
@@ -54,6 +55,10 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms
                     case HotelBotLuis.Intent.Help:
                     {
                         return await OnHelp(dc);
+                    }
+                    case HotelBotLuis.Intent.Room_Overview:
+                    {
+                        return await OnRoute(dc);
                     }
                     case HotelBotLuis.Intent.Update_ArrivalDate:
                     case HotelBotLuis.Intent.Update_Leaving_Date:
@@ -108,6 +113,15 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms
             }
 
             return InterruptionStatus.NoAction;
+        }
+
+        protected virtual async Task<InterruptionStatus> OnRoute(DialogContext dc)
+        {
+
+            await dc.CancelAllDialogsAsync(); // cancel stack --> fetch rooms skips based on state either way
+            await dc.BeginDialogAsync(nameof(RoomOverviewDialog));
+            return InterruptionStatus.Waiting;
+
         }
     }
 

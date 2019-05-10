@@ -50,8 +50,9 @@ namespace HotelBot.Dialogs.RoomOverview
 
             var dialogOptions = sc.Options as DialogOptions;
             var state = await _accessors.RoomOverviewStateAccessor.GetAsync(sc.Context, () => new RoomOverviewState());
+            
 
-            if (dialogOptions.RoomAction != null)
+            if (dialogOptions != null && dialogOptions.RoomAction != null)
             {
                 if (dialogOptions.RoomAction.Action != null && dialogOptions.RoomAction.Action == RoomAction.Actions.SelectRoomWithRate)
                     await AddRoom(state, dialogOptions, sc);
