@@ -1,0 +1,1310 @@
+{
+  "luis_schema_version": "3.1.0",
+  "versionId": "Dispatch",
+  "name": "HotelDispatch",
+  "desc": "Dispatch model for HotelDispatch",
+  "culture": "en-us",
+  "intents": [
+    {
+      "name": "l_hotelbot"
+    },
+    {
+      "name": "q_2129612763787673_en"
+    },
+    {
+      "name": "q_2129612763787673_nl"
+    }
+  ],
+  "entities": [],
+  "composites": [],
+  "closedLists": [],
+  "patternAnyEntities": [],
+  "regex_entities": [],
+  "prebuiltEntities": [],
+  "model_features": [],
+  "regex_features": [],
+  "patterns": [],
+  "utterances": [
+    {
+      "text": "i want to leave next week friday instead",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "call us",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "set checkin to april 15",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "could you give me a route to your location",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "update my leaving date",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i checkin on april 15",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "what's your address",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "change room size",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i need a room for five",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want a room for three",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "how late can i arrive tomorrow",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "change people to two",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "change my arrival time",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "could i change my checking in date to april 15",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "change room to 2 persons",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want to cancel",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "change the checking out date",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "no we want a room for seven",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "cancel",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "change my arrivaldate to next week",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "the checkin is april 15",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i mistyped my email adres it is dennistest@hotmail.com instead of the other",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i need a map to your hotel",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "could you give me a route to where you are",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i need directions to your hotel",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want to call you",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want to change when i arrive",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "update room size to five people",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "update the arrival date please",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want to book a room for next week",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "actually i mean six people",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "change my email to blabla@test.com",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "can we call the hotel",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "room for three instead",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want to book a room for three tomorrow",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "change my email address",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "can you give me a map to the hotel>",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "can we call",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "change the number of people to seven",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "checkout is wrong",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want to book a room tomorrow",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "can i get your adress",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want to book a room for myself and my partner next week.",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "checking out on next week thursday",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "could you help me move to your location",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "help me book another room for five",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i made a mistake, can i change my arrivaldate",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "could i leave next week instead",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "need a room for two",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i leave on april 15 instead",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want to change my checkin to next week friday",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "nice to meet you",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "checkout next week instead",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "no sorry checkin should be april 15",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "can i change my checkin to next week thursday",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want to change my arrival time",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "are rooms available on april 12",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "can i book for tonight",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "can you give me a map to your location",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want to arrive tomorrow instead",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "no i want a room for two",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "update room size to two",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "can i update my arriving date",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "a random sentence",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "update checking out to next sunday",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "sorry change email",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "can i change my checkin",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "checking in on tomorrow",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "where in the city can i visit you",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want to leave next week instead",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want a room for three instead",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want to checkin on april 15 instead",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "set checkin to next week thursday",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "change the room for three please",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "book me a room for three",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i made a mistake in checking out",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "whats your number",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want to come next week instead",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want a room on sunday",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "change my arrivaldate to 25/02/2019",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "update room to three",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "can i call the hotel",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want to leave next week",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i leave next sunday instead",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "could i change my arrival date to april 22 instead",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "change room to 6 people",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "need a room for five tomorrow",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "change my arrival date",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want to arrive on april 15 instead",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "no checking out is wrong",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "change room to 2",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "change checkout to april 22",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "change the number of people to two",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "need a room",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "where is the bed and breakfast",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "what can you do",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "no leaving is wrong",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "can i change when i leave",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "can i change my checkin to tomorrow",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "change when i arrive to the first of next month",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want to do something else",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "hi",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "change my checkin",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want to arrive next week monday instead",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "change checkin to next week",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "where is it",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "can i get a room for tomorrow",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "could i change my email address",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "update my email",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "where can i find the hotel",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "nothing meaningfull said",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "can i change my leaving date",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "can i book another room for myself next week",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "change my checkout to april 15 instead",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want to arrive on another day",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i need a room for two people and i want to arrive april 15",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want to book a room for two persons tonight",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "update my email to bla@test.com",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "checking in on april 15",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i need help",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want a room on april 15",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want a room for tomorow",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want a route to your location",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want to checkout on next week thursday instead",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "cancel this",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "change leaving date to next friday",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "could you change my email to another one",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "update my email address please",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i need a room for five instead",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "what is the location",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i need to checkout on thursday",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want to get a room for next week",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want to call a person",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want to leave on 23/04.2019 instead",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i checkin tomorrow instead",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "help me",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "please cancel",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "meaningless",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "could i update my email",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "where is the hotel",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "change my checkout",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "actually i want to bring six people",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "update room size to four",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want to move to your location",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want to checkout next week thursday instead",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want to book a room in january for myself and my partner",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "how can we find you",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want to checkout next week friday instead",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "no a room for six",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "update my arriving date",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want to call reception",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "no checkin is april 15",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "stop",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want to update my checkin to april 15",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "change the number of people to six",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want to update checkout",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "need a room for three next sunday",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "change my leaving date to another time",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want to checkin on next week thursday instead",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "actually its seven instead",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want to call the hotel",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want to change my arrivaldate",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "no checkout is 2 june",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "no we want a room for three",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "update my email address",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "get me another room",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "cancel this booking",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "what is the hotel number?>",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "where in the city are you",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "can i change when i will arrive",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "please stop",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "change the checkout time",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "can i call you",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "stop now",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "can i change arrival date",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want to leave tomorrow",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "what can i ask you",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "update checkout",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i dont understand",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "this is nothing special",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "change people to three",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "no i'm leaving next week saturday",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "what is your adress",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "update checkin to next week friday",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "change people to six",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want to arrive at another time",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "sorry checkout is 12 january",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "change my email",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "help me navigate to your location",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "could i get a room for next week",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "change my email address now if you can",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "update checkin to next week instead",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i need a room next week friday",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "checking out tomorrow",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want to arrive on april 15",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want a room for six instead",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i dont understand what to do",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "help",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "where are you located",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "stop doing this",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want to get a room for myself and my partner for tomorrow",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "no i need a room for two",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "need a room for six next week friday",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "get me a room for three",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "call you",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "no checkout is march 15",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "cancel now",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "help me book a room for three",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "update number of people",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "update the room to two people please",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "update checking in to tomorrow",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want to change my arrival to may 15",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "checking out next thursday",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "change checkout",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "can you book me a room",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "hello",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want to arrive on may 22 instead",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "my email address is wrong, could i change it",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "change my email to anothertesting@gmail.com",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "update when i leave to 26 march",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "could i change my checkin time to april 15",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "what is the weather like",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "checking in april 15",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "no i made a mistake, i want to checkin on april 15 instead",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "no checkout is wrong",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "nothing",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "update room size to 4",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "update my leaving date to the 4th please",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "update when i leave to another time",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want to update my arrival to april 15",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "what is your address",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "change my leaving date to another date",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "where can i find your number",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "change leaving date to next week",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "update arrival please",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "set checkin to next week wednesday",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "sorry i made a mistake my email is blabla@test.com",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "change checkin to april 15",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "can i get a room for five on march 16",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "change my checkout to next week wednesday",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "i want to set another email",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "change room size to 2",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "sorry we are arriving with six people",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "instead checkin on april 15",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "we are arriving with seven insteda",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "update the number of people to ten",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "update number of people to two",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "could you give me a route to your hotel",
+      "intent": "l_hotelbot",
+      "entities": []
+    },
+    {
+      "text": "are dogs allowed",
+      "intent": "q_2129612763787673_en",
+      "entities": []
+    },
+    {
+      "text": "can i take my dog",
+      "intent": "q_2129612763787673_en",
+      "entities": []
+    },
+    {
+      "text": "zijn honden toegelaten op de kamer",
+      "intent": "q_2129612763787673_nl",
+      "entities": []
+    },
+    {
+      "text": "mag ik mijn hond meenemen",
+      "intent": "q_2129612763787673_nl",
+      "entities": []
+    },
+    {
+      "text": "zijn honden toegelaten",
+      "intent": "q_2129612763787673_nl",
+      "entities": []
+    },
+    {
+      "text": "is mijn hond toegelaten in het hotel",
+      "intent": "q_2129612763787673_nl",
+      "entities": []
+    },
+    {
+      "text": "mogen we onze hond meenemen",
+      "intent": "q_2129612763787673_nl",
+      "entities": []
+    },
+    {
+      "text": "we hebben twee honden, is dat een probleem",
+      "intent": "q_2129612763787673_nl",
+      "entities": []
+    }
+  ],
+  "settings": []
+}
