@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using HotelBot.Dialogs.FetchAvailableRooms;
 using HotelBot.Dialogs.Prompts.LocationPrompt;
 using HotelBot.Dialogs.Prompts.UpdateState;
+using HotelBot.Dialogs.RoomOverview;
 using HotelBot.Extensions;
 using HotelBot.Models.LUIS;
 using HotelBot.Shared.Helpers;
@@ -32,6 +33,9 @@ namespace HotelBot.Dialogs.Main.Delegates
                 HotelBotLuis.Intent.Get_Location, (dc, responder, facebookHelper, accessors, luisResult) => SendLocation(dc)
             },
             {
+                HotelBotLuis.Intent.Room_Overview, (dc, responder, facebookHelper, accessors, luisResult) => BeginRoomOverviewDialog(dc)
+            },
+            {
                 HotelBotLuis.Intent.Call_Us,
                 (dc, responder, facebookHelper, accessors, luisResult) => SendCallCardAndQuickRepliesBasedOnState(dc, responder, accessors)
             },
@@ -44,9 +48,15 @@ namespace HotelBot.Dialogs.Main.Delegates
 
         private static async Task BeginFetchAvailableRoomsDialog(DialogContext dc, StateBotAccessors accessors, HotelBotLuis luisResult)
         {
-            var fetchAvailableRoomsState = await accessors.FetchAvailableRoomsStateAccessor.GetAsync(dc.Context, () => new FetchAvailableRoomsState()); 
+            var fetchAvailableRoomsState = await accessors.FetchAvailableRoomsStateAccessor.GetAsync(dc.Context, () => new FetchAvailableRoomsState());
             SetInitialFetchAvailableRoomsState(fetchAvailableRoomsState, luisResult);
             await dc.BeginDialogAsync(nameof(FetchAvailableRoomsDialog));
+        }
+
+        private static async Task BeginRoomOverviewDialog(DialogContext dc)
+        {
+
+            await dc.BeginDialogAsync(nameof(RoomOverviewDialog));
         }
 
         private static async Task CancelDialogs(DialogContext dc, TemplateManager responder)

@@ -49,6 +49,21 @@ namespace HotelBot.Dialogs.Main
                             MainStrings.HELP,
                             InputHints.AcceptingInput)
                 },
+      
+                {
+                    ResponseIds.GreetingWithName, (context, data) =>
+                        MessageFactory.Text(
+                            string.Format(MainStrings.GREETING_WITH_NAME, data),
+                            string.Format(MainStrings.GREETING_WITH_NAME, data),
+                            InputHints.IgnoringInput)
+                },
+                {
+                    ResponseIds.GreetingPromptForAction, (context, data) =>
+                        MessageFactory.Text(
+                            MainStrings.GREETING_PROMPT_FOR_ACTION,
+                            MainStrings.GREETING_PROMPT_FOR_ACTION,
+                            InputHints.IgnoringInput)
+                },
                 {
                     ResponseIds.ConfirmedPaymentQuickReplies, (context, data) =>
                         SendConfirmedPaymentQuickReplies(context, data)
@@ -238,6 +253,10 @@ namespace HotelBot.Dialogs.Main
             public const string ConfirmedPaymentQuickReplies = "confirmedPaymentQuickReplies";
             public const string UnconfirmedPaymentQuickReplies = "unconfirmedPaymentQuickReplies";
             public const string EmptyRoomOverviewStateQuickReplies = "emptyRoomOverviewStateQuickReplies";
+
+            // intro
+            public const string GreetingWithName = "greetingWithName";
+            public const string GreetingPromptForAction = "greetingPromptForAction";
         }
     }
 

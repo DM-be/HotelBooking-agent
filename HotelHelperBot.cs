@@ -52,7 +52,7 @@ namespace HotelBot
         /// </summary>
         /// <param name="turnContext">Bot Turn Context.</param>
         /// <param name="cancellationToken">Task CancellationToken.</param>
-        /// <returns>A <see cref="Task" /> representing the asynchronous operation.</returns>
+        /// <returns>A <see cref="Task" /> representing the asynchronous operation.</returns
         public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken)
         {
             if (turnContext.Activity == null) throw new ArgumentNullException(nameof(turnContext));

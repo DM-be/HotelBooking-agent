@@ -132,10 +132,19 @@
   <data name="GREETING" xml:space="preserve">
     <value>Hi there!</value>
   </data>
+  <data name="GREETING_MORE" xml:space="preserve">
+    <value>If you need anything else, just ask!</value>
+  </data>
+  <data name="GREETING_PROMPT_FOR_ACTION" xml:space="preserve">
+    <value>Looking for a room to stay in? I can help you with that. </value>
+  </data>
   <data name="GREETING_WITH_NAME" xml:space="preserve">
-    <value>Hey, {0}!</value>
+    <value>Hi  {0}, I'm the Starhotels chatbot! </value>
   </data>
   <data name="HELP" xml:space="preserve">
     <value>I can help you book a room or answer questions.</value>
+  </data>
+  <data name="INTRODUCTION" xml:space="preserve">
+    <value>Welcome to our chatbot</value>
   </data>
 </root>

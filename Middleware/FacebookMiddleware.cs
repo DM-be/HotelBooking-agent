@@ -65,13 +65,7 @@ namespace HotelBot.Middleware
         //TODO: update getting started with help messages etc etc 
         private async void OnFacebookPostBack(FacebookPostback postBack, ITurnContext context)
         {
-            if (postBack.Payload.Equals(FacebookPostback.GetStartedPostback))
-            {
-                context.Activity.Text = "";
-                await facebookHelper.SendWelcomeMessage(context);
-                await facebookHelper.SendFunctionalityMessage(context);
-                await facebookHelper.SendGettingStartedQuickReplies(context);
-            }
+            if (postBack.Payload.Equals(FacebookPostback.GetStartedPostback)) context.Activity.Text = "";
 
             // implement other postback logic before calling next
         }
@@ -85,7 +79,7 @@ namespace HotelBot.Middleware
             }
             else if (quickReply.Payload.Equals(FacebookQuickReply.EmailQuickReplyPayload))
             {
-              
+
             }
             else if (quickReply.Payload.Equals(FacebookQuickReply.CallUsReplyPayload))
             {

@@ -14,6 +14,7 @@ using HotelBot.Models.LUIS;
 using HotelBot.Services;
 using HotelBot.Shared.Helpers;
 using HotelBot.StateAccessors;
+using HotelBot.StateProperties;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 
@@ -77,6 +78,13 @@ namespace HotelBot.Dialogs.Main
             }
         }
 
+        protected override async Task OnStartAsync(DialogContext innerDc, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var userProfile = await _accessors.UserProfileAccessor.GetAsync(innerDc.Context, () => new UserProfile());
+            
+            await _responder.ReplyWith(innerDc.Context, MainResponses.ResponseIds.GreetingWithName, userProfile.FacebookProfileData.First_Name);
+            await _responder.ReplyWith(innerDc.Context, MainResponses.ResponseIds.GreetingPromptForAction);
+        }
 
         protected override async Task CompleteAsync(DialogContext dc, dynamic Result, CancellationToken cancellationToken = default(CancellationToken))
         {

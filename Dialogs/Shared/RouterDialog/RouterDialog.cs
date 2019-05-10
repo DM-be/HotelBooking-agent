@@ -32,12 +32,13 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
             var activity = innerDc.Context.Activity;
             DialogTurnResult result = null;
 
-            
+
             if (activity.IsGetStartedPostBack() | activity.IsStartActivity())
             {
                 await OnStartAsync(innerDc);
-                result = new DialogTurnResult(DialogTurnStatus.Waiting);
-                
+                await CompleteAsync(innerDc, null, cancellationToken); 
+                result = new DialogTurnResult(DialogTurnStatus.Waiting); 
+
             }
 
 
