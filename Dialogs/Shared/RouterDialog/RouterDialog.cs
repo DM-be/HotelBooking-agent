@@ -30,16 +30,22 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
             CancellationToken cancellationToken = default(CancellationToken))
         {
             var activity = innerDc.Context.Activity;
+            DialogTurnResult result = null;
 
-            // if recieved fb attachment
+            
+            if (activity.IsGetStartedPostBack() | activity.IsStartActivity())
+            {
+                await OnStartAsync(innerDc);
+                result = new DialogTurnResult(DialogTurnStatus.Waiting);
+                
+            }
 
-            if (activity.IsGetStartedPostBack() | activity.IsStartActivity()) await OnStartAsync(innerDc);
 
             switch (activity.Type)
             {
                 case ActivityTypes.Message:
                 {
-                    DialogTurnResult result = null;
+
                     if (activity.Value != null && !activity.IsGetStartedPostBack())
                     {
 
@@ -73,7 +79,7 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
                         // message and value is null --> recieved an attachment. 
                         var channelData = activity.ChannelData;
                         var facebookPayload = (channelData as JObject)?.ToObject<FacebookPayload>();
-                        if (facebookPayload != null)
+                        if (facebookPayload != null && facebookPayload.Message != null && facebookPayload.Message.Attachments != null)
                         {
                             // only one attachment supported: location
                             await innerDc.CancelAllDialogsAsync();
