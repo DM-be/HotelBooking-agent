@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.StateAccessors;
 using HotelBot.StateProperties;
@@ -13,8 +10,6 @@ namespace HotelBot.Middleware
     public class SetConversationDataMiddleware: IMiddleware
     {
         private readonly StateBotAccessors _accessors;
-
-        // todo: check if this is still needed? Facebookpageid should be available on every turn.
         public SetConversationDataMiddleware(StateBotAccessors accessors)
         {
             _accessors = accessors;

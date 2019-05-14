@@ -67,24 +67,24 @@ namespace HotelBot.Middleware
         //todo: is updating activity text manually needed?  
         private void OnFacebookQuickReply(FacebookQuickReply quickReply, ITurnContext context)
         {
-            if (quickReply.Payload.Equals(FacebookQuickReply.LocationQuickReplyPayload))
+            if (quickReply.Payload.Equals(FacebookQuickReply.PayLoads.Location))
             {
                 context.Activity.Text = MainStrings.CONTEXT_TEXT_DIRECTIONS;
             }
-            else if (quickReply.Payload.Equals(FacebookQuickReply.EmailQuickReplyPayload))
+            else if (quickReply.Payload.Equals(FacebookQuickReply.PayLoads.Email))
             {
 
             }
-            else if (quickReply.Payload.Equals(FacebookQuickReply.CallUsReplyPayload))
+            else if (quickReply.Payload.Equals(FacebookQuickReply.PayLoads.Call))
             {
                 context.Activity.Text = MainStrings.CONTEXT_TEXT_CALL_US;
             }
 
-            else if (quickReply.Payload.Equals(FacebookQuickReply.BookARoomPayload))
+            else if (quickReply.Payload.Equals(FacebookQuickReply.PayLoads.Book))
             {
                 context.Activity.Text = MainStrings.CONTEXT_TEXT_BOOK_A_ROOM;
             }
-            else if (quickReply.Payload.Equals(FacebookQuickReply.DirectionsPayload))
+            else if (quickReply.Payload.Equals(FacebookQuickReply.PayLoads.Directions))
             {
                 context.Activity.Text = MainStrings.CONTEXT_TEXT_DIRECTIONS;
             }

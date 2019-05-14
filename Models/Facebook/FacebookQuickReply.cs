@@ -8,16 +8,9 @@ namespace HotelBot.Models.Facebook
     /// <summary>
     /// A Facebook quick reply.
     /// </summary>
-    /// <remarks>See <see cref="https://developers.facebook.com/docs/messenger-platform/send-messages/quick-replies/"> Quick Replies Facebook Documentation</see> for more information on quick replies.</remarks>
+
     public class FacebookQuickReply
     {
-
-        public const string LocationQuickReplyPayload = "location";
-        public const string EmailQuickReplyPayload = "user_email";
-        public const string PhoneNumberQuickReplyPayload = "user_phone_number";
-        public const string CallUsReplyPayload = "call";
-        public const string BookARoomPayload = "book";
-        public const string DirectionsPayload = "directions";
 
         [JsonProperty("payload")]
         public string Payload { get; set; }
@@ -30,5 +23,18 @@ namespace HotelBot.Models.Facebook
 
         [JsonProperty("content_type")]
         public string Content_Type { get; set; }
+
+        public class ContentTypes {
+            public const string Text = "text";
+        }
+
+        public class PayLoads {
+            public const string Location = "location";
+            public const string Email = "user_email";
+            public const string PhoneNumber = "user_phone_number";
+            public const string Call = "call";
+            public const string Book = "book";
+            public const string Directions = "directions";
+        }
     }
 }

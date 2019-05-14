@@ -159,6 +159,9 @@
   <data name="HELP" xml:space="preserve">
     <value>I can help you book a room or answer questions.</value>
   </data>
+  <data name="HOTEL_NUMBER" xml:space="preserve">
+    <value>tel: +15 105 551 234</value>
+  </data>
   <data name="INTRODUCTION" xml:space="preserve">
     <value>Welcome to our chatbot</value>
   </data>
@@ -191,5 +194,8 @@
   </data>
   <data name="RANDOM_CONTINUE_6" xml:space="preserve">
     <value>Do you need anything else?</value>
+  </data>
+  <data name="RANDOM_CONTINUE_7" xml:space="preserve">
+    <value>Do you have any more questions about our hotel or services?</value>
   </data>
 </root>

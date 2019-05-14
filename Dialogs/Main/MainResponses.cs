@@ -76,7 +76,7 @@ namespace HotelBot.Dialogs.Main
                 },
                 {
                     ResponseIds.EmptyRoomOverviewStateQuickReplies, (context, data) =>
-                        SendEmptyRoomOverviewStateQuickReplies(context, data)
+                        SendEmptyRoomOverviewStateQuickReplies(context)
                 },
 
                 {
@@ -94,21 +94,15 @@ namespace HotelBot.Dialogs.Main
             Register(new DictionaryRenderer(_responseTemplates));
         }
 
-
-
-
-
-
         public static IMessageActivity BuildCallMessage(ITurnContext context)
         {
-            var number = "tel: +15 105 551 234";
             var heroCard = new HeroCard
             {
                 Title = MainStrings.BUTTON_TITLE_CALL,
-                Subtitle = number,
+                Subtitle = MainStrings.HOTEL_NUMBER,
                 Buttons = new List<CardAction>
                 {
-                    new CardAction(ActionTypes.Call, MainStrings.BUTTON_TITLE_CALL, value: number)
+                    new CardAction(ActionTypes.Call, MainStrings.BUTTON_TITLE_CALL, value: MainStrings.HOTEL_NUMBER)
                 }
             };
             var reply = context.Activity.CreateReply();
@@ -121,12 +115,12 @@ namespace HotelBot.Dialogs.Main
 
 
         // state is empty, there is nothing in the room overview, only prompt add a room
-        public static IMessageActivity SendEmptyRoomOverviewStateQuickReplies(ITurnContext context, dynamic data)
-        {
+        // nothing in room overview 
+        //      * Find a room
+        //      * (call hotel)
 
-            // nothing in room overview 
-            //      * Find a room
-            //      * (call hotel)
+        public static IMessageActivity SendEmptyRoomOverviewStateQuickReplies(ITurnContext context)
+        {
 
             var facebookMessage = new FacebookMessage
             {
@@ -135,15 +129,15 @@ namespace HotelBot.Dialogs.Main
                 {
                     new FacebookQuickReply
                     {
-                        Content_Type = "text",
+                        Content_Type = FacebookQuickReply.ContentTypes.Text,
                         Title = MainStrings.QUICK_REPLY_BUTTON_FIND_A_ROOM,
-                        Payload = "book"
+                        Payload = FacebookQuickReply.PayLoads.Book
                     },
                     new FacebookQuickReply
                     {
-                        Content_Type = "text",
+                        Content_Type = FacebookQuickReply.ContentTypes.Text,
                         Title = MainStrings.QUICK_REPLY_BUTTON_CALL,
-                        Payload = "call"
+                        Payload = FacebookQuickReply.PayLoads.Call
                     }
 
                 }
@@ -156,37 +150,38 @@ namespace HotelBot.Dialogs.Main
 
 
 
-        // has rooms in room overview state, but is not confirmed with payment. 
-        public static IMessageActivity SendUnconfirmedPaymentQuickReplies(ITurnContext context, dynamic data)
-        {
-
-            // End dialog quick replies
+        // has rooms in room overview state, but is not confirmed with payment.
+   // End dialog quick replies
             // rooms in order not confirmed:
             //      * Add a room
             //      * Booking overview
             //      * (call)
             //      * (Confirm booking)
 
+        public static IMessageActivity SendUnconfirmedPaymentQuickReplies(ITurnContext context, dynamic data)
+        {
+
+        
             var facebookMessage = new FacebookMessage
             {
-                Text = "What would you like to do next?",
+                Text = GenerateRandomCompleteMessage().Text,
                 QuickReplies = new[]
                 {
                     new FacebookQuickReply
                     {
-                        Content_Type = "text",
-                        Title = "Add a room",
-                        Payload = "book"
+                        Content_Type =  FacebookQuickReply.ContentTypes.Text,
+                        Title =  MainStrings.QUICK_REPLY_BUTTON_FIND_A_ROOM,
+                        Payload = FacebookQuickReply.PayLoads.Book
                     },
                     new FacebookQuickReply
                     {
-                        Content_Type = "text",
+                        Content_Type =  FacebookQuickReply.ContentTypes.Text,
                         Title = "Booking overview",
                         Payload = "test"
                     },
                     new FacebookQuickReply
                     {
-                        Content_Type = "text",
+                        Content_Type =  FacebookQuickReply.ContentTypes.Text,
                         Title = "Confirm booking",
                         Payload = "test"
                     }
@@ -210,31 +205,31 @@ namespace HotelBot.Dialogs.Main
             // cancel bookings
             var facebookMessage = new FacebookMessage
             {
-                Text = "Do you have any more questions about our hotel or services?",
+                Text = GenerateRandomCompleteMessage().Text,
                 QuickReplies = new[]
                 {
                     new FacebookQuickReply
                     {
                         Title = LocationStrings.QUICK_REPLY_BUTTON_DIRECTION,
-                        Content_Type = "text",
-                        Payload = "directions"
+                        Content_Type =  FacebookQuickReply.ContentTypes.Text,
+                        Payload = FacebookQuickReply.PayLoads.Directions
                     },
                     new FacebookQuickReply
                     {
                         Title = MainStrings.QUICK_REPLY_BUTTON_CALL,
-                        Content_Type = "text",
-                        Payload = "call"
+                        Content_Type =  FacebookQuickReply.ContentTypes.Text,
+                        Payload = FacebookQuickReply.PayLoads.Call
                     },
                     new FacebookQuickReply
                     {
                         Title = "Booking overview",
-                        Content_Type = "text",
+                        Content_Type =  FacebookQuickReply.ContentTypes.Text,
                         Payload = "none"
                     },
                     new FacebookQuickReply
                     {
                         Title = "Cancel booking", //todo: implement second dialog cancelling bookings
-                        Content_Type = "text",
+                        Content_Type =  FacebookQuickReply.ContentTypes.Text,
                         Payload = "none"
                     }
                 }

@@ -187,6 +187,15 @@ namespace HotelBot.Dialogs.Main.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to tel: +15 105 551 234.
+        /// </summary>
+        public static string HOTEL_NUMBER {
+            get {
+                return ResourceManager.GetString("HOTEL_NUMBER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Welcome to our chatbot.
         /// </summary>
         public static string INTRODUCTION {
@@ -282,6 +291,15 @@ namespace HotelBot.Dialogs.Main.Resources {
         public static string RANDOM_CONTINUE_6 {
             get {
                 return ResourceManager.GetString("RANDOM_CONTINUE_6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you have any more questions about our hotel or services?.
+        /// </summary>
+        public static string RANDOM_CONTINUE_7 {
+            get {
+                return ResourceManager.GetString("RANDOM_CONTINUE_7", resourceCulture);
             }
         }
     }
