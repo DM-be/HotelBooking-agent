@@ -9,13 +9,10 @@ using Newtonsoft.Json.Linq;
 
 namespace HotelBot.Middleware
 {
-    public class FacebookMiddleware: IMiddleware
+    public class FacebookMiddleware : IMiddleware
     {
-        private readonly FacebookHelper facebookHelper;
-
         public FacebookMiddleware()
         {
-            facebookHelper = new FacebookHelper();
         }
 
         public async Task OnTurnAsync(ITurnContext turnContext, NextDelegate next, CancellationToken cancellationToken = default(CancellationToken))
@@ -52,7 +49,7 @@ namespace HotelBot.Middleware
         }
 
         //todo: still needed?
-        private async void OnFacebookAttachments(FacebookAttachment [] attachments, ITurnContext context)
+        private async void OnFacebookAttachments(FacebookAttachment[] attachments, ITurnContext context)
         {
             foreach (var attachment in attachments)
                 if (attachment.Type.Equals(FacebookAttachment.Location))
@@ -66,8 +63,6 @@ namespace HotelBot.Middleware
         private async void OnFacebookPostBack(FacebookPostback postBack, ITurnContext context)
         {
             if (postBack.Payload.Equals(FacebookPostback.GetStartedPostback)) context.Activity.Text = "";
-
-            // implement other postback logic before calling next
         }
 
         //todo: is updating activity text manually needed?  
@@ -89,6 +84,10 @@ namespace HotelBot.Middleware
             else if (quickReply.Payload.Equals(FacebookQuickReply.BookARoomPayload))
             {
                 context.Activity.Text = FacebookStrings.CONTEXT_TEXT_BOOK_A_ROOM;
+            }
+            else if (quickReply.Payload.Equals("Directions"))
+            {
+                context.Activity.Text = "I need directions to your hotel.";
             }
 
         }

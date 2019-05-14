@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.ConfirmOrder;
 using HotelBot.Dialogs.FetchAvailableRooms;
+using HotelBot.Dialogs.Main;
 using HotelBot.Dialogs.Prompts.ContinueOrAddMoreRooms;
 using HotelBot.Dialogs.Shared.CustomDialog;
 using HotelBot.Models.Wrappers;
@@ -73,7 +74,10 @@ namespace HotelBot.Dialogs.RoomOverview
             if (confirmOrderState.PaymentConfirmed)
             {
                 await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.ConfirmedPaymentOverview, roomOverviewState);
-                return await sc.EndDialogAsync(); // end it --> go to main (cancelling prompts etc go here)
+                var responder = new MainResponses();
+                await MainDialog.SendQuickRepliesBasedOnState(sc.Context, _accessors, responder);
+                
+
             }
 
             if (roomOverviewState.SelectedRooms.Count != 0) await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.CompleteOverview, roomOverviewState);

@@ -36,11 +36,9 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
             if (activity.IsGetStartedPostBack() | activity.IsStartActivity())
             {
                 await OnStartAsync(innerDc);
-                await CompleteAsync(innerDc, null, cancellationToken); 
-                result = new DialogTurnResult(DialogTurnStatus.Waiting); 
-
+                await CompleteAsync(innerDc, null, cancellationToken);
+                result = new DialogTurnResult(DialogTurnStatus.Waiting);
             }
-
 
             switch (activity.Type)
             {
@@ -53,7 +51,7 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
                         var roomAction = JsonConvert.DeserializeObject<RoomAction>(activity.Value.ToString());
                         var dialogOptions = new DialogOptions
                         {
-                            RoomAction = roomAction
+                            RoomAction = roomAction,
                         };
                         await innerDc.CancelAllDialogsAsync(); // clear existing stack (button with action tapped)
                         result = await BeginDialogBasedOnAction(innerDc, roomAction, dialogOptions);

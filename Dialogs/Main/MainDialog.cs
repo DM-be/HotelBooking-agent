@@ -68,11 +68,16 @@ namespace HotelBot.Dialogs.Main
                     _services.QnaServices.TryGetValue(qnaServiceName, out var qnaService);
                     if (qnaService == null) throw new ArgumentNullException(nameof(qnaService));
                     var answers = await qnaService.GetAnswersAsync(dc.Context);
-                    if (answers != null && answers.Any()) await dc.Context.SendActivityAsync(answers.First().Answer);
+                    if (answers != null && answers.Any())
+                    {
+                        await dc.Context.SendActivityAsync(answers.First().Answer);
+                        await SendQuickRepliesBasedOnState(dc.Context, _accessors, _responder);
+                    }
                 }
                 else
                 {
                     await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.Confused);
+                    await SendQuickRepliesBasedOnState(dc.Context, _accessors, _responder);
                 }
 
             }
@@ -81,7 +86,7 @@ namespace HotelBot.Dialogs.Main
         protected override async Task OnStartAsync(DialogContext innerDc, CancellationToken cancellationToken = default(CancellationToken))
         {
             var userProfile = await _accessors.UserProfileAccessor.GetAsync(innerDc.Context, () => new UserProfile());
-            
+
             await _responder.ReplyWith(innerDc.Context, MainResponses.ResponseIds.GreetingWithName, userProfile.FacebookProfileData.First_Name);
             await _responder.ReplyWith(innerDc.Context, MainResponses.ResponseIds.GreetingPromptForAction);
         }
