@@ -142,6 +142,15 @@ namespace HotelBot.Dialogs.Main.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string GETTING_STARTED_INTRO {
+            get {
+                return ResourceManager.GetString("GETTING_STARTED_INTRO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to If you need anything else, just ask!.
         /// </summary>
         public static string GREETING_MORE {
@@ -151,7 +160,7 @@ namespace HotelBot.Dialogs.Main.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Looking for a room to stay in? I can help you with that. .
+        ///   Looks up a localized string similar to Let&apos;s get started 👊.
         /// </summary>
         public static string GREETING_PROMPT_FOR_ACTION {
             get {
@@ -160,7 +169,7 @@ namespace HotelBot.Dialogs.Main.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hi  {0}, I&apos;m the Starhotels chatbot! .
+        ///   Looks up a localized string similar to Hi {0}, I&apos;m the new virtual front desk clerk for Starhotel 🏨 ! Management hired me to help you book a room or answer any questions you might have 😉.
         /// </summary>
         public static string GREETING_WITH_NAME {
             get {

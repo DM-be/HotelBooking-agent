@@ -75,4 +75,3 @@ C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\obj\Debug\netcoreapp2.
 C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\obj\Debug\netcoreapp2.0\nl\HotelBot.resources.dll
 C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.dll
 C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.pdb
-C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.csprojAssemblyReference.cache

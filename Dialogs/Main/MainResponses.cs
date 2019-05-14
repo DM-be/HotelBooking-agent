@@ -70,6 +70,10 @@ namespace HotelBot.Dialogs.Main
                     ResponseIds.EmptyRoomOverviewStateQuickReplies, (context, data) =>
                         SendEmptyRoomOverviewStateQuickReplies(context)
                 },
+                 {
+                    ResponseIds.SendGettingStartedQuickReplies, (context, data) =>
+                        SendGettingStartedQuickReplies(context)
+                },
 
                 {
                     ResponseIds.SendCallCard, (context, data) =>
@@ -104,6 +108,45 @@ namespace HotelBot.Dialogs.Main
             };
             return reply;
         }
+
+        public static IMessageActivity SendGettingStartedQuickReplies(ITurnContext context)
+        {
+
+            var facebookMessage = new FacebookMessage
+            {
+                Text = MainStrings.GREETING_PROMPT_FOR_ACTION,
+                QuickReplies = new[]
+                {
+                    new FacebookQuickReply
+                    {
+                        Content_Type = FacebookQuickReply.ContentTypes.Text,
+                        Title = MainStrings.QUICK_REPLY_BUTTON_FIND_A_ROOM,
+                        Payload = FacebookQuickReply.PayLoads.Book
+                    },
+                    new FacebookQuickReply
+                    {
+                        Content_Type = FacebookQuickReply.ContentTypes.Text,
+                        Title = MainStrings.QUICK_REPLY_BUTTON_CALL,
+                        Payload = FacebookQuickReply.PayLoads.Call
+                    },
+                      new FacebookQuickReply
+                    {
+                        Content_Type = FacebookQuickReply.ContentTypes.Text,
+                        Title = MainStrings.QUICK_REPLY_BUTTON_DIRECTION,
+                        Payload = FacebookQuickReply.PayLoads.Directions
+                    }
+
+                }
+            };
+            var reply = context.Activity.CreateReply();
+            reply.ChannelData = facebookMessage;
+            return reply;
+        }
+
+
+
+
+
 
 
         // state is empty, there is nothing in the room overview, only prompt add a room
@@ -275,6 +318,7 @@ namespace HotelBot.Dialogs.Main
             public const string ConfirmedPaymentQuickReplies = "confirmedPaymentQuickReplies";
             public const string UnconfirmedPaymentQuickReplies = "unconfirmedPaymentQuickReplies";
             public const string EmptyRoomOverviewStateQuickReplies = "emptyRoomOverviewStateQuickReplies";
+            public const string SendGettingStartedQuickReplies = "sendGettingStartedQuickReplies";
 
             // intro
             public const string GreetingWithName = "greetingWithName";

@@ -36,7 +36,6 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
             if (activity.IsGetStartedPostBack() | activity.IsStartActivity())
             {
                 await OnStartAsync(innerDc);
-                await CompleteAsync(innerDc, null, cancellationToken);
                 result = new DialogTurnResult(DialogTurnStatus.Waiting);
             }
 
