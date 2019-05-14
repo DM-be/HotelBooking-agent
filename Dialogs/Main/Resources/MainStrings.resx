@@ -144,9 +144,6 @@
   <data name="ERROR" xml:space="preserve">
     <value>Sorry, it looks like something went wrong.</value>
   </data>
-  <data name="GREETING" xml:space="preserve">
-    <value>Hi there!</value>
-  </data>
   <data name="GREETING_MORE" xml:space="preserve">
     <value>If you need anything else, just ask!</value>
   </data>
@@ -162,11 +159,14 @@
   <data name="HOTEL_NUMBER" xml:space="preserve">
     <value>tel: +15 105 551 234</value>
   </data>
-  <data name="INTRODUCTION" xml:space="preserve">
-    <value>Welcome to our chatbot</value>
+  <data name="QUICK_REPLY_BUTTON_BOOKING_OVERVIEW" xml:space="preserve">
+    <value>Booking overview</value>
   </data>
   <data name="QUICK_REPLY_BUTTON_CALL" xml:space="preserve">
     <value>Call</value>
+  </data>
+  <data name="QUICK_REPLY_BUTTON_CONFIRM_BOOKING" xml:space="preserve">
+    <value>Confirm booking</value>
   </data>
   <data name="QUICK_REPLY_BUTTON_DIRECTION" xml:space="preserve">
     <value>Directions</value>

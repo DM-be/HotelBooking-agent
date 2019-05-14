@@ -35,6 +35,8 @@ namespace HotelBot.Models.Facebook
             public const string Call = "call";
             public const string Book = "book";
             public const string Directions = "directions";
+            public const string BookingOverview = "bookingOverview";
+            public const string ConfirmBooking = "confirmBooking";
         }
     }
 }

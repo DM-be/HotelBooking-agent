@@ -142,15 +142,6 @@ namespace HotelBot.Dialogs.Main.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hi there!.
-        /// </summary>
-        public static string GREETING {
-            get {
-                return ResourceManager.GetString("GREETING", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to If you need anything else, just ask!.
         /// </summary>
         public static string GREETING_MORE {
@@ -196,11 +187,11 @@ namespace HotelBot.Dialogs.Main.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Welcome to our chatbot.
+        ///   Looks up a localized string similar to Booking overview.
         /// </summary>
-        public static string INTRODUCTION {
+        public static string QUICK_REPLY_BUTTON_BOOKING_OVERVIEW {
             get {
-                return ResourceManager.GetString("INTRODUCTION", resourceCulture);
+                return ResourceManager.GetString("QUICK_REPLY_BUTTON_BOOKING_OVERVIEW", resourceCulture);
             }
         }
         
@@ -210,6 +201,15 @@ namespace HotelBot.Dialogs.Main.Resources {
         public static string QUICK_REPLY_BUTTON_CALL {
             get {
                 return ResourceManager.GetString("QUICK_REPLY_BUTTON_CALL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm booking.
+        /// </summary>
+        public static string QUICK_REPLY_BUTTON_CONFIRM_BOOKING {
+            get {
+                return ResourceManager.GetString("QUICK_REPLY_BUTTON_CONFIRM_BOOKING", resourceCulture);
             }
         }
         

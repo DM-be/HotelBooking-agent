@@ -38,20 +38,12 @@ namespace HotelBot.Dialogs.Main
                             InputHints.AcceptingInput)
                 },
                 {
-                    ResponseIds.Greeting, (context, data) =>
-                        MessageFactory.Text(
-                            MainStrings.GREETING,
-                            MainStrings.GREETING,
-                            InputHints.AcceptingInput)
-                },
-                {
                     ResponseIds.Help, (context, data) =>
                         MessageFactory.Text(
                             MainStrings.HELP,
                             MainStrings.HELP,
                             InputHints.AcceptingInput)
                 },
-
                 {
                     ResponseIds.GreetingWithName, (context, data) =>
                         MessageFactory.Text(
@@ -138,6 +130,12 @@ namespace HotelBot.Dialogs.Main
                         Content_Type = FacebookQuickReply.ContentTypes.Text,
                         Title = MainStrings.QUICK_REPLY_BUTTON_CALL,
                         Payload = FacebookQuickReply.PayLoads.Call
+                    },
+                      new FacebookQuickReply
+                    {
+                        Content_Type = FacebookQuickReply.ContentTypes.Text,
+                        Title = MainStrings.QUICK_REPLY_BUTTON_DIRECTION,
+                        Payload = FacebookQuickReply.PayLoads.Directions
                     }
 
                 }
@@ -151,7 +149,6 @@ namespace HotelBot.Dialogs.Main
 
 
         // has rooms in room overview state, but is not confirmed with payment.
-   // End dialog quick replies
             // rooms in order not confirmed:
             //      * Add a room
             //      * Booking overview
@@ -161,7 +158,6 @@ namespace HotelBot.Dialogs.Main
         public static IMessageActivity SendUnconfirmedPaymentQuickReplies(ITurnContext context, dynamic data)
         {
 
-        
             var facebookMessage = new FacebookMessage
             {
                 Text = GenerateRandomCompleteMessage().Text,
@@ -176,14 +172,14 @@ namespace HotelBot.Dialogs.Main
                     new FacebookQuickReply
                     {
                         Content_Type =  FacebookQuickReply.ContentTypes.Text,
-                        Title = "Booking overview",
-                        Payload = "test"
+                        Title =  MainStrings.QUICK_REPLY_BUTTON_BOOKING_OVERVIEW,
+                        Payload = FacebookQuickReply.PayLoads.BookingOverview
                     },
                     new FacebookQuickReply
                     {
                         Content_Type =  FacebookQuickReply.ContentTypes.Text,
-                        Title = "Confirm booking",
-                        Payload = "test"
+                        Title =  MainStrings.QUICK_REPLY_BUTTON_CONFIRM_BOOKING,
+                        Payload = FacebookQuickReply.PayLoads.ConfirmBooking
                     }
                 }
             };
@@ -222,9 +218,9 @@ namespace HotelBot.Dialogs.Main
                     },
                     new FacebookQuickReply
                     {
-                        Title = "Booking overview",
                         Content_Type =  FacebookQuickReply.ContentTypes.Text,
-                        Payload = "none"
+                        Title =  MainStrings.QUICK_REPLY_BUTTON_BOOKING_OVERVIEW,
+                        Payload = FacebookQuickReply.PayLoads.BookingOverview
                     },
                     new FacebookQuickReply
                     {
@@ -274,9 +270,7 @@ namespace HotelBot.Dialogs.Main
             public const string Cancelled = "cancelled";
             public const string Completed = "completed";
             public const string Confused = "confused";
-            public const string Greeting = "greeting";
             public const string Help = "help";
-            public const string Intro = "intro";
             public const string SendCallCard = "sendCallCard";
             public const string ConfirmedPaymentQuickReplies = "confirmedPaymentQuickReplies";
             public const string UnconfirmedPaymentQuickReplies = "unconfirmedPaymentQuickReplies";
