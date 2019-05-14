@@ -19,7 +19,7 @@ namespace HotelBot.Dialogs.RoomOverview.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class RoomOverviewStrings {
@@ -84,6 +84,15 @@ namespace HotelBot.Dialogs.RoomOverview.Resources {
         public static string NO_SELECTED_ROOMS {
             get {
                 return ResourceManager.GetString("NO_SELECTED_ROOMS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thank you for booking with us. Here are your booked rooms..
+        /// </summary>
+        public static string PAYMENTCONFIRMED_ROOMS_TEXT {
+            get {
+                return ResourceManager.GetString("PAYMENTCONFIRMED_ROOMS_TEXT", resourceCulture);
             }
         }
         

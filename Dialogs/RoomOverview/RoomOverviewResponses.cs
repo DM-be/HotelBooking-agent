@@ -67,7 +67,14 @@ namespace HotelBot.Dialogs.RoomOverview
                 {
                     ResponseIds.ConfirmedPaymentOverview, (context, data) =>
                         ConfirmedPaymentOverview(context, data)
+                },
+
+                {
+                    ResponseIds.PaymentConfirmedRooms, (context, data) =>
+                       MessageFactory.Text(RoomOverviewStrings.PAYMENTCONFIRMED_ROOMS_TEXT)
                 }
+
+
 
 
 
@@ -107,8 +114,7 @@ namespace HotelBot.Dialogs.RoomOverview
             var heroCards = new List<HeroCard>();
             foreach (var selectedRoom in selectedRooms) heroCards.Add(BuildDetailedRoomHeroCard(selectedRoom, false));
             var reply = context.Activity.CreateReply();
-            reply.Text =
-                "Thank you for booking with us, here is an overview of your booked rooms";
+            reply.Text = RoomOverviewStrings.PAYMENTCONFIRMED_ROOMS_TEXT;
             var attachments = new List<Attachment>();
             foreach (var heroCard in heroCards) attachments.Add(heroCard.ToAttachment());
             reply.AttachmentLayout = AttachmentLayoutTypes.Carousel;
@@ -265,6 +271,7 @@ namespace HotelBot.Dialogs.RoomOverview
             public const string UnconfirmedPayment = "unconfirmedPayment";
             public const string ConfirmedPaymentOverview = "confirmedPaymentOverview";
             public const string RepromptUnconfirmed = "repromptUnconfirmed";
+            public const string PaymentConfirmedRooms = "paymentConfirmedRooms";
         }
     }
 

@@ -126,6 +126,9 @@
   <data name="NO_SELECTED_ROOMS" xml:space="preserve">
     <value>You have not selected any rooms yet, start with adding a new room to your order. </value>
   </data>
+  <data name="PAYMENTCONFIRMED_ROOMS_TEXT" xml:space="preserve">
+    <value>Thank you for booking with us. Here are your booked rooms.</value>
+  </data>
   <data name="REPROMPT_UNCONFIRMED" xml:space="preserve">
     <value>Sorry, I didn't understand. You can proceed to payment by tapping confirm in the card. </value>
   </data>

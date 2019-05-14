@@ -68,7 +68,10 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
                             if (dialogResult.TargetDialog != null)
                             {
                                 if (dialogResult.PreviousOptions == null) dialogResult.PreviousOptions = new DialogOptions();
-                                var turnResult = await innerDc.BeginDialogAsync(dialogResult.TargetDialog, dialogResult.PreviousOptions);
+
+                             //await innerDc.CancelAllDialogsAsync();
+
+                             var turnResult = await innerDc.BeginDialogAsync(dialogResult.TargetDialog, dialogResult.PreviousOptions);
                                 result.Status = turnResult.Status;
                             }
                         }

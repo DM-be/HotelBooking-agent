@@ -6,7 +6,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.ConfirmOrder;
 using HotelBot.Dialogs.FetchAvailableRooms;
-using HotelBot.Dialogs.Main;
 using HotelBot.Dialogs.Prompts.ContinueOrAddMoreRooms;
 using HotelBot.Dialogs.Shared.CustomDialog;
 using HotelBot.Models.Wrappers;
@@ -35,7 +34,7 @@ namespace HotelBot.Dialogs.RoomOverview
             InitialDialogId = nameof(RoomOverviewDialog);
             var roomOverviewWaterfallSteps = new WaterfallStep []
             {
-                FetchSelectedRoomDetailAndAddToState, PromptContinueOrFindMoreRooms, ProcessResultContinueOrAddMoreRoomsPrompt, ProcessChoicePrompt
+                FetchSelectedRoomDetailAndAddToState, PromptContinueOrFindMoreRooms, ProcessResultContinueOrAddMoreRoomsPrompt,
             };
             AddDialog(new WaterfallDialog(InitialDialogId, roomOverviewWaterfallSteps));
             AddDialog(new ContinueOrAddMoreRoomsPrompt(accessors));
@@ -71,16 +70,6 @@ namespace HotelBot.Dialogs.RoomOverview
         {
             var roomOverviewState = await _accessors.RoomOverviewStateAccessor.GetAsync(sc.Context, () => new RoomOverviewState());
             var confirmOrderState = await _accessors.ConfirmOrderStateAccessor.GetAsync(sc.Context, () => new ConfirmOrderState());
-            if (confirmOrderState.PaymentConfirmed)
-            {
-                await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.ConfirmedPaymentOverview, roomOverviewState);
-                var responder = new MainResponses();
-                await MainDialog.SendQuickRepliesBasedOnState(sc.Context, _accessors, responder);
-                
-
-            }
-
-            if (roomOverviewState.SelectedRooms.Count != 0) await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.CompleteOverview, roomOverviewState);
             return await sc.BeginDialogAsync(nameof(ContinueOrAddMoreRoomsPrompt));
 
         }
@@ -89,7 +78,7 @@ namespace HotelBot.Dialogs.RoomOverview
 
         {
 
-            if (sc.Result != null && sc.Result.GetType() == typeof(bool)) return await sc.NextAsync();
+            if (sc.Result != null && sc.Result.GetType() == typeof(bool)) return await sc.EndDialogAsync();
             var dialogOptions = new DialogOptions();
             if (sc.Options != null) dialogOptions = (DialogOptions) sc.Options;
             if (sc.Result != null)
@@ -116,7 +105,8 @@ namespace HotelBot.Dialogs.RoomOverview
 
                                     })
                             });
-
+                    case "Cancel booking":
+                        return await sc.EndDialogAsync();
                     case RoomOverviewChoices.AddARoom:
                     case RoomOverviewChoices.FindRoom:
                         var dialogResult = new DialogResult
@@ -133,20 +123,6 @@ namespace HotelBot.Dialogs.RoomOverview
 
         }
 
-        public async Task<DialogTurnResult> ProcessChoicePrompt(WaterfallStepContext sc, CancellationToken cancellationToken)
-
-        {
-            var choice = sc.Result as FoundChoice;
-            switch (choice.Value)
-            {
-                case RoomOverviewChoices.Confirm:
-                    return null;
-                case RoomOverviewChoices.Cancel:
-                    return await sc.EndDialogAsync(null);
-            }
-
-            return null;
-        }
 
 
         private async Task AddRoom(RoomOverviewState state, DialogOptions dialogOptions, WaterfallStepContext sc)
@@ -189,12 +165,13 @@ namespace HotelBot.Dialogs.RoomOverview
             public const string NoThankyou = "No thank you";
             public const string Cancel = "Cancel";
             public const string Confirm = "Confirm";
+            public const string CancelRoom = "Cancel room";
 
             public static readonly ReadOnlyCollection<string> Choices =
                 new ReadOnlyCollection<string>(
                     new []
                     {
-                        AddARoom, FindRoom, NoThankyou, Cancel, Confirm
+                        AddARoom, FindRoom, NoThankyou, Cancel, Confirm, CancelRoom
                     });
         }
     }
