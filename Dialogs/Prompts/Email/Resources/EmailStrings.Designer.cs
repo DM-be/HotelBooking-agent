@@ -19,7 +19,7 @@ namespace HotelBot.Dialogs.Prompts.Email.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class EmailStrings {
@@ -61,11 +61,11 @@ namespace HotelBot.Dialogs.Prompts.Email.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to What is your email?.
+        ///   Looks up a localized string similar to Ok {0}, Could I have an email address to send a confirmation to?.
         /// </summary>
-        public static string EMAIL_PROMPT {
+        public static string ASK_EMAIL_WITH_NAME {
             get {
-                return ResourceManager.GetString("EMAIL_PROMPT", resourceCulture);
+                return ResourceManager.GetString("ASK_EMAIL_WITH_NAME", resourceCulture);
             }
         }
         
@@ -75,15 +75,6 @@ namespace HotelBot.Dialogs.Prompts.Email.Resources {
         public static string HAVE_EMAIL {
             get {
                 return ResourceManager.GetString("HAVE_EMAIL", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ok, I updated your email to {0}..
-        /// </summary>
-        public static string HAVE_UPDATED_EMAIL {
-            get {
-                return ResourceManager.GetString("HAVE_UPDATED_EMAIL", resourceCulture);
             }
         }
     }

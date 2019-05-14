@@ -55,8 +55,7 @@ namespace HotelBot.Dialogs.ConfirmOrder
             // TODO: move quickreplies into confirmorderresponses?
             var userProfile = await _accessors.UserProfileAccessor.GetAsync(sc.Context, () => new UserProfile());
             var fullName = userProfile.FacebookProfileData.Name;
-            var facebookHelper = new FacebookHelper();
-            await facebookHelper.SendFullNameQuickReply(sc.Context, fullName);
+            await _responder.ReplyWith(sc.Context, ConfirmOrderResponses.ResponseIds.SendFullNameQuickReply, fullName);
             return new DialogTurnResult(DialogTurnStatus.Waiting);
 
         }
@@ -103,8 +102,7 @@ namespace HotelBot.Dialogs.ConfirmOrder
             if (dialogOptions != null)
                 if (dialogOptions.ConfirmedPayment)
                     return await sc.NextAsync();
-            var facebookHelper = new FacebookHelper();
-            await facebookHelper.SendPhoneNumberQuickReply(sc.Context);
+            await _responder.ReplyWith(sc.Context, ConfirmOrderResponses.ResponseIds.SendPhoneNumberQuickReply);
             return new DialogTurnResult(DialogTurnStatus.Waiting);
         }
 

@@ -17,6 +17,7 @@ namespace HotelBot.Models.Facebook
         public const string PhoneNumberQuickReplyPayload = "user_phone_number";
         public const string CallUsReplyPayload = "call";
         public const string BookARoomPayload = "book";
+        public const string DirectionsPayload = "directions";
 
         [JsonProperty("payload")]
         public string Payload { get; set; }

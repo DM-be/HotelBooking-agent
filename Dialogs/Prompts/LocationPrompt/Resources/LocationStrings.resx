@@ -117,28 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BUTTON_TITLE_CALL" xml:space="preserve">
-    <value>Bel</value>
-  </data>
-  <data name="CALL_MESSAGE_PAYLOAD_TEXT" xml:space="preserve">
-    <value>Hier is ons nummer:</value>
-  </data>
   <data name="HEROCARD_BUTTON_DIRECTION_TITLE" xml:space="preserve">
-    <value>Navigeer</value>
+    <value>Follow route</value>
   </data>
   <data name="HEROCARD_REPLY_TEXT_DIRECTION" xml:space="preserve">
-    <value>Ik heb de snelste route gevonden.</value>
+    <value>I have found you a route.</value>
   </data>
   <data name="QUICK_REPLY_ASK_LOCATION" xml:space="preserve">
-    <value>Mag ik je locatie?</value>
-  </data>
-  <data name="QUICK_REPLY_BUTTON_BOOK_A_ROOM" xml:space="preserve">
-    <value>Boek</value>
-  </data>
-  <data name="QUICK_REPLY_BUTTON_CALL" xml:space="preserve">
-    <value>Bel</value>
+    <value>Could you send me your location?</value>
   </data>
   <data name="QUICK_REPLY_BUTTON_DIRECTION" xml:space="preserve">
-    <value>Locatie</value>
+    <value>Directions</value>
   </data>
 </root>

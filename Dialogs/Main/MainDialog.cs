@@ -24,7 +24,6 @@ namespace HotelBot.Dialogs.Main
     {
         private const string HotelBotLuisKey = "hotelbot";
         private readonly StateBotAccessors _accessors;
-        private readonly FacebookHelper _facebookHelper = new FacebookHelper();
         private readonly MainResponses _responder = new MainResponses();
         private readonly BotServices _services;
         public IntentHandler _intentHandler = new IntentHandler();
@@ -57,7 +56,7 @@ namespace HotelBot.Dialogs.Main
                     var hotelBotIntent = result.TopIntent().intent;
 
                     if (_intentHandler.MainIntentHandlerDelegates.TryGetValue(hotelBotIntent, out var DelegateAction))
-                        DelegateAction(dc, _responder, _facebookHelper, _accessors, result);
+                        DelegateAction(dc, _responder, _accessors, result);
                     else
                         await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.Confused);
 

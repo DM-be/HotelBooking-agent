@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BUTTON_TITLE_CALL" xml:space="preserve">
+    <value>Call</value>
+  </data>
   <data name="CANCELLED" xml:space="preserve">
     <value>Ok, let's start over.</value>
   </data>
@@ -125,6 +128,18 @@
   </data>
   <data name="CONFUSED" xml:space="preserve">
     <value>I'm sorry, I'm not able to help with that.</value>
+  </data>
+  <data name="CONTEXT_TEXT_BOOK_A_ROOM" xml:space="preserve">
+    <value>I want to book a room.</value>
+  </data>
+  <data name="CONTEXT_TEXT_CALL" xml:space="preserve">
+    <value>Could I call you?</value>
+  </data>
+  <data name="CONTEXT_TEXT_CALL_US" xml:space="preserve">
+    <value>Could I call you?</value>
+  </data>
+  <data name="CONTEXT_TEXT_DIRECTIONS" xml:space="preserve">
+    <value>I need directions to your hotel.</value>
   </data>
   <data name="ERROR" xml:space="preserve">
     <value>Sorry, it looks like something went wrong.</value>
@@ -146,5 +161,17 @@
   </data>
   <data name="INTRODUCTION" xml:space="preserve">
     <value>Welcome to our chatbot</value>
+  </data>
+  <data name="QUICK_REPLY_BUTTON_CALL" xml:space="preserve">
+    <value>Call</value>
+  </data>
+  <data name="QUICK_REPLY_BUTTON_DIRECTION" xml:space="preserve">
+    <value>Directions</value>
+  </data>
+  <data name="QUICK_REPLY_BUTTON_FIND_A_ROOM" xml:space="preserve">
+    <value>Find a room</value>
+  </data>
+  <data name="QUICK_REPLY_BUTTON_WHAT_CAN_YOU_DO" xml:space="preserve">
+    <value>What can you do?</value>
   </data>
 </root>

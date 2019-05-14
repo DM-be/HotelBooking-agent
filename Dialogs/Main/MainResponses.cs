@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using HotelBot.Dialogs.Main.Resources;
+using HotelBot.Dialogs.Prompts.LocationPrompt.Resources;
 using HotelBot.Models.Facebook;
-using HotelBot.Shared.Helpers.Resources;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.TemplateManager;
 using Microsoft.Bot.Schema;
@@ -81,7 +81,8 @@ namespace HotelBot.Dialogs.Main
                     ResponseIds.SendCallCard, (context, data) =>
                         BuildCallMessage(context)
 
-                }
+                },
+              
 
             }
         };
@@ -91,16 +92,21 @@ namespace HotelBot.Dialogs.Main
             Register(new DictionaryRenderer(_responseTemplates));
         }
 
+
+
+
+
+
         public static IMessageActivity BuildCallMessage(ITurnContext context)
         {
             var number = "tel: +15 105 551 234";
             var heroCard = new HeroCard
             {
-                Title = FacebookStrings.BUTTON_TITLE_CALL,
+                Title = MainStrings.BUTTON_TITLE_CALL,
                 Subtitle = number,
                 Buttons = new List<CardAction>
                 {
-                    new CardAction(ActionTypes.Call, FacebookStrings.BUTTON_TITLE_CALL, value: number)
+                    new CardAction(ActionTypes.Call, MainStrings.BUTTON_TITLE_CALL, value: number)
                 }
             };
             var reply = context.Activity.CreateReply();
@@ -128,14 +134,14 @@ namespace HotelBot.Dialogs.Main
                     new FacebookQuickReply
                     {
                         Content_Type = "text",
-                        Title = "Find a room",
-                        Payload = "test"
+                        Title = MainStrings.QUICK_REPLY_BUTTON_FIND_A_ROOM,
+                        Payload = "book"
                     },
                     new FacebookQuickReply
                     {
                         Content_Type = "text",
-                        Title = "Call us",
-                        Payload = "test"
+                        Title = MainStrings.QUICK_REPLY_BUTTON_CALL,
+                        Payload = "call"
                     }
 
                 }
@@ -168,7 +174,7 @@ namespace HotelBot.Dialogs.Main
                     {
                         Content_Type = "text",
                         Title = "Add a room",
-                        Payload = "test"
+                        Payload = "book"
                     },
                     new FacebookQuickReply
                     {
@@ -207,13 +213,13 @@ namespace HotelBot.Dialogs.Main
                 {
                     new FacebookQuickReply
                     {
-                        Title = FacebookStrings.QUICK_REPLY_BUTTON_DIRECTION,
+                        Title = LocationStrings.QUICK_REPLY_BUTTON_DIRECTION,
                         Content_Type = "text",
-                        Payload = "location"
+                        Payload = "directions"
                     },
                     new FacebookQuickReply
                     {
-                        Title = FacebookStrings.QUICK_REPLY_BUTTON_CALL,
+                        Title = MainStrings.QUICK_REPLY_BUTTON_CALL,
                         Content_Type = "text",
                         Payload = "call"
                     },

@@ -1,8 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using HotelBot.Dialogs.Main.Resources;
 using HotelBot.Models.Facebook;
-using HotelBot.Shared.Helpers;
-using HotelBot.Shared.Helpers.Resources;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Connector;
 using Newtonsoft.Json.Linq;
@@ -70,7 +69,7 @@ namespace HotelBot.Middleware
         {
             if (quickReply.Payload.Equals(FacebookQuickReply.LocationQuickReplyPayload))
             {
-                context.Activity.Text = FacebookStrings.CONTEXT_TEXT_DIRECTIONS;
+                context.Activity.Text = MainStrings.CONTEXT_TEXT_DIRECTIONS;
             }
             else if (quickReply.Payload.Equals(FacebookQuickReply.EmailQuickReplyPayload))
             {
@@ -78,16 +77,16 @@ namespace HotelBot.Middleware
             }
             else if (quickReply.Payload.Equals(FacebookQuickReply.CallUsReplyPayload))
             {
-                context.Activity.Text = FacebookStrings.CONTEXT_TEXT_CALL_US;
+                context.Activity.Text = MainStrings.CONTEXT_TEXT_CALL_US;
             }
 
             else if (quickReply.Payload.Equals(FacebookQuickReply.BookARoomPayload))
             {
-                context.Activity.Text = FacebookStrings.CONTEXT_TEXT_BOOK_A_ROOM;
+                context.Activity.Text = MainStrings.CONTEXT_TEXT_BOOK_A_ROOM;
             }
-            else if (quickReply.Payload.Equals("Directions"))
+            else if (quickReply.Payload.Equals(FacebookQuickReply.DirectionsPayload))
             {
-                context.Activity.Text = "I need directions to your hotel.";
+                context.Activity.Text = MainStrings.CONTEXT_TEXT_DIRECTIONS;
             }
 
         }

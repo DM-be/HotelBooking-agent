@@ -19,7 +19,7 @@ namespace HotelBot.Dialogs.Main.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class MainStrings {
@@ -61,6 +61,15 @@ namespace HotelBot.Dialogs.Main.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Call.
+        /// </summary>
+        public static string BUTTON_TITLE_CALL {
+            get {
+                return ResourceManager.GetString("BUTTON_TITLE_CALL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ok, let&apos;s start over..
         /// </summary>
         public static string CANCELLED {
@@ -84,6 +93,42 @@ namespace HotelBot.Dialogs.Main.Resources {
         public static string CONFUSED {
             get {
                 return ResourceManager.GetString("CONFUSED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I want to book a room..
+        /// </summary>
+        public static string CONTEXT_TEXT_BOOK_A_ROOM {
+            get {
+                return ResourceManager.GetString("CONTEXT_TEXT_BOOK_A_ROOM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could I call you?.
+        /// </summary>
+        public static string CONTEXT_TEXT_CALL {
+            get {
+                return ResourceManager.GetString("CONTEXT_TEXT_CALL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could I call you?.
+        /// </summary>
+        public static string CONTEXT_TEXT_CALL_US {
+            get {
+                return ResourceManager.GetString("CONTEXT_TEXT_CALL_US", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I need directions to your hotel..
+        /// </summary>
+        public static string CONTEXT_TEXT_DIRECTIONS {
+            get {
+                return ResourceManager.GetString("CONTEXT_TEXT_DIRECTIONS", resourceCulture);
             }
         }
         
@@ -147,6 +192,42 @@ namespace HotelBot.Dialogs.Main.Resources {
         public static string INTRODUCTION {
             get {
                 return ResourceManager.GetString("INTRODUCTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Call.
+        /// </summary>
+        public static string QUICK_REPLY_BUTTON_CALL {
+            get {
+                return ResourceManager.GetString("QUICK_REPLY_BUTTON_CALL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Directions.
+        /// </summary>
+        public static string QUICK_REPLY_BUTTON_DIRECTION {
+            get {
+                return ResourceManager.GetString("QUICK_REPLY_BUTTON_DIRECTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Find a room.
+        /// </summary>
+        public static string QUICK_REPLY_BUTTON_FIND_A_ROOM {
+            get {
+                return ResourceManager.GetString("QUICK_REPLY_BUTTON_FIND_A_ROOM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What can you do?.
+        /// </summary>
+        public static string QUICK_REPLY_BUTTON_WHAT_CAN_YOU_DO {
+            get {
+                return ResourceManager.GetString("QUICK_REPLY_BUTTON_WHAT_CAN_YOU_DO", resourceCulture);
             }
         }
     }

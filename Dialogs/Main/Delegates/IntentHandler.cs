@@ -21,26 +21,28 @@ namespace HotelBot.Dialogs.Main.Delegates
         {
             {
                 HotelBotLuis.Intent.Book_A_Room,
-                (dc, responder, facebookHelper, accessors, luisResult) => BeginFetchAvailableRoomsDialog(dc, accessors, luisResult)
+                (dc, responder, accessors, luisResult) => BeginFetchAvailableRoomsDialog(dc, accessors, luisResult)
             },
             {
-                HotelBotLuis.Intent.Cancel, (dc, responder, facebookHelper, accessors, luisResult) => CancelDialogs(dc, responder)
+                HotelBotLuis.Intent.Cancel, (dc, responder, accessors, luisResult) => CancelDialogs(dc, responder)
             },
             {
-                HotelBotLuis.Intent.Get_Directions, (dc, responder, facebookHelper, accessors, luisResult) => SendDirections(dc, facebookHelper)
+                HotelBotLuis.Intent.Get_Directions,
+                (dc, responder, accessors, luisResult) => BeginLocationPromptDialog(dc)
+            },
+                   {
+                HotelBotLuis.Intent.Get_Location,
+                (dc, responder, accessors, luisResult) => BeginLocationPromptDialog(dc)
             },
             {
-                HotelBotLuis.Intent.Get_Location, (dc, responder, facebookHelper, accessors, luisResult) => SendLocation(dc)
-            },
-            {
-                HotelBotLuis.Intent.Room_Overview, (dc, responder, facebookHelper, accessors, luisResult) => BeginRoomOverviewDialog(dc)
+                HotelBotLuis.Intent.Room_Overview, (dc, responder, accessors, luisResult) => BeginRoomOverviewDialog(dc)
             },
             {
                 HotelBotLuis.Intent.Call_Us,
-                (dc, responder, facebookHelper, accessors, luisResult) => SendCallCardAndQuickRepliesBasedOnState(dc, responder, accessors)
+                (dc, responder, accessors, luisResult) => SendCallResponseAndQuickReplies(dc, responder, accessors)
             },
             {
-                HotelBotLuis.Intent.None, (dc, responder, facebookHelper, accessors, luisResult) => SendConfused(dc, responder, accessors)
+                HotelBotLuis.Intent.None, (dc, responder, accessors, luisResult) => SendConfused(dc, responder, accessors)
             }
 
         };
@@ -65,17 +67,12 @@ namespace HotelBot.Dialogs.Main.Delegates
             await dc.CancelAllDialogsAsync();
         }
 
-        private static async Task SendDirections(DialogContext dc, FacebookHelper facebookHelper)
-        {
-            await facebookHelper.SendLocationQuickReply(dc.Context);
-        }
-
-        private static async Task SendLocation(DialogContext dc)
+        private static async Task BeginLocationPromptDialog(DialogContext dc)
         {
             await dc.BeginDialogAsync(nameof(LocationPromptDialog));
         }
 
-        private static async Task SendCallCardAndQuickRepliesBasedOnState(DialogContext dc, TemplateManager responder, StateBotAccessors accessors)
+        private static async Task SendCallResponseAndQuickReplies(DialogContext dc, TemplateManager responder, StateBotAccessors accessors)
         {
             await responder.ReplyWith(dc.Context, MainResponses.ResponseIds.SendCallCard);
             await MainDialog.SendQuickRepliesBasedOnState(dc.Context, accessors, responder as MainResponses);

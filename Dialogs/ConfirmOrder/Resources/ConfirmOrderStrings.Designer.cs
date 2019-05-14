@@ -19,7 +19,7 @@ namespace HotelBot.Dialogs.ConfirmOrder.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class ConfirmOrderStrings {
@@ -70,20 +70,20 @@ namespace HotelBot.Dialogs.ConfirmOrder.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to We just need your phone number in case of an emergency.
+        /// </summary>
+        public static string ASK_NUMBER {
+            get {
+                return ResourceManager.GetString("ASK_NUMBER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to To complete your order we need some extra information. .
         /// </summary>
         public static string INTRO {
             get {
                 return ResourceManager.GetString("INTRO", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ok {0}, Could I have an email address to send a confirmation to? .
-        /// </summary>
-        public static string RESPOND_NAME {
-            get {
-                return ResourceManager.GetString("RESPOND_NAME", resourceCulture);
             }
         }
     }

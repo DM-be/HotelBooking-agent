@@ -2,7 +2,6 @@
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.Shared.PromptValidators;
-using HotelBot.Shared.Helpers;
 using HotelBot.StateAccessors;
 using Microsoft.Bot.Builder.Dialogs;
 
@@ -10,7 +9,7 @@ namespace HotelBot.Dialogs.Prompts.Email
 {
     public class EmailPromptDialog: ComponentDialog
     {
-        private static readonly PromptValidatorResponses _responder = new PromptValidatorResponses();
+        private static readonly EmailResponses _responder = new EmailResponses();
         private readonly StateBotAccessors _accessors;
 
         public EmailPromptDialog(StateBotAccessors accessors)
@@ -24,6 +23,7 @@ namespace HotelBot.Dialogs.Prompts.Email
             };
 
             AddDialog(new WaterfallDialog(InitialDialogId, askForEmailWaterfallSteps));
+            AddDialog(new TextPrompt(nameof(TextPrompt)));
 
         }
 
@@ -31,16 +31,18 @@ namespace HotelBot.Dialogs.Prompts.Email
         private async Task<DialogTurnResult> AskForEmail(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             var firstName = sc.Options;
-            var facebookHelper = new FacebookHelper();
-            await facebookHelper.SendEmailQuickReply(sc.Context, firstName);
-            return new DialogTurnResult(DialogTurnStatus.Waiting);
+            return await sc.PromptAsync(nameof(TextPrompt), new PromptOptions
+            {
+                Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, EmailResponses.ResponseIds.SendEmailQuickReplyWithName, firstName)
+            });
+
         }
 
         private async Task<DialogTurnResult> FinishEmailDialog(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
 
 
-            var email = (string) sc.Result; //todo: add validation
+            var email = (string) sc.Result;
             if (!PromptValidators.IsValidEmailAddress(email))
             {
                 await _responder.ReplyWith(sc.Context, PromptValidatorResponses.ResponseIds.InvalidEmail);

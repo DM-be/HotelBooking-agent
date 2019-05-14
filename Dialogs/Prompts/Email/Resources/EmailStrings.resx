@@ -117,13 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="EMAIL_PROMPT" xml:space="preserve">
-    <value>What is your email?</value>
+  <data name="ASK_EMAIL_WITH_NAME" xml:space="preserve">
+    <value>Ok {0}, Could I have an email address to send a confirmation to?</value>
   </data>
   <data name="HAVE_EMAIL" xml:space="preserve">
     <value>Got it, I've added {0} as your primary contact address.</value>
-  </data>
-  <data name="HAVE_UPDATED_EMAIL" xml:space="preserve">
-    <value>Ok, I updated your email to {0}.</value>
   </data>
 </root>

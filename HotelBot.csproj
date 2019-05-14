@@ -78,6 +78,11 @@
      <AutoGen>True</AutoGen>
      <DependentUpon>MainStrings.resx</DependentUpon>
    </Compile>
+   <Compile Update="Dialogs\Prompts\LocationPrompt\Resources\LocationStrings.Designer.cs">
+     <DesignTime>True</DesignTime>
+     <AutoGen>True</AutoGen>
+     <DependentUpon>LocationStrings.resx</DependentUpon>
+   </Compile>
    <Compile Update="Dialogs\Prompts\NumberOfPeople\Resources\NumberOfPeopleStrings.Designer.cs">
      <DesignTime>True</DesignTime>
      <AutoGen>True</AutoGen>
@@ -102,11 +107,6 @@
      <DesignTime>True</DesignTime>
      <AutoGen>True</AutoGen>
      <DependentUpon>ValidatorStrings.resx</DependentUpon>
-   </Compile>
-   <Compile Update="Shared\Helpers\Resources\FacebookStrings.Designer.cs">
-     <DesignTime>True</DesignTime>
-     <AutoGen>True</AutoGen>
-     <DependentUpon>FacebookStrings.resx</DependentUpon>
    </Compile>
    <Compile Update="Shared\Intents\Help\Resources\HelpStrings.Designer.cs">
      <DesignTime>True</DesignTime>
@@ -154,6 +154,10 @@
      <Generator>PublicResXFileCodeGenerator</Generator>
      <LastGenOutput>MainStrings.Designer.cs</LastGenOutput>
    </EmbeddedResource>
+   <EmbeddedResource Update="Dialogs\Prompts\LocationPrompt\Resources\LocationStrings.resx">
+     <Generator>PublicResXFileCodeGenerator</Generator>
+     <LastGenOutput>LocationStrings.Designer.cs</LastGenOutput>
+   </EmbeddedResource>
    <EmbeddedResource Update="Dialogs\Prompts\NumberOfPeople\Resources\NumberOfPeopleStrings.resx">
      <Generator>PublicResXFileCodeGenerator</Generator>
      <LastGenOutput>NumberOfPeopleStrings.Designer.cs</LastGenOutput>
@@ -173,10 +177,6 @@
    <EmbeddedResource Update="Dialogs\Shared\PromptValidators\Resources\ValidatorStrings.resx">
      <Generator>PublicResXFileCodeGenerator</Generator>
      <LastGenOutput>ValidatorStrings.Designer.cs</LastGenOutput>
-   </EmbeddedResource>
-   <EmbeddedResource Update="Shared\Helpers\Resources\FacebookStrings.resx">
-     <Generator>PublicResXFileCodeGenerator</Generator>
-     <LastGenOutput>FacebookStrings.Designer.cs</LastGenOutput>
    </EmbeddedResource>
    <EmbeddedResource Update="Shared\Intents\Help\Resources\HelpStrings.nl.resx">
      <Generator>PublicResXFileCodeGenerator</Generator>

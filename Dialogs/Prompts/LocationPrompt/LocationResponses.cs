@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
-using HotelBot.Dialogs.Prompts.Email;
-using HotelBot.Dialogs.Prompts.Email.Resources;
+using HotelBot.Dialogs.Prompts.LocationPrompt.Resources;
 using HotelBot.Models.Facebook;
-using HotelBot.Shared.Helpers.Resources;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.TemplateManager;
 using Microsoft.Bot.Schema;
@@ -15,13 +13,7 @@ namespace HotelBot.Dialogs.Prompts.LocationPrompt
         {
             ["default"] = new TemplateIdMap
             {
-                {
-                    EmailResponses.ResponseIds.EmailPrompt, (context, data) =>
-                        MessageFactory.Text(
-                            EmailStrings.EMAIL_PROMPT,
-                            EmailStrings.EMAIL_PROMPT,
-                            InputHints.AcceptingInput)
-                },
+      
                 {
                     ResponseIds.SendNavigation, (context, data) =>
                         BuildNavigationCard(context, data)
@@ -42,7 +34,7 @@ namespace HotelBot.Dialogs.Prompts.LocationPrompt
         {
             var facebookMessage = new FacebookMessage
             {
-                Text = FacebookStrings.QUICK_REPLY_ASK_LOCATION,
+                Text = LocationStrings.QUICK_REPLY_ASK_LOCATION,
                 QuickReplies = new []
                 {
                     new FacebookQuickReply
@@ -71,12 +63,12 @@ namespace HotelBot.Dialogs.Prompts.LocationPrompt
                 },
                 Buttons = new List<CardAction>
                 {
-                    new CardAction(ActionTypes.OpenUrl, FacebookStrings.HEROCARD_BUTTON_DIRECTION_TITLE, value: url)
+                    new CardAction(ActionTypes.OpenUrl, LocationStrings.HEROCARD_BUTTON_DIRECTION_TITLE, value: url)
                 }
             };
 
             var reply = context.Activity.CreateReply();
-            reply.Text = "I have found you a route.";
+            reply.Text = LocationStrings.HEROCARD_REPLY_TEXT_DIRECTION;
             reply.Attachments = new List<Attachment>
             {
                 heroCard.ToAttachment()

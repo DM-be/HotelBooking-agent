@@ -32,7 +32,16 @@ namespace HotelBot.Dialogs.ConfirmOrder
                             ConfirmOrderStrings.AFTER_CONFIRMATION,
                             ConfirmOrderStrings.AFTER_CONFIRMATION,
                             InputHints.IgnoringInput)
-                }
+                },
+                {
+                    ResponseIds.SendPhoneNumberQuickReply, (context, data) =>
+                        BuildPhoneNumberQuickReply(context, data)
+                },
+                {
+                    ResponseIds.SendFullNameQuickReply, (context, data) =>
+                        BuildFullNameQuickReply(context, data)
+                },
+              
 
             }
         };
@@ -170,11 +179,56 @@ namespace HotelBot.Dialogs.ConfirmOrder
         }
 
 
+        
+
+        public static IMessageActivity BuildPhoneNumberQuickReply(ITurnContext context, dynamic data)
+        {
+            var facebookMessage = new FacebookMessage
+            {
+                Text = ConfirmOrderStrings.ASK_NUMBER,
+                QuickReplies = new[]
+                {
+                    new FacebookQuickReply
+                    {
+                        Content_Type = "user_phone_number"
+                    }
+                }
+            };
+            var reply = context.Activity.CreateReply();
+            reply.ChannelData = facebookMessage;
+            return reply;
+        }
+
+        public static IMessageActivity BuildFullNameQuickReply(ITurnContext context, dynamic data)
+        {
+            var facebookMessage = new FacebookMessage
+            {
+                Text = "What name should we use to confirm this booking?",
+                QuickReplies = new[]
+                {
+                    new FacebookQuickReply
+                    {
+                        Content_Type = "text",
+                        Title = data,
+                        Payload = data
+                    }
+                }
+            };
+            var reply = context.Activity.CreateReply();
+            reply.ChannelData = facebookMessage;
+            return reply;
+        }
+
+
         public class ResponseIds
         {
             public const string SendPaymentCard = "sendPaymentCard";
             public const string SendReceipt = "sendReceipt";
             public const string AfterConfirmation = "afterConfirmation";
+
+            public const string SendEmailQuickReply = "sendEmailQuickReply";
+            public const string SendPhoneNumberQuickReply = "SendPhoneNumberQuickReply";
+            public const string SendFullNameQuickReply = "SendFullNameQuickReply";
         }
     }
 
