@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Threading;
 using HotelBot.Dialogs.Main.Resources;
 using HotelBot.Dialogs.Prompts.LocationPrompt.Resources;
 using HotelBot.Models.Facebook;
@@ -8,7 +10,7 @@ using Microsoft.Bot.Schema;
 
 namespace HotelBot.Dialogs.Main
 {
-    public class MainResponses: TemplateManager
+    public class MainResponses : TemplateManager
     {
         private static readonly LanguageTemplateDictionary _responseTemplates = new LanguageTemplateDictionary
         {
@@ -49,7 +51,7 @@ namespace HotelBot.Dialogs.Main
                             MainStrings.HELP,
                             InputHints.AcceptingInput)
                 },
-      
+
                 {
                     ResponseIds.GreetingWithName, (context, data) =>
                         MessageFactory.Text(
@@ -82,7 +84,7 @@ namespace HotelBot.Dialogs.Main
                         BuildCallMessage(context)
 
                 },
-              
+
 
             }
         };
@@ -128,8 +130,8 @@ namespace HotelBot.Dialogs.Main
 
             var facebookMessage = new FacebookMessage
             {
-                Text = "What would you like to do next?",
-                QuickReplies = new []
+                Text = GenerateRandomCompleteMessage().Text,
+                QuickReplies = new[]
                 {
                     new FacebookQuickReply
                     {
@@ -168,7 +170,7 @@ namespace HotelBot.Dialogs.Main
             var facebookMessage = new FacebookMessage
             {
                 Text = "What would you like to do next?",
-                QuickReplies = new []
+                QuickReplies = new[]
                 {
                     new FacebookQuickReply
                     {
@@ -209,7 +211,7 @@ namespace HotelBot.Dialogs.Main
             var facebookMessage = new FacebookMessage
             {
                 Text = "Do you have any more questions about our hotel or services?",
-                QuickReplies = new []
+                QuickReplies = new[]
                 {
                     new FacebookQuickReply
                     {
@@ -242,6 +244,31 @@ namespace HotelBot.Dialogs.Main
             return reply;
         }
 
+
+        private static IMessageActivity GenerateRandomCompleteMessage() {
+
+            var mainStrings = MainStrings.ResourceManager;
+            var resourceSet = mainStrings.GetResourceSet(Thread.CurrentThread.CurrentCulture, true, true);
+            IDictionaryEnumerator id = resourceSet.GetEnumerator();
+            List<dynamic> randomContinueResponses = new List<dynamic>();
+            while (id.MoveNext())
+            {
+                if (id.Key.ToString().StartsWith("RANDOM_CONTINUE"))
+                {
+                    var dyn = new
+                    {
+                        Key = id.Key.ToString(),
+                        Value = id.Value.ToString()
+                    };
+                    randomContinueResponses.Add(dyn);
+                }
+            }
+            System.Random random = new System.Random();
+            var message = randomContinueResponses[random.Next(0, randomContinueResponses.Count)].Value;
+            return MessageFactory.Text(message);
+
+
+        }
 
 
 

@@ -230,5 +230,59 @@ namespace HotelBot.Dialogs.Main.Resources {
                 return ResourceManager.GetString("QUICK_REPLY_BUTTON_WHAT_CAN_YOU_DO", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What else can I help you with?.
+        /// </summary>
+        public static string RANDOM_CONTINUE_1 {
+            get {
+                return ResourceManager.GetString("RANDOM_CONTINUE_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How could I help?.
+        /// </summary>
+        public static string RANDOM_CONTINUE_2 {
+            get {
+                return ResourceManager.GetString("RANDOM_CONTINUE_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Glad to have helped. Anything else?.
+        /// </summary>
+        public static string RANDOM_CONTINUE_3 {
+            get {
+                return ResourceManager.GetString("RANDOM_CONTINUE_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anything else? .
+        /// </summary>
+        public static string RANDOM_CONTINUE_4 {
+            get {
+                return ResourceManager.GetString("RANDOM_CONTINUE_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What would you like to do next?.
+        /// </summary>
+        public static string RANDOM_CONTINUE_5 {
+            get {
+                return ResourceManager.GetString("RANDOM_CONTINUE_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you need anything else?.
+        /// </summary>
+        public static string RANDOM_CONTINUE_6 {
+            get {
+                return ResourceManager.GetString("RANDOM_CONTINUE_6", resourceCulture);
+            }
+        }
     }
 }

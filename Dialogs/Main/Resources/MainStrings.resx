@@ -174,4 +174,22 @@
   <data name="QUICK_REPLY_BUTTON_WHAT_CAN_YOU_DO" xml:space="preserve">
     <value>What can you do?</value>
   </data>
+  <data name="RANDOM_CONTINUE_1" xml:space="preserve">
+    <value>What else can I help you with?</value>
+  </data>
+  <data name="RANDOM_CONTINUE_2" xml:space="preserve">
+    <value>How could I help?</value>
+  </data>
+  <data name="RANDOM_CONTINUE_3" xml:space="preserve">
+    <value>Glad to have helped. Anything else?</value>
+  </data>
+  <data name="RANDOM_CONTINUE_4" xml:space="preserve">
+    <value>Anything else? </value>
+  </data>
+  <data name="RANDOM_CONTINUE_5" xml:space="preserve">
+    <value>What would you like to do next?</value>
+  </data>
+  <data name="RANDOM_CONTINUE_6" xml:space="preserve">
+    <value>Do you need anything else?</value>
+  </data>
 </root>
