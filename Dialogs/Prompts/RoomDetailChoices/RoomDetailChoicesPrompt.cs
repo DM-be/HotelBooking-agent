@@ -61,13 +61,13 @@ namespace HotelBot.Dialogs.Prompts.RoomDetailChoices
             }
 
 
-
+            var roomDetailChoicesResponder = new RoomDetailChoicesResponses();
             return await sc.PromptAsync(
                 nameof(ChoicePrompt),
                 new PromptOptions
                 {
 
-                    Prompt = MessageFactory.Text(RoomDetailChoicesStrings.PROMPT_CHOICES),
+                    Prompt = await roomDetailChoicesResponder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, RoomDetailChoicesResponses.ResponseIds.GetRandomContinuePrompt),
                     Choices = ChoiceFactory.ToChoices(
                         choices)
                 },

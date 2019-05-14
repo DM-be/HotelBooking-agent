@@ -181,10 +181,10 @@
     <value>What else can I help you with?</value>
   </data>
   <data name="RANDOM_CONTINUE_2" xml:space="preserve">
-    <value>How could I help?</value>
+    <value>How can I help?</value>
   </data>
   <data name="RANDOM_CONTINUE_3" xml:space="preserve">
-    <value>Glad to have helped. Anything else?</value>
+    <value>Glad to help. Anything else?</value>
   </data>
   <data name="RANDOM_CONTINUE_4" xml:space="preserve">
     <value>Anything else? </value>
@@ -197,5 +197,11 @@
   </data>
   <data name="RANDOM_CONTINUE_7" xml:space="preserve">
     <value>Do you have any more questions about our hotel or services?</value>
+  </data>
+  <data name="RANDOM_CONTINUE_8" xml:space="preserve">
+    <value>Need anything else?</value>
+  </data>
+  <data name="RANDOM_CONTINUE_9" xml:space="preserve">
+    <value>I'm glad to help, what do you want to do next?</value>
   </data>
 </root>

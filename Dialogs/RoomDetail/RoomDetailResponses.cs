@@ -20,7 +20,7 @@ namespace HotelBot.Dialogs.RoomDetail
                 },
                 {
                     ResponseIds.SendDescription, (context, data) =>
-                        SendDescription(context, data)
+                        SendDescription(data)
                 },
                 {
                     ResponseIds.SendRates, (context, data) =>
@@ -28,7 +28,7 @@ namespace HotelBot.Dialogs.RoomDetail
                 },
                 {
                     ResponseIds.SendLowestRate, (context, data) =>
-                        SendLowestRate(context, data)
+                        SendLowestRate(data)
                 }
 
 
@@ -107,18 +107,20 @@ namespace HotelBot.Dialogs.RoomDetail
         }
 
 
-        public static IMessageActivity SendDescription(ITurnContext context, dynamic data)
+        public static IMessageActivity SendDescription(dynamic data)
         {
             var selectedRoomDetailDto = data as RoomDetailDto;
             return MessageFactory.Text(selectedRoomDetailDto.Description);
         }
 
-        public static IMessageActivity SendLowestRate(ITurnContext context, dynamic data)
+        public static IMessageActivity SendLowestRate(dynamic data)
         {
             var selectedRoomDetailDto = data as RoomDetailDto;
             var message = $"This room is available starting from €{selectedRoomDetailDto.LowestRate}.";
             return MessageFactory.Text(message);
         }
+
+       
 
         public class ResponseIds
         {

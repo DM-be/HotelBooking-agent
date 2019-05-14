@@ -250,7 +250,7 @@ namespace HotelBot.Dialogs.Main.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to How could I help?.
+        ///   Looks up a localized string similar to How can I help?.
         /// </summary>
         public static string RANDOM_CONTINUE_2 {
             get {
@@ -259,7 +259,7 @@ namespace HotelBot.Dialogs.Main.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Glad to have helped. Anything else?.
+        ///   Looks up a localized string similar to Glad to help. Anything else?.
         /// </summary>
         public static string RANDOM_CONTINUE_3 {
             get {
@@ -300,6 +300,24 @@ namespace HotelBot.Dialogs.Main.Resources {
         public static string RANDOM_CONTINUE_7 {
             get {
                 return ResourceManager.GetString("RANDOM_CONTINUE_7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Need anything else?.
+        /// </summary>
+        public static string RANDOM_CONTINUE_8 {
+            get {
+                return ResourceManager.GetString("RANDOM_CONTINUE_8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I&apos;m glad to help, what do you want to do next?.
+        /// </summary>
+        public static string RANDOM_CONTINUE_9 {
+            get {
+                return ResourceManager.GetString("RANDOM_CONTINUE_9", resourceCulture);
             }
         }
     }
