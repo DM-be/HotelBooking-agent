@@ -79,6 +79,24 @@ namespace HotelBot.Dialogs.FetchAvailableRooms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to OK, I found {0} rooms for you. You&apos;re welcome..
+        /// </summary>
+        public static string FOUND_ROOMS {
+            get {
+                return ResourceManager.GetString("FOUND_ROOMS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hold on, I&apos;m checking... .
+        /// </summary>
+        public static string HOLD_ON_CHECKING {
+            get {
+                return ResourceManager.GetString("HOLD_ON_CHECKING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sorry you cannot book a room in the past. .
         /// </summary>
         public static string INCORRECT_DATE {
@@ -88,7 +106,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I can lookup rooms but I need a bit more info. If you give me some wrong info, just act natural and ask me to change it for you. I&apos;ll understand 🧐.
+        ///   Looks up a localized string similar to I can look up rooms but I need more info. If you make a mistake during our talk, just act natural and ask me to change it. I&apos;ll understand 🧐.
         /// </summary>
         public static string INTRODUCTION_MISTAKES {
             get {
@@ -178,7 +196,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I can understand most sentences related to finding a room, such as &quot;I need a room for two&quot; and so on 😎.
+        ///   Looks up a localized string similar to I can understand most sentences related to finding a room, such as &quot;I want to checkout next week sunday&quot; and so on..
         /// </summary>
         public static string UNDERSTAND_NLU {
             get {

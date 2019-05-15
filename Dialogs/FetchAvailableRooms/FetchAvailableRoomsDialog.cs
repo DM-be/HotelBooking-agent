@@ -121,6 +121,9 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             {
                 // send book a room cards and prompt to continue or update
                 var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
+
+                await _responder.ReplyWith(sc.Context, FetchAvailableRoomsResponses.ResponseIds.HoldOnChecking);
+                Thread.Sleep(500); 
                 await _responder.ReplyWith(sc.Context, FetchAvailableRoomsResponses.ResponseIds.SendRoomsCarousel, state);
                 return await sc.BeginDialogAsync(nameof(ContinueOrUpdatePrompt));
             }

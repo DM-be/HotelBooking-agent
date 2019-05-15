@@ -107,6 +107,13 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                             FetchAvailableRoomsStrings.UNDERSTAND_NLU,
                             InputHints.IgnoringInput)
                 },
+                  {
+                    ResponseIds.HoldOnChecking, (context, data) =>
+                        MessageFactory.Text(
+                            FetchAvailableRoomsStrings.HOLD_ON_CHECKING,
+                            FetchAvailableRoomsStrings.HOLD_ON_CHECKING,
+                            InputHints.IgnoringInput)
+                },
 
                 {
                     ResponseIds.SendRoomsCarousel, (context, data) =>
@@ -213,7 +220,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                 };
             var reply = context.Activity.CreateReply();
 
-            reply.Text = string.Empty;
+            reply.Text = String.Format(FetchAvailableRoomsStrings.FOUND_ROOMS, heroCards.Length);
             var attachments = new List<Attachment>();
 
             foreach (var heroCard in heroCards) attachments.Add(heroCard.ToAttachment());
@@ -391,6 +398,8 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             public const string IntroductionMistakes = "introductionMistakes";
             public const string UnderstandNLU = "understandNLU";
             public const string UnderstandExample = "understandExample";
+
+            public const string HoldOnChecking = "holdOnChecking";
 
         }
     }

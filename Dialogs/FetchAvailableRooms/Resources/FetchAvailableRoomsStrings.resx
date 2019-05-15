@@ -123,11 +123,18 @@
   <data name="CONTINUE_OR_UPDATE" xml:space="preserve">
     <value>Tap the buttons in the card to continue. I can search for rooms again if you would like. </value>
   </data>
+  <data name="FOUND_ROOMS" xml:space="preserve">
+    <value>OK, I found {0} rooms for you. You're welcome.</value>
+  </data>
+  <data name="HOLD_ON_CHECKING" xml:space="preserve">
+    <value>Hold on, I'm checking... </value>
+  </data>
   <data name="INCORRECT_DATE" xml:space="preserve">
     <value>Sorry you cannot book a room in the past. </value>
   </data>
   <data name="INTRODUCTION_MISTAKES" xml:space="preserve">
-    <value>I can lookup rooms but I need a bit more info. If you give me some wrong info, just act natural and ask me to change it for you. I'll understand 🧐</value>
+    <value>I can look up rooms but I need more info. If you make a mistake during our talk, just act natural and ask me to change it. I'll understand 🧐</value>
+    <comment>I can look up rooms but I need more info. If you supply me with wrong info, just act natural and ask me to update it for you. I'll understand 🧐</comment>
   </data>
   <data name="INTRODUCTION_MORE_INFO" xml:space="preserve">
     <value>I can lookup rooms but I need a bit more info. </value>
@@ -156,9 +163,10 @@
   </data>
   <data name="UNDERSTAND_EXAMPLE" xml:space="preserve">
     <value>For example: if I ask you when you would leave, you can still change your checkin time by saying "I want to change my checkin time".</value>
+    <comment>For example: if I ask you when you would leave, you can still change your checkin time by saying "I want to change my checkin time".</comment>
   </data>
   <data name="UNDERSTAND_NLU" xml:space="preserve">
-    <value>I can understand most sentences related to finding a room, such as "I need a room for two" and so on 😎</value>
+    <value>I can understand most sentences related to finding a room, such as "I want to checkout next week sunday" and so on.</value>
   </data>
   <data name="UPDATE_ARRIVALDATE_WITHOUT_ENTITY" xml:space="preserve">
     <value>Do you want to change your checkin date?</value>
