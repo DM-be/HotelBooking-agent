@@ -160,7 +160,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You are looking for a room for {0} people between {1} and {2}. Is this correct?.
+        ///   Looks up a localized string similar to You want a room for {0} people between {1} and {2} right? .
         /// </summary>
         public static string STATE_OVERVIEW {
             get {

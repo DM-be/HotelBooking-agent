@@ -213,8 +213,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                 };
             var reply = context.Activity.CreateReply();
 
-            reply.Text =
-                $"These are our available rooms between {bookARoomState.ArrivalDate} and {bookARoomState.LeavingDate} for {bookARoomState.NumberOfPeople.ToString()} people.";
+            reply.Text = string.Empty;
             var attachments = new List<Attachment>();
 
             foreach (var heroCard in heroCards) attachments.Add(heroCard.ToAttachment());

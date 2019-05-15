@@ -12,7 +12,7 @@ namespace HotelBot.Dialogs.Prompts.ContinueOrUpdatePrompt
 {
     public class ContinueOrUpdatePrompt: ComponentDialog
     {
-        private static readonly FetchAvailableRoomsResponses _responder = new FetchAvailableRoomsResponses();
+        private static readonly ContinueOrUpdatePromptResponses _responder = new ContinueOrUpdatePromptResponses();
         private readonly StateBotAccessors _accessors;
 
         public ContinueOrUpdatePrompt(StateBotAccessors accessors): base(nameof(ContinueOrUpdatePrompt))
@@ -41,7 +41,6 @@ namespace HotelBot.Dialogs.Prompts.ContinueOrUpdatePrompt
 
                 FetchAvailableRoomsDialog.FetchAvailableRoomsChoices.StartOver,
                 FetchAvailableRoomsDialog.FetchAvailableRoomsChoices.UpdateSearch,
-                FetchAvailableRoomsDialog.FetchAvailableRoomsChoices.NoThanks
             };
 
             if (state.SelectedRooms != null && state.SelectedRooms.Count != 0)
@@ -54,7 +53,7 @@ namespace HotelBot.Dialogs.Prompts.ContinueOrUpdatePrompt
                     Prompt = await _responder.RenderTemplate(
                         sc.Context,
                         sc.Context.Activity.Locale,
-                        FetchAvailableRoomsResponses.ResponseIds.ContinueOrUpdate),
+                        ContinueOrUpdatePromptResponses.ResponseIds.SendRandomContinueOrUpdatePrompt),
                     Choices = ChoiceFactory.ToChoices(
                         choices)
                 },
@@ -75,7 +74,6 @@ namespace HotelBot.Dialogs.Prompts.ContinueOrUpdatePrompt
 
         // when we are in this step of the dialog we can also use LUIS to update our search
         // it will call a updatestateprompt with a yes or no response
-        // when this resumes we use the recognized text (will always be the string Yes) to manually end the dialog on resume.
         // we assume that when state is updated, a user will want to see new results
 
         public override async Task<DialogTurnResult> ResumeDialogAsync(DialogContext dc, DialogReason reason, object result = null,

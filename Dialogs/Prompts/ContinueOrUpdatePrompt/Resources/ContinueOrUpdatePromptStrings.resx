@@ -117,77 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CACHED_STATE_OVERVIEW" xml:space="preserve">
-    <value>Last time you looked for a room for {0} people between {1} and {2}. Is this still what you are looking for?</value>
+  <data name="RANDOM_CONTINUE_1" xml:space="preserve">
+    <value>Tap a button to continue 👆</value>
   </data>
-  <data name="CONTINUE_OR_UPDATE" xml:space="preserve">
-    <value>Tap the buttons in the card to continue. I can search for rooms again if you would like. </value>
+  <data name="RANDOM_CONTINUE_2" xml:space="preserve">
+    <value>View more info or book by tapping a button 👆</value>
   </data>
-  <data name="INCORRECT_DATE" xml:space="preserve">
-    <value>Sorry you cannot book a room in the past. </value>
+  <data name="RANDOM_CONTINUE_3" xml:space="preserve">
+    <value>Continue by tapping ☝️</value>
   </data>
-  <data name="INTRODUCTION_MISTAKES" xml:space="preserve">
-    <value>I can lookup rooms but I need a bit more info. If you give me some wrong info, just act natural and ask me to change it for you. I'll understand 🧐</value>
+  <data name="RANDOM_CONTINUE_4" xml:space="preserve">
+    <value>You can book or view more info by tapping a button 👆</value>
   </data>
-  <data name="INTRODUCTION_MORE_INFO" xml:space="preserve">
-    <value>I can lookup rooms but I need a bit more info. </value>
-  </data>
-  <data name="INTRODUCTION_START" xml:space="preserve">
-    <value>OK, let's find you a room! 👊</value>
-  </data>
-  <data name="LEAVINGDATE_PROMPT" xml:space="preserve">
-    <value>When would you be leaving?</value>
-  </data>
-  <data name="NOT_RECOGNIZED_DATE" xml:space="preserve">
-    <value>I'm sorry, I do not understand. Please enter the date or time for your booking.</value>
-  </data>
-  <data name="SMOKING_ALLOWED" xml:space="preserve">
-    <value>🚬</value>
-  </data>
-  <data name="SMOKING_NOT_ALLOWED" xml:space="preserve">
-    <value>🚭</value>
-  </data>
-  <data name="SPECIFICTIME_REPLY" xml:space="preserve">
-    <value>I need a specific day to help you.</value>
-  </data>
-  <data name="STATE_OVERVIEW" xml:space="preserve">
-    <value>You want a room for {0} people between {1} and {2} right? </value>
-    <comment>You are looking for a room for {0} people between {1} and {2}. Is this correct?</comment>
-  </data>
-  <data name="UNDERSTAND_EXAMPLE" xml:space="preserve">
-    <value>For example: if I ask you when you would leave, you can still change your checkin time by saying "I want to change my checkin time".</value>
-  </data>
-  <data name="UNDERSTAND_NLU" xml:space="preserve">
-    <value>I can understand most sentences related to finding a room, such as "I need a room for two" and so on 😎</value>
-  </data>
-  <data name="UPDATE_ARRIVALDATE_WITHOUT_ENTITY" xml:space="preserve">
-    <value>Do you want to change your checkin date?</value>
-  </data>
-  <data name="UPDATE_ARRIVALDATE_WITH_ENTITY" xml:space="preserve">
-    <value>Do you want to change your checkin date to {0}?</value>
-  </data>
-  <data name="UPDATE_LEAVINGDATE_WITHOUT_ENTITY" xml:space="preserve">
-    <value>Do you want to change your checkout date?</value>
-  </data>
-  <data name="UPDATE_LEAVINGDATE_WITH_ENTITY" xml:space="preserve">
-    <value>Do you want to change your checkout date to {0}?</value>
-  </data>
-  <data name="UPDATE_NUMBEROFPEOPLE_WITHOUT_ENTITY" xml:space="preserve">
-    <value>Do want to change the number of people?</value>
-  </data>
-  <data name="UPDATE_NUMBEROFPEOPLE_WITH_ENTITY" xml:space="preserve">
-    <value>Do you want to change the number of people to {0}?</value>
-  </data>
-  <data name="UPDATE_PROMPT" xml:space="preserve">
-    <value>What would you like to change?</value>
-  </data>
-  <data name="UPDATE_SAVED_STATE" xml:space="preserve">
-    <value>Do you want to update something or start a new search?</value>
-  </data>
-  <data name="WHEELCHAIR_ACCESSIBLE" xml:space="preserve">
-    <value>♿</value>
-  </data>
-  <data name="WHEELCHAIR_INACCESIBLE" xml:space="preserve">
-    <value />
+  <data name="RANDOM_CONTINUE_5" xml:space="preserve">
+    <value>Tap a button in one of the cards above to continue ☝️</value>
   </data>
 </root>
