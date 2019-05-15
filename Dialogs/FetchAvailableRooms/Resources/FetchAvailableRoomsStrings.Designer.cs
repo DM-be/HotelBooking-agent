@@ -19,7 +19,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class FetchAvailableRoomsStrings {
@@ -192,24 +192,6 @@ namespace HotelBot.Dialogs.FetchAvailableRooms.Resources {
         public static string UPDATE_ARRIVALDATE_WITHOUT_ENTITY {
             get {
                 return ResourceManager.GetString("UPDATE_ARRIVALDATE_WITHOUT_ENTITY", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Do you want to change your email to {0}?.
-        /// </summary>
-        public static string UPDATE_EMAIL_WITH_ENTITY {
-            get {
-                return ResourceManager.GetString("UPDATE_EMAIL_WITH_ENTITY", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Do you want to update your email address? .
-        /// </summary>
-        public static string UPDATE_EMAIL_WITHOUT_ENTITY {
-            get {
-                return ResourceManager.GetString("UPDATE_EMAIL_WITHOUT_ENTITY", resourceCulture);
             }
         }
         

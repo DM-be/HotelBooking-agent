@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using HotelBot.Models.LUIS;
+﻿
 using Microsoft.Recognizers.Text.DataTypes.TimexExpression;
 
 namespace HotelBot.Dialogs.FetchAvailableRooms

@@ -68,10 +68,6 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                             InputHints.IgnoringInput)
                 },
                 {
-                    ResponseIds.UpdateEmail, (context, data) =>
-                        UpdateEmail(context, data)
-                },
-                {
                     ResponseIds.UpdateNumberOfPeople, (context, data) =>
                         UpdateNumberOfPeople(context, data)
                 },
@@ -245,22 +241,6 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
         }
 
 
-        public static IMessageActivity UpdateEmail(ITurnContext context, dynamic data)
-        {
-            var luisResult = data.LuisResult as HotelBotLuis;
-            string message;
-            if (luisResult.HasEntityWithPropertyName(UpdateStatePrompt.EntityNames.Email))
-            {
-                var emailString = luisResult.Entities.email[0];
-                message = string.Format(FetchAvailableRoomsStrings.UPDATE_EMAIL_WITH_ENTITY, emailString);
-            }
-            else
-            {
-                message = FetchAvailableRoomsStrings.UPDATE_EMAIL_WITHOUT_ENTITY;
-            }
-
-            return MessageFactory.Text(message);
-        }
 
         public static IMessageActivity UpdateArrivalDate(ITurnContext context, dynamic data)
         {
@@ -396,7 +376,6 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             public const string SendStart = "sendStart";
             public const string SendMoreInfo = "sendMoreInfo";
 
-            public const string UpdateEmail = "Update_email";
             public const string UpdateArrivalDate = "Update_ArrivalDate";
             public const string UpdateLeavingDate = "Update_Leaving_Date";
             public const string UpdateNumberOfPeople = "Update_Number_Of_People";

@@ -150,6 +150,9 @@
   <data name="ERROR" xml:space="preserve">
     <value>Sorry, it looks like something went wrong.</value>
   </data>
+  <data name="FDS" xml:space="preserve">
+    <value />
+  </data>
   <data name="GETTING_STARTED_INTRO" xml:space="preserve">
     <value />
   </data>
@@ -212,5 +215,14 @@
   </data>
   <data name="RANDOM_CONTINUE_9" xml:space="preserve">
     <value>Happy to help 😁 Anything else?</value>
+  </data>
+  <data name="WHAT_CAN_YOU_DO_NLU" xml:space="preserve">
+    <value>I can understand things like "find me a room on april 15" or "show me my booked rooms". Go ahead try it out 😉</value>
+  </data>
+  <data name="WHAT_CAN_YOU_DO_SMART" xml:space="preserve">
+    <value>I try to keep things short by providing you with buttons but I'm pretty smart 🤓</value>
+  </data>
+  <data name="WHAT_CAN_YOU_DO_TASKS" xml:space="preserve">
+    <value>My purpose is to assist you in booking a room with us. I can also answer any general questions you might have about our hotel. </value>
   </data>
 </root>

@@ -162,6 +162,15 @@ namespace HotelBot.Dialogs.Main.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        public static string FDS {
+            get {
+                return ResourceManager.GetString("FDS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         public static string GETTING_STARTED_INTRO {
             get {
                 return ResourceManager.GetString("GETTING_STARTED_INTRO", resourceCulture);
@@ -345,6 +354,33 @@ namespace HotelBot.Dialogs.Main.Resources {
         public static string RANDOM_CONTINUE_9 {
             get {
                 return ResourceManager.GetString("RANDOM_CONTINUE_9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I can understand things like &quot;find me a room on april 15&quot; or &quot;show me my booked rooms&quot;. Go ahead try it out 😉.
+        /// </summary>
+        public static string WHAT_CAN_YOU_DO_NLU {
+            get {
+                return ResourceManager.GetString("WHAT_CAN_YOU_DO_NLU", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I try to keep things short by providing you with buttons but I&apos;m pretty smart 🤓.
+        /// </summary>
+        public static string WHAT_CAN_YOU_DO_SMART {
+            get {
+                return ResourceManager.GetString("WHAT_CAN_YOU_DO_SMART", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My purpose is to assist you in booking a room with us. I can also answer any general questions you might have about our hotel. .
+        /// </summary>
+        public static string WHAT_CAN_YOU_DO_TASKS {
+            get {
+                return ResourceManager.GetString("WHAT_CAN_YOU_DO_TASKS", resourceCulture);
             }
         }
     }

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.FetchAvailableRooms;
+using HotelBot.Dialogs.Main.Resources;
 using HotelBot.Dialogs.Prompts.LocationPrompt;
 using HotelBot.Dialogs.Prompts.UpdateState;
 using HotelBot.Dialogs.RoomOverview;
@@ -42,8 +43,12 @@ namespace HotelBot.Dialogs.Main.Delegates
                 (dc, responder, accessors, luisResult) => SendCallResponseAndQuickReplies(dc, responder, accessors)
             },
             {
+                HotelBotLuis.Intent.What_Can_You_Do, (dc, responder, accessors, luisResult) => SendWhatCanYouDo(dc, responder, accessors)
+            },
+            {
                 HotelBotLuis.Intent.None, (dc, responder, accessors, luisResult) => SendConfused(dc, responder, accessors)
-            }
+            },
+
 
         };
 
@@ -84,6 +89,15 @@ namespace HotelBot.Dialogs.Main.Delegates
             await responder.ReplyWith(dc.Context, MainResponses.ResponseIds.Confused);
             await MainDialog.SendQuickRepliesBasedOnState(dc.Context, accessors, responder as MainResponses);
         }
+
+        private static async Task SendWhatCanYouDo(DialogContext dc, TemplateManager responder, StateBotAccessors accessors)
+        {
+            await responder.ReplyWith(dc.Context, MainResponses.ResponseIds.WhatCanYouDoTasks);
+            await responder.ReplyWith(dc.Context, MainResponses.ResponseIds.WhatCanYouDoSmart);
+            var text = MainStrings.WHAT_CAN_YOU_DO_NLU;
+            await MainDialog.SendQuickRepliesBasedOnState(dc.Context, accessors, responder as MainResponses, text);
+        }
+
 
 
         //TODO: improve logic and expand ()

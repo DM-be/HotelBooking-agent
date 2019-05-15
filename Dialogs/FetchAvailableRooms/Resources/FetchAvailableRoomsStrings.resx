@@ -162,12 +162,6 @@
   <data name="UPDATE_ARRIVALDATE_WITH_ENTITY" xml:space="preserve">
     <value>Do you want to change your checkin date to {0}?</value>
   </data>
-  <data name="UPDATE_EMAIL_WITHOUT_ENTITY" xml:space="preserve">
-    <value>Do you want to update your email address? </value>
-  </data>
-  <data name="UPDATE_EMAIL_WITH_ENTITY" xml:space="preserve">
-    <value>Do you want to change your email to {0}?</value>
-  </data>
   <data name="UPDATE_LEAVINGDATE_WITHOUT_ENTITY" xml:space="preserve">
     <value>Do you want to change your checkout date?</value>
   </data>

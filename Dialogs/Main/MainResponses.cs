@@ -44,6 +44,28 @@ namespace HotelBot.Dialogs.Main
                             MainStrings.HELP,
                             InputHints.AcceptingInput)
                 },
+                 {
+                    ResponseIds.WhatCanYouDoTasks, (context, data) =>
+                        MessageFactory.Text(
+                            MainStrings.WHAT_CAN_YOU_DO_TASKS,
+                            MainStrings.WHAT_CAN_YOU_DO_TASKS,
+                            InputHints.AcceptingInput)
+                },
+                {
+                    ResponseIds.WhatCanYouDoSmart, (context, data) =>
+                        MessageFactory.Text(
+                            MainStrings.WHAT_CAN_YOU_DO_SMART,
+                            MainStrings.WHAT_CAN_YOU_DO_SMART,
+                            InputHints.AcceptingInput)
+                },
+                {
+                    ResponseIds.WhatCanYouDoNLU, (context, data) =>
+                        MessageFactory.Text(
+                            MainStrings.WHAT_CAN_YOU_DO_NLU,
+                            MainStrings.WHAT_CAN_YOU_DO_NLU,
+                            InputHints.AcceptingInput)
+                },
+
                 {
                     ResponseIds.GreetingWithName, (context, data) =>
                         MessageFactory.Text(
@@ -68,7 +90,7 @@ namespace HotelBot.Dialogs.Main
                 },
                 {
                     ResponseIds.EmptyRoomOverviewStateQuickReplies, (context, data) =>
-                        SendEmptyRoomOverviewStateQuickReplies(context)
+                        SendEmptyRoomOverviewStateQuickReplies(context, data)
                 },
                  {
                     ResponseIds.SendGettingStartedQuickReplies, (context, data) =>
@@ -121,6 +143,12 @@ namespace HotelBot.Dialogs.Main
                     new FacebookQuickReply
                     {
                         Content_Type = FacebookQuickReply.ContentTypes.Text,
+                        Title = MainStrings.QUICK_REPLY_BUTTON_WHAT_CAN_YOU_DO,
+                        Payload = "none"
+                    },
+                    new FacebookQuickReply
+                    {
+                        Content_Type = FacebookQuickReply.ContentTypes.Text,
                         Title = MainStrings.QUICK_REPLY_BUTTON_FIND_A_ROOM,
                         Payload = FacebookQuickReply.PayLoads.Book
                     },
@@ -155,12 +183,21 @@ namespace HotelBot.Dialogs.Main
         //      * Find a room
         //      * (call hotel)
 
-        public static IMessageActivity SendEmptyRoomOverviewStateQuickReplies(ITurnContext context)
+        public static IMessageActivity SendEmptyRoomOverviewStateQuickReplies(ITurnContext context, dynamic data)
         {
+
+            string text;
+            if (data != null && data.GetType() == typeof(string))
+            {
+                text = data;
+            }
+            else {
+                text = GenerateRandomCompleteMessage().Text;
+            }
 
             var facebookMessage = new FacebookMessage
             {
-                Text = GenerateRandomCompleteMessage().Text,
+                Text = text,
                 QuickReplies = new[]
                 {
                     new FacebookQuickReply
@@ -320,6 +357,10 @@ namespace HotelBot.Dialogs.Main
             public const string UnconfirmedPaymentQuickReplies = "unconfirmedPaymentQuickReplies";
             public const string EmptyRoomOverviewStateQuickReplies = "emptyRoomOverviewStateQuickReplies";
             public const string SendGettingStartedQuickReplies = "sendGettingStartedQuickReplies";
+
+            public const string WhatCanYouDoTasks = "whatCanYouDoTasks";
+            public const string WhatCanYouDoSmart = "whatCanYouDoSmart";
+            public const string WhatCanYouDoNLU = "whatCanYouDoNLU";
 
             // intro
             public const string GreetingWithName = "greetingWithName";

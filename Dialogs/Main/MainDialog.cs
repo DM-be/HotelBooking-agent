@@ -96,24 +96,24 @@ namespace HotelBot.Dialogs.Main
 
         }
 
-        public static async Task SendQuickRepliesBasedOnState(ITurnContext context, StateBotAccessors accessors, MainResponses responder)
+        public static async Task SendQuickRepliesBasedOnState(ITurnContext context, StateBotAccessors accessors, MainResponses responder, dynamic data = null)
         {
             var roomOverviewState = await accessors.RoomOverviewStateAccessor.GetAsync(context, () => new RoomOverviewState());
             var confirmOrderState = await accessors.ConfirmOrderStateAccessor.GetAsync(context, () => new ConfirmOrderState());
 
             if (confirmOrderState.PaymentConfirmed)
             {
-                await responder.ReplyWith(context, MainResponses.ResponseIds.ConfirmedPaymentQuickReplies);
+                await responder.ReplyWith(context, MainResponses.ResponseIds.ConfirmedPaymentQuickReplies, data);
                 return;
             }
 
             if (roomOverviewState.SelectedRooms.Count > 0)
             {
-                await responder.ReplyWith(context, MainResponses.ResponseIds.UnconfirmedPaymentQuickReplies);
+                await responder.ReplyWith(context, MainResponses.ResponseIds.UnconfirmedPaymentQuickReplies, data);
                 return;
             }
 
-            await responder.ReplyWith(context, MainResponses.ResponseIds.EmptyRoomOverviewStateQuickReplies);
+            await responder.ReplyWith(context, MainResponses.ResponseIds.EmptyRoomOverviewStateQuickReplies, data);
         }
     }
 }
