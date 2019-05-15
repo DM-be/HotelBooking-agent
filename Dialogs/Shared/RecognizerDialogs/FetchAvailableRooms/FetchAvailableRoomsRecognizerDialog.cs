@@ -131,6 +131,13 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms
 
         protected virtual async Task<InterruptionStatus> OnRoute(DialogContext dc)
         {
+            var roomOverviewState = await _accessors.RoomOverviewStateAccessor.GetAsync(dc.Context, () => new RoomOverviewState());
+            if (roomOverviewState.SelectedRooms.Count == 0)
+            {
+                await dc.Context.SendActivityAsync("You haven't added any room yet to your overview");
+                await dc.RepromptDialogAsync();
+                return InterruptionStatus.NoAction;
+            }
 
             await dc.CancelAllDialogsAsync(); // cancel stack --> fetch rooms skips based on state either way
             await dc.BeginDialogAsync(nameof(RoomOverviewDialog));
