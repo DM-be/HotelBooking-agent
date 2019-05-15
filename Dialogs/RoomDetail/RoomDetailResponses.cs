@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using HotelBot.Dialogs.RoomDetail.Resources;
 using HotelBot.Models.DTO;
 using HotelBot.Models.Wrappers;
 using Microsoft.Bot.Builder;
@@ -62,10 +63,10 @@ namespace HotelBot.Dialogs.RoomDetail
                     }
                 };
             var reply = context.Activity.CreateReply();
-            reply.Text = "Tap the pictures to enlarge them.";
+            reply.Text = RoomDetailStrings.IMAGES_TAP_TEXT;
             var attachments = new List<Attachment>();
             foreach (var heroCard in imageCards) attachments.Add(heroCard.ToAttachment());
-            reply.AttachmentLayout = "carousel";
+            reply.AttachmentLayout = AttachmentLayoutTypes.Carousel;
             reply.Attachments = attachments;
             return reply;
         }
@@ -92,16 +93,14 @@ namespace HotelBot.Dialogs.RoomDetail
                                     SelectedRate = roomDetailDto.Rates[i]
                                 }),
                             Title = $"Book for €{roomDetailDto.Rates[i].Price}",
-                            Text = "show me more info for x room"
-
                         }
                     }
                 };
             var reply = context.Activity.CreateReply();
-            reply.Text = "This room is available with following rates:";
+            reply.Text = RoomDetailStrings.RATES_TEXT;
             var attachments = new List<Attachment>();
             foreach (var heroCard in rateCards) attachments.Add(heroCard.ToAttachment());
-            reply.AttachmentLayout = "carousel";
+            reply.AttachmentLayout = AttachmentLayoutTypes.Carousel;
             reply.Attachments = attachments;
             return reply;
         }
@@ -116,11 +115,9 @@ namespace HotelBot.Dialogs.RoomDetail
         public static IMessageActivity SendLowestRate(dynamic data)
         {
             var selectedRoomDetailDto = data as RoomDetailDto;
-            var message = $"This room is available starting from €{selectedRoomDetailDto.LowestRate}.";
+            var message = string.Format(RoomDetailStrings.LOWEST_RATE_TEXT, selectedRoomDetailDto.LowestRate);
             return MessageFactory.Text(message);
         }
-
-       
 
         public class ResponseIds
         {

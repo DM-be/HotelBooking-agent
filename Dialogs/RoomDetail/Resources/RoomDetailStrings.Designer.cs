@@ -19,7 +19,7 @@ namespace HotelBot.Dialogs.RoomDetail.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class RoomDetailStrings {
@@ -61,20 +61,29 @@ namespace HotelBot.Dialogs.RoomDetail.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I can answer all your questions to this room. View our rates to book..
+        ///   Looks up a localized string similar to Tap the images to see how beautiful our rooms are 😉.
         /// </summary>
-        public static string ROOM_CHOICES_PROMPT {
+        public static string IMAGES_TAP_TEXT {
             get {
-                return ResourceManager.GetString("ROOM_CHOICES_PROMPT", resourceCulture);
+                return ResourceManager.GetString("IMAGES_TAP_TEXT", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you want to know anything else about this room? .
+        ///   Looks up a localized string similar to This room is available starting at €{0}..
         /// </summary>
-        public static string ROOM_CHOICES_PROMPT_LOOPED {
+        public static string LOWEST_RATE_TEXT {
             get {
-                return ResourceManager.GetString("ROOM_CHOICES_PROMPT_LOOPED", resourceCulture);
+                return ResourceManager.GetString("LOWEST_RATE_TEXT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The following rates are still available: .
+        /// </summary>
+        public static string RATES_TEXT {
+            get {
+                return ResourceManager.GetString("RATES_TEXT", resourceCulture);
             }
         }
     }

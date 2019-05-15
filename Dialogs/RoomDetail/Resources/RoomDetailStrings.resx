@@ -117,10 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ROOM_CHOICES_PROMPT" xml:space="preserve">
-    <value>I can answer all your questions to this room. View our rates to book.</value>
+  <data name="IMAGES_TAP_TEXT" xml:space="preserve">
+    <value>Tap the images to see how beautiful our rooms are 😉</value>
   </data>
-  <data name="ROOM_CHOICES_PROMPT_LOOPED" xml:space="preserve">
-    <value>Do you want to know anything else about this room? </value>
+  <data name="LOWEST_RATE_TEXT" xml:space="preserve">
+    <value>This room is available starting at €{0}.</value>
+  </data>
+  <data name="RATES_TEXT" xml:space="preserve">
+    <value>The following rates are still available: </value>
   </data>
 </root>
