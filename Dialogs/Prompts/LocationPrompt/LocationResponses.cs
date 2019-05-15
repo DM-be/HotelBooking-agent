@@ -39,11 +39,12 @@ namespace HotelBot.Dialogs.Prompts.LocationPrompt
                 {
                     new FacebookQuickReply
                     {
-                        Content_Type = "location"
+                        Content_Type = FacebookQuickReply.ContentTypes.Location
                     }
                 }
             };
             var reply = context.Activity.CreateReply();
+
             reply.ChannelData = facebookMessage;
             return reply;
         }

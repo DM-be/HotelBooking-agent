@@ -63,9 +63,27 @@ namespace HotelBot.Dialogs.Main.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Call.
         /// </summary>
-        public static string BUTTON_TITLE_CALL {
+        public static string CALL_BUTTON_TEXT {
             get {
-                return ResourceManager.GetString("BUTTON_TITLE_CALL", resourceCulture);
+                return ResourceManager.GetString("CALL_BUTTON_TEXT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Our number 📱.
+        /// </summary>
+        public static string CALL_CARD_TITLE {
+            get {
+                return ResourceManager.GetString("CALL_CARD_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You wouldn&apos;t be talking to me, but give us a call and my colleagues would be glad to help 🤙.
+        /// </summary>
+        public static string CALL_REPLY_TEXT {
+            get {
+                return ResourceManager.GetString("CALL_REPLY_TEXT", resourceCulture);
             }
         }
         
@@ -259,7 +277,7 @@ namespace HotelBot.Dialogs.Main.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to How can I help?.
+        ///   Looks up a localized string similar to How can I help? 👊.
         /// </summary>
         public static string RANDOM_CONTINUE_2 {
             get {
@@ -268,7 +286,7 @@ namespace HotelBot.Dialogs.Main.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Glad to help. Anything else?.
+        ///   Looks up a localized string similar to Glad to help. Anything else? 😃.
         /// </summary>
         public static string RANDOM_CONTINUE_3 {
             get {
@@ -313,7 +331,7 @@ namespace HotelBot.Dialogs.Main.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Need anything else?.
+        ///   Looks up a localized string similar to Need anything else? 😄.
         /// </summary>
         public static string RANDOM_CONTINUE_8 {
             get {
@@ -322,7 +340,7 @@ namespace HotelBot.Dialogs.Main.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I&apos;m glad to help, what do you want to do next?.
+        ///   Looks up a localized string similar to Happy to help 😁 Anything else?.
         /// </summary>
         public static string RANDOM_CONTINUE_9 {
             get {

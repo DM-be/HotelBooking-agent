@@ -26,6 +26,7 @@ namespace HotelBot.Models.Facebook
 
         public class ContentTypes {
             public const string Text = "text";
+            public const string Location = "location";
         }
 
         public class PayLoads {

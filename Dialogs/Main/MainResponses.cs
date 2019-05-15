@@ -94,14 +94,15 @@ namespace HotelBot.Dialogs.Main
         {
             var heroCard = new HeroCard
             {
-                Title = MainStrings.BUTTON_TITLE_CALL,
+                Title = MainStrings.CALL_CARD_TITLE,
                 Subtitle = MainStrings.HOTEL_NUMBER,
                 Buttons = new List<CardAction>
                 {
-                    new CardAction(ActionTypes.Call, MainStrings.BUTTON_TITLE_CALL, value: MainStrings.HOTEL_NUMBER)
+                    new CardAction(ActionTypes.Call, MainStrings.CALL_BUTTON_TEXT, value: MainStrings.HOTEL_NUMBER)
                 }
             };
             var reply = context.Activity.CreateReply();
+            reply.Text = MainStrings.CALL_REPLY_TEXT;
             reply.Attachments = new List<Attachment>
             {
                 heroCard.ToAttachment()

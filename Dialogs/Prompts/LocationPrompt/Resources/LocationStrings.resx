@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="HEROCARD_BUTTON_DIRECTION_TITLE" xml:space="preserve">
-    <value>Follow route</value>
+    <value>Navigate 🗺️</value>
   </data>
   <data name="HEROCARD_REPLY_TEXT_DIRECTION" xml:space="preserve">
-    <value>I have found you a route.</value>
+    <value>Found you the shortest route to our hotel 🤓</value>
   </data>
   <data name="QUICK_REPLY_ASK_LOCATION" xml:space="preserve">
-    <value>Could you send me your location?</value>
+    <value>Send me your location and I can search for directions 👇</value>
   </data>
   <data name="QUICK_REPLY_BUTTON_DIRECTION" xml:space="preserve">
     <value>Directions</value>

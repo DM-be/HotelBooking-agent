@@ -61,7 +61,7 @@ namespace HotelBot.Dialogs.Prompts.LocationPrompt.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Follow route.
+        ///   Looks up a localized string similar to Navigate 🗺️.
         /// </summary>
         public static string HEROCARD_BUTTON_DIRECTION_TITLE {
             get {
@@ -70,7 +70,7 @@ namespace HotelBot.Dialogs.Prompts.LocationPrompt.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I have found you a route..
+        ///   Looks up a localized string similar to Found you the shortest route to our hotel 🤓.
         /// </summary>
         public static string HEROCARD_REPLY_TEXT_DIRECTION {
             get {
@@ -79,7 +79,7 @@ namespace HotelBot.Dialogs.Prompts.LocationPrompt.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Could you send me your location?.
+        ///   Looks up a localized string similar to Send me your location and I can search for directions 👇.
         /// </summary>
         public static string QUICK_REPLY_ASK_LOCATION {
             get {

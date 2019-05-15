@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BUTTON_TITLE_CALL" xml:space="preserve">
+  <data name="CALL_BUTTON_TEXT" xml:space="preserve">
     <value>Call</value>
+  </data>
+  <data name="CALL_CARD_TITLE" xml:space="preserve">
+    <value>Our number 📱</value>
+  </data>
+  <data name="CALL_REPLY_TEXT" xml:space="preserve">
+    <value>You wouldn't be talking to me, but give us a call and my colleagues would be glad to help 🤙</value>
   </data>
   <data name="CANCELLED" xml:space="preserve">
     <value>Ok, let's start over.</value>
@@ -184,10 +190,10 @@
     <value>What else can I help you with?</value>
   </data>
   <data name="RANDOM_CONTINUE_2" xml:space="preserve">
-    <value>How can I help?</value>
+    <value>How can I help? 👊</value>
   </data>
   <data name="RANDOM_CONTINUE_3" xml:space="preserve">
-    <value>Glad to help. Anything else?</value>
+    <value>Glad to help. Anything else? 😃</value>
   </data>
   <data name="RANDOM_CONTINUE_4" xml:space="preserve">
     <value>Anything else? </value>
@@ -202,9 +208,9 @@
     <value>Do you have any more questions about our hotel or services?</value>
   </data>
   <data name="RANDOM_CONTINUE_8" xml:space="preserve">
-    <value>Need anything else?</value>
+    <value>Need anything else? 😄</value>
   </data>
   <data name="RANDOM_CONTINUE_9" xml:space="preserve">
-    <value>I'm glad to help, what do you want to do next?</value>
+    <value>Happy to help 😁 Anything else?</value>
   </data>
 </root>

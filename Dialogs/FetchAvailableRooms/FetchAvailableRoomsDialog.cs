@@ -24,6 +24,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
     {
         private static FetchAvailableRoomsResponses _responder;
         private readonly StateBotAccessors _accessors;
+        private const string CachedStateKey = "cachedState";
 
         public FetchAvailableRoomsDialog(BotServices services, StateBotAccessors accessors)
             : base(services, accessors, nameof(FetchAvailableRoomsDialog))
@@ -69,7 +70,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
             if (state.NumberOfPeople != null)
             {
-                sc.Context.TurnState["cachedState"] = state;
+                sc.Context.TurnState[CachedStateKey] = state;
                 return await sc.NextAsync();
             }
 
@@ -82,7 +83,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
             if (state.ArrivalDate != null)
             {
-                sc.Context.TurnState["cachedState"] = state;
+                sc.Context.TurnState[CachedStateKey] = state;
                 return await sc.NextAsync();
             }
 
@@ -94,7 +95,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
             if (state.LeavingDate != null)
             {
-                sc.Context.TurnState["cachedState"] = state;
+                sc.Context.TurnState[CachedStateKey] = state;
                 return await sc.NextAsync();
             }
 
