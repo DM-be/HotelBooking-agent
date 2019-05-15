@@ -9,7 +9,7 @@ namespace HotelBot.Dialogs.Prompts.FetchAvailableRoomsIntroduction
 {
     public class FetchAvailableRoomsIntroductionPrompt: ComponentDialog
     {
-
+        //todo: implement own separate responder
         private static FetchAvailableRoomsResponses _responder;
 
         public FetchAvailableRoomsIntroductionPrompt()
@@ -29,6 +29,9 @@ namespace HotelBot.Dialogs.Prompts.FetchAvailableRoomsIntroduction
 
         public async Task<DialogTurnResult> SendIntroAndPromptUnderstood(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
+
+            
+
             return await sc.PromptAsync(
                 nameof(ChoicePrompt),
                 new PromptOptions
@@ -36,12 +39,12 @@ namespace HotelBot.Dialogs.Prompts.FetchAvailableRoomsIntroduction
                     Prompt = await _responder.RenderTemplate(
                         sc.Context,
                         sc.Context.Activity.Locale,
-                        FetchAvailableRoomsResponses.ResponseIds.SendIntroduction),
+                        FetchAvailableRoomsResponses.ResponseIds.IntroductionMistakes),
                     Choices = ChoiceFactory.ToChoices(
                         new List<string>
                         {
-                            "OK",
-                            "Help"
+                            "OK 👌",
+                            "Understand? 🙃"
 
                         })
                 },
@@ -58,11 +61,13 @@ namespace HotelBot.Dialogs.Prompts.FetchAvailableRoomsIntroduction
             {
                 switch (foundChoice.Value)
                 {
-                    case "OK":
+                    case "OK 👌":
                         await _responder.ReplyWith(sc.Context, FetchAvailableRoomsResponses.ResponseIds.SendStart);
                         return await sc.EndDialogAsync();
-                    case "Help":
-                        await _responder.ReplyWith(sc.Context, FetchAvailableRoomsResponses.ResponseIds.Help);
+                    case "Understand? 🙃":
+                        await _responder.ReplyWith(sc.Context, FetchAvailableRoomsResponses.ResponseIds.UnderstandNLU);
+                        await _responder.ReplyWith(sc.Context, FetchAvailableRoomsResponses.ResponseIds.UnderstandExample);
+                        // maybe sleep to give time to read?
                         await _responder.ReplyWith(sc.Context, FetchAvailableRoomsResponses.ResponseIds.SendStart);
                         return await sc.EndDialogAsync();
                 }

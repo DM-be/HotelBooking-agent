@@ -32,6 +32,8 @@ namespace HotelBot.Dialogs.Prompts.NumberOfPeople
 
         private async Task<DialogTurnResult> PromptForNumberOfPeople(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
+        
+
             return await sc.PromptAsync(
                 DialogIds.NumberOfPeoplePrompt,
                 new PromptOptions

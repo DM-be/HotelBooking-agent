@@ -60,6 +60,10 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms
                     {
                         return await OnRoute(dc);
                     }
+                    case HotelBotLuis.Intent.What_Can_You_Do:
+                    {
+                            return await OnWhatCanYouDo(dc);
+                    }
                     case HotelBotLuis.Intent.Update_ArrivalDate:
                     case HotelBotLuis.Intent.Update_Leaving_Date:
                     case HotelBotLuis.Intent.Update_Number_Of_People:
@@ -95,6 +99,16 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms
 
 
         protected virtual async Task<InterruptionStatus> OnHelp(DialogContext dc)
+        {
+            var view = new FetchAvailableRoomsResponses();
+            await view.ReplyWith(dc.Context, FetchAvailableRoomsResponses.ResponseIds.Help);
+
+            // Signal the conversation was interrupted and should immediately continue (calls reprompt)
+            return InterruptionStatus.Interrupted;
+        }
+
+        // send NLU component in short and reprompt
+        protected virtual async Task<InterruptionStatus> OnWhatCanYouDo(DialogContext dc)
         {
             var view = new FetchAvailableRoomsResponses();
             await view.ReplyWith(dc.Context, FetchAvailableRoomsResponses.ResponseIds.Help);

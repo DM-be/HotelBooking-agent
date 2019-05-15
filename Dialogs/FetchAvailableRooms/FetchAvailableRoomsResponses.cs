@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using HotelBot.Dialogs.FetchAvailableRooms.Resources;
-using HotelBot.Dialogs.Prompts.UpdateState;
-using HotelBot.Extensions;
 using HotelBot.Models.DTO;
 using HotelBot.Models.LUIS;
 using HotelBot.Models.Wrappers;
@@ -94,13 +92,22 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                             FetchAvailableRoomsStrings.SPECIFICTIME_REPLY,
                             InputHints.IgnoringInput)
                 },
+
                 {
-                    ResponseIds.Help, (context, data) =>
+                    ResponseIds.UnderstandExample, (context, data) =>
                         MessageFactory.Text(
-                            FetchAvailableRoomsStrings.HELP_MESSAGE,
-                            FetchAvailableRoomsStrings.HELP_MESSAGE,
+                            FetchAvailableRoomsStrings.UNDERSTAND_EXAMPLE,
+                            FetchAvailableRoomsStrings.UNDERSTAND_EXAMPLE,
                             InputHints.IgnoringInput)
                 },
+                {
+                    ResponseIds.UnderstandNLU, (context, data) =>
+                        MessageFactory.Text(
+                            FetchAvailableRoomsStrings.UNDERSTAND_NLU,
+                            FetchAvailableRoomsStrings.UNDERSTAND_NLU,
+                            InputHints.IgnoringInput)
+                },
+
                 {
                     ResponseIds.SendRoomsCarousel, (context, data) =>
                         SendRoomsCarousel(context, data)
@@ -110,17 +117,17 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                         SendRoomDetail(context, data)
                 },
                 {
-                    ResponseIds.SendIntroduction, (context, data) =>
+                    ResponseIds.IntroductionMoreInfo, (context, data) =>
                         MessageFactory.Text(
-                            FetchAvailableRoomsStrings.INTRODUCTION,
-                            FetchAvailableRoomsStrings.INTRODUCTION,
+                            FetchAvailableRoomsStrings.INTRODUCTION_MORE_INFO,
+                            FetchAvailableRoomsStrings.INTRODUCTION_MORE_INFO,
                             InputHints.IgnoringInput)
                 },
                 {
-                    ResponseIds.SendMoreInfo, (context, data) =>
+                    ResponseIds.IntroductionMistakes, (context, data) =>
                         MessageFactory.Text(
-                            FetchAvailableRoomsStrings.INTRODUCTION_MORE_INFO,
-                            FetchAvailableRoomsStrings.INTRODUCTION_MORE_INFO,
+                            FetchAvailableRoomsStrings.INTRODUCTION_MISTAKES,
+                            FetchAvailableRoomsStrings.INTRODUCTION_MISTAKES,
                             InputHints.IgnoringInput)
                 },
                 {
@@ -379,6 +386,13 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             public const string UpdateArrivalDate = "Update_ArrivalDate";
             public const string UpdateLeavingDate = "Update_Leaving_Date";
             public const string UpdateNumberOfPeople = "Update_Number_Of_People";
+
+
+            public const string IntroductionMoreInfo = "introductionMoreInfo";
+            public const string IntroductionMistakes = "introductionMistakes";
+            public const string UnderstandNLU = "understandNLU";
+            public const string UnderstandExample = "understandExample";
+
         }
     }
 }

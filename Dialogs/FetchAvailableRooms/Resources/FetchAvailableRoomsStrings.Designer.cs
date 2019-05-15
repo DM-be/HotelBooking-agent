@@ -79,15 +79,6 @@ namespace HotelBot.Dialogs.FetchAvailableRooms.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I can help you find a room. If you make a mistake try asking me to change it. I can understand sentences like &quot;Can you change my arrival date to next week thursday&quot;. You can do something else by asking me to cancel. .
-        /// </summary>
-        public static string HELP_MESSAGE {
-            get {
-                return ResourceManager.GetString("HELP_MESSAGE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Sorry you cannot book a room in the past. .
         /// </summary>
         public static string INCORRECT_DATE {
@@ -97,16 +88,16 @@ namespace HotelBot.Dialogs.FetchAvailableRooms.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To help you find a room, I will need some information from you. If you make a mistake, ask me to change it for you or use the suggested actions..
+        ///   Looks up a localized string similar to I can lookup rooms but I need a bit more info. If you give me some wrong info, just act natural and ask me to change it for you. I&apos;ll understand 🧐.
         /// </summary>
-        public static string INTRODUCTION {
+        public static string INTRODUCTION_MISTAKES {
             get {
-                return ResourceManager.GetString("INTRODUCTION", resourceCulture);
+                return ResourceManager.GetString("INTRODUCTION_MISTAKES", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If you make a mistake, ask me to change it for you or use the suggested actions. Let&apos;s start..
+        ///   Looks up a localized string similar to I can lookup rooms but I need a bit more info. .
         /// </summary>
         public static string INTRODUCTION_MORE_INFO {
             get {
@@ -115,7 +106,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OK, let&apos;s start!.
+        ///   Looks up a localized string similar to OK, let&apos;s find you a room! 👊.
         /// </summary>
         public static string INTRODUCTION_START {
             get {
@@ -174,6 +165,24 @@ namespace HotelBot.Dialogs.FetchAvailableRooms.Resources {
         public static string STATE_OVERVIEW {
             get {
                 return ResourceManager.GetString("STATE_OVERVIEW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For example: if I ask you when you would leave, you can still change your checkin time by saying &quot;I want to change my checkin time&quot;..
+        /// </summary>
+        public static string UNDERSTAND_EXAMPLE {
+            get {
+                return ResourceManager.GetString("UNDERSTAND_EXAMPLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I can understand most sentences related to finding a room, such as &quot;I need a room for two&quot; and so on 😎.
+        /// </summary>
+        public static string UNDERSTAND_NLU {
+            get {
+                return ResourceManager.GetString("UNDERSTAND_NLU", resourceCulture);
             }
         }
         
