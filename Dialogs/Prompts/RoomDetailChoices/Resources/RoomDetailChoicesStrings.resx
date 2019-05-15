@@ -129,4 +129,7 @@
   <data name="RANDOM_PROMPT_4" xml:space="preserve">
     <value>Anything else?</value>
   </data>
+  <data name="RANDOM_PROMPT_5" xml:space="preserve">
+    <value>What's next?</value>
+  </data>
 </root>

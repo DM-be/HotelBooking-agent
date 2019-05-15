@@ -133,12 +133,20 @@
     <value>Sorry, I didn't understand. You can proceed to payment by tapping confirm in the card. </value>
   </data>
   <data name="ROOM_ADDED" xml:space="preserve">
-    <value>Ok, I added the room to your order.</value>
+    <value>I added that room to your order 👌</value>
+    <comment>Ok, I added the room to your order.</comment>
+  </data>
+  <data name="ROOM_CANNOT_BE_REMOVED" xml:space="preserve">
+    <value>Sorry, I can't remove that room for your order. Maybe you tapped remove in an expired booking order 🤔</value>
+  </data>
+  <data name="ROOM_OVERVIEW_HEROCARD_TEXT" xml:space="preserve">
+    <value>Your current booking overview</value>
   </data>
   <data name="ROOM_REMOVED" xml:space="preserve">
-    <value>Ok, I removed that room.</value>
+    <value>I removed that room from your order 👍</value>
   </data>
   <data name="UNCONFIRMED_PAYMENT_CONFIRM_OR_CANCEL" xml:space="preserve">
     <value>Your order is still unconfirmed, please confirm or cancel your order. </value>
+    <comment>remove?</comment>
   </data>
 </root>

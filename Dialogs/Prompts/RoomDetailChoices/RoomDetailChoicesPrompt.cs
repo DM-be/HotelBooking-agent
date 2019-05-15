@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using HotelBot.Dialogs.FetchAvailableRooms;
 using HotelBot.Dialogs.Prompts.RoomDetailChoices.Resources;
 using HotelBot.Dialogs.RoomDetail;
+using HotelBot.Dialogs.RoomOverview;
 using HotelBot.Models.Wrappers;
 using HotelBot.Services;
 using HotelBot.StateAccessors;
@@ -44,7 +45,6 @@ namespace HotelBot.Dialogs.Prompts.RoomDetailChoices
             var choices = new List<string>
             {
                 RoomDetailDialog.RoomDetailChoices.ViewOtherRooms,
-                RoomDetailDialog.RoomDetailChoices.NoThanks
             };
 
             // only 2 options:
@@ -58,6 +58,12 @@ namespace HotelBot.Dialogs.Prompts.RoomDetailChoices
             else
             {
                 choices.Insert(0, RoomDetailDialog.RoomDetailChoices.Pictures);
+            }
+
+            var roomOverviewState = await _accessors.RoomOverviewStateAccessor.GetAsync(sc.Context, () => new RoomOverviewState());
+            if (roomOverviewState.SelectedRooms != null && roomOverviewState.SelectedRooms.Count > 0)
+            {
+                choices.Add(RoomDetailDialog.RoomDetailChoices.BookingOverview);
             }
 
 
@@ -93,17 +99,22 @@ namespace HotelBot.Dialogs.Prompts.RoomDetailChoices
                         TargetDialog = nameof(FetchAvailableRoomsDialog)
                     };
                     return await sc.EndDialogAsync(dialogResult);
-
+                case RoomDetailDialog.RoomDetailChoices.BookingOverview:
+                    return await sc.EndDialogAsync(new DialogResult {
+                        TargetDialog = nameof(RoomOverviewDialog)
+                    });
                 case RoomDetailDialog.RoomDetailChoices.Rates:
                     await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendRates, state.RoomDetailDto);
                     return await sc.ReplaceDialogAsync(InitialDialogId, false); // add rate to choice
                 case RoomDetailDialog.RoomDetailChoices.Pictures:
                     await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendImages, state.RoomDetailDto);
                     return await sc.ReplaceDialogAsync(InitialDialogId, true);
-                case RoomDetailDialog.RoomDetailChoices.NoThanks:
-                    // end and prompt and end on waterfall above
-                    await sc.Context.SendActivityAsync("You're welcome.");
-                    return await sc.EndDialogAsync();
+
+
+                //case RoomDetailDialog.RoomDetailChoices.NoThanks:
+                //    // end and prompt and end on waterfall above
+                //    await sc.Context.SendActivityAsync("You're welcome.");
+                //    return await sc.EndDialogAsync();
             }
 
             return null;

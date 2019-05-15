@@ -61,7 +61,7 @@ namespace HotelBot.Dialogs.RoomDetail.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tap the images to see how beautiful our rooms are 😉.
+        ///   Looks up a localized string similar to Here are some pictures. Tap them to see how beautiful our rooms are 😉.
         /// </summary>
         public static string IMAGES_TAP_TEXT {
             get {

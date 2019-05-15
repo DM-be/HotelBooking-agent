@@ -22,8 +22,6 @@ namespace HotelBot.Dialogs.RoomDetail
         private readonly StateBotAccessors _accessors;
         private readonly RoomDetailResponses _responder = new RoomDetailResponses();
         private readonly BotServices _services;
-        private RoomDetailDto _selectedRoomDetailDto;
-
 
         public RoomDetailDialog(BotServices services, StateBotAccessors accessors)
             : base(services, accessors, nameof(RoomDetailDialog))
@@ -77,8 +75,8 @@ namespace HotelBot.Dialogs.RoomDetail
         {
             public const string ViewOtherRooms = "View other rooms";
             public const string Rates = "Rates";
-            public const string NoThanks = "No thanks";
             public const string Pictures = "Pictures";
+            public const string BookingOverview = "Booking overview";
         }
     }
 }

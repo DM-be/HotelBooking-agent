@@ -106,7 +106,7 @@ namespace HotelBot.Dialogs.RoomOverview.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ok, I added the room to your order..
+        ///   Looks up a localized string similar to I added that room to your order 👌.
         /// </summary>
         public static string ROOM_ADDED {
             get {
@@ -115,7 +115,25 @@ namespace HotelBot.Dialogs.RoomOverview.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ok, I removed that room..
+        ///   Looks up a localized string similar to Sorry, I can&apos;t remove that room for your order. Maybe you tapped remove in an expired booking order 🤔.
+        /// </summary>
+        public static string ROOM_CANNOT_BE_REMOVED {
+            get {
+                return ResourceManager.GetString("ROOM_CANNOT_BE_REMOVED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your current booking overview.
+        /// </summary>
+        public static string ROOM_OVERVIEW_HEROCARD_TEXT {
+            get {
+                return ResourceManager.GetString("ROOM_OVERVIEW_HEROCARD_TEXT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I removed that room from your order 👍.
         /// </summary>
         public static string ROOM_REMOVED {
             get {

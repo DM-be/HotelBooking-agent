@@ -6,7 +6,6 @@ using HotelBot.Dialogs.RoomOverview;
 using HotelBot.Dialogs.Shared.RecognizerDialogs.ConfirmOrder;
 using HotelBot.Models.Wrappers;
 using HotelBot.Services;
-using HotelBot.Shared.Helpers;
 using HotelBot.StateAccessors;
 using HotelBot.StateProperties;
 using Microsoft.Bot.Builder.Dialogs;

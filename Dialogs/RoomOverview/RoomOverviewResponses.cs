@@ -31,6 +31,13 @@ namespace HotelBot.Dialogs.RoomOverview
                             InputHints.IgnoringInput)
                 },
                 {
+                    ResponseIds.RoomCannotBeRemoved, (context, data) =>
+                        MessageFactory.Text(
+                            RoomOverviewStrings.ROOM_CANNOT_BE_REMOVED,
+                            RoomOverviewStrings.ROOM_CANNOT_BE_REMOVED,
+                            InputHints.IgnoringInput)
+                },
+                {
                     ResponseIds.ContinueOrAddMoreRooms, (context, data) =>
                         MessageFactory.Text(
                             RoomOverviewStrings.CONTINUE_OR_ADD_MORE_ROOMS,
@@ -97,8 +104,7 @@ namespace HotelBot.Dialogs.RoomOverview
             heroCards.Add(BuildCompactHeroCard(selectedRooms));
             foreach (var selectedRoom in selectedRooms) heroCards.Add(BuildDetailedRoomHeroCard(selectedRoom));
             var reply = context.Activity.CreateReply();
-            reply.Text =
-                "Your current booking overview:";
+            reply.Text = RoomOverviewStrings.ROOM_OVERVIEW_HEROCARD_TEXT;
             var attachments = new List<Attachment>();
             foreach (var heroCard in heroCards) attachments.Add(heroCard.ToAttachment());
             reply.AttachmentLayout = AttachmentLayoutTypes.Carousel;
@@ -268,6 +274,7 @@ namespace HotelBot.Dialogs.RoomOverview
             public const string ContinueOrAddMoreRooms = "continueOrAddMoreRooms";
             public const string NoSelectedRooms = "noSelectedRooms";
             public const string RoomRemoved = "roomRemoved";
+            public const string RoomCannotBeRemoved = "roomCannotBeRemoved";
             public const string UnconfirmedPayment = "unconfirmedPayment";
             public const string ConfirmedPaymentOverview = "confirmedPaymentOverview";
             public const string RepromptUnconfirmed = "repromptUnconfirmed";

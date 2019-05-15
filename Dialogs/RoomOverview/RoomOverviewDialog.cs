@@ -87,24 +87,6 @@ namespace HotelBot.Dialogs.RoomOverview
                 switch (choice.Value)
 
                 {
-                    case RoomOverviewChoices.NoThankyou:
-
-                        return await sc.PromptAsync(
-                            nameof(ChoicePrompt),
-                            new PromptOptions
-                            {
-                                Prompt = await _responder.RenderTemplate(
-                                    sc.Context,
-                                    sc.Context.Activity.Locale,
-                                    RoomOverviewResponses.ResponseIds.UnconfirmedPayment),
-                                Choices = ChoiceFactory.ToChoices(
-                                    new List<string>
-                                    {
-                                        RoomOverviewChoices.Confirm,
-                                        RoomOverviewChoices.Cancel
-
-                                    })
-                            });
                     case "Cancel booking":
                         return await sc.EndDialogAsync();
                     case RoomOverviewChoices.AddARoom:
@@ -145,12 +127,22 @@ namespace HotelBot.Dialogs.RoomOverview
             var roomId = dialogOptions.RoomAction.RoomId;
             var selectedRate = dialogOptions.RoomAction.SelectedRate.Price;
             // todo: implement better removal... 
-            var toRemove = state.SelectedRooms.Where(x => x.RoomDetailDto.Id == roomId && x.SelectedRate.Price == selectedRate);
-            if (toRemove.Count() > 0)
+
+            if (state.SelectedRooms != null)
             {
-                state.SelectedRooms.Remove(toRemove.First());
+                var toRemove = state.SelectedRooms.Where(x => x.RoomDetailDto.Id == roomId && x.SelectedRate.Price == selectedRate);
+                if (toRemove.Count() > 0)
+                {
+                    state.SelectedRooms.Remove(toRemove.First());
+                    await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.RoomRemoved);
+                }
+            }
+            else {
                 await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.RoomRemoved);
             }
+
+
+            
         }
 
 
