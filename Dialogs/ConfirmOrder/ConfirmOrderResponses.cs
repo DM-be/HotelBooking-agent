@@ -34,6 +34,20 @@ namespace HotelBot.Dialogs.ConfirmOrder
                             InputHints.IgnoringInput)
                 },
                 {
+                    ResponseIds.TapPayToComplete, (context, data) =>
+                        MessageFactory.Text(
+                            ConfirmOrderStrings.TAP_PAY_TO_COMPLETE,
+                            ConfirmOrderStrings.TAP_PAY_TO_COMPLETE,
+                            InputHints.IgnoringInput)
+                },
+                {
+                    ResponseIds.ThanksInformation, (context, data) =>
+                        MessageFactory.Text(
+                            ConfirmOrderStrings.THANKS_INFORMATION,
+                            ConfirmOrderStrings.THANKS_INFORMATION,
+                            InputHints.IgnoringInput)
+                },
+                {
                     ResponseIds.SendPhoneNumberQuickReply, (context, data) =>
                         BuildPhoneNumberQuickReply(context, data)
                 },
@@ -203,7 +217,7 @@ namespace HotelBot.Dialogs.ConfirmOrder
         {
             var facebookMessage = new FacebookMessage
             {
-                Text = "What name should we use to confirm this booking?",
+                Text = ConfirmOrderStrings.FULL_NAME_QUICK_REPLY_TEXT,
                 QuickReplies = new[]
                 {
                     new FacebookQuickReply
@@ -226,9 +240,15 @@ namespace HotelBot.Dialogs.ConfirmOrder
             public const string SendReceipt = "sendReceipt";
             public const string AfterConfirmation = "afterConfirmation";
 
+            public const string ThanksInformation = "thanksInformation";
+            public const string TapPayToComplete = "tapPayToComplete";
+
+
             public const string SendEmailQuickReply = "sendEmailQuickReply";
             public const string SendPhoneNumberQuickReply = "SendPhoneNumberQuickReply";
             public const string SendFullNameQuickReply = "SendFullNameQuickReply";
+
+
         }
     }
 

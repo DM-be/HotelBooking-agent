@@ -116,10 +116,9 @@ namespace HotelBot.Dialogs.ConfirmOrder
             var roomOrderState = await _accessors.ConfirmOrderStateAccessor.GetAsync(sc.Context, () => new ConfirmOrderState());
             roomOrderState.Number = phoneNumber;
 
-            await sc.Context.SendActivityAsync("Thank you for your information.");
-
+            await _responder.ReplyWith(sc.Context, ConfirmOrderResponses.ResponseIds.ThanksInformation);
             await _responder.ReplyWith(sc.Context, ConfirmOrderResponses.ResponseIds.SendPaymentCard, roomOrderState);
-            await sc.Context.SendActivityAsync("Tap pay to complete your booking with us.");
+            await _responder.ReplyWith(sc.Context, ConfirmOrderResponses.ResponseIds.TapPayToComplete);
             return EndOfTurn;
 
         }

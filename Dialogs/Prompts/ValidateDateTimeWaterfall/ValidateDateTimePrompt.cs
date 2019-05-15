@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using HotelBot.Dialogs.Shared.PromptValidators;
 using HotelBot.Extensions;
 using Microsoft.Bot.Builder.Dialogs;
 
@@ -13,7 +14,7 @@ namespace HotelBot.Dialogs.Prompts.ValidateDateTimeWaterfall
     public class ValidateDateTimePrompt: ComponentDialog
     {
 
-        private readonly Shared.PromptValidators.PromptValidators _promptValidators = new Shared.PromptValidators.PromptValidators();
+        private readonly PromptValidators _promptValidators = new PromptValidators();
 
         /// <summary>
         ///     Custom and reusable component dialog that validates a datetime, ends the dialog and returns a timexproperty
@@ -36,12 +37,12 @@ namespace HotelBot.Dialogs.Prompts.ValidateDateTimeWaterfall
 
         public async Task<DialogTurnResult> PromptValidateDate(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-            var view = new ValidateDateTimeResponses();
+            var view = new PromptValidatorResponses();
             return await sc.PromptAsync(
                 nameof(DateTimePrompt),
                 new PromptOptions
                 {
-                    Prompt = await view.RenderTemplate(sc.Context, sc.Context.Activity.Locale, ValidateDateTimeResponses.ResponseIds.IncorrectFormatPrompt)
+                    Prompt = await view.RenderTemplate(sc.Context, sc.Context.Activity.Locale, PromptValidatorResponses.ResponseIds.IncorrectDate)
                 });
         }
 

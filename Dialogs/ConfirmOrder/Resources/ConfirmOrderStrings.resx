@@ -118,12 +118,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AFTER_CONFIRMATION" xml:space="preserve">
-    <value>Thank you for booking.</value>
+    <value>Thank you for booking with us! You can view your booking overview at any time and of course I will remain available for questions 😃</value>
   </data>
   <data name="ASK_NUMBER" xml:space="preserve">
-    <value>We just need your phone number in case of an emergency</value>
+    <value>We just need your phone number in case of an emergency.</value>
+  </data>
+  <data name="FULL_NAME_QUICK_REPLY_TEXT" xml:space="preserve">
+    <value>To complete your order we need some personal information. What name should we use to confirm this booking?</value>
   </data>
   <data name="INTRO" xml:space="preserve">
-    <value>To complete your order we need some extra information. </value>
+    <value>To complete your order we need your personal information.</value>
+  </data>
+  <data name="TAP_PAY_TO_COMPLETE" xml:space="preserve">
+    <value>Tap pay to complete your booking with us 🤑</value>
+  </data>
+  <data name="THANKS_INFORMATION" xml:space="preserve">
+    <value>Thank you, here is your final overview.</value>
   </data>
 </root>

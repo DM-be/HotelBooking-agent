@@ -118,15 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="INCORRECT_DATE" xml:space="preserve">
-    <value>Sorry, provide me a specific date.</value>
+    <value>Sorry, could you be less vague? </value>
   </data>
   <data name="INVALID_EMAIL" xml:space="preserve">
-    <value>Sorry, that is not a valid email adress. </value>
+    <value>Sorry, thats not a valid email adress 😐</value>
   </data>
   <data name="NOT_IN_THE_PAST_DATE" xml:space="preserve">
-    <value>Sorry, the date you gave cannot be in the past.</value>
+    <value>Mhmm booking a room in the past is something I can't do 🤔</value>
   </data>
   <data name="NOT_RECOGNIZED_DATE" xml:space="preserve">
-    <value>Sorry, I did not understand that date.</value>
+    <value>Sorry, I'm expecting you to give me a date right now. </value>
   </data>
 </root>

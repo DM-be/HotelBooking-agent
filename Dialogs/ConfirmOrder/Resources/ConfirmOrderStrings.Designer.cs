@@ -61,7 +61,7 @@ namespace HotelBot.Dialogs.ConfirmOrder.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Thank you for booking..
+        ///   Looks up a localized string similar to Thank you for booking with us! You can view your booking overview at any time and of course I will remain available for questions 😃.
         /// </summary>
         public static string AFTER_CONFIRMATION {
             get {
@@ -70,7 +70,7 @@ namespace HotelBot.Dialogs.ConfirmOrder.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to We just need your phone number in case of an emergency.
+        ///   Looks up a localized string similar to We just need your phone number in case of an emergency..
         /// </summary>
         public static string ASK_NUMBER {
             get {
@@ -79,11 +79,38 @@ namespace HotelBot.Dialogs.ConfirmOrder.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To complete your order we need some extra information. .
+        ///   Looks up a localized string similar to To complete your order we need some personal information. What name should we use to confirm this booking?.
+        /// </summary>
+        public static string FULL_NAME_QUICK_REPLY_TEXT {
+            get {
+                return ResourceManager.GetString("FULL_NAME_QUICK_REPLY_TEXT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To complete your order we need your personal information..
         /// </summary>
         public static string INTRO {
             get {
                 return ResourceManager.GetString("INTRO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tap pay to complete your booking with us 🤑.
+        /// </summary>
+        public static string TAP_PAY_TO_COMPLETE {
+            get {
+                return ResourceManager.GetString("TAP_PAY_TO_COMPLETE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thank you, here is your final overview..
+        /// </summary>
+        public static string THANKS_INFORMATION {
+            get {
+                return ResourceManager.GetString("THANKS_INFORMATION", resourceCulture);
             }
         }
     }

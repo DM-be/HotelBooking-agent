@@ -19,7 +19,7 @@ namespace HotelBot.Dialogs.Shared.PromptValidators.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class ValidatorStrings {
@@ -61,7 +61,7 @@ namespace HotelBot.Dialogs.Shared.PromptValidators.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry, provide me a specific date..
+        ///   Looks up a localized string similar to Sorry, could you be less vague? .
         /// </summary>
         public static string INCORRECT_DATE {
             get {
@@ -70,7 +70,7 @@ namespace HotelBot.Dialogs.Shared.PromptValidators.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry, that is not a valid email adress. .
+        ///   Looks up a localized string similar to Sorry, thats not a valid email adress 😐.
         /// </summary>
         public static string INVALID_EMAIL {
             get {
@@ -79,7 +79,7 @@ namespace HotelBot.Dialogs.Shared.PromptValidators.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry, the date you gave cannot be in the past..
+        ///   Looks up a localized string similar to Mhmm booking a room in the past is something I can&apos;t do 🤔.
         /// </summary>
         public static string NOT_IN_THE_PAST_DATE {
             get {
@@ -88,7 +88,7 @@ namespace HotelBot.Dialogs.Shared.PromptValidators.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry, I did not understand that date..
+        ///   Looks up a localized string similar to Sorry, I&apos;m expecting you to give me a date right now. .
         /// </summary>
         public static string NOT_RECOGNIZED_DATE {
             get {
