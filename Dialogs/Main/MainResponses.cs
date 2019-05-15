@@ -144,7 +144,7 @@ namespace HotelBot.Dialogs.Main
                     {
                         Content_Type = FacebookQuickReply.ContentTypes.Text,
                         Title = MainStrings.QUICK_REPLY_BUTTON_WHAT_CAN_YOU_DO,
-                        Payload = "none"
+                        Payload = string.Empty
                     },
                     new FacebookQuickReply
                     {
@@ -217,7 +217,13 @@ namespace HotelBot.Dialogs.Main
                         Content_Type = FacebookQuickReply.ContentTypes.Text,
                         Title = MainStrings.QUICK_REPLY_BUTTON_DIRECTION,
                         Payload = FacebookQuickReply.PayLoads.Directions
-                    }
+                    },
+                   new FacebookQuickReply
+                    {
+                        Content_Type = FacebookQuickReply.ContentTypes.Text,
+                        Title = MainStrings.QUICK_REPLY_BUTTON_WHAT_CAN_YOU_DO,
+                        Payload = string.Empty
+                    },
 
                 }
             };
@@ -261,7 +267,13 @@ namespace HotelBot.Dialogs.Main
                         Content_Type =  FacebookQuickReply.ContentTypes.Text,
                         Title =  MainStrings.QUICK_REPLY_BUTTON_CONFIRM_BOOKING,
                         Payload = FacebookQuickReply.PayLoads.ConfirmBooking
-                    }
+                    },
+                    new FacebookQuickReply
+                    {
+                        Content_Type = FacebookQuickReply.ContentTypes.Text,
+                        Title = MainStrings.QUICK_REPLY_BUTTON_WHAT_CAN_YOU_DO,
+                        Payload = string.Empty
+                    },
                 }
             };
             var reply = context.Activity.CreateReply();
@@ -307,7 +319,7 @@ namespace HotelBot.Dialogs.Main
                     {
                         Title = "Cancel booking", //todo: implement second dialog cancelling bookings
                         Content_Type =  FacebookQuickReply.ContentTypes.Text,
-                        Payload = "none"
+                        Payload = string.Empty
                     }
                 }
             };

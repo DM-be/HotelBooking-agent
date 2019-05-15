@@ -146,7 +146,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                     {
                         var emptyState = new FetchAvailableRoomsState();
                         _accessors.FetchAvailableRoomsStateAccessor.SetAsync(sc.Context, emptyState);
-                        await sc.Context.SendActivityAsync("Ok, let's start over");
+                        await sc.Context.SendActivityAsync("Ok, let's start over"); // in responder
                         var dialogOptions = new DialogOptions
                         {
                             SkipConfirmation = false // start over and prompt for confirmation again 
@@ -154,7 +154,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                         return await sc.ReplaceDialogAsync(InitialDialogId, dialogOptions);
                     }
                     case FetchAvailableRoomsChoices.NoThanks:
-                        await sc.Context.SendActivityAsync("You're welcome.");
+                        await sc.Context.SendActivityAsync("You're welcome."); // in responder
                         return await sc.EndDialogAsync();
                     case FetchAvailableRoomsChoices.RoomOverview:
                         var dialogResult = new DialogResult
