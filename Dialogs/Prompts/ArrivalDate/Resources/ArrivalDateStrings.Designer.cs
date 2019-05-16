@@ -19,7 +19,7 @@ namespace HotelBot.Dialogs.Prompts.ArrivalDate.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class ArrivalDateStrings {
@@ -63,54 +63,162 @@ namespace HotelBot.Dialogs.Prompts.ArrivalDate.Resources {
         /// <summary>
         ///   Looks up a localized string similar to When would you be checking in?.
         /// </summary>
-        public static string ARRIVAL_DATE_PROMPT {
+        public static string ARRIVAL_DATE_PROMPT_1 {
             get {
-                return ResourceManager.GetString("ARRIVAL_DATE_PROMPT", resourceCulture);
+                return ResourceManager.GetString("ARRIVAL_DATE_PROMPT_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When would you be arriving?.
+        /// </summary>
+        public static string ARRIVAL_DATE_PROMPT_2 {
+            get {
+                return ResourceManager.GetString("ARRIVAL_DATE_PROMPT_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When would you checkin?.
+        /// </summary>
+        public static string ARRIVAL_DATE_PROMPT_3 {
+            get {
+                return ResourceManager.GetString("ARRIVAL_DATE_PROMPT_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When would you arrive?.
+        /// </summary>
+        public static string ARRIVAL_DATE_PROMPT_4 {
+            get {
+                return ResourceManager.GetString("ARRIVAL_DATE_PROMPT_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When would you want to arrive?.
+        /// </summary>
+        public static string ARRIVAL_DATE_PROMPT_5 {
+            get {
+                return ResourceManager.GetString("ARRIVAL_DATE_PROMPT_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When would you like to arrive?.
+        /// </summary>
+        public static string ARRIVAL_DATE_PROMPT_6 {
+            get {
+                return ResourceManager.GetString("ARRIVAL_DATE_PROMPT_6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When would you like to checkin?.
+        /// </summary>
+        public static string ARRIVAL_DATE_PROMPT_7 {
+            get {
+                return ResourceManager.GetString("ARRIVAL_DATE_PROMPT_7", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Ok, you would join us on {0}..
         /// </summary>
-        public static string HAVE_ARRIVAL_DATE {
+        public static string HAVE_ARRIVAL_DATE_1 {
             get {
-                return ResourceManager.GetString("HAVE_ARRIVAL_DATE", resourceCulture);
+                return ResourceManager.GetString("HAVE_ARRIVAL_DATE_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok. Joining us on {0} 🙂.
+        /// </summary>
+        public static string HAVE_ARRIVAL_DATE_2 {
+            get {
+                return ResourceManager.GetString("HAVE_ARRIVAL_DATE_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok, joining us on {0} 👊.
+        /// </summary>
+        public static string HAVE_ARRIVAL_DATE_3 {
+            get {
+                return ResourceManager.GetString("HAVE_ARRIVAL_DATE_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok, checking in on {0}..
+        /// </summary>
+        public static string HAVE_ARRIVAL_DATE_4 {
+            get {
+                return ResourceManager.GetString("HAVE_ARRIVAL_DATE_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Looking for a room on {0}..
+        /// </summary>
+        public static string HAVE_ARRIVAL_DATE_5 {
+            get {
+                return ResourceManager.GetString("HAVE_ARRIVAL_DATE_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I updated your checkin to {0}..
+        /// </summary>
+        public static string HAVE_UPDATED_ARRIVAL_DATE_1 {
+            get {
+                return ResourceManager.GetString("HAVE_UPDATED_ARRIVAL_DATE_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I updated your arrival to {0} 😉.
+        /// </summary>
+        public static string HAVE_UPDATED_ARRIVAL_DATE_2 {
+            get {
+                return ResourceManager.GetString("HAVE_UPDATED_ARRIVAL_DATE_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I changed you checkin to {0} 😉.
+        /// </summary>
+        public static string HAVE_UPDATED_ARRIVAL_DATE_3 {
+            get {
+                return ResourceManager.GetString("HAVE_UPDATED_ARRIVAL_DATE_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updated your arrival to {0}..
+        /// </summary>
+        public static string HAVE_UPDATED_ARRIVAL_DATE_4 {
+            get {
+                return ResourceManager.GetString("HAVE_UPDATED_ARRIVAL_DATE_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updated checkin to {0}, no problem 😉.
+        /// </summary>
+        public static string HAVE_UPDATED_ARRIVAL_DATE_5 {
+            get {
+                return ResourceManager.GetString("HAVE_UPDATED_ARRIVAL_DATE_5", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to I changed your arrival to {0}..
         /// </summary>
-        public static string HAVE_UPDATED_ARRIVAL_DATE {
+        public static string HAVE_UPDATED_ARRIVAL_DATE_6 {
             get {
-                return ResourceManager.GetString("HAVE_UPDATED_ARRIVAL_DATE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to I&apos;m sorry, I did not understand. When would you be arriving?.
-        /// </summary>
-        public static string RETRY_ARRIVAL_DATE_PROMPT_1 {
-            get {
-                return ResourceManager.GetString("RETRY_ARRIVAL_DATE_PROMPT_1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Sorry, when would you arrive?.
-        /// </summary>
-        public static string RETRY_ARRIVAL_DATE_PROMPT_2 {
-            get {
-                return ResourceManager.GetString("RETRY_ARRIVAL_DATE_PROMPT_2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to I didn&apos;t understand, when would you want to arrive?.
-        /// </summary>
-        public static string RETRY_ARRIVAL_DATE_PROMPT_3 {
-            get {
-                return ResourceManager.GetString("RETRY_ARRIVAL_DATE_PROMPT_3", resourceCulture);
+                return ResourceManager.GetString("HAVE_UPDATED_ARRIVAL_DATE_6", resourceCulture);
             }
         }
     }

@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CACHED_STATE_OVERVIEW" xml:space="preserve">
-    <value>Last time you looked for a room for {0} people between {1} and {2}. Is this still what you are looking for?</value>
+    <value>Last time you were looking for a room for {0} people between {1} and {2}. Is this still what you are looking for?</value>
   </data>
   <data name="CONTINUE_OR_UPDATE" xml:space="preserve">
     <value>Tap the buttons in the card to continue. I can search for rooms again if you would like. </value>
   </data>
   <data name="FOUND_ROOMS" xml:space="preserve">
-    <value>OK, I found {0} rooms for you. You're welcome.</value>
+    <value>OK, I found {0} rooms for you. </value>
   </data>
   <data name="HOLD_ON_CHECKING" xml:space="preserve">
     <value>Hold on, I'm checking... </value>
@@ -153,9 +153,6 @@
   </data>
   <data name="SMOKING_NOT_ALLOWED" xml:space="preserve">
     <value>🚭</value>
-  </data>
-  <data name="SPECIFICTIME_REPLY" xml:space="preserve">
-    <value>I need a specific day to help you.</value>
   </data>
   <data name="STATE_OVERVIEW" xml:space="preserve">
     <value>You want a room for {0} people between {1} and {2} right? </value>

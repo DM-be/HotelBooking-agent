@@ -19,7 +19,7 @@ namespace HotelBot.Dialogs.Prompts.DepartureDate.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class DepartureDateStrings {
@@ -63,54 +63,162 @@ namespace HotelBot.Dialogs.Prompts.DepartureDate.Resources {
         /// <summary>
         ///   Looks up a localized string similar to On what day would you like to checkout?.
         /// </summary>
-        public static string DEPARTURE_DATE_PROMPT {
+        public static string DEPARTURE_DATE_PROMPT_1 {
             get {
-                return ResourceManager.GetString("DEPARTURE_DATE_PROMPT", resourceCulture);
+                return ResourceManager.GetString("DEPARTURE_DATE_PROMPT_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to On what day would you like to leave?.
+        /// </summary>
+        public static string DEPARTURE_DATE_PROMPT_2 {
+            get {
+                return ResourceManager.GetString("DEPARTURE_DATE_PROMPT_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When would you be leaving us?.
+        /// </summary>
+        public static string DEPARTURE_DATE_PROMPT_3 {
+            get {
+                return ResourceManager.GetString("DEPARTURE_DATE_PROMPT_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When would you checkout?.
+        /// </summary>
+        public static string DEPARTURE_DATE_PROMPT_4 {
+            get {
+                return ResourceManager.GetString("DEPARTURE_DATE_PROMPT_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When would you like to checkout?.
+        /// </summary>
+        public static string DEPARTURE_DATE_PROMPT_5 {
+            get {
+                return ResourceManager.GetString("DEPARTURE_DATE_PROMPT_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When would you be leaving?.
+        /// </summary>
+        public static string DEPARTURE_DATE_PROMPT_6 {
+            get {
+                return ResourceManager.GetString("DEPARTURE_DATE_PROMPT_6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When would you like to checkout?.
+        /// </summary>
+        public static string DEPARTURE_DATE_PROMPT_7 {
+            get {
+                return ResourceManager.GetString("DEPARTURE_DATE_PROMPT_7", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Got it, you want to checkout on {0}..
         /// </summary>
-        public static string HAVE_DEPARTURE_DATE {
+        public static string HAVE_DEPARTURE_DATE_1 {
             get {
-                return ResourceManager.GetString("HAVE_DEPARTURE_DATE", resourceCulture);
+                return ResourceManager.GetString("HAVE_DEPARTURE_DATE_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Got it, checking out on {0} 👊.
+        /// </summary>
+        public static string HAVE_DEPARTURE_DATE_2 {
+            get {
+                return ResourceManager.GetString("HAVE_DEPARTURE_DATE_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok, leaving on {0}..
+        /// </summary>
+        public static string HAVE_DEPARTURE_DATE_3 {
+            get {
+                return ResourceManager.GetString("HAVE_DEPARTURE_DATE_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You would leave on {0}..
+        /// </summary>
+        public static string HAVE_DEPARTURE_DATE_4 {
+            get {
+                return ResourceManager.GetString("HAVE_DEPARTURE_DATE_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You would be checking out on {0}..
+        /// </summary>
+        public static string HAVE_DEPARTURE_DATE_5 {
+            get {
+                return ResourceManager.GetString("HAVE_DEPARTURE_DATE_5", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Ok, I updated your checkout date to {0}..
         /// </summary>
-        public static string HAVE_UPDATED_DEPARTURE_DATE {
+        public static string HAVE_UPDATED_DEPARTURE_DATE_1 {
             get {
-                return ResourceManager.GetString("HAVE_UPDATED_DEPARTURE_DATE", resourceCulture);
+                return ResourceManager.GetString("HAVE_UPDATED_DEPARTURE_DATE_1", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I&apos;m sorry, when would you be leaving?.
+        ///   Looks up a localized string similar to Ok, I changed your checkout date to {0} 😉.
         /// </summary>
-        public static string RETRY_DEPARTURE_PROMPT_1 {
+        public static string HAVE_UPDATED_DEPARTURE_DATE_2 {
             get {
-                return ResourceManager.GetString("RETRY_DEPARTURE_PROMPT_1", resourceCulture);
+                return ResourceManager.GetString("HAVE_UPDATED_DEPARTURE_DATE_2", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I didn&apos;t understand. When do you want to leave?.
+        ///   Looks up a localized string similar to Ok, I updated the checkout date to {0}..
         /// </summary>
-        public static string RETRY_DEPARTURE_PROMPT_2 {
+        public static string HAVE_UPDATED_DEPARTURE_DATE_3 {
             get {
-                return ResourceManager.GetString("RETRY_DEPARTURE_PROMPT_2", resourceCulture);
+                return ResourceManager.GetString("HAVE_UPDATED_DEPARTURE_DATE_3", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry, when would you leave?.
+        ///   Looks up a localized string similar to Updated checkout date to {0}..
         /// </summary>
-        public static string RETRY_DEPARTURE_PROMPT_3 {
+        public static string HAVE_UPDATED_DEPARTURE_DATE_4 {
             get {
-                return ResourceManager.GetString("RETRY_DEPARTURE_PROMPT_3", resourceCulture);
+                return ResourceManager.GetString("HAVE_UPDATED_DEPARTURE_DATE_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updated checkout date to {0} 😉.
+        /// </summary>
+        public static string HAVE_UPDATED_DEPARTURE_DATE_5 {
+            get {
+                return ResourceManager.GetString("HAVE_UPDATED_DEPARTURE_DATE_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Changed checkout date to {0}..
+        /// </summary>
+        public static string HAVE_UPDATED_DEPARTURE_DATE_6 {
+            get {
+                return ResourceManager.GetString("HAVE_UPDATED_DEPARTURE_DATE_6", resourceCulture);
             }
         }
     }

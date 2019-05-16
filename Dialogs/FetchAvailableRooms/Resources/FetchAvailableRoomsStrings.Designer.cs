@@ -61,7 +61,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Last time you looked for a room for {0} people between {1} and {2}. Is this still what you are looking for?.
+        ///   Looks up a localized string similar to Last time you were looking for a room for {0} people between {1} and {2}. Is this still what you are looking for?.
         /// </summary>
         public static string CACHED_STATE_OVERVIEW {
             get {
@@ -79,7 +79,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OK, I found {0} rooms for you. You&apos;re welcome..
+        ///   Looks up a localized string similar to OK, I found {0} rooms for you. .
         /// </summary>
         public static string FOUND_ROOMS {
             get {
@@ -165,15 +165,6 @@ namespace HotelBot.Dialogs.FetchAvailableRooms.Resources {
         public static string SMOKING_NOT_ALLOWED {
             get {
                 return ResourceManager.GetString("SMOKING_NOT_ALLOWED", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to I need a specific day to help you..
-        /// </summary>
-        public static string SPECIFICTIME_REPLY {
-            get {
-                return ResourceManager.GetString("SPECIFICTIME_REPLY", resourceCulture);
             }
         }
         

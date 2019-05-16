@@ -150,12 +150,6 @@
   <data name="ERROR" xml:space="preserve">
     <value>Sorry, it looks like something went wrong.</value>
   </data>
-  <data name="FDS" xml:space="preserve">
-    <value />
-  </data>
-  <data name="GETTING_STARTED_INTRO" xml:space="preserve">
-    <value />
-  </data>
   <data name="GREETING_MORE" xml:space="preserve">
     <value>If you need anything else, just ask!</value>
   </data>

@@ -38,10 +38,6 @@ namespace HotelBot.Dialogs.Prompts.DepartureDate
                 new PromptOptions
                 {
                     Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, DepartureDateResponses.ResponseIds.DepartureDatePrompt),
-                    RetryPrompt = await _responder.RenderTemplate(
-                        sc.Context,
-                        sc.Context.Activity.Locale,
-                        DepartureDateResponses.ResponseIds.RetryDepartureDatePrompt)
                 });
         }
 

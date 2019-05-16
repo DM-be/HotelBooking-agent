@@ -1,5 +1,8 @@
-﻿using System;
+﻿
+using System.Resources;
+using System.Threading;
 using HotelBot.Dialogs.Prompts.ArrivalDate.Resources;
+using HotelBot.Extensions;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.TemplateManager;
 using Microsoft.Bot.Schema;
@@ -14,28 +17,15 @@ namespace HotelBot.Dialogs.Prompts.ArrivalDate
             {
                 {
                     ResponseIds.ArrivalDatePrompt, (context, data) =>
-                        MessageFactory.Text(
-                            ArrivalDateStrings.ARRIVAL_DATE_PROMPT,
-                            ArrivalDateStrings.ARRIVAL_DATE_PROMPT,
-                            InputHints.AcceptingInput)
-                },
-                {
-                    ResponseIds.RetryArrivalDatePrompt, (context, data) =>
-                        GenerateRandomRetryResponse()
+                      GenerateRandomArrivalPrompt()
                 },
                 {
                     ResponseIds.HaveArrivalDate, (context, data) =>
-                        MessageFactory.Text(
-                            text: string.Format(ArrivalDateStrings.HAVE_ARRIVAL_DATE, data),
-                            ssml: string.Format(ArrivalDateStrings.HAVE_ARRIVAL_DATE, data),
-                            inputHint: InputHints.IgnoringInput)
+                       GenerateRandomHaveArrivalResponse(data)
                 },
                 {
                     ResponseIds.HaveUpdatedArrivalDate, (context, data) =>
-                        MessageFactory.Text(
-                            text: string.Format(ArrivalDateStrings.HAVE_UPDATED_ARRIVAL_DATE, data),
-                            ssml: string.Format(ArrivalDateStrings.HAVE_UPDATED_ARRIVAL_DATE, data),
-                            inputHint: InputHints.IgnoringInput)
+                        GenerateRandomUpdatedArrivalResponse(data)
                 }
             }
         };
@@ -46,31 +36,33 @@ namespace HotelBot.Dialogs.Prompts.ArrivalDate
             Register(new DictionaryRenderer(_responseTemplates));
         }
 
-
-        // todo: only retry in validator responses?
-        private static IMessageActivity GenerateRandomRetryResponse()
+        private static IMessageActivity GenerateRandomArrivalPrompt()
         {
-            var rnd = new Random();
-            var message = "";
-            var randomNumber = rnd.Next(1, 3);
-            switch (randomNumber)
-            {
-                case 1:
-                    message = ArrivalDateStrings.RETRY_ARRIVAL_DATE_PROMPT_1;
-                    break;
-                case 2:
-                    message = ArrivalDateStrings.RETRY_ARRIVAL_DATE_PROMPT_2;
-                    break;
-                case 3:
-                    message = ArrivalDateStrings.RETRY_ARRIVAL_DATE_PROMPT_3;
-                    break;
-            }
 
-            return MessageFactory.Text(
-                message,
-                message,
-                InputHints.AcceptingInput);
+            var resourceManager = ArrivalDateStrings.ResourceManager;
+            var resourceSet = resourceManager.GetResourceSet(Thread.CurrentThread.CurrentCulture, true, true);
+            var message = resourceSet.GenerateRandomResponse(ResponseKeys.ARRIVAL_DATE_PROMPT);
+            return MessageFactory.Text(message);
         }
+
+        private static IMessageActivity GenerateRandomUpdatedArrivalResponse(dynamic data)
+        {
+
+            var resourceManager = ArrivalDateStrings.ResourceManager;
+            var resourceSet = resourceManager.GetResourceSet(Thread.CurrentThread.CurrentCulture, true, true);
+            var message = resourceSet.GenerateRandomResponse(ResponseKeys.HAVE_UPDATED_ARRIVAL_DATE);
+            return MessageFactory.Text(string.Format(message, data));
+        }
+
+        private static IMessageActivity GenerateRandomHaveArrivalResponse(dynamic data)
+        {
+
+            var resourceManager = ArrivalDateStrings.ResourceManager;
+            var resourceSet = resourceManager.GetResourceSet(Thread.CurrentThread.CurrentCulture, true, true);
+            var message = resourceSet.GenerateRandomResponse(ResponseKeys.HAVE_ARRIVAL_DATE);
+            return MessageFactory.Text(string.Format(message, data));
+        }
+
 
 
         public class ResponseIds
@@ -78,8 +70,14 @@ namespace HotelBot.Dialogs.Prompts.ArrivalDate
             public const string ArrivalDatePrompt = "arrivalDatePrompt";
             public const string HaveArrivalDate = "haveArrivalDate";
             public const string HaveUpdatedArrivalDate = "haveUpdatedArrivalDate";
+        }
 
-            public const string RetryArrivalDatePrompt = "retryArrivalDatePrompt";
+        public class ResponseKeys {
+
+            public const string HAVE_ARRIVAL_DATE = "HAVE_ARRIVAL_DATE";
+            public const string ARRIVAL_DATE_PROMPT = "ARRIVAL_DATE_PROMPT";
+            public const string HAVE_UPDATED_ARRIVAL_DATE = "HAVE_UPDATED_ARRIVAL_DATE";
         }
     }
 }
+

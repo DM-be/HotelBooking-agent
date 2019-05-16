@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.FetchAvailableRooms;
-using HotelBot.Dialogs.Prompts.NumberOfPeople;
 using HotelBot.Dialogs.Shared.PromptValidators;
 using HotelBot.Models.Wrappers;
 using HotelBot.StateAccessors;
@@ -41,11 +40,6 @@ namespace HotelBot.Dialogs.Prompts.ArrivalDate
                 new PromptOptions
                 {
                     Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, ArrivalDateResponses.ResponseIds.ArrivalDatePrompt),
-                    RetryPrompt = await _responder.RenderTemplate(
-
-                        sc.Context,
-                        sc.Context.Activity.Locale,
-                        ArrivalDateResponses.ResponseIds.RetryArrivalDatePrompt)
                 });
         }
 

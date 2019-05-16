@@ -160,24 +160,6 @@ namespace HotelBot.Dialogs.Main.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        public static string FDS {
-            get {
-                return ResourceManager.GetString("FDS", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        public static string GETTING_STARTED_INTRO {
-            get {
-                return ResourceManager.GetString("GETTING_STARTED_INTRO", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to If you need anything else, just ask!.
         /// </summary>
         public static string GREETING_MORE {

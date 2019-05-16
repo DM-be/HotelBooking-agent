@@ -117,22 +117,58 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DEPARTURE_DATE_PROMPT" xml:space="preserve">
+  <data name="DEPARTURE_DATE_PROMPT_1" xml:space="preserve">
     <value>On what day would you like to checkout?</value>
   </data>
-  <data name="HAVE_DEPARTURE_DATE" xml:space="preserve">
+  <data name="DEPARTURE_DATE_PROMPT_2" xml:space="preserve">
+    <value>On what day would you like to leave?</value>
+  </data>
+  <data name="DEPARTURE_DATE_PROMPT_3" xml:space="preserve">
+    <value>When would you be leaving us?</value>
+  </data>
+  <data name="DEPARTURE_DATE_PROMPT_4" xml:space="preserve">
+    <value>When would you checkout?</value>
+  </data>
+  <data name="DEPARTURE_DATE_PROMPT_5" xml:space="preserve">
+    <value>When would you like to checkout?</value>
+  </data>
+  <data name="DEPARTURE_DATE_PROMPT_6" xml:space="preserve">
+    <value>When would you be leaving?</value>
+  </data>
+  <data name="DEPARTURE_DATE_PROMPT_7" xml:space="preserve">
+    <value>When would you like to checkout?</value>
+  </data>
+  <data name="HAVE_DEPARTURE_DATE_1" xml:space="preserve">
     <value>Got it, you want to checkout on {0}.</value>
   </data>
-  <data name="HAVE_UPDATED_DEPARTURE_DATE" xml:space="preserve">
+  <data name="HAVE_DEPARTURE_DATE_2" xml:space="preserve">
+    <value>Got it, checking out on {0} 👊</value>
+  </data>
+  <data name="HAVE_DEPARTURE_DATE_3" xml:space="preserve">
+    <value>Ok, leaving on {0}.</value>
+  </data>
+  <data name="HAVE_DEPARTURE_DATE_4" xml:space="preserve">
+    <value>You would leave on {0}.</value>
+  </data>
+  <data name="HAVE_DEPARTURE_DATE_5" xml:space="preserve">
+    <value>You would be checking out on {0}.</value>
+  </data>
+  <data name="HAVE_UPDATED_DEPARTURE_DATE_1" xml:space="preserve">
     <value>Ok, I updated your checkout date to {0}.</value>
   </data>
-  <data name="RETRY_DEPARTURE_PROMPT_1" xml:space="preserve">
-    <value>I'm sorry, when would you be leaving?</value>
+  <data name="HAVE_UPDATED_DEPARTURE_DATE_2" xml:space="preserve">
+    <value>Ok, I changed your checkout date to {0} 😉</value>
   </data>
-  <data name="RETRY_DEPARTURE_PROMPT_2" xml:space="preserve">
-    <value>I didn't understand. When do you want to leave?</value>
+  <data name="HAVE_UPDATED_DEPARTURE_DATE_3" xml:space="preserve">
+    <value>Ok, I updated the checkout date to {0}.</value>
   </data>
-  <data name="RETRY_DEPARTURE_PROMPT_3" xml:space="preserve">
-    <value>Sorry, when would you leave?</value>
+  <data name="HAVE_UPDATED_DEPARTURE_DATE_4" xml:space="preserve">
+    <value>Updated checkout date to {0}.</value>
+  </data>
+  <data name="HAVE_UPDATED_DEPARTURE_DATE_5" xml:space="preserve">
+    <value>Updated checkout date to {0} 😉</value>
+  </data>
+  <data name="HAVE_UPDATED_DEPARTURE_DATE_6" xml:space="preserve">
+    <value>Changed checkout date to {0}.</value>
   </data>
 </root>

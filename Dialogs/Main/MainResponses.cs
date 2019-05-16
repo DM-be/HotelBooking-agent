@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using HotelBot.Dialogs.Main.Resources;
 using HotelBot.Dialogs.Prompts.LocationPrompt.Resources;
+using HotelBot.Extensions;
 using HotelBot.Models.Facebook;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.TemplateManager;
@@ -333,25 +334,8 @@ namespace HotelBot.Dialogs.Main
 
             var mainStrings = MainStrings.ResourceManager;
             var resourceSet = mainStrings.GetResourceSet(Thread.CurrentThread.CurrentCulture, true, true);
-            IDictionaryEnumerator id = resourceSet.GetEnumerator();
-            List<dynamic> randomContinueResponses = new List<dynamic>();
-            while (id.MoveNext())
-            {
-                if (id.Key.ToString().StartsWith("RANDOM_CONTINUE"))
-                {
-                    var dyn = new
-                    {
-                        Key = id.Key.ToString(),
-                        Value = id.Value.ToString()
-                    };
-                    randomContinueResponses.Add(dyn);
-                }
-            }
-            System.Random random = new System.Random();
-            var message = randomContinueResponses[random.Next(0, randomContinueResponses.Count)].Value;
+            var message = resourceSet.GenerateRandomResponse("RANDOM_CONTINUE");
             return MessageFactory.Text(message);
-
-
         }
 
 

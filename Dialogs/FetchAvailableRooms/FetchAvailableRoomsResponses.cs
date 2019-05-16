@@ -86,14 +86,6 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                         SendCachedOverview(context, data)
                 },
                 {
-                    ResponseIds.SpecificTimePrompt, (context, data) =>
-                        MessageFactory.Text(
-                            FetchAvailableRoomsStrings.SPECIFICTIME_REPLY,
-                            FetchAvailableRoomsStrings.SPECIFICTIME_REPLY,
-                            InputHints.IgnoringInput)
-                },
-
-                {
                     ResponseIds.UnderstandExample, (context, data) =>
                         MessageFactory.Text(
                             FetchAvailableRoomsStrings.UNDERSTAND_EXAMPLE,
@@ -306,8 +298,6 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             {
                 var dateAsNaturalLanguage = timexProperty.ToNaturalLanguage(DateTime.Now);
                 message = string.Format(FetchAvailableRoomsStrings.UPDATE_LEAVINGDATE_WITH_ENTITY, dateAsNaturalLanguage);
-                // todo: add old value in string? --> use bookaroomstate, passed in turnstate
-
             }
             else
             {

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Threading;
 using HotelBot.Dialogs.Prompts.DepartureDate.Resources;
+using HotelBot.Extensions;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.TemplateManager;
 using Microsoft.Bot.Schema;
@@ -15,28 +17,16 @@ namespace HotelBot.Dialogs.Prompts.DepartureDate
             {
                 {
                     ResponseIds.DepartureDatePrompt, (context, data) =>
-                        MessageFactory.Text(
-                            DepartureDateStrings.DEPARTURE_DATE_PROMPT,
-                            DepartureDateStrings.DEPARTURE_DATE_PROMPT,
-                            InputHints.AcceptingInput)
+                        GenerateRandomDeparturePrompt()
                 },
-                {
-                    ResponseIds.RetryDepartureDatePrompt, (context, data) =>
-                        GenerateRandomRetryResponse()
-                },
+             
                 {
                     ResponseIds.HaveDepartureDate, (context, data) =>
-                        MessageFactory.Text(
-                            text: string.Format(DepartureDateStrings.HAVE_DEPARTURE_DATE, data),
-                            ssml: string.Format(DepartureDateStrings.HAVE_DEPARTURE_DATE, data),
-                            inputHint: InputHints.IgnoringInput)
+                        GenerateRandomHaveDepartureResponse(data)
                 },
                 {
                     ResponseIds.HaveUpdatedDepartureDate, (context, data) =>
-                        MessageFactory.Text(
-                            text: string.Format(DepartureDateStrings.HAVE_UPDATED_DEPARTURE_DATE, data),
-                            ssml: string.Format(DepartureDateStrings.HAVE_UPDATED_DEPARTURE_DATE, data),
-                            inputHint: InputHints.IgnoringInput)
+                        GenerateRandomUpdatedDepartureResponse(data)
                 }
             }
         };
@@ -48,29 +38,31 @@ namespace HotelBot.Dialogs.Prompts.DepartureDate
         }
 
 
-        // todo: only retry in validator responses?
-        private static IMessageActivity GenerateRandomRetryResponse()
+        private static IMessageActivity GenerateRandomDeparturePrompt()
         {
-            var rnd = new Random();
-            var message = "";
-            var randomNumber = rnd.Next(1, 3);
-            switch (randomNumber)
-            {
-                case 1:
-                    message = DepartureDateStrings.RETRY_DEPARTURE_PROMPT_1;
-                    break;
-                case 2:
-                    message = DepartureDateStrings.RETRY_DEPARTURE_PROMPT_2;
-                    break;
-                case 3:
-                    message = DepartureDateStrings.RETRY_DEPARTURE_PROMPT_3;
-                    break;
-            }
 
-            return MessageFactory.Text(
-                message,
-                message,
-                InputHints.AcceptingInput);
+            var resourceManager = DepartureDateStrings.ResourceManager;
+            var resourceSet = resourceManager.GetResourceSet(Thread.CurrentThread.CurrentCulture, true, true);
+            var message = resourceSet.GenerateRandomResponse(ResponseKeys.DEPARTURE_DATE_PROMPT);
+            return MessageFactory.Text(message);
+        }
+
+        private static IMessageActivity GenerateRandomUpdatedDepartureResponse(dynamic data)
+        {
+
+            var resourceManager = DepartureDateStrings.ResourceManager;
+            var resourceSet = resourceManager.GetResourceSet(Thread.CurrentThread.CurrentCulture, true, true);
+            var message = resourceSet.GenerateRandomResponse(ResponseKeys.HAVE_UPDATED_DEPARTURE_DATE);
+            return MessageFactory.Text(string.Format(message, data));
+        }
+
+        private static IMessageActivity GenerateRandomHaveDepartureResponse(dynamic data)
+        {
+
+            var resourceManager = DepartureDateStrings.ResourceManager;
+            var resourceSet = resourceManager.GetResourceSet(Thread.CurrentThread.CurrentCulture, true, true);
+            var message = resourceSet.GenerateRandomResponse(ResponseKeys.HAVE_DEPARTURE_DATE);
+            return MessageFactory.Text(string.Format(message, data));
         }
 
 
@@ -80,7 +72,14 @@ namespace HotelBot.Dialogs.Prompts.DepartureDate
             public const string HaveDepartureDate = "haveDepartureDate";
             public const string HaveUpdatedDepartureDate = "haveUpdatedDepartureDate";
 
-            public const string RetryDepartureDatePrompt = "retryDepartureDatePrompt";
+        }
+
+        public class ResponseKeys
+        {
+
+            public const string HAVE_DEPARTURE_DATE = "HAVE_DEPARTURE_DATE";
+            public const string DEPARTURE_DATE_PROMPT = "DEPARTURE_DATE_PROMPT";
+            public const string HAVE_UPDATED_DEPARTURE_DATE = "HAVE_UPDATED_DEPARTURE_DATE";
         }
     }
 }
