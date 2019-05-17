@@ -61,6 +61,24 @@ namespace HotelBot.Dialogs.RoomDetail.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Book for {0}.
+        /// </summary>
+        public static string HEROCARD_RATES_BUTTON_TEXT {
+            get {
+                return ResourceManager.GetString("HEROCARD_RATES_BUTTON_TEXT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The following rates are still available: .
+        /// </summary>
+        public static string HEROCARD_RATES_REPLY_TEXT {
+            get {
+                return ResourceManager.GetString("HEROCARD_RATES_REPLY_TEXT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Here are some pictures. Tap them to see how beautiful our rooms are 😉.
         /// </summary>
         public static string IMAGES_TAP_TEXT {
@@ -75,15 +93,6 @@ namespace HotelBot.Dialogs.RoomDetail.Resources {
         public static string LOWEST_RATE_TEXT {
             get {
                 return ResourceManager.GetString("LOWEST_RATE_TEXT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The following rates are still available: .
-        /// </summary>
-        public static string RATES_TEXT {
-            get {
-                return ResourceManager.GetString("RATES_TEXT", resourceCulture);
             }
         }
     }

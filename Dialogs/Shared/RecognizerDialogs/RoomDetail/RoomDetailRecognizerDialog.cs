@@ -122,7 +122,7 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.RoomDetail
         protected virtual async Task<InterruptionStatus> OnHelp(DialogContext dc)
         {
             var view = new FetchAvailableRoomsResponses();
-            await view.ReplyWith(dc.Context, FetchAvailableRoomsResponses.ResponseIds.Help);
+            await view.ReplyWith(dc.Context, FetchAvailableRoomsResponses.ResponseIds.UnderstandNLU);
 
             // Signal the conversation was interrupted and should immediately continue (calls reprompt)
             return InterruptionStatus.Interrupted;

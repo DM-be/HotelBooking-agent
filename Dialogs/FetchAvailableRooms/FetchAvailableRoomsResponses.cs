@@ -29,13 +29,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                             InputHints.IgnoringInput)
                 },
 
-                {
-                    ResponseIds.ContinueOrUpdate, (context, data) =>
-                        MessageFactory.Text(
-                            FetchAvailableRoomsStrings.CONTINUE_OR_UPDATE,
-                            FetchAvailableRoomsStrings.CONTINUE_OR_UPDATE,
-                            InputHints.ExpectingInput)
-                },
+           
 
                 {
                     ResponseIds.IncorrectDate, (context, data) =>
@@ -59,15 +53,8 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                             InputHints.IgnoringInput)
                 },
                 {
-                    ResponseIds.UpdatePrompt, (context, data) =>
-                        MessageFactory.Text(
-                            FetchAvailableRoomsStrings.UPDATE_PROMPT,
-                            FetchAvailableRoomsStrings.UPDATE_PROMPT,
-                            InputHints.IgnoringInput)
-                },
-                {
                     ResponseIds.UpdateNumberOfPeople, (context, data) =>
-                        UpdateNumberOfPeople(context, data)
+                        UpdateNumberOfPeople(data)
                 },
                 {
                     ResponseIds.UpdateLeavingDate, (context, data) =>
@@ -79,7 +66,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                 },
                 {
                     ResponseIds.Overview, (context, data) =>
-                        SendOverview(context, data)
+                        SendOverview(data)
                 },
                 {
                     ResponseIds.CachedOverview, (context, data) =>
@@ -106,15 +93,19 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                             FetchAvailableRoomsStrings.HOLD_ON_CHECKING,
                             InputHints.IgnoringInput)
                 },
+                        {
+                    ResponseIds.StartOver, (context, data) =>
+                        MessageFactory.Text(
+                            FetchAvailableRoomsStrings.START_OVER,
+                            FetchAvailableRoomsStrings.START_OVER,
+                            InputHints.IgnoringInput)
+                },
 
                 {
                     ResponseIds.SendRoomsCarousel, (context, data) =>
                         SendRoomsCarousel(context, data)
                 },
-                {
-                    ResponseIds.SendRoomDetail, (context, data) =>
-                        SendRoomDetail(context, data)
-                },
+            
                 {
                     ResponseIds.IntroductionMoreInfo, (context, data) =>
                         MessageFactory.Text(
@@ -129,13 +120,15 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                             FetchAvailableRoomsStrings.INTRODUCTION_MISTAKES,
                             InputHints.IgnoringInput)
                 },
-                {
-                    ResponseIds.UpdateSavedState, (context, data) =>
+                   {
+                    ResponseIds.UpdatePrompt, (context, data) =>
                         MessageFactory.Text(
-                            FetchAvailableRoomsStrings.UPDATE_SAVED_STATE,
-                            FetchAvailableRoomsStrings.UPDATE_SAVED_STATE,
+                            FetchAvailableRoomsStrings.UPDATE_PROMPT,
+                            FetchAvailableRoomsStrings.UPDATE_PROMPT,
                             InputHints.IgnoringInput)
-                }
+                },
+
+
 
             }
         };
@@ -223,28 +216,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             return reply;
         }
 
-        public static IMessageActivity SendRoomDetail(ITurnContext context, dynamic data)
-        {
-            var requestHandler = new RequestHandler();
-            var roomDetailDto = requestHandler.FetchRoomDetail(data).Result;
-            var imageCards = new HeroCard[4];
-            for (var i = 0; i < roomDetailDto.RoomImages.Count; i++)
-                imageCards[i] = new HeroCard
-                {
-                    Images = new List<CardImage>
-                    {
-                        new CardImage(roomDetailDto.RoomImages[i].ImageUrl)
-                    }
-                };
-            var reply = context.Activity.CreateReply();
-            reply.Text = "Here are more pictures of the room.";
-            var attachments = new List<Attachment>();
-            foreach (var heroCard in imageCards) attachments.Add(heroCard.ToAttachment());
-            reply.AttachmentLayout = AttachmentLayoutTypes.Carousel;
-            reply.Attachments = attachments;
-            return reply;
-        }
-
+       
 
 
         public static IMessageActivity UpdateArrivalDate(ITurnContext context, dynamic data)
@@ -256,20 +228,17 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             {
                 var dateAsNaturalLanguage = timexProperty.ToNaturalLanguage(DateTime.Now);
                 message = string.Format(FetchAvailableRoomsStrings.UPDATE_ARRIVALDATE_WITH_ENTITY, dateAsNaturalLanguage);
-                // todo: add old value in string? --> use bookaroomstate, passed in turnstate
-
             }
             else
             {
                 message = FetchAvailableRoomsStrings.UPDATE_ARRIVALDATE_WITHOUT_ENTITY;
             }
-
             return MessageFactory.Text(message);
 
         }
 
 
-        public static IMessageActivity UpdateNumberOfPeople(ITurnContext context, dynamic data)
+        public static IMessageActivity UpdateNumberOfPeople(dynamic data)
         {
             var luisResult = data.LuisResult as HotelBotLuis;
             string message;
@@ -277,7 +246,6 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             {
                 var numberOfPeopleString = luisResult.Entities.number.First().ToString();
                 message = string.Format(FetchAvailableRoomsStrings.UPDATE_NUMBEROFPEOPLE_WITH_ENTITY, numberOfPeopleString);
-
             }
             else
             {
@@ -308,7 +276,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
         }
 
 
-        public static IMessageActivity SendOverview(ITurnContext context, FetchAvailableRoomsState state)
+        public static IMessageActivity SendOverview(FetchAvailableRoomsState state)
         {
             var message = string.Format(FetchAvailableRoomsStrings.STATE_OVERVIEW, state.NumberOfPeople, state.ArrivalDate, state.LeavingDate);
             return MessageFactory.Text(message);
@@ -330,7 +298,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             message += GetSmokingString(smoking);
             message += GetWheelChairAccessibleString(wheelChair);
             message += " \n";
-            message += GetCapacityString(capacity);
+            message += GetCapacityIcons(capacity);
             return message;
 
         }
@@ -346,18 +314,17 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
         {
             if (wheelChair) return FetchAvailableRoomsStrings.WHEELCHAIR_ACCESSIBLE;
 
-            return FetchAvailableRoomsStrings.WHEELCHAIR_INACCESIBLE;
+            return FetchAvailableRoomsStrings.WHEELCHAIR_INACCESIBLE; // todo: add icon
         }
 
-        private static string GetCapacityString(int capacity)
+        private static string GetCapacityIcons(int capacity)
         {
-            var mes = "";
-            for (var x = 0; x < capacity; x++) mes += "🚹︎";
-
-            return mes;
+            var icons = "";
+            for (var x = 0; x < capacity; x++) icons += "🚹︎";
+            return icons;
         }
 
-        // todo: cleanup!
+
 
         public class ResponseIds
         {
@@ -370,11 +337,8 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             public const string Overview = "overview";
             public const string CachedOverview = "cachedOverview";
             public const string SendRoomsCarousel = "sendRoomsCarousel";
-            public const string SendRoomDetail = "sendRoomDetail";
-            public const string ContinueOrUpdate = "continueOrUpdate";
             public const string UpdatePrompt = "updatePrompt";
 
-            public const string UpdateSavedState = "updateSavedState";
             public const string SendIntroduction = "sendIntroduction";
             public const string SendStart = "sendStart";
             public const string SendMoreInfo = "sendMoreInfo";
@@ -390,6 +354,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             public const string UnderstandExample = "understandExample";
 
             public const string HoldOnChecking = "holdOnChecking";
+            public const string StartOver = "startOver";
 
         }
     }

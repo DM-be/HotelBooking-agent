@@ -14,9 +14,6 @@ using Microsoft.Bot.Builder.Dialogs;
 namespace HotelBot.Dialogs.RoomDetail
 {
 
-
-
-    // todo: also send introduction? or assume help knowledge from other dialog?  
     public class RoomDetailDialog: RoomDetailRecognizerDialog
     {
         private readonly StateBotAccessors _accessors;

@@ -120,9 +120,6 @@
   <data name="CACHED_STATE_OVERVIEW" xml:space="preserve">
     <value>Last time you were looking for a room for {0} people between {1} and {2}. Is this still what you are looking for?</value>
   </data>
-  <data name="CONTINUE_OR_UPDATE" xml:space="preserve">
-    <value>Tap the buttons in the card to continue. I can search for rooms again if you would like. </value>
-  </data>
   <data name="FOUND_ROOMS" xml:space="preserve">
     <value>OK, I found {0} rooms for you. </value>
   </data>
@@ -153,6 +150,9 @@
   </data>
   <data name="SMOKING_NOT_ALLOWED" xml:space="preserve">
     <value>🚭</value>
+  </data>
+  <data name="START_OVER" xml:space="preserve">
+    <value>Ok, let's start over.</value>
   </data>
   <data name="STATE_OVERVIEW" xml:space="preserve">
     <value>You want a room for {0} people between {1} and {2} right? </value>
@@ -185,9 +185,6 @@
   </data>
   <data name="UPDATE_PROMPT" xml:space="preserve">
     <value>What would you like to change?</value>
-  </data>
-  <data name="UPDATE_SAVED_STATE" xml:space="preserve">
-    <value>Do you want to update something or start a new search?</value>
   </data>
   <data name="WHEELCHAIR_ACCESSIBLE" xml:space="preserve">
     <value>♿</value>

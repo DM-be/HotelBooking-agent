@@ -32,7 +32,6 @@ namespace HotelBot.Dialogs.RoomDetail
                         SendLowestRate(data)
                 }
 
-
             }
 
         };
@@ -92,12 +91,12 @@ namespace HotelBot.Dialogs.RoomDetail
                                     Action = RoomAction.Actions.SelectRoomWithRate,
                                     SelectedRate = roomDetailDto.Rates[i]
                                 }),
-                            Title = $"Book for €{roomDetailDto.Rates[i].Price}",
+                            Title = string.Format(RoomDetailStrings.HEROCARD_RATES_BUTTON_TEXT, roomDetailDto.Rates[i].Price),
                         }
                     }
                 };
             var reply = context.Activity.CreateReply();
-            reply.Text = RoomDetailStrings.RATES_TEXT;
+            reply.Text = RoomDetailStrings.HEROCARD_RATES_REPLY_TEXT;
             var attachments = new List<Attachment>();
             foreach (var heroCard in rateCards) attachments.Add(heroCard.ToAttachment());
             reply.AttachmentLayout = AttachmentLayoutTypes.Carousel;

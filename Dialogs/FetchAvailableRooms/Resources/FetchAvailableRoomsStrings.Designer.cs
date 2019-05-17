@@ -70,15 +70,6 @@ namespace HotelBot.Dialogs.FetchAvailableRooms.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tap the buttons in the card to continue. I can search for rooms again if you would like. .
-        /// </summary>
-        public static string CONTINUE_OR_UPDATE {
-            get {
-                return ResourceManager.GetString("CONTINUE_OR_UPDATE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to OK, I found {0} rooms for you. .
         /// </summary>
         public static string FOUND_ROOMS {
@@ -169,6 +160,15 @@ namespace HotelBot.Dialogs.FetchAvailableRooms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ok, let&apos;s start over..
+        /// </summary>
+        public static string START_OVER {
+            get {
+                return ResourceManager.GetString("START_OVER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You want a room for {0} people between {1} and {2} right? .
         /// </summary>
         public static string STATE_OVERVIEW {
@@ -255,15 +255,6 @@ namespace HotelBot.Dialogs.FetchAvailableRooms.Resources {
         public static string UPDATE_PROMPT {
             get {
                 return ResourceManager.GetString("UPDATE_PROMPT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Do you want to update something or start a new search?.
-        /// </summary>
-        public static string UPDATE_SAVED_STATE {
-            get {
-                return ResourceManager.GetString("UPDATE_SAVED_STATE", resourceCulture);
             }
         }
         

@@ -44,10 +44,10 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             AddDialog(new ConfirmFetchRoomsPrompt(accessors));
             AddDialog(new DepartureDatePromptDialog(accessors));
             AddDialog(new NumberOfPeoplePromptDialog(accessors));
-            AddDialog(new UpdateStateChoicePrompt(accessors));
             AddDialog(new ContinueOrUpdatePrompt(accessors));
             AddDialog(new FetchAvailableRoomsIntroductionPrompt());
             AddDialog(new RoomOverviewDialog(services, accessors));
+            AddDialog(new UpdateStateChoicePrompt());
         }
 
 
@@ -59,22 +59,17 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                 userProfile.SendFetchAvailableRoomsIntroduction = false;
                 return await sc.BeginDialogAsync(nameof(FetchAvailableRoomsIntroductionPrompt));
             }
-
             return await sc.NextAsync();
-
         }
 
         public async Task<DialogTurnResult> AskForNumberOfPeople(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-
             var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
             if (state.NumberOfPeople != null)
             {
                 sc.Context.TurnState[CachedStateKey] = state;
                 return await sc.NextAsync();
             }
-
-
             return await sc.BeginDialogAsync(nameof(NumberOfPeoplePromptDialog));
         }
 
@@ -86,7 +81,6 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                 sc.Context.TurnState[CachedStateKey] = state;
                 return await sc.NextAsync();
             }
-
             return await sc.BeginDialogAsync(nameof(ArrivalDatePromptDialog));
         }
 
@@ -98,7 +92,6 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                 sc.Context.TurnState[CachedStateKey] = state;
                 return await sc.NextAsync();
             }
-
             return await sc.BeginDialogAsync(nameof(DepartureDatePromptDialog));
         }
 
@@ -119,15 +112,12 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             var confirmed = (bool) sc.Result;
             if (confirmed)
             {
-                // send book a room cards and prompt to continue or update
                 var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
-
                 await _responder.ReplyWith(sc.Context, FetchAvailableRoomsResponses.ResponseIds.HoldOnChecking);
-                Thread.Sleep(500); 
+                Thread.Sleep(500); // dummy sleep for presentation
                 await _responder.ReplyWith(sc.Context, FetchAvailableRoomsResponses.ResponseIds.SendRoomsCarousel, state);
                 return await sc.BeginDialogAsync(nameof(ContinueOrUpdatePrompt));
             }
-
             // when a user taps no, we can assume he wants to change a value
             var foundChoice = new FoundChoice
             {
@@ -148,17 +138,14 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                     case FetchAvailableRoomsChoices.StartOver:
                     {
                         var emptyState = new FetchAvailableRoomsState();
-                        _accessors.FetchAvailableRoomsStateAccessor.SetAsync(sc.Context, emptyState);
-                        await sc.Context.SendActivityAsync("Ok, let's start over"); // in responder
-                        var dialogOptions = new DialogOptions
+                        await _accessors.FetchAvailableRoomsStateAccessor.SetAsync(sc.Context, emptyState);
+                            await _responder.ReplyWith(sc.Context, FetchAvailableRoomsResponses.ResponseIds.StartOver);
+                            var dialogOptions = new DialogOptions
                         {
                             SkipConfirmation = false // start over and prompt for confirmation again 
                         };
                         return await sc.ReplaceDialogAsync(InitialDialogId, dialogOptions);
                     }
-                    case FetchAvailableRoomsChoices.NoThanks:
-                        await sc.Context.SendActivityAsync("You're welcome."); // in responder
-                        return await sc.EndDialogAsync();
                     case FetchAvailableRoomsChoices.RoomOverview:
                         var dialogResult = new DialogResult
                         {
@@ -217,15 +204,14 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             public const string NumberOfPeople = "Number of people";
             public const string StartOver = "Start over";
             public const string UpdateSearch = "Update search";
-            public const string NoThanks = "No thanks";
-
+    
             public const string RoomOverview = "Order overview";
 
             public static readonly ReadOnlyCollection<string> Choices =
                 new ReadOnlyCollection<string>(
                     new []
                     {
-                        Checkin, Checkout, NumberOfPeople, StartOver, UpdateSearch, NoThanks, RoomOverview
+                        Checkin, Checkout, NumberOfPeople, StartOver, UpdateSearch, RoomOverview
                     });
         }
     }

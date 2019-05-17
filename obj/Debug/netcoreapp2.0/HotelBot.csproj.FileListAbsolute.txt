@@ -46,6 +46,7 @@ C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\bin\Debug\netcoreapp2.
 C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\bin\Debug\netcoreapp2.0\HotelBot.dll
 C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\bin\Debug\netcoreapp2.0\HotelBot.pdb
 C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\bin\Debug\netcoreapp2.0\nl\HotelBot.resources.dll
+C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.csprojAssemblyReference.cache
 C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.Dialogs.Cancel.Resources.CancelStrings.resources
 C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.Dialogs.ConfirmOrder.Resources.ConfirmOrderStrings.resources
 C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.Dialogs.FetchAvailableRooms.Resources.FetchAvailableRoomsStrings.resources
@@ -57,6 +58,7 @@ C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\obj\Debug\netcoreapp2.
 C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.Dialogs.Prompts.LocationPrompt.Resources.LocationStrings.resources
 C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.Dialogs.Prompts.NumberOfPeople.Resources.NumberOfPeopleStrings.resources
 C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.Dialogs.Prompts.RoomDetailChoices.Resources.RoomDetailChoicesStrings.resources
+C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.Dialogs.Prompts.UpdateStateChoice.Resources.UpdateStateChoiceStrings.resources
 C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.Dialogs.Prompts.ValidateDateTimeWaterfall.Resources.ValidateDateTimeStrings.resources
 C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.Dialogs.RoomDetail.Resources.RoomDetailStrings.resources
 C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.Dialogs.RoomOverview.Resources.RoomOverviewStrings.resources
@@ -76,4 +78,3 @@ C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\obj\Debug\netcoreapp2.
 C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\obj\Debug\netcoreapp2.0\nl\HotelBot.resources.dll
 C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.dll
 C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.pdb
-C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.csprojAssemblyReference.cache

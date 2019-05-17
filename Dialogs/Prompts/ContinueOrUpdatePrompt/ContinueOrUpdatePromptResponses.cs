@@ -20,8 +20,6 @@ namespace HotelBot.Dialogs.Prompts.ContinueOrUpdatePrompt
                         GenerateRandomContinueOrUpdateText()
 
                 },
-
-
             }
         };
 

@@ -1,9 +1,8 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.FetchAvailableRooms;
-using HotelBot.StateAccessors;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Dialogs.Choices;
 
@@ -12,12 +11,10 @@ namespace HotelBot.Dialogs.Prompts.UpdateStateChoice
     public class UpdateStateChoicePrompt: ComponentDialog
     {
         private static readonly FetchAvailableRoomsResponses _responder = new FetchAvailableRoomsResponses();
-        private readonly StateBotAccessors _accessors;
 
-        public UpdateStateChoicePrompt(StateBotAccessors accessors): base(nameof(UpdateStateChoicePrompt))
+        public UpdateStateChoicePrompt(): base(nameof(UpdateStateChoicePrompt))
         {
             InitialDialogId = nameof(UpdateStateChoicePrompt);
-            _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
             var updateStateChoiceWaterfallSteps = new WaterfallStep []
             {
                 PromptUpdateStateChoices, EndWithResult
@@ -39,7 +36,7 @@ namespace HotelBot.Dialogs.Prompts.UpdateStateChoice
                     Prompt = await _responder.RenderTemplate(
                         sc.Context,
                         sc.Context.Activity.Locale,
-                        FetchAvailableRoomsResponses.ResponseIds.UpdatePrompt),
+                        FetchAvailableRoomsResponses.ResponseIds.UpdatePrompt), // OWN RESPONSES!
                     Choices = ChoiceFactory.ToChoices(
                         new List<string>
                         {
@@ -58,14 +55,18 @@ namespace HotelBot.Dialogs.Prompts.UpdateStateChoice
                 sc.Result);
         }
 
+        public class Choices {
+
+        }
+
 
 
         // this prompt only resumes after a interruption prompt has ended.
         // the only interruptions handle state directly, on resume we should end the dialog
-        // ie --> would you change something --> yes i want to update my arrival date to x --> skips updatestateprompt confirmation
+        //  state is auto updated, no confirmation needed, see recognizer dialog
         // --> this prompt resumes --> overrides into an endDialog.
-
-        // the underlying luis can trigger and updatestate prompt, state would be set directly.
+         
+        // the underlying luis can trigger an updatestate prompt, state would be set directly.
         // the updatestate prompt ends and this resumedialog function is called.
         // the only updates to state this dialog can do is the 3 options prompted, because this current prompt is a statechoiceprompt, confirmation will also be skipped.
         // calling resume should end the dialog and skip this entirely, we pass a new found choice to the underlying dialog (fetchavailableroomsdialog)

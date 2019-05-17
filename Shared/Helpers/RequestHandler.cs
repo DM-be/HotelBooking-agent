@@ -1,5 +1,4 @@
 ﻿using System.Net.Http;
-using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 using HotelBot.Models.DTO;
@@ -18,6 +17,8 @@ namespace HotelBot.Shared.Helpers
             FetchRoomDetailUrl = "https://us-central1-roomsbackend.cloudfunctions.net/fetchRoomDetail";
             ReceiptUrl =
                 "https://graph.facebook.com/v2.6/me/messages?access_token=EAAZAwdCH6kA4BALmrXAxNUYIUfqaH01Lx3bsNDFlQZCgRolXq0yErVZABhdRHuZCkGjTuHGZCZBzhcWDCRVGOIXf6v5Yckz0MidVUJg8EXbWWXeaDhaGVR19CXtZBao64Y09N5IWWZBNMbQOa23Dt222YW8NwgdpNVWZBDjVOh5qXZCAZDZD";
+            MaxNumberOfRoomsUrl = "";
+
         }
 
 
@@ -27,6 +28,7 @@ namespace HotelBot.Shared.Helpers
 
         public string ReceiptUrl { get; set; }
 
+        public string MaxNumberOfRoomsUrl { get; set; }
 
 
         // returns general room cards // fake it for now.
@@ -44,6 +46,18 @@ namespace HotelBot.Shared.Helpers
             }
             return roomDtos;
         }
+
+
+        //implement in backend API
+        public async Task<int> FetchMaxNumberOfPeopleInRooms(string hotelId)
+        {
+            //var client = new HttpClient();
+            //var path = MaxNumberOfRoomsUrl /hotelid....
+           
+   
+            return await Task.FromResult(5);
+        }
+
 
 
         // fetches a detail of a room --> more RoomImages, checkin time etc etc 
