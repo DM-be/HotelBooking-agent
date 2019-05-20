@@ -33,7 +33,7 @@ namespace HotelBot.Dialogs.Prompts.UpdateState
             };
 
             AddDialog(new WaterfallDialog(InitialDialogId, updateStateWaterfallSteps));
-            AddDialog(new ValidateDateTimePrompt());
+            AddDialog(new ValidateDateTimePrompt(accessors));
             AddDialog(new ConfirmPrompt(nameof(ConfirmPrompt)));
             AddDialog(new EmailPromptDialog(accessors));
             AddDialog(new ArrivalDatePromptDialog(accessors));
@@ -58,10 +58,13 @@ namespace HotelBot.Dialogs.Prompts.UpdateState
                 var dateTimeSpecs = luisResult.Entities.datetime.First();
                 var firstExpression = dateTimeSpecs.Expressions.First();
                 var timexProperty = new TimexProperty(firstExpression);
-                return await sc.NextAsync(timexProperty, cancellationToken); // we got a date type, go next with the timexproperty
+                var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
+                state.TempTimexProperty = timexProperty;
+                return await sc.NextAsync(false);
             }
 
-            return await sc.BeginDialogAsync(nameof(ValidateDateTimePrompt)); // intent matching arrival/leaving but without a recognized entity
+   
+            return await sc.BeginDialogAsync(nameof(ValidateDateTimePrompt), dialogOptions); // intent matching arrival/leaving but without a recognized entity
 
         }
 
@@ -71,11 +74,11 @@ namespace HotelBot.Dialogs.Prompts.UpdateState
         {
 
             var fetchAvailableRoomsState = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
-            var dialogOptions = (DialogOptions) sc.Options;
+            var dialogOptions = sc.Options as DialogOptions;
             var intentAsAString = dialogOptions.LuisResult.TopIntent().intent.ToString();
-            if (sc.Result != null) fetchAvailableRoomsState.TempTimexProperty = sc.Result as TimexProperty;
+            var skipConfirm = (bool) sc.Result;
             var view = new FetchAvailableRoomsResponses();
-            if (dialogOptions.SkipConfirmation)
+            if (dialogOptions.SkipConfirmation | skipConfirm)
             {
                 var confirmed = true;
                 return await sc.NextAsync(confirmed);

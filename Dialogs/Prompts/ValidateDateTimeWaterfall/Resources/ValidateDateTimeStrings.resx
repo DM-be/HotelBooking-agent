@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="MATCHED_INTENT_NO_ENTITY_ARRIVAL" xml:space="preserve">
+    <value>Of course. When would you be arriving?</value>
+  </data>
+  <data name="MATCHED_INTENT_NO_ENTITY_DEPARTURE" xml:space="preserve">
+    <value>Sure! When would you be leaving?</value>
+  </data>
   <data name="TIME_INCORRECT_FORMAT" xml:space="preserve">
     <value>Sorry, could you give me a specific date? </value>
   </data>

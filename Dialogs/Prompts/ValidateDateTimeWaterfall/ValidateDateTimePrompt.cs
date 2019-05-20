@@ -1,9 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using HotelBot.Dialogs.FetchAvailableRooms;
 using HotelBot.Dialogs.Shared.PromptValidators;
 using HotelBot.Extensions;
+using HotelBot.Models.LUIS;
+using HotelBot.Models.Wrappers;
+using HotelBot.StateAccessors;
 using Microsoft.Bot.Builder.Dialogs;
 
 namespace HotelBot.Dialogs.Prompts.ValidateDateTimeWaterfall
@@ -15,6 +20,8 @@ namespace HotelBot.Dialogs.Prompts.ValidateDateTimeWaterfall
     {
 
         private readonly PromptValidators _promptValidators = new PromptValidators();
+        private readonly ValidateDateTimeResponses _responder = new ValidateDateTimeResponses();
+        private readonly StateBotAccessors _accessors;
 
         /// <summary>
         ///     Custom and reusable component dialog that validates a datetime, ends the dialog and returns a timexproperty
@@ -22,10 +29,11 @@ namespace HotelBot.Dialogs.Prompts.ValidateDateTimeWaterfall
         ///         Dialogid of the replacing dialog, will recieve a valid timexproperty in options parameter
         ///     </param>
         /// </summary>
-        public ValidateDateTimePrompt(): base(nameof(ValidateDateTimePrompt))
+        public ValidateDateTimePrompt(StateBotAccessors accessors) : base(nameof(ValidateDateTimePrompt))
         {
 
             InitialDialogId = nameof(ValidateDateTimePrompt);
+            _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
             AddDialog(new DateTimePrompt(nameof(DateTimePrompt), _promptValidators.DateValidatorAsync));
             var validateDateWaterFallSteps = new WaterfallStep []
             {
@@ -37,20 +45,30 @@ namespace HotelBot.Dialogs.Prompts.ValidateDateTimeWaterfall
 
         public async Task<DialogTurnResult> PromptValidateDate(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-            var view = new PromptValidatorResponses();
+            string responseId;
+            var dialogOptions = sc.Options as DialogOptions;
+            if (dialogOptions.LuisResult.TopIntent().intent.Equals(HotelBotLuis.Intent.Update_ArrivalDate))
+            {
+                responseId = ValidateDateTimeResponses.ResponseIds.MatchedIntentNoEntityArrival;
+            }
+            else {
+                responseId = ValidateDateTimeResponses.ResponseIds.MatchedIntentNoEntityDeparture;
+            }
             return await sc.PromptAsync(
                 nameof(DateTimePrompt),
                 new PromptOptions
                 {
-                    Prompt = await view.RenderTemplate(sc.Context, sc.Context.Activity.Locale, PromptValidatorResponses.ResponseIds.IncorrectDate)
+                    Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, responseId) 
                 });
         }
 
         public async Task<DialogTurnResult> EndWithValidatedDate(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             var timexProperty = (sc.Result as IList<DateTimeResolution>).First().ConvertToTimex();
+            var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
+            state.TempTimexProperty = timexProperty;
             // ends and calls resume() on parent dialog.
-            return await sc.EndDialogAsync(timexProperty, cancellationToken);
+            return await sc.EndDialogAsync(true, cancellationToken); // skip confirm because we already prompt for validation
 
         }
     }

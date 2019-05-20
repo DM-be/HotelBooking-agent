@@ -19,7 +19,7 @@ namespace HotelBot.Dialogs.Prompts.ValidateDateTimeWaterfall.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class ValidateDateTimeStrings {
@@ -58,6 +58,24 @@ namespace HotelBot.Dialogs.Prompts.ValidateDateTimeWaterfall.Resources {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Of course. When would you be arriving?.
+        /// </summary>
+        public static string MATCHED_INTENT_NO_ENTITY_ARRIVAL {
+            get {
+                return ResourceManager.GetString("MATCHED_INTENT_NO_ENTITY_ARRIVAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sure! When would you be leaving?.
+        /// </summary>
+        public static string MATCHED_INTENT_NO_ENTITY_DEPARTURE {
+            get {
+                return ResourceManager.GetString("MATCHED_INTENT_NO_ENTITY_DEPARTURE", resourceCulture);
             }
         }
         

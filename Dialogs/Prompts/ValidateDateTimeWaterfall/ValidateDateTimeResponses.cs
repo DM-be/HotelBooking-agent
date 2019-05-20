@@ -12,10 +12,17 @@ namespace HotelBot.Dialogs.Prompts.ValidateDateTimeWaterfall
             ["default"] = new TemplateIdMap
             {
                 {
-                    ResponseIds.IncorrectFormatPrompt, (context, data) =>
+                    ResponseIds.MatchedIntentNoEntityArrival, (context, data) =>
                         MessageFactory.Text(
-                            ValidateDateTimeStrings.TIME_INCORRECT_FORMAT,
-                            ValidateDateTimeStrings.TIME_INCORRECT_FORMAT,
+                            ValidateDateTimeStrings.MATCHED_INTENT_NO_ENTITY_ARRIVAL,
+                            ValidateDateTimeStrings.MATCHED_INTENT_NO_ENTITY_ARRIVAL,
+                            InputHints.AcceptingInput)
+                },
+                   {
+                    ResponseIds.MatchedIntentNoEntityDeparture, (context, data) =>
+                        MessageFactory.Text(
+                            ValidateDateTimeStrings.MATCHED_INTENT_NO_ENTITY_DEPARTURE,
+                            ValidateDateTimeStrings.MATCHED_INTENT_NO_ENTITY_DEPARTURE,
                             InputHints.AcceptingInput)
                 }
 
@@ -29,7 +36,8 @@ namespace HotelBot.Dialogs.Prompts.ValidateDateTimeWaterfall
 
         public class ResponseIds
         {
-            public const string IncorrectFormatPrompt = "incorrectFormatPrompt";
+            public const string MatchedIntentNoEntityArrival = "matchedIntentNoEntityArrival";
+            public const string MatchedIntentNoEntityDeparture = "matchedIntentNoEntityDeparture";
         }
     }
 }

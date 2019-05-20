@@ -1,4 +1,5 @@
 ﻿using Microsoft.Bot.Builder.Dialogs;
+using Microsoft.Recognizers.Text.DataTypes.TimexExpression;
 
 namespace HotelBot.Models.Wrappers
 {
@@ -8,6 +9,7 @@ namespace HotelBot.Models.Wrappers
 
         public string TargetDialog { get; set; }
 
+        public TimexProperty TempTimexProperty { get; set; }
 
     }
 }

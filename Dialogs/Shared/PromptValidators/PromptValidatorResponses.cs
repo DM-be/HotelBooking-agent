@@ -57,6 +57,7 @@ namespace HotelBot.Dialogs.Shared.PromptValidators
             public const string NotRecognizedDate = "notRecognizedDate";
             public const string NotInThePast = "notInThePast";
             public const string InvalidEmail = "invalidEmail";
+            public const string MatchedUpdateArrivalNoEntity = "matchedUpdateArrivalNoEntity";
         }
     }
 }
