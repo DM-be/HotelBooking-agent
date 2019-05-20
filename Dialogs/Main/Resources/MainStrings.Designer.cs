@@ -61,6 +61,15 @@ namespace HotelBot.Dialogs.Main.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Thank you for booking with us! You can view your booking overview at any time and of course I will remain available for questions 😃.
+        /// </summary>
+        public static string AFTER_CONFIRMATION {
+            get {
+                return ResourceManager.GetString("AFTER_CONFIRMATION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Call.
         /// </summary>
         public static string CALL_BUTTON_TEXT {

@@ -23,17 +23,6 @@ namespace HotelBot.Dialogs.ConfirmOrder
                         SendPaymentCard(context, data)
                 },
                 {
-                    ResponseIds.SendReceipt, (context, data) =>
-                        SendReceiptCard(context, data)
-                },
-                {
-                    ResponseIds.AfterConfirmation, (context, data) =>
-                        MessageFactory.Text(
-                            ConfirmOrderStrings.AFTER_CONFIRMATION,
-                            ConfirmOrderStrings.AFTER_CONFIRMATION,
-                            InputHints.IgnoringInput)
-                },
-                {
                     ResponseIds.TapPayToComplete, (context, data) =>
                         MessageFactory.Text(
                             ConfirmOrderStrings.TAP_PAY_TO_COMPLETE,
@@ -85,60 +74,7 @@ namespace HotelBot.Dialogs.ConfirmOrder
             return reply;
         }
 
-        public static IMessageActivity SendReceiptCard(ITurnContext context, dynamic data)
-        {
-            var confirmOrderState = data[0] as ConfirmOrderState;
-            var userProfileState = data[1] as UserProfile;
-            var facebookElements = new List<FacebookElement>();
-            var totalCost = 0;
-            foreach (var selectedRoom in confirmOrderState.RoomOverviewState.SelectedRooms)
-            {
-                facebookElements.Add(
-                    new FacebookElement
-                    {
-                        Title = selectedRoom.RoomDetailDto.Title,
-                        Subtitle = selectedRoom.RoomDetailDto.ShortDescription,
-                        Price = selectedRoom.SelectedRate.Price,
-                        Quantity = 1,
-                        ImageUrl = selectedRoom.RoomDetailDto.RoomImages[0].ImageUrl,
-                        Currency = "EUR"
-                    });
-                totalCost += selectedRoom.SelectedRate.Price;
-            }
-
-            var facebookMessage = new FacebookMessage
-
-            {
-                Attachment = new FacebookAttachment
-                {
-                    Type = "template",
-                    FacebookPayload = new FacebookPayload
-                    {
-                        Template_Type = "receipt",
-                        RecipientName = userProfileState.FacebookProfileData.Name,
-                        OrderNumber = "order-565678",
-                        Currency = "EUR",
-                        PaymentMethod = "Mastercard",
-                        OrderUrl = "http://google.com",
-                        Timestamp = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds().ToString(),
-                        FacebookSummary = new FacebookSummary
-                        {
-                            TotalCost = totalCost
-                        },
-                        FacebookElements = facebookElements
-                    }
-                }
-
-            };
-
-            var reply = context.Activity.CreateReply();
-            reply.ChannelData = facebookMessage;
-            return reply;
-
-
-        }
-
-
+       
         private static HeroCard BuildPaymentHeroCard(ConfirmOrderState confirmOrderState)
         {
             return new HeroCard
@@ -237,18 +173,11 @@ namespace HotelBot.Dialogs.ConfirmOrder
         public class ResponseIds
         {
             public const string SendPaymentCard = "sendPaymentCard";
-            public const string SendReceipt = "sendReceipt";
-            public const string AfterConfirmation = "afterConfirmation";
-
             public const string ThanksInformation = "thanksInformation";
             public const string TapPayToComplete = "tapPayToComplete";
-
-
             public const string SendEmailQuickReply = "sendEmailQuickReply";
             public const string SendPhoneNumberQuickReply = "SendPhoneNumberQuickReply";
             public const string SendFullNameQuickReply = "SendFullNameQuickReply";
-
-
         }
     }
 

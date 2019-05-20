@@ -1,10 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using HotelBot.Dialogs.ConfirmOrder;
 using HotelBot.Dialogs.Main.Resources;
 using HotelBot.Dialogs.Prompts.LocationPrompt.Resources;
 using HotelBot.Extensions;
 using HotelBot.Models.Facebook;
+using HotelBot.StateProperties;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.TemplateManager;
 using Microsoft.Bot.Schema;
@@ -103,6 +106,18 @@ namespace HotelBot.Dialogs.Main
                         BuildCallMessage(context)
 
                 },
+                   {
+                    ResponseIds.SendReceipt, (context, data) =>
+                        SendReceiptCard(context, data)
+
+                },
+                       {
+                    ResponseIds.AfterConfirmation, (context, data) =>
+                        MessageFactory.Text(
+                            MainStrings.AFTER_CONFIRMATION,
+                            MainStrings.AFTER_CONFIRMATION,
+                            InputHints.IgnoringInput)
+                },
 
 
             }
@@ -112,6 +127,61 @@ namespace HotelBot.Dialogs.Main
         {
             Register(new DictionaryRenderer(_responseTemplates));
         }
+
+
+        public static IMessageActivity SendReceiptCard(ITurnContext context, dynamic data)
+        {
+            var confirmOrderState = data[0] as ConfirmOrderState;
+            var userProfileState = data[1] as UserProfile;
+            var facebookElements = new List<FacebookElement>();
+            var totalCost = 0;
+            foreach (var selectedRoom in confirmOrderState.RoomOverviewState.SelectedRooms)
+            {
+                facebookElements.Add(
+                    new FacebookElement
+                    {
+                        Title = selectedRoom.RoomDetailDto.Title,
+                        Subtitle = selectedRoom.RoomDetailDto.ShortDescription,
+                        Price = selectedRoom.SelectedRate.Price,
+                        Quantity = 1,
+                        ImageUrl = selectedRoom.RoomDetailDto.RoomImages[0].ImageUrl,
+                        Currency = "EUR"
+                    });
+                totalCost += selectedRoom.SelectedRate.Price;
+            }
+
+            var facebookMessage = new FacebookMessage
+
+            {
+                Attachment = new FacebookAttachment
+                {
+                    Type = "template",
+                    FacebookPayload = new FacebookPayload
+                    {
+                        Template_Type = "receipt",
+                        RecipientName = userProfileState.FacebookProfileData.Name,
+                        OrderNumber = "order-565678",
+                        Currency = "EUR",
+                        PaymentMethod = "Mastercard",
+                        OrderUrl = "http://google.com",
+                        Timestamp = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds().ToString(),
+                        FacebookSummary = new FacebookSummary
+                        {
+                            TotalCost = totalCost
+                        },
+                        FacebookElements = facebookElements
+                    }
+                }
+
+            };
+
+            var reply = context.Activity.CreateReply();
+            reply.ChannelData = facebookMessage;
+            return reply;
+
+
+        }
+
 
         public static IMessageActivity BuildCallMessage(ITurnContext context)
         {
@@ -353,6 +423,8 @@ namespace HotelBot.Dialogs.Main
             public const string UnconfirmedPaymentQuickReplies = "unconfirmedPaymentQuickReplies";
             public const string EmptyRoomOverviewStateQuickReplies = "emptyRoomOverviewStateQuickReplies";
             public const string SendGettingStartedQuickReplies = "sendGettingStartedQuickReplies";
+            public const string SendReceipt = "SendReceipt";
+            public const string AfterConfirmation = "AfterConfirmation";
 
             public const string WhatCanYouDoTasks = "whatCanYouDoTasks";
             public const string WhatCanYouDoSmart = "whatCanYouDoSmart";

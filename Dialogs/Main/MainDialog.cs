@@ -22,7 +22,7 @@ namespace HotelBot.Dialogs.Main
     public class MainDialog: RouterDialog
     {
         private const string HotelBotLuisKey = "hotelbot";
-        private readonly StateBotAccessors _accessors;
+        private readonly  StateBotAccessors _accessors;
         private readonly MainResponses _responder = new MainResponses();
         private readonly BotServices _services;
         public IntentHandler _intentHandler = new IntentHandler();
@@ -114,6 +114,26 @@ namespace HotelBot.Dialogs.Main
             }
 
             await responder.ReplyWith(context, MainResponses.ResponseIds.EmptyRoomOverviewStateQuickReplies, data);
+        }
+
+        protected override async Task PaymentConfirmedAsync(DialogContext dc, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            await SendReceiptAfterPayment(dc.Context, _accessors, _responder);
+
+
+        }
+
+
+        public static async Task SendReceiptAfterPayment(ITurnContext context, StateBotAccessors accessors, MainResponses responder)
+        {
+            var confirmOrderState = await accessors.ConfirmOrderStateAccessor.GetAsync(context, () => new ConfirmOrderState());
+            var userProfile = await accessors.UserProfileAccessor.GetAsync(context, () => new UserProfile());
+            confirmOrderState.PaymentConfirmed = true;
+            var data = new dynamic[2];
+            data[0] = confirmOrderState;
+            data[1] = userProfile;
+            await responder.ReplyWith(context, MainResponses.ResponseIds.SendReceipt, data);
+            await responder.ReplyWith(context, MainResponses.ResponseIds.AfterConfirmation);
         }
     }
 }

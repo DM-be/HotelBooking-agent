@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.ConfirmOrder;
+using HotelBot.Dialogs.Main;
 using HotelBot.Dialogs.Prompts.LocationPrompt;
 using HotelBot.Dialogs.RoomDetail;
 using HotelBot.Dialogs.RoomOverview;
@@ -172,6 +173,12 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
         }
 
 
+        protected virtual Task PaymentConfirmedAsync(DialogContext innerDc, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            return Task.CompletedTask;
+        }
+
+
         private async Task OnDialogTurnStatus(DialogTurnResult result, DialogContext innerDc)
         {
 
@@ -213,8 +220,9 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
                 case RoomAction.Actions.Confirm:
                     return await context.BeginDialogAsync(nameof(ConfirmOrderDialog));
                 case RoomAction.Actions.Paid:
-                    options.ConfirmedPayment = true;
-                    return await context.BeginDialogAsync(nameof(ConfirmOrderDialog), options);
+                    await PaymentConfirmedAsync(context);
+                    await CompleteAsync(context, null);
+                    return EndOfTurn;
             }
 
             return null;
