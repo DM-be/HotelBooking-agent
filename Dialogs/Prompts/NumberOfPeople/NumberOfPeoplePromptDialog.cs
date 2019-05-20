@@ -32,7 +32,10 @@ namespace HotelBot.Dialogs.Prompts.NumberOfPeople
 
         private async Task<DialogTurnResult> PromptForNumberOfPeople(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-        
+            var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
+            if (state.NumberOfPeople != null) {
+                return await sc.EndDialogAsync();
+            }
 
             return await sc.PromptAsync(
                 DialogIds.NumberOfPeoplePrompt,
@@ -71,6 +74,20 @@ namespace HotelBot.Dialogs.Prompts.NumberOfPeople
         private class DialogIds
         {
             public const string NumberOfPeoplePrompt = "numberOfPeoplePrompt";
+        }
+
+
+        // default resume behavior reprompts the existing prompt 
+        // state can be updated so we need to loop the dialog with itself to reflect these changes
+        // (child dialogs such as updatestateprompt will call end
+        // --> resume on parent stack will be called
+        // --> replace dialog with itself to update state)
+
+        public override Task<DialogTurnResult> ResumeDialogAsync(DialogContext dc, DialogReason reason, object result = null,
+            CancellationToken cancellationToken = new CancellationToken())
+        {
+
+            return dc.ReplaceDialogAsync(InitialDialogId);
         }
     }
 }

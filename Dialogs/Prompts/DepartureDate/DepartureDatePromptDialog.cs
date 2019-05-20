@@ -33,6 +33,13 @@ namespace HotelBot.Dialogs.Prompts.DepartureDate
 
         private async Task<DialogTurnResult> PromptForDepartureDate(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
+            var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
+            if (state.LeavingDate != null)
+            {
+                return await sc.EndDialogAsync();
+            }
+
+
             return await sc.PromptAsync(
                 DialogIds.DepartureDatePrompt,
                 new PromptOptions
@@ -70,6 +77,20 @@ namespace HotelBot.Dialogs.Prompts.DepartureDate
         private class DialogIds
         {
             public const string DepartureDatePrompt = "departureDatePrompt";
+        }
+
+
+        // default resume behavior reprompts the existing prompt 
+        // state can be updated so we need to loop the dialog with itself to reflect these changes
+        // (child dialogs such as updatestateprompt will call end
+        // --> resume on parent stack will be called
+        // --> replace dialog with itself to update state)
+
+        public override Task<DialogTurnResult> ResumeDialogAsync(DialogContext dc, DialogReason reason, object result = null,
+            CancellationToken cancellationToken = new CancellationToken())
+        {
+
+            return dc.ReplaceDialogAsync(InitialDialogId);
         }
     }
 }
