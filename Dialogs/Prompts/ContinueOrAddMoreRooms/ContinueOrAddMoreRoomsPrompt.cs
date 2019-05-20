@@ -58,6 +58,7 @@ namespace HotelBot.Dialogs.Prompts.ContinueOrAddMoreRooms
                 templateId = RoomOverviewResponses.ResponseIds.ConfirmedPaymentOverview;
                 choices = new List<string> {
                        RoomOverviewDialog.RoomOverviewChoices.CancelRoom,
+                        RoomOverviewDialog.RoomOverviewChoices.Receipt
                 };
             }
 

@@ -1,7 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using HotelBot.Dialogs.ConfirmOrder;
 using HotelBot.Dialogs.FetchAvailableRooms.Resources;
+using HotelBot.Dialogs.Main;
 using HotelBot.Dialogs.RoomOverview.Resources;
 using HotelBot.Models.Wrappers;
+using HotelBot.StateProperties;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.TemplateManager;
 using Microsoft.Bot.Schema;
@@ -79,7 +83,12 @@ namespace HotelBot.Dialogs.RoomOverview
                 {
                     ResponseIds.PaymentConfirmedRooms, (context, data) =>
                        MessageFactory.Text(RoomOverviewStrings.PAYMENTCONFIRMED_ROOMS_TEXT)
-                }
+                },
+
+                {
+                    ResponseIds.SendReceipt, (context, data) =>
+                        SendReceipt(context, data)
+                },
 
 
 
@@ -110,6 +119,13 @@ namespace HotelBot.Dialogs.RoomOverview
             reply.AttachmentLayout = AttachmentLayoutTypes.Carousel;
             reply.Attachments = attachments;
             return reply;
+        }
+
+
+        public static async Task<IMessageActivity> SendReceipt(ITurnContext context, dynamic data)
+        {
+            var mainResponses = new MainResponses();
+            return await mainResponses.RenderTemplate(context, context.Activity.Locale, MainResponses.ResponseIds.SendReceipt, data);
         }
 
         public static IMessageActivity ConfirmedPaymentOverview(ITurnContext context, dynamic data)
@@ -279,6 +295,7 @@ namespace HotelBot.Dialogs.RoomOverview
             public const string ConfirmedPaymentOverview = "confirmedPaymentOverview";
             public const string RepromptUnconfirmed = "repromptUnconfirmed";
             public const string PaymentConfirmedRooms = "paymentConfirmedRooms";
+            public const string SendReceipt = "sendReceipt";
         }
     }
 

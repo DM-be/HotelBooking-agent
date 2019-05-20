@@ -6,12 +6,14 @@ using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.ConfirmOrder;
 using HotelBot.Dialogs.FetchAvailableRooms;
+using HotelBot.Dialogs.Main;
 using HotelBot.Dialogs.Prompts.ContinueOrAddMoreRooms;
 using HotelBot.Dialogs.Shared.CustomDialog;
 using HotelBot.Models.Wrappers;
 using HotelBot.Services;
 using HotelBot.Shared.Helpers;
 using HotelBot.StateAccessors;
+using HotelBot.StateProperties;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Dialogs.Choices;
 
@@ -68,15 +70,14 @@ namespace HotelBot.Dialogs.RoomOverview
         public async Task<DialogTurnResult> PromptContinueOrFindMoreRooms(WaterfallStepContext sc, CancellationToken cancellationToken)
 
         {
-            var roomOverviewState = await _accessors.RoomOverviewStateAccessor.GetAsync(sc.Context, () => new RoomOverviewState());
-            var confirmOrderState = await _accessors.ConfirmOrderStateAccessor.GetAsync(sc.Context, () => new ConfirmOrderState());
             return await sc.BeginDialogAsync(nameof(ContinueOrAddMoreRoomsPrompt));
-
         }
 
         public async Task<DialogTurnResult> ProcessResultContinueOrAddMoreRoomsPrompt(WaterfallStepContext sc, CancellationToken cancellationToken)
 
         {
+            
+
 
             if (sc.Result != null && sc.Result.GetType() == typeof(bool)) return await sc.EndDialogAsync();
             var dialogOptions = new DialogOptions();
@@ -98,6 +99,16 @@ namespace HotelBot.Dialogs.RoomOverview
 
                         };
                         return await sc.EndDialogAsync(dialogResult);
+                    case RoomOverviewChoices.Receipt:
+                        var confirmOrderState = await _accessors.ConfirmOrderStateAccessor.GetAsync(sc.Context, () => new ConfirmOrderState());
+                        var userProfile = await _accessors.UserProfileAccessor.GetAsync(sc.Context, () => new UserProfile());
+                        var data = new dynamic[2];
+                        data[0] = confirmOrderState;
+                        data[1] = userProfile;
+                        var mainResponses = new MainResponses();
+                        await mainResponses.ReplyWith(sc.Context, MainResponses.ResponseIds.SendReceipt, data);
+                        return await sc.ReplaceDialogAsync(InitialDialogId);
+                            
                 }
             }
 
@@ -158,6 +169,7 @@ namespace HotelBot.Dialogs.RoomOverview
             public const string Cancel = "Cancel";
             public const string Confirm = "Confirm";
             public const string CancelRoom = "Cancel room";
+            public const string Receipt = "Receipt";
 
             public static readonly ReadOnlyCollection<string> Choices =
                 new ReadOnlyCollection<string>(
