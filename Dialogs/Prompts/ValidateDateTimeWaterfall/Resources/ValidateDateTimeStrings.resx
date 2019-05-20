@@ -117,13 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="MATCHED_INTENT_NO_ENTITY_ARRIVAL" xml:space="preserve">
+  <data name="MATCHED_INTENT_NO_ENTITY_ARRIVAL_1" xml:space="preserve">
     <value>Of course. When would you be arriving?</value>
   </data>
-  <data name="MATCHED_INTENT_NO_ENTITY_DEPARTURE" xml:space="preserve">
+  <data name="MATCHED_INTENT_NO_ENTITY_ARRIVAL_2" xml:space="preserve">
+    <value>Sure. When would you want to checkin?</value>
+  </data>
+  <data name="MATCHED_INTENT_NO_ENTITY_ARRIVAL_3" xml:space="preserve">
+    <value>Ok, let's do that. When do you want to arrive?</value>
+  </data>
+  <data name="MATCHED_INTENT_NO_ENTITY_ARRIVAL_4" xml:space="preserve">
+    <value>Sure! When would you be arriving?</value>
+  </data>
+  <data name="MATCHED_INTENT_NO_ENTITY_ARRIVAL_5" xml:space="preserve">
+    <value>Ok, let's update that. When do you want to arrive?</value>
+  </data>
+  <data name="MATCHED_INTENT_NO_ENTITY_ARRIVAL_6" xml:space="preserve">
+    <value>Ok, let's change that. When would you checkin?</value>
+  </data>
+  <data name="MATCHED_INTENT_NO_ENTITY_DEPARTURE_1" xml:space="preserve">
     <value>Sure! When would you be leaving?</value>
   </data>
-  <data name="TIME_INCORRECT_FORMAT" xml:space="preserve">
-    <value>Sorry, could you give me a specific date? </value>
+  <data name="MATCHED_INTENT_NO_ENTITY_DEPARTURE_2" xml:space="preserve">
+    <value>Got it, when would you leave?</value>
+  </data>
+  <data name="MATCHED_INTENT_NO_ENTITY_DEPARTURE_3" xml:space="preserve">
+    <value>Sure. When would you want to leave?</value>
+  </data>
+  <data name="MATCHED_INTENT_NO_ENTITY_DEPARTURE_4" xml:space="preserve">
+    <value>Ok, let's change that. When would you checkout?</value>
+  </data>
+  <data name="MATCHED_INTENT_NO_ENTITY_DEPARTURE_5" xml:space="preserve">
+    <value>Ok, let's update that; When do you want to leave?</value>
   </data>
 </root>

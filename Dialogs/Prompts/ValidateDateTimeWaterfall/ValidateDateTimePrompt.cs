@@ -15,7 +15,6 @@ namespace HotelBot.Dialogs.Prompts.ValidateDateTimeWaterfall
 {
 
 
-    // TODO: add datetime validator here
     public class ValidateDateTimePrompt: ComponentDialog
     {
 
@@ -25,8 +24,8 @@ namespace HotelBot.Dialogs.Prompts.ValidateDateTimeWaterfall
 
         /// <summary>
         ///     Custom and reusable component dialog that validates a datetime, ends the dialog and returns a timexproperty
-        ///     <param name="replacingDialogId">
-        ///         Dialogid of the replacing dialog, will recieve a valid timexproperty in options parameter
+        ///     <param name="accessors">
+
         ///     </param>
         /// </summary>
         public ValidateDateTimePrompt(StateBotAccessors accessors) : base(nameof(ValidateDateTimePrompt))
@@ -67,7 +66,6 @@ namespace HotelBot.Dialogs.Prompts.ValidateDateTimeWaterfall
             var timexProperty = (sc.Result as IList<DateTimeResolution>).First().ConvertToTimex();
             var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
             state.TempTimexProperty = timexProperty;
-            // ends and calls resume() on parent dialog.
             return await sc.EndDialogAsync(true, cancellationToken); // skip confirm because we already prompt for validation
 
         }

@@ -64,27 +64,99 @@ namespace HotelBot.Dialogs.Prompts.ValidateDateTimeWaterfall.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Of course. When would you be arriving?.
         /// </summary>
-        public static string MATCHED_INTENT_NO_ENTITY_ARRIVAL {
+        public static string MATCHED_INTENT_NO_ENTITY_ARRIVAL_1 {
             get {
-                return ResourceManager.GetString("MATCHED_INTENT_NO_ENTITY_ARRIVAL", resourceCulture);
+                return ResourceManager.GetString("MATCHED_INTENT_NO_ENTITY_ARRIVAL_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sure. When would you want to checkin?.
+        /// </summary>
+        public static string MATCHED_INTENT_NO_ENTITY_ARRIVAL_2 {
+            get {
+                return ResourceManager.GetString("MATCHED_INTENT_NO_ENTITY_ARRIVAL_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok, let&apos;s do that. When do you want to arrive?.
+        /// </summary>
+        public static string MATCHED_INTENT_NO_ENTITY_ARRIVAL_3 {
+            get {
+                return ResourceManager.GetString("MATCHED_INTENT_NO_ENTITY_ARRIVAL_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sure! When would you be arriving?.
+        /// </summary>
+        public static string MATCHED_INTENT_NO_ENTITY_ARRIVAL_4 {
+            get {
+                return ResourceManager.GetString("MATCHED_INTENT_NO_ENTITY_ARRIVAL_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok, let&apos;s update that. When do you want to arrive?.
+        /// </summary>
+        public static string MATCHED_INTENT_NO_ENTITY_ARRIVAL_5 {
+            get {
+                return ResourceManager.GetString("MATCHED_INTENT_NO_ENTITY_ARRIVAL_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok, let&apos;s change that. When would you checkin?.
+        /// </summary>
+        public static string MATCHED_INTENT_NO_ENTITY_ARRIVAL_6 {
+            get {
+                return ResourceManager.GetString("MATCHED_INTENT_NO_ENTITY_ARRIVAL_6", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Sure! When would you be leaving?.
         /// </summary>
-        public static string MATCHED_INTENT_NO_ENTITY_DEPARTURE {
+        public static string MATCHED_INTENT_NO_ENTITY_DEPARTURE_1 {
             get {
-                return ResourceManager.GetString("MATCHED_INTENT_NO_ENTITY_DEPARTURE", resourceCulture);
+                return ResourceManager.GetString("MATCHED_INTENT_NO_ENTITY_DEPARTURE_1", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry, could you give me a specific date? .
+        ///   Looks up a localized string similar to Got it, when would you leave?.
         /// </summary>
-        public static string TIME_INCORRECT_FORMAT {
+        public static string MATCHED_INTENT_NO_ENTITY_DEPARTURE_2 {
             get {
-                return ResourceManager.GetString("TIME_INCORRECT_FORMAT", resourceCulture);
+                return ResourceManager.GetString("MATCHED_INTENT_NO_ENTITY_DEPARTURE_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sure. When would you want to leave?.
+        /// </summary>
+        public static string MATCHED_INTENT_NO_ENTITY_DEPARTURE_3 {
+            get {
+                return ResourceManager.GetString("MATCHED_INTENT_NO_ENTITY_DEPARTURE_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok, let&apos;s change that. When would you checkout?.
+        /// </summary>
+        public static string MATCHED_INTENT_NO_ENTITY_DEPARTURE_4 {
+            get {
+                return ResourceManager.GetString("MATCHED_INTENT_NO_ENTITY_DEPARTURE_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok, let&apos;s update that; When do you want to leave?.
+        /// </summary>
+        public static string MATCHED_INTENT_NO_ENTITY_DEPARTURE_5 {
+            get {
+                return ResourceManager.GetString("MATCHED_INTENT_NO_ENTITY_DEPARTURE_5", resourceCulture);
             }
         }
     }
