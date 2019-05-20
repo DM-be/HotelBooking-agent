@@ -1,7 +1,9 @@
 ﻿using HotelBot.Dialogs.Shared.PromptValidators.Resources;
+using HotelBot.Extensions;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.TemplateManager;
 using Microsoft.Bot.Schema;
+using System.Threading;
 
 namespace HotelBot.Dialogs.Shared.PromptValidators
 {
@@ -12,11 +14,8 @@ namespace HotelBot.Dialogs.Shared.PromptValidators
             ["default"] = new TemplateIdMap
             {
                 {
-                    ResponseIds.IncorrectDate, (context, data) =>
-                        MessageFactory.Text(
-                            ValidatorStrings.INCORRECT_DATE,
-                            ValidatorStrings.INCORRECT_DATE,
-                            InputHints.AcceptingInput)
+                    ResponseIds.MissingDayOfMonth, (context, data) =>
+                        GenerateRandomMissingDayOfMonthResponse()
 
                 },
                 {
@@ -27,11 +26,12 @@ namespace HotelBot.Dialogs.Shared.PromptValidators
                             InputHints.AcceptingInput)
                 },
                 {
-                    ResponseIds.NotInThePast, (context, data) =>
-                        MessageFactory.Text(
-                            ValidatorStrings.NOT_IN_THE_PAST_DATE,
-                            ValidatorStrings.NOT_IN_THE_PAST_DATE,
-                            InputHints.AcceptingInput)
+                    ResponseIds.NotInThePastDate, (context, data) =>
+                     GenerateRandomRandomNotInThePastDateResponse()
+                },
+                   {
+                    ResponseIds.DepartureBeforeArrival, (context, data) =>
+                     GenerateRandomRandomNotDepartureBeforeArrivalResponse()
                 },
                 {
                     ResponseIds.InvalidEmail, (context, data) =>
@@ -51,13 +51,49 @@ namespace HotelBot.Dialogs.Shared.PromptValidators
             Register(new DictionaryRenderer(_responseTemplates));
         }
 
+     
+
+        private static IMessageActivity GenerateRandomMissingDayOfMonthResponse()
+        {
+
+            var resourceManager = ValidatorStrings.ResourceManager;
+            var resourceSet = resourceManager.GetResourceSet(Thread.CurrentThread.CurrentCulture, true, true);
+            var message = resourceSet.GenerateRandomResponse(ResponseKeys.MISSING_DAY_OF_MONTH);
+            return MessageFactory.Text(message);
+        }
+
+        private static IMessageActivity GenerateRandomRandomNotInThePastDateResponse()
+        {
+
+            var resourceManager = ValidatorStrings.ResourceManager;
+            var resourceSet = resourceManager.GetResourceSet(Thread.CurrentThread.CurrentCulture, true, true);
+            var message = resourceSet.GenerateRandomResponse(ResponseKeys.NOT_IN_THE_PAST_DATE);
+            return MessageFactory.Text(message);
+        }
+
+        private static IMessageActivity GenerateRandomRandomNotDepartureBeforeArrivalResponse()
+        {
+
+            var resourceManager = ValidatorStrings.ResourceManager;
+            var resourceSet = resourceManager.GetResourceSet(Thread.CurrentThread.CurrentCulture, true, true);
+            var message = resourceSet.GenerateRandomResponse(ResponseKeys.DEPARTURE_BEFORE_ARRIVAL);
+            return MessageFactory.Text(message);
+        }
+
         public class ResponseIds
         {
-            public const string IncorrectDate = "incorrectDate";
             public const string NotRecognizedDate = "notRecognizedDate";
-            public const string NotInThePast = "notInThePast";
+            public const string NotInThePastDate = "notInThePastDate";
+            public const string DepartureBeforeArrival = "departureBeforeArrival";
+            public const string MissingDayOfMonth = "missingDayOfMonth";
             public const string InvalidEmail = "invalidEmail";
-            public const string MatchedUpdateArrivalNoEntity = "matchedUpdateArrivalNoEntity";
+        }
+        public class ResponseKeys
+        {
+
+            public const string NOT_IN_THE_PAST_DATE = "NOT_IN_THE_PAST_DATE";
+            public const string MISSING_DAY_OF_MONTH = "MISSING_DAY_OF_MONTH";
+            public const string DEPARTURE_BEFORE_ARRIVAL = "DEPARTURE_BEFORE_ARRIVAL";
         }
     }
 }

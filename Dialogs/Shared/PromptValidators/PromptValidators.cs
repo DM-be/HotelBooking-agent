@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Extensions;
+using HotelBot.StateAccessors;
 using Microsoft.Bot.Builder.Dialogs;
 
 namespace HotelBot.Dialogs.Shared.PromptValidators
@@ -12,6 +13,13 @@ namespace HotelBot.Dialogs.Shared.PromptValidators
     public class PromptValidators
     {
         private readonly PromptValidatorResponses _responder = new PromptValidatorResponses();
+        private readonly StateBotAccessors _accessors;
+
+        public PromptValidators(StateBotAccessors accessors)
+        {
+            _accessors = accessors;
+
+        }
 
         public async Task<bool> DateValidatorAsync(
             PromptValidatorContext<IList<DateTimeResolution>> promptContext,
@@ -30,25 +38,42 @@ namespace HotelBot.Dialogs.Shared.PromptValidators
             var tempTimex = promptContext.Recognized.Value.First().ConvertToTimex();
             if (tempTimex.DayOfMonth == null)
             {
-                await _responder.ReplyWith(promptContext.Context, PromptValidatorResponses.ResponseIds.IncorrectDate);
+                await _responder.ReplyWith(promptContext.Context, PromptValidatorResponses.ResponseIds.MissingDayOfMonth);
                 return false;
             }
 
-            //only accept dates not in the future.
-            var earliest = DateTime.Now.AddHours(1.0);
-            var value = promptContext.Recognized.Value.FirstOrDefault(
-                v =>
-                    DateTime.TryParse(v.Value ?? v.Start, out var time) && DateTime.Compare(earliest, time) <= 0);
-            if (value != null)
+            var fetchRoomState = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(promptContext.Context, () => new FetchAvailableRooms.FetchAvailableRoomsState());
+
+            if (fetchRoomState.ArrivalDate == null)
             {
-                promptContext.Recognized.Value.Clear();
-                promptContext.Recognized.Value.Add(value);
-
-                return true;
+                return true; // only previous validations apply
             }
-
-            await _responder.ReplyWith(promptContext.Context, PromptValidatorResponses.ResponseIds.NotInThePast);
+            else
+            {
+                // in departure prompt \
+                var arrivalDateAsDateTime = new DateTime(2019, fetchRoomState.ArrivalDate.Month.Value, fetchRoomState.ArrivalDate.DayOfMonth.Value);
+                var departureTimeRes = promptContext.Recognized.Value.FirstOrDefault();
+                DateTime.TryParse(departureTimeRes.Value ?? departureTimeRes.Start, out var departureDateTime);
+                if (departureDateTime != null)
+                {
+                    if ((DateTime.Compare(arrivalDateAsDateTime, departureDateTime) < 0))
+                    {
+                        promptContext.Recognized.Value.Clear();
+                        promptContext.Recognized.Value.Add(departureTimeRes);
+                        return true;
+                    }
+                    else
+                    {
+                        await _responder.ReplyWith(promptContext.Context, PromptValidatorResponses.ResponseIds.DepartureBeforeArrival);
+                        return false;
+                    }
+                }
+               
+            }
             return false;
+
+
+
         }
 
         public async Task<bool> EmailValidatorAsync(

@@ -61,11 +61,47 @@ namespace HotelBot.Dialogs.Shared.PromptValidators.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry, could you be less vague? .
+        ///   Looks up a localized string similar to Are you sure that&apos;s right? You can&apos;t leave before you arrive 🤔.
         /// </summary>
-        public static string INCORRECT_DATE {
+        public static string DEPARTURE_BEFORE_ARRIVAL_1 {
             get {
-                return ResourceManager.GetString("INCORRECT_DATE", resourceCulture);
+                return ResourceManager.GetString("DEPARTURE_BEFORE_ARRIVAL_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I think you made a mistake, you can&apos;t leave before you arrive 🤔.
+        /// </summary>
+        public static string DEPARTURE_BEFORE_ARRIVAL_2 {
+            get {
+                return ResourceManager.GetString("DEPARTURE_BEFORE_ARRIVAL_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry, I think you made a mistake, that date is before you arrive. .
+        /// </summary>
+        public static string DEPARTURE_BEFORE_ARRIVAL_3 {
+            get {
+                return ResourceManager.GetString("DEPARTURE_BEFORE_ARRIVAL_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to That checkout date is before your checkin time, I think you made a mistake. .
+        /// </summary>
+        public static string DEPARTURE_BEFORE_ARRIVAL_4 {
+            get {
+                return ResourceManager.GetString("DEPARTURE_BEFORE_ARRIVAL_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to That departure date is before you would arrive..
+        /// </summary>
+        public static string DEPARTURE_BEFORE_ARRIVAL_5 {
+            get {
+                return ResourceManager.GetString("DEPARTURE_BEFORE_ARRIVAL_5", resourceCulture);
             }
         }
         
@@ -79,11 +115,93 @@ namespace HotelBot.Dialogs.Shared.PromptValidators.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mhmm booking a room in the past is something I can&apos;t do 🤔.
+        ///   Looks up a localized string similar to Could you be more specific?.
         /// </summary>
-        public static string NOT_IN_THE_PAST_DATE {
+        public static string MISSING_DAY_OF_MONTH_1 {
             get {
-                return ResourceManager.GetString("NOT_IN_THE_PAST_DATE", resourceCulture);
+                return ResourceManager.GetString("MISSING_DAY_OF_MONTH_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry, I&apos;m missing what day you would arrive. Could you be more specific please?
+        ///.
+        /// </summary>
+        public static string MISSING_DAY_OF_MONTH_2 {
+            get {
+                return ResourceManager.GetString("MISSING_DAY_OF_MONTH_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry, that&apos;s vague for me, could you be more specific?.
+        /// </summary>
+        public static string MISSING_DAY_OF_MONTH_3 {
+            get {
+                return ResourceManager.GetString("MISSING_DAY_OF_MONTH_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to That&apos;s vague for me, could you be more specific?.
+        /// </summary>
+        public static string MISSING_DAY_OF_MONTH_4 {
+            get {
+                return ResourceManager.GetString("MISSING_DAY_OF_MONTH_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could you be more specific please?.
+        /// </summary>
+        public static string MISSING_DAY_OF_MONTH_5 {
+            get {
+                return ResourceManager.GetString("MISSING_DAY_OF_MONTH_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry, I can&apos;t find you a room in the past 🤔.
+        /// </summary>
+        public static string NOT_IN_THE_PAST_DATE_1 {
+            get {
+                return ResourceManager.GetString("NOT_IN_THE_PAST_DATE_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to That&apos;s in the past, you can only book rooms today or in the future. .
+        /// </summary>
+        public static string NOT_IN_THE_PAST_DATE_2 {
+            get {
+                return ResourceManager.GetString("NOT_IN_THE_PAST_DATE_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I can only find rooms starting today. .
+        /// </summary>
+        public static string NOT_IN_THE_PAST_DATE_3 {
+            get {
+                return ResourceManager.GetString("NOT_IN_THE_PAST_DATE_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry, I can only help you find a room starting today. .
+        /// </summary>
+        public static string NOT_IN_THE_PAST_DATE_4 {
+            get {
+                return ResourceManager.GetString("NOT_IN_THE_PAST_DATE_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I can check available rooms starting today or in the near future. Could you give me a date again?.
+        /// </summary>
+        public static string NOT_IN_THE_PAST_DATE_5 {
+            get {
+                return ResourceManager.GetString("NOT_IN_THE_PAST_DATE_5", resourceCulture);
             }
         }
         

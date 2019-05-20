@@ -16,7 +16,7 @@ namespace HotelBot.Dialogs.Prompts.ArrivalDate
     {
         private static readonly ArrivalDateResponses _responder = new ArrivalDateResponses();
         private readonly StateBotAccessors _accessors;
-        private readonly PromptValidators _promptValidators = new PromptValidators();
+        private readonly PromptValidators _promptValidators;
 
 
         public ArrivalDatePromptDialog(StateBotAccessors accessors): base(nameof(ArrivalDatePromptDialog))
@@ -27,6 +27,7 @@ namespace HotelBot.Dialogs.Prompts.ArrivalDate
             {
                 PromptForArrivalDate, FinishArrivalDatePromptDialog
             };
+            _promptValidators =  new PromptValidators(accessors);
 
             AddDialog(new WaterfallDialog(InitialDialogId, askForArrivalDateWaterfallSteps));
             AddDialog(new DateTimePrompt(DialogIds.ArrivalDatePrompt, _promptValidators.DateValidatorAsync));

@@ -18,7 +18,7 @@ namespace HotelBot.Dialogs.Prompts.ValidateDateTimeWaterfall
     public class ValidateDateTimePrompt: ComponentDialog
     {
 
-        private readonly PromptValidators _promptValidators = new PromptValidators();
+        private readonly PromptValidators _promptValidators;
         private readonly ValidateDateTimeResponses _responder = new ValidateDateTimeResponses();
         private readonly StateBotAccessors _accessors;
 
@@ -33,12 +33,13 @@ namespace HotelBot.Dialogs.Prompts.ValidateDateTimeWaterfall
 
             InitialDialogId = nameof(ValidateDateTimePrompt);
             _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
-            AddDialog(new DateTimePrompt(nameof(DateTimePrompt), _promptValidators.DateValidatorAsync));
+           
             var validateDateWaterFallSteps = new WaterfallStep []
             {
                 PromptValidateDate, EndWithValidatedDate
             };
-
+            _promptValidators = new PromptValidators(accessors);
+            AddDialog(new DateTimePrompt(nameof(DateTimePrompt), _promptValidators.DateValidatorAsync));
             AddDialog(new WaterfallDialog(InitialDialogId, validateDateWaterFallSteps));
         }
 

@@ -117,14 +117,54 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="INCORRECT_DATE" xml:space="preserve">
-    <value>Sorry, could you be less vague? </value>
+  <data name="DEPARTURE_BEFORE_ARRIVAL_1" xml:space="preserve">
+    <value>Are you sure that's right? You can't leave before you arrive 🤔</value>
+  </data>
+  <data name="DEPARTURE_BEFORE_ARRIVAL_2" xml:space="preserve">
+    <value>I think you made a mistake, you can't leave before you arrive 🤔</value>
+  </data>
+  <data name="DEPARTURE_BEFORE_ARRIVAL_3" xml:space="preserve">
+    <value>Sorry, I think you made a mistake, that date is before you arrive. </value>
+  </data>
+  <data name="DEPARTURE_BEFORE_ARRIVAL_4" xml:space="preserve">
+    <value>That checkout date is before your checkin time, I think you made a mistake. </value>
+  </data>
+  <data name="DEPARTURE_BEFORE_ARRIVAL_5" xml:space="preserve">
+    <value>That departure date is before you would arrive.</value>
   </data>
   <data name="INVALID_EMAIL" xml:space="preserve">
     <value>Sorry, thats not a valid email adress 😐</value>
   </data>
-  <data name="NOT_IN_THE_PAST_DATE" xml:space="preserve">
-    <value>Mhmm booking a room in the past is something I can't do 🤔</value>
+  <data name="MISSING_DAY_OF_MONTH_1" xml:space="preserve">
+    <value>Could you be more specific?</value>
+  </data>
+  <data name="MISSING_DAY_OF_MONTH_2" xml:space="preserve">
+    <value>Sorry, I'm missing what day you would arrive. Could you be more specific please?
+</value>
+  </data>
+  <data name="MISSING_DAY_OF_MONTH_3" xml:space="preserve">
+    <value>Sorry, that's vague for me, could you be more specific?</value>
+  </data>
+  <data name="MISSING_DAY_OF_MONTH_4" xml:space="preserve">
+    <value>That's vague for me, could you be more specific?</value>
+  </data>
+  <data name="MISSING_DAY_OF_MONTH_5" xml:space="preserve">
+    <value>Could you be more specific please?</value>
+  </data>
+  <data name="NOT_IN_THE_PAST_DATE_1" xml:space="preserve">
+    <value>Sorry, I can't find you a room in the past 🤔</value>
+  </data>
+  <data name="NOT_IN_THE_PAST_DATE_2" xml:space="preserve">
+    <value>That's in the past, you can only book rooms today or in the future. </value>
+  </data>
+  <data name="NOT_IN_THE_PAST_DATE_3" xml:space="preserve">
+    <value>I can only find rooms starting today. </value>
+  </data>
+  <data name="NOT_IN_THE_PAST_DATE_4" xml:space="preserve">
+    <value>Sorry, I can only help you find a room starting today. </value>
+  </data>
+  <data name="NOT_IN_THE_PAST_DATE_5" xml:space="preserve">
+    <value>I can check available rooms starting today or in the near future. Could you give me a date again?</value>
   </data>
   <data name="NOT_RECOGNIZED_DATE" xml:space="preserve">
     <value>Sorry, I'm expecting you to give me a date right now. </value>
