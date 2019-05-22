@@ -18,6 +18,8 @@ namespace HotelBot.Models.Wrappers
             public const string Paid = "paid"; // a fake paid callback 
             public const string ViewDetails = "viewDetails";
         }
+
+
     }
 
 

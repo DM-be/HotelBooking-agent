@@ -61,7 +61,6 @@ namespace HotelBot.Dialogs.Main
                         await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.Confused);
                         await SendQuickRepliesBasedOnState(dc.Context, _accessors, _responder);
                     }
-                      
 
                 }
                 else if (intent.IsQnAIntent())

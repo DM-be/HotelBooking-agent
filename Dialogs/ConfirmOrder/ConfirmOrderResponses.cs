@@ -1,9 +1,10 @@
-﻿
+﻿using System;
 using System.Collections.Generic;
 using HotelBot.Dialogs.ConfirmOrder.Resources;
 using HotelBot.Dialogs.RoomOverview;
 using HotelBot.Models.Facebook;
 using HotelBot.Models.Wrappers;
+
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.TemplateManager;
 using Microsoft.Bot.Schema;

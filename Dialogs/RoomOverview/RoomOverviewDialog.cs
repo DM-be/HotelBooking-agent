@@ -137,7 +137,7 @@ namespace HotelBot.Dialogs.RoomOverview
             await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.RoomAdded, state);
         }
 
-        private async Task RemoveRoomAsync(RoomOverviewState state, DialogOptions dialogOptions, WaterfallStepContext sc)
+        public async Task RemoveRoomAsync(RoomOverviewState state, DialogOptions dialogOptions, WaterfallStepContext sc)
         {
             var roomId = dialogOptions.RoomAction.RoomId;
             var selectedRate = dialogOptions.RoomAction.SelectedRate.Price;
