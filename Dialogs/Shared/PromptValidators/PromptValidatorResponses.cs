@@ -3,6 +3,7 @@ using HotelBot.Extensions;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.TemplateManager;
 using Microsoft.Bot.Schema;
+using System;
 using System.Threading;
 
 namespace HotelBot.Dialogs.Shared.PromptValidators
@@ -38,6 +39,18 @@ namespace HotelBot.Dialogs.Shared.PromptValidators
                         MessageFactory.Text(
                             ValidatorStrings.INVALID_EMAIL,
                             ValidatorStrings.INVALID_EMAIL,
+                            InputHints.AcceptingInput)
+                },
+                     {
+                    ResponseIds.MaximumNumberOfPeople, (context, data) =>
+                        MessageFactory.Text(String.Format(ValidatorStrings.MAXIMUM_NUMBER_OF_PEOPLE, data))
+                           
+                },
+                       {
+                    ResponseIds.DepartureAndArrivalOnTheSameDay, (context, data) =>
+                        MessageFactory.Text(
+                            ValidatorStrings.DEPARTURE_SAME_ARRIVAL,
+                            ValidatorStrings.DEPARTURE_SAME_ARRIVAL,
                             InputHints.AcceptingInput)
                 }
 
@@ -87,6 +100,8 @@ namespace HotelBot.Dialogs.Shared.PromptValidators
             public const string DepartureBeforeArrival = "departureBeforeArrival";
             public const string MissingDayOfMonth = "missingDayOfMonth";
             public const string InvalidEmail = "invalidEmail";
+            public const string DepartureAndArrivalOnTheSameDay = "departureAndArrivalOnTheSameDay";
+            public const string MaximumNumberOfPeople = "maximumNumberOfPeople";
         }
         public class ResponseKeys
         {

@@ -132,8 +132,14 @@
   <data name="DEPARTURE_BEFORE_ARRIVAL_5" xml:space="preserve">
     <value>That departure date is before you would arrive.</value>
   </data>
+  <data name="DEPARTURE_SAME_ARRIVAL" xml:space="preserve">
+    <value>Sorry, you want to leave and arrive on the same day? </value>
+  </data>
   <data name="INVALID_EMAIL" xml:space="preserve">
     <value>Sorry, thats not a valid email adress 😐</value>
+  </data>
+  <data name="MAXIMUM_NUMBER_OF_PEOPLE" xml:space="preserve">
+    <value>Sorry, we only have rooms up to {0} people.</value>
   </data>
   <data name="MISSING_DAY_OF_MONTH_1" xml:space="preserve">
     <value>Could you be more specific?</value>

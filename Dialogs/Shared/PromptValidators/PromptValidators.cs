@@ -62,6 +62,11 @@ namespace HotelBot.Dialogs.Shared.PromptValidators
                         promptContext.Recognized.Value.Add(departureTimeRes);
                         return true;
                     }
+                    else if ((DateTime.Compare(arrivalDateAsDateTime, departureDateTime) == 0))
+                    {
+                        await _responder.ReplyWith(promptContext.Context, PromptValidatorResponses.ResponseIds.DepartureAndArrivalOnTheSameDay);
+                        return false;
+                    }
                     else
                     {
                         await _responder.ReplyWith(promptContext.Context, PromptValidatorResponses.ResponseIds.DepartureBeforeArrival);
@@ -87,6 +92,18 @@ namespace HotelBot.Dialogs.Shared.PromptValidators
                 return false;
             }
 
+            return true;
+        }
+
+        public async Task<bool> NumberOfPeopleValidatorAsync(
+            PromptValidatorContext<int> promptContext,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            if (promptContext.Recognized.Value > 5)
+            {
+                await _responder.ReplyWith(promptContext.Context, PromptValidatorResponses.ResponseIds.MaximumNumberOfPeople, 5);
+                return false;
+            }
             return true;
         }
 

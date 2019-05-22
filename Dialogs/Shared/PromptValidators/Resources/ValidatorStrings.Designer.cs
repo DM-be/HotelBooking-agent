@@ -106,11 +106,29 @@ namespace HotelBot.Dialogs.Shared.PromptValidators.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sorry, you want to leave and arrive on the same day? .
+        /// </summary>
+        public static string DEPARTURE_SAME_ARRIVAL {
+            get {
+                return ResourceManager.GetString("DEPARTURE_SAME_ARRIVAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sorry, thats not a valid email adress 😐.
         /// </summary>
         public static string INVALID_EMAIL {
             get {
                 return ResourceManager.GetString("INVALID_EMAIL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry, we only have rooms up to {0} people..
+        /// </summary>
+        public static string MAXIMUM_NUMBER_OF_PEOPLE {
+            get {
+                return ResourceManager.GetString("MAXIMUM_NUMBER_OF_PEOPLE", resourceCulture);
             }
         }
         

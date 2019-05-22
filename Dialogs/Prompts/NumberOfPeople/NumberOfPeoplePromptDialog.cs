@@ -26,7 +26,7 @@ namespace HotelBot.Dialogs.Prompts.NumberOfPeople
             };
             _promptValidators = new PromptValidators(accessors);
             AddDialog(new WaterfallDialog(InitialDialogId, askForNumberOfPeopleWaterfallSteps));
-            AddDialog(new NumberPrompt<int>(DialogIds.NumberOfPeoplePrompt));
+            AddDialog(new NumberPrompt<int>(DialogIds.NumberOfPeoplePrompt, _promptValidators.NumberOfPeopleValidatorAsync));
 
         }
 
@@ -42,7 +42,7 @@ namespace HotelBot.Dialogs.Prompts.NumberOfPeople
                 new PromptOptions
                 {
                     Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, NumberOfPeopleResponses.ResponseIds.NumberOfPeoplePrompt),
-                    RetryPrompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, NumberOfPeopleResponses.ResponseIds.RetryNumberOfPeoplePrompt),
+           
                 });
 
         }

@@ -20,10 +20,6 @@ namespace HotelBot.Dialogs.Prompts.NumberOfPeople
                             InputHints.AcceptingInput)
                 },
                 {
-                    ResponseIds.RetryNumberOfPeoplePrompt, (context, data) =>
-                        GenerateRandomRetryResponse()
-                },
-                {
                     ResponseIds.HaveNumberOfPeople, (context, data) =>
                         MessageFactory.Text(
                             text: string.Format(NumberOfPeopleStrings.HAVE_NUMBER_OF_PEOPLE, data),
@@ -49,37 +45,12 @@ namespace HotelBot.Dialogs.Prompts.NumberOfPeople
             Register(new DictionaryRenderer(_responseTemplates));
         }
 
-        private static IMessageActivity GenerateRandomRetryResponse()
-        {
-            var rnd = new Random();
-            string message = "";
-            int randomNumber = rnd.Next(1, 3);
-            switch (randomNumber)
-            {
-                case 1:
-                    message = NumberOfPeopleStrings.RETRY_NUMBER_OF_PEOPLE_PROMPT_1;
-                    break;
-                case 2:
-                    message = NumberOfPeopleStrings.RETRY_NUMBER_OF_PEOPLE_PROMPT_2;
-                    break;
-                case 3:
-                    message = NumberOfPeopleStrings.RETRY_NUMBER_OF_PEOPLE_PROMPT_3;
-                    break;
-            }
-
-            return MessageFactory.Text(
-                message,
-                message,
-                InputHints.AcceptingInput);
-        }
 
         public class ResponseIds
         {
             public const string NumberOfPeoplePrompt = "numberOfPeoplePrompt";
             public const string HaveNumberOfPeople = "haveNumberOfPeople";
             public const string HaveUpdatedNumberOfPeople = "haveUpdatedNumberOfPeople";
-
-            public const string RetryNumberOfPeoplePrompt = "retryNumberOfPeoplePrompt";
         }
     }
 }
