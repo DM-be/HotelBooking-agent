@@ -12,7 +12,9 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
         public TimexProperty ArrivalDate { get; set; }
         public TimexProperty LeavingDate { get; set; }
 
-        public TimexProperty TempTimexProperty { get; set; } // used in delegates --> stores this in arrival/leaving
+        public TimexProperty TempTimexProperty { get; set; } 
+        // a placeholder for the LUIS recognized timexproperty or result from a datetimeprompt
+        // arrival/leaving will only be updated after confirmation
 
         public bool IsComplete()
         {
@@ -23,8 +25,8 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
 
             if (ArrivalDate != null && TempTimexProperty != null)
             {
-                var arrivalDateAsDateTime = new DateTime(2019, ArrivalDate.Month.Value, ArrivalDate.DayOfMonth.Value);
-                var tempTimexPropertyAsDateTime = new DateTime(2019, TempTimexProperty.Month.Value, TempTimexProperty.DayOfMonth.Value);
+                var arrivalDateAsDateTime = new DateTime(DateTime.Now.Year, ArrivalDate.Month.Value, ArrivalDate.DayOfMonth.Value);
+                var tempTimexPropertyAsDateTime = new DateTime(DateTime.Now.Year, TempTimexProperty.Month.Value, TempTimexProperty.DayOfMonth.Value);
                 return DateTime.Compare(tempTimexPropertyAsDateTime, arrivalDateAsDateTime) < 0;
             }
             return false;
