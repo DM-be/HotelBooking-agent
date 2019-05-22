@@ -59,7 +59,8 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates
         {
             if (state.TempTimexProperty != null)
             {
-                if (!state.DepartureBeforeArrival())
+                // temp timex here! 
+                if (!state.TempTimexPropertyBeforeArrival())
                 {
                     state.LeavingDate = state.TempTimexProperty;
                     state.TempTimexProperty = null;

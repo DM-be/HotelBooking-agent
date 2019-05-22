@@ -21,13 +21,11 @@ namespace HotelBot.Dialogs.Main
 {
     public class MainDialog: RouterDialog
     {
+        private IntentHandler _intentHandler = new IntentHandler();
         private const string HotelBotLuisKey = "hotelbot";
-        private readonly  StateBotAccessors _accessors;
+        private readonly StateBotAccessors _accessors;
         private readonly MainResponses _responder = new MainResponses();
         private readonly BotServices _services;
-        public IntentHandler _intentHandler = new IntentHandler();
-
-
         public MainDialog(BotServices services, StateBotAccessors accessors)
             : base(nameof(MainDialog))
         {
@@ -50,12 +48,18 @@ namespace HotelBot.Dialogs.Main
                 {
 
                     _services.LuisServices.TryGetValue(HotelBotLuisKey, out var luisService);
-                    if (luisService == null) throw new ArgumentNullException(nameof(luisService));
+                    if (luisService == null)
+                    {
+                        throw new ArgumentNullException(nameof(luisService));
+                    }
+
                     var result = await luisService.RecognizeAsync<HotelBotLuis>(dc.Context, cancellationToken);
                     var hotelBotIntent = result.TopIntent().intent;
 
-                    if (_intentHandler.MainIntentHandlerDelegates.TryGetValue(hotelBotIntent, out var DelegateAction))
-                        DelegateAction(dc, _responder, _accessors, result);
+                    if (_intentHandler.MainIntentHandlerDelegates.TryGetValue(hotelBotIntent, out var delegateAction))
+                    {
+                        delegateAction(dc, _responder, _accessors, result);
+                    }
                     else
                     {
                         await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.Confused);
@@ -67,7 +71,11 @@ namespace HotelBot.Dialogs.Main
                 {
                     var qnaServiceName = intent.ConvertToQnAServiceName();
                     _services.QnaServices.TryGetValue(qnaServiceName, out var qnaService);
-                    if (qnaService == null) throw new ArgumentNullException(nameof(qnaService));
+                    if (qnaService == null)
+                    {
+                        throw new ArgumentNullException(nameof(qnaService));
+                    }
+
                     var answers = await qnaService.GetAnswersAsync(dc.Context);
                     if (answers != null && answers.Any())
                     {

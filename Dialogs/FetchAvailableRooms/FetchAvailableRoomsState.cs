@@ -16,16 +16,16 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
 
         public bool IsComplete()
         {
-            return this.ArrivalDate != null && this.LeavingDate != null && this.NumberOfPeople != null;
+            return ArrivalDate != null && LeavingDate != null && NumberOfPeople != null;
         }
 
-        public bool DepartureBeforeArrival() {
+        public bool TempTimexPropertyBeforeArrival() {
 
-            if (ArrivalDate != null && LeavingDate != null)
+            if (ArrivalDate != null && TempTimexProperty != null)
             {
                 var arrivalDateAsDateTime = new DateTime(2019, ArrivalDate.Month.Value, ArrivalDate.DayOfMonth.Value);
-                var departureDateAsDateTime = new DateTime(2019, LeavingDate.Month.Value, LeavingDate.DayOfMonth.Value);
-                return DateTime.Compare(departureDateAsDateTime, arrivalDateAsDateTime) > 0;
+                var tempTimexPropertyAsDateTime = new DateTime(2019, TempTimexProperty.Month.Value, TempTimexProperty.DayOfMonth.Value);
+                return DateTime.Compare(tempTimexPropertyAsDateTime, arrivalDateAsDateTime) < 0;
             }
             return false;
 

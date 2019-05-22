@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using HotelBot.Dialogs.ConfirmOrder;
@@ -326,7 +325,7 @@ namespace HotelBot.Dialogs.Main
             }
             var facebookMessage = new FacebookMessage
             {
-                Text = GenerateRandomCompleteMessage().Text,
+                Text = text,
                 QuickReplies = new[]
                 {
                     new FacebookQuickReply
@@ -340,12 +339,6 @@ namespace HotelBot.Dialogs.Main
                         Content_Type =  FacebookQuickReply.ContentTypes.Text,
                         Title =  MainStrings.QUICK_REPLY_BUTTON_BOOKING_OVERVIEW,
                         Payload = FacebookQuickReply.PayLoads.BookingOverview
-                    },
-                    new FacebookQuickReply
-                    {
-                        Content_Type =  FacebookQuickReply.ContentTypes.Text,
-                        Title =  MainStrings.QUICK_REPLY_BUTTON_CONFIRM_BOOKING,
-                        Payload = FacebookQuickReply.PayLoads.ConfirmBooking
                     },
                     new FacebookQuickReply
                     {
@@ -382,7 +375,7 @@ namespace HotelBot.Dialogs.Main
             }
             var facebookMessage = new FacebookMessage
             {
-                Text = GenerateRandomCompleteMessage().Text,
+                Text = text,
                 QuickReplies = new[]
                 {
                     new FacebookQuickReply
