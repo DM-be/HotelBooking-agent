@@ -49,13 +49,13 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
                 {
                     case HotelBotLuis.Intent.Cancel:
                     {
-                        return await OnCancel(dc);
+                        return await OnCancelAsync(dc);
                     }
 
                     case HotelBotLuis.Intent.Help:
                     {
                         // todo: provide contextual help
-                        return await OnHelp(dc);
+                        return await OnHelpAsync(dc);
                     }
 
                 }
@@ -66,7 +66,7 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
 
 
 
-        protected virtual async Task<InterruptionStatus> OnCancel(DialogContext dc)
+        protected virtual async Task<InterruptionStatus> OnCancelAsync(DialogContext dc)
         {
             if (dc.ActiveDialog.Id != nameof(CancelDialog))
             {
@@ -82,7 +82,7 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
         }
 
 
-        protected virtual async Task<InterruptionStatus> OnHelp(DialogContext dc)
+        protected virtual async Task<InterruptionStatus> OnHelpAsync(DialogContext dc)
         {
             // todo: update to room overview help
             var view = new RoomOverviewResponses();

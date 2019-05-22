@@ -1,6 +1,5 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using HotelBot.Models.Wrappers;
 using Microsoft.Bot.Builder.Dialogs;
 
 namespace HotelBot.Dialogs.Shared

@@ -24,21 +24,20 @@ namespace HotelBot.Dialogs.Prompts.DepartureDate
             _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
             var askForDepartureDateWaterfallSteps = new WaterfallStep []
             {
-                PromptForDepartureDate, FinishDepartureDatePromptDialog
+                PromptForDepartureDateAsync, FinishDepartureDatePromptDialogAsync
             };
             _promptValidators = new PromptValidators(accessors);
             AddDialog(new WaterfallDialog(InitialDialogId, askForDepartureDateWaterfallSteps));
             AddDialog(new DateTimePrompt(DialogIds.DepartureDatePrompt, _promptValidators.DateValidatorAsync));
         }
 
-        private async Task<DialogTurnResult> PromptForDepartureDate(WaterfallStepContext sc, CancellationToken cancellationToken)
+        private async Task<DialogTurnResult> PromptForDepartureDateAsync(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
             if (state.LeavingDate != null)
             {
                 return await sc.EndDialogAsync();
             }
-
 
             return await sc.PromptAsync(
                 DialogIds.DepartureDatePrompt,
@@ -48,7 +47,7 @@ namespace HotelBot.Dialogs.Prompts.DepartureDate
                 });
         }
 
-        private async Task<DialogTurnResult> FinishDepartureDatePromptDialog(WaterfallStepContext sc, CancellationToken cancellationToken)
+        private async Task<DialogTurnResult> FinishDepartureDatePromptDialogAsync(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
 
             bool updated = false;

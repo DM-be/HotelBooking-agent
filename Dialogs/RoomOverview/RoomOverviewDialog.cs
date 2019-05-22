@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
@@ -36,7 +35,7 @@ namespace HotelBot.Dialogs.RoomOverview
             InitialDialogId = nameof(RoomOverviewDialog);
             var roomOverviewWaterfallSteps = new WaterfallStep []
             {
-                FetchSelectedRoomDetailAndAddToState, PromptContinueOrFindMoreRooms, ProcessResultContinueOrAddMoreRoomsPrompt,
+                FetchSelectedRoomDetailAndAddToStateAsync, PromptContinueOrFindMoreRoomsAsync, ProcessResultContinueOrAddMoreRoomsPromptAsync,
             };
             AddDialog(new WaterfallDialog(InitialDialogId, roomOverviewWaterfallSteps));
             AddDialog(new ContinueOrAddMoreRoomsPrompt(accessors));
@@ -47,7 +46,7 @@ namespace HotelBot.Dialogs.RoomOverview
 
 
         // check roomaction and add room to state if it is not null
-        public async Task<DialogTurnResult> FetchSelectedRoomDetailAndAddToState(WaterfallStepContext sc, CancellationToken cancellationToken)
+        public async Task<DialogTurnResult> FetchSelectedRoomDetailAndAddToStateAsync(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
 
             var dialogOptions = sc.Options as DialogOptions;
@@ -57,23 +56,23 @@ namespace HotelBot.Dialogs.RoomOverview
             if (dialogOptions != null && dialogOptions.RoomAction != null)
             {
                 if (dialogOptions.RoomAction.Action != null && dialogOptions.RoomAction.Action == RoomAction.Actions.SelectRoomWithRate)
-                    await AddRoom(state, dialogOptions, sc);
+                    await AddRoomAsync(state, dialogOptions, sc);
 
                 if (dialogOptions.RoomAction.Action != null && dialogOptions.RoomAction.Action == RoomAction.Actions.Remove)
-                    await RemoveRoom(state, dialogOptions, sc);
+                    await RemoveRoomAsync(state, dialogOptions, sc);
             }
 
             return await sc.NextAsync();
 
         }
 
-        public async Task<DialogTurnResult> PromptContinueOrFindMoreRooms(WaterfallStepContext sc, CancellationToken cancellationToken)
+        public async Task<DialogTurnResult> PromptContinueOrFindMoreRoomsAsync(WaterfallStepContext sc, CancellationToken cancellationToken)
 
         {
             return await sc.BeginDialogAsync(nameof(ContinueOrAddMoreRoomsPrompt));
         }
 
-        public async Task<DialogTurnResult> ProcessResultContinueOrAddMoreRoomsPrompt(WaterfallStepContext sc, CancellationToken cancellationToken)
+        public async Task<DialogTurnResult> ProcessResultContinueOrAddMoreRoomsPromptAsync(WaterfallStepContext sc, CancellationToken cancellationToken)
 
         {
             
@@ -88,8 +87,13 @@ namespace HotelBot.Dialogs.RoomOverview
                 switch (choice.Value)
 
                 {
-                    case "Cancel booking":
-                        return await sc.EndDialogAsync();
+                    case RoomOverviewChoices.CancelBooking:
+                        await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.NotSupported);
+                        var emptyConfirmOrderState = new ConfirmOrderState();
+                        var emptyRoomOverViewState = new RoomOverviewState();
+                        await _accessors.RoomOverviewStateAccessor.SetAsync(sc.Context, emptyRoomOverViewState);
+                        await _accessors.ConfirmOrderStateAccessor.SetAsync(sc.Context, emptyConfirmOrderState);
+                        return await sc.ReplaceDialogAsync(InitialDialogId);
                     case RoomOverviewChoices.AddARoom:
                     case RoomOverviewChoices.FindRoom:
                         var dialogResult = new DialogResult
@@ -107,7 +111,7 @@ namespace HotelBot.Dialogs.RoomOverview
                         data[1] = userProfile;
                         var mainResponses = new MainResponses();
                         await mainResponses.ReplyWith(sc.Context, MainResponses.ResponseIds.SendReceipt, data);
-                        return await sc.ReplaceDialogAsync(InitialDialogId);
+                        return await sc.EndDialogAsync();
                             
                 }
             }
@@ -118,7 +122,7 @@ namespace HotelBot.Dialogs.RoomOverview
 
 
 
-        private async Task AddRoom(RoomOverviewState state, DialogOptions dialogOptions, WaterfallStepContext sc)
+        private async Task AddRoomAsync(RoomOverviewState state, DialogOptions dialogOptions, WaterfallStepContext sc)
         {
             var requestHandler = new RequestHandler();
             //todo: add alternate flow if room is unavailable (could be an action button tapped from hours/days before)
@@ -133,7 +137,7 @@ namespace HotelBot.Dialogs.RoomOverview
             await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.RoomAdded, state);
         }
 
-        private async Task RemoveRoom(RoomOverviewState state, DialogOptions dialogOptions, WaterfallStepContext sc)
+        private async Task RemoveRoomAsync(RoomOverviewState state, DialogOptions dialogOptions, WaterfallStepContext sc)
         {
             var roomId = dialogOptions.RoomAction.RoomId;
             var selectedRate = dialogOptions.RoomAction.SelectedRate.Price;
@@ -152,8 +156,6 @@ namespace HotelBot.Dialogs.RoomOverview
                 await _responder.ReplyWith(sc.Context, RoomOverviewResponses.ResponseIds.RoomRemoved);
             }
 
-
-            
         }
 
 
@@ -168,14 +170,14 @@ namespace HotelBot.Dialogs.RoomOverview
             public const string NoThankyou = "No thank you";
             public const string Cancel = "Cancel";
             public const string Confirm = "Confirm";
-            public const string CancelRoom = "Cancel room";
+            public const string CancelBooking = "Cancel booking";
             public const string Receipt = "Receipt";
 
             public static readonly ReadOnlyCollection<string> Choices =
                 new ReadOnlyCollection<string>(
                     new []
                     {
-                        AddARoom, FindRoom, NoThankyou, Cancel, Confirm, CancelRoom
+                        AddARoom, FindRoom, NoThankyou, Cancel, Confirm
                     });
         }
     }

@@ -123,6 +123,9 @@
   <data name="CONTINUE_OR_ADD_MORE_ROOMS" xml:space="preserve">
     <value>Tap confirm to confirm your booking with us or add another room. </value>
   </data>
+  <data name="NOT_SUPPORTED_YET" xml:space="preserve">
+    <value>I canceled your booking for you. Check your e-mail for more information. </value>
+  </data>
   <data name="NO_SELECTED_ROOMS" xml:space="preserve">
     <value>You have not selected any rooms yet, start with adding a new room to your order. </value>
   </data>

@@ -315,7 +315,15 @@ namespace HotelBot.Dialogs.Main
 
         public static IMessageActivity SendUnconfirmedPaymentQuickReplies(ITurnContext context, dynamic data)
         {
-
+            string text;
+            if (data != null && data.GetType() == typeof(string))
+            {
+                text = data;
+            }
+            else
+            {
+                text = GenerateRandomCompleteMessage().Text;
+            }
             var facebookMessage = new FacebookMessage
             {
                 Text = GenerateRandomCompleteMessage().Text,
@@ -363,6 +371,15 @@ namespace HotelBot.Dialogs.Main
             // call hotel
             // booking overview
             // cancel bookings
+            string text;
+            if (data != null && data.GetType() == typeof(string))
+            {
+                text = data;
+            }
+            else
+            {
+                text = GenerateRandomCompleteMessage().Text;
+            }
             var facebookMessage = new FacebookMessage
             {
                 Text = GenerateRandomCompleteMessage().Text,
@@ -386,12 +403,6 @@ namespace HotelBot.Dialogs.Main
                         Title =  MainStrings.QUICK_REPLY_BUTTON_BOOKING_OVERVIEW,
                         Payload = FacebookQuickReply.PayLoads.BookingOverview
                     },
-                    new FacebookQuickReply
-                    {
-                        Title = "Cancel booking", //todo: implement second dialog cancelling bookings
-                        Content_Type =  FacebookQuickReply.ContentTypes.Text,
-                        Payload = string.Empty
-                    }
                 }
             };
             var reply = context.Activity.CreateReply();

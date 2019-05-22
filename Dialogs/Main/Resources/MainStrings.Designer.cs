@@ -349,7 +349,7 @@ namespace HotelBot.Dialogs.Main.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I can understand things like &quot;find me a room on april 15&quot; or &quot;show me my booked rooms&quot;. Go ahead try it out 😉.
+        ///   Looks up a localized string similar to I can understand things like &quot;find me a room on april 15&quot; or &quot;show me my booked rooms&quot; 😉.
         /// </summary>
         public static string WHAT_CAN_YOU_DO_NLU {
             get {
@@ -367,7 +367,7 @@ namespace HotelBot.Dialogs.Main.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to My purpose is to assist you in booking a room with us. I can also answer any general questions you might have about our hotel. .
+        ///   Looks up a localized string similar to My purpose is to assist you in booking a room with us. I can also answer questions you might have about our hotel. .
         /// </summary>
         public static string WHAT_CAN_YOU_DO_TASKS {
             get {

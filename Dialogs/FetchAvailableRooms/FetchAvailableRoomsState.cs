@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.Recognizers.Text.DataTypes.TimexExpression;
+using System;
 
 namespace HotelBot.Dialogs.FetchAvailableRooms
 {
@@ -15,10 +16,19 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
 
         public bool IsComplete()
         {
-            // manual check instead of reflection
             return this.ArrivalDate != null && this.LeavingDate != null && this.NumberOfPeople != null;
         }
 
+        public bool DepartureBeforeArrival() {
 
+            if (ArrivalDate != null && LeavingDate != null)
+            {
+                var arrivalDateAsDateTime = new DateTime(2019, ArrivalDate.Month.Value, ArrivalDate.DayOfMonth.Value);
+                var departureDateAsDateTime = new DateTime(2019, LeavingDate.Month.Value, LeavingDate.DayOfMonth.Value);
+                return DateTime.Compare(departureDateAsDateTime, arrivalDateAsDateTime) > 0;
+            }
+            return false;
+
+        }
     }
 }

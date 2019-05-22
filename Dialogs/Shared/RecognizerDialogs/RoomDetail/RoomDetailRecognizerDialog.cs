@@ -32,7 +32,6 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.RoomDetail
         {
 
             var text = dc.Context.Activity.Text;
-            if (text == "changenow") return await OnReroute(dc, HotelBotLuis.Intent.Book_A_Room);
 
             if (FetchAvailableRoomsDialog.FetchAvailableRoomsChoices.Choices.Contains(text)) return InterruptionStatus.NoAction;
 
@@ -56,18 +55,18 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.RoomDetail
                     case HotelBotLuis.Intent.Help:
                     {
                         // todo: provide contextual help
-                        return await OnHelp(dc);
+                        return await OnHelpAsync(dc);
                     }
                     case HotelBotLuis.Intent.Book_A_Room:
                     {
-                        return await OnReroute(dc, intent);
+                        return await OnRerouteAsync(dc, intent);
                     }
                     case HotelBotLuis.Intent.Update_ArrivalDate:
                     case HotelBotLuis.Intent.Update_Leaving_Date:
                     case HotelBotLuis.Intent.Update_Number_Of_People:
                     {
                         var isDateUpdateIntent = intent.IsUpdateDateIntent();
-                        return await OnUpdate(dc, isDateUpdateIntent);
+                        return await OnUpdateAsync(dc, isDateUpdateIntent);
                     }
                 }
 
@@ -92,7 +91,7 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.RoomDetail
 
 
         //todo: expand with other intents, show previous room etc
-        protected virtual async Task<InterruptionStatus> OnReroute(DialogContext dc, HotelBotLuis.Intent intent)
+        protected virtual async Task<InterruptionStatus> OnRerouteAsync(DialogContext dc, HotelBotLuis.Intent intent)
         {
             // do not reroute to active dialog
             // add targetdialog to turnstate
@@ -119,7 +118,7 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.RoomDetail
 
 
 
-        protected virtual async Task<InterruptionStatus> OnHelp(DialogContext dc)
+        protected virtual async Task<InterruptionStatus> OnHelpAsync(DialogContext dc)
         {
             var view = new FetchAvailableRoomsResponses();
             await view.ReplyWith(dc.Context, FetchAvailableRoomsResponses.ResponseIds.UnderstandNLU);
@@ -128,7 +127,7 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.RoomDetail
             return InterruptionStatus.Interrupted;
         }
 
-        protected virtual async Task<InterruptionStatus> OnUpdate(DialogContext dc, bool isUpdateDate)
+        protected virtual async Task<InterruptionStatus> OnUpdateAsync(DialogContext dc, bool isUpdateDate)
         {
             // do not restart this running dialog
             if (dc.ActiveDialog.Id != nameof(UpdateStatePrompt))

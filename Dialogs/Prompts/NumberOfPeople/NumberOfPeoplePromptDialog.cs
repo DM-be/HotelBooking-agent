@@ -22,7 +22,7 @@ namespace HotelBot.Dialogs.Prompts.NumberOfPeople
             _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
             var askForNumberOfPeopleWaterfallSteps = new WaterfallStep []
             {
-                PromptForNumberOfPeople, FinishNumberOfPeoplePromptDialog
+                PromptForNumberOfPeopleAsync, FinishNumberOfPeoplePromptDialogAsync
             };
             _promptValidators = new PromptValidators(accessors);
             AddDialog(new WaterfallDialog(InitialDialogId, askForNumberOfPeopleWaterfallSteps));
@@ -30,7 +30,7 @@ namespace HotelBot.Dialogs.Prompts.NumberOfPeople
 
         }
 
-        private async Task<DialogTurnResult> PromptForNumberOfPeople(WaterfallStepContext sc, CancellationToken cancellationToken)
+        private async Task<DialogTurnResult> PromptForNumberOfPeopleAsync(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
             if (state.NumberOfPeople != null) {
@@ -47,7 +47,7 @@ namespace HotelBot.Dialogs.Prompts.NumberOfPeople
 
         }
 
-        private async Task<DialogTurnResult> FinishNumberOfPeoplePromptDialog(WaterfallStepContext sc, CancellationToken cancellationToken)
+        private async Task<DialogTurnResult> FinishNumberOfPeoplePromptDialogAsync(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
 
             var numberOfPeople = (int) sc.Result;

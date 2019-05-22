@@ -214,12 +214,12 @@
     <value>Happy to help 😁 Anything else?</value>
   </data>
   <data name="WHAT_CAN_YOU_DO_NLU" xml:space="preserve">
-    <value>I can understand things like "find me a room on april 15" or "show me my booked rooms". Go ahead try it out 😉</value>
+    <value>I can understand things like "find me a room on april 15" or "show me my booked rooms" 😉</value>
   </data>
   <data name="WHAT_CAN_YOU_DO_SMART" xml:space="preserve">
     <value>I try to keep things short by providing you with buttons but I'm pretty smart 🤓</value>
   </data>
   <data name="WHAT_CAN_YOU_DO_TASKS" xml:space="preserve">
-    <value>My purpose is to assist you in booking a room with us. I can also answer any general questions you might have about our hotel. </value>
+    <value>My purpose is to assist you in booking a room with us. I can also answer questions you might have about our hotel. </value>
   </data>
 </root>

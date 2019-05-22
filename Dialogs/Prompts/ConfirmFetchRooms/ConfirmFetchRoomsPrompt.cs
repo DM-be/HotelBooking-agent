@@ -19,7 +19,7 @@ namespace HotelBot.Dialogs.Prompts.ConfirmFetchRooms
             _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
             var confirmFetchRoomsWaterfallSteps = new WaterfallStep []
             {
-                AskForConfirmation, FinishConfirmation
+                AskForConfirmationAsync, FinishConfirmationAsync
             };
 
             AddDialog(new WaterfallDialog(InitialDialogId, confirmFetchRoomsWaterfallSteps));
@@ -28,7 +28,7 @@ namespace HotelBot.Dialogs.Prompts.ConfirmFetchRooms
         }
 
 
-        private async Task<DialogTurnResult> AskForConfirmation(WaterfallStepContext sc, CancellationToken cancellationToken)
+        private async Task<DialogTurnResult> AskForConfirmationAsync(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
             Activity template = null;
@@ -51,7 +51,7 @@ namespace HotelBot.Dialogs.Prompts.ConfirmFetchRooms
                 });
         }
 
-        private async Task<DialogTurnResult> FinishConfirmation(WaterfallStepContext sc, CancellationToken cancellationToken)
+        private async Task<DialogTurnResult> FinishConfirmationAsync(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             return await sc.EndDialogAsync((bool) sc.Result);
         }

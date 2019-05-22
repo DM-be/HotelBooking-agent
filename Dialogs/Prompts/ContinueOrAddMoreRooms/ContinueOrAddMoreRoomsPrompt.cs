@@ -21,7 +21,7 @@ namespace HotelBot.Dialogs.Prompts.ContinueOrAddMoreRooms
             _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
             var ContinueOrAddMoreRoomsWaterfallSteps = new WaterfallStep []
             {
-                PromptContinueOrAddMoreRooms, EndWithResult
+                PromptContinueOrAddMoreRoomsAsync, EndWithResultAsync
             };
 
             AddDialog(new WaterfallDialog(InitialDialogId, ContinueOrAddMoreRoomsWaterfallSteps));
@@ -31,7 +31,7 @@ namespace HotelBot.Dialogs.Prompts.ContinueOrAddMoreRooms
         }
 
         //todo: refactor
-        private async Task<DialogTurnResult> PromptContinueOrAddMoreRooms(WaterfallStepContext sc, CancellationToken cancellationToken)
+        private async Task<DialogTurnResult> PromptContinueOrAddMoreRoomsAsync(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             var roomOverviewState = await _accessors.RoomOverviewStateAccessor.GetAsync(sc.Context, () => new RoomOverviewState());
 
@@ -57,7 +57,7 @@ namespace HotelBot.Dialogs.Prompts.ContinueOrAddMoreRooms
             {
                 templateId = RoomOverviewResponses.ResponseIds.ConfirmedPaymentOverview;
                 choices = new List<string> {
-                       RoomOverviewDialog.RoomOverviewChoices.CancelRoom,
+                       RoomOverviewDialog.RoomOverviewChoices.CancelBooking,
                         RoomOverviewDialog.RoomOverviewChoices.Receipt
                 };
             }
@@ -82,7 +82,7 @@ namespace HotelBot.Dialogs.Prompts.ContinueOrAddMoreRooms
         }
 
 
-        private async Task<DialogTurnResult> EndWithResult(WaterfallStepContext sc, CancellationToken cancellationToken)
+        private async Task<DialogTurnResult> EndWithResultAsync(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             
 

@@ -50,19 +50,19 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms
                 {
                     case HotelBotLuis.Intent.Cancel:
                     {
-                        return await OnCancel(dc);
+                        return await OnCancelAsync(dc);
                     }
                     case HotelBotLuis.Intent.Help:
                     {
-                        return await OnHelp(dc);
+                        return await OnHelpAsync(dc);
                     }
                     case HotelBotLuis.Intent.Room_Overview:
                     {
-                        return await OnRoute(dc);
+                        return await OnRouteAsync(dc);
                     }
                     case HotelBotLuis.Intent.What_Can_You_Do:
                     {
-                            return await OnWhatCanYouDo(dc);
+                            return await OnWhatCanYouDoAsync(dc);
                     }
                     case HotelBotLuis.Intent.Update_ArrivalDate:
                     case HotelBotLuis.Intent.Update_Leaving_Date:
@@ -74,7 +74,7 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms
                             LuisResult = luisResult,
                             SkipConfirmation = dc.IsUpdateStateChoicePrompt()
                         };
-                        return await OnUpdate(dc, dialogOptions);
+                        return await OnUpdateAsync(dc, dialogOptions);
                     }
                 }
 
@@ -82,12 +82,13 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms
             return InterruptionStatus.NoAction;
         }
 
-        protected virtual async Task<InterruptionStatus> OnCancel(DialogContext dc)
+        protected virtual async Task<InterruptionStatus> OnCancelAsync(DialogContext dc)
         {
             if (dc.ActiveDialog.Id != nameof(CancelDialog))
             {
                 // Don't start restart cancel dialog
                 await dc.BeginDialogAsync(nameof(CancelDialog));
+                
 
                 // Signal that the dialog is waiting on user response
                 return InterruptionStatus.Waiting;
@@ -98,7 +99,7 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms
         }
 
 
-        protected virtual async Task<InterruptionStatus> OnHelp(DialogContext dc)
+        protected virtual async Task<InterruptionStatus> OnHelpAsync(DialogContext dc)
         {
             var view = new FetchAvailableRoomsResponses();
             await view.ReplyWith(dc.Context, FetchAvailableRoomsResponses.ResponseIds.Help);
@@ -108,7 +109,7 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms
         }
 
         // send NLU component in short and reprompt
-        protected virtual async Task<InterruptionStatus> OnWhatCanYouDo(DialogContext dc)
+        protected virtual async Task<InterruptionStatus> OnWhatCanYouDoAsync(DialogContext dc)
         {
             var view = new FetchAvailableRoomsResponses();
             await view.ReplyWith(dc.Context, FetchAvailableRoomsResponses.ResponseIds.Help);
@@ -117,7 +118,7 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms
             return InterruptionStatus.Interrupted;
         }
 
-        protected virtual async Task<InterruptionStatus> OnUpdate(DialogContext dc, DialogOptions options)
+        protected virtual async Task<InterruptionStatus> OnUpdateAsync(DialogContext dc, DialogOptions options)
         {
             if (dc.ActiveDialog.Id != nameof(UpdateStatePrompt))
             {
@@ -129,7 +130,7 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms
             return InterruptionStatus.NoAction;
         }
 
-        protected virtual async Task<InterruptionStatus> OnRoute(DialogContext dc)
+        protected virtual async Task<InterruptionStatus> OnRouteAsync(DialogContext dc)
         {
             var roomOverviewState = await _accessors.RoomOverviewStateAccessor.GetAsync(dc.Context, () => new RoomOverviewState());
             if (roomOverviewState.SelectedRooms.Count == 0)

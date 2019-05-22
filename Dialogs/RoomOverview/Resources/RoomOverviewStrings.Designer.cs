@@ -88,6 +88,15 @@ namespace HotelBot.Dialogs.RoomOverview.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to I canceled your booking for you. Check your e-mail for more information. .
+        /// </summary>
+        public static string NOT_SUPPORTED_YET {
+            get {
+                return ResourceManager.GetString("NOT_SUPPORTED_YET", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Thank you for booking with us. Here are your booked rooms..
         /// </summary>
         public static string PAYMENTCONFIRMED_ROOMS_TEXT {

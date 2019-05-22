@@ -1,7 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.ConfirmOrder;
-using HotelBot.Dialogs.Main;
 using HotelBot.Dialogs.Prompts.LocationPrompt;
 using HotelBot.Dialogs.RoomDetail;
 using HotelBot.Dialogs.RoomOverview;
@@ -54,7 +53,7 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
                             RoomAction = roomAction,
                         };
                         await innerDc.CancelAllDialogsAsync(); // clear existing stack (button with action tapped)
-                        result = await BeginDialogBasedOnAction(innerDc, roomAction, dialogOptions);
+                        result = await BeginDialogBasedOnActionAsync(innerDc, roomAction, dialogOptions);
                     }
 
                     // case responding to choices and switching a dialog in the same turn
@@ -69,7 +68,7 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
                             {
                                 if (dialogResult.PreviousOptions == null) dialogResult.PreviousOptions = new DialogOptions();
 
-                             //await innerDc.CancelAllDialogsAsync();
+                             //await innerDc.CancelAllDialogsAsync(); --> ???????
 
                              var turnResult = await innerDc.BeginDialogAsync(dialogResult.TargetDialog, dialogResult.PreviousOptions);
                                 result.Status = turnResult.Status;
@@ -181,7 +180,7 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
 
         private async Task OnDialogTurnStatus(DialogTurnResult result, DialogContext innerDc)
         {
-
+            
             switch (result.Status)
             {
                 case DialogTurnStatus.Empty:
@@ -191,6 +190,7 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
                 }
                 case DialogTurnStatus.Complete:
                 {
+
                     // in main dialog send completed message
                     await CompleteAsync(innerDc, result);
 
@@ -206,7 +206,7 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
             }
         }
 
-        private async Task<DialogTurnResult> BeginDialogBasedOnAction(DialogContext context, RoomAction action, DialogOptions options)
+        private async Task<DialogTurnResult> BeginDialogBasedOnActionAsync(DialogContext context, RoomAction action, DialogOptions options)
         {
             switch (action.Action)
             {

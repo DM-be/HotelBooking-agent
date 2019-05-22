@@ -126,11 +126,8 @@
   <data name="HOLD_ON_CHECKING" xml:space="preserve">
     <value>Hold on, I'm checking... </value>
   </data>
-  <data name="INCORRECT_DATE" xml:space="preserve">
-    <value>Sorry you cannot book a room in the past. </value>
-  </data>
   <data name="INTRODUCTION_MISTAKES" xml:space="preserve">
-    <value>I can look up rooms but I need more info. If you make a mistake during our talk, just act natural and ask me to change it. I'll understand 🧐</value>
+    <value>I can look up rooms for you but I need more info. If you make a mistake during our talk, just act natural and ask me to change it. I'll understand 🧐</value>
     <comment>I can look up rooms but I need more info. If you supply me with wrong info, just act natural and ask me to update it for you. I'll understand 🧐</comment>
   </data>
   <data name="INTRODUCTION_MORE_INFO" xml:space="preserve">

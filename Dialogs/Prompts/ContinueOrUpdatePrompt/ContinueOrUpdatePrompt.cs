@@ -21,7 +21,7 @@ namespace HotelBot.Dialogs.Prompts.ContinueOrUpdatePrompt
             _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
             var continueOrUpdateWaterfallSteps = new WaterfallStep []
             {
-                PromptContinueOrUpdate, EndWithResult
+                PromptContinueOrUpdateAsync, EndWithResultAsync
             };
 
             AddDialog(new WaterfallDialog(InitialDialogId, continueOrUpdateWaterfallSteps));
@@ -31,7 +31,7 @@ namespace HotelBot.Dialogs.Prompts.ContinueOrUpdatePrompt
         }
 
 
-        private async Task<DialogTurnResult> PromptContinueOrUpdate(WaterfallStepContext sc, CancellationToken cancellationToken)
+        private async Task<DialogTurnResult> PromptContinueOrUpdateAsync(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
 
             var state = await _accessors.RoomOverviewStateAccessor.GetAsync(sc.Context, () => new RoomOverviewState());
@@ -61,7 +61,7 @@ namespace HotelBot.Dialogs.Prompts.ContinueOrUpdatePrompt
         }
 
 
-        private async Task<DialogTurnResult> EndWithResult(WaterfallStepContext sc, CancellationToken cancellationToken)
+        private async Task<DialogTurnResult> EndWithResultAsync(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             return await sc.EndDialogAsync(
                 sc.Result);

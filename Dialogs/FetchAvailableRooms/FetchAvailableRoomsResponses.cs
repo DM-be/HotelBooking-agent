@@ -31,13 +31,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
 
            
 
-                {
-                    ResponseIds.IncorrectDate, (context, data) =>
-                        MessageFactory.Text(
-                            FetchAvailableRoomsStrings.INCORRECT_DATE,
-                            FetchAvailableRoomsStrings.INCORRECT_DATE,
-                            InputHints.IgnoringInput)
-                },
+
                 {
                     ResponseIds.SendStart, (context, data) =>
                         MessageFactory.Text(
@@ -292,7 +286,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
         public static string BuildHeroCardText(int startingPrice, bool wheelChair, bool smoking, string description, int capacity)
         {
 
-            var message = $"Starting from €{startingPrice}\n";
+            var message = $"Starting from {startingPrice}€ \n";
             message += description;
             message += " \n";
             message += GetSmokingString(smoking);

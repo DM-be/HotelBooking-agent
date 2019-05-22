@@ -66,8 +66,6 @@ C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\obj\Debug\netcoreapp2.
 C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.Shared.Intents.Help.Resources.HelpStrings.resources
 C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.Shared.QuickReplies.Resources.QuickReplyStrings.resources
 C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.Shared.Welcome.Resources.WelcomeStrings.resources
-C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.Dialogs.FetchAvailableRooms.Resources.FetchAvailableRoomsStrings.nl.resources
-C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.Dialogs.Main.Resources.MainStrings.nl.resources
 C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.Shared.Intents.Help.Resources.HelpStrings.nl.resources
 C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.Shared.QuickReplies.Resources.QuickReplyStrings.nl.resources
 C:\Users\dennis.morent\source\hoteltestV2-new\hoteltestv2\obj\Debug\netcoreapp2.0\HotelBot.Shared.Welcome.Resources.WelcomeStrings.nl.resources

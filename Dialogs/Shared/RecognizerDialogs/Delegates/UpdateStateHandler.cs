@@ -7,6 +7,7 @@ using HotelBot.Dialogs.Prompts.DepartureDate;
 using HotelBot.Dialogs.Prompts.Email;
 using HotelBot.Dialogs.Prompts.NumberOfPeople;
 using HotelBot.Dialogs.Prompts.UpdateState;
+using HotelBot.Dialogs.Shared.PromptValidators;
 using HotelBot.Extensions;
 using HotelBot.Models.LUIS;
 using HotelBot.Models.Wrappers;
@@ -19,35 +20,21 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates
         public readonly UpdateStateHandlerDelegates UpdateStateHandlerDelegates = new UpdateStateHandlerDelegates
         {
             {
-                HotelBotLuis.Intent.Update_ArrivalDate, (state, luisResult, sc) => UpdateArrivalDate(state, sc)
+                HotelBotLuis.Intent.Update_ArrivalDate, (state, luisResult, sc) => UpdateArrivalDateAsync(state, sc)
             },
             {
-                HotelBotLuis.Intent.Update_Leaving_Date, (state, luisResult, sc) => UpdateLeavingDate(state, sc)
+                HotelBotLuis.Intent.Update_Leaving_Date, (state, luisResult, sc) => UpdateLeavingDateAsync(state, sc)
             },
             {
-                HotelBotLuis.Intent.Update_Number_Of_People, UpdateNumberOfPeople
+                HotelBotLuis.Intent.Update_Number_Of_People, UpdateNumberOfPeopleAsync
             },
             
         };
 
 
-        //todo: remove after reuse
-        private static async Task<DialogTurnResult> UpdateEmail(FetchAvailableRoomsState state, HotelBotLuis luisResult, WaterfallStepContext sc)
-        {
-            if (luisResult.HasEntityWithPropertyName(UpdateStatePrompt.EntityNames.Email))
-            {
-                state.Email = luisResult.Entities.email.First();
-                var responder = new EmailResponses();
-                await responder.ReplyWith(sc.Context, EmailResponses.ResponseIds.HaveUpdatedEmail, state.Email);
-                var updated = true;
-                return await sc.EndDialogAsync(updated);
+   
 
-            }
-
-            return await sc.BeginDialogAsync(nameof(EmailPromptDialog), true);
-        }
-
-        private static async Task<DialogTurnResult> UpdateArrivalDate(FetchAvailableRoomsState state, WaterfallStepContext sc)
+        private static async Task<DialogTurnResult> UpdateArrivalDateAsync(FetchAvailableRoomsState state, WaterfallStepContext sc)
         {
             if (state.TempTimexProperty != null)
             {
@@ -68,20 +55,27 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates
             return await sc.BeginDialogAsync(nameof(ArrivalDatePromptDialog), dialogOptions);
         }
 
-        private static async Task<DialogTurnResult> UpdateLeavingDate(FetchAvailableRoomsState state, WaterfallStepContext sc)
+        private static async Task<DialogTurnResult> UpdateLeavingDateAsync(FetchAvailableRoomsState state, WaterfallStepContext sc)
         {
             if (state.TempTimexProperty != null)
             {
-
-                state.LeavingDate = state.TempTimexProperty;
+                if (!state.DepartureBeforeArrival())
+                {
+                    state.LeavingDate = state.TempTimexProperty;
+                    state.TempTimexProperty = null;
+                    var responder = new DepartureDateResponses();
+                    await responder.ReplyWith(
+                        sc.Context,
+                        DepartureDateResponses.ResponseIds.HaveUpdatedDepartureDate,
+                        state.LeavingDate.ToNaturalLanguage(DateTime.Now));
+                    var updated = true;
+                    return await sc.EndDialogAsync(updated);
+                }
                 state.TempTimexProperty = null;
-                var responder = new DepartureDateResponses();
-                await responder.ReplyWith(
-                    sc.Context,
-                    DepartureDateResponses.ResponseIds.HaveUpdatedDepartureDate,
-                    state.LeavingDate.ToNaturalLanguage(DateTime.Now));
-                var updated = true;
-                return await sc.EndDialogAsync(updated);
+                var promptValidatorResponses = new PromptValidatorResponses();
+                await promptValidatorResponses.ReplyWith(sc.Context, PromptValidatorResponses.ResponseIds.DepartureBeforeArrival);
+                return await sc.EndDialogAsync(false);
+     
             }
 
             var dialogOptions = (DialogOptions) sc.Options;
@@ -90,7 +84,7 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates
             return await sc.BeginDialogAsync(nameof(DepartureDatePromptDialog), dialogOptions);
         }
 
-        private static async Task<DialogTurnResult> UpdateNumberOfPeople(FetchAvailableRoomsState state, HotelBotLuis luisResult, WaterfallStepContext sc)
+        private static async Task<DialogTurnResult> UpdateNumberOfPeopleAsync(FetchAvailableRoomsState state, HotelBotLuis luisResult, WaterfallStepContext sc)
         {
             if (luisResult.HasEntityWithPropertyName(UpdateStatePrompt.EntityNames.Number))
             {

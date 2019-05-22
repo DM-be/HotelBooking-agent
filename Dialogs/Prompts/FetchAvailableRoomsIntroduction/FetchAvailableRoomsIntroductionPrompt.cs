@@ -20,14 +20,14 @@ namespace HotelBot.Dialogs.Prompts.FetchAvailableRoomsIntroduction
             InitialDialogId = nameof(FetchAvailableRoomsIntroductionPrompt);
             var fetchAvailableRoomsWaterfallSteps = new WaterfallStep []
             {
-                SendIntroAndPromptUnderstood, ProcessChoice
+                SendIntroAndPromptUnderstoodAsync, ProcessChoiceAsync
             };
             AddDialog(new WaterfallDialog(InitialDialogId, fetchAvailableRoomsWaterfallSteps));
             AddDialog(new ChoicePrompt(nameof(ChoicePrompt)));
 
         }
 
-        public async Task<DialogTurnResult> SendIntroAndPromptUnderstood(WaterfallStepContext sc, CancellationToken cancellationToken)
+        public async Task<DialogTurnResult> SendIntroAndPromptUnderstoodAsync(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
 
             
@@ -53,7 +53,7 @@ namespace HotelBot.Dialogs.Prompts.FetchAvailableRoomsIntroduction
 
         }
 
-        public async Task<DialogTurnResult> ProcessChoice(WaterfallStepContext sc, CancellationToken cancellationToken)
+        public async Task<DialogTurnResult> ProcessChoiceAsync(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             var foundChoice = sc.Result as FoundChoice;
 

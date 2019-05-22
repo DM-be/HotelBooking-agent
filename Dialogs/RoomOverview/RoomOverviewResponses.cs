@@ -69,6 +69,13 @@ namespace HotelBot.Dialogs.RoomOverview
                             RoomOverviewStrings.REPROMPT_UNCONFIRMED,
                             InputHints.IgnoringInput)
                 },
+                  {
+                    ResponseIds.NotSupported, (context, data) =>
+                        MessageFactory.Text(
+                            RoomOverviewStrings.NOT_SUPPORTED_YET,
+                            RoomOverviewStrings.NOT_SUPPORTED_YET,
+                            InputHints.IgnoringInput)
+                },
 
                 {
                     ResponseIds.CompleteOverview, (context, data) =>
@@ -296,6 +303,7 @@ namespace HotelBot.Dialogs.RoomOverview
             public const string RepromptUnconfirmed = "repromptUnconfirmed";
             public const string PaymentConfirmedRooms = "paymentConfirmedRooms";
             public const string SendReceipt = "sendReceipt";
+            public const string NotSupported = "notSupported";
         }
     }
 

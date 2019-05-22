@@ -88,16 +88,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry you cannot book a room in the past. .
-        /// </summary>
-        public static string INCORRECT_DATE {
-            get {
-                return ResourceManager.GetString("INCORRECT_DATE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to I can look up rooms but I need more info. If you make a mistake during our talk, just act natural and ask me to change it. I&apos;ll understand 🧐.
+        ///   Looks up a localized string similar to I can look up rooms for you but I need more info. If you make a mistake during our talk, just act natural and ask me to change it. I&apos;ll understand 🧐.
         /// </summary>
         public static string INTRODUCTION_MISTAKES {
             get {

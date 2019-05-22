@@ -1,10 +1,9 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
 using HotelBot.Dialogs.ConfirmOrder.Resources;
 using HotelBot.Dialogs.RoomOverview;
 using HotelBot.Models.Facebook;
 using HotelBot.Models.Wrappers;
-using HotelBot.StateProperties;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.TemplateManager;
 using Microsoft.Bot.Schema;
@@ -123,7 +122,7 @@ namespace HotelBot.Dialogs.ConfirmOrder
             message += $"{confirmOrderState.FullName} \n";
             message += $"{confirmOrderState.Email} \n";
             message += $"{confirmOrderState.Number} \n";
-            message += $"Total: €{totalPrice}\n";
+            message += $"Total: €{totalPrice}€\n";
             return message;
 
         }
@@ -178,6 +177,7 @@ namespace HotelBot.Dialogs.ConfirmOrder
             public const string SendEmailQuickReply = "sendEmailQuickReply";
             public const string SendPhoneNumberQuickReply = "SendPhoneNumberQuickReply";
             public const string SendFullNameQuickReply = "SendFullNameQuickReply";
+
         }
     }
 

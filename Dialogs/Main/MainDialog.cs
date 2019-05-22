@@ -57,7 +57,11 @@ namespace HotelBot.Dialogs.Main
                     if (_intentHandler.MainIntentHandlerDelegates.TryGetValue(hotelBotIntent, out var DelegateAction))
                         DelegateAction(dc, _responder, _accessors, result);
                     else
+                    {
                         await _responder.ReplyWith(dc.Context, MainResponses.ResponseIds.Confused);
+                        await SendQuickRepliesBasedOnState(dc.Context, _accessors, _responder);
+                    }
+                      
 
                 }
                 else if (intent.IsQnAIntent())

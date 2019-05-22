@@ -61,7 +61,7 @@ namespace HotelBot.Dialogs.RoomDetail.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Book for {0}.
+        ///   Looks up a localized string similar to Book for {0}€.
         /// </summary>
         public static string HEROCARD_RATES_BUTTON_TEXT {
             get {
@@ -88,7 +88,7 @@ namespace HotelBot.Dialogs.RoomDetail.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This room is available starting at €{0}..
+        ///   Looks up a localized string similar to This room is available starting at {0}€..
         /// </summary>
         public static string LOWEST_RATE_TEXT {
             get {

@@ -25,7 +25,7 @@ namespace HotelBot.Dialogs.Prompts.ArrivalDate
             _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
             var askForArrivalDateWaterfallSteps = new WaterfallStep []
             {
-                PromptForArrivalDate, FinishArrivalDatePromptDialog
+                PromptForArrivalDateAsync, FinishArrivalDatePromptDialogAsync
             };
             _promptValidators =  new PromptValidators(accessors);
 
@@ -34,7 +34,7 @@ namespace HotelBot.Dialogs.Prompts.ArrivalDate
         }
 
 
-        private async Task<DialogTurnResult> PromptForArrivalDate(WaterfallStepContext sc, CancellationToken cancellationToken)
+        private async Task<DialogTurnResult> PromptForArrivalDateAsync(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
             if (state.ArrivalDate != null)
@@ -51,7 +51,7 @@ namespace HotelBot.Dialogs.Prompts.ArrivalDate
         }
 
 
-        private async Task<DialogTurnResult> FinishArrivalDatePromptDialog(WaterfallStepContext sc, CancellationToken cancellationToken)
+        private async Task<DialogTurnResult> FinishArrivalDatePromptDialogAsync(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             bool updated = false;
 

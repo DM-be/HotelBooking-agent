@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.FetchAvailableRooms;
 using HotelBot.Dialogs.Main.Resources;
@@ -22,75 +23,75 @@ namespace HotelBot.Dialogs.Main.Delegates
         {
             {
                 HotelBotLuis.Intent.Book_A_Room,
-                (dc, responder, accessors, luisResult) => BeginFetchAvailableRoomsDialog(dc, accessors, luisResult)
+                (dc, responder, accessors, luisResult) => BeginFetchAvailableRoomsDialogAsync(dc, accessors, luisResult)
             },
             {
-                HotelBotLuis.Intent.Cancel, (dc, responder, accessors, luisResult) => CancelDialogs(dc, responder)
+                HotelBotLuis.Intent.Cancel, (dc, responder, accessors, luisResult) => CancelDialogsAsync(dc, responder)
             },
             {
                 HotelBotLuis.Intent.Get_Directions,
-                (dc, responder, accessors, luisResult) => BeginLocationPromptDialog(dc)
+                (dc, responder, accessors, luisResult) => BeginLocationPromptDialogAsync(dc)
             },
                    {
                 HotelBotLuis.Intent.Get_Location,
-                (dc, responder, accessors, luisResult) => BeginLocationPromptDialog(dc)
+                (dc, responder, accessors, luisResult) => BeginLocationPromptDialogAsync(dc)
             },
             {
-                HotelBotLuis.Intent.Room_Overview, (dc, responder, accessors, luisResult) => BeginRoomOverviewDialog(dc)
+                HotelBotLuis.Intent.Room_Overview, (dc, responder, accessors, luisResult) => BeginRoomOverviewDialogAsync(dc)
             },
             {
                 HotelBotLuis.Intent.Call_Us,
-                (dc, responder, accessors, luisResult) => SendCallResponseAndQuickReplies(dc, responder, accessors)
+                (dc, responder, accessors, luisResult) => SendCallResponseAndQuickRepliesAsync(dc, responder, accessors)
             },
             {
-                HotelBotLuis.Intent.What_Can_You_Do, (dc, responder, accessors, luisResult) => SendWhatCanYouDo(dc, responder, accessors)
+                HotelBotLuis.Intent.What_Can_You_Do, (dc, responder, accessors, luisResult) => SendWhatCanYouDoAsync(dc, responder, accessors)
             },
             {
-                HotelBotLuis.Intent.None, (dc, responder, accessors, luisResult) => SendConfused(dc, responder, accessors)
+                HotelBotLuis.Intent.None, (dc, responder, accessors, luisResult) => SendConfusedAsync(dc, responder, accessors)
             },
 
 
         };
 
 
-        private static async Task BeginFetchAvailableRoomsDialog(DialogContext dc, StateBotAccessors accessors, HotelBotLuis luisResult)
+        private static async Task BeginFetchAvailableRoomsDialogAsync(DialogContext dc, StateBotAccessors accessors, HotelBotLuis luisResult)
         {
             var fetchAvailableRoomsState = await accessors.FetchAvailableRoomsStateAccessor.GetAsync(dc.Context, () => new FetchAvailableRoomsState());
             SetInitialFetchAvailableRoomsState(fetchAvailableRoomsState, luisResult);
             await dc.BeginDialogAsync(nameof(FetchAvailableRoomsDialog));
         }
 
-        private static async Task BeginRoomOverviewDialog(DialogContext dc)
+        private static async Task BeginRoomOverviewDialogAsync(DialogContext dc)
         {
 
             await dc.BeginDialogAsync(nameof(RoomOverviewDialog));
         }
 
-        private static async Task CancelDialogs(DialogContext dc, TemplateManager responder)
+        private static async Task CancelDialogsAsync(DialogContext dc, TemplateManager responder)
         {
             await responder.ReplyWith(dc.Context, MainResponses.ResponseIds.Cancelled);
             await dc.CancelAllDialogsAsync();
         }
 
-        private static async Task BeginLocationPromptDialog(DialogContext dc)
+        private static async Task BeginLocationPromptDialogAsync(DialogContext dc)
         {
             await dc.BeginDialogAsync(nameof(LocationPromptDialog));
         }
 
-        private static async Task SendCallResponseAndQuickReplies(DialogContext dc, TemplateManager responder, StateBotAccessors accessors)
+        private static async Task SendCallResponseAndQuickRepliesAsync(DialogContext dc, TemplateManager responder, StateBotAccessors accessors)
         {
             await responder.ReplyWith(dc.Context, MainResponses.ResponseIds.SendCallCard);
             await MainDialog.SendQuickRepliesBasedOnState(dc.Context, accessors, responder as MainResponses);
 
         }
 
-        private static async Task SendConfused(DialogContext dc, TemplateManager responder, StateBotAccessors accessors)
+        private static async Task SendConfusedAsync(DialogContext dc, TemplateManager responder, StateBotAccessors accessors)
         {
             await responder.ReplyWith(dc.Context, MainResponses.ResponseIds.Confused);
             await MainDialog.SendQuickRepliesBasedOnState(dc.Context, accessors, responder as MainResponses);
         }
 
-        private static async Task SendWhatCanYouDo(DialogContext dc, TemplateManager responder, StateBotAccessors accessors)
+        private static async Task SendWhatCanYouDoAsync(DialogContext dc, TemplateManager responder, StateBotAccessors accessors)
         {
             await responder.ReplyWith(dc.Context, MainResponses.ResponseIds.WhatCanYouDoTasks);
             await responder.ReplyWith(dc.Context, MainResponses.ResponseIds.WhatCanYouDoSmart);

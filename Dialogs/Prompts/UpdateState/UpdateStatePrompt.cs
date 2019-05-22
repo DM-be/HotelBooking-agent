@@ -29,7 +29,7 @@ namespace HotelBot.Dialogs.Prompts.UpdateState
 
             var updateStateWaterfallSteps = new WaterfallStep []
             {
-                ValidateTimeStep, PromptConfirm, EndConfirm
+                ValidateTimeStepAsync, PromptConfirmAsync, EndConfirmAsync
             };
 
             AddDialog(new WaterfallDialog(InitialDialogId, updateStateWaterfallSteps));
@@ -43,13 +43,13 @@ namespace HotelBot.Dialogs.Prompts.UpdateState
         }
 
 
-        public async Task<DialogTurnResult> ValidateTimeStep(WaterfallStepContext sc, CancellationToken cancellationToken)
+        public async Task<DialogTurnResult> ValidateTimeStepAsync(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
 
             var dialogOptions = (DialogOptions) sc.Options;
             var luisResult = dialogOptions.LuisResult;
             if (!dialogOptions.LuisResult.TopIntent().intent.IsUpdateDateIntent())
-                return await sc.NextAsync(); // skip to confirm if not update date (needs no validation)
+                return await sc.NextAsync(true); // skip to confirm if not update date (needs no validation)
 
             if (luisResult.HasEntityWithPropertyName(EntityNames.Datetime))
             {
@@ -70,7 +70,7 @@ namespace HotelBot.Dialogs.Prompts.UpdateState
 
         // get the timexproperty from the validatetimeprompt or from the step before if it is a valid date
         // sets it in a temptimexproperty for further processing (need confirmation etc to adjust arrival/leaving)
-        public async Task<DialogTurnResult> PromptConfirm(WaterfallStepContext sc, CancellationToken cancellationToken)
+        public async Task<DialogTurnResult> PromptConfirmAsync(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
 
             var fetchAvailableRoomsState = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
@@ -97,15 +97,15 @@ namespace HotelBot.Dialogs.Prompts.UpdateState
                 });
         }
 
-        public async Task<DialogTurnResult> EndConfirm(WaterfallStepContext sc, CancellationToken cancellationToken)
+        public async Task<DialogTurnResult> EndConfirmAsync(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             var confirmed = (bool) sc.Result;
-            if (confirmed) return await UpdateState(sc); // updates in delegate and ends after
+            if (confirmed) return await UpdateStateAsync(sc); // updates in delegate and ends after
 
             return await sc.EndDialogAsync();
         }
 
-        private async Task<DialogTurnResult> UpdateState(WaterfallStepContext sc)
+        private async Task<DialogTurnResult> UpdateStateAsync(WaterfallStepContext sc)
         {
 
             var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());

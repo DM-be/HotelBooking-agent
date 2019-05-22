@@ -17,13 +17,13 @@ namespace HotelBot.Dialogs.Prompts.LocationPrompt
             InitialDialogId = nameof(LocationPromptDialog);
             var askForEmailWaterfallSteps = new WaterfallStep []
             {
-                AskForLocation, ProcessNavigationOrLocationPrompt
+                AskForLocationAsync, ProcessNavigationOrLocationPromptAsync
             };
             AddDialog(new WaterfallDialog(InitialDialogId, askForEmailWaterfallSteps));
 
         }
 
-        private async Task<DialogTurnResult> AskForLocation(WaterfallStepContext sc, CancellationToken cancellationToken)
+        private async Task<DialogTurnResult> AskForLocationAsync(WaterfallStepContext sc, CancellationToken cancellationToken)
 
         {
             var coordinates = sc.Options as FacebookPayloadCoordinates;
@@ -34,7 +34,7 @@ namespace HotelBot.Dialogs.Prompts.LocationPrompt
 
         }
 
-        private async Task<DialogTurnResult> ProcessNavigationOrLocationPrompt(WaterfallStepContext sc, CancellationToken cancellationToken)
+        private async Task<DialogTurnResult> ProcessNavigationOrLocationPromptAsync(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             var coordinates = sc.Options as FacebookPayloadCoordinates;
             await _responder.ReplyWith(sc.Context, LocationResponses.ResponseIds.SendNavigation, coordinates);
