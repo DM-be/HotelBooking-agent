@@ -95,11 +95,8 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.Delegates
                 var updated = true;
                 return await sc.EndDialogAsync(updated);
             }
-
-            var dialogOptions = (DialogOptions) sc.Options;
-            dialogOptions.UpdatedNumberOfPeople = true;
-
-            return await sc.BeginDialogAsync(nameof(NumberOfPeoplePromptDialog), dialogOptions);
+            state.NumberOfPeople = null;
+            return await sc.BeginDialogAsync(nameof(NumberOfPeoplePromptDialog));
 
         }
     }

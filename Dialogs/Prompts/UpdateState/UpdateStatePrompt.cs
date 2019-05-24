@@ -49,18 +49,18 @@ namespace HotelBot.Dialogs.Prompts.UpdateState
             var dialogOptions = (DialogOptions) sc.Options;
             var luisResult = dialogOptions.LuisResult;
             if (!dialogOptions.LuisResult.TopIntent().intent.IsUpdateDateIntent())
-                return await sc.NextAsync(true); // skip to confirm if not update date (needs no validation)
+                return await sc.NextAsync(); // skip to confirm if not update date (needs no validation)
 
             if (luisResult.HasEntityWithPropertyName(EntityNames.Datetime))
             {
                 if (luisResult.Entities.datetime.First().Type != EntityTypes.Date) // could be a range or month, year...
-                    return await sc.BeginDialogAsync(nameof(ValidateDateTimePrompt)); // reprompt with day/month validation
+                    return await sc.BeginDialogAsync(nameof(ValidateDateTimePrompt), dialogOptions); // reprompt with day/month validation
                 var dateTimeSpecs = luisResult.Entities.datetime.First();
                 var firstExpression = dateTimeSpecs.Expressions.First();
                 var timexProperty = new TimexProperty(firstExpression);
                 var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
                 state.TempTimexProperty = timexProperty;
-                return await sc.NextAsync(false);
+                return await sc.NextAsync();
             }
 
    
@@ -76,9 +76,8 @@ namespace HotelBot.Dialogs.Prompts.UpdateState
             var fetchAvailableRoomsState = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
             var dialogOptions = sc.Options as DialogOptions;
             var intentAsAString = dialogOptions.LuisResult.TopIntent().intent.ToString();
-            var skipConfirm = (bool) sc.Result;
             var view = new FetchAvailableRoomsResponses();
-            if (dialogOptions.SkipConfirmation | skipConfirm)
+            if (dialogOptions.SkipConfirmation)
             {
                 var confirmed = true;
                 return await sc.NextAsync(confirmed);
