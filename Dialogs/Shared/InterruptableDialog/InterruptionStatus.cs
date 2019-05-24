@@ -17,11 +17,10 @@
         /// </summary>
         NoAction,
 
-
         /// <summary>
-        /// Indicates that reprompt action is required.
+        /// Indicates that routing action is required.
         /// </summary>
-        Reprompt,
+        Route,
 
     }
 }

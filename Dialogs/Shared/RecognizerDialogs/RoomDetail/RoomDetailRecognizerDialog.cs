@@ -5,6 +5,7 @@ using HotelBot.Dialogs.Cancel;
 using HotelBot.Dialogs.FetchAvailableRooms;
 using HotelBot.Dialogs.Prompts.UpdateState;
 using HotelBot.Models.LUIS;
+using HotelBot.Models.Wrappers;
 using HotelBot.Services;
 using HotelBot.StateAccessors;
 using Microsoft.Bot.Builder.Dialogs;
@@ -78,8 +79,8 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.RoomDetail
             if (intent == HotelBotLuis.Intent.Book_A_Room)
             {
                 await dc.CancelAllDialogsAsync();
-                await dc.BeginDialogAsync(nameof(FetchAvailableRoomsDialog));
-                return InterruptionStatus.Waiting;
+                dc.Context.TurnState.Add(TargetDialogKey, nameof(FetchAvailableRoomsDialog));
+                return InterruptionStatus.Route;
             }
             
             return InterruptionStatus.NoAction;

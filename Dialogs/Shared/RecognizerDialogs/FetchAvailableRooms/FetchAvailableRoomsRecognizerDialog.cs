@@ -58,7 +58,7 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms
                     }
                     case HotelBotLuis.Intent.Room_Overview:
                     {
-                        return await OnRouteAsync(dc);
+                        return await OnRouteAsync(dc, intent);
                     }
                     case HotelBotLuis.Intent.What_Can_You_Do:
                     {
@@ -130,21 +130,25 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.FetchAvailableRooms
             return InterruptionStatus.NoAction;
         }
 
-        protected virtual async Task<InterruptionStatus> OnRouteAsync(DialogContext dc)
+        protected virtual async Task<InterruptionStatus> OnRouteAsync(DialogContext dc, HotelBotLuis.Intent intent)
         {
-            var roomOverviewState = await _accessors.RoomOverviewStateAccessor.GetAsync(dc.Context, () => new RoomOverviewState());
-            if (roomOverviewState.SelectedRooms.Count == 0)
+
+            if (intent == HotelBotLuis.Intent.Room_Overview)
             {
-                await dc.Context.SendActivityAsync("You haven't added any room yet to your overview");
-                await dc.RepromptDialogAsync();
-                return InterruptionStatus.NoAction;
+                var roomOverviewState = await _accessors.RoomOverviewStateAccessor.GetAsync(dc.Context, () => new RoomOverviewState());
+                if (roomOverviewState.SelectedRooms.Count == 0)
+                {
+                    await dc.Context.SendActivityAsync("You haven't added any room yet to your overview");
+                    return InterruptionStatus.Interrupted;
+                }
+                await dc.CancelAllDialogsAsync();
+                dc.Context.TurnState.Add(TargetDialogKey, nameof(RoomOverviewDialog));
+                return InterruptionStatus.Route;
             }
+            return InterruptionStatus.NoAction;
 
-            await dc.CancelAllDialogsAsync(); // cancel stack --> fetch rooms skips based on state either way
-            await dc.BeginDialogAsync(nameof(RoomOverviewDialog));
-            return InterruptionStatus.Waiting;
-
+        }
+          
         }
     }
 
-}
