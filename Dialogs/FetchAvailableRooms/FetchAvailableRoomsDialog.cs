@@ -36,7 +36,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             {
                 SendOptionalIntroductionAsync, AskForNumberOfPeopleAsync, AskForArrivalDateAsync, AskForLeavingDateAsync, PromptFetchRoomsConfirmationPromptAsync,
                 ProcessFetchRoomsConfirmationPromptAsync, RespondToContinueOrUpdateAsync,
-                RespondToNewRequestAsync
+                RespondToNewRequestAsync,
             };
 
             AddDialog(new WaterfallDialog(InitialDialogId, fetchAvailableRoomsWaterfallSteps));
@@ -60,6 +60,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                 userProfile.SendFetchAvailableRoomsIntroduction = false;
                 return await sc.BeginDialogAsync(nameof(FetchAvailableRoomsIntroductionPrompt));
             }
+
             return await sc.NextAsync();
         }
 
@@ -71,6 +72,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                 sc.Context.TurnState[CachedStateKey] = state;
                 return await sc.NextAsync();
             }
+
             return await sc.BeginDialogAsync(nameof(NumberOfPeoplePromptDialog));
         }
 
@@ -82,6 +84,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                 sc.Context.TurnState[CachedStateKey] = state;
                 return await sc.NextAsync();
             }
+
             return await sc.BeginDialogAsync(nameof(ArrivalDatePromptDialog));
         }
 
@@ -93,6 +96,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                 sc.Context.TurnState[CachedStateKey] = state;
                 return await sc.NextAsync();
             }
+
             return await sc.BeginDialogAsync(nameof(DepartureDatePromptDialog));
         }
 
@@ -102,7 +106,10 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             if (sc.Options != null)
             {
                 dialogOptions = (DialogOptions) sc.Options;
-                if (dialogOptions.SkipConfirmation) return await sc.NextAsync(dialogOptions.SkipConfirmation);
+                if (dialogOptions.SkipConfirmation)
+                {
+                    return await sc.NextAsync(dialogOptions.SkipConfirmation);
+                }
             }
 
             return await sc.BeginDialogAsync(nameof(ConfirmFetchRoomsPrompt), dialogOptions);
@@ -115,7 +122,6 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             {
                 var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
                 await _responder.ReplyWith(sc.Context, FetchAvailableRoomsResponses.ResponseIds.HoldOnChecking);
-                Thread.Sleep(500); // dummy sleep for presentation
                 await _responder.ReplyWith(sc.Context, FetchAvailableRoomsResponses.ResponseIds.SendRoomsCarousel, state);
                 return await sc.BeginDialogAsync(nameof(ContinueOrUpdatePrompt));
             }
@@ -143,7 +149,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                             await _responder.ReplyWith(sc.Context, FetchAvailableRoomsResponses.ResponseIds.StartOver);
                             var dialogOptions = new DialogOptions
                         {
-                            SkipConfirmation = false // start over and prompt for confirmation again 
+                            SkipConfirmation = false
                         };
                         return await sc.ReplaceDialogAsync(InitialDialogId, dialogOptions);
                     }
@@ -171,7 +177,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             var dialogOptions = new DialogOptions
             {
                 SkipConfirmation =
-                    true // skip the confirmation in the middle of the dialog (at the end we assume that the user only makes a single adjustment to one value or selects the startover option instead
+                    true // skip the confirmation in the middle of the dialog (at the end we assume that the user only makes a single adjustment to one value or selects the startover option instead)
             };
             if (sc.Result != null)
             {
@@ -210,9 +216,9 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
 
             public static readonly ReadOnlyCollection<string> Choices =
                 new ReadOnlyCollection<string>(
-                    new []
+                    new[]
                     {
-                        Checkin, Checkout, NumberOfPeople, StartOver, UpdateSearch, RoomOverview
+                        Checkin, Checkout, NumberOfPeople, StartOver, UpdateSearch, RoomOverview,
                     });
         }
     }

@@ -31,7 +31,6 @@ namespace HotelBot.Dialogs.RoomDetail
                     ResponseIds.SendLowestRate, (context, data) =>
                         SendLowestRate(data)
                 }
-
             }
 
         };

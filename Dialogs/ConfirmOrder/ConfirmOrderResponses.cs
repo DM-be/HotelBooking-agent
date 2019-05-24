@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using HotelBot.Dialogs.ConfirmOrder.Resources;
 using HotelBot.Dialogs.RoomOverview;
 using HotelBot.Models.Facebook;
 using HotelBot.Models.Wrappers;
-
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.TemplateManager;
 using Microsoft.Bot.Schema;
@@ -34,6 +32,13 @@ namespace HotelBot.Dialogs.ConfirmOrder
                         MessageFactory.Text(
                             ConfirmOrderStrings.THANKS_INFORMATION,
                             ConfirmOrderStrings.THANKS_INFORMATION,
+                            InputHints.IgnoringInput)
+                },
+                      {
+                    ResponseIds.CannotConfirmNoRooms, (context, data) =>
+                        MessageFactory.Text(
+                            ConfirmOrderStrings.CANNOT_CONFIRM_NO_ROOMS,
+                            ConfirmOrderStrings.CANNOT_CONFIRM_NO_ROOMS,
                             InputHints.IgnoringInput)
                 },
                 {
@@ -136,11 +141,11 @@ namespace HotelBot.Dialogs.ConfirmOrder
             var facebookMessage = new FacebookMessage
             {
                 Text = ConfirmOrderStrings.ASK_NUMBER,
-                QuickReplies = new[]
+                QuickReplies = new List<FacebookQuickReply>
                 {
                     new FacebookQuickReply
                     {
-                        Content_Type = "user_phone_number"
+                        Content_Type = FacebookQuickReply.ContentTypes.PhoneNumber
                     }
                 }
             };
@@ -154,11 +159,11 @@ namespace HotelBot.Dialogs.ConfirmOrder
             var facebookMessage = new FacebookMessage
             {
                 Text = ConfirmOrderStrings.FULL_NAME_QUICK_REPLY_TEXT,
-                QuickReplies = new[]
+                QuickReplies = new List<FacebookQuickReply>
                 {
                     new FacebookQuickReply
                     {
-                        Content_Type = "text",
+                        Content_Type = FacebookQuickReply.ContentTypes.Text,
                         Title = data,
                         Payload = data
                     }
@@ -178,6 +183,7 @@ namespace HotelBot.Dialogs.ConfirmOrder
             public const string SendEmailQuickReply = "sendEmailQuickReply";
             public const string SendPhoneNumberQuickReply = "SendPhoneNumberQuickReply";
             public const string SendFullNameQuickReply = "SendFullNameQuickReply";
+            public const string CannotConfirmNoRooms = "cannotConfirmNoRooms";
 
         }
     }

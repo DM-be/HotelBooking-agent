@@ -36,7 +36,7 @@ namespace HotelBot.Dialogs.Prompts.UpdateStateChoice
                     Prompt = await _responder.RenderTemplate(
                         sc.Context,
                         sc.Context.Activity.Locale,
-                        FetchAvailableRoomsResponses.ResponseIds.UpdatePrompt), // OWN RESPONSES!
+                        FetchAvailableRoomsResponses.ResponseIds.UpdatePrompt), // todo: add own responses
                     Choices = ChoiceFactory.ToChoices(
                         new List<string>
                         {

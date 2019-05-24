@@ -36,7 +36,7 @@ namespace HotelBot.Models.Facebook
         public FacebookQuickReply QuickReply { get; set; }
 
         [JsonProperty("quick_replies")]
-        public FacebookQuickReply [] QuickReplies { get; set; }
+        public System.Collections.Generic.List<FacebookQuickReply> QuickReplies { get; set; }
 
         [JsonProperty ("attachments")]
         

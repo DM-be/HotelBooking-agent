@@ -96,13 +96,6 @@ namespace HotelBot.Dialogs.RoomOverview
                     ResponseIds.SendReceipt, (context, data) =>
                         SendReceipt(context, data)
                 },
-
-
-
-
-
-
-
             }
         };
 
@@ -267,7 +260,6 @@ namespace HotelBot.Dialogs.RoomOverview
 
         }
 
-        //TODO: update into own responses or add shared resources for emoticons? 
         private static string GetSmokingString(bool smoking)
         {
             if (smoking) return FetchAvailableRoomsStrings.SMOKING_ALLOWED;

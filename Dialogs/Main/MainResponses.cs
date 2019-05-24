@@ -177,8 +177,6 @@ namespace HotelBot.Dialogs.Main
             var reply = context.Activity.CreateReply();
             reply.ChannelData = facebookMessage;
             return reply;
-
-
         }
 
 
@@ -208,7 +206,7 @@ namespace HotelBot.Dialogs.Main
             var facebookMessage = new FacebookMessage
             {
                 Text = MainStrings.GREETING_PROMPT_FOR_ACTION,
-                QuickReplies = new[]
+                QuickReplies = new List<FacebookQuickReply>
                 {
                     new FacebookQuickReply
                     {
@@ -242,17 +240,6 @@ namespace HotelBot.Dialogs.Main
             return reply;
         }
 
-
-
-
-
-
-
-        // state is empty, there is nothing in the room overview, only prompt add a room
-        // nothing in room overview 
-        //      * Find a room
-        //      * (call hotel)
-
         public static IMessageActivity SendEmptyRoomOverviewStateQuickReplies(ITurnContext context, dynamic data)
         {
 
@@ -268,49 +255,13 @@ namespace HotelBot.Dialogs.Main
             var facebookMessage = new FacebookMessage
             {
                 Text = text,
-                QuickReplies = new[]
-                {
-                    new FacebookQuickReply
-                    {
-                        Content_Type = FacebookQuickReply.ContentTypes.Text,
-                        Title = MainStrings.QUICK_REPLY_BUTTON_FIND_A_ROOM,
-                        Payload = FacebookQuickReply.PayLoads.Book
-                    },
-                    new FacebookQuickReply
-                    {
-                        Content_Type = FacebookQuickReply.ContentTypes.Text,
-                        Title = MainStrings.QUICK_REPLY_BUTTON_CALL,
-                        Payload = FacebookQuickReply.PayLoads.Call
-                    },
-                      new FacebookQuickReply
-                    {
-                        Content_Type = FacebookQuickReply.ContentTypes.Text,
-                        Title = MainStrings.QUICK_REPLY_BUTTON_DIRECTION,
-                        Payload = FacebookQuickReply.PayLoads.Directions
-                    },
-                   new FacebookQuickReply
-                    {
-                        Content_Type = FacebookQuickReply.ContentTypes.Text,
-                        Title = MainStrings.QUICK_REPLY_BUTTON_WHAT_CAN_YOU_DO,
-                        Payload = string.Empty
-                    },
-
-                }
+                QuickReplies = GenerateFacebookQuickRepliesBasedOnState(States.Empty)
             };
             var reply = context.Activity.CreateReply();
             reply.ChannelData = facebookMessage;
             return reply;
         }
 
-
-
-
-        // has rooms in room overview state, but is not confirmed with payment.
-            // rooms in order not confirmed:
-            //      * Add a room
-            //      * Booking overview
-            //      * (call)
-            //      * (Confirm booking)
 
         public static IMessageActivity SendUnconfirmedPaymentQuickReplies(ITurnContext context, dynamic data)
         {
@@ -326,27 +277,7 @@ namespace HotelBot.Dialogs.Main
             var facebookMessage = new FacebookMessage
             {
                 Text = text,
-                QuickReplies = new[]
-                {
-                    new FacebookQuickReply
-                    {
-                        Content_Type =  FacebookQuickReply.ContentTypes.Text,
-                        Title =  MainStrings.QUICK_REPLY_BUTTON_FIND_A_ROOM,
-                        Payload = FacebookQuickReply.PayLoads.Book
-                    },
-                    new FacebookQuickReply
-                    {
-                        Content_Type =  FacebookQuickReply.ContentTypes.Text,
-                        Title =  MainStrings.QUICK_REPLY_BUTTON_BOOKING_OVERVIEW,
-                        Payload = FacebookQuickReply.PayLoads.BookingOverview
-                    },
-                    new FacebookQuickReply
-                    {
-                        Content_Type = FacebookQuickReply.ContentTypes.Text,
-                        Title = MainStrings.QUICK_REPLY_BUTTON_WHAT_CAN_YOU_DO,
-                        Payload = string.Empty
-                    },
-                }
+                QuickReplies = GenerateFacebookQuickRepliesBasedOnState(States.Unconfirmed),
             };
             var reply = context.Activity.CreateReply();
             reply.ChannelData = facebookMessage;
@@ -355,15 +286,9 @@ namespace HotelBot.Dialogs.Main
 
 
 
-        //payment is confirmed 
         public static IMessageActivity SendConfirmedPaymentQuickReplies(ITurnContext context, dynamic data)
         {
 
-            // (Book more rooms)
-            // get directions
-            // call hotel
-            // booking overview
-            // cancel bookings
             string text;
             if (data != null && data.GetType() == typeof(string))
             {
@@ -376,27 +301,7 @@ namespace HotelBot.Dialogs.Main
             var facebookMessage = new FacebookMessage
             {
                 Text = text,
-                QuickReplies = new[]
-                {
-                    new FacebookQuickReply
-                    {
-                        Title = LocationStrings.QUICK_REPLY_BUTTON_DIRECTION,
-                        Content_Type =  FacebookQuickReply.ContentTypes.Text,
-                        Payload = FacebookQuickReply.PayLoads.Directions
-                    },
-                    new FacebookQuickReply
-                    {
-                        Title = MainStrings.QUICK_REPLY_BUTTON_CALL,
-                        Content_Type =  FacebookQuickReply.ContentTypes.Text,
-                        Payload = FacebookQuickReply.PayLoads.Call
-                    },
-                    new FacebookQuickReply
-                    {
-                        Content_Type =  FacebookQuickReply.ContentTypes.Text,
-                        Title =  MainStrings.QUICK_REPLY_BUTTON_BOOKING_OVERVIEW,
-                        Payload = FacebookQuickReply.PayLoads.BookingOverview
-                    },
-                }
+                QuickReplies = GenerateFacebookQuickRepliesBasedOnState(States.Confirmed),
             };
             var reply = context.Activity.CreateReply();
             reply.ChannelData = facebookMessage;
@@ -412,6 +317,94 @@ namespace HotelBot.Dialogs.Main
             return MessageFactory.Text(message);
         }
 
+
+        private static List<FacebookQuickReply> GenerateFacebookQuickRepliesBasedOnState(States state) {
+            switch (state)
+            {
+                case States.Empty:
+                    var emptyReplies = GenerateGeneralQuickReplies();
+                    emptyReplies.Insert(0, new FacebookQuickReply
+                    {
+                        Content_Type = FacebookQuickReply.ContentTypes.Text,
+                        Title = MainStrings.QUICK_REPLY_BUTTON_WHAT_CAN_YOU_DO,
+                        Payload = string.Empty
+                    });
+                    emptyReplies.Insert(1, new FacebookQuickReply
+                    {
+                        Content_Type = FacebookQuickReply.ContentTypes.Text,
+                        Title = MainStrings.QUICK_REPLY_BUTTON_FIND_A_ROOM,
+                        Payload = FacebookQuickReply.PayLoads.Book
+                    });
+                    return emptyReplies;
+                case States.Unconfirmed:
+                    var unconfirmedReplies = GenerateGeneralQuickReplies();
+                 
+                    unconfirmedReplies.Insert(0, new FacebookQuickReply
+                    {
+                        Content_Type = FacebookQuickReply.ContentTypes.Text,
+                        Title = MainStrings.QUICK_REPLY_BUTTON_BOOKING_OVERVIEW,
+                        Payload = FacebookQuickReply.PayLoads.BookingOverview
+                    });
+                    unconfirmedReplies.Insert(1, new FacebookQuickReply
+                    {
+                        Content_Type = FacebookQuickReply.ContentTypes.Text,
+                        Title = MainStrings.QUICK_REPLY_BUTTON_FIND_A_ROOM,
+                        Payload = FacebookQuickReply.PayLoads.Book
+                    });
+                    unconfirmedReplies.Add(new FacebookQuickReply
+                    {
+                        Content_Type = FacebookQuickReply.ContentTypes.Text,
+                        Title = MainStrings.QUICK_REPLY_BUTTON_WHAT_CAN_YOU_DO,
+                        Payload = string.Empty
+                    });
+                    return unconfirmedReplies;
+                    
+                case States.Confirmed:
+                    var confirmedReplies = GenerateGeneralQuickReplies();
+                    confirmedReplies.Add(new FacebookQuickReply
+                    {
+                        Content_Type = FacebookQuickReply.ContentTypes.Text,
+                        Title = MainStrings.QUICK_REPLY_BUTTON_BOOKING_OVERVIEW,
+                        Payload = FacebookQuickReply.PayLoads.BookingOverview
+                    });
+
+                    confirmedReplies.Add(new FacebookQuickReply
+                    {
+                        Content_Type = FacebookQuickReply.ContentTypes.Text,
+                        Title = MainStrings.QUICK_REPLY_BUTTON_WHAT_CAN_YOU_DO,
+                        Payload = string.Empty
+                    });
+                    return confirmedReplies;
+
+            }
+            return null;
+        
+        }
+
+        private static List<FacebookQuickReply> GenerateGeneralQuickReplies() {
+
+            return new List<FacebookQuickReply> {
+
+                        new FacebookQuickReply
+                        {
+                            Content_Type = FacebookQuickReply.ContentTypes.Text,
+                            Title = MainStrings.QUICK_REPLY_BUTTON_CALL,
+                            Payload = FacebookQuickReply.PayLoads.Call
+                        },
+                        new FacebookQuickReply
+                        {
+                            Content_Type = FacebookQuickReply.ContentTypes.Text,
+                            Title = MainStrings.QUICK_REPLY_BUTTON_DIRECTION,
+                            Payload = FacebookQuickReply.PayLoads.Directions
+                        },
+            };
+        } 
+
+        enum States {
+            Unconfirmed,
+            Confirmed,
+            Empty
+        }
 
 
 

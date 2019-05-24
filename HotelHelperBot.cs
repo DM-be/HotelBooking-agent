@@ -38,9 +38,7 @@ namespace HotelBot
             _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
 
 
-            // set accessor for dialogstate
             _dialogs = new DialogSet(_accessors.DialogStateAccessor);
-            // add main dispatching dialog
             _dialogs.Add(new MainDialog(_services, _accessors));
 
 

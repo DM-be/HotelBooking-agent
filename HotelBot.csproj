@@ -205,8 +205,6 @@
 
  <ItemGroup>
    <Folder Include="CognitiveModels\QnA\en\" />
-   <Folder Include="Dialogs\ConfirmedPayment\" />
-   <Folder Include="Dialogs\Shared\RecognizerDialogs\Resources\" />
  </ItemGroup> 
 
   <Import Project="PostDeployScripts\IncludeSources.targets" Condition="Exists('PostDeployScripts\IncludeSources.targets')" />

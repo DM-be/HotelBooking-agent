@@ -9,7 +9,6 @@ namespace HotelBot.Dialogs.Prompts.FetchAvailableRoomsIntroduction
 {
     public class FetchAvailableRoomsIntroductionPrompt: ComponentDialog
     {
-        //todo: implement own separate responder
         private static FetchAvailableRoomsResponses _responder;
 
         public FetchAvailableRoomsIntroductionPrompt()
@@ -43,9 +42,8 @@ namespace HotelBot.Dialogs.Prompts.FetchAvailableRoomsIntroduction
                     Choices = ChoiceFactory.ToChoices(
                         new List<string>
                         {
-                            "OK 👌",
-                            "Understand? 🙃"
-
+                            FetchAvailableRoomsIntroductionPromptChoices.Ok,
+                            FetchAvailableRoomsIntroductionPromptChoices.Understand,
                         })
                 },
                 cancellationToken);
@@ -61,13 +59,12 @@ namespace HotelBot.Dialogs.Prompts.FetchAvailableRoomsIntroduction
             {
                 switch (foundChoice.Value)
                 {
-                    case "OK 👌":
+                    case FetchAvailableRoomsIntroductionPromptChoices.Ok:
                         await _responder.ReplyWith(sc.Context, FetchAvailableRoomsResponses.ResponseIds.SendStart);
                         return await sc.EndDialogAsync();
-                    case "Understand? 🙃":
+                    case FetchAvailableRoomsIntroductionPromptChoices.Understand:
                         await _responder.ReplyWith(sc.Context, FetchAvailableRoomsResponses.ResponseIds.UnderstandNLU);
                         await _responder.ReplyWith(sc.Context, FetchAvailableRoomsResponses.ResponseIds.UnderstandExample);
-                        // maybe sleep to give time to read?
                         await _responder.ReplyWith(sc.Context, FetchAvailableRoomsResponses.ResponseIds.SendStart);
                         return await sc.EndDialogAsync();
                 }
@@ -76,9 +73,14 @@ namespace HotelBot.Dialogs.Prompts.FetchAvailableRoomsIntroduction
 
             // not castable and not recognized --> loop dialog
             await sc.Context.SendActivityAsync("Sorry I didn't understand");
-            // loop
             return await sc.ReplaceDialogAsync(InitialDialogId);
         }
+
+        public class FetchAvailableRoomsIntroductionPromptChoices {
+            public const string Ok = "OK 👌";
+            public const string Understand = "Understand? 🙃";
+        }
+
     }
 
 

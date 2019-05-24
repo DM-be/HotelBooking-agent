@@ -35,7 +35,7 @@ namespace HotelBot.Dialogs.Prompts.LocationPrompt
             var facebookMessage = new FacebookMessage
             {
                 Text = LocationStrings.QUICK_REPLY_ASK_LOCATION,
-                QuickReplies = new []
+                QuickReplies = new List<FacebookQuickReply>
                 {
                     new FacebookQuickReply
                     {

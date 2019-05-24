@@ -28,10 +28,6 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                             FetchAvailableRoomsStrings.LEAVINGDATE_PROMPT,
                             InputHints.IgnoringInput)
                 },
-
-           
-
-
                 {
                     ResponseIds.SendStart, (context, data) =>
                         MessageFactory.Text(
@@ -52,11 +48,11 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
                 },
                 {
                     ResponseIds.UpdateLeavingDate, (context, data) =>
-                        UpdateLeavingDate(context, data)
+                        UpdateLeavingDate(data)
                 },
                 {
                     ResponseIds.UpdateArrivalDate, (context, data) =>
-                        UpdateArrivalDate(context, data)
+                        UpdateArrivalDate(data)
                 },
                 {
                     ResponseIds.Overview, (context, data) =>
@@ -137,12 +133,10 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
         {
             var requestHandler = new RequestHandler();
             var bookARoomState = data as FetchAvailableRoomsState;
-            var arrivalYear = 2019;
+            var arrivalYear = DateTime.Now.Year;
             var arrivalMonth = (int) bookARoomState.ArrivalDate.Month;
             var arrivalDay = (int) bookARoomState.ArrivalDate.DayOfMonth;
             var arrivalDateTime = new DateTime(arrivalYear, arrivalMonth, arrivalDay);
-
-
             var requestData =
                 new RoomRequestData
                 {
@@ -195,25 +189,17 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
 
                     }
 
-
                 };
             var reply = context.Activity.CreateReply();
-
             reply.Text = String.Format(FetchAvailableRoomsStrings.FOUND_ROOMS, heroCards.Length);
             var attachments = new List<Attachment>();
-
             foreach (var heroCard in heroCards) attachments.Add(heroCard.ToAttachment());
-
-
             reply.AttachmentLayout = AttachmentLayoutTypes.Carousel;
             reply.Attachments = attachments;
             return reply;
         }
 
-       
-
-
-        public static IMessageActivity UpdateArrivalDate(ITurnContext context, dynamic data)
+        public static IMessageActivity UpdateArrivalDate(dynamic data)
         {
             var state = data.State as FetchAvailableRoomsState;
             var timexProperty = state.TempTimexProperty;
@@ -227,6 +213,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             {
                 message = FetchAvailableRoomsStrings.UPDATE_ARRIVALDATE_WITHOUT_ENTITY;
             }
+
             return MessageFactory.Text(message);
 
         }
@@ -250,10 +237,9 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
         }
 
 
-        public static IMessageActivity UpdateLeavingDate(ITurnContext context, dynamic data)
+        public static IMessageActivity UpdateLeavingDate(dynamic data)
         {
             var state = data.State as FetchAvailableRoomsState;
-            context.TurnState.TryGetValue("tempTimex", out var t);
             var timexProperty = state.TempTimexProperty;
             string message;
             if (timexProperty != null)
@@ -294,7 +280,6 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             message += " \n";
             message += GetCapacityIcons(capacity);
             return message;
-
         }
 
         private static string GetSmokingString(bool smoking)
@@ -322,7 +307,6 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
 
         public class ResponseIds
         {
-
             public const string LeavingDatePrompt = "leavingDatePrompt";
             public const string IncorrectDate = "incorrectDate";
             public const string NotRecognizedDate = "notRecognizedDate";
@@ -332,21 +316,16 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
             public const string CachedOverview = "cachedOverview";
             public const string SendRoomsCarousel = "sendRoomsCarousel";
             public const string UpdatePrompt = "updatePrompt";
-
             public const string SendIntroduction = "sendIntroduction";
             public const string SendStart = "sendStart";
             public const string SendMoreInfo = "sendMoreInfo";
-
             public const string UpdateArrivalDate = "Update_ArrivalDate";
             public const string UpdateLeavingDate = "Update_Leaving_Date";
             public const string UpdateNumberOfPeople = "Update_Number_Of_People";
-
-
             public const string IntroductionMoreInfo = "introductionMoreInfo";
             public const string IntroductionMistakes = "introductionMistakes";
             public const string UnderstandNLU = "understandNLU";
             public const string UnderstandExample = "understandExample";
-
             public const string HoldOnChecking = "holdOnChecking";
             public const string StartOver = "startOver";
 

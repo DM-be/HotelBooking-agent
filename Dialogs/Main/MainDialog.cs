@@ -35,13 +35,14 @@ namespace HotelBot.Dialogs.Main
             AddDialog(new RoomOverviewDialog(_services, _accessors));
             AddDialog(new RoomDetailDialog(_services, accessors));
             AddDialog(new ConfirmOrderDialog(_services, accessors));
-            AddDialog(new LocationPromptDialog(accessors));
+            AddDialog(new LocationPromptDialog());
         }
 
         protected override async Task RouteAsync(DialogContext dc, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (dc.Context.Activity.Text != null)
             {
+
                 var dispatchResult = await _services.DispatchRecognizer.RecognizeAsync<HotelDispatch>(dc.Context, cancellationToken);
                 var intent = dispatchResult.TopIntent().intent;
                 if (intent == HotelDispatch.Intent.l_HotelBot)

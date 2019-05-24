@@ -26,8 +26,6 @@ namespace HotelBot.Dialogs.Prompts.ContinueOrUpdatePrompt
 
             AddDialog(new WaterfallDialog(InitialDialogId, continueOrUpdateWaterfallSteps));
             AddDialog(new ChoicePrompt(nameof(ChoicePrompt)));
-
-
         }
 
 
@@ -68,10 +66,6 @@ namespace HotelBot.Dialogs.Prompts.ContinueOrUpdatePrompt
         }
 
 
-        // end the dialog on resume with nevermind choice --> loops the calling waterfalldialog. 
-
-
-
         // when we are in this step of the dialog we can also use LUIS to update our search
         // it will call a updatestateprompt with a yes or no response
         // we assume that when state is updated, a user will want to see new results
@@ -79,8 +73,12 @@ namespace HotelBot.Dialogs.Prompts.ContinueOrUpdatePrompt
         public override async Task<DialogTurnResult> ResumeDialogAsync(DialogContext dc, DialogReason reason, object result = null,
             CancellationToken cancellationToken = new CancellationToken())
         {
-            var updated = (bool) result;
-            if (updated) return await dc.EndDialogAsync();
+            if (result != null)
+            {
+                var updated = (bool)result;
+                if (updated) return await dc.EndDialogAsync();
+            }
+
             // the non overriden function in case the state property was not updated--> reprompts this dialog. 
             await RepromptDialogAsync(dc.Context, dc.ActiveDialog, cancellationToken).ConfigureAwait(false);
             return EndOfTurn;

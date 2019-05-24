@@ -60,13 +60,14 @@ namespace HotelBot.Dialogs.Prompts.ArrivalDate
                 var dialogOptions = (DialogOptions)sc.Options;
                 updated = dialogOptions.UpdatedArrivalDate;
             }
+
             var resolution = (sc.Result as IList<DateTimeResolution>).First();
             var timexProp = new TimexProperty(resolution.Timex);
             var arrivalDateAsNaturalLanguage = timexProp.ToNaturalLanguage(DateTime.Now);
 
 
-            var _state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
-            _state.ArrivalDate = timexProp;
+            var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
+            state.ArrivalDate = timexProp;
 
             if (updated)
                 await _responder.ReplyWith(sc.Context, ArrivalDateResponses.ResponseIds.HaveUpdatedArrivalDate, arrivalDateAsNaturalLanguage);

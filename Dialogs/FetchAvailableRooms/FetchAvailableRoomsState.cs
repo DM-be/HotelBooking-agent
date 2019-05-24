@@ -12,7 +12,7 @@ namespace HotelBot.Dialogs.FetchAvailableRooms
         public TimexProperty ArrivalDate { get; set; }
         public TimexProperty LeavingDate { get; set; }
 
-        public TimexProperty TempTimexProperty { get; set; } 
+        public TimexProperty TempTimexProperty { get; set; }
         // a placeholder for the LUIS recognized timexproperty or result from a datetimeprompt
         // arrival/leaving will only be updated after confirmation
 

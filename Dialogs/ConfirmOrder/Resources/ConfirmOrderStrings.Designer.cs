@@ -70,6 +70,15 @@ namespace HotelBot.Dialogs.ConfirmOrder.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sorry, we can&apos;t confirm that for you, you have no rooms in your order..
+        /// </summary>
+        public static string CANNOT_CONFIRM_NO_ROOMS {
+            get {
+                return ResourceManager.GetString("CANNOT_CONFIRM_NO_ROOMS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to To complete your order we need some personal information. What name should we use to confirm this booking?.
         /// </summary>
         public static string FULL_NAME_QUICK_REPLY_TEXT {

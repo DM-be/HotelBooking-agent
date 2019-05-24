@@ -95,7 +95,7 @@ namespace HotelBot.Dialogs.Prompts.RoomDetailChoices
                     await _accessors.RoomDetailStateAccessor.SetAsync(sc.Context, new RoomDetailState());
                     var dialogResult = new DialogResult
                     {
-                        PreviousOptions = dialogOptions, //todo: check why
+                        PreviousOptions = dialogOptions, 
                         TargetDialog = nameof(FetchAvailableRoomsDialog)
                     };
                     return await sc.EndDialogAsync(dialogResult);
@@ -105,16 +105,10 @@ namespace HotelBot.Dialogs.Prompts.RoomDetailChoices
                     });
                 case RoomDetailDialog.RoomDetailChoices.Rates:
                     await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendRates, state.RoomDetailDto);
-                    return await sc.ReplaceDialogAsync(InitialDialogId, false); // add rate to choice
+                    return await sc.ReplaceDialogAsync(InitialDialogId, false); 
                 case RoomDetailDialog.RoomDetailChoices.Pictures:
                     await _responder.ReplyWith(sc.Context, RoomDetailResponses.ResponseIds.SendImages, state.RoomDetailDto);
                     return await sc.ReplaceDialogAsync(InitialDialogId, true);
-
-
-                //case RoomDetailDialog.RoomDetailChoices.NoThanks:
-                //    // end and prompt and end on waterfall above
-                //    await sc.Context.SendActivityAsync("You're welcome.");
-                //    return await sc.EndDialogAsync();
             }
 
             return null;

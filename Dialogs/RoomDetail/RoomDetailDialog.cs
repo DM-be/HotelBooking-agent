@@ -18,18 +18,20 @@ namespace HotelBot.Dialogs.RoomDetail
     {
         private readonly StateBotAccessors _accessors;
         private readonly RoomDetailResponses _responder = new RoomDetailResponses();
-        private readonly BotServices _services;
 
         public RoomDetailDialog(BotServices services, StateBotAccessors accessors)
             : base(services, accessors, nameof(RoomDetailDialog))
         {
-            _services = services ?? throw new ArgumentNullException(nameof(services));
+            if (services == null)
+            {
+                throw new ArgumentNullException(nameof(services));
+            }
             _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
             InitialDialogId = nameof(RoomDetailDialog);
 
             var roomDetailWaterfallSteps = new WaterfallStep []
             {
-                FetchSelectedRoomDetail, PromptRoomChoices
+                FetchSelectedRoomDetailAsync, PromptRoomChoicesAsync
             };
 
             AddDialog(new WaterfallDialog(InitialDialogId, roomDetailWaterfallSteps));
@@ -39,7 +41,7 @@ namespace HotelBot.Dialogs.RoomDetail
 
         }
 
-        public async Task<DialogTurnResult> FetchSelectedRoomDetail(WaterfallStepContext sc, CancellationToken cancellationToken)
+        public async Task<DialogTurnResult> FetchSelectedRoomDetailAsync(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
 
             var dialogOptions = sc.Options as DialogOptions;
@@ -62,7 +64,7 @@ namespace HotelBot.Dialogs.RoomDetail
             return await sc.NextAsync(addRatesToChoices);
         }
 
-        public async Task<DialogTurnResult> PromptRoomChoices(WaterfallStepContext sc, CancellationToken cancellationToken)
+        public async Task<DialogTurnResult> PromptRoomChoicesAsync(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             bool addRatesToChoices = (bool) sc.Result;
             return await sc.BeginDialogAsync(nameof(RoomDetailChoicesPrompt), addRatesToChoices);

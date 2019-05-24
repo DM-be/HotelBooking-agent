@@ -24,7 +24,7 @@ namespace HotelBot.Dialogs.Prompts.DepartureDate
             _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
             var askForDepartureDateWaterfallSteps = new WaterfallStep []
             {
-                PromptForDepartureDateAsync, FinishDepartureDatePromptDialogAsync
+                PromptForDepartureDateAsync, FinishDepartureDatePromptDialogAsync,
             };
             _promptValidators = new PromptValidators(accessors);
             AddDialog(new WaterfallDialog(InitialDialogId, askForDepartureDateWaterfallSteps));

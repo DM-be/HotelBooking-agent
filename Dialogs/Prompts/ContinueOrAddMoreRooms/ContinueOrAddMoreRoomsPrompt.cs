@@ -34,9 +34,7 @@ namespace HotelBot.Dialogs.Prompts.ContinueOrAddMoreRooms
         private async Task<DialogTurnResult> PromptContinueOrAddMoreRoomsAsync(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             var roomOverviewState = await _accessors.RoomOverviewStateAccessor.GetAsync(sc.Context, () => new RoomOverviewState());
-
             var confirmOrderState = await _accessors.ConfirmOrderStateAccessor.GetAsync(sc.Context, () => new ConfirmOrderState());
-
 
             var templateId = RoomOverviewResponses.ResponseIds.CompleteOverview;
             var choices = new List<string>
@@ -53,12 +51,13 @@ namespace HotelBot.Dialogs.Prompts.ContinueOrAddMoreRooms
 
                 };
             }
+
             if (confirmOrderState.PaymentConfirmed)
             {
                 templateId = RoomOverviewResponses.ResponseIds.ConfirmedPaymentOverview;
                 choices = new List<string> {
                        RoomOverviewDialog.RoomOverviewChoices.CancelBooking,
-                        RoomOverviewDialog.RoomOverviewChoices.Receipt
+                       RoomOverviewDialog.RoomOverviewChoices.Receipt,
                 };
             }
 
@@ -76,7 +75,7 @@ namespace HotelBot.Dialogs.Prompts.ContinueOrAddMoreRooms
                         sc.Context,
                         sc.Context.Activity.Locale,
                         RoomOverviewResponses.ResponseIds.RepromptUnconfirmed),
-                    Choices = convertedChoices
+                    Choices = convertedChoices,
                 },
                 cancellationToken);
         }
@@ -84,10 +83,7 @@ namespace HotelBot.Dialogs.Prompts.ContinueOrAddMoreRooms
 
         private async Task<DialogTurnResult> EndWithResultAsync(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-            
-
-            return await sc.EndDialogAsync(
-                sc.Result);
+            return await sc.EndDialogAsync(sc.Result);
         }
     }
 }

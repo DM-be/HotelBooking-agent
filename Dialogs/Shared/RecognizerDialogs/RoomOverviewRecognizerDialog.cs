@@ -14,8 +14,6 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
     public class RoomOverviewRecognizerDialog: InterruptableDialog
 
     {
-
-
         private readonly StateBotAccessors _accessors;
         private readonly BotServices _services;
 
@@ -26,7 +24,6 @@ namespace HotelBot.Dialogs.Shared.CustomDialog
             _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
             AddDialog(new CancelDialog(_accessors));
             AddDialog(new ConfirmPrompt(nameof(ConfirmPrompt)));
-
 
         }
 

@@ -2,7 +2,6 @@
 using System.Threading;
 using System.Threading.Tasks;
 using HotelBot.Dialogs.Cancel;
-using HotelBot.Dialogs.RoomOverview;
 using HotelBot.Models.LUIS;
 using HotelBot.Services;
 using HotelBot.StateAccessors;
@@ -26,8 +25,6 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.ConfirmOrder
 
         protected override async Task<InterruptionStatus> OnDialogInterruptionAsync(DialogContext dc, CancellationToken cancellationToken)
         {
-            var text = dc.Context.Activity.Text;
-            if (RoomOverviewDialog.RoomOverviewChoices.Choices.Contains(text)) return InterruptionStatus.NoAction;
 
             _services.LuisServices.TryGetValue("hotelbot", out var luisService);
 
@@ -38,18 +35,18 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.ConfirmOrder
 
 
             // Only triggers interruption if confidence level is high
-            if (luisResult.TopIntent().score > 0.75)
+            if (luisResult.TopIntent().score > 0.80)
                 switch (intent)
                 {
                     case HotelBotLuis.Intent.Cancel:
                     {
-                        return await OnCancel(dc);
+                        return await OnCancelAsync(dc);
                     }
 
                     case HotelBotLuis.Intent.Help:
                     {
                         // todo: provide contextual help
-                        return await OnHelp(dc);
+                        return await OnHelpAsync(dc);
                     }
 
                 }
@@ -60,7 +57,7 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.ConfirmOrder
 
 
 
-        protected virtual async Task<InterruptionStatus> OnCancel(DialogContext dc)
+        protected virtual async Task<InterruptionStatus> OnCancelAsync(DialogContext dc)
         {
             if (dc.ActiveDialog.Id != nameof(CancelDialog))
             {
@@ -76,12 +73,9 @@ namespace HotelBot.Dialogs.Shared.RecognizerDialogs.ConfirmOrder
         }
 
 
-        protected virtual async Task<InterruptionStatus> OnHelp(DialogContext dc)
+        protected virtual async Task<InterruptionStatus> OnHelpAsync(DialogContext dc)
         {
-            // todo: update to correct responses
-            var view = new RoomOverviewResponses();
-            await view.ReplyWith(dc.Context, RoomOverviewResponses.ResponseIds.RoomRemoved);
-
+            //todo implement contextual help
             // Signal the conversation was interrupted and should immediately continue
             return InterruptionStatus.Interrupted;
         }

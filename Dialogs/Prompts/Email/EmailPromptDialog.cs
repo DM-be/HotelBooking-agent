@@ -10,16 +10,18 @@ namespace HotelBot.Dialogs.Prompts.Email
     public class EmailPromptDialog: ComponentDialog
     {
         private static readonly EmailResponses _responder = new EmailResponses();
-        private readonly StateBotAccessors _accessors;
 
         public EmailPromptDialog(StateBotAccessors accessors)
             : base(nameof(EmailPromptDialog))
         {
             InitialDialogId = nameof(EmailPromptDialog);
-            _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
+            if (accessors == null)
+            {
+                throw new ArgumentNullException(nameof(accessors));
+            }
             var askForEmailWaterfallSteps = new WaterfallStep []
             {
-                AskForEmail, FinishEmailDialog
+                AskForEmailAsync, FinishEmailDialogAsync
             };
 
             AddDialog(new WaterfallDialog(InitialDialogId, askForEmailWaterfallSteps));
@@ -27,8 +29,7 @@ namespace HotelBot.Dialogs.Prompts.Email
 
         }
 
-
-        private async Task<DialogTurnResult> AskForEmail(WaterfallStepContext sc, CancellationToken cancellationToken)
+        private async Task<DialogTurnResult> AskForEmailAsync(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             var firstName = sc.Options;
             return await sc.PromptAsync(nameof(TextPrompt), new PromptOptions
@@ -38,7 +39,7 @@ namespace HotelBot.Dialogs.Prompts.Email
 
         }
 
-        private async Task<DialogTurnResult> FinishEmailDialog(WaterfallStepContext sc, CancellationToken cancellationToken)
+        private async Task<DialogTurnResult> FinishEmailDialogAsync(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
 
 

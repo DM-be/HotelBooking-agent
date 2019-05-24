@@ -120,6 +120,9 @@
   <data name="ASK_NUMBER" xml:space="preserve">
     <value>We just need your phone number in case of an emergency.</value>
   </data>
+  <data name="CANNOT_CONFIRM_NO_ROOMS" xml:space="preserve">
+    <value>Sorry, we can't confirm that for you, you have no rooms in your order.</value>
+  </data>
   <data name="FULL_NAME_QUICK_REPLY_TEXT" xml:space="preserve">
     <value>To complete your order we need some personal information. What name should we use to confirm this booking?</value>
   </data>

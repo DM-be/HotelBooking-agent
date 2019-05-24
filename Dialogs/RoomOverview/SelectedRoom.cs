@@ -9,7 +9,6 @@ namespace HotelBot.Dialogs.RoomOverview
 
         public RoomDetailDto RoomDetailDto { get; set; }
         public RoomRate SelectedRate { get; set; }
-
         public string Id { get; } = Guid.NewGuid().ToString();
     }
 }

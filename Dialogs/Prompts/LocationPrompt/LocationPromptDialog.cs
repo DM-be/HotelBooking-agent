@@ -11,7 +11,7 @@ namespace HotelBot.Dialogs.Prompts.LocationPrompt
 
         private readonly LocationResponses _responder = new LocationResponses();
 
-        public LocationPromptDialog(StateBotAccessors accessors)
+        public LocationPromptDialog()
             : base(nameof(LocationPromptDialog))
         {
             InitialDialogId = nameof(LocationPromptDialog);

@@ -22,7 +22,7 @@ namespace HotelBot.StateAccessors
         public static string ConversationDataName { get; } = "ConversationData";
         public static string DialogStateName { get; } = "DialogState";
         public static string FetchAvailableRoomsName { get; } = "FetchAvailableRoomsState";
-
+        public IStatePropertyAccessor<FetchAvailableRoomsState> FetchAvailableRoomsStateAccessor { get; set; }
         public static string RoomDetailName { get; } = "RoomDetail";
 
         public static string RoomOverviewName { get; } = "RoomOverview";
@@ -35,7 +35,7 @@ namespace HotelBot.StateAccessors
 
         public IStatePropertyAccessor<DialogState> DialogStateAccessor { get; set; }
 
-        public IStatePropertyAccessor<FetchAvailableRoomsState> FetchAvailableRoomsStateAccessor { get; set; }
+        
 
         public IStatePropertyAccessor<RoomDetailState> RoomDetailStateAccessor { get; set; }
 

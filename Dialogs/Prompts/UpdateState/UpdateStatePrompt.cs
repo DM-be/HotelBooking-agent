@@ -29,7 +29,7 @@ namespace HotelBot.Dialogs.Prompts.UpdateState
 
             var updateStateWaterfallSteps = new WaterfallStep []
             {
-                ValidateTimeStepAsync, PromptConfirmAsync, EndConfirmAsync
+                ValidateTimeStepAsync, PromptConfirmAsync, EndConfirmAsync,
             };
 
             AddDialog(new WaterfallDialog(InitialDialogId, updateStateWaterfallSteps));

@@ -20,24 +20,24 @@ namespace HotelBot.Dialogs.ConfirmOrder
 
         private static readonly ConfirmOrderResponses _responder = new ConfirmOrderResponses();
         private readonly StateBotAccessors _accessors;
-        private readonly BotServices _services;
 
         public ConfirmOrderDialog(BotServices services, StateBotAccessors accessors) : base(services, accessors, nameof(ConfirmOrderDialog))
         {
-            _services = services ?? throw new ArgumentNullException(nameof(services));
+            if (services == null)
+            {
+                throw new ArgumentNullException(nameof(services));
+            } 
+
             _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
             InitialDialogId = nameof(ConfirmOrderDialog);
             var confirmOrderWaterfallSteps = new WaterfallStep[]
             {
-                InitialStepAsync, ProcessNamePromptAsync, PromptEmailAsync, ProcessEmailAsync, PromptNumberAsync, ProcessNumberAsync, ProcessChoicesAsync
+                InitialStepAsync, ProcessNamePromptAsync, PromptEmailAsync, ProcessEmailAsync, PromptNumberAsync, ProcessNumberAsync, ProcessChoicesAsync,
             };
             AddDialog(new WaterfallDialog(InitialDialogId, confirmOrderWaterfallSteps));
             AddDialog(new EmailPromptDialog(accessors));
             AddDialog(new ChoicePrompt(nameof(ChoicePrompt)));
-
-
         }
-
 
 
         public async Task<DialogTurnResult> InitialStepAsync(WaterfallStepContext sc, CancellationToken cancellationToken)
@@ -47,9 +47,11 @@ namespace HotelBot.Dialogs.ConfirmOrder
             var confirmOrderState = await _accessors.ConfirmOrderStateAccessor.GetAsync(sc.Context, () => new ConfirmOrderState());
             if (roomOverviewState.SelectedRooms.Count == 0)
             {
-                await sc.Context.SendActivityAsync("Sorry, we can't confirm that for you, you have no rooms in your order.");
+
+                await _responder.ReplyWith(sc.Context, ConfirmOrderResponses.ResponseIds.CannotConfirmNoRooms);
                 return await sc.EndDialogAsync();
             }
+
             confirmOrderState.RoomOverviewState = roomOverviewState;
             var userProfile = await _accessors.UserProfileAccessor.GetAsync(sc.Context, () => new UserProfile());
             var fullName = userProfile.FacebookProfileData.Name;
@@ -77,7 +79,7 @@ namespace HotelBot.Dialogs.ConfirmOrder
         public async Task<DialogTurnResult> ProcessEmailAsync(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
             var state = await _accessors.ConfirmOrderStateAccessor.GetAsync(sc.Context, () => new ConfirmOrderState());
-            var email = sc.Result as string; //always valid because of emailpromptdialog
+            var email = sc.Result as string; // never null because of emailpromptdialog
             state.Email = email;
             return await sc.NextAsync();
         }
@@ -88,22 +90,20 @@ namespace HotelBot.Dialogs.ConfirmOrder
             return new DialogTurnResult(DialogTurnStatus.Waiting);
         }
 
+        // todo: add phonenumber validation
         public async Task<DialogTurnResult> ProcessNumberAsync(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
-            // needs validation 
             var phoneNumber = sc.Result as string;
             var roomOrderState = await _accessors.ConfirmOrderStateAccessor.GetAsync(sc.Context, () => new ConfirmOrderState());
             roomOrderState.Number = phoneNumber;
 
             await _responder.ReplyWith(sc.Context, ConfirmOrderResponses.ResponseIds.ThanksInformation);
             await _responder.ReplyWith(sc.Context, ConfirmOrderResponses.ResponseIds.SendPaymentCard, roomOrderState);
-            //    await _responder.ReplyWith(sc.Context, ConfirmOrderResponses.ResponseIds.TapPayToComplete);
-
 
             var choices = new List<string>
             {
 
-                "Add a room",
+                ConfirmOrderChoices.AddARoom,
             };
 
             return await sc.PromptAsync(
@@ -127,7 +127,7 @@ namespace HotelBot.Dialogs.ConfirmOrder
                 var choice = sc.Result as FoundChoice;
                 switch (choice.Value)
                 {
-                    case "Add a room":
+                    case ConfirmOrderChoices.AddARoom:
                         var dialogResult = new DialogResult
                         {
                             TargetDialog = nameof(FetchAvailableRoomsDialog)
@@ -136,6 +136,12 @@ namespace HotelBot.Dialogs.ConfirmOrder
                 }
             }
             return null;
+        }
+
+
+        public class ConfirmOrderChoices {
+            public const string AddARoom = "Add a room";
+
         }
     }
 }

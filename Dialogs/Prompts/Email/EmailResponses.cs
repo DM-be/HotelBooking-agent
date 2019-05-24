@@ -3,6 +3,7 @@ using HotelBot.Models.Facebook;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.TemplateManager;
 using Microsoft.Bot.Schema;
+using System.Collections.Generic;
 
 namespace HotelBot.Dialogs.Prompts.Email
 {
@@ -36,11 +37,11 @@ namespace HotelBot.Dialogs.Prompts.Email
             var facebookMessage = new FacebookMessage
             {
                 Text = string.Format(EmailStrings.ASK_EMAIL_WITH_NAME, data),
-                QuickReplies = new[]
+                QuickReplies = new List<FacebookQuickReply>
                 {
                     new FacebookQuickReply
                     {
-                        Content_Type = "user_email"
+                        Content_Type = FacebookQuickReply.ContentTypes.Email
                     }
                 }
             };

@@ -13,7 +13,7 @@ namespace HotelBot.Dialogs.Prompts.NumberOfPeople
     {
         private static readonly NumberOfPeopleResponses _responder = new NumberOfPeopleResponses();
         private readonly StateBotAccessors _accessors;
-        private readonly PromptValidators _promptValidators; // implement checking on max min number of people --> x hotel only has y size rooms etc
+        private readonly PromptValidators _promptValidators; // now hardcoded set at 5 --> API request with 
 
         public NumberOfPeoplePromptDialog(StateBotAccessors accessors)
             : base(nameof(NumberOfPeoplePromptDialog))
@@ -22,7 +22,7 @@ namespace HotelBot.Dialogs.Prompts.NumberOfPeople
             _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
             var askForNumberOfPeopleWaterfallSteps = new WaterfallStep []
             {
-                PromptForNumberOfPeopleAsync, FinishNumberOfPeoplePromptDialogAsync
+                PromptForNumberOfPeopleAsync, FinishNumberOfPeoplePromptDialogAsync,
             };
             _promptValidators = new PromptValidators(accessors);
             AddDialog(new WaterfallDialog(InitialDialogId, askForNumberOfPeopleWaterfallSteps));
@@ -56,11 +56,11 @@ namespace HotelBot.Dialogs.Prompts.NumberOfPeople
             if (sc.Options != null)
             {
                 var dialogOptions = (DialogOptions)sc.Options;
-                updated = dialogOptions.UpdatedNumberOfPeople; //todo: fix this --> this wont be set, only here, read only object 
+                updated = dialogOptions.UpdatedNumberOfPeople;
             }
 
-            var _state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
-            _state.NumberOfPeople = numberOfPeople;
+            var state = await _accessors.FetchAvailableRoomsStateAccessor.GetAsync(sc.Context, () => new FetchAvailableRoomsState());
+            state.NumberOfPeople = numberOfPeople;
 
             if (updated)
                 await _responder.ReplyWith(sc.Context, NumberOfPeopleResponses.ResponseIds.HaveUpdatedNumberOfPeople, numberOfPeople);

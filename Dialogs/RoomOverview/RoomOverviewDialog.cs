@@ -24,13 +24,16 @@ namespace HotelBot.Dialogs.RoomOverview
 
         private static readonly RoomOverviewResponses _responder = new RoomOverviewResponses();
         private readonly StateBotAccessors _accessors;
-        private readonly BotServices _services; //todo: services still needed? 
 
 
         public RoomOverviewDialog(BotServices services, StateBotAccessors accessors)
             : base(services, accessors, nameof(RoomOverviewDialog))
         {
-            _services = services ?? throw new ArgumentNullException(nameof(services));
+            if (services == null)
+            {
+                throw new ArgumentNullException(nameof(services));
+            }
+
             _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
             InitialDialogId = nameof(RoomOverviewDialog);
             var roomOverviewWaterfallSteps = new WaterfallStep []
@@ -45,14 +48,11 @@ namespace HotelBot.Dialogs.RoomOverview
         }
 
 
-        // check roomaction and add room to state if it is not null
         public async Task<DialogTurnResult> FetchSelectedRoomDetailAndAddToStateAsync(WaterfallStepContext sc, CancellationToken cancellationToken)
         {
 
             var dialogOptions = sc.Options as DialogOptions;
             var state = await _accessors.RoomOverviewStateAccessor.GetAsync(sc.Context, () => new RoomOverviewState());
-            
-
             if (dialogOptions != null && dialogOptions.RoomAction != null)
             {
                 if (dialogOptions.RoomAction.Action != null && dialogOptions.RoomAction.Action == RoomAction.Actions.SelectRoomWithRate)
@@ -75,10 +75,12 @@ namespace HotelBot.Dialogs.RoomOverview
         public async Task<DialogTurnResult> ProcessResultContinueOrAddMoreRoomsPromptAsync(WaterfallStepContext sc, CancellationToken cancellationToken)
 
         {
-            
 
+            if (sc.Result != null && sc.Result.GetType() == typeof(bool))
+            {
+                return await sc.EndDialogAsync();
+            } 
 
-            if (sc.Result != null && sc.Result.GetType() == typeof(bool)) return await sc.EndDialogAsync();
             var dialogOptions = new DialogOptions();
             if (sc.Options != null) dialogOptions = (DialogOptions) sc.Options;
             if (sc.Result != null)
@@ -99,7 +101,7 @@ namespace HotelBot.Dialogs.RoomOverview
                         var dialogResult = new DialogResult
                         {
                             PreviousOptions = dialogOptions,
-                            TargetDialog = nameof(FetchAvailableRoomsDialog)
+                            TargetDialog = nameof(FetchAvailableRoomsDialog),
 
                         };
                         return await sc.EndDialogAsync(dialogResult);
@@ -112,15 +114,11 @@ namespace HotelBot.Dialogs.RoomOverview
                         var mainResponses = new MainResponses();
                         await mainResponses.ReplyWith(sc.Context, MainResponses.ResponseIds.SendReceipt, data);
                         return await sc.EndDialogAsync();
-                            
                 }
             }
 
             return await sc.NextAsync();
-
         }
-
-
 
         private async Task AddRoomAsync(RoomOverviewState state, DialogOptions dialogOptions, WaterfallStepContext sc)
         {
@@ -141,7 +139,6 @@ namespace HotelBot.Dialogs.RoomOverview
         {
             var roomId = dialogOptions.RoomAction.RoomId;
             var selectedRate = dialogOptions.RoomAction.SelectedRate.Price;
-            // todo: implement better removal... 
 
             if (state.SelectedRooms != null)
             {
@@ -157,11 +154,6 @@ namespace HotelBot.Dialogs.RoomOverview
             }
 
         }
-
-
-
-
-
 
         public class RoomOverviewChoices
         {

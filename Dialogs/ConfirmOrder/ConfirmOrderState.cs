@@ -10,6 +10,6 @@ namespace HotelBot.Dialogs.ConfirmOrder
 
         public RoomOverviewState RoomOverviewState { get; set; }
 
-        public bool PaymentConfirmed { get; set; } = false; 
+        public bool PaymentConfirmed { get; set; } = false;
     }
 }

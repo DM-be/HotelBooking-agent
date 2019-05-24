@@ -33,7 +33,7 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
             DialogTurnResult result = null;
 
 
-            if (activity.IsGetStartedPostBack() | activity.IsStartActivity())
+            if (activity.IsGettingStartedPostBack())
             {
                 await OnStartAsync(innerDc);
                 result = new DialogTurnResult(DialogTurnStatus.Waiting);
@@ -44,7 +44,7 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
                 case ActivityTypes.Message:
                 {
 
-                    if (activity.Value != null && !activity.IsGetStartedPostBack())
+                    if (activity.Value != null && !activity.IsGettingStartedPostBack())
                     {
 
                         var roomAction = JsonConvert.DeserializeObject<RoomAction>(activity.Value.ToString());
@@ -67,8 +67,6 @@ namespace HotelBot.Dialogs.Shared.RouterDialog
                             if (dialogResult.TargetDialog != null)
                             {
                                 if (dialogResult.PreviousOptions == null) dialogResult.PreviousOptions = new DialogOptions();
-
-                             //await innerDc.CancelAllDialogsAsync(); --> ???????
 
                              var turnResult = await innerDc.BeginDialogAsync(dialogResult.TargetDialog, dialogResult.PreviousOptions);
                                 result.Status = turnResult.Status;

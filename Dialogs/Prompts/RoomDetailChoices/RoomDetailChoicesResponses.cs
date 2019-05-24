@@ -34,7 +34,7 @@ namespace HotelBot.Dialogs.Prompts.RoomDetailChoices
             List<dynamic> randomContinueResponses = new List<dynamic>();
             while (id.MoveNext())
             {
-                if (id.Key.ToString().StartsWith("RANDOM_PROMPT"))
+                if (id.Key.ToString().StartsWith(ResponseKeys.RANDOM_PROMPT))
                 {
                     var dyn = new
                     {
@@ -61,6 +61,10 @@ namespace HotelBot.Dialogs.Prompts.RoomDetailChoices
         {
             public const string GetRandomContinuePrompt = "getRandomContinuePrompt";
         }
+
+        public class ResponseKeys {
+            public const string RANDOM_PROMPT = "RANDOM_PROMPT";
+        } 
 
     }
 }

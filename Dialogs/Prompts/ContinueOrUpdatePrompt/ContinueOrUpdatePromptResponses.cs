@@ -18,7 +18,6 @@ namespace HotelBot.Dialogs.Prompts.ContinueOrUpdatePrompt
                 {
                     ResponseIds.SendRandomContinueOrUpdatePrompt, (context, data) =>
                         GenerateRandomContinueOrUpdateText()
-
                 },
             }
         };
@@ -38,12 +37,12 @@ namespace HotelBot.Dialogs.Prompts.ContinueOrUpdatePrompt
             List<dynamic> randomContinueResponses = new List<dynamic>();
             while (id.MoveNext())
             {
-                if (id.Key.ToString().StartsWith("RANDOM_CONTINUE"))
+                if (id.Key.ToString().StartsWith(ResponseKeys.RANDOM_CONTINUE))
                 {
                     var dyn = new
                     {
                         Key = id.Key.ToString(),
-                        Value = id.Value.ToString()
+                        Value = id.Value.ToString(),
                     };
                     randomContinueResponses.Add(dyn);
                 }
@@ -52,13 +51,18 @@ namespace HotelBot.Dialogs.Prompts.ContinueOrUpdatePrompt
             var message = randomContinueResponses[random.Next(0, randomContinueResponses.Count)].Value;
             return MessageFactory.Text(message);
 
-
         }
 
 
         public class ResponseIds
         {
             public const string SendRandomContinueOrUpdatePrompt = "sendRandomContinueOrUpdatePrompt";
+        }
+
+        public class ResponseKeys
+        {
+
+            public const string RANDOM_CONTINUE = "RANDOM_CONTINUE";
         }
     }
 
