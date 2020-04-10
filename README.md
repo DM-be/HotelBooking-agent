@@ -1,60 +1,23 @@
-# Basic Bot template
-This bot has been created using [Microsoft Bot Framework](https://dev.botframework.com),
-- Use [LUIS](https://luis.ai) to implement core AI capabilities
-- Implement a multi-turn conversation using Dialogs
-- Handle user interruptions for such things as Help or Cancel
-- Prompt for and validate requests for information from the user
+# Hotel Booking agent
 
-# Prerequisite to run this bot locally
-- Download the bot code from the Build blade in the Azure Portal
-- Update the `appsettings.json` file in the root of the bot project with the botFilePath and botFileSecret 
-- You can find the botFilePath and botFileSecret in the Azure App Service application settings.
+## Description
+This project was built during my internship for the company Stardekk. Stardekk specializes in cloud software for the hospitality sector.
+They wondered if a chatbot could be interesting to deploy for their clients. My bachelor's thesis was built around this interest.
+You can view it here. 
 
-Your appsettings.json file should look like this
-```bash
-{
-    "botFilePath": "<copy value from App settings>",
-    "botFileSecret": "<copy value from App settings>"
-}
-```
+The goal was to build a conversational agent that could be contacted on a hotel Facebook page. This agent would guide a client to book a room or to answer questions such as the hotel location or phone number. 
 
 
-## Run in Visual Studio
-- Open the .sln file with Visual Studio.
-- Press F5.
-## Run in Visual Studio Code
-- Open the bot project folder with Visual Studio Code.
-- Bring up a terminal.
-- Type 'dotnet run'.
-## Testing the bot using Bot Framework Emulator
-[Microsoft Bot Framework Emulator](https://aka.ms/botframework-emulator) is a desktop application that allows bot developers to test and debug
-their bots on localhost or running remotely through a tunnel.
-- Install the Bot Framework Emulator from [here](https://aka.ms/botframework-emulator).
-### Connect to bot using Bot Framework Emulator
-- Launch the Bot Framework Emulator
-- File -> Open bot and navigate to the bot project folder
-- Select `<your-bot-name>.bot` file
+## Technical
+The agent is a web server responding to HTTP requests. Within the body of these requests is information about sender, the text sent, channel data,... The Microsoft bot framework leverages this data and provides ways to support a natural flow of a conversation between the sender and the agent. 
 
-# Deploy this bot to Azure
-## Publish from Visual Studio
-- Open the .PublishSettings file you find in the PostDeployScripts folder
-- Copy the userPWD value
-- Right click on the Project and click on "Publish..."
-- Paste the password you just copied and publish
+LUIS is natural language understanding service provided by Microsoft. It can recognize user intents and entities. Every response in a dialog is first interpreted by LUIS, according to the recognized intents actions can be taken. For example a user booking a room and realising he/she made a mistake about the checkin date can just say "change my check-in date to next monday" and LUIS would recognize this intent, extract monday as the check-in date and make it available for the agent. 
 
-## Publish using the CLI tools
-You can use the [MSBot](https://github.com/microsoft/botbuilder-tools) Bot Builder CLI tool to clone and configure any services this sample depends on. 
-To install all Bot Builder tools - 
+QnA maker is another service provided by Microsoft. It matches questions with answers. A FAQ list is also implemented in the main dialog of this agent.
 
-Ensure you have [Node.js](https://nodejs.org/) version 8.5 or higher
+I go into full technical detail in my thesis, supported with code examples and schematics. It is available here. 
 
-```bash
-npm i -g msbot chatdown ludown qnamaker luis-apis botdispatch luisgen
-```
-To clone this bot, run
-```
-msbot clone services -f deploymentScripts/msbotClone -n <BOT-NAME> -l <Azure-location> --subscriptionId <Azure-subscription-id>
-```
+
 # Further reading
 - [Bot Framework Documentation](https://docs.botframework.com)
 - [Bot basics](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-basics?view=azure-bot-service-4.0)
@@ -65,11 +28,5 @@ msbot clone services -f deploymentScripts/msbotClone -n <BOT-NAME> -l <Azure-loc
 - [Channels and Bot Connector Service](https://docs.microsoft.com/en-us/azure/bot-service/bot-concepts?view=azure-bot-service-4.0)
 - [QnA Maker](https://qnamaker.ai)
 
-# personal notes
-
-Starhotelpage access token (persoonlijke account)
-
-EAAZAwdCH6kA4BALmrXAxNUYIUfqaH01Lx3bsNDFlQZCgRolXq0yErVZABhdRHuZCkGjTuHGZCZBzhcWDCRVGOIXf6v5Yckz0MidVUJg8EXbWWXeaDhaGVR19CXtZBao64Y09N5IWWZBNMbQOa23Dt222YW8NwgdpNVWZBDjVOh5qXZCAZDZD
-https://hoteltestv2.azurewebsites.net/api/messages
 
 
