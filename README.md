@@ -8,11 +8,11 @@ They wondered if a chatbot could be interesting to deploy for their clients. My 
 The goal was to build a conversational agent/chatbot that could be contacted on a hotel Facebook page. This agent would guide a client to book a room or to answer questions such as the location of the hotel.
 
 ### Technical
-The agent is a web server responding to HTTP requests. Within the body of these requests is information about sender, the text sent, channel data,... The Microsoft bot framework v4 leverages this data and provides ways to support a natural flow of a conversation between the sender and the bot.
+The agent is a web server responding to HTTP requests. Within the body of these requests is information about sender, the text sent, channel data and more. The Microsoft bot framework v4 leverages this data and provides ways to support a natural flow of a conversation between the sender and the bot.
 
 <img src="https://docs.microsoft.com/en-us/azure/bot-service/v4sdk/media/bot-builder-activity.png?view=azure-bot-service-4.0">
 
-The design of this application is based on the concept of a stack. Bot framework provides the concept of a "Dialog". This class can be used to manipulate the stack. Dialogs are pushed on top of other dialogs. Some dialogs provide steps in a waterfall like structure. Only when all steps are complete the dialog will end and get pushed off the stack. When this happens an optional result can be returned. Through continuing to a next step in a dialog, ending a dialog, replacing a dialog or starting a new dialog the conversation feels smooth for an end user. This concept also helps in maintaining clear code and structure. In the application everything is a dialog, every separate function is maintained in a separate class. 
+The design of this application is based on the concept of a stack. Bot framework provides the concept of a "Dialog". This class can be used to manipulate the stack. Dialogs are pushed on top of other dialogs. Some dialogs provide steps in a waterfall like structure. Only when all steps are complete the dialog will end and get pushed off the stack. When this happens an optional result can be returned. Through continuing to a next step in a dialog, ending a dialog, replacing a dialog or starting a new dialog the conversation feels smooth for an end user. This concept also helps in maintaining clear code and structure. In the application everything is a dialog, every separate functionality is maintained in a separate class. 
 
 I go into full technical detail in my <a href="https://github.com/DM-be/HotelBooking-agent/raw/master/Bachelorproef_Dennis_Morent.pdf"> thesis</a>, supported with code examples and schematics. 
 
@@ -23,7 +23,7 @@ Conversations are guided with quick replies. These are text pop-ups users can us
 
 #### LUIS
 LUIS is a natural language understanding service provided by Microsoft. It can recognize user intents and entities. 
-Sentences are trained to map with intents. Variations of utterances are given a probability, with more data, these intents become more accurate. 
+Sentences are trained to map with intents. Variations of utterances are given a probability. With more data these intents become more accurate. 
 Entities are pretrained by LUIS and provided on a per language basis. English provdes a helpfull "datetimev2" entity, which recognizes words such as "tomorrow" but also utterances such as "next week monday". 
 
 ![LUIS](Images/utterances_intents.PNG)
@@ -32,7 +32,7 @@ Entities are pretrained by LUIS and provided on a per language basis. English pr
 
 ![LUIS](Images/luis_service.PNG)
 
-Every response in a dialog is first interpreted by LUIS, according to the recognized intents actions can be taken. For example a user booking a room and realising he/she made a mistake about the checkin date can just say "change my check-in date to next monday" and LUIS would recognize this intent, extract monday as the check-in date and make it available for the bot framework to respond accordingly in code. 
+Every response in a dialog is first interpreted by LUIS, according to the recognized intents actions can be taken. For example a user booking a room and realising he/she made a mistake about the check-in date can just say "change my check-in date to next monday" and LUIS would recognize this intent, extract monday as the check-in date and make it available for the bot framework to respond appropiately.
 
 ![LUIS](Images/change_checkin.PNG)
 
@@ -42,14 +42,14 @@ Every response in a dialog is first interpreted by LUIS, according to the recogn
 
 First a knowledge base is created with example questions (utterances) and an answer. The questions are trained via machine learning and mapped to the answer.
 
-The agent responds with the mapped answer when it recognizes an utterance with a high probability associated with the answer from this knowledge base. More information can be found in my thesis. In the following example the probability is 1, because it is the same exact utterance as trained in the knowledge base.
+The agent responds with the mapped answer when it recognizes an utterance with a high probability associated with the answer from this knowledge base. More information can be found in my thesis. In the following example the probability is 1 because it is the same exact utterance as trained in the knowledge base.
 
 ![knowledge base](Images/qna_screenshot.PNG) ![knowledge base](Images/qna_kb.PNG)
 
 ### Multi language support
-The agent supports multiple languages. Whenever a user sends a message to the bot, custom middleware will intercept metadata about the language their Facebook page is in. This in turn will set the threadculture of the agent to this locale. Responses are generated using a .resx file. Separate .resx files can be for each locale.
+The agent supports multiple languages. Whenever a user sends a message to the bot custom middleware will intercept metadata about the language their Facebook page is in. This in turn will set the threadculture of the agent to this locale. Responses are generated using a .resx file. Separate .resx files can be for each locale.
 
-In this test application only English is used. To fully use multiple languages all LUIS utterances and intents need to be retrained in a different language. As of the moment of building this application the Dutch LUIS integration does not support the "DatetimeV2" entities. Meaning an entity such as "volgende week maandag" would not be recognized. Therefore the choice was made to continue in English for demonstrating purposes although multiple languages are fully supported in the code. 
+In this test application only English is used. To make full of multiple languages all LUIS utterances and intents need to be retrained in these languages. As of the moment of building this application the Dutch LUIS integration does not support the "DatetimeV2" entities. Meaning an entity such as "volgende week maandag" would not be recognized. Therefore the choice was made to continue in English for demonstrating purposes although multiple languages are fully supported in the code. 
 
 ![LUIS](Images/random_response_1.PNG)
 
@@ -70,7 +70,7 @@ In this test application only English is used. To fully use multiple languages a
 * view pictures of a selected room
 * call hotel with easy to use number card action
 
-## screenshots
+## Screenshots
 
 ![screenshot](Images/screenshot_1.PNG)
 ![screenshot](Images/screenshot_2.PNG)
