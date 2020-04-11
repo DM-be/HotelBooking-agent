@@ -39,7 +39,7 @@ Every response in a dialog is first interpreted by LUIS. Depending on the recogn
 [QnA Maker](https://qnamaker.ai) is another service provided by Microsoft. It maps multiple questions to a single answer. 
 This functionality is implemented in the main dialog of this agent. It can be extended to several sub dialogs. 
 
-A knowledge base needs to be created with example questions (utterances) and an answer. The questions are trained via machine learning and mapped to the answer. This happens similar way as LUIS but less transparent for the developer. 
+A knowledge base needs to be created with example questions (utterances) and an answer. The questions are trained with machine learning and mapped to the answer. This happens in a similar way as LUIS but less transparent for the developer. 
 
 The agent responds with the mapped answer when it recognizes a question from the knowledge base.
 
