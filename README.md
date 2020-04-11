@@ -22,7 +22,7 @@ Conversations are guided with quick replies. These are text pop-ups users can us
 #### LUIS
 LUIS is a natural language understanding service provided by Microsoft. It can recognize user intents and entities. 
 Sentences are trained to map with intents. Variations of utterances are given a probability between 0 and 1, depending on the amount of training data available.
-Entities are pretrained by LUIS and are provided on a per language basis. English provdes a helpfull "datetimev2" entity, which recognizes words such as "tomorrow" but also utterances such as "next week monday". 
+Entities are pretrained by LUIS and provided on a per language basis. English provdes a helpfull "datetimev2" entity, which recognizes words such as "tomorrow" but also utterances such as "next week monday". 
 
 ![LUIS](Images/utterances_intents.PNG)
 
@@ -39,16 +39,16 @@ Every response in a dialog is first interpreted by LUIS. Depending on the recogn
 [QnA Maker](https://qnamaker.ai) is another service provided by Microsoft. It maps multiple questions to a single answer. 
 This functionality is implemented in the main dialog of this agent. It can be extended to several sub dialogs. 
 
-First a knowledge base is created with example questions (utterances) and an answer. The questions are trained via machine learning and mapped to the answer.
+A knowledge base needs to be created with example questions (utterances) and an answer. The questions are trained via machine learning and mapped to the answer. This happens similar way as LUIS but less transparent for the developer. 
 
-The agent responds with the mapped answer when it recognizes an utterance with a high probability associated with the answer from this knowledge base. In the following example the probability is 1 because it is the same exact utterance as trained in the knowledge base.
+The agent responds with the mapped answer when it recognizes a question from the knowledge base.
 
 ![knowledge base](Images/qna_screenshot.PNG) ![knowledge base](Images/qna_kb.PNG)
 
 ### Multi language support
 The agent supports multiple languages. Whenever a user sends a message to the bot custom middleware will intercept metadata about the language they use in Facebook. This data about the locale is used to set the threadculture agent. Responses are generated using a .resx file. Separate .resx files can be for each language.
 
-In this test application only English is used. To make full use of multiple languages all LUIS utterances and intents need to be retrained in a new language. As of the moment of building this application the Dutch LUIS integration does not support the "DatetimeV2" entity. Meaning an entity such as "volgende week maandag" would not be recognized. Therefore the choice was made to continue in English for demonstrating purposes although multiple languages are fully supported internally.
+In this test application only English is used. To make full use of multiple languages all LUIS utterances and intents need to be retrained in a new language. As of the moment of building this application the Dutch LUIS integration does not support the "datetimev2" entity. Meaning an entity such as "volgende week maandag" would not be recognized. Therefore the choice was made to continue in English for demonstrating purposes although multiple languages are fully supported internally.
 
 ![LUIS](Images/random_response_1.PNG)
 
