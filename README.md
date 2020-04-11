@@ -40,7 +40,7 @@ Every response in a dialog is first interpreted by LUIS, according to the recogn
 ### QnA maker
 [QnA Maker](https://qnamaker.ai) is another service provided by Microsoft. It matches questions with answers. A FAQ list is also implemented in the main dialog of this agent.
 
-First a knowledge base is created with example questions (utterances) and an answer. The questions are trained via machine learning and mapped to the according answer.
+First a knowledge base is created with example questions (utterances) and an answer. The questions are trained via machine learning and mapped to the answer.
 
 The agent responds with the mapped answer when it recognizes an utterance with a high probability associated with the answer from this knowledge base. More information can be found in my thesis. In the following example the probability is 1, because it is the same exact utterance as trained in the knowledge base.
 
@@ -49,7 +49,7 @@ The agent responds with the mapped answer when it recognizes an utterance with a
 ### Multi language support
 The agent supports multiple languages. Whenever a user sends a message to the bot, custom middleware will intercept metadata about the language their Facebook page is in. This in turn will set the threadculture of the agent to this locale. Responses are generated using a .resx file. Separate .resx files can be for each locale.
 
-In this test application only English is used. To fully use multiple languages all LUIS utterances and intents need to be retrained in a different language. As of the moment of building this application the Dutch LUIS integration does not support the "DatetimeV2" entities. Meaning an entity such as "volgende week maandag" would not be recognized. Therefore the choice was made to continuee in English for demonstrating purposes although multiple languages are fully supported in the code. 
+In this test application only English is used. To fully use multiple languages all LUIS utterances and intents need to be retrained in a different language. As of the moment of building this application the Dutch LUIS integration does not support the "DatetimeV2" entities. Meaning an entity such as "volgende week maandag" would not be recognized. Therefore the choice was made to continue in English for demonstrating purposes although multiple languages are fully supported in the code. 
 
 ![LUIS](Images/random_response_1.PNG)
 
@@ -68,6 +68,22 @@ In this test application only English is used. To fully use multiple languages a
 * random responses 
 * switch between dialogs using naturla language
 * view pictures of a selected room
+* call hotel with easy to use number card action
+
+## screenshots
+
+![screenshot](Images/screenshot_1.PNG)
+![screenshot](Images/screenshot_2.PNG)
+![screenshot](Images/screenshot_3.PNG)
+![screenshot](Images/screenshot_4.PNG)
+![screenshot](Images/screenshot_5.PNG)
+![screenshot](Images/screenshot_6.PNG)
+![screenshot](Images/screenshot_7.PNG)
+![screenshot](Images/screenshot_8.PNG)
+![screenshot](Images/screenshot_9.PNG)
+![screenshot](Images/screenshot_10.PNG)
+![screenshot](Images/screenshot_11.PNG)
+![screenshot](Images/screenshot_12.PNG)
 
 # Further reading
 - [Bot Framework Documentation](https://docs.botframework.com)
