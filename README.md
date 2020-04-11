@@ -13,6 +13,8 @@ Conversations are guided with quick replies. These are text pop ups users can us
 ### Technical
 The agent is a web server responding to HTTP requests. Within the body of these requests is information about sender, the text sent, channel data,... The Microsoft bot framework leverages this data and provides ways to support a natural flow of a conversation between the sender and the agent. 
 
+<img src="https://docs.microsoft.com/en-us/azure/bot-service/v4sdk/media/bot-builder-activity.png?view=azure-bot-service-4.0">
+
 I go into full technical detail in my <a href="https://github.com/DM-be/HotelBooking-agent/raw/master/Bachelorproef_Dennis_Morent.pdf"> thesis</a>, supported with code examples and schematics. 
 
 #### LUIS
