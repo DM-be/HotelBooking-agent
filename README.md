@@ -3,10 +3,7 @@
 ## Description
 This application was built as a proof of concept during my internship at the company Stardekk. Stardekk specializes in cloud software for the hospitality sector. They provide several products for this sector such as an online booking platform hotels can use to manage their bookings. 
 
-They wondered if a chatbot could be interesting to deploy for their clients. My bachelor's 
- was built around this interest.
-
-The goal of this proof of concept was to build a conversational agent/chatbot that could be contacted on a hotel Facebook page. This agent would guide a client to book a room or answer questions such as the location of the hotel. Findings and technical details are covered in my <a href="https://github.com/DM-be/HotelBooking-agent/raw/master/Bachelorproef_Dennis_Morent.pdf"> thesis </a>.
+The goal of this project was to build a conversational agent/chatbot that could be contacted on a hotel Facebook page. This agent would guide a client to book a room or answer questions such as the location of the hotel. Findings and technical details are covered in my <a href="https://github.com/DM-be/HotelBooking-agent/raw/master/Bachelorproef_Dennis_Morent.pdf"> thesis </a>.
 
 ### Technical
 The agent is a web server responding to HTTP requests. Within the body of these requests is information about sender, the text sent, channel data and more. The Microsoft bot framework v4 leverages this data and provides ways to support a natural flow of conversation between sender and bot.
