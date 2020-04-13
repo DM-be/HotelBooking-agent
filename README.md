@@ -76,9 +76,11 @@ In this proof of concept only English is completely supported. To make full use 
 
 ![full demo](Images/fulldemodetails.gif) ![full demo](Images/fullreservedemo.gif)
 
-### Ask for phone number
+### Natural Language Understanding
 
 ![NLU call](Images/NLUCallAndDate.gif)
+![screenshot](Images/screenshot_4.PNG)
+![screenshot](Images/screenshot_5.PNG)
 
 ### Get directions
 
@@ -86,13 +88,11 @@ In this proof of concept only English is completely supported. To make full use 
 ![screenshot](Images/screenshot_12.PNG)
 
 
-## Screenshots
+## More screenshots
 
 ![screenshot](Images/screenshot_1.PNG)
 ![screenshot](Images/screenshot_2.PNG)
 ![screenshot](Images/screenshot_3.PNG)
-![screenshot](Images/screenshot_4.PNG)
-![screenshot](Images/screenshot_5.PNG)
 ![screenshot](Images/screenshot_6.PNG)
 ![screenshot](Images/screenshot_7.PNG)
 ![screenshot](Images/screenshot_8.PNG)
