@@ -78,7 +78,6 @@ In this proof of concept only English is completely supported. To make full use 
 
 ### Natural Language Understanding
 
-![NLU call](Images/NLUCallAndDate.gif)
 ![screenshot](Images/screenshot_4.PNG)
 ![screenshot](Images/screenshot_5.PNG)
 
@@ -86,19 +85,6 @@ In this proof of concept only English is completely supported. To make full use 
 
 ![screenshot](Images/screenshot_11.PNG)
 ![screenshot](Images/screenshot_12.PNG)
-
-
-## More screenshots
-
-![screenshot](Images/screenshot_1.PNG)
-![screenshot](Images/screenshot_2.PNG)
-![screenshot](Images/screenshot_3.PNG)
-![screenshot](Images/screenshot_6.PNG)
-![screenshot](Images/screenshot_7.PNG)
-![screenshot](Images/screenshot_8.PNG)
-
-![screenshot](Images/screenshot_9.PNG)
-![screenshot](Images/screenshot_10.PNG)
 
 
 # Further reading
