@@ -36,6 +36,7 @@ Every response in a dialog is first interpreted by LUIS. Depending on the recogn
 ![LUIS](Images/change_checkin.PNG)
 
 
+
 ### QnA maker
 [QnA Maker](https://qnamaker.ai) is another service provided by Microsoft. It maps multiple questions to a single answer. 
 This functionality is implemented in the main dialog of this agent. It can be extended to several sub dialogs. 
@@ -69,6 +70,22 @@ In this proof of concept only English is completely supported. To make full use 
 * switch between dialogs using natural language
 * view pictures of a selected room
 
+## Demos
+
+### Book a room
+
+![full demo](Images/fulldemodetails.gif) ![full demo](Images/fullreservedemo.gif)
+
+### Ask for phone number
+
+![NLU call](Images/NLUCallAndDate.gif)
+
+### Get directions
+
+![screenshot](Images/screenshot_11.PNG)
+![screenshot](Images/screenshot_12.PNG)
+
+
 ## Screenshots
 
 ![screenshot](Images/screenshot_1.PNG)
@@ -79,10 +96,10 @@ In this proof of concept only English is completely supported. To make full use 
 ![screenshot](Images/screenshot_6.PNG)
 ![screenshot](Images/screenshot_7.PNG)
 ![screenshot](Images/screenshot_8.PNG)
+
 ![screenshot](Images/screenshot_9.PNG)
 ![screenshot](Images/screenshot_10.PNG)
-![screenshot](Images/screenshot_11.PNG)
-![screenshot](Images/screenshot_12.PNG)
+
 
 # Further reading
 - [Bot Framework Documentation](https://docs.botframework.com)
